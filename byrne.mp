@@ -1,0 +1,1052 @@
+%    byrne-euclid 0.0.1
+%    MetaPost library that implements most of the graphical
+%    features present in Oliver Byrne's version of Euclid's "Elements"
+%    Copyright 2017 Sergey Slyusarev
+%
+%    This program is free software: you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation, either version 3 of the License, or
+%    (at your option) any later version.
+%
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%
+% Here we define some things of general interest
+%
+
+pi := 3.1415926;
+radian := 180/pi;
+lineWidth := 2pt;
+lineWidthThin := 1pt;
+lineWidthHair := 1/2pt;
+u := 1cm;
+scaleFactor := 1;
+angleScale := 1;
+magnitudeScale := 1/3;
+magnitudeGap := 2lineWidth;
+markLength := 5lineWidth;
+
+numeric dpLength[];
+dpLength0 := 2lineWidth;
+dpLength1 := 2lineWidth;
+
+vardef sin primary x = (sind(x*radian)) enddef;
+
+vardef cos primary x = (cosd(x*radian)) enddef;
+
+color byred, byblue, byyellow, arconly, lineColor.noLine;
+byred := (.9, .15, .05);
+byblue := (.05, .2, .7);
+byyellow := (.9, .75, .1);
+arconly := (.5, .5, .5);
+
+string lineEndAName.noLine, lineEndBName.noLine;
+
+lineColor.noLine := white;
+lineDashed.noLine := 0;
+lineEndAName.noLine := "noEndA";
+lineEndBName.noLine := "noEndB";
+lineEndA.noLine := inf;
+lineEndB.noLine := inf;
+
+linecap := butt;
+
+vardef sign (expr x)=
+    if x > 0: 1 fi
+    if x < 0: -1 fi
+    if x = 0: 1 fi
+enddef;
+
+vardef distanceToLine (expr givenPoint, givenLine) =
+begingroup
+    save p;
+    pair p[];
+    p0 := point 0 of givenLine;
+    p1 := point 0 of reverse(givenLine);
+    p2 - givenPoint = whatever * ((p1-p0) rotated 90);
+    p2 = whatever[p0, p1];
+    p3 := p2;
+    arclength(givenPoint -- p3)
+endgroup
+enddef;
+
+vardef angleValue (expr a, b, c) =
+begingroup
+    save v;
+    numeric v;
+    v := angle(a-b) - angle(c-b);
+    if (sind(v) < 0): v := -v; fi;
+    v
+endgroup
+enddef;
+
+vardef lineThickness(expr th) =
+    if (th = 0):
+        lineWidth
+    elseif (th = 1):
+        lineWidthThin
+    elseif (th = 2):
+        lineWidthHair
+    else:
+        lineWidth
+    fi
+enddef;
+
+vardef byDashPattern(expr l, dp) =
+begingroup
+    save d, n;
+    numeric d[], n;
+    n := ceiling(l/dpLength[dp]);
+    d1 := 1/3(l/n);
+    d2 := 1/3(l/n);
+    dashpattern (on d1 off d2 on d1)
+endgroup
+enddef;
+
+def startTempScale(expr tmpScale) =
+    numeric oldScaleFactor;
+    oldScaleFactor := scaleFactor;
+    scaleFactor := tmpScale;
+enddef;
+
+def stopTempScale =
+    scaleFactor := oldScaleFactor;
+enddef;
+
+def startTempAngleScale(expr tmpScale) =
+    numeric oldAngleScale;
+    oldAngleScale := angleScale;
+    angleScale := tmpScale;
+enddef;
+
+def stopTempAngleScale =
+    angleScale := oldAngleScale;
+enddef;
+
+%
+% This section is dedicated to lines
+%
+
+vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
+begingroup
+    save p, la, lineItself, lineBleeding, clippingPath, cutAngle, linePerp, lineStyShift, currentLineWidth, clippingPathPoint, aS, bS;
+    picture p;
+    path lineItself, lineBleeding, clippingPath;
+    pair cutAngle[], linePerp, lineStyShift, clippingPathPoint[], aS, bS;
+    la := angle(b-a);
+    aS := a*sf;
+    bS := b*sf;
+    lineStyShift := (0, 0);
+    currentLineWidth := lineThickness(th);
+    if (abs(c-a) > 0) and (abs(unitvector(c-a)-unitvector(a-b)) > 1/100):
+        if (ct = 0):
+            cutAngle1 := unitvector(1/2[unitvector(b-a), unitvector(c-a)]);
+        elseif (ct = 1):
+            cutAngle1 := unitvector(1[unitvector(b-a), unitvector(c-a)]);
+        fi;
+    else:
+        cutAngle1 := unitvector(b-a) rotated -90;
+    fi;
+    if (abs(d-b) > 0) and (abs(unitvector(d-b)-unitvector(b-a)) > 1/100):
+        if (dt = 0):
+            cutAngle2 := unitvector(1/2[unitvector(a-b), unitvector(d-b)]);
+        elseif (dt = 1):
+            cutAngle2 := unitvector(1[unitvector(a-b), unitvector(d-b)]);
+        fi;
+    else:
+        cutAngle2 := unitvector(a-b) rotated 90;
+    fi;
+    if (sign(ypart(cutAngle2 rotated -la)) <> sign(ypart(cutAngle1 rotated -la))):
+        cutAngle2 := cutAngle2 rotated 180;
+    fi;
+    lineItself := (a--b) scaled sf;
+    linePerp := unitvector((point 0 of lineItself)-(point 1 of lineItself)) rotated 90;
+    lineBleeding :=
+        ((point 0 of lineItself) shifted (unitvector((point 0 of lineItself) - (point 1 of lineItself)) scaled dpLength[dp])) --
+        lineItself -- ((point 1 of lineItself) shifted (unitvector((point 1 of lineItself) - (point 0 of lineItself)) scaled dpLength[dp]));
+    p := image(
+        lineStyShift := (linePerp scaled (1/2currentLineWidth*s));
+        if (th == 2):
+            lineStyShift := linePerp scaled 1/2currentLineWidth;
+            draw (lineBleeding shifted -lineStyShift) withpen pencircle scaled currentLineWidth withcolor black;
+        fi;
+        if (dp > 0):
+            draw (lineItself shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor white;
+            draw (lineItself shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col
+                dashed byDashPattern(arclength(lineItself), dp);
+            draw (subpath(0, 1) of lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
+            draw (subpath(2, 3) of lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
+        else:
+            draw (lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
+        fi;
+    );
+    clippingPathPoint1
+        = whatever[aS shifted (linePerp*1/2lineWidth) shifted lineStyShift,
+            bS shifted (linePerp*1/2lineWidth) shifted lineStyShift]
+        = whatever[aS, aS shifted cutAngle1];
+    clippingPathPoint2
+        = whatever[aS shifted (linePerp*-1/2lineWidth) shifted lineStyShift,
+            bS shifted (linePerp*-1/2lineWidth) shifted lineStyShift]
+        = whatever[aS, aS shifted cutAngle1];
+    clippingPathPoint3
+        = whatever[aS shifted (linePerp*-1/2lineWidth) shifted lineStyShift,
+            bS shifted (linePerp*-1/2lineWidth) shifted lineStyShift]
+        = whatever[bS, bS shifted cutAngle2];
+    clippingPathPoint4
+        = whatever[aS shifted (linePerp*1/2lineWidth) shifted lineStyShift,
+            bS shifted (linePerp*1/2lineWidth) shifted lineStyShift]
+        = whatever[bS, bS shifted cutAngle2];
+    clippingPath := clippingPathPoint1 -- clippingPathPoint2 -- clippingPathPoint3 -- clippingPathPoint4 -- cycle;
+    clip p to clippingPath;
+    p
+endgroup
+enddef;
+
+def byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
+color lineColor.lineName;
+path line.lineName;
+numeric lineShift.lineName, lineDashed.lineName, lineLength.lineName, lineAngle.lineName, lineEndAType.lineName, lineEndBType.lineName;
+pair lineEndA.lineName, lineEndB.lineName, lineDirA.lineName, lineDirB.lineName;
+string lineEndAName.lineName, lineEndBName.lineName;
+begingroup
+    lineAngle.lineName := angle(b-a);
+    lineColor.lineName := col;
+    lineDashed.lineName := dp;
+    lineThin.lineName := th;
+    lineLength.lineName := arclength(a--b);
+    lineEndA.lineName := a;
+    lineEndB.lineName := b;
+    lineShift.lineName := 0;
+    lineDirA.lineName := a;
+    lineDirB.lineName := b;
+    lineEndAType.lineName := 0;
+    lineEndBType.lineName := 0;
+    lineEndAName.lineName := str a;
+    lineEndBName.lineName := str b;
+endgroup
+enddef;
+
+def byLineDefine (suffix a, b) (expr col, dp, th) =
+    byLineDefineWithName (a, b, col, dp, th) (scantokens(str a & str b));
+enddef;
+
+def byLineStylize (expr c, d, ct, dt, s) (suffix lineName) =
+begingroup
+    lineShift.lineName := s;
+    lineDirA.lineName := c;
+    lineDirB.lineName := d;
+    lineEndAType.lineName := ct;
+    lineEndBType.lineName := dt;
+endgroup
+enddef;
+
+vardef byLine (suffix a, b)(expr col, dp, th) =
+begingroup
+    byLineDefine (a, b) (col, dp, th);
+    byNamedLineFull(a, b, 0, 0, 0)(scantokens(str a & str b))
+endgroup
+enddef;
+
+vardef byLineFull (suffix a, b)(expr col, dp, th, c, d, ct, dt, s) =
+begingroup
+    byLineDefine (a, b) (col, dp, th);
+    byLineStylize (c, d, ct, dt, s)(scantokens(str a & str b));
+    byNamedLine(scantokens(str a & str b))
+endgroup
+enddef;
+
+vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
+begingroup
+    byLineDefineWithName (a, b, col, dp, th) (lineName);
+    byNamedLineFull(a, b, 0, 0, 0)(lineName)
+endgroup
+enddef;
+
+vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
+begingroup
+    byLineRender(lineEndA.lineName, lineEndB.lineName, lineColor.lineName, lineDashed.lineName, lineThin.lineName, c, d, ct, dt, s, scaleFactor)
+endgroup
+enddef;
+
+vardef byNamedLine(text linesList) =
+begingroup
+    image(
+        forsuffixes lN=linesList:
+            draw byNamedLineFull(lineDirA.lN, lineDirB.lN, lineEndAType.lN, lineEndBType.lN, lineShift.lN)(lN);
+        endfor;
+    )
+endgroup
+enddef;
+
+vardef byNamedLineSeq(expr s)(text linesList) =
+begingroup
+    save lAname, lBname, i, j, k, l, c, d, prp;
+    string lAname[], lBname[], c, d;
+    numeric i, j, k, l, prp;
+    image(
+        i := -1;
+        forsuffixes lN=linesList:
+            i := i + 1;
+            lAname[i] := lineEndAName.lN;
+            lBname[i] := lineEndBName.lN;
+        endfor;
+        if (i > 0):
+            j := -1;
+            forsuffixes lN=linesList:
+                j := j + 1;
+                if (str lN <> "noLine"):
+                    if ((j > 0) and (j < i)):
+                        k := j - 1;
+                        l := j + 1;
+                    elseif (j == 0):
+                        k := i;
+                        l := j + 1;
+                    elseif (j == i):
+                        k := j - 1;
+                        l := 0;
+                    fi;
+                    c := lAname[j];
+                    d := lBname[j];
+                    prp := 1;
+                    if ((lAname[j] == lAname[k]) or (lAname[j] == lBname[k])) or ((lBname[j] == lAname[l]) or (lBname[j] == lBname[l])):
+                        if (lAname[j] == lAname[k]):
+                            c := lBname[k];
+                        elseif (lAname[j] == lBname[k]):
+                            c := lAname[k];
+                        fi;
+                        if (lBname[j] == lAname[l]):
+                            d := lBname[l];
+                        elseif (lBname[j] == lBname[l]):
+                            d := lAname[l];
+                        fi;
+                    else:
+                        if (lAname[j] == lAname[l]):
+                            c := lBname[l];
+                        elseif (lAname[j] == lBname[l]):
+                            c := lAname[l];
+                        fi;
+                        if (lBname[j] == lAname[k]):
+                            d := lBname[k];
+                        elseif (lBname[j] == lBname[k]):
+                            d := lAname[k];
+                        fi;
+                        prp := -1;
+                    fi;
+                        lineShift.lN := s*prp;
+                        draw byNamedLineFull(scantokens(c), scantokens(d), 0, 0, s*prp)(lN);
+                fi;
+            endfor;
+        else:
+            forsuffixes lN=linesList:
+                lineShift.lN := s;
+                draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
+            endfor;
+        fi;
+    )
+endgroup
+enddef;
+
+vardef byMarkLine(expr pos, col)(suffix lineName) =
+numeric markPosition.lineName;
+color markColor.lineName;
+begingroup
+    markPosition.lineName := pos;
+    markColor.lineName := col;
+    byNamedMarkLine(lineName)
+endgroup
+enddef;
+
+vardef byNamedMarkLine(suffix lineName) =
+begingroup
+    save p, q;
+    pair q[];
+    picture p;
+    p := image(
+        q0 := markPosition.lineName[lineEndA.lineName, lineEndB.lineName];
+        q1 := q0 shifted (dir(lineAngle.lineName + 90) scaled 1/2markLength);
+        q2 := q0 shifted (dir(lineAngle.lineName - 90) scaled 1/2markLength);
+        q3 := (dir(lineAngle.lineName - 90) scaled (1/2lineWidth*lineShift.lineName));
+        draw (q1--q2) shifted q3 withpen pencircle scaled lineWidthThin withcolor markColor.lineName;
+    );
+    p
+endgroup
+enddef;
+
+vardef byNamedCompoundLineSized(expr cu, pw)(text linesList) =
+begingroup
+    save correctedLength, currentPosition, a, b, sc;
+    numeric correctedLength, currentPosition[], sc;
+    pair a, b;
+    sc := cu**(1 - (1/pw));
+    currentPosition0 := 0;
+    image(
+        forsuffixes lN=linesList:
+            correctedLength := (lineLength.lN**(1/pw))*sc;
+            currentPosition1 := currentPosition0 + correctedLength;
+            a := (currentPosition0, 0);
+            b := (currentPosition1, 0);
+            draw byLineRender(a, b, lineColor.lN, lineDashed.lN, lineThin.lN, a, b, 0, 0, 0, scaleFactor);
+            currentPosition0 := currentPosition1;
+        endfor;
+    )
+endgroup
+enddef;
+
+vardef byNamedCompoundLine(expr l)(text linesList) =
+begingroup
+    save lN, totalLength, currentPosition, a, b;
+    numeric totalLength, currentPosition[];
+    pair a, b;
+    totalLength := 0;
+    currentPosition0 := 0;
+    forsuffixes lN=linesList:
+        totalLength := totalLength + lineLength.lN;
+    endfor;
+    if (l > 0):
+        totalLength := (scaleFactor*totalLength)/l;
+    else:
+        totalLength := 1;
+    fi;
+    image(
+        forsuffixes lN=linesList:
+            currentPosition1 := currentPosition0 + lineLength.lN;
+            a := ((currentPosition0/totalLength), 0);
+            b := ((currentPosition1/totalLength), 0);
+            draw byLineRender(a, b, lineColor.lN, lineDashed.lN, lineThin.lN, a, b, 0, 0, 0, scaleFactor);
+            currentPosition0 := currentPosition1;
+        endfor;
+    )
+endgroup
+enddef;
+
+%
+% Arcs and circles
+%
+
+vardef byArcRender(expr o, r, b, e, col, dp, th, s, et) =
+save p, q, m, t, currentLineWidth;
+path p[];
+picture q;
+pair t[];
+numeric m[];
+numeric currentLineWidth;
+begingroup
+    image(
+        currentLineWidth := lineThickness(th);
+        p0 := ((subpath (b, e) of fullcircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
+        p1 := ((subpath (b, e) of fullcircle) scaled (r*scaleFactor)) shifted (o*scaleFactor);
+        p2 := (fullcircle scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
+        p3 := ((subpath (b + sign(b-e)*1/4, e + sign(e-b)*1/4) of fullcircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        q := image(
+            draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p1), dp) fi;
+        );
+        if (et = 0):
+            p4 := p0--(o*scaleFactor)--cycle;
+        else:
+            t0 := point 0 of p1;
+            t1 := point 0 of reverse(p1);
+            t2 := 1/2[t0, t1];
+            m0 := xpart (p2 intersectiontimes (t2 -- 2[t2, t0]));
+            m1 := xpart (p2 intersectiontimes (t2 -- 2[t2, t1]));
+            for i := -(8*3) step 8 until (8*3):
+                if (abs(b - m0) > abs(b - (m0 + i))):
+                    m0 := m0 + i;
+                fi;
+                if (abs(e - m1) > abs(e - (m1 + i))):
+                    m1 := m1 + i;
+                fi;
+            endfor;
+            p4 := (subpath(m0, m1) of p2) -- cycle;
+        fi;
+        clip q to p4;
+        draw q;
+    )
+endgroup
+enddef;
+
+vardef byArc (expr o, r, b, e, col, dp, th, s, et) (suffix arcName) =
+color arcColor.arcName;
+pair arcCenter.arcName;
+numeric arcDiameter.arcName, arcShift.arcName, arcDashed.arcName, arcBegin.arcName, arcEnd.arcName, arcAngle.arcName, arcThin.arcName, arcEndType.arcName;
+begingroup
+    arcColor.arcName := col;
+    arcDashed.arcName := dp;
+    arcThin.arcName := th;
+    arcShift.arcName := s;
+    arcDiameter.arcName := 2r;
+    arcCenter.arcName := o;
+    arcBegin.arcName := b;
+    arcEnd.arcName := e;
+    arcEndType.arcName := et;
+    arcAngle.arcName := angle((point b of fullcircle) - (point e of fullcircle));
+    byNamedArcExact(arcName)
+endgroup
+enddef;
+
+vardef byNamedArcExact(text arcslist) =
+begingroup
+    image(
+        forsuffixes pN=arcslist:
+            draw byArcRender(arcCenter.pN, arcDiameter.pN, arcBegin.pN, arcEnd.pN, arcColor.pN, arcDashed.pN, arcThin.pN, arcShift.pN, arcEndType.pN);
+        endfor;
+    )
+endgroup
+enddef;
+
+vardef byNamedArc(text arcslist) =
+begingroup
+    image(
+        forsuffixes pN=arcslist:
+            draw byArcRender(arcCenter.pN, arcDiameter.pN, arcBegin.pN, arcEnd.pN, arcColor.pN, arcDashed.pN, arcThin.pN, 0, 0);
+        endfor;
+    )
+endgroup
+enddef;
+
+vardef byCircleDefine (expr o, r, col, dp, th, s) (suffix circleName) =
+color circleColor.circleName;
+pair circleCenter.circleName;
+numeric circleDiameter.circleName, circleShift.circleName, circleDashed.circleName, circleThin.circleName;
+begingroup
+    circleColor.circleName := col;
+    circleDashed.circleName := dp;
+    circleThin.circleName := th;
+    circleShift.circleName := s;
+    circleDiameter.circleName := 2r;
+    circleCenter.circleName := o;
+endgroup
+enddef;
+
+vardef byCircle (expr o, r, col, dp, th, s) (suffix circleName) =
+begingroup
+    byCircleDefine(o, r, col, dp, th, s)(circleName);
+    byNamedCircle(circleName)
+endgroup
+enddef;
+
+vardef byNamedCircle(text circlesList) =
+begingroup
+    save p;
+    path p;
+    image(
+        forsuffixes cN=circlesList:
+            draw byArcRender (circleCenter.cN, circleDiameter.cN, 0, 8, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
+        endfor;
+    )
+endgroup
+enddef;
+
+%
+% Arbitraty figures
+%
+
+vardef byArbitraryFigureDefine(expr p, col, dp, th)(suffix arbitraryFigureName) =
+color arbitraryFigureColor.arbitraryFigureName;
+path arbitraryFigurePath.arbitraryFigureName;
+numeric arbitraryFigureDashed.arbitraryFigureName, arbitraryFigureThin.arbitraryFigureName;
+begingroup
+    arbitraryFigurePath.arbitraryFigureName := p;
+    arbitraryFigureColor.arbitraryFigureName := col;
+    arbitraryFigureDashed.arbitraryFigureName := dp;
+    arbitraryFigureThin.arbitraryFigureName := th;
+endgroup
+enddef;
+
+vardef byArbitraryFigure(expr p, col, dp, th)(suffix arbitraryFigureName) =
+begingroup
+    byArbitraryFigureDefine(p, col, dp, th)(arbitraryFigureName);
+    byNamedArbitraryFigure(arbitraryFigureName)
+endgroup
+enddef;
+
+vardef byNamedArbitraryFigure(text arbitraryFiguresList) =
+begingroup
+    save p;
+    path p;
+    image(
+        forsuffixes pN=arbitraryFiguresList:
+            p := (arbitraryFigurePath.pN scaled scaleFactor);
+            draw p withpen pencircle scaled lineThickness(arbitraryFigureThin.pN) withcolor arbitraryFigureColor.pN if (arbitraryFigureDashed.pN > 0): dashed byDashPattern(arclength(p), arbitraryFigureDashed.pN) fi;
+        endfor;
+    )
+endgroup
+enddef;
+
+%
+% Filled figures
+%
+
+vardef byFilledCircleSegment (expr o, r, b, e, col) (suffix filledCircleSegmentName) =
+color filledCircleSegmentColor.filledCircleSegmentName;
+pair filledCircleSegmentCenter.filledCircleSegmentName;
+numeric filledCircleSegmentDiameter.filledCircleSegmentName, filledCircleSegmentBegin.filledCircleSegmentName, filledCircleSegmentEnd.filledCircleSegmentName;
+begingroup
+    filledCircleSegmentColor.filledCircleSegmentName := col;
+    filledCircleSegmentDiameter.filledCircleSegmentName := 2r;
+    filledCircleSegmentBegin.filledCircleSegmentName := b;
+    filledCircleSegmentEnd.filledCircleSegmentName := e;
+    filledCircleSegmentCenter.filledCircleSegmentName := o;
+    byNamedFilledCircleSegment(filledCircleSegmentName)
+endgroup
+enddef;
+
+vardef byNamedFilledCircleSegment(text filledCircleSegmentList) =
+begingroup
+    save p;
+    path p;
+    image(
+        forsuffixes csN=filledCircleSegmentList:
+            fill ((subpath (filledCircleSegmentBegin.csN, filledCircleSegmentEnd.csN) of fullcircle)--cycle) scaled (filledCircleSegmentDiameter.csN*scaleFactor) shifted (filledCircleSegmentCenter.csN*scaleFactor) withcolor filledCircleSegmentColor.csN;
+        endfor;
+    )
+endgroup
+enddef;
+
+vardef byFilledCircleSector (expr o, r, b, e, col) (suffix filledCircleSectorName) =
+color filledCircleSectorColor.filledCircleSectorName;
+pair filledCircleSectorCenter.filledCircleSectorName;
+numeric filledCircleSectorDiameter.filledCircleSectorName, filledCircleSectorBegin.filledCircleSectorName, filledCircleSectorEnd.filledCircleSectorName;
+begingroup
+    filledCircleSectorColor.filledCircleSectorName := col;
+    filledCircleSectorDiameter.filledCircleSectorName := 2r;
+    filledCircleSectorBegin.filledCircleSectorName := b;
+    filledCircleSectorEnd.filledCircleSectorName := e;
+    filledCircleSectorCenter.filledCircleSectorName := o;
+    byNamedFilledCircleSector(filledCircleSectorName)
+endgroup
+enddef;
+
+vardef byNamedFilledCircleSector(text filledCircleSectorList) =
+begingroup
+    save p;
+    path p;
+    image(
+        forsuffixes csN=filledCircleSectorList:
+            fill ((subpath (filledCircleSectorBegin.csN, filledCircleSectorEnd.csN) of fullcircle)-- (0, 0) -- cycle) scaled (filledCircleSectorDiameter.csN*scaleFactor) shifted (filledCircleSectorCenter.csN*scaleFactor) withcolor filledCircleSectorColor.csN;
+        endfor;
+    )
+endgroup
+enddef;
+
+vardef byPolygon(expr p, col)(suffix polygonName) =
+color polygonColor.polygonName;
+path polygonPath.polygonName;
+begingroup
+    polygonPath.polygonName := p;
+    polygonColor.polygonName := col;
+    byNamedPolygon(polygonName)
+endgroup
+enddef;
+
+vardef byNamedPolygon(text polygonsList) =
+begingroup
+    image(
+        forsuffixes pN=polygonsList:
+            if (polygonColor.pN <> white):
+                fill (polygonPath.pN scaled scaleFactor) withcolor polygonColor.pN;
+            else:
+                draw (polygonPath.pN scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
+            fi;
+        endfor;
+    )
+endgroup
+enddef;
+
+%
+% Angles
+%
+
+vardef byAngleDefine(suffix a, b, c)(expr col, sty)(suffix angleName) =
+path angleArc.angleName;
+color angleColor.angleName, angleOptionalColor.angleName[];
+numeric angleDirection.angleName;
+pair angleCenter.angleName;
+string angleAName.angleName, angleBName.angleName, angleCName.angleName;
+begingroup
+    save p, q;
+    path p;
+    picture q;
+    p := fullcircle rotated (180 + angle(unitvector(1/2[a,c]-b)));
+    p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
+    angleArc.angleName := p;
+    angleDirection.angleName := angle(point (arctime arclength(p)/2 of p) of p);
+    angleColor.angleName := col;
+    angleOptionalColor.angleName[0] := white;
+    angleStyle.angleName := sty;
+    angleCenter.angleName := b;
+    angleAName.angleName := str a;
+    angleBName.angleName := str b;
+    angleCName.angleName := str c;
+endgroup
+enddef;
+
+vardef byAngle(suffix a, b, c)(expr col, sty)(suffix angleName) =
+begingroup
+    byAngleDefine(a, b, c, col, sty)(angleName);
+    byNamedAngle(angleName)
+endgroup
+enddef;
+
+vardef byAngleExtended(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+begingroup
+    save n;
+    numeric n;
+    n := 0;
+    byAngleDefine(a, b, c, col, sty)(angleName);
+    forsuffixes oC=optionalColors:
+        angleOptionalColor.angleName[n] := oC;
+        n := n + 1;
+    endfor;
+    byNamedAngle(angleName)
+endgroup
+enddef;
+
+vardef byNamedAngle(text anglesList) =
+begingroup
+    save p, q;
+    picture q;
+    path p[];
+    image(
+        forsuffixes aN=anglesList:
+            p1 := angleArc.aN scaled (u*angleScale);
+            p2 := angleArc.aN scaled ((u*angleScale) - lineWidth);
+            p3 := angleArc.aN scaled ((u*angleScale) - lineWidthThin);
+            q := image(
+                if ((angleColor.aN <> white) and (angleColor.aN <> white)):
+                    if (angleStyle.aN = 0):
+                        fill ((0, 0)--p1--cycle) withcolor angleColor.aN;
+                    elseif (angleStyle.aN = 1):
+                        fill ((0, 0)--p1--cycle) withcolor angleOptionalColor.aN[0];
+                        draw p2 withpen pencircle scaled lineWidth withcolor angleColor.aN;
+                    elseif (angleStyle.aN = 2):
+                        draw p2 withpen pencircle scaled lineWidth withcolor angleColor.aN dashed byDashPattern(arclength(p2), 1);
+                    elseif (angleStyle.aN = 3):
+                        for i := 1 step -1/floor((u*angleScale)/2mm) until 0:
+                            draw (p3 scaled i) withpen pencircle scaled lineWidthThin withcolor angleColor.aN;
+                        endfor;
+                    elseif (angleStyle.aN = -1):
+                            draw p3 withpen pencircle scaled lineWidthThin withcolor angleColor.aN;
+                    fi;
+                else:
+                    fill ((0, 0)--p1--cycle) withcolor white;
+                    draw ((0, 0)--p3--cycle) withpen pencircle scaled lineWidthThin withcolor black;
+                fi;
+            );
+            clip q to ((0, 0)--p1--cycle);
+            draw q shifted (angleCenter.aN scaled scaleFactor);
+        endfor;
+    )
+endgroup
+enddef;
+
+% Following monstrosity draws dummy sides for angles which require them,
+% essentially, it takes a list of angles, checks if they all are constructed
+% on one point; then it browses through all angles, finds their sides
+% and counts them; ones that occur twice it draws as is; ones that occur
+% once it shifts inside an angle; and after that it clips everything
+% to angle outline.
+vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
+save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, b, e, outputImage, lineCol, lineTh, lineDash;
+string centerName;
+pair ac, p[];
+boolean uniqueCenter, angleCheck;
+numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash;
+path compoundAnglePath;
+color lineCol;
+picture outputImage;
+begingroup
+    centerName := "";
+    uniqueCenter := true;
+    forsuffixes aN=anglesList:
+        ac := angleCenter.aN;
+        if (centerName == ""):
+            centerName := angleBName.aN;
+        elseif (centerName <> angleBName.aN):
+            uniqueCenter := false;
+        fi;
+    endfor;
+    compoundAnglePath := (fullcircle scaled (u * angleScale)) shifted (ac*scaleFactor);
+    outputImage := image(
+        if (uniqueCenter):
+            angleNum := 0;
+            forsuffixes aN=anglesList:
+                anglePart1 := angle(point 0 of angleArc.aN);
+                as1 := sign(ypart((direction 0 of angleArc.aN) rotated -anglePart1));
+                anglePart2 := angle(point 0 of reverse(angleArc.aN));
+                as2 := sign(ypart((direction 0 of reverse(angleArc.aN)) rotated -anglePart2));
+                for j := 1 step 1 until 2:
+                    angleCheck := true;
+                    for i := 1 step 1 until angleNum:
+                            if (abs(angleDir[i] - anglePart[j]) < 1):
+                                angleCount[i] := angleCount[i] + 1;
+                                angleCheck := false;
+                                if (angleStyle.aN == 0) or (angleOptionalColor.aN[0] <> white):
+                                    angleType[i] := 0;
+                                fi;
+                            fi;
+                    endfor;
+                    if (angleCheck):
+                        angleNum := angleNum + 1;
+                        angleDir[angleNum] := anglePart[j];
+                        angleSide[angleNum] := as[j];
+                        if (angleStyle.aN <> 0) and (angleOptionalColor.aN[0] == white):
+                            angleType[angleNum] := 1;
+                        else:
+                            angleType[angleNum] := 0;
+                        fi;
+                        angleCount[angleNum] := 1;
+                    fi;
+                endfor;
+            endfor;
+            j := 0;
+            for i := 1 step 1 until angleNum:
+                if (angleCount[i] == 1):
+                    j := j + 1;
+                    n[j] := i;
+                fi;
+                if (angleType[i] <> 0):
+                    p1 := (ac*scaleFactor);
+                    p2 := ((dir(angleDir[i]) scaled (u * angleScale))) shifted (ac*scaleFactor);
+                    lineCol := black;
+                    lineDash := 0;
+                    lineTh := 1;
+                    forsuffixes lN=linesList:
+                        if (lineEndAName.lN == centerName):
+                            if (abs(angle(lineEndB.lN - lineEndA.lN) - angleDir[i]) < 1):
+                                lineCol := lineColor.lN;
+                                lineDash := lineDashed.lN;
+                                lineTh := lineThin.lN;
+                            fi;
+                        elseif (lineEndBName.lN == centerName):
+                            if (abs(angle(lineEndA.lN - lineEndB.lN) - angleDir[i]) < 1):
+                                lineCol := lineColor.lN;
+                                lineDash := lineDashed.lN;
+                                lineTh := lineThin.lN;
+                            fi;
+                        fi;
+                    endfor;
+                    if (angleCount[i] > 1):
+                        draw byLineRender (p1, p2, lineCol, lineDash, lineTh, p1, p2, t, 0, 0, 1);
+                    else:
+                        draw byLineRender (p1, p2, lineCol, lineDash, lineTh, p1, p2, 0, 0, -angleSide[i], 1);
+                    fi;
+                fi;
+            endfor;
+            if (j == 2):
+                b := (angleDir[n[1]]/360)*8;
+                e := (angleDir[n[2]]/360)*8;
+                if (b > e): b := b - 8; fi;
+                if (angleSide[n[1]] > angleSide[n[2]]):
+                    compoundAnglePath := (((subpath (b, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor)) -- (ac*scaleFactor) -- cycle;
+                else:
+                    compoundAnglePath := (((subpath (b + 8, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor)) -- (ac*scaleFactor) -- cycle;
+                fi;
+            fi;
+        fi;
+    );
+    clip outputImage to compoundAnglePath;
+    outputImage
+endgroup
+enddef;
+
+vardef byNamedAngleDummySides(text anglesList)=
+    byNamedAngleSidesFull(anglesList)(noLine)
+enddef;
+
+vardef byNamedAngleSides(text anglesList)(text linesList) =
+    image(
+        draw byNamedAngle(anglesList);
+        draw byNamedAngleSidesFull(anglesList)(linesList);
+        )
+enddef;
+
+vardef twoRightAngles =
+begingroup
+    image(
+        draw byNamedAngle(rightAngleWN,rightAngleNE);
+        draw byNamedAngleDummySides(rightAngleWN,rightAngleNE);
+    )
+endgroup
+enddef;
+
+vardef rightAngle =
+begingroup
+    image(
+        draw byNamedAngle(rightAngleWN);
+        draw byNamedAngleDummySides(rightAngleWN);
+    )
+endgroup
+enddef;
+
+% Angles we often need
+pair pointN, pointE, pointS, pointW, pointO;
+pointN := (0, 2u*angleScale);
+pointE := (2u*angleScale, 0);
+pointS := (0, -2u*angleScale);
+pointW := (-2u*angleScale, 0);
+pointO := (0, 0);
+
+byAngleDefine (pointN, pointO, pointE)(black, 1)(rightAngleNE);
+byAngleDefine (pointE, pointO, pointS)(black, 1)(rightAngleES);
+byAngleDefine (pointS, pointO, pointW)(black, 1)(rightAngleSE);
+byAngleDefine (pointW, pointO, pointN)(black, 1)(rightAngleWN);
+
+%
+% Magnitudes
+%
+
+% along with 'magnitudesymbol' one unit long 'magnitude' is also defined at the same time.
+def byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) =
+color magnitudeColor.magnitudeSymbolName;
+string magnitudeShape.magnitudeSymbolName;
+numeric magnitudeStyle.magnitudeSymbolName;
+string magnitudeSymbol.magnitudeSymbolName[];
+numeric magnitudeN.magnitudeSymbolName[], magnitudeAlignment.magnitudeSymbolName, magnitudeNumberOfRows.magnitudeSymbolName;
+boolean magnitudeHorizontal.magnitudeSymbolName;
+begingroup
+    magnitudeColor.magnitudeSymbolName := col;
+    magnitudeShape.magnitudeSymbolName := shp;
+    magnitudeStyle.magnitudeSymbolName := sty;
+    magnitudeSymbol.magnitudeSymbolName[1] := str magnitudeSymbolName;
+    magnitudeN.magnitudeSymbolName[1] := 1;
+    magnitudeAlignment.magnitudeSymbolName := 0;
+    magnitudeNumberOfRows.magnitudeSymbolName := 1;
+    magnitudeHorizontal.magnitudeSymbolName := false;
+endgroup
+enddef;
+
+vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
+begingroup
+    save p, q, i, s;
+    path p;
+    pair s[];
+    picture q;
+    p := (0, 0);
+    if (magnitudeShape.magnitudeSymbolName == "circle"):
+        p := fullcircle scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "semicircleUp"):
+        p := ((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "semicircleDown"):
+        p := (((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "sectorDown"):
+        p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "sectorUp"):
+        p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale) yscaled -1;
+    elseif (magnitudeShape.magnitudeSymbolName == "wedgeUp"):
+        p := (((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "wedgeDown"):
+        p := ((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "square"):
+        p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "halfsquare"):
+            p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "rhombus"):
+        p := ((0, 1/2) -- (-1/2, 0) -- (0, -1/2) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "halfrhombusUp"):
+        p := ((0, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "miniTriangleUp"):
+        p := ((-1/4, -1/4) -- (1/4, -1/4)  -- (0, 1/4) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "miniTriangleDown"):
+        p := ((-1/4, 1/4) -- (1/4, 1/4)  -- (0, -1/4) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "miniSquare"):
+        p := ((-1/4, -1/4) -- (1/4, -1/4) -- (1/4, 1/4) -- (-1/4, 1/4) -- cycle) scaled (u*magnitudeScale);
+    elseif (magnitudeShape.magnitudeSymbolName == "miniCircle"):
+        p := fullcircle scaled (u*1/2magnitudeScale);
+    fi;
+    if (hor):
+        s1 := (0, ypart(urcorner(p)) - ypart(lrcorner(p)));
+        s2 := (0, magnitudeGap);
+    else:
+        s1 := (xpart(urcorner(p)) - xpart(ulcorner(p)), 0);
+        s2 := (magnitudeGap, 0);
+    fi;
+    q := image(
+        if (magnitudeStyle.magnitudeSymbolName == 0):
+            fill p withcolor magnitudeColor.magnitudeSymbolName;
+        else:
+            draw p withpen (pencircle scaled lineWidthThin) withcolor magnitudeColor.magnitudeSymbolName;
+        fi;
+    );
+    image(
+        for i := 1 step 1 until n:
+            draw q shifted (s1 scaled i) shifted (s2 scaled i);
+        endfor;
+    )
+endgroup
+enddef;
+
+def byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
+string magnitudeSymbol.magnitudeName[];
+numeric magnitudeN.magnitudeName[], magnitudeAlignment.magnitudeName, magnitudeNumberOfRows.magnitudeName;
+boolean magnitudeHorizontal.magnitudeName;
+magnitudeHorizontal.magnitudeName := hor;
+magnitudeAlignment.magnitudeName := al;
+begingroup
+    save i;
+    numeric i;
+    i := 0;
+    forsuffixes rN=rowsList:
+        i := i + 1;
+        magnitudeN.magnitudeName[i] := rN;
+    endfor;
+    magnitudeNumberOfRows.magnitudeName := i;
+    i := 0;
+    forever:
+        forsuffixes sN=magnitudeSymbolsList:
+            i := i + 1;
+            if (i <= magnitudeNumberOfRows.magnitudeName):
+                magnitudeSymbol.magnitudeName[i] := str sN;
+            fi;
+        endfor;
+    exitif (i >= magnitudeNumberOfRows.magnitudeName);
+    endfor;
+endgroup
+enddef;
+
+vardef byNamedMagnitude (expr excl) (suffix magnitudeName) =
+begingroup
+    save p, s, h, magC;
+    picture p;
+    pair s[];
+    numeric h;
+    h := 0;
+    image(
+        for magC := 1 step 1 until magnitudeNumberOfRows.magnitudeName:
+            if (excl == 0) or ((excl < 0) and (magC <> -excl)) or ((excl > 0) and (magC == excl)):
+                p := byNamedMagnitudeSymbol(magnitudeN.magnitudeName[magC], magnitudeHorizontal.magnitudeName)(scantokens(magnitudeSymbol.magnitudeName[magC]));
+                if (magnitudeHorizontal.magnitudeName):
+                    if (magnitudeAlignment.magnitudeName = 0):
+                        s1 := 1/2[urcorner(p),lrcorner(p)];
+                    elseif (magnitudeAlignment.magnitudeName = 1):
+                        s1 := lrcorner(p);
+                    elseif (magnitudeAlignment.magnitudeName = -1):
+                        s1 := urcorner(p);
+                    fi;
+                    s2 := (h, 0);
+                else:
+                    if (magnitudeAlignment.magnitudeName = 0):
+                        s1 := 1/2[ulcorner(p),urcorner(p)];
+                    elseif (magnitudeAlignment.magnitudeName = 1):
+                        s1 := urcorner(p);
+                    elseif (magnitudeAlignment.magnitudeName = -1):
+                        s1 := ulcorner(p);
+                    fi;
+                    s2 := (0, -h);
+                fi;
+                draw p shifted -s1 shifted s2;
+                if (magnitudeHorizontal.magnitudeName):
+                    h := h + (abs(ulcorner(p)-urcorner(p))) + magnitudeGap;
+                else:
+                    h := h + (abs(ulcorner(p)-llcorner(p))) + magnitudeGap;
+                fi;
+            fi;
+        endfor;
+    )
+endgroup
+enddef;

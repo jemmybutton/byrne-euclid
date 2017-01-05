@@ -1,0 +1,377 @@
+% Figure placement it definitions is messy, below we define all the indentation, figure and lettrine placing stuff.
+\newdimen\LtI
+\newdimen\PcI
+\newdimen\PcH
+\LtI=1.7cm
+\PcI=0.5\textwidth
+\newdimen\oddpict
+\oddpict=\backspace
+\advance \oddpict by \textwidth
+\advance \oddpict by -\PcI
+
+\newdimen\evenpict
+\evenpict=\cutspace
+\advance \evenpict by \PcI
+
+\define\drawCurrentPicture{
+	\setbox1\vbox{
+		\startMPcode{\currentInstance}
+			draw currentPicture;
+		\stopMPcode
+	}
+	\newdimen\pictVOffset
+	\pictVOffset=\topmargin
+	\advance\pictVOffset by \pagetotal
+	\PcI=\wd1
+	\PcH=\ht1
+	\advance\PcH by \pagetotal
+	\advance \PcI by 1cm
+	\advance \PcI by -\cutspace
+	\ifodd\pageno
+		\oddpict=\backspace
+		\advance \oddpict by \makeupwidth
+		\advance \oddpict by -\PcI
+		\definelayer[curpic]
+			[x=\oddpict, y=\pictVOffset, width=\textwidth, height=\textheight]
+	\else
+		\evenpict=\cutspace
+		\advance \evenpict by \PcI
+		\definelayer[curpic]
+			[x=0cm, y=\pictVOffset, width=\evenpict, height=\textheight]
+	\fi
+	\setlayer[curpic][voffset=0.5cm]{\hskip 0.5cm\box1\hskip 0.5cm}
+	\setupbackgrounds[page][background=curpic]
+}
+
+% Often it's convenient to skip come lines and continue below main figure, 
+% leaving all the indentation stuff above
+\newdimen\dTB
+\def\skipToPictureBottom{
+\dTB=\PcH
+\advance\dTB by -\pagetotal
+\vskip \dTB
+\resetII
+}
+
+\newdimen\CmI
+\newdimen\PgI
+\newdimen\NgI
+\newcount\Y
+\newcount\Yy
+\newcount\X
+\X=0
+\newcount\numOfIndLines
+
+\newif\ifinsideII
+\insideIIfalse
+
+\def\resetII{\parshape=0\global\numOfIndLines=0\global\def\par{\endgraf}\everypar=\expandafter{\the\toks0}\global\insideIIfalse}
+
+\newcount\linesofar
+
+\def\initialIndentation{\dosingleempty\initialindentation}
+\def\initialindentation[#1]#2{
+	\iffirstargument
+		\def\ltLines{#1}
+	\else\ignorespaces
+		\def\ltLines{3}
+	\fi
+	\ifinsideII\resetII\fi
+	\global\insideIItrue
+	\ \vskip 0pt
+ %https://books.google.com/books?id=iDb2BwAAQBAJ&pg=PA107&lpg=PA107&dq=tex+parshape+paragraphs&source=bl&ots=GmFvQnIUr7&sig=oJ-mtVEwOttepWpGi2BABemAMWw&hl=en&sa=X&ved=0ahUKEwjxrbPk-uXKAhVClB4KHSxUBqwQ6AEIQTAF#v=onepage&q=tex%20parshape%20paragraphs&f=false
+	\linesofar=0
+	\global\toks0=\expandafter{\the\everypar}
+	\global\numOfIndLines=#2
+	\def\par{{\endgraf\global\linesofar=\prevgraf}}
+	\everypar={\ifnum\linesofar<\numOfIndLines\prevgraf=\linesofar\else\resetII\fi} %
+	\PgI=\textwidth
+	\NgI=\textwidth
+	\ifodd\pageno
+		\advance \PgI by -\PcI
+		\CmI=\PgI
+		\advance \CmI by -\LtI
+		\def\partindent{0cm \PgI}
+		\def\doubleindent{\LtI \CmI}
+	\else
+		\advance \PgI by -\PcI
+		\CmI=\PcI
+		\advance \CmI by \LtI
+		\NgI=\PgI
+		\advance \NgI by -\LtI
+		\def\partindent{\PcI \PgI}
+		\def\doubleindent{\CmI \NgI}
+	\fi
+	\def\preinitindent{}
+	\Yy=\ltLines
+	\advance \Yy by 1 
+	\Y=\ltLines
+	\loop 
+	\expandafter\def\expandafter\preinitindent\expandafter{\preinitindent\doubleindent}
+	\advance \Y by -1 
+	\ifnum \Y>0
+	\repeat
+	\def\initindent{\preinitindent}
+	\global\X=#2
+	\ifnum \X>\Yy
+		\advance \X by -\ltLines 
+		\loop 
+			\expandafter\def\expandafter\initindent\expandafter{\initindent\partindent}
+		\advance \X by -1 
+		\ifnum \X>1
+		\repeat
+	\fi
+	\parshape=#2
+	\initindent
+	0cm \textwidth
+}
+
+%every lettrine has a counter ltrn#1 that determines which file to pick
+
+\newwrite \lettrineslist
+\openout \lettrineslist = lettrines/lettrineslist.txt\relax
+
+\def\putLettrine#1{\ignorespaces
+\write \lettrineslist{#1}\ignorespaces
+\expandafter\ifx\csname ltrn#1\endcsname\relax
+	\global\expandafter\newcount\csname ltrn#1\endcsname\relax
+	\global\csname ltrn#1\endcsname 0
+\else
+	\global\expandafter\advance\csname ltrn#1\endcsname by 1
+\fi
+\doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
+{\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][size=artbox]\ignorespaces}
+{\doifelsefile{lettrines/#1.pdf}
+{\externalfigure[lettrines/#1.pdf][width=1.4cm,height=1.4cm]\ignorespaces}
+{\ignorespaces
+	\ifx#1\plateName
+		\framed[width=8cm,height=1.5cm,frame=off]{}\ignorespaces
+	\else
+		\framed[width=1.4cm,height=1.4cm]{\tfd #1}\ignorespaces
+	\fi}\ignorespaces}}
+
+% This one is used standalone, f. e. in the Introduction
+\def\regularLettrine#1{\placefigure[left,none]{}{\vskip -7pt\hbox{\putLettrine{#1}\hskip-3pt}\vskip -10pt}\noindent}
+
+
+\def\problem#1#2#3{\ignorespaces
+\vskip -\LtI
+\hskip -\LtI \hskip -\parindent \offset[y=0.72\LtI,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 7pt #2\ \it #3} \vskip \baselineskip
+}
+
+\newdimen\vPos
+\def\problemNP{\dosingleempty\problemnp}
+\def\problemnp[#1]#2#3#4{\ignorespaces
+\PcI=0cm\ignorespaces
+\vPos=\pagetotal\ignorespaces
+\iffirstargument\ignorespaces
+	\initialIndentation[#1]{7}\ignorespaces
+\else\ignorespaces
+	\initialIndentation{7}\ignorespaces
+\fi\ignorespaces
+\vskip -\LtI
+\hskip -\LtI \hskip -\parindent \offset[y=0.72\LtI,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 7pt #3\ \it #4}\par\ignorespaces
+\advance\vPos by -\pagetotal
+\advance\vPos by 3\baselineskip
+\ifnum\vPos>0
+\vskip \vPos\ignorespaces
+\fi
+\vskip 0.5\baselineskip
+\resetII}
+
+\def\qedNB{\hfill Q. E. D.\vskip 10pt}
+\def\qed{\qedNB\vfill\pagebreak}
+
+
+%ConTeXt specific stuff
+
+\setupbodyfont[gentium]
+
+%\definefontfamily[mainface][rm][gentium]
+%\definefontfamily[mainface][math][TeX Gyre Pagella Math] %for some unknown reason gentium stopped working for math
+%\setupbodyfont[mainface]
+
+\setupcolors[state=start]
+\setupinterlinespace[line=3.2ex]
+\setupalign[normal,tolerant]
+
+\setupheadertexts[]
+\setupheadertexts
+	[\hfill\expanded{\uppercase{\fetchmarking[book][][top] \fetchmarking[section][][top]}}\hfill][\pagenumber]
+	[\pagenumber][\hfill\expanded{\uppercase{\fetchmarking[book][][top] \fetchmarking[section][][top]}}\hfill]
+
+\setuppagenumbering[location=]
+
+\definereferenceformat
+   [inprop]
+   [left=,right=),text=(pr.~]
+
+\definereferenceformat
+   [inpropL]
+   [left=,right=,text=pr.~]
+
+\definereferenceformat
+   [inpost]
+   [left=,right=),text=(post.~]
+
+\definereferenceformat
+   [indef]
+   [left=,right=),text=(def.~]
+
+\definereferenceformat
+   [indefL]
+   [left=,right=,text=def.~]
+
+\definereferenceformat
+   [inax]
+   [left=,right=),text=(ax.~]
+
+\definereferenceformat
+   [inaxL]
+   [left=,right=,text=ax.~]
+
+\def\plateName{plate}
+
+\define[2]\bookTitle{\vbox{\vskip -\topspace\hbox{\putLettrine{\plateName}}\vskip 3\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
+
+\definehead[intro][coupling=part,default=part,incrementnumber=no,placehead=yes]
+\setuphead[intro][alternative=text,command=\bookTitle, header=empty, footer=none,before={},after={}]
+
+\definehead[book][coupling=part,default=part,incrementnumber=yes,placehead=yes]
+\setuphead[book][alternative=text,command=\bookTitle,conversion=Romannumerals,header=empty,footer=none,before={},after={}]
+
+\definehead[supersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
+\define[2]\supersectionTitle{\vbox{\ \hfill \tfb #2 \hfill\ }}
+\setuphead[supersection][alternative=text,command=\supersectionTitle, before={\blank[2\baselineskip]},after={}]
+
+\definehead[silentSupersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
+\define[2]\noTitle{}
+\setuphead[silentSupersection][alternative=text,command=\noTitle,distance=0pt,before={},after={},inbetween={}]
+
+\definehead[subproposition][subsection]
+\define[2]\subpropositionTitle{\vbox{\ \hfill #2 \hfill\ }}
+\setuphead[subproposition][alternative=text,command=\subpropositionTitle,distance=0pt,before={\blank[\baselineskip]},after={}]
+
+\definehighlight[emph][style=italic]
+
+\setuplines[align=middle]
+
+\setupindenting[yes,medium]
+
+\setupinteraction[state=start,color=black,style=regular]
+
+\def\figureInMargin{\dosingleempty\figureinmargin}
+\def\figureinmargin[#1]#2{\ignorespaces
+	\iffirstargument\ignorespaces
+		\signalrightpage\inouter{~\doifrightpageelse{}{\hfill}\framed[frame=off,location=top]{#2}\doifrightpageelse{\hfill}{}~}\ignorespaces
+	\else\ignorespaces
+		\inouter{~\hfill\framed[frame=off,location=top]{#2}\hfill~}\ignorespaces
+	\fi\ignorespaces
+}
+
+\def\drawCurrentPictureInMargin{\dosingleempty\drawcurrentpictureinmargin}
+\def\drawcurrentpictureinmargin[#1]{
+	\iffirstargument\ignorespaces
+		\figureInMargin[#1]{\startMPcode{\currentInstance} draw currentPicture;\stopMPcode}
+	\else\ignorespaces
+		\figureInMargin{\startMPcode{\currentInstance} draw currentPicture;\stopMPcode}
+	\fi\ignorespaces
+}
+
+\def\symb#1{\noindent{\bf #1}\emspace}
+
+% these colors  are duplicates of the colors in byrne.mp
+\definecolor[byred][r=0.9, g=0.15, b=0.05]
+\definecolor[byblue][r=0.05, g=0.2, b=0.7]
+\definecolor[byyellow][r=0.9, g=0.75, b=0.1]
+
+\def\sepSpace{\vskip 0.75\baselineskip}
+
+\definestartstop[CenterAlign][
+before={\resetII\startalignment[middle]\setupwhitespace[big]},
+after={\stopalignment\vskip 0.5\baselineskip}]
+
+% http://tex.stackexchange.com/questions/326108/parallel-section-numberings-in-context
+
+\unprotect
+
+\definehead[silentsection][section]
+\define[2]\noTitle{}
+\setuphead[silentsection][alternative=text,command=\noTitle,distance=0pt,before={},after={},inbetween={}]
+
+\definehead[sectiononlyname][section]
+\define[2]\definitionTitle{\vbox{\ \hfill #2 \hfill\ }}
+\setuphead[sectiononlyname][alternative=text,command=\definitionTitle,distance=0pt,before={\blank[0.5\baselineskip]},after={}]
+
+\definehead[sectiononlynumber][section]
+\define[2]\definitionNumber{\vbox{\ \hfill #1 \hfill\ }}
+\setuphead[sectiononlynumber][alternative=text,command=\definitionNumber,distance=0pt,before={\blank[0.5\baselineskip]},after={}]
+
+\definecounter[proposition][way=bypart]
+\define\startProposition{\dodoubleempty\startproposition}
+\define\stopProposition{\stopsilentsection}
+\def\startproposition[#1][#2]{%
+  \incrementcounter[proposition]%
+  \startsilentsection[ownnumber={\directconvertedcounter{proposition}\empty},
+    incrementnumber=no,#1][#2]}
+    
+\define\startVerboseProposition{\dodoubleempty\startverboseproposition}
+\define\stopVerboseProposition{\stopsectiononlyname}
+\def\startverboseproposition[#1][#2]{%
+  \incrementcounter[proposition]%
+  \startsectiononlyname[ownnumber={\directconvertedcounter{proposition}\empty},
+    incrementnumber=no,#1][#2]}
+
+\definecounter[propositionaz][way=bypart,numberconversion=Characters]
+\define\startPropositionAZ{\dodoubleempty\startpropositionaz}
+\define\stopPropositionAZ{\stopsilentsection}
+\def\startpropositionaz[#1][#2]{%
+  \incrementcounter[propositionaz]%
+  \startsilentsection[ownnumber={\directconvertedcounter{propositionaz}\empty},
+    incrementnumber=no,#1][#2]}
+
+\definecounter[definition][way=bypart]
+\define\startDefinition{\dodoubleempty\startdefinition}
+\define\stopDefinition{\stopsectiononlyname}
+\def\startdefinition[#1][#2]{%
+  \incrementcounter[definition]%
+  \startsectiononlyname[ownnumber={\directconvertedcounter{definition}\empty},
+   incrementnumber=no,#1][#2]}
+
+\definecounter[definitionaz][way=bypart,numberconversion=Characters]
+\define\startDefinitionAZ{\dodoubleempty\startdefinitionaz}
+\define\stopDefinitionAZ{\stopsectiononlyname}
+\def\startdefinitionaz[#1][#2]{%
+  \incrementcounter[definitionaz]%
+  \startsectiononlyname[ownnumber={\directconvertedcounter{definitionaz}\empty},
+   incrementnumber=no,#1][#2]}
+
+\define\startDefinitionOnlyNumber{\dodoubleempty\startdefinitiononlynumber}
+\define\stopDefinitionOnlyNumber{\stopsectiononlynumber}
+\def\startdefinitiononlynumber[#1][#2]{%
+  \incrementcounter[definition]%
+  \startsectiononlynumber[ownnumber={\directconvertedcounter{definition}\empty},
+   incrementnumber=no,#1][#2]}
+
+\definecounter[axiom][way=bypart,numberconversion=R]
+\define\startAxiomOnlyNumber{\dodoubleempty\startaxiomonlynumber}
+\define\stopAxiomOnlyNumber{\stopsectiononlynumber}
+\def\startaxiomonlynumber[#1][#2]{%
+  \incrementcounter[axiom]%
+  \startsectiononlynumber[ownnumber={\directconvertedcounter{axiom}\empty},
+   incrementnumber=no,#1][#2]}
+
+\definecounter[postulate][way=bypart,numberconversion=R]
+\define\startPostulateOnlyNumber{\dodoubleempty\startpostulateonlynumber}
+\define\stopPostulateOnlyNumber{\stopsectiononlynumber}
+\def\startpostulateonlynumber[#1][#2]{%
+  \incrementcounter[postulate]%
+  \startsectiononlynumber[ownnumber={\directconvertedcounter{postulate}\empty},
+   incrementnumber=no,#1][#2]}
+
+\protect
+
+\def\overText#1#2{\mathop{#1}\limits_{}^{\mbox{#2}}}
+\def\underText#1#2{\mathop{#1}\limits_{\mbox{#2}}^{}}
+
+\definedescription[symblist][location=hanging,headstyle=bold,style=normal,align=left]

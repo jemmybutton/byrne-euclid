@@ -1,0 +1,227 @@
+\newdimen\topmargin
+\topmargin=\topspace
+\advance \topmargin by \headerdistance
+
+\newcount\mpInst
+\mpInst = 0
+% Every time new proposition is introduced, we define new picture
+% with all its colors and styles, preceded with inclusion of byrne.mp library. 
+% It is done with \startMPinclusions in ConTeXt.
+% Note that every time new MPinstance is defined.
+% Before doing so we clear everything after previous definitions (explained below)
+
+\def\defineNewPicture{\dodoubleempty\definenewpicture}
+\def\definenewpicture[#1][#2]#3{\ignorespaces
+	\undefineList\ignorespaces
+	\def\undefineList{}\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\sfA{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\sfA{1/3}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\global\def\sfB{#2}\ignorespaces
+	\else\ignorespaces
+		\global\def\sfB{1}\ignorespaces
+	\fi\ignorespaces
+	\advance \mpInst by 1\ignorespaces
+	\global\def\currentInstance{\the\mpInst}\ignorespaces
+	\defineMPinstance[\currentInstance]\ignorespaces
+	\startMPinclusions{\currentInstance}
+		input byrne;
+		scaleFactor := \sfB;
+		picture currentPicture;
+		currentPicture := image(
+			#3
+		);
+		scaleFactor := \sfA;
+	\stopMPinclusions\ignorespaces}
+
+% Every time some simple picture is drawn, new macro is defined
+% with \markPictAsReady. If macro is defined, predefined picture is used.
+% Every time new picture is added, instructions to undefine it are added with
+% \addToUndefineList. \undefineList is thus generated command, that, once executed,
+% undefines everything that was appended to it with \addToUndefineList.
+
+\def\unmarkPictAsReady#1{\expandafter\let\csname #1\endcsname\relax}
+
+\def\addToUndefineList#1{\expandafter\def\expandafter\undefineList\expandafter{\undefineList \unmarkPictAsReady{#1}}}
+
+\def\undefineList{}
+\addToUndefineList{lastPicture}
+
+% When larger picture is defined, we can visualize its parts with \drawFromCurrentPicture
+% First (optional) argument is for picture's vertical alignment relative to the string
+% Currently only `middle' and anything other (for `top') is working
+% Second (optional) argument is for picture's name for future reuse
+% If picture with the same name exists, it's not defined again.
+% Third argument is MP code for picture itself.
+% Whenever everything is defined, \drawDefinedPicture macro is called for
+\def\drawFromCurrentPicture{\dodoubleempty\drawfromcurrentpicture}
+\def\drawfromcurrentpicture[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\dfcpl{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\dfcpl{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\global\def\lastPict{#2}\ignorespaces
+		\expandafter\ifx\csname #2\endcsname\relax\ignorespaces
+			\startreusableMPgraphic{\currentInstance::#2}
+				linecap := butt;
+				#3
+			\stopreusableMPgraphic\ignorespaces
+			\global\addToUndefineList{#2}\ignorespaces
+		\fi\ignorespaces
+	\else\ignorespaces
+		\global\def\lastPict{lastPicture}\ignorespaces
+		\startreusableMPgraphic{\currentInstance::\lastPict}
+			linecap := butt;
+			#3
+		\stopreusableMPgraphic
+	\fi\ignorespaces
+\global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter\dfcpl}}}\csname\lastPict\endcsname}}
+
+
+
+% \drawDefinedPicture draws defined and named picture, aligned as needed and,
+% possibly, with margins modified with \offsetPicture (i. e., if we want picture to act as if it's less tall that it actually is,
+% we put some value as its first argument, if we want picture to be less deep, we use second argument, and place picture
+% itself as third).
+
+\newdimen\pictOffsetTop
+\newdimen\pictOffsetBottom
+
+\pictOffsetTop=0pt
+\pictOffsetBottom=0pt
+
+\def\offsetPicture#1#2#3{{\pictOffsetTop=#1\pictOffsetBottom=#2#3\pictOffsetTop=0pt\pictOffsetBottom=0pt}}
+
+\newdimen\midht
+\newdimen\middp
+\def\drawDefinedPicture#1#2{{\ignorespaces
+	\setbox0\vbox{\vskip2pt\vskip-\pictOffsetTop\reuseMPgraphic{\currentInstance::#1}\vskip2pt\vskip-\pictOffsetBottom}\ignorespaces
+	\def\tmpmiddle{middle}\ignorespaces
+	\def\tmpalignment{#2}\ignorespaces
+	\ifx\tmpalignment\tmpmiddle\ignorespaces
+		\middp=0.5\ht0
+		\midht=0.5\ht0
+		\advance\middp by -4pt
+		\advance\midht by 4pt
+	\else\ignorespaces
+		\middp=0pt
+		\midht=\ht0
+		\advance\middp by 3pt
+		\advance\midht by -3pt
+	\fi\ignorespaces
+	\advance\middp by 0.5\pictOffsetTop
+	\advance\midht by -0.5\pictOffsetTop
+	\advance\middp by -0.5\pictOffsetBottom
+	\advance\midht by 0.5\pictOffsetBottom
+	\dp0=\middp
+	\ht0=\midht
+	\nobreak\hskip0pt\nobreak\,\nobreak\box0\,\ignorespaces
+}}
+
+
+% Some convenient shorthand macros for commonly used derivations of definition picture are defined below
+\def\drawUnitLine{\dosingleempty\drawunitline}
+\def\drawunitline[#1]#2{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2#1]{draw byNamedCompoundLine(#1)(#2);}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2]{draw byNamedCompoundLine(1cm)(#2);}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{draw byNamedCompoundLine(0)(#1);}}
+
+\def\drawSizedLine{\dosingleempty\drawsizedline}
+\def\drawsizedline[#1]#2{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2#1]{draw byNamedCompoundLineSized(#1, 2)(#2);}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2]{draw byNamedCompoundLineSized(2cm, 2)(#2);}\ignorespaces
+	\fi\ignorespaces}}
+	
+\def\drawTwoRightAngles{\ignorespaces
+\drawFromCurrentPicture[middle][tworightangles]{draw twoRightAngles;}}
+	
+\def\drawRightAngle{\ignorespaces
+\drawFromCurrentPicture[middle][onerightangle]{draw rightAngle;}}
+
+\def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{draw byNamedAngle(#1);draw byNamedAngleDummySides(#1);}}
+
+\def\drawPolygon{\dodoubleempty\drawpolygon}
+\def\drawpolygon[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\plal{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\plal{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\drawFromCurrentPicture[\plal][#2]{draw byNamedPolygon(#3);}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[\plal][polygon#3]{draw byNamedPolygon(#3);}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawCircle{\dodoubleempty\drawcircle}
+\def\drawcircle[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\plal{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\plal{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\drawFromCurrentPicture[\plal][circle#3]{
+		oldScaleFactor := scaleFactor;
+		scaleFactor := #2;
+		draw byNamedCircle(#3);
+		scaleFactor := oldScaleFactor;
+		}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[\plal][circle#3]{draw byNamedCircle(#3);}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawArc{\dodoubleempty\drawarc}
+\def\drawarc[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\plal{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\plal{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\drawFromCurrentPicture[\plal][arc#3]{
+		oldScaleFactor := scaleFactor;
+		scaleFactor := #2;
+		draw byNamedArc(#3);
+		scaleFactor := oldScaleFactor;
+		}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[\plal][arc#3]{draw byNamedArc(#3);}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawLine{\dodoubleempty\drawline}
+\def\drawline[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\plal{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\plal{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\drawFromCurrentPicture[\plal][#2]{draw byNamedLineSeq(0)(#3);}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[\plal][line#3]{draw byNamedLineSeq(0)(#3);}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawMagnitude{\dodoubleempty\drawmagnitude}
+\def\drawmagnitude[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\plal{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\plal{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\drawFromCurrentPicture[\plal][magnitude#2#3]{draw byNamedMagnitude(#2)(#3);}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[\plal][magnitude#3]{draw byNamedMagnitude(0)(#3);}\ignorespaces
+	\fi\ignorespaces}}
