@@ -232,7 +232,7 @@
 
 \def\plateName{plate}
 
-\define[2]\bookTitle{\vbox{\vskip -\topspace\hbox{\putLettrine{\plateName}}\vskip 3\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
+\define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\putLettrine{\plateName}}\hfill\hskip0pt\vskip 3\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
 
 \definehead[intro][coupling=part,default=part,incrementnumber=no,placehead=yes]
 \setuphead[intro][alternative=text,command=\bookTitle, header=empty, footer=none,before={},after={}]

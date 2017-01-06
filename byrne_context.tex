@@ -3541,7 +3541,7 @@ draw byPolygon ((G--I--F--C--cycle), byyellow)(GIFC);
 draw byPolygon ((I--H--D--F--cycle), byred)(IHDF);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{a parallelogram, the figure composed of one of the parallelograms about the diagonal together with the two complements, is called a Gnomon.}
+\problemNP[4]{I}{n}{a parallelogram, the figure composed of one of the parallelograms about the diagonal together with the two complements, is called a Gnomon.}
 
 Thus \drawFromCurrentPicture[middle][gnomonA]{draw byNamedPolygon (AEIG);draw byNamedPolygon (EBHI);draw byNamedPolygon (GIFC);} and \drawFromCurrentPicture[middle][gnomonB]{draw byNamedPolygon (EBHI);draw byNamedPolygon (GIFC);draw byNamedPolygon (IHDF);} are called Gnomons.
 \stopDefinition
@@ -4843,7 +4843,7 @@ and $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \inprop[prop:I.XV]
 
 $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 \stopCenterAlign
-a part equal to the whole, which is absurd; therefore the assumed point is not the centre of both circles, and in the same manner it can be demonstrated that no other point is.
+\noindent a part equal to the whole, which is absurd; therefore the assumed point is not the centre of both circles, and in the same manner it can be demonstrated that no other point is.
 
 \qed
 \stopProposition
@@ -6106,7 +6106,7 @@ because $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
 \drawUnitLine{CD} must wholly coincide with \drawUnitLine{AB};
 \stopCenterAlign
 
-and the similar being then upon the same straight line and at the same side of it, must also coincide \inprop[prop:III.XXIII], and therefore equal.
+\noindent and the similar being then upon the same straight line and at the same side of it, must also coincide \inprop[prop:III.XXIII], and therefore equal.
 
 \qed
 \stopProposition
@@ -6939,8 +6939,12 @@ F := 1/2[B, C];
 G := 1/2[C, D];
 H := 1/2[D, A];
 draw byPolygon(E--F--G--H--cycle, byred)(EFGH);
-draw byArbitraryFigure(A--B--C--D--cycle, black, 0, 0)(ABCD);
-}\drawCurrentPictureInMargin
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(D, A, black, 0, 0);
+draw byNamedLineSeq(-1)(AB,BC,CD,DA);
+}\drawCurrentPictureInMargin[inside]
 A rectilinear figure is said to be \emph{inscribed in} another, when all the angular points of the inscribed figure are on sides of the figure in which it is said to be inscribed.
 \stopDefinitionOnlyNumber
 
@@ -6951,7 +6955,7 @@ A figure is said to be \emph{described about} another figure, when all the sides
 \defineNewPicture{
 pair A, B, C, D, O;
 numeric r;
-r := u;
+r := 4/5u;
 A := (r, 0);
 B := (0, r);
 C := (-r, 0);
@@ -6961,9 +6965,13 @@ draw byAngle(A, B, C, byred, 0)(B);
 draw byAngle(B, C, D, byred, 0)(C);
 draw byAngle(C, D, A, byred, 0)(D);
 draw byAngle(D, A, B, byred, 0)(A);
-draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCD);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(C, D, byred, 0, 0);
+byLineDefine(D, A, byred, 0, 0);
+draw byNamedLineSeq(-1)(AB,BC,CD,DA);
 draw byCircle(O, r, black, 0, 0, 1)(O);
-}\drawCurrentPictureInMargin
+}\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
 A rectilinear figure is said to be \emph{inscribed in} a circle, when the vertex of each angle of the figure is in the circumference of the circle.
 \stopDefinitionOnlyNumber
@@ -6971,7 +6979,7 @@ A rectilinear figure is said to be \emph{inscribed in} a circle, when the vertex
 \defineNewPicture{
 pair A, B, C, D, O;
 numeric r;
-r := 3/4u;
+r := 2/3u;
 A := (r, r);
 B := (-r, r);
 C := (-r, -r);
@@ -6980,7 +6988,7 @@ O := (0, 0);
 draw byPolygon(A--B--C--D--cycle, byred)(ABCD);
 draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCDo);
 draw byFilledCircleSector(O, r, 0, 8, white)(O);
-}\drawCurrentPictureInMargin
+}\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.IV]
 A rectilinear figure is said to be \emph{circumscribed about} a circle, when each of its sides is tangent to the circle.
 \stopDefinitionOnlyNumber
@@ -6991,7 +6999,7 @@ A rectilinear figure is said to be \emph{circumscribed about} a circle, when eac
 \defineNewPicture{
 pair A, B, C, D, E, F, O;
 numeric r[];
-r1 := u;
+r1 := 3/4u;
 A := dir(0)*r1;
 B := dir(60)*r1;
 C := dir(120)*r1;
@@ -7003,7 +7011,7 @@ O := (0, 0);
 draw byPolygon(A--B--C--D--E--F--cycle, byblue)(ABCDEF);
 draw byArbitraryFigure(A--B--C--D--E--F--cycle, byblue, 0, 0)(ABCDEFo);
 draw byFilledCircleSector(O, r2, 0, 8, white)(O);
-}\drawCurrentPictureInMargin
+}\drawCurrentPictureInMargin[inside]
 A circle is said to be \emph{inscribed in} a rectilinear figure, when each side of the figure is a tangent to the circle.
 \stopDefinitionOnlyNumber
 
@@ -7024,9 +7032,12 @@ H = whatever[B, C] = whatever[I, I shifted ((B-C) rotated 90)];
 K = whatever[C, A] = whatever[I, I shifted ((C-A) rotated 90)];
 r := abs(D-I);
 draw byPolygon(G--H--K--cycle, byblue)(GHK);
-draw byArbitraryFigure(A--B--C--cycle, black, 0, 0)(ABC);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, black, 0, 0);
+draw byNamedLineSeq(-1)(AB,BC,CA);
 draw byCircle(I, r, black, 0, 0, -1)(I);
-}\drawCurrentPictureInMargin
+}\drawCurrentPictureInMargin[inside]
 A circle is said to be \emph{circumscribed about} a rectilinear figure, when the circumference passes through the vertex of each angle of the figure.
 
 \drawPolygon{GHK} is circumscribed.
@@ -7036,13 +7047,13 @@ A circle is said to be \emph{circumscribed about} a rectilinear figure, when the
 \defineNewPicture{
 pair A, B, O;
 numeric r;
-r := u;
+r := 3/4u;
 O := (0, 0);
 A := dir(0)*r;
 B := dir(100)*r;
 draw byLine(A, B, black, 0, 0);
 draw byCircle(O, r, byblue, 0, 0, 0)(O);
-}\drawCurrentPictureInMargin
+}\drawCurrentPictureInMargin[inside]
 A straight line is said to be \emph{inscribed in} a circle, when its extremities are in the circumference.
 \stopDefinitionOnlyNumber
 
@@ -10262,7 +10273,6 @@ draw byPolygon ((D--E--F--G--cycle), byred)(DEFG);
 Rectilinear figures are said to be similar, when they have their several angles equal, each to each, and the sides about the equal angles proportional.
 \stopDefinitionOnlyNumber
 
-
 \startDefinitionOnlyNumber[reference=def:VI.II]
 Two sides of one figure are said to be reciprocally proportional to two sides of another figure when one of the sides of the first is to the second, as the remaining side of the second is to the remaining side of the first.
 \stopDefinitionOnlyNumber
@@ -10297,17 +10307,19 @@ D := (u, h) shifted d2;
 H := (xpart(C), 0);
 G := (xpart(D), 0);
 draw byPolygon ((A--B--C--D--cycle), byblue)(ABCD);
-draw byLine(C, H)(byblue, 1, 0);
-draw byLine(D, G)(byblue, 1, 0);
-draw byLine(A, H)(byblue, 1, 0);
+byLineDefine(C, H, byblue, 1, 0);
+draw byLine(D, G, byblue, 1, 0);
+byLineDefine(A, H, byblue, 1, 0);
+draw byNamedLineSeq(0)(CH,AH);
 pair A, B, C, D, H;
 A := (0, 0) shifted d3;
 B := (2/3u, 0) shifted d3;
 C := (u, h) shifted d3;
 H := (xpart(C), 0);
 draw byPolygon ((A--B--C--cycle), black)(ABCa);
-draw byLine(C, H)(black, 1, 0);
-draw byLine(A, H)(black, 1, 0);
+byLineDefine(C, H, black, 1, 0);
+byLineDefine(A, H, black, 1, 0);
+draw byNamedLineSeq(0)(CH,AH);
 pair A, B, C, D, E, H;
 A := (0, 0) shifted d4;
 B := (1/2u, 0) shifted d4;
