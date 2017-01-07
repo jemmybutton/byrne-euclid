@@ -1,4 +1,4 @@
-%    byrne-euclid 0.0.1
+%    byrne-euclid 0.0.2
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2017 Sergey Slyusarev
@@ -662,7 +662,7 @@ enddef;
 % Angles
 %
 
-vardef byAngleDefine(suffix a, b, c)(expr col, sty)(suffix angleName) =
+vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
 path angleArc.angleName;
 color angleColor.angleName, angleOptionalColor.angleName[];
 numeric angleDirection.angleName;
@@ -686,25 +686,37 @@ begingroup
 endgroup
 enddef;
 
-vardef byAngle(suffix a, b, c)(expr col, sty)(suffix angleName) =
+vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
+    byAngleDefineWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c));
+enddef;
+
+vardef byAngleWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
 begingroup
-    byAngleDefine(a, b, c, col, sty)(angleName);
+    byAngleDefineWithName(a, b, c, col, sty)(angleName);
     byNamedAngle(angleName)
 endgroup
 enddef;
 
-vardef byAngleExtended(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+vardef byAngle(suffix a, b, c)(expr col, sty) =
+    byAngleWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))
+enddef;
+
+vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
 begingroup
     save n;
     numeric n;
     n := 0;
-    byAngleDefine(a, b, c, col, sty)(angleName);
+    byAngleDefineWithName(a, b, c, col, sty)(angleName);
     forsuffixes oC=optionalColors:
         angleOptionalColor.angleName[n] := oC;
         n := n + 1;
     endfor;
     byNamedAngle(angleName)
 endgroup
+enddef;
+
+vardef byAngleExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
+    byAngleExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors)
 enddef;
 
 vardef byNamedAngle(text anglesList) =
@@ -892,10 +904,10 @@ pointS := (0, -2u*angleScale);
 pointW := (-2u*angleScale, 0);
 pointO := (0, 0);
 
-byAngleDefine (pointN, pointO, pointE)(black, 1)(rightAngleNE);
-byAngleDefine (pointE, pointO, pointS)(black, 1)(rightAngleES);
-byAngleDefine (pointS, pointO, pointW)(black, 1)(rightAngleSE);
-byAngleDefine (pointW, pointO, pointN)(black, 1)(rightAngleWN);
+byAngleDefineWithName (pointN, pointO, pointE)(black, 1)(rightAngleNE);
+byAngleDefineWithName (pointE, pointO, pointS)(black, 1)(rightAngleES);
+byAngleDefineWithName (pointS, pointO, pointW)(black, 1)(rightAngleSE);
+byAngleDefineWithName (pointW, pointO, pointN)(black, 1)(rightAngleWN);
 
 %
 % Magnitudes

@@ -322,7 +322,7 @@ Produces already defined filled polygon. Returns a picture of that polygon.
 \stopsection
 
 \startsection[title={Angles}]
-\startsubsection[title={byAngleDefine(suffix a, b, c) (expr col, sty) (suffix angleName)}]
+\startsubsection[title={byAngleDefineWithName(suffix a, b, c) (expr col, sty) (suffix angleName)}]
 Defines a new angle with a given name. Returns nothing.
 
 {\tt a, b, c} — of suffix type, coordinates of angle points.
@@ -333,17 +333,26 @@ Defines a new angle with a given name. Returns nothing.
 
 {\tt angleName} — of suffix type, angle name.
 \stopsubsection
-\startsubsection[title={byAngle(suffix a, b, c) (expr col, sty) (suffix angleName)}]
+\startsubsection[title={byAngleDefine(suffix a, b, c) (expr col, sty)}]
+Same as {\tt byAngleDefineWithName}, but name is assigned automatically (in form of {\tt abc}).
+\stopsubsection
+\startsubsection[title={byAngleWithName(suffix a, b, c) (expr col, sty) (suffix angleName)}]
 Defines a new angle with a given name. Returns a picture of that angle.
 
-a, b, c, col, sty, angleName — same as byAngleDefine.
+a, b, c, col, sty, angleName — same as byAngleDefineWithName.
 \stopsubsection
-\startsubsection[title={byAngleExtended(suffix a, b, c) (expr col, sty) (suffix angleName) (text optionalColors)}]
+\startsubsection[title={byAngle(suffix a, b, c) (expr col, sty)}]
+Same as {\tt byAngleWithName}, but name is assigned automatically (in form of {\tt abc}).
+\stopsubsection
+\startsubsection[title={byAngleExtendedWithName(suffix a, b, c) (expr col, sty) (suffix angleName) (text optionalColors)}]
 Defines a new angle with a given name with additional colors. Returns a picture of that angle.
 
 {\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
 
 {\tt a, b, c, col, sty, angleName} — same as {\tt byAngleDefine}.
+\stopsubsection
+\startsubsection[title={byAngleExtended(suffix a, b, c) (expr col, sty) (text optionalColors)}]
+Same as {\tt byAngleExtendedWithName}, but name is assigned automatically (in form of {\tt abc}).
 \stopsubsection
 \startsubsection[title={byNamedAngle(text anglesList)}]
 Produces already defined angles. Returns a picture of that angles.
