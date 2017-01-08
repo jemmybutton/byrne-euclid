@@ -315,17 +315,15 @@ B := A shifted (u, -2u);
 C := B xscaled -1;
 D := 9/5[A,B];
 E := 9/5[A,C];
-q := image(
-draw byAngle(E, B, D, white, 0);
-draw byAngle(D, C, E, white, 0);
-);
-draw byAngleWithName(B, A, C, black, 0)(A);
-draw byAngleWithName(A, B, C, byblue, 0)(B);
-draw byAngleWithName(B, C, A, byblue, 0)(C);
+draw byAngle(B, A, C, black, 0);
+draw byAngle(A, B, C, byblue, 0);
+draw byAngle(B, C, A, byblue, 0);
 draw byAngle(C, B, E, byyellow, 0);
 draw byAngle(D, C, B, byyellow, 0);
-draw byAngleWithName(B, D, C, byred, 0)(D);
-draw byAngleWithName(C, E, B, byred, 0)(E);
+draw byAngle(B, D, C, byred, 0);
+draw byAngle(C, E, B, byred, 0);
+byAngleDefine(E, B, D, black, 1);
+byAngleDefine(D, C, E, black, 1);
 byLineDefine(B, D, byyellow, 0, 0);
 byLineDefine(C, E, byyellow, 0, 0);
 byLineDefine(B, E, byblue, 0, 0);
@@ -334,8 +332,6 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 draw byNamedLineSeq(0)(BE,noLine,BC,noLine,CD,BD,AB,AC,CE);
-byAngleDefine(E, B, D, white, 0);
-byAngleDefine(D, C, E, white, 0);
 }
 \figureInMargin{
 	\startMPcode{\currentInstance}
@@ -354,24 +350,24 @@ Produce \drawUnitLine{AB} and \drawUnitLine{AC},\\
 make $\drawUnitLine{BD} = \drawUnitLine{CE}$, draw \drawUnitLine{BE} and \drawUnitLine{CD}.\\
 In
 \drawFromCurrentPicture{
-draw byNamedAngle(A);
+draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(AB,AC,CE,BE);
 }
 and
 \drawFromCurrentPicture{
-draw byNamedAngle(A);
+draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(AB,AC,CD,BD);
 }\\
 we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$,\\
-\drawAngle{A} common and $\drawUnitLine{AB} = \drawUnitLine{AC}$:\\
-$\therefore \drawAngle{C,DCB} = \drawAngle{B,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$\\
-and $\drawAngle{E} = \drawAngle{D}$ \inprop[prop:I.IV].\\
+\drawAngle{BAC} common and $\drawUnitLine{AB} = \drawUnitLine{AC}$:\\
+$\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$\\
+and $\drawAngle{CEB} = \drawAngle{BDC}$ \inprop[prop:I.IV].\\
 Again in \drawLine{BC,CE,BE} and \drawLine{BC,CD,BD},\\
-$\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{E} = \drawAngle{D}$\\
+$\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$\\
 and $\drawUnitLine{BE} = \drawUnitLine{CD}$;\\
 $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 and $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV]\\
-But $\drawAngle{C,DCB} = \drawAngle{B,CBE}$, $\therefore \drawAngle{C} = \drawAngle{B}$.
+But $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
 \stopCenterAlign
 
 \qedNB
