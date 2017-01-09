@@ -80,12 +80,12 @@ L = whatever[B, F];
 L = whatever[A, C];
 M = whatever[A, I];
 M = whatever[B, C];
-draw byPolygon ((A--B--E--D--cycle), black)(ABED);
-draw byPolygon ((L--A--G--F--cycle), byred)(LAGF);
-draw byPolygon ((C--L--F--cycle), byred)(CLF);
-draw byPolygon ((J--M--I--K--cycle), byblue)(JMIK);
-draw byPolygon ((M--C--I--cycle), byblue)(MCK);
-draw byPolygon ((B--J--K--H--cycle), byyellow)(BJKH);
+draw byPolygon(A,B,E,D)(black);
+draw byPolygon(L,A,G,F)(byred);
+draw byPolygon(C,L,F)(byred);
+draw byPolygon(J,M,I,K)(byblue);
+draw byPolygon(M,C,I)(byblue);
+draw byPolygon(B,J,K,H)(byyellow);
 draw byAngle(F, C, A, byyellow, 0);
 draw byAngle(B, C, I, byyellow, 0);
 draw byAngle(A, C, B, black, 0);
@@ -264,40 +264,40 @@ A line is length without breadth. With the assistance of colours, nearly in the 
 	D := (xpart(B), ypart(C));
 	E := 1/2[A, C];
 	F := 1/2[B, D];
-		draw byPolygon ((A--B--F--E--cycle), byred)(ABFE);
-		draw byPolygon ((C--D--F--E--cycle), byblue)(ABFE);
+		draw byPolygon(A,B,F,E)(byred);
+		draw byPolygon(C,D,F,E)(byblue);
 }
 \drawCurrentPictureInMargin
 Let two colours meet and cover a portion of paper; where they meet is not red, nor is it blue; therefore the junction occupies no portion of the plane, and therefore it cannot have breadth, but only length: from which we can readily form an idea of what is meant be a mathematical line. For the purpose of illustration, one colour differing from the colour of the paper, or plane upon which it is drawn, would have been sufficient; hence in future, if we say the red line, the blue line or lines, etc. it is the junctions with the plane upon which they are drawn are to be understood.
 
 \defineNewPicture{
-	pair A[], B[], C[], D[], d[];
+	pair A', A'', A''', B', B'', B''', C', C'', C''', D', D'', D''', d[];
 	d1 := (3/2u, 0);
 	d2 := (-3/4u, -2/3u);
 	d3 := (0, -3/2u);
-	A1 := (0, 0);
-	B1 := A1 shifted d1;
-	C1 := A1 shifted d2;
-	D1 := C1 shifted d1;
-	A2 := A1 shifted d3;
-	B2 := B1 shifted d3;
-	C2 := C1 shifted d3;
-	D2 := D1 shifted d3;
-	A3 := A2 shifted d3;
-	B3 := B2 shifted d3;
-	C3 := C2 shifted d3;
-	D3 := D2 shifted d3;
-		draw byPolygon ((A1--B1--B2--A2--C2--C1--cycle), byred)(ABFE);
-		draw byPolygon ((A2--B2--D2--C2--cycle), byblue)(ABFE);
-		draw byPolygon ((C2--D2--B2--B3--D3--C3--cycle), byyellow)(ABFE);
+	A' := (0, 0);
+	B' := A' shifted d1;
+	C' := A' shifted d2;
+	D' := C' shifted d1;
+	A'' := A' shifted d3;
+	B'' := B' shifted d3;
+	C'' := C' shifted d3;
+	D'' := D' shifted d3;
+	A''' := A'' shifted d3;
+	B''' := B'' shifted d3;
+	C''' := C'' shifted d3;
+	D''' := D'' shifted d3;
+		draw byPolygon(A',B',B'',A'',C'',C')(byred);
+		draw byPolygon(A'',B'',D'',C'')(byblue);
+		draw byPolygon(C'',D'',B'',B''',D''',C''')(byyellow);
 }
 \figureInMargin{
 	\startMPcode{\currentInstance}
 		draw currentPicture;
-		label.lft(\sometxt{P}, C1);
-		label.lft(\sometxt{R}, C2);
-		label.rt(\sometxt{S}, B2);
-		label.rt(\sometxt{Q}, B3);
+		label.lft(\sometxt{P}, C');
+		label.lft(\sometxt{R}, C'');
+		label.rt(\sometxt{S}, B'');
+		label.rt(\sometxt{Q}, B''');
 	\stopMPcode
 }
 Surface if that which has length and breadth without thickness.
@@ -2673,10 +2673,10 @@ D := C shifted d1;
 E := C shifted -d3;
 F := D shifted -d3;
 G := (B--D) intersectionpoint (C--E);
-draw byPolygon ((A--B--G--C--cycle), byyellow)(ABGC);
-draw byPolygon ((E--F--D--G--cycle), byyellow)(EFDG);
-draw byPolygon ((B--E--G--cycle), byyellow)(BEG);
-draw byPolygon ((C--D--G--cycle), byblue)(CDG);
+draw byPolygon(A,B,G,C)(byyellow);
+draw byPolygon(E,F,D,G)(byyellow);
+draw byPolygon(B,E,G)(byyellow);
+draw byPolygon(C,D,G)(byblue);
 draw byAngleWithName(B, A, C, byred, 0)(A);
 draw byAngleWithName(E, B, D, byblue, 0)(B);
 draw byAngleWithName(A, E, C, black, 0)(E);
@@ -2751,11 +2751,11 @@ G := E shifted d4;
 H := F shifted d4;
 I := (B--D) intersectionpoint (C--E);
 J := (E--G) intersectionpoint (D--F);
-draw byPolygon ((A--B--I--C--cycle), byred)(ABIC);
-draw byPolygon ((C--D--I--cycle), byred)(CDI);
-draw byPolygon ((I--D--J--E--cycle), byblue)(IDJE);
-draw byPolygon ((E--F--J--cycle), byyellow)(EFJ);
-draw byPolygon ((J--F--H--G--cycle), byyellow)(JFHG);
+draw byPolygon(A,B,I,C)(byred);
+draw byPolygon(C,D,I)(byred);
+draw byPolygon(I,D,J,E)(byblue);
+draw byPolygon(E,F,J)(byyellow);
+draw byPolygon(J,F,H,G)(byyellow);
 byLineDefine(C, E, byyellow, 0, 0);
 byLineDefine(D, F, black, 1, 0);
 byLineDefine(C, D, black, 0, 0);
@@ -2807,11 +2807,11 @@ F := D shifted -d3;
 G := (B--D) intersectionpoint (C--E);
 H := 11/10[F, A];
 I := 11/10[A, F];
-draw byPolygon ((A--B--C--cycle), byblue)(ABC);
-draw byPolygon ((B--C--G--cycle), byyellow)(BCG);
-draw byPolygon ((C--D--G--cycle), byyellow)(CDG);
-draw byPolygon ((D--G--E--cycle), black)(DGE);
-draw byPolygon ((E--F--D--cycle), byred)(EFD);
+draw byPolygon(A,B,C)(byblue);
+draw byPolygon(B,C,G)(byyellow);
+draw byPolygon(C,D,G)(byyellow);
+draw byPolygon(D,G,E)(black);
+draw byPolygon(E,F,D)(byred);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(E, C, byblue, 0, 0);
 byLineDefine(A, C, byred, 1, 0);
@@ -2872,10 +2872,10 @@ G := E shifted d4;
 H := F shifted d4;
 I := (xpart(A), ypart(C));
 J := (xpart(F), ypart(C));
-draw byPolygon ((A--B--C--cycle), byyellow)(ABC);
-draw byPolygon ((B--C--D--cycle), byred)(BCD);
-draw byPolygon ((E--F--H--cycle), black)(EFH);
-draw byPolygon ((E--G--H--cycle), byblue)(EGH);
+draw byPolygon(A,B,C)(byyellow);
+draw byPolygon(B,C,D)(byred);
+draw byPolygon(E,F,H)(black);
+draw byPolygon(E,G,H)(byblue);
 draw byLine(B, D, byblue, 0, 0);
 draw byLine(E, G, byred, 0, 0);
 byLineDefine(A, C, byblue, 1, 0);
@@ -2915,11 +2915,11 @@ D := C shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
 F := 5/4[C, B];
 G := 6/4[C, B];
-draw byPolygon ((A--B--E--cycle), byred)(ABE);
-draw byPolygon ((A--E--C--cycle), byyellow)(AEC);
-draw byPolygon ((B--E--D--cycle), black)(BED);
-draw byPolygon ((E--C--D--cycle), byyellow)(ECD);
-draw byPolygon ((F--B--D--cycle), byblue)(FBD);
+draw byPolygon(A,B,E)(byred);
+draw byPolygon(A,E,C)(byyellow);
+draw byPolygon(B,E,D)(black);
+draw byPolygon(E,C,D)(byyellow);
+draw byPolygon(F,B,D)(byblue);
 byLineDefine(A, F, byred, 0, 0);
 byLineDefine(D, F, byyellow, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
@@ -2968,9 +2968,9 @@ E := B shifted (-1/2u, -9/4u);
 F := E shifted d;
 G := 5/4[E, B];
 H := 2[B, G];
-draw byPolygon ((A--C--D--cycle), byyellow)(ACD);
-draw byPolygon ((B--E--F--cycle), byred)(BEF);
-draw byPolygon ((G--B--F--cycle), byblue)(GBF);
+draw byPolygon(A,C,D)(byyellow);
+draw byPolygon(B,E,F)(byred);
+draw byPolygon(G,B,F)(byblue);
 draw byLine(E, H, black, 1, 0);
 byLineDefine(A, G, byred, 0, 0);
 byLineDefine(F, G, byyellow, 0, 0);
@@ -3023,11 +3023,11 @@ D := A shifted (4/3u, -3u);
 E := D shifted d;
 F = whatever[B, E] = whatever[D, C];
 G = whatever[A, E] = whatever[D, C];
-draw byPolygon ((A--B--F--G--cycle), byyellow)(ABFG);
-draw byPolygon ((G--F--E--cycle), byyellow)(GFE);
-draw byPolygon ((A--G--D--cycle), byblue)(AGD);
-draw byPolygon ((D--E--G--cycle), byblue)(DEG);
-draw byPolygon ((C--F--E--cycle), byred)(CFE);
+draw byPolygon(A,B,F,G)(byyellow);
+draw byPolygon(G,F,E)(byyellow);
+draw byPolygon(A,G,D)(byblue);
+draw byPolygon(D,E,G)(byblue);
+draw byPolygon(C,F,E)(byred);
 draw byLine(A, E, byred, 0, 0);
 draw byLineFull(A, C, black, 1, 0)(D, E, 1, 1, 0);
 draw byLineFull(D, E, black, 0, 0)(A, C, 1, 1, 0);
@@ -3069,10 +3069,10 @@ D := A shifted (u, -3u);
 E := D shifted d;
 F := (B--E) intersectionpoint (D--C);
 G := 2[D, E];
-draw byPolygon ((A--B--F--D--cycle), byyellow)(ABFD);
-draw byPolygon ((D--E--F--cycle), byyellow)(GFE);
-draw byPolygon ((C--F--E--cycle), byblue)(CFE);
-draw byPolygon ((E--C--G--cycle), black)(DCG);
+draw byPolygon(A,B,F,D)(byyellow);
+draw byPolygon(D,E,F)(byyellow);
+draw byPolygon(C,F,E)(byblue);
+draw byPolygon(E,C,G)(black);
 draw byAngleWithName(B, E, D, byblue, 0)(E);
 draw byAngleWithName(B, E, D, byyellow, 0)(EE) shifted (xpart(G)-xpart(E), -ypart(D)-u);
 draw byLine(A, D, byred, 1, 0);
@@ -3084,7 +3084,7 @@ draw byLine(E, G, black, 1, 0);
 }
 \drawCurrentPicture
 \problemNP[2]{T}{o}{construct a parallelogram equal to a given triangle
-\drawPolygon[bottom][polygonCDG]{GFE,CFE,DCG} and having an angle equal to a given rectilinear angle \drawAngle{EE}.}
+\drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} and having an angle equal to a given rectilinear angle \drawAngle{EE}.}
 
 \startCenterAlign
 Make $\drawUnitLine{DE} = \drawUnitLine{EG}$ \inprop[prop:I.X]\\
@@ -3094,15 +3094,15 @@ Make $\drawAngle{E} = \drawAngle{EE}$ \inprop[prop:I.XXIII]\\
 Draw $\left\{\eqalign{\drawUnitLine{AD} &\parallel \drawUnitLine{BE}\cr\drawUnitLine{AC} &\parallel \drawUnitLine{DE}\cr}\right\}$ \inprop[prop:I.XXXI]
 
 $\drawFromCurrentPicture[bottom][polygonABED]{
-draw byNamedPolygon(ABFD,GFE);
+draw byNamedPolygon(ABFD,DEF);
 }
 = \mbox{ twice }
 \drawFromCurrentPicture[bottom][polygonCED]{
-draw byNamedPolygon(GFE,CFE);
+draw byNamedPolygon(DEF,CFE);
 }$ \inprop[prop:I.XLI]\\
 but $\polygonCED =
 \drawFromCurrentPicture[bottom][polygonDCG]{
-draw byNamedPolygon(DCG);
+draw byNamedPolygon(ECG);
 }$ \inprop[prop:I.XXXVIII]
 
 $\therefore \polygonABED = \polygonCDG$.
@@ -3128,12 +3128,12 @@ F := q1 intersectionpoint (A--C);
 G := q1 intersectionpoint (B--D);
 H := q2 intersectionpoint (A--B);
 I := q2 intersectionpoint (C--D);
-draw byPolygon ((A--E--H--cycle), byyellow)(AEH);
-draw byPolygon ((A--E--F--cycle), byyellow)(AEF);
-draw byPolygon ((H--B--G--E--cycle), byblue)(HBGE);
-draw byPolygon ((F--C--I--E--cycle), black)(FCIE);
-draw byPolygon ((I--D--E--cycle), byred)(IDE);
-draw byPolygon ((G--D--E--cycle), byred)(GDE);
+draw byPolygon(A,E,H)(byyellow);
+draw byPolygon(A,E,F)(byyellow);
+draw byPolygon(H,B,G,E)(byblue);
+draw byPolygon(F,C,I,E)(black);
+draw byPolygon(I,D,E)(byred);
+draw byPolygon(G,D,E)(byred);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{complements
@@ -3184,9 +3184,9 @@ I := q2 intersectionpoint (C--D);
 J := A shifted (-1/2u, 0);
 K := J shifted (2(xpart(A)-xpart(H)), 0);
 L := (xpart(1/3[J, K]), ypart(F));
-draw byPolygon ((J--K--L--cycle), byred)(JKL);
-draw byPolygon ((A--H--E--F--cycle), byyellow)(AHEF);
-draw byPolygon ((E--G--D--I--cycle), byblue)(EGDI);
+draw byPolygon(J,K,L)(byred);
+draw byPolygon(A,H,E,F)(byyellow);
+draw byPolygon(E,G,D,I)(byblue);
 draw byAngleWithName(A, F, E, byblue, 0)(F);
 draw byAngleWithName(F, E, I, byred, 0)(E);
 draw byAngleWithName(E, I, D, black, 0)(I);
@@ -3257,15 +3257,15 @@ K := J shifted d2;
 d5 := (2*(s1/b3)*(1/cosd(a)), 0);
 L := J shifted d5;
 M := L shifted d2;
-draw byPolygon ((A--B--C--cycle), byred)(ABC);
-draw byPolygon ((A--C--D--cycle), byyellow)(ACD);
-draw byPolygon ((A--D--E--cycle), byblue)(ADE);
+draw byPolygon(A,B,C)(byred);
+draw byPolygon(A,C,D)(byyellow);
+draw byPolygon(A,D,E)(byblue);
 byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(AC,AD);
-draw byPolygon ((F--G--I--H--cycle), byblue)(FGIH);
-draw byPolygon ((G--J--K--I--cycle), byyellow)(GJKI);
-draw byPolygon ((J--L--M--K--cycle), byred)(JLMK);
+draw byPolygon(F,G,I,H)(byblue);
+draw byPolygon(G,J,K,I)(byyellow);
+draw byPolygon(J,L,M,K)(byred);
 draw byAngleWithName(G, I, H, byyellow, 0)(I);
 draw byAngleWithName(J, K, I, black, 0)(K);
 draw byAngleWithName(L, M, K, byblue, 0)(M);
@@ -3365,12 +3365,12 @@ L = whatever[B, F];
 L = whatever[A, C];
 M = whatever[A, I];
 M = whatever[B, C];
-draw byPolygon ((A--B--E--D--cycle), black)(ABED);
-draw byPolygon ((L--A--G--F--cycle), byred)(LAGF);
-draw byPolygon ((C--L--F--cycle), byred)(CLF);
-draw byPolygon ((J--M--I--K--cycle), byblue)(JMIK);
-draw byPolygon ((M--C--I--cycle), byblue)(MCK);
-draw byPolygon ((B--J--K--H--cycle), byyellow)(BJKH);
+draw byPolygon(A,B,E,D)(black);
+draw byPolygon(L,A,G,F)(byred);
+draw byPolygon(C,L,F)(byred);
+draw byPolygon(J,M,I,K)(byblue);
+draw byPolygon (M,C,I)(byblue);
+draw byPolygon(B,J,K,H)(byyellow);
 draw byAngle(F, C, A, byyellow, 0);
 draw byAngle(B, C, I, byyellow, 0);
 draw byAngle(A, C, B, black, 0);
@@ -3407,7 +3407,7 @@ $\drawUnitLine{BC} = \drawUnitLine{CI}$ and $\drawUnitLine{CA} = \drawUnitLine{C
 
 $\therefore
 \drawFromCurrentPicture[middle][polygonAFC]{
-draw byNamedPolygon(MCK);
+draw byNamedPolygon(MCI);
 draw byNamedAngle(ACB);
 draw byNamedLine(CAb,AMb);
 }
@@ -3421,13 +3421,13 @@ $.
 
 Again, because $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\
 $\drawFromCurrentPicture[middle][polygonACFG]{draw byNamedPolygon(LAGF,CLF);} = \mbox{ twice } \polygonBLC$,\\
-and $\drawFromCurrentPicture[middle][polygonJMCK]{draw byNamedPolygon(JMIK,MCK);} = \mbox{ twice } \polygonAFC$;
+and $\drawFromCurrentPicture[middle][polygonJMCK]{draw byNamedPolygon(JMIK,MCI);} = \mbox{ twice } \polygonAFC$;
 
 $\therefore \polygonACFG = \polygonJMCK$.
 
 In the same manner it can be shown that $\drawFromCurrentPicture[middle][polygonABED]{draw byNamedPolygon(ABED);} = \drawFromCurrentPicture[middle][polygonBJKH]{draw byNamedPolygon(BJKH);}$;
 
-hence $\drawFromCurrentPicture[middle][polygonABEDpACFG]{draw byNamedPolygon(ABED,LAGF,CLF);} = \drawFromCurrentPicture[middle][polygonBCIH]{draw byNamedPolygon(JMIK,MCK,BJKH);}$.
+hence $\drawFromCurrentPicture[middle][polygonABEDpACFG]{draw byNamedPolygon(ABED,LAGF,CLF);} = \drawFromCurrentPicture[middle][polygonBCIH]{draw byNamedPolygon(JMIK,MCI,BJKH);}$.
 
 \stopCenterAlign
 
@@ -3493,7 +3493,7 @@ A := (0, 0);
 B := (w, 0);
 C := (0, h);
 D := (w, h);
-draw byPolygon ((A--B--D--C--cycle), byblue)(ABCD);
+draw byPolygon(A,B,D,C)(byblue);
 byLineDefine(A, B, black, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AC);
@@ -3501,7 +3501,7 @@ draw byNamedLineSeq(0)(AB,AC);
 \drawCurrentPictureInMargin
 \problemNP{A}{rectangle}{or a right angled parallelogram is said to be contained by any two of its adjacent or conterminous sides.}
 
-Thus: the right angled parallelogram \drawFromCurrentPicture[polygonABCD]{draw byNamedPolygon (ABCD);} is said to be contained by the sides \drawUnitLine{AB} and \drawUnitLine{AC}; or it may be briefly designated by $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
+Thus: the right angled parallelogram \drawFromCurrentPicture{draw byNamedPolygon (ABDC);} is said to be contained by the sides \drawUnitLine{AB} and \drawUnitLine{AC}; or it may be briefly designated by $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
 
 If the adjacent sides are equal; i. e. $\drawUnitLine{AB} = \drawUnitLine{AC}$, then $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$ which is the expression for the rectangle undet \drawUnitLine{AB} and \drawUnitLine{AC} is square, and
 
@@ -3528,10 +3528,10 @@ F := 2/3[C, D];
 G := 2/3[A, C];
 H := 2/3[B, D];
 I = whatever[E, F] = whatever[G, H];
-draw byPolygon ((A--E--I--G--cycle), byblue)(AEIG);
-draw byPolygon ((E--B--H--I--cycle), byyellow)(EBHI);
-draw byPolygon ((G--I--F--C--cycle), byyellow)(GIFC);
-draw byPolygon ((I--H--D--F--cycle), byred)(IHDF);
+draw byPolygon(A,E,I,G)(byblue);
+draw byPolygon(E,B,H,I)(byyellow);
+draw byPolygon(G,I,F,C)(byyellow);
+draw byPolygon(I,H,D,F)(byred);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{n}{a parallelogram, the figure composed of one of the parallelograms about the diagonal together with the two complements, is called a Gnomon.}
@@ -3555,9 +3555,9 @@ K := 2/5[G, H];
 D := 2/5[B, C];
 L := 3/4[G, H];
 E := 3/4[B, C];
-draw byPolygon(G--K--D--B--cycle, byyellow)(GKDB);
-draw byPolygon(K--L--E--D--cycle, byblue)(KLED);
-draw byPolygon(L--H--C--E--cycle, byred)(LHCE);
+draw byPolygon(G,K,D,B)(byyellow);
+draw byPolygon(K,L,E,D)(byblue);
+draw byPolygon(L,H,C,E)(byred);
 draw byLine(K, D, black, 1, 0);
 draw byLine(L, E, black, 1, 0);
 byLineDefine(G, B, black, 0, 0);
@@ -3618,8 +3618,8 @@ C := 2/3[A, B];
 D := (0, 0);
 E := (w, 0);
 F := 2/3[D, E];
-draw byPolygon(A--C--F--D--cycle, byred)(ACFD);
-draw byPolygon(C--B--E--F--cycle, byyellow)(CBEF);
+draw byPolygon(A,C,F,D)(byred);
+draw byPolygon(C,B,E,F)(byyellow);
 draw byLine(C, F, black, 0, 0);
 byLineDefine(A, D, black, 1, 0);
 byLineDefine(B, E, black, 1, 0);
@@ -3666,8 +3666,8 @@ C := (w+h, h);
 D := (w+h, 0);
 E := (w, 0);
 F := (0, 0);
-draw byPolygon(A--C--D--F--cycle, byyellow)(ACFD);
-draw byPolygon(C--B--E--D--cycle, byred)(CBED);
+draw byPolygon(A,C,D,F)(byyellow);
+draw byPolygon(C,B,E,D)(byred);
 byLineDefine(D, F, byred, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
@@ -3683,9 +3683,9 @@ $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportiona
 \startCenterAlign
 Describe \drawPolygon[bottom]{CBED} \inprop[prop:I.XLVI]
 
-Describe \drawPolygon[bottom]{ACFD} \inprop[prop:I.XXXI]
+Describe \drawPolygon[bottom]{ACDF} \inprop[prop:I.XXXI]
 
-Then $\drawPolygon[bottom][polygonABEF]{ACFD,CBED} = \polygonCBED + \polygonACFD$, but\\
+Then $\drawPolygon[bottom][polygonABEF]{ACDF,CBED} = \polygonCBED + \polygonACFD$, but\\
 $\polygonABEF = \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE}$ and\\
 $\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACFD = \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$,
 
@@ -3711,10 +3711,10 @@ F := 2/3[D, E];
 H := 2/3[D, A];
 K := 2/3[E, B];
 G = whatever[H, K] = whatever[F, C];
-draw byPolygon(A--C--G--H--cycle, byyellow)(ACGH);
-draw byPolygon(G--K--E--F--cycle, byyellow)(GKEF);
-draw byPolygon(D--H--G--cycle, byblue)(DHG);
-draw byPolygon(G--B--C--cycle, byred)(GBC);
+draw byPolygon(A,C,G,H)(byyellow);
+draw byPolygon(G,K,E,F)(byyellow);
+draw byPolygon(D,H,G)(byblue);
+draw byPolygon(G,B,C)(byred);
 draw byAngle(F, D, G, byyellow, 0);
 draw byAngle(F, G, D, byred, 0);
 draw byAngle(K, G, B, black, 0);
@@ -3797,11 +3797,11 @@ H = whatever[D, G] = whatever[B, E];
 K := (xpart(H), ypart(A));
 L := (xpart(H), ypart(C));
 M := (xpart(H), ypart(B));
-draw byPolygon(B--D--H--M--cycle, byblue)(ADHM);
-draw byPolygon(D--C--L--H--cycle, byyellow)(DCLH);
-draw byPolygon(C--L--K--A--cycle, black)(CLKA);
-draw byPolygon(M--H--G--F--cycle, byyellow)(MHGF);
-draw byPolygon(H--L--E--G--cycle, byred)(HLEG);
+draw byPolygon(B,D,H,M)(byblue);
+draw byPolygon(D,C,L,H)(byyellow);
+draw byPolygon(C,L,K,A)(black);
+draw byPolygon(M,H,G,F)(byyellow);
+draw byPolygon(H,L,E,G)(byred);
 draw byLine(H, G, black, 1, 0);
 draw byLine(D, H, byred, 0, 0);
 byLineDefine(L, M, black, 1, 0);
@@ -3821,7 +3821,7 @@ $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportiona
 }
 
 \startCenterAlign
-Describe \drawPolygon[bottom][squareCBFE]{ADHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI],
+Describe \drawPolygon[bottom][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI],
 
 draw \drawProportionalLine{EB}\\
 and $\left\{\eqalign{
@@ -3830,11 +3830,11 @@ and $\left\{\eqalign{
 \drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
 }\right\}$ \inprop[prop:I.XXXI]
 
-$\drawPolygon[bottom]{CLKA} = \drawPolygon[bottom]{DCLH,ADHM}$ \inprop[prop:I.XXXVI]
+$\drawPolygon[bottom]{CLKA} = \drawPolygon[bottom]{DCLH,BDHM}$ \inprop[prop:I.XXXVI]
 
 $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH}$ \inprop[prop:I.XLIII]
 
-$\therefore \mbox{\inax[ax:II] } \drawPolygon[bottom]{DCLH,ADHM,MHGF} = \drawFromCurrentPicture[bottom]{draw byNamedPolygon(DCLH,CLKA) rotated 90;} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
+$\therefore \mbox{\inax[ax:II] } \drawPolygon[bottom]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture[bottom]{draw byNamedPolygon(DCLH,CLKA) rotated 90;} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
 
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
 and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (const.)
@@ -3864,11 +3864,11 @@ H = whatever[D, G] = whatever[B, E];
 K := (xpart(H), ypart(A));
 L := (xpart(H), ypart(C));
 M := (xpart(H), ypart(B));
-draw byPolygon(B--D--H--M--cycle, byblue)(ADHM);
-draw byPolygon(D--C--L--H--cycle, byyellow)(DCLH);
-draw byPolygon(C--L--K--A--cycle, black)(CLKA);
-draw byPolygon(M--H--G--F--cycle, byyellow)(MHGF);
-draw byPolygon(H--L--E--G--cycle, byred)(HLEG);
+draw byPolygon(B,D,H,M)(byblue);
+draw byPolygon(D,C,L,H)(byyellow);
+draw byPolygon(C,L,K,A)(black);
+draw byPolygon(M,H,G,F)(byyellow);
+draw byPolygon(H,L,E,G)(byred);
 draw byLine(H, G, byblue, 1, 0);
 draw byLine(D, H, byred, 0, 0);
 byLineDefine(L, M, black, 1, 0);
@@ -3888,7 +3888,7 @@ $\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProporti
 }
 
 \startCenterAlign
-Describe \drawPolygon[bottom][squareCBFE]{ADHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI], draw \drawProportionalLine{EB}\\
+Describe \drawPolygon[bottom][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI], draw \drawProportionalLine{EB}\\
 and $\left\{\eqalign{
 \drawProportionalLine{HG,DH} & \parallel \drawProportionalLine{CL,LE} \cr
 \drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \cr
@@ -3897,10 +3897,10 @@ and $\left\{\eqalign{
 
 $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH} = \drawPolygon[bottom]{CLKA}$ (\inpropL[prop:I.XXXVI], \inpropL[prop:I.XLIII])
 
-$\therefore \drawPolygon[bottom]{ADHM,DCLH,MHGF} = \drawPolygon[bottom]{ADHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
+$\therefore \drawPolygon[bottom]{BDHM,DCLH,MHGF} = \drawPolygon[bottom]{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
 
-$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{ADHM,DCLH,CLKA,HLEG}$ (const, \inaxL[ax:II])
+$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (const, \inaxL[ax:II])
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
 \stopCenterAlign
@@ -3922,10 +3922,10 @@ N := 3/5[D, E];
 F := 3/5[E, B];
 G = whatever[D, B] = whatever[N, C];
 H := whatever[A, D] = whatever[F, G];
-draw byPolygon(D--N--G--H--cycle, byred)(DNGH);
-draw byPolygon(N--E--F--G--cycle, black)(NEFG);
-draw byPolygon(H--G--C--A--cycle, byyellow)(HGCA);
-draw byPolygon(G--F--B--C--cycle, byblue)(GFBC);
+draw byPolygon(D,N,G,H)(byred);
+draw byPolygon(N,E,F,G)(black);
+draw byPolygon(H,G,C,A)(byyellow);
+draw byPolygon(G,F,B,C)(byblue);
 draw byLine(G, N, byblue, 0, 0);
 draw byLine(G, F, byred, 0, 0);
 draw byLine(G, H, black, 1, 0);
@@ -4191,9 +4191,9 @@ F := E shifted (0, -abs(E-B));
 G := F shifted (abs(F-A), 0);
 H = whatever[A, B] = (xpart(G), whatever);
 K = whatever[G, H] = whatever[C, D];
-draw byPolygon(A--H--K--C--cycle, byyellow)(AHKC);
-draw byPolygon(H--B--D--K--cycle, byblue)(HBDK);
-draw byPolygon(A--H--G--F--cycle, byblue)(AHGF);
+draw byPolygon(A,H,K,C)(byyellow);
+draw byPolygon(H,B,D,K)(byblue);
+draw byPolygon(A,H,G,F)(byblue);
 byLineDefine(K, G, black, 1, 0);
 byLineDefine(A, H, byred, 0, 0);
 byLineDefine(H, B, byred, 1, 0);
@@ -4327,10 +4327,16 @@ $\therefore \drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawPro
 \startProposition[title={Prop. XIV. prob.},reference=prop:II.XIV]
 \defineNewPicture[1/3]{
 path A;
+pair a, b, c, d, e, f;
 pair B, C, D, E, F, G, H;
 numeric w, h, s, r;
-A := (0, 0) -- (u, 1/4u) -- (2u, 1/5u) -- (11/5u, -u) -- (7/8u, -2u) -- (1/8u, -3/4u) -- cycle;
-A := A scaled 1;
+a := (0, 0);
+b := (u, 1/4u);
+c := (2u, 1/5u);
+d := (11/5u, -u);
+e := (7/8u, -2u);
+f := (1/8u, -3/4u);
+A := a--b--c--d--e--f--cycle;
 s := 0;
 for i := 1 step 1 until length(A) - 1:
 	s := s + 1/2(
@@ -4348,9 +4354,11 @@ F := (-h, 0);
 G := 1/2[B, F];
 r := abs(B - G);
 H := (D--(E shifted ((E-D)*10))) intersectionpoint ((fullcircle scaled 2r) shifted G);
-A := A shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
-draw byPolygon(A, byyellow)(A);
-draw byPolygon(B--C--D--E--cycle, byred)(BCDE);
+forsuffixes i=a,b,c,d,e,f:
+	i := i shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
+endfor;
+draw byPolygon(a,b,c,d,e,f)(byyellow);
+draw byPolygon(B,C,D,E)(byred);
 draw byLine(H, G, byred, 0, 0);
 draw byLine(H, E, byblue, 0, 0);
 draw byLine(E, D, byyellow, 0, 0);
@@ -4365,11 +4373,11 @@ byLineDefine(B, F, black, 0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{T}{o}{draw a right line of which the square shall be equal to a given rectilinear figure.\\
-To draw \drawSizedLine{HE} such that, $\drawSizedLine{HE}^2 = \drawPolygon{A}$
+To draw \drawSizedLine{HE} such that, $\drawSizedLine{HE}^2 = \drawPolygon{abcdef}$
 }
 
 \startCenterAlign
-Make $\drawPolygon{BCDE} = \drawPolygon{A}$ \inprop[prop:I.XLV],
+Make $\drawPolygon{BCDE} = \drawPolygon{abcdef}$ \inprop[prop:I.XLV],
 
 Produce \drawSizedLine{EG,GB} until $\drawSizedLine{FE} = \drawSizedLine{ED}$;\\
 take $\drawSizedLine{FE,EG} = \drawSizedLine{GB}$ \inprop[prop:I.X],
@@ -4391,7 +4399,7 @@ $\therefore \drawSizedLine{HE}^2 + \drawSizedLine{EG}^2 = \drawSizedLine{FE} \cd
 
 $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB}$, and
 
-$\therefore \drawSizedLine{HE}^2 = \drawPolygon{BCDE} = \drawPolygon{A}$
+$\therefore \drawSizedLine{HE}^2 = \drawPolygon{BCDE} = \drawPolygon{abcdef}$
 \stopCenterAlign
 
 \qed
@@ -4555,8 +4563,8 @@ A sector of a circle is the figure contained by two radii and the arch between t
 	D := (point b of fullcircle scaled 2r2) shifted N;
 	E := (point 1/3[b,e] of fullcircle scaled 2r2) shifted N;
 	F := (point e of fullcircle scaled 2r2) shifted N;
-	draw byPolygon(A--B--C--cycle, byred)(ABC);
-	draw byPolygon(D--E--F--cycle, byred)(DEF);
+	draw byPolygon(A,B,C)(byred);
+	draw byPolygon(D,E,F)(byred);
 	draw byArc(M, r1, b, e, black, 0, 0, 0, 1)(M);
 	draw byArc(N, r2, b, e, black, 0, 0, 0, 1)(N);
 }\drawCurrentPictureInMargin
@@ -5164,7 +5172,7 @@ G := 1/2[M,N] shifted (dir(-20 + 180)*1/3r2);
 D := cr2 intersectionpoint (F--10[F, G]);
 H := cr1 intersectionpoint (F--10[F, G]);
 K := cr1 intersectionpoint (F--10[G, F]);
-draw byPolygon(A--F--G--cycle, byyellow)(AFG);
+draw byPolygon(A,F,G)(byyellow);
 draw byLine(A, G, byred, 0, 0);
 draw byLine(A, F, byblue, 1, 0);
 draw byLine(H, D, byyellow, 0, 0);
@@ -6931,7 +6939,7 @@ E := 1/2[A, B];
 F := 1/2[B, C];
 G := 1/2[C, D];
 H := 1/2[D, A];
-draw byPolygon(E--F--G--H--cycle, byred)(EFGH);
+draw byPolygon(E,F,G,H)(byred);
 byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, D, black, 0, 0);
@@ -6978,7 +6986,7 @@ B := (-r, r);
 C := (-r, -r);
 D := (r, -r);
 O := (0, 0);
-draw byPolygon(A--B--C--D--cycle, byred)(ABCD);
+draw byPolygon(A,B,C,D)(byred);
 draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCDo);
 draw byFilledCircleSector(O, r, 0, 8, white)(O);
 }\drawCurrentPictureInMargin[inside]
@@ -7001,7 +7009,7 @@ E := dir(240)*r1;
 F := dir(300)*r1;
 r2 := abs(1/2[A, B]);
 O := (0, 0);
-draw byPolygon(A--B--C--D--E--F--cycle, byblue)(ABCDEF);
+draw byPolygon(A,B,C,D,E,F)(byblue);
 draw byArbitraryFigure(A--B--C--D--E--F--cycle, byblue, 0, 0)(ABCDEFo);
 draw byFilledCircleSector(O, r2, 0, 8, white)(O);
 }\drawCurrentPictureInMargin[inside]
@@ -7024,7 +7032,7 @@ G = whatever[A, B] = whatever[I, I shifted ((A-B) rotated 90)];
 H = whatever[B, C] = whatever[I, I shifted ((B-C) rotated 90)];
 K = whatever[C, A] = whatever[I, I shifted ((C-A) rotated 90)];
 r := abs(D-I);
-draw byPolygon(G--H--K--cycle, byblue)(GHK);
+draw byPolygon(G,H,K)(byblue);
 byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, A, black, 0, 0);
@@ -7499,9 +7507,9 @@ E := (0, r);
 F := (-r, 0);
 H := (0, -r);
 K := (r, 0);
-draw byPolygon(E--D--K--G--cycle, black)(EDKG);
-draw byPolygon(F--G--H--B--cycle, byred)(FGHB);
-draw byPolygon(G--K--C--H--cycle, byblue)(GKCH);
+draw byPolygon(E,D,K,G)(black);
+draw byPolygon(F,G,H,B)(byred);
+draw byPolygon(G,K,C,H)(byblue);
 draw byLine(F, G, byyellow, 0, 0);
 draw byLine(G, K, byyellow, 1, 0);
 draw byLine(G, H, black, 0, 0);
@@ -7551,8 +7559,8 @@ A := (dir(45+90)*r) shifted E;
 B := (dir(45+180)*r) shifted E;
 C := (dir(45+270)*r) shifted E;
 D := (dir(45+360)*r) shifted E;
-draw byPolygon(A--C--D--cycle, byred)(ACD);
-draw byPolygon(A--B--C--cycle, byyellow)(ABC);
+draw byPolygon(A,C,D)(byred);
+draw byPolygon(A,B,C)(byyellow);
 draw byAngle(D, A, E, byyellow, 0);
 draw byAngle(E, A, B, black, 0);
 draw byAngle(A, B, E, byred, 0);
@@ -7666,7 +7674,7 @@ C := (dir(90+2/5(360))*r) shifted O;
 D := (dir(90+3/5(360))*r) shifted O;
 E := (dir(90+4/5(360))*r) shifted O;
 draw byArbitraryFigure(C--E--B--D, black, 0, 1)(pg);
-draw byPolygon(A--C--D--cycle, byyellow)(ACD);
+draw byPolygon(A,C,D)(byyellow);
 draw byAngleWithName(E, A, B, black, -1)(A);
 draw byAngleWithName(A, B, C, black, -1)(B);
 draw byAngleWithName(B, C, D, black, -1)(C);
@@ -10258,10 +10266,10 @@ D := D shifted (u, -5/2u);
 E := E shifted (u, -5/2u);
 F := F shifted (u, -5/2u);
 G := G shifted (u, -5/2u);
-draw byPolygon ((a--b--c--cycle), byblue)(abc);
-draw byPolygon ((A--B--C--cycle), byblue)(ABC);
-draw byPolygon ((d--e--f--g--cycle), byred)(defg);
-draw byPolygon ((D--E--F--G--cycle), byred)(DEFG);
+draw byPolygon(a,b,c)(byblue);
+draw byPolygon(A,B,C)(byblue);
+draw byPolygon(d,e,f,g)(byred);
+draw byPolygon(D,E,F,G)(byred);
 }\drawCurrentPictureInMargin
 Rectilinear figures are said to be similar, when they have their several angles equal, each to each, and the sides about the equal angles proportional.
 \stopDefinitionOnlyNumber
@@ -10290,7 +10298,7 @@ A := (0, 0) shifted d1;
 B := (3/2u, 0) shifted d1;
 C := (3/4u, h) shifted d1;
 H := (xpart(C), 0);
-draw byPolygon ((A--B--C--cycle), byyellow)(ABC);
+draw byPolygon (A,B,C)(byyellow);
 draw byLine(C, H)(byyellow, 1, 0);
 pair A, B, C, D, H, G;
 A := (0, 0) shifted d2;
@@ -10299,7 +10307,7 @@ C := (3/2u, h) shifted d2;
 D := (u, h) shifted d2;
 H := (xpart(C), 0);
 G := (xpart(D), 0);
-draw byPolygon ((A--B--C--D--cycle), byblue)(ABCD);
+draw byPolygon (A,B,C,D)(byblue);
 byLineDefine(C, H, byblue, 1, 0);
 draw byLine(D, G, byblue, 1, 0);
 byLineDefine(A, H, byblue, 1, 0);
@@ -10309,7 +10317,7 @@ A := (0, 0) shifted d3;
 B := (2/3u, 0) shifted d3;
 C := (u, h) shifted d3;
 H := (xpart(C), 0);
-draw byPolygon ((A--B--C--cycle), black)(ABCa);
+draw byPolygon (A,B,C)(black);
 byLineDefine(C, H, black, 1, 0);
 byLineDefine(A, H, black, 1, 0);
 draw byNamedLineSeq(0)(CH,AH);
@@ -10320,7 +10328,7 @@ C := (u, 1/2h) shifted d4;
 D := (1/4u, h) shifted d4;
 E := (-1/2u, 1/2h) shifted d4;
 H := (xpart(D), 0);
-draw byPolygon ((A--B--C--D--E--cycle), byred)(ABCa);
+draw byPolygon (A,B,C,D,E)(byred);
 draw byLine(D, H)(byred, 1, 0);
 }
 The altitude of any figure is the straight line drawn from its vertex perpendicular to its base, or the base produced.
@@ -10350,13 +10358,13 @@ N := (1/11w, 0);
 O := (2/11w, 0);
 P := (10/11w, 0);
 Q := (11/11w, 0);
-draw byPolygon((A--M--N--cycle), black)(AMN);
-draw byPolygon((A--O--H--cycle), black)(AOH);
-draw byPolygon((A--G--B--cycle), black)(AGB);
-draw byPolygon((A--B--C--cycle), byred)(ABC);
-draw byPolygon((A--C--D--cycle), byblue)(ACD);
-draw byPolygon((A--K--L--cycle), byyellow)(AKL);
-draw byPolygon((A--P--Q--cycle), byyellow)(APQ);
+draw byPolygon(A,M,N)(black);
+draw byPolygon(A,O,H)(black);
+draw byPolygon(A,G,B)(black);
+draw byPolygon(A,B,C)(byred);
+draw byPolygon(A,C,D)(byblue);
+draw byPolygon(A,K,L)(byyellow);
+draw byPolygon(A,P,Q)(byyellow);
 draw byLine(M, B)(black, 0, 0);
 draw byLine(B, C)(byblue, 0, 0);
 draw byLine(C, D)(byred, 0, 0);
@@ -10807,8 +10815,8 @@ A := (0, 0);
 B := A shifted (dir(-145)*4u);
 C = whatever[B, B shifted (1, 0)] = whatever[A, A shifted dir(-145 - 90)];
 D := (xpart(A), ypart(B));
-draw byPolygon((A--B--D--cycle), byyellow)(ABD);
-draw byPolygon((A--D--C--cycle), byred)(ADC);
+draw byPolygon(A,B,D)(byyellow);
+draw byPolygon(A,D,C)(byred);
 draw byAngleWithName(A, B, C, black, 0)(B);
 draw byAngleWithName(B, C, A, byblue, 1)(C);
 draw byNamedAngleDummySides(C);
@@ -11116,9 +11124,9 @@ F := B shifted d3;
 D := B shifted d4;
 A := B shifted (d3 + d4);
 H = whatever[A, F] = whatever[C, E];
-draw byPolygon((C--E--B--G--cycle), byyellow)(CEBG);
-draw byPolygon((B--F--A--D--cycle), byblue)(BFAD);
-draw byPolygon((E--H--F--B--cycle), byred)(EHFB);
+draw byPolygon(C,E,B,G)(byyellow);
+draw byPolygon(B,F,A,D)(byblue);
+draw byPolygon(E,H,F,B)(byred);
 draw byLine(B, G, byred, 0, 0);
 draw byLine(B, F, black, 0, 0);
 draw byLine(B, E, byblue, 0, 0);
@@ -11161,9 +11169,9 @@ B := (3u, 0);
 A := (5/4u, -3/2u);
 C := A shifted 3/2(A-D);
 E := A shifted 3/2(A-B);
-draw byPolygon((D--A--B--cycle), byblue)(DAB);
-draw byPolygon((D--A--E--cycle), byred)(DAE);
-draw byPolygon((A--B--C--cycle), byyellow)(ABC);
+draw byPolygon(D,A,B)(byblue);
+draw byPolygon(D,A,E)(byred);
+draw byPolygon(A,B,C)(byyellow);
 draw byAngle(D, A, E, byblue, 0);
 draw byAngle(B, A, C, byred, 0);
 byLineDefine(B, D, black, 1, 0);
@@ -11234,8 +11242,8 @@ d2 := (0, h1 + 1/2u);
 d3 := (0, h1 + 1/4u);
 Eb := (0, 0) shifted d2; Ee := (-h2, 0) shifted d2;
 Fb := (0, 0) shifted d3; Fe := (-h1, 0) shifted d3;
-draw byPolygon((A--B--F--G--cycle), byred)(ABFG);
-draw byPolygon((C--D--E--H--cycle), byyellow)(CDEH);
+draw byPolygon(A,B,F,G)(byred);
+draw byPolygon(C,D,E,H)(byyellow);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(A, G, black, 0, 0);
 draw byNamedLineSeq(0)(AB,AG);
@@ -11299,11 +11307,11 @@ d5 := (0, -l2);
 A := (0, 0) shifted d5; B := (-l2, 0) shifted d5; C := (-l2, l2) shifted d5; D := (0, l2) shifted d5;
 d6 := (0, -l2-l1-1/4u); 
 E := (0, 0) shifted d6; F := (-l3, 0) shifted d6; G := (-l3, l1) shifted d6; H := (0, l1) shifted d6; 
-draw byPolygon((A--B--C--D--cycle), byred)(ABCD);
+draw byPolygon(A,B,C,D)(byred);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(A, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,AD);
-draw byPolygon((E--F--G--H--cycle), byyellow)(EFGH);
+draw byPolygon(E,F,G,H)(byyellow);
 byLineDefine(E, F, black, 0, 0);
 byLineDefine(E, H, byred, 0, 0);
 draw byNamedLineSeq(0)(EF,EH);
@@ -11352,9 +11360,9 @@ D := (3/2u, 0);
 E := (u, 3u);
 F := (-u, 2u);
 L := (5/2u, u);
-draw byPolygon((D--C--F--cycle), byyellow)(DCF);
-draw byPolygon((D--F--E--cycle), byblue)(DFE);
-draw byPolygon((D--E--L--cycle), byred)(DEL);
+draw byPolygon(D,C,F)(byyellow);
+draw byPolygon(D,F,E)(byblue);
+draw byPolygon(D,E,L)(byred);
 draw byAngleExtendedWithName(D, F, E, byred, 1)(F)(black);
 draw byAngleExtendedWithName(D, E, L, byyellow, 1)(E)(byred);
 draw byAngleWithName(D, C, F, byred, 1)(C);
@@ -11376,9 +11384,9 @@ B := (D scaled s) shifted d;
 H := (E scaled s) shifted d;
 G := (F scaled s) shifted d;
 K := (L scaled s) shifted d;
-draw byPolygon((B--A--G--cycle), byyellow)(BAG);
-draw byPolygon((B--G--H--cycle), byblue)(BGH);
-draw byPolygon((B--H--K--cycle), byred)(BHK);
+draw byPolygon(B,A,G)(byyellow);
+draw byPolygon(B,G,H)(byblue);
+draw byPolygon(B,H,K)(byred);
 draw byAngleExtendedWithName(B, G, H, black, 1)(G)(byred);
 draw byAngleExtendedWithName(B, H, K, byyellow, 1)(H)(byred);
 draw byAngleWithName(B, A, G, byred, 0)(A);
@@ -11438,15 +11446,15 @@ D := (A scaled s) shifted d;
 E := (B scaled s) shifted d;
 F := (C scaled s) shifted d;
 G := B shifted (unitvector(C-B) scaled ((abs(E-F)/abs(B-C))*abs(E-F)));
-draw byPolygon((A--B--G--cycle), byblue)(ABG);
-draw byPolygon((A--G--C--cycle), byred)(AGC);
+draw byPolygon(A,B,G)(byblue);
+draw byPolygon(A,G,C)(byred);
 draw byAngleWithName(A, B, C, byred, 0)(B);
 draw byLine(A, G, byyellow, 1, 0);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, G, black, 1, 0);
 byLineDefine(G, C, black, 0, 0);
 draw byNamedLineSeq(0)(AB,BG,GC);
-draw byPolygon((D--E--F--cycle), byyellow)(DEF);
+draw byPolygon(D,E,F)(byyellow);
 draw byAngleWithName(D, E, F, black, 0)(E);
 byLineDefine(D, E, byred, 0, 0);
 byLineDefine(E, F, byblue, 0, 0);
@@ -11483,9 +11491,9 @@ B := (-1/2u, 0);
 C := (3/2u, ypart(B));
 D := (2u, 3/2u);
 E := (u, ypart(A));
-draw byPolygon((B--E--A--cycle), byblue)(BEA);
-draw byPolygon((B--D--E--cycle), byred)(BDE);
-draw byPolygon((B--C--D--cycle), byyellow)(BCD);
+draw byPolygon(B,E,A)(byblue);
+draw byPolygon(B,D,E)(byred);
+draw byPolygon(B,C,D)(byyellow);
 draw byAngle(B, D, E, byblue, 0);
 draw byAngleWithName(B, C, D, black, 0)(C);
 draw byAngle(B, D, C, byred, 0);
@@ -11504,9 +11512,9 @@ G := (B scaled s) shifted d;
 H := (C scaled s) shifted d;
 K := (D scaled s) shifted d;
 L := (E scaled s) shifted d;
-draw byPolygon((G--L--F--cycle), byblue)(GLF);
-draw byPolygon((G--K--L--cycle), byred)(GKL);
-draw byPolygon((G--H--K--cycle), byyellow)(GHK);
+draw byPolygon(G,L,F)(byblue);
+draw byPolygon(G,K,L)(byred);
+draw byPolygon(G,H,K)(byyellow);
 draw byAngle(G, K, L, byblue, 1);
 draw byAngleWithName(G, H, K, black, 1)(H);
 draw byAngle(G, K, H, byred, 1);
@@ -11572,9 +11580,9 @@ d2 := d1 shifted (0, -2u * s1) ;
 Ca := (Aa scaled s2) shifted d2;
 Cb := (Ab scaled s2) shifted d2;
 Cc := (Ac scaled s2) shifted d2;
-draw byPolygon((Aa--Ab--Ac--cycle), byred)(A);
-draw byPolygon((Ba--Bb--Bc--cycle), byblue)(B);
-draw byPolygon((Ca--Cb--Cc--cycle), byyellow)(C);
+draw byPolygonWithName(Aa,Ab,Ac)(byred)(A);
+draw byPolygonWithName(Ba,Bb,Bc)(byblue)(B);
+draw byPolygonWithName(Ca,Cb,Cc)(byyellow)(C);
 }
 \drawCurrentPictureInMargin
 \problemNP{R}{ectilinear}{figures (\drawPolygon[bottom]{A} and \drawPolygon[bottom]{B}) which are similar to the same figure (\drawPolygon[bottom]{C}) are similar also to each other.}
@@ -11612,10 +11620,10 @@ d3 := (1/4u, -5/2u);
 forsuffixes i=E,F,Ma,Mb,Mc,Md,G,H,Na,Nb,Nc,Nd,Pb,Pe:
 i := i shifted d3;
 endfor;
-draw byPolygon((A--B--K--cycle), byyellow)(AB);
-draw byPolygon((C--D--L--cycle), byred)(CD);
-draw byPolygon((E--F--Ma--Mb--Mc--Md--cycle), byblue)(EF);
-draw byPolygon((G--H--Na--Nb--Nc--Nd--cycle), white)(GH);
+draw byPolygonWithName(A,B,K)(byyellow)(AB);
+draw byPolygonWithName(C,D,L)(byred)(CD);
+draw byPolygonWithName(E,F,Ma,Mb,Mc,Md)(byblue)(EF);
+draw byPolygonWithName(G,H,Na,Nb,Nc,Nd)(white)(GH);
 draw byLine(A, B, black, 0, 0);
 draw byLine(C, D, byblue, 0, 0);
 draw byLineWithName(Ob, Oe, black, 1, 0)(O);
@@ -11677,9 +11685,9 @@ D := C shifted d4;
 H := C shifted d1 shifted d4;
 A := C shifted d2 shifted d4;
 F := C shifted d1 shifted d3;
-draw byPolygon((A--B--C--D--cycle), byyellow)(ABCD);
-draw byPolygon((E--F--G--C--cycle), byblue)(EFGC);
-draw byPolygon((C--D--H--G--cycle), byred)(CDHG);
+draw byPolygon(A,B,C,D)(byyellow);
+draw byPolygon(E,F,G,C)(byblue);
+draw byPolygon(C,D,H,G)(byred);
 draw byAngle(B, C, D, byred, 0);
 draw byAngle(D, C, G, byyellow, 0);
 draw byAngle(G, C, E, black, 0);
@@ -11727,9 +11735,9 @@ K := s[D, C];
 F = whatever[G, H] = whatever[E, K];
 draw byLine(F, H, black, 0, 1);
 draw byLine(E, F, black, 0, 1);
-draw byPolygon((G--F--K--D--cycle), byyellow)(GFKD);
-draw byPolygon((A--G--F--cycle), byblue)(AGF);
-draw byPolygon((F--C--K--cycle), byred)(FCK);
+draw byPolygon(G,F,K,D)(byyellow);
+draw byPolygon(A,G,F)(byblue);
+draw byPolygon(F,C,K)(byred);
 draw byLine(G, F, byred, 0, 0);
 byLineDefine(A, E, black, 0, 1);
 byLineDefine(E, B, black, 0, 1);
@@ -11789,11 +11797,11 @@ pair A, B, C;
 A := (5/3u, 2u);
 B := (0, 0);
 C := (9/4u, 0);
-draw byPolygon((A--B--C--cycle), byred)(ABC);
+draw byPolygon(A,B,C)(byred);
 pair L, E;
 L := (xpart(B), -1/2ypart(A));
 E := (xpart(C), ypart(L));
-draw byPolygon((B--C--E--L--cycle), byblue)(BCEL);
+draw byPolygon(B,C,E,L)(byblue);
 draw byAngleWithName(C, B, L, byred, 0)(B);
 pair Da, Db, Dc, Dd, De;
 Da := dir(0) scaled 1/2u;
@@ -11805,7 +11813,7 @@ d1 := (3u, 3/2u);
 forsuffixes i=Da,Db,Dc,Dd,De:
 	i := ((i rotated 36) scaled 3/2) shifted d1;
 endfor;
-draw byPolygon((Da--Db--Dc--Dd--De--cycle), byblue)(D);
+draw byPolygonWithName(Da,Db,Dc,Dd,De)(byblue)(D);
 pair F, M;
 numeric a, l;
 a := 	((abs(Da-Db)*distanceToLine(Dc, Da--Db))+
@@ -11814,7 +11822,7 @@ a := 	((abs(Da-Db)*distanceToLine(Dc, Da--Db))+
 l := a/abs(C-E);
 F := C shifted (l, 0);
 M := E shifted (l, 0);
-draw byPolygon((C--F--M--E--cycle), white)(CFME);
+draw byPolygon(C,F,M,E)(white);
 draw byAngleWithName(F, C, E, byyellow, 0)(C);
 draw byLine(C, E, byred, 0, 0);
 draw byLine(B, C, byyellow, 0, 0);
@@ -11826,7 +11834,7 @@ d2 := (4/5u, -3u);
 K := (A scaled s) shifted d2;
 G := (B scaled s) shifted d2;
 H := (C scaled s) shifted d2;
-draw byPolygon((K--G--H--cycle), byyellow)(KGH);
+draw byPolygon(K,G,H)(byyellow);
 draw byLine(G, H, byblue, 0, 0);
 }
 \drawCurrentPictureInMargin
@@ -11878,8 +11886,8 @@ E = whatever[A, B] = whatever[F, F shifted d2];
 G = whatever[A, D] = whatever[F, F shifted d1];
 H := 2/3[G, F];
 K = whatever[A, B] = whatever[H, H shifted d2];
-draw byPolygon((F--H--K--E--cycle), byred)(FHKE);
-draw byPolygon((G--D--C--B--E--F--cycle), byblue)(GDCBEF);
+draw byPolygon(F,H,K,E)(byred);
+draw byPolygon(G,D,C,B,E,F)(byblue);
 draw byAngleWithName(B, A, D, byyellow, 0)(A);
 draw byLine(K, H, byyellow, 0, 0);
 draw byLine(G, H, byyellow, 1, 0);
@@ -11949,9 +11957,9 @@ F := (xpart(E), ypart(A));
 G := (-s*l, ypart(D));
 H := (xpart(G), ypart(B));
 K = whatever[C, E] = whatever[G, H];
-draw byPolygon((A--D--G--K--E--F--cycle), byred)(ADGKEF);
-draw byPolygon((C--D--G--K--cycle), byblue)(CDGK);
-draw byPolygon((B--C--K--H--cycle), byyellow)(BCKH);
+draw byPolygon(A,D,G,K,E,F)(byred);
+draw byPolygon(C,D,G,K)(byblue);
+draw byPolygon(B,C,K,H)(byyellow);
 draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, B, byblue, 0, 0);
@@ -12087,8 +12095,8 @@ G := 1/2[A, C] shifted (0, -abs((1/2[A, C]) - B));
 D := G shifted (abs(G-A), 0);
 E = whatever[D, D shifted (0, 1)] = whatever[A, B];
 F = whatever[C, H] = whatever[D, E];
-draw byPolygon((A--C--F--E--cycle), byyellow)(ACFE);
-draw byPolygon((E--F--H--B--cycle), byblue)(EFHB);
+draw byPolygon(A,C,F,E)(byyellow);
+draw byPolygon(E,F,H,B)(byblue);
 draw byLine(A, E, byred, 0, 0);
 draw byLine(E, B, byred, 1, 0);
 byLineDefine(C, A, byblue, 0, 0);
@@ -12148,9 +12156,9 @@ G := B shifted (dir(-90)*l2*r);
 H := C shifted (dir(-90)*l2*r);
 K := C shifted (dir(a + 180)*l3*r);
 L := A shifted (dir(a + 180)*l3*r);
-draw byPolygon((A--B--F--E--cycle), byblue)(AB);
-draw byPolygon((B--C--H--G--cycle), byred)(BC);
-draw byPolygon((C--A--L--K--cycle), byyellow)(CA);
+draw byPolygonWithName(A,B,F,E)(byblue)(AB);
+draw byPolygonWithName(B,C,H,G)(byred)(BC);
+draw byPolygonWithName(C,A,L,K)(byyellow)(CA);
 draw byLine(A, D, black, 0, 0);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 1, 0);

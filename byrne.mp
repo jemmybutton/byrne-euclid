@@ -1,4 +1,4 @@
-%    byrne-euclid 0.0.2
+%    byrne-euclid 0.0.3
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2017 Sergey Slyusarev
@@ -634,13 +634,25 @@ begingroup
 endgroup
 enddef;
 
-vardef byPolygon(expr p, col)(suffix polygonName) =
+vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
 color polygonColor.polygonName;
 path polygonPath.polygonName;
 begingroup
-    polygonPath.polygonName := p;
+    polygonPath.polygonName := forsuffixes pN=pointsList: pN -- endfor cycle;
     polygonColor.polygonName := col;
     byNamedPolygon(polygonName)
+endgroup
+enddef;
+
+vardef byPolygon(text pointsList)(expr col)=
+begingroup
+    save polygonName;
+    string polygonName;
+    polygonName := "";
+    forsuffixes pN=pointsList:
+        polygonName := polygonName & str pN;
+    endfor;
+    byPolygonWithName(pointsList)(col)(scantokens(polygonName))
 endgroup
 enddef;
 

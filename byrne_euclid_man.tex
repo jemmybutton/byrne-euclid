@@ -305,14 +305,17 @@ Produces already defined filled circle sector. Returns a picture of that sector.
 
 {\tt filledCircleSectorList} — of text type, comma separated circle sector names.
 \stopsubsection
-\startsubsection[title={byPolygon(expr p, col) (suffix polygonName)}]
+\startsubsection[title={byPolygonWithName(text pointsList)(expr col)(suffix polygonName)}]
 Defines a new filled polygon with a given name. Returns a picture of that polygon.
 
-{\tt p} — of path type, filled polygon outline.
+{\tt pointsList} — of text type, comma separated point names.
 
 {\tt col} — of color type, polygon color.
 
 {\tt polygonName} — of suffix type, polygon name.
+\stopsubsection
+\startsubsection[title={byPolygon(text pointsList)(expr col)}]
+Same as {\tt byPolygonWithName}, but name is assigned automatically (in form of {\tt abc...})
 \stopsubsection
 \startsubsection[title={byNamedPolygon(text polygonsList)}]
 Produces already defined filled polygon. Returns a picture of that polygon.
