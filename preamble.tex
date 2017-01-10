@@ -128,19 +128,19 @@
 \def\drawUnitLine{\dosingleempty\drawunitline}
 \def\drawunitline[#1]#2{{\ignorespaces
 	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][uline#2#1]{draw byNamedCompoundLine(#1)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2#1]{draw byNamedCompoundLine(#1, 0)(#2);}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[middle][uline#2]{draw byNamedCompoundLine(1cm)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2]{draw byNamedCompoundLine(1cm, 0)(#2);}\ignorespaces
 	\fi\ignorespaces}}
 
-\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{draw byNamedCompoundLine(0)(#1);}}
+\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{draw byNamedCompoundLine(1cm, 1)(#1);}}
 
 \def\drawSizedLine{\dosingleempty\drawsizedline}
 \def\drawsizedline[#1]#2{{\ignorespaces
 	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][linesized#2#1]{draw byNamedCompoundLineSized(#1, 2)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2#1]{draw byNamedCompoundLine(#1, 2)(#2);}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[middle][linesized#2]{draw byNamedCompoundLineSized(2cm, 2)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2]{draw byNamedCompoundLine(2cm, 2)(#2);}\ignorespaces
 	\fi\ignorespaces}}
 	
 \def\drawTwoRightAngles{\ignorespaces

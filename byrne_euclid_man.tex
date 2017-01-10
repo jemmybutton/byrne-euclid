@@ -164,20 +164,12 @@ Produces a picture of a tick on a given line. Returns a picture of that tick.
 {\tt lineName} — of suffix type, line name.
 \stopsubsection
 
-\startsubsection[title={byNamedCompoundLineSized(expr cu, pw) (text linesList)}]
+\startsubsection[title={byNamedCompoundLine(expr cu, pw) (text linesList)}]
 Produces a horizontal line with colors and proportions of the given lines. Returns a picture of that line.
 
 {\tt cu} — of numeric type, line length, which will be represented $1:1$.
 
-{\tt pw} — of numeric type, power factor, which determines how strongly line length is changed to be closer to {\tt cu}. ${\tt cu}^{1-\frac{1}{\tt pw}} \times \sqrt[{\tt pw}]{length}$.
-
-{\tt linesList} — of text type, comma separated line names.
-\stopsubsection
-
-\startsubsection[title={byNamedCompoundLine(expr l) (text linesList)}]
-Produces a horizontal line of a geven length with colors and proportions of the given lines. Returns a picture of that line.
-
-{\tt l} — of numeric type, horizontal line's length.
+{\tt pw} — of numeric type, power factor, which determines how strongly line length is changed to be closer to {\tt cu}. ${\tt cu}^{1-\frac{1}{\tt pw}} \times \sqrt[{\tt pw}]{length}$. If set to 0, all line will be forced to take length {\tt cu}.
 
 {\tt linesList} — of text type, comma separated line names.
 \stopsubsection

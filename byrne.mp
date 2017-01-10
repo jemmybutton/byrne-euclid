@@ -32,6 +32,10 @@ magnitudeScale := 1/3;
 magnitudeGap := 2lineWidth;
 markLength := 5lineWidth;
 
+boolean textLabels;
+
+textLabels := false;
+
 numeric dpLength[];
 dpLength0 := 2lineWidth;
 dpLength1 := 2lineWidth;
@@ -378,49 +382,66 @@ begingroup
 endgroup
 enddef;
 
-vardef byNamedCompoundLineSized(expr cu, pw)(text linesList) =
+vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
 begingroup
-    save correctedLength, currentPosition, a, b, sc;
-    numeric correctedLength, currentPosition[], sc;
+    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j;
+    numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j;
+    string lineNames[], endNames[];
     pair a, b;
-    sc := cu**(1 - (1/pw));
+    i := 0;
+    totalLength := 0;
+    forsuffixes lN=linesList:
+        lineNames[i] := lineEndAName.lN;
+        lineNames[i+1] := lineEndBName.lN;
+        i := i + 2;
+        totalLength := totalLength + lineLength.lN;
+    endfor;
+    if (pw <> 0):
+        sc := cu**(1 - (1/pw));
+        pwL := 1/pw;
+    else:
+        sc := cu/(totalLength*scaleFactor);
+        pwL := 1;
+    fi;
     currentPosition0 := 0;
     image(
+        j := 0;
         forsuffixes lN=linesList:
-            correctedLength := (lineLength.lN**(1/pw))*sc;
+            correctedLength := (lineLength.lN**pwL)*sc;
             currentPosition1 := currentPosition0 + correctedLength;
             a := (currentPosition0, 0);
             b := (currentPosition1, 0);
             draw byLineRender(a, b, lineColor.lN, lineDashed.lN, lineThin.lN, a, b, 0, 0, 0, scaleFactor);
             currentPosition0 := currentPosition1;
+            if (i > 2):
+                if (j == 0):
+                    if (lineEndAName.lN == lineNames[2])
+                        or (lineEndAName.lN == lineNames[3]):
+                        endNames[0] := lineEndBName.lN;
+                    elseif (lineEndBName.lN == lineNames[2])
+                        or (lineEndBName.lN == lineNames[3]):
+                        endNames[0] := lineEndAName.lN;
+                    fi;
+                fi;
+                if (j == (i-2)/2):
+                    if (lineEndAName.lN == lineNames[i-3])
+                        or (lineEndAName.lN == lineNames[i-4]):
+                        endNames[1] := lineEndBName.lN;
+                    elseif (lineEndBName.lN == lineNames[i-3])
+                        or (lineEndBName.lN == lineNames[i-4]):
+                        endNames[1] := lineEndAName.lN;
+                    fi;
+                fi;
+            else:
+                endNames[0] := lineEndAName.lN;
+                endNames[1] := lineEndBName.lN;
+            fi;
+            j := j + 1;
         endfor;
-    )
-endgroup
-enddef;
-
-vardef byNamedCompoundLine(expr l)(text linesList) =
-begingroup
-    save lN, totalLength, currentPosition, a, b;
-    numeric totalLength, currentPosition[];
-    pair a, b;
-    totalLength := 0;
-    currentPosition0 := 0;
-    forsuffixes lN=linesList:
-        totalLength := totalLength + lineLength.lN;
-    endfor;
-    if (l > 0):
-        totalLength := (scaleFactor*totalLength)/l;
-    else:
-        totalLength := 1;
-    fi;
-    image(
-        forsuffixes lN=linesList:
-            currentPosition1 := currentPosition0 + lineLength.lN;
-            a := ((currentPosition0/totalLength), 0);
-            b := ((currentPosition1/totalLength), 0);
-            draw byLineRender(a, b, lineColor.lN, lineDashed.lN, lineThin.lN, a, b, 0, 0, 0, scaleFactor);
-            currentPosition0 := currentPosition1;
-        endfor;
+        if (textLabels):
+            draw (textext(endNames[0]) scaled 1/2) shifted ((0,0) scaled scaleFactor) shifted (0, 6/5mm);
+            draw (textext(endNames[1]) scaled 1/2) shifted (b scaled scaleFactor) shifted (0, 6/5mm);
+        fi;
     )
 endgroup
 enddef;
