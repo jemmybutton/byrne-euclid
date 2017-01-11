@@ -114,23 +114,23 @@ endgroup
 enddef;
 
 def startTempScale(expr tmpScale) =
-    numeric oldScaleFactor;
-    oldScaleFactor := scaleFactor;
-    scaleFactor := tmpScale;
+    begingroup
+        save scaleFactor;
+        scaleFactor := tmpScale;
 enddef;
 
 def stopTempScale =
-    scaleFactor := oldScaleFactor;
+    endgroup
 enddef;
 
 def startTempAngleScale(expr tmpScale) =
-    numeric oldAngleScale;
-    oldAngleScale := angleScale;
-    angleScale := tmpScale;
+    begingroup
+        save angleScale;
+        angleScale := tmpScale;
 enddef;
 
 def stopTempAngleScale =
-    angleScale := oldAngleScale;
+    endgroup
 enddef;
 
 %
@@ -439,8 +439,8 @@ begingroup
             j := j + 1;
         endfor;
         if (textLabels):
-            draw (textext(endNames[0]) scaled 1/2) shifted ((0,0) scaled scaleFactor) shifted (0, 6/5mm);
-            draw (textext(endNames[1]) scaled 1/2) shifted (b scaled scaleFactor) shifted (0, 6/5mm);
+            draw byTextLabel(endNames[0], (0, 0), 90, 1);
+            draw byTextLabel(endNames[1], b, 90, 1);
         fi;
     )
 endgroup
@@ -797,12 +797,12 @@ enddef;
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
 vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
-save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, b, e, outputImage, lineCol, lineTh, lineDash;
-string centerName;
+save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName;
+string centerName, pointName[];
 pair ac, p[];
 boolean uniqueCenter, angleCheck;
 numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash;
-path compoundAnglePath;
+path compoundAnglePath, compoundAngleArc;
 color lineCol;
 picture outputImage;
 begingroup
@@ -816,7 +816,6 @@ begingroup
             uniqueCenter := false;
         fi;
     endfor;
-    compoundAnglePath := (fullcircle scaled (u * angleScale)) shifted (ac*scaleFactor);
     outputImage := image(
         if (uniqueCenter):
             angleNum := 0;
@@ -825,7 +824,7 @@ begingroup
                 as1 := sign(ypart((direction 0 of angleArc.aN) rotated -anglePart1));
                 anglePart2 := angle(point 0 of reverse(angleArc.aN));
                 as2 := sign(ypart((direction 0 of reverse(angleArc.aN)) rotated -anglePart2));
-                for j := 1 step 1 until 2:
+                for j=1,2:
                     angleCheck := true;
                     for i := 1 step 1 until angleNum:
                             if (abs(angleDir[i] - anglePart[j]) < 1):
@@ -844,6 +843,11 @@ begingroup
                             angleType[angleNum] := 1;
                         else:
                             angleType[angleNum] := 0;
+                        fi;
+                        if (j == 1):
+                            pointName[angleNum] := angleAName.aN;
+                        elseif (j == 2):
+                            pointName[angleNum] := angleCName.aN;
                         fi;
                         angleCount[angleNum] := 1;
                     fi;
@@ -888,15 +892,28 @@ begingroup
                 e := (angleDir[n[2]]/360)*8;
                 if (b > e): b := b - 8; fi;
                 if (angleSide[n[1]] > angleSide[n[2]]):
-                    compoundAnglePath := (((subpath (b, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor)) -- (ac*scaleFactor) -- cycle;
+                    compoundAngleArc := ((subpath (b, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
                 else:
-                    compoundAnglePath := (((subpath (b + 8, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor)) -- (ac*scaleFactor) -- cycle;
+                    compoundAngleArc := ((subpath (b + 8, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
                 fi;
+                compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
+            elseif (j <> 0):
+                errmessage("There are gaps in the compound angle");
             fi;
+        else:
+            errmessage("The angles are not concentric");
         fi;
     );
     clip outputImage to compoundAnglePath;
-    outputImage
+    image(
+        draw outputImage;
+        if (textLabels) and (j==2):
+            for i=1,2:
+                draw byTextLabel(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], 1);
+            endfor;
+            draw byTextLabel(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, 1);
+        fi;
+    )
 endgroup
 enddef;
 
@@ -913,6 +930,9 @@ enddef;
 
 vardef twoRightAngles =
 begingroup
+    save textLabels;
+    boolean textLabels;
+    textLabels := false;
     image(
         draw byNamedAngle(rightAngleWN,rightAngleNE);
         draw byNamedAngleDummySides(rightAngleWN,rightAngleNE);
@@ -922,6 +942,9 @@ enddef;
 
 vardef rightAngle =
 begingroup
+    save textLabels;
+    boolean textLabels;
+    textLabels := false;
     image(
         draw byNamedAngle(rightAngleWN);
         draw byNamedAngleDummySides(rightAngleWN);
@@ -946,7 +969,7 @@ byAngleDefineWithName (pointW, pointO, pointN)(black, 1)(rightAngleWN);
 % Magnitudes
 %
 
-% along with 'magnitudesymbol' one unit long 'magnitude' is also defined at the same time.
+% along with 'magnitudesymbol' one symbol long 'magnitude' is also defined at the same time.
 def byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) =
 color magnitudeColor.magnitudeSymbolName;
 string magnitudeShape.magnitudeSymbolName;
@@ -1092,6 +1115,22 @@ begingroup
                 fi;
             fi;
         endfor;
+    )
+endgroup
+enddef;
+
+%
+% Text labels
+%
+
+vardef byTextLabel(expr t, p, a, d) =
+begingroup
+    save labelItself;
+    picture labelItself;
+    labelItself := textext(t) scaled 1/2;
+    labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
+    image(
+        draw labelItself shifted (p scaled scaleFactor) shifted (dir(a)*4/3mm*d);
     )
 endgroup
 enddef;

@@ -209,7 +209,7 @@ In order to give a better idea of this system, and of advantages gained by its a
 \item $\drawAngle{B} > \drawAngle{A} \mbox{ or } > \drawAngle{C}$. \\ The yellow angle is greater that either the red or blue angle.
 \item $\drawAngle{A} \mbox{ or } \drawAngle{C} < \drawAngle{B}$. \\ Either the red or blue angle is less that the yellow angle.
 \item $\drawAngle{B} \mbox{ minus } \drawAngle{C} = \drawAngle{A}$. \\ In other terms, the yellow angle made less be the blue angle equal red angle.
-\item $\drawUnitLine{BC}^2 = \drawUnitLine{AB}^2 + \drawUnitLine{CA}^2$. \\ That is, the square of the yellow line is equal to the sum of the squares of the blue and red lines.
+\item $\drawUnitLine{CA}^2 = \drawUnitLine{AB}^2 + \drawUnitLine{BC}^2$. \\ That is, the square of the yellow line is equal to the sum of the squares of the blue and red lines.
 \stopitemize
 
 In oral demonstrations we gain withcolours this important advantage, the eye and the ear can be addressed at the same moment, so that for teaching geometry, and other linear arts and sciences, in classesm the system is best ever proposed, this is apparent from the examples given.
@@ -337,10 +337,10 @@ draw byNamedLineSeq(0)(BE,noLine,BC,noLine,CD,BD,AB,AC,CE);
 	\startMPcode{\currentInstance}
 		draw currentPicture;
 		label.top(\sometxt{A}, A);
-		label.lft(\sometxt{B}, C);
-		label.rt(\sometxt{C}, B);
-		label.lft(\sometxt{D}, E);
-		label.rt(\sometxt{E}, D);
+		label.lft(\sometxt{C}, C);
+		label.rt(\sometxt{B}, B);
+		label.lft(\sometxt{E}, E);
+		label.rt(\sometxt{D}, D);
 	\stopMPcode
 }
 In an isosceles triangle ABC. the internal angles at the base ABC, ACB are equal, and when the sides AB, AC are produced, the external angles at the base BCE, CBD are also equal.
@@ -3212,7 +3212,7 @@ draw byNamedLineSeq(0)(FE,EG,BG,HB,AH,AF,FC,CD);
 Make $\drawFromCurrentPicture[bottom][polygonAHEF]{draw byNamedPolygon(AHEF);} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{FF}$ \inprop[prop:I.XLII]\\
 and having one of its sides \drawUnitLine{FE} conterminous with and in continuation of \drawUnitLine{EG}.
 
-Produce \drawUnitLine{AH} till it meets $\drawUnitLine{CD} \parallel \drawUnitLine{HE}$ draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued; draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
+Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$ draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued; draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
 
 $\polygonAHEF = \drawFromCurrentPicture[bottom][polygonEGDI]{draw byNamedPolygon(EGDI);}$ \inprop[prop:I.XLIII]\\
 but $\polygonAHEF = \polygonJKL$ (const.)
