@@ -110,7 +110,7 @@ byLineStylize (C, C, 1, 0, -1) (BLb);
 
 \vfill\vfill
 
-\drawFromCurrentPicture{draw currentPicture;}
+~\hfill\reuseMPgraphic{\currentInstance::currentPicture}\hfill~
 
 \vfill\vfill\vfill
 
@@ -170,16 +170,12 @@ Such is the expedition of this enticing mode of communicating knowledge, that th
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
 		draw byNamedLineSeq(0)(AB,BC,CA);
-}
-
-\figureInMargin{
-	\startMPcode{\currentInstance}
-		draw currentPicture;
-		label.top(\sometxt{B}, B);
+	label.top(\sometxt{B}, B);
 		label.rt(\sometxt{C}, C);
 		label.lft(\sometxt{A}, A);
-	\stopMPcode
 }
+
+\drawCurrentPictureInMargin
 In order to give a better idea of this system, and of advantages gained by its adoption, let us take a right angled triangle, and express some of its properties both by colours and the method generally employed.
 
 \vskip \baselineskip
@@ -290,16 +286,12 @@ Let two colours meet and cover a portion of paper; where they meet is not red, n
 		draw byPolygon(A',B',B'',A'',C'',C')(byred);
 		draw byPolygon(A'',B'',D'',C'')(byblue);
 		draw byPolygon(C'',D'',B'',B''',D''',C''')(byyellow);
-}
-\figureInMargin{
-	\startMPcode{\currentInstance}
-		draw currentPicture;
 		label.lft(\sometxt{P}, C');
 		label.lft(\sometxt{R}, C'');
 		label.rt(\sometxt{S}, B'');
 		label.rt(\sometxt{Q}, B''');
-	\stopMPcode
 }
+\drawCurrentPictureInMargin
 Surface if that which has length and breadth without thickness.
 
 \kerncharacters[-0.02]{When we consider a solid body (PQ), we perceive at once that it has thre dimensions, namely :— length, breadth, and thickness; suppose one part of this solid (PS) to be red, and the other part (QR) yellow, and that the colours be distinct without commingling, the blue surface (RS) which separates these parts, or which is the same thing, that which divides the solid without liss of material, must be without thickness, and only possesses length and breadth; this plainly appears from reasoning, similar to that just employed in defining, or rather describing a point and a line.}
@@ -309,7 +301,6 @@ The proposition which we have selected to elucidate the manner in which the prin
 \defineNewPicture[1/4]{
 angleScale := 5/6;
 pair A, B, C, D, E;
-picture q;
 A := (0, 0);
 B := A shifted (u, -2u);
 C := B xscaled -1;
@@ -332,17 +323,13 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 draw byNamedLineSeq(0)(BE,noLine,BC,noLine,CD,BD,AB,AC,CE);
+label.top(\sometxt{A}, A);
+label.lft(\sometxt{C}, C);
+label.rt(\sometxt{B}, B);
+label.lft(\sometxt{E}, E);
+label.rt(\sometxt{D}, D);
 }
-\figureInMargin{
-	\startMPcode{\currentInstance}
-		draw currentPicture;
-		label.top(\sometxt{A}, A);
-		label.lft(\sometxt{C}, C);
-		label.rt(\sometxt{B}, B);
-		label.lft(\sometxt{E}, E);
-		label.rt(\sometxt{D}, D);
-	\stopMPcode
-}
+\drawCurrentPictureInMargin
 In an isosceles triangle ABC. the internal angles at the base ABC, ACB are equal, and when the sides AB, AC are produced, the external angles at the base BCE, CBD are also equal.
 
 \startCenterAlign
@@ -956,7 +943,8 @@ Geometry has for its principal objects the exposition and explanation of the pro
 		byLineDefine(B, A, byblue, 0, 0);
 		byLineDefine(C, A, byred, 0, 0);
 		draw byNamedLineSeq(0)(BA,CA);
-}\figureInMargin{\startMPcode{\currentInstance} draw currentPicture; label.urt(\sometxt{A}, A);\stopMPcode}
+		label.urt(\sometxt{A}, A);
+}\drawCurrentPictureInMargin
 Angles might properly be considered as a fourth species of magnitude. Angular magnitude evidently consists of parts, and must therefore be admitted to be a species of quantity. The student must not suppose that the magnitude of an angle is affected by the length of the straight lines which include it and of whose mutual divergence it is the measure. The \emph{vertex} of an angle is the point the \emph{sides} of the \emph{legs} of the angle meet, as A.
 
 \defineNewPicture{
@@ -980,19 +968,15 @@ Angles might properly be considered as a fourth species of magnitude. Angular ma
 		draw byLine(B, H, byblue, 0, 0);
 		draw byLine(D, G, byred, 0, 0);
 		draw byLine(E, F, black, 0, 0);
+		label.bot(\sometxt{C}, C shifted (0, -3pt));
+		label.bot(\sometxt{B}, B);
+		label.lrt(\sometxt{D}, D);
+		label.llft(\sometxt{F}, F);
+		label.bot(\sometxt{H}, H);
+		label.lrt(\sometxt{G}, G);
+		label.llft(\sometxt{E}, E);
 }
-\figureInMargin{
-\startMPcode{\currentInstance}
-	draw currentPicture;
-	label.bot(\sometxt{C}, C shifted (0, -3pt));
-	label.bot(\sometxt{B}, B);
-	label.lrt(\sometxt{D}, D);
-	label.llft(\sometxt{F}, F);
-	label.bot(\sometxt{H}, H);
-	label.lrt(\sometxt{G}, G);
-	label.llft(\sometxt{E}, E);
-\stopMPcode
-}
+\drawCurrentPictureInMargin
 An angle is often designated by a single letter when its legs are the only lines which meet together at its vertex. Thus the red and blue lines form the yellow angle, which in other systems would be called angle A. But when more than two lines meet in the same point, it was necessary by former methodsm in order to avoid confusionm to employ three letters to designale an angle about that point, the letter which marked the vertex of the angle being always placed in the middle. Thus the black and red lines meeting together at C, form the blue angle, and has been usually denominated the angle FCD or DCF. The lines FC and CD are the legs of the angle; the point C is its vertex. In like manner the black angle would be designated the angle DCB or BCD. The red and blue angles added together, or the angle HCD added to FCD, make the angle HCD; and so of other angles.
 
 When the legs of an angle are produced or prolonged beyond its vertex, the angles made by them on both sides of the vertex are said to be \emph{vertically opposite} to each other: thus the red and yellow angles are said to be vertically opposite angles.
@@ -5748,7 +5732,7 @@ draw byAngle(F, C, E, byyellow, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(C, E, byblue, 0, 0);
 draw byLine(C, F, byred, 1, 0);
-draw byCircle(G, r, byred, 0, 0, 0)(G)
+draw byCircle(G, r, byred, 0, 0, 0)(G);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawUnitLine{CE} be a tangent to a circle, the straight line \drawUnitLine{AC}, drawn perpendicular to it from point of the contact, passes through the centre of the circle.}
@@ -10333,7 +10317,7 @@ draw byLine(D, H)(byred, 1, 0);
 }
 The altitude of any figure is the straight line drawn from its vertex perpendicular to its base, or the base produced.
 
-\noindent\ \hfill\startMPcode{\currentInstance} draw currentPicture; \stopMPcode\hfill\ 
+\noindent\ \hfill\reuseMPgraphic{\currentInstance::currentPicture}\hfill\ 
 \stopDefinitionOnlyNumber
 \stopsupersection
 
@@ -10914,7 +10898,7 @@ byLineDefine(C, L, black, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
 byLineDefine(F, G, byred, 0, 0);
 byLineDefine(G, B, byyellow, 0, 0);
-draw byNamedLineSeq(0)(noLine,CL,EC,DE,AD,AF,FG,GB,CB)
+draw byNamedLineSeq(0)(noLine,CL,EC,DE,AD,AF,FG,GB,CB);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{divide a given straight line (\drawSizedLine{AF,FG,GB}) similarly to a given divided line (\drawSizedLine{AbDb,DbEb,EbCb}).}

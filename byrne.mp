@@ -1134,3 +1134,8 @@ begingroup
     )
 endgroup
 enddef;
+
+vardef byPolygonLabels(text pointsList) =
+begingroup
+endgroup
+enddef;
