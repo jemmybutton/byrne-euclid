@@ -44,18 +44,17 @@ vardef sin primary x = (sind(x*radian)) enddef;
 
 vardef cos primary x = (cosd(x*radian)) enddef;
 
-color byred, byblue, byyellow, arconly, lineColor.noLine;
+color byred, byblue, byyellow, lineColor.noLine;
 byred := (.9, .15, .05);
 byblue := (.05, .2, .7);
 byyellow := (.9, .75, .1);
-arconly := (.5, .5, .5);
 
 string lineEndAName.noLine, lineEndBName.noLine;
 
 lineColor.noLine := white;
 lineDashed.noLine := 0;
-lineEndAName.noLine := "noEndA";
-lineEndBName.noLine := "noEndB";
+lineEndAName.noLine := "noLine";
+lineEndBName.noLine := "noLine";
 lineEndA.noLine := inf;
 lineEndB.noLine := inf;
 
@@ -290,66 +289,127 @@ enddef;
 
 vardef byNamedLineSeq(expr s)(text linesList) =
 begingroup
-    save lAname, lBname, i, j, k, l, c, d, prp;
-    string lAname[], lBname[], c, d;
-    numeric i, j, k, l, prp;
+    save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, pointNames;
+    string lAname[], lBname[], lName[], c, d, pointNames;
+    numeric i, j, k, l, m, n, prp, lShift[];
+    pointNames := "";
     image(
         i := -1;
         forsuffixes lN=linesList:
             i := i + 1;
             lAname[i] := lineEndAName.lN;
             lBname[i] := lineEndBName.lN;
+            lShift[i] := lineShift.lN;
+            lName[i] := str lN;
         endfor;
+        if (i == 1):
+            i := i + 1;
+            lAname[i] := "noLine";
+            lBname[i] := "noLine";
+            lName[i] := "noLine";
+        fi;
         if (i > 0):
-            j := -1;
-            forsuffixes lN=linesList:
-                j := j + 1;
-                if (str lN <> "noLine"):
-                    if ((j > 0) and (j < i)):
-                        k := j - 1;
-                        l := j + 1;
-                    elseif (j == 0):
+            for j := 0 step 1 until i:
+                if ((j > 0) and (j < i)):
+                    k := j - 1;
+                    l := j + 1;
+                elseif (j == 0):
+                    k := i;
+                    l := j + 1;
+                elseif (j == i):
+                    k := j - 1;
+                    l := 0;
+                fi;
+                m := 0;
+                n := 0;
+                if (lAname[k] == "noLine"):
+                    k := k - 1;
+                    if (k < 0):
                         k := i;
-                        l := j + 1;
-                    elseif (j == i):
-                        k := j - 1;
+                    fi;
+                    m := 1;
+                fi;
+                if (lAname[l] == "noLine"):
+                    l := l + 1;
+                    if (l > i):
                         l := 0;
                     fi;
-                    c := lAname[j];
-                    d := lBname[j];
-                    prp := 1;
-                    if ((lAname[j] == lAname[k]) or (lAname[j] == lBname[k])) or ((lBname[j] == lAname[l]) or (lBname[j] == lBname[l])):
-                        if (lAname[j] == lAname[k]):
-                            c := lBname[k];
-                        elseif (lAname[j] == lBname[k]):
-                            c := lAname[k];
-                        fi;
-                        if (lBname[j] == lAname[l]):
-                            d := lBname[l];
-                        elseif (lBname[j] == lBname[l]):
-                            d := lAname[l];
-                        fi;
+                    n := 1;
+                fi;
+                c := lAname[j];
+                d := lBname[j];
+                prp := 0;
+                if  (((lAname[j] == lAname[k]) or (lAname[j] == lBname[k]))
+                        and (not ((m <> 0) and (lName[k] == lName[l])))) or
+                    (((lBname[j] == lAname[l]) or (lBname[j] == lBname[l]))
+                        and (not ((n <> 0) and (lName[k] == lName[l])))):
+                    if (lAname[j] == lAname[k]):
+                        if (m == 0): c := lBname[k]; fi;
+                    elseif (lAname[j] == lBname[k]):
+                        if (m == 0): c := lAname[k]; fi;
                     else:
-                        if (lAname[j] == lAname[l]):
-                            c := lBname[l];
-                        elseif (lAname[j] == lBname[l]):
-                            c := lAname[l];
-                        fi;
-                        if (lBname[j] == lAname[k]):
-                            d := lBname[k];
-                        elseif (lBname[j] == lBname[k]):
-                            d := lAname[k];
-                        fi;
-                        prp := -1;
+                        m := 2;
                     fi;
-                        lineShift.lN := s*prp;
-                        draw byNamedLineFull(scantokens(c), scantokens(d), 0, 0, s*prp)(lN);
+                    if (lBname[j] == lAname[l]):
+                        if (n == 0): d := lBname[l]; fi;
+                    elseif (lBname[j] == lBname[l]):
+                        if (n == 0): d := lAname[l]; fi;
+                    else:
+                        n := 2;
+                    fi;
+                    prp := 1;
+                else:
+                    if (lAname[j] == lAname[l]):
+                        if (n == 0): c := lBname[l]; fi;
+                    elseif (lAname[j] == lBname[l]):
+                        if (n == 0): c := lAname[l]; fi;
+                    else:
+                        n := 2;
+                    fi;
+                    if (lBname[j] == lAname[k]):
+                        if (m == 0): d := lBname[k]; fi;
+                    elseif (lBname[j] == lBname[k]):
+                        if (m == 0): d := lAname[k]; fi;
+                    else:
+                        m := 2;
+                    fi;
+                    prp := -1;
+                fi;
+                if (lName[j] <> "noLine"):
+                    if (prp == 1):
+                        pointNames := pointNames & lAname[j] & ", ";
+                        if (n == 2):
+                            pointNames := pointNames & lBname[j] & ", noPoint, ";
+                        fi;
+                    elseif (prp == -1):
+                        pointNames := pointNames & lBname[j] & ", ";
+                        if (n == 2):
+                            pointNames := pointNames & lAname[j] & ", noPoint, ";
+                        fi;
+                    fi;
+                    lShift[j] := s*prp;
+                    draw byNamedLineFull(scantokens(c), scantokens(d), 0, 0, s*sign(prp))(scantokens(lName[j]));
+                else:
+                    prp := -2;
                 fi;
             endfor;
+            if (prp == 1) and (n <> 2):
+                pointNames := pointNames & lBname[i];
+            elseif (prp == -1) and (n <> 2):
+                pointNames := pointNames & lAname[i];
+            else:
+                pointNames := substring (0, length(pointNames)-2) of pointNames;
+            fi;
+            if (textLabels):
+                draw byPolygonLabels(scantokens pointNames)(1);
+            fi;
         else:
             forsuffixes lN=linesList:
                 lineShift.lN := s;
                 draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
+                if (textLabels):
+                    draw byPolygonLabels(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1);
+                fi;
             endfor;
         fi;
     )
@@ -1135,7 +1195,84 @@ begingroup
 endgroup
 enddef;
 
-vardef byPolygonLabels(text pointsList) =
+vardef byPolygonLabels(text pointsList)(expr sty)=
 begingroup
+    image(
+        if(textLabels):
+            save pointName, pointLoc, i, j, k, l, p, q, stump;
+            numeric i, j, k, l, stump;
+            string pointName[];
+            pair pointLoc[], p[];
+            i := -1;
+            forsuffixes pN=pointsList:
+                i := i + 1;
+                pointName[i] := str pN;
+                if (pointName[i] <> "noPoint"):
+                    pointLoc[i] := pN;
+                fi;
+                if (i > 0):
+                    if (pointName[i] == pointName[i-1]):
+                        i := i - 1;
+                    fi;
+                fi;
+            endfor;
+            if (pointName[i] == pointName[0]):
+                i := i - 1;
+            fi;
+            if (i == 1):
+                i := i + 1;
+                pointName[i] := "noPoint";
+            fi;
+            for j := 0 step 1 until i:
+                if (j == 0):
+                    k := i;
+                    l := j + 1;
+                elseif (j == i):
+                    k := j - 1;
+                    l := 0;
+                else:
+                    k := j - 1;
+                    l := j + 1;
+                fi;
+                if (pointName[j] <> "noPoint"):
+                    p1 := pointLoc[j];
+                    stump := 0;
+                    if (pointName[k] <> "noPoint") or (pointName[l] <> "noPoint"):
+                        if (pointName[k] == "noPoint"):
+                            p2 := pointLoc[l];
+                            p0 := 2[p2, p1];
+                            stump := 1;
+                        elseif (pointName[l] == "noPoint"):
+                            p0 := pointLoc[k];
+                            p2 := 2[p0, p1];
+                            stump := 1;
+                        else:
+                            p0 := pointLoc[k];
+                            p2 := pointLoc[l];
+                        fi;
+                    fi;
+                    pair q[];
+                    q4 := (p1-p0) rotated 90;
+                    q5 := (p2-p1) rotated 90;
+                    if (abs(angle(q4) - angle(q5))>1):
+                        q0 := p0 shifted q4;
+                        q1 := p1 shifted q4;
+                        q2 := p1 shifted q5;
+                        q3 := p2 shifted q5;
+                        q6 = whatever[q0, q1] = whatever[q2, q3];
+                    else:
+                        if (sty == 0) or (stump == 1):
+                            q6 := p1 shifted q4;
+                        else:
+                            q6 := p1;
+                        fi;
+                    fi;
+                    if (q6 <> p1):
+                        draw byTextLabel(pointName[j], pointLoc[j], angle(q6-p1), 2);
+                    fi;
+                fi;
+            endfor;
+        fi;
+    )
 endgroup
 enddef;
