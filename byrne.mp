@@ -35,6 +35,7 @@ markLength := 5lineWidth;
 boolean textLabels;
 
 textLabels := false;
+textLabelShift := lineWidth;
 
 numeric dpLength[];
 dpLength0 := 2lineWidth;
@@ -401,14 +402,14 @@ begingroup
                 pointNames := substring (0, length(pointNames)-2) of pointNames;
             fi;
             if (textLabels):
-                draw byPolygonLabels(scantokens pointNames)(1);
+                draw byPolygonLabels(scantokens pointNames)(1, s);
             fi;
         else:
             forsuffixes lN=linesList:
                 lineShift.lN := s;
                 draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
                 if (textLabels):
-                    draw byPolygonLabels(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1);
+                    draw byPolygonLabels(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1, s);
                 fi;
             endfor;
         fi;
@@ -499,8 +500,8 @@ begingroup
             j := j + 1;
         endfor;
         if (textLabels):
-            draw byTextLabel(endNames[0], (0, 0), 90, 1);
-            draw byTextLabel(endNames[1], b, 90, 1);
+            draw byTextLabel(endNames[0], (0, 0), 90, textLabelShift);
+            draw byTextLabel(endNames[1], b, 90, textLabelShift);
         fi;
     )
 endgroup
@@ -969,9 +970,9 @@ begingroup
         draw outputImage;
         if (textLabels) and (j==2):
             for i=1,2:
-                draw byTextLabel(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], 1);
+                draw byTextLabel(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
             endfor;
-            draw byTextLabel(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, 1);
+            draw byTextLabel(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
         fi;
     )
 endgroup
@@ -1185,22 +1186,25 @@ enddef;
 
 vardef byTextLabel(expr t, p, a, d) =
 begingroup
-    save labelItself;
+    save labelItself, bb;
+    path bb;
     picture labelItself;
     labelItself := textext(t) scaled 1/2;
     labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
+    bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
+    labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180)*1cm)));
     image(
-        draw labelItself shifted (p scaled scaleFactor) shifted (dir(a)*4/3mm*d);
+        draw labelItself shifted (p scaled scaleFactor) shifted (dir(a)*d);
     )
 endgroup
 enddef;
 
-vardef byPolygonLabels(text pointsList)(expr sty)=
+vardef byPolygonLabels(text pointsList)(expr sty, shft)=
 begingroup
     image(
         if(textLabels):
-            save pointName, pointLoc, i, j, k, l, p, q, stump;
-            numeric i, j, k, l, stump;
+            save pointName, pointLoc, i, j, k, l, p, q, stump, sv, a;
+            numeric i, j, k, l, stump, sv, a;
             string pointName[];
             pair pointLoc[], p[];
             i := -1;
@@ -1268,11 +1272,21 @@ begingroup
                         fi;
                     fi;
                     if (q6 <> p1):
-                        draw byTextLabel(pointName[j], pointLoc[j], angle(q6-p1), 2);
+                        sv := byLabelAngleCompensate(p0, p1, p2, shft);
+                        draw byTextLabel(pointName[j], pointLoc[j], angle(q6-p1), textLabelShift+sv);
                     fi;
                 fi;
             endfor;
         fi;
     )
+endgroup
+enddef;
+
+vardef byLabelAngleCompensate (expr a, b, c, s) =
+begingroup
+    save ang;
+    numeric ang;
+    ang := angleValue(a, b, c)/2;
+    (abs(sind(ang)) + abs(cosd(ang)/sind(ang)))*(lineWidth*(1/2-1/2s))
 endgroup
 enddef;

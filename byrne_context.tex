@@ -439,7 +439,7 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 		draw byAngleWithName(B, A, C, byyellow, 0)(A);
 		byLineDefine(A, B, byblue, 0, 0);
 		byLineDefine(A, C, byred, 0, 0);
-		draw byNamedLineSeq(0)(AB,AC);
+		draw byNamedLineSeq(0)(AC,AB);
 }
 \startDefinitionOnlyNumber[reference=def:IX]
 \drawCurrentPictureInMargin[inside]
@@ -474,7 +474,7 @@ When one straight line standing on another straight line makes the adjacent angl
 		draw byAngleWithName(B, A, C, byred, 0)(A);
 		byLineDefine(A, B, byyellow, 0, 0);
 		byLineDefine(A, C, byblue, 0, 0);
-		draw byNamedLineSeq(0)(AB,AC);
+		draw byNamedLineSeq(0)(AC,AB);
 }
 \drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:XI]
@@ -491,7 +491,7 @@ An obtuse angle is an angle greater than right angle
 		draw byAngleWithName(B, A, C, byblue, 0)(A);
 		byLineDefine(A, B, byyellow, 0, 0);
 		byLineDefine(A, C, byred, 0, 0);
-		draw byNamedLineSeq(0)(AB,AC);
+		draw byNamedLineSeq(0)(AC,AB);
 }
 \drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:XII]
@@ -620,7 +620,7 @@ A triangle is a rectilinear figure included by three sides.
 		byLineDefine(A, C, byyellow, 0, 0);
 		byLineDefine(B, D, byyellow, 0, 0);
 		byLineDefine(C, D, black, 0, 0);
-		draw byNamedLineSeq(0)(AB,AC,CD,BD);
+		draw byNamedLineSeq(0)(BD,CD,AC,AB);
 }
 \startDefinitionOnlyNumber[reference=def:XXII]
 \drawCurrentPictureInMargin[inside]
@@ -944,7 +944,7 @@ Geometry has for its principal objects the exposition and explanation of the pro
 		draw byAngleWithName(B, A, C, byyellow, 0)(A);
 		byLineDefine(B, A, byblue, 0, 0);
 		byLineDefine(C, A, byred, 0, 0);
-		draw byNamedLineSeq(0)(BA,CA);
+		draw byNamedLineSeq(0)(CA,BA);
 		label.urt(\sometxt{A}, A);
 }\drawCurrentPictureInMargin
 Angles might properly be considered as a fourth species of magnitude. Angular magnitude evidently consists of parts, and must therefore be admitted to be a species of quantity. The student must not suppose that the magnitude of an angle is affected by the length of the straight lines which include it and of whose mutual divergence it is the measure. The \emph{vertex} of an angle is the point the \emph{sides} of the \emph{legs} of the angle meet, as A.
@@ -1162,7 +1162,7 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 		byLineDefine(A, B, black, 0, 0);
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
-		draw byNamedLineSeq(-1)(AB,CA,BC);
+		draw byNamedLineSeq(1)(AB,CA,BC);
 		draw byCircle(A, r, byblue, 0, 0, 1/2)(A);
 		draw byCircle(B, r, byred, 0, 0, 1/2)(B);
 }
@@ -1255,7 +1255,7 @@ F := A shifted (7/6r, -7/6r);
 byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, black, 1, 0);
 byLineDefine(A, D, byred, 0, 0);
-draw byNamedLineSeq(0)(AD,AB,BC);
+draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
 draw byCircle(A, r, byblue, 0, 0, 0)(A);
 }
@@ -1292,19 +1292,19 @@ draw byAngleWithName(B, C, A, byred, 0)(C);
 byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
-draw byNamedLineSeq(0)(AB,BC,CA);
+draw byNamedLineSeq(0)(CA,BC,AB);
 draw byAngleWithName(E, D, F, byyellow, 0)(D);
 draw byAngleWithName(D, E, F, byblue, 0)(E);
 draw byAngleWithName(E, F, D, byred, 0)(F);
 byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, black, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
-draw byNamedLineSeq(0)(DE,EF,FD);
+draw byNamedLineSeq(0)(FD,EF,DE);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, (\drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD}) and the angles (\drawAngle{A} and \drawAngle{D}) contained by those equal sides also equal; then their bases or their sides (\drawUnitLine{BC} and \drawUnitLine{EF}) are also equal: and the remaining angles opposite to equal sides are respectively equal ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$): and the triangles are equal in every respect.}
 
-Let two triangles be conceived, to be so placed, that the vertex of one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a place, which is impossible (ax. 10), therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and the triangles \drawLine{AB,BC,CA} and \drawLine{DE,EF,FD} coincide, when applied, they are equal in every respect.
+Let two triangles be conceived, to be so placed, that the vertex of one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a place, which is impossible (ax. 10), therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and the triangles \drawLine{CA,BC,AB} and \drawLine{FD,EF,DE} coincide, when applied, they are equal in every respect.
 
 \qed
 \stopProposition
@@ -1337,7 +1337,7 @@ byLineDefine(B, C, black, 0, 0);
 draw byNamedLineSeq(0)(CD,noLine,BC,noLine,BE,CE,AC,AB,BD);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{any isosceles triangle \drawLine[bottom]{AB,AC,BC} if the equal sides be produced, the external angles at the base are equal, and the internal angles at the base are also equal.}
+\problemNP{I}{n}{any isosceles triangle \drawLine[bottom]{BC,AC,AB} if the equal sides be produced, the external angles at the base are equal, and the internal angles at the base are also equal.}
 
 \startCenterAlign
 Produce \drawUnitLine{AB} and \drawUnitLine{AC} \inpost[post:II],\\
@@ -1347,19 +1347,19 @@ draw \drawUnitLine{BE} and \drawUnitLine{CD}.
 Then in
 \drawFromCurrentPicture{
 draw byNamedAngle(BAC);
-draw byNamedLineSeq(0)(AB,AC,CE,BE);
+draw byNamedLineSeq(0)(BE,CE,AC,AB);
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(BAC);
-draw byNamedLineSeq(0)(AB,AC,CD,BD);
+draw byNamedLineSeq(0)(BD,CD,AC,AB);
 }\\
 we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ (const.),\\
 \drawAngle{BAC} common to both,\\
 and $\drawUnitLine{AB} = \drawUnitLine{AC}$ (hyp.)\\
 $\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ and $\drawAngle{CEB} = \drawAngle{BDC}$ \inprop[prop:I.IV].
 
-Again in \drawLine{BC,CE,BE} and \drawLine{BC,CD,BD}\\
+Again in \drawLine{BE,CE,BC} and \drawLine{BD,CD,BC}\\
 we have $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ and $\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
 $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ and $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV]\\
 but $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
@@ -1383,10 +1383,10 @@ byLineDefine(B, D, byblue, 0, 0);
 byLineDefine(C, A, black, 0, 0);
 byLineDefine(C, D, black, 1, 0);
 draw byNamedLine(BC);
-draw byNamedLineSeq(0)(AB,BD,CD,CA);
+draw byNamedLineSeq(0)(CA,CD,BD,AB);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{any triangle (\drawLine[bottom][triangleABD]{AB,BD,CD,CA}) if two angles (\drawAngle{A} and \drawAngle{B}) are equal, the sides (\drawUnitLine{CA,CD} and \drawUnitLine{BD}) opposite to them are also equal.}
+\problemNP{I}{n}{any triangle (\drawLine[bottom][triangleABD]{CA,CD,BD,AB}) if two angles (\drawAngle{A} and \drawAngle{B}) are equal, the sides (\drawUnitLine{CA,CD} and \drawUnitLine{BD}) opposite to them are also equal.}
 
 For if the sides be not equal, let one of them \drawUnitLine{CA,CD} be greater than the other \drawUnitLine{BD}, and from it to cut off $\drawUnitLine{CA} = \drawUnitLine{BD}$ \inprop[prop:I.III], draw \drawUnitLine{BC}.
 
@@ -1482,8 +1482,8 @@ byLineDefine(C, A, byyellow, 0, 0);
 byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, black, 0, 1);
 byLineDefine(F, D, byyellow, 0, 1);
-draw byNamedLineSeq(0)(AB,BC,CA);
-draw byNamedLineSeq(0)(DE,EF,FD);
+draw byNamedLineSeq(0)(CA,BC,AB);
+draw byNamedLineSeq(0)(FD,EF,DE);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other ($\drawUnitLine{CA} = \drawUnitLine{FD}$ and $\drawUnitLine{AB} = \drawUnitLine{DE}$) and also their bases ($\drawUnitLine{BC} = \drawUnitLine{EF}$), equal; then the angles
@@ -1530,7 +1530,7 @@ draw byNamedLineSeq(0)(BE,AB,CA,CF);
 \startCenterAlign
 Take $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III]
 
-draw \drawUnitLine{BC} upon which describe \drawLine{BC,DB,CD} \inprop[prop:I.I],\\
+draw \drawUnitLine{BC} upon which describe \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD}.
 
 Because $\drawUnitLine{AB} = \drawUnitLine{CA}$ (const.)\\
@@ -1557,13 +1557,13 @@ byLineDefine(D, B, black, 0, 0);
 byLineDefine(C, D, black, 1, 0);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
-draw byNamedLineSeq(0)(DB,CD,CA,AB);
+draw byNamedLineSeq(0)(AB,CA,CD,DB);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{bisect a given finite straight line (\drawUnitLine{DB,CD}).}
 
 \startCenterAlign
-Construct \drawLine[bottom]{DB,CD,CA,AB} \inprop[prop:I.I],\\
+Construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD}, making $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.IX],
 
 Then $\drawUnitLine{DB} = \drawUnitLine{CD}$ by \inprop[prop:I.IV],
@@ -1603,7 +1603,7 @@ draw byLine(F, C, byred, 1, 0);
 \startCenterAlign
 Take any point (\drawUnitLine{CD,FC}) in the given line,\\
 cut off $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
-construct \drawLine[bottom]{DB,CD,CA,AB} \inprop[prop:I.I],\\
+construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD} and it shall be perpendicular to the given line.
 
 for $\drawUnitLine{AB} = \drawUnitLine{CA}$ (const.)\\
@@ -1813,7 +1813,7 @@ draw byNamedAngleSides(ECD,DCF)(CF);
 \startCenterAlign
 Make $\drawUnitLine{BE} = \drawUnitLine{EC}$ \inprop[prop:I.X];\\
 Draw \drawUnitLine{AE} and produce it until $\drawUnitLine{ED} = \drawUnitLine{AE}$;\\
-draw \drawUnitLine{CD}. In \drawLine{AB,AE,BE} and \drawLine{CD,ED,EC};\\
+draw \drawUnitLine{CD}. In \drawLine{BE,AE,AB} and \drawLine{EC,ED,CD};\\
 $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV] and $\drawUnitLine{AE} = \drawUnitLine{ED}$ (const.),\\
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
 $\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
@@ -1870,12 +1870,11 @@ draw byAngleWithName(C, A, B, byblue, 0)(A);
 draw byAngle(A, B, C, black, 0);
 draw byAngle(D, B, A, byred, 0);
 draw byAngleWithName(B, D, A, byyellow, 0)(D);
-byLineDefine(A, B, byyellow, 0, 0);
+draw byLine(A, B, byyellow, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
 byLineDefine(B, D, black, 0, 0);
 byLineDefine(D, A, byred, 1, 0);
-draw byNamedLineSeq(0)(AB);
 draw byNamedLineSeq(0)(AC,BC,BD,DA);
 }
 \drawCurrentPictureInMargin
@@ -1906,10 +1905,10 @@ draw byAngleWithName(A, B, C, byred, 0)(B);
 byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
-draw byNamedLineSeq(0)(AB,BC,CA);
+draw byNamedLineSeq(0)(CA,BC,AB);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{in any triangle \drawLine[bottom]{AB,BC,CA} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less}
+\problemNP{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less}
 
 \startCenterAlign
 If \drawUnitLine{BC} be not greater than \drawUnitLine{CA} then must\\
@@ -1945,10 +1944,10 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 1, 0);
 byLineDefine(D, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(BD);
-draw byNamedLineSeq(0)(AB,BC,CD,DA);
+draw byNamedLineSeq(0)(DA,CD,BC,AB);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{ny}{two sides \drawUnitLine{DA} and \drawUnitLine{BD} of a triangle \drawLine[bottom]{AB,BD,DA} taken together are greater than the third side (\drawUnitLine{AB}).}
+\problemNP{A}{ny}{two sides \drawUnitLine{DA} and \drawUnitLine{BD} of a triangle \drawLine[bottom]{DA,BD,AB} taken together are greater than the third side (\drawUnitLine{AB}).}
 
 \startCenterAlign
 Produce \drawUnitLine{DA}, and\\
@@ -1997,7 +1996,7 @@ draw byNamedLineSeq(0)(AD,BD);
 stopTempScale;
 }) within a triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/5);
-draw byNamedLineSeq(0)(AB,BE,EC,CA);
+draw byNamedLineSeq(0)(CA,EC,BE,AB);
 stopTempScale;
 } straight lines be drawn to the extremities of one side (\drawSizedLine{DE}), these lines must be together less than the two other sides, but must contain a greater angle.}
 
@@ -2079,7 +2078,7 @@ draw byNamedLine (AD); draw byNamedCircle (A);
 draw byNamedLine (BE); draw byNamedCircle (B);
 }} \inpost[post:III];\\
 draw \drawSizedLine{CA} and \drawSizedLine{BC},\\
-then will \drawLine[bottom]{AB,BC,CA} be the triangle required.
+then will \drawLine[bottom]{CA,BC,AB} be the triangle required.
 
 $\left.\eqalign{
 \mbox{For } \drawSizedLine{AB} &= \drawSizedLine{Lu} \mbox{,} \cr
@@ -2129,7 +2128,7 @@ stopTempScale;
 Draw \drawUnitLine{BC} between any two points in the legs of the given angle.
 
 \startCenterAlign
-Construct \drawLine[bottom]{FG,GH,HF} \inprop[prop:I.XXII]\\
+Construct \drawLine[bottom]{HF,GH,FG} \inprop[prop:I.XXII]\\
 so that $\drawUnitLine{FG} = \drawUnitLine{AB}$, $\drawUnitLine{HF} = \drawUnitLine{CA}$\\
 and $\drawUnitLine{GH} = \drawUnitLine{BC}$.
 
@@ -2262,7 +2261,7 @@ draw byAngleWithName(A, C, B, black, 1)(C);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
-draw byNamedLineSeq(0)(AB,BC,CA);
+draw byNamedLineSeq(0)(CA,BC,AB);
 draw byAngleWithName(E, D, F, byyellow, 0)(D);
 draw byAngle(G, E, D, black, 0);
 draw byAngle(F, E, G, byblue, 0);
@@ -2272,7 +2271,7 @@ byLineDefine(D, E, byblue, 0, 1);
 byLineDefine(E, F, black, 0, 1);
 byLineDefine(F, G, byred, 1, 1);
 byLineDefine(G, D, byred, 0, 1);
-draw byNamedLineSeq(0)(DE,EF,FG,GD);
+draw byNamedLineSeq(0)(GD,FG,EF,DE);
 }
 \problemNP{I}{f}{two triangles have two angles of the one respectively equal to two angles of the other ($\drawAngle{A} = \drawAngle{D}$ and $\drawAngle{B} = \drawAngle{GED,FEG}$), and a side of the one equal to a side of the other similarly placed with respect to the equal angles, the remaining sides and angles are respectively equal to one another.}
 \drawCurrentPictureInMargin
@@ -2284,8 +2283,8 @@ then $\drawUnitLine{CA} = \drawUnitLine{GD,FG}$.
 For if it be possible, let one of them \drawUnitLine{GD,FG} be greater than the other;\\
 make $\drawUnitLine{CA} = \drawUnitLine{GD}$, draw \drawUnitLine{EG}.
 
-In \drawLine[bottom]{AB,BC,CA} and
-\drawLine[bottom]{DE,EG,GD} we have\\
+In \drawLine[bottom]{CA,BC,AB} and
+\drawLine[bottom]{GD,EG,DE} we have\\
 $\drawUnitLine{AB} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
 $\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
 but $\drawAngle{B} = \drawAngle{GED,FEG}$ (hyp.)
@@ -2313,7 +2312,7 @@ draw byAngleWithName(J, I, H, byred, 0)(I);
 byLineDefine(H, I, byblue, 0, 0);
 byLineDefine(I, J, black, 0, 0);
 byLineDefine(J, H, byred, 0, 0);
-draw byNamedLineSeq(0)(HI,IJ,JH);
+draw byNamedLineSeq(0)(JH,IJ,HI);
 draw byAngleWithName(L, K, M, byyellow, 0)(K);
 draw byAngleWithName(M, N, K, black, 0)(N);
 draw byAngleWithName(M, L, K, byred, 0)(L);
@@ -2322,14 +2321,14 @@ byLineDefine(K, N, byblue, 0, 1);
 byLineDefine(N, L, byblue, 1, 1);
 byLineDefine(L, M, black, 0, 1);
 byLineDefine(M, K, byred, 0, 1);
-draw byNamedLineSeq(0)(KN,NL,LM,MK);
+draw byNamedLineSeq(0)(MK,LM,NL,KN);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Case II.}]
 \startCenterAlign
 Again, let $\drawUnitLine{JH} = \drawUnitLine{MK}$, which lie opposite the equal angles \drawAngle{I} and \drawAngle{L}. If it be possible, let $\drawUnitLine{KN,NL} > \drawUnitLine{HI}$, then take $\drawUnitLine{KN} = \drawUnitLine{HI}$, draw \drawUnitLine{MN}.
 
-Then in \drawLine[bottom]{HI,IJ,JH} and \drawLine[bottom]{KN,MN,MK} we have $\drawUnitLine{JH} = \drawUnitLine{MK}$, $\drawUnitLine{HI} = \drawUnitLine{KN}$ and $\drawAngle{H} = \drawAngle{K}$,
+Then in \drawLine[bottom]{JH,IJ,HI} and \drawLine[bottom]{MK,MN,KN} we have $\drawUnitLine{JH} = \drawUnitLine{MK}$, $\drawUnitLine{HI} = \drawUnitLine{KN}$ and $\drawAngle{H} = \drawAngle{K}$,
 
 $\therefore \drawAngle{I} = \drawAngle{N}$ \inprop[prop:I.IV]\\
 but $\drawAngle{I} = \drawAngle{L}$ (hyp.)
@@ -2364,7 +2363,7 @@ byLineDefine(I, A, byblue, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(I, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
-draw byNamedLineSeq(0)(AB,IA,IC,CD);
+draw byNamedLineSeq(0)(CD,IC,IA,AB);
 draw byLine(G, H, black, 0, 0);
 }
 \drawCurrentPictureInMargin
@@ -2641,7 +2640,7 @@ $\therefore \left\{\eqalign{\drawUnitLine{AB} &= \drawUnitLine{CD}\cr \drawUnitL
 and $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \inax[ax:II]:
 \stopCenterAlign
 
-Therefore the opposite sides and angles of the parallelograms are equal: and as the triangles \drawLine{AC,CD,AD} and \drawLine{AB,BD,AD} are equal in every respect \inprop[prop:I.IV], the diagonal divides the parallelogram into two equal parts.
+Therefore the opposite sides and angles of the parallelograms are equal: and as the triangles \drawLine{AD,CD,AC} and \drawLine{AB,BD,AD} are equal in every respect \inprop[prop:I.IV], the diagonal divides the parallelogram into two equal parts.
 
 \qed
 \stopProposition
@@ -3379,7 +3378,7 @@ byLineDefineWithName (L, B, black, 0, 0)(BLb);
 byLineStylize (C, C, 1, 0, -1) (BLb);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{a right angled triangle \drawLine[bottom][triangleABC]{AB,BC,CA} the square on the hypotenuse \drawUnitLine{BC} is equal to the sum of the squares of the sides (\drawUnitLine{CA} and \drawUnitLine{AB}).}
+\problemNP{I}{n}{a right angled triangle \drawLine[bottom][triangleABC]{CA,BC,AB} the square on the hypotenuse \drawUnitLine{BC} is equal to the sum of the squares of the sides (\drawUnitLine{CA} and \drawUnitLine{AB}).}
 
 \startCenterAlign
 On \drawUnitLine{BC}, \drawUnitLine{CA}, \drawUnitLine{AB} describe squares, \inprop[prop:I.XLVI]
@@ -3727,7 +3726,7 @@ $\drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportiona
 }
 
 \startCenterAlign
-Describe \drawLine[bottom][squareABED]{DF,FE,EK,KB,BA,AD} \inprop[prop:I.XLVI]
+Describe \drawLine[bottom][squareABED]{AD,BA,KB,EK,FE,DF} \inprop[prop:I.XLVI]
 
 draw \drawProportionalLine{BG,GD} \inpost[post:I]\\
 and $\left\{\eqalign{
@@ -4611,7 +4610,7 @@ Draw within the circle any straight line \drawUnitLine{AD,DB}, make $\drawUnitLi
 
 For, if it be possible, let any other point as the point of concourse of \drawUnitLine{AG}, \drawUnitLine{DG} and \drawUnitLine{BG} be the centre.
 
-Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{BG,DG,DB} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp. and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and thetefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; ann in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
+Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp. and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and thetefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; ann in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
 
 \qed
 \stopProposition
@@ -4875,7 +4874,7 @@ Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make eq
 
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
-To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (ax.), and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{EB,EF,FB} and \drawLine[middle][triangleEFC]{EC,EF,FC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
+To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (ax.), and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
 \stopsubproposition
 
 \defineNewPicture[1/2]{
@@ -4908,7 +4907,7 @@ draw byCircle(E, r, byblue, 0, 0, 0)(E);
 \startCenterAlign
 If $\drawAngle{KFE} = \drawAngle{GFE}$ then $\drawUnitLine{FM,MK} = \drawUnitLine{FG}$,\\
 if not take $\drawUnitLine{FM} = \drawUnitLine{FG}$ draw \drawUnitLine{EM,MH}\\
-then in \drawLine[middle][triangleEFM]{EM,EF,FM} and \drawLine[middle][triangleEFG]{EG,EF,FG}, \drawUnitLine{EF} common,\\
+then in \drawLine[middle][triangleEFM]{EM,EF,FM} and \drawLine[middle][triangleEFG]{FG,EF,EG}, \drawUnitLine{EF} common,\\
 $\drawAngle{KFE} = \drawAngle{GFE}$ and $\drawUnitLine{FG} = \drawUnitLine{FM}$
 
 $\therefore \drawUnitLine{EG} = \drawUnitLine{EM}$ \inprop[prop:I.IV]
@@ -5037,7 +5036,7 @@ Also the lines making equal angles with that which passes through the centre are
 For if $\drawUnitLine{DO,ON} > \drawUnitLine{DH}$, but making $\drawAngle{HDM} = \drawAngle{MDN}$;\\
 make $\drawUnitLine{DO} = \drawUnitLine{DH}$, and draw \drawUnitLine{BM,BO}.
 
-Then in \drawLine[middle][triangleDMO]{DM,DO,BO,BM} and \drawLine[middle][triangleDMH]{DM,DH,HM} we have $\drawUnitLine{DO} = \drawUnitLine{DH}$\\
+Then in \drawLine[middle][triangleDMO]{DM,DO,BO,BM} and \drawLine[middle][triangleDMH]{HM,DH,DM} we have $\drawUnitLine{DO} = \drawUnitLine{DH}$\\
 and \drawUnitLine{DM} common, and also $\drawAngle{MDN} = \drawAngle{HDM}$,
 
 $\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \inprop[prop:I.IV]
@@ -5079,9 +5078,12 @@ draw byCircle(D, r, byblue, 0, 0, 0)(D);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
 
-For if it be supposed that the point \drawLine{DC,DB} in which more than two equal straight lines meet is not the centre, some other point \drawUnitLine{DF,FL} must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
+For if it be supposed that the point \drawLine{DB,DC} in which more than two equal straight lines meet is not the centre, some other point \drawUnitLine{DF,FL} must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
 
-Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawLine[middle][pointD]{noLine,DB,noLine,DC,DH}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (hyp.) which is absurd.
+Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawFromCurrentPicture[middle][pointD]{
+draw byNamedLine(DB);
+draw byNamedLineSeq(0)(DH,DC);
+}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (hyp.) which is absurd.
 
 The same may be demonstrated of any other point, different from \pointD, which must be the centre of the circle.
 
@@ -6896,7 +6898,7 @@ but $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (hy
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{DE}^2$,\\
 and $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$;
 
-Then in \drawLine{DB,DF,BF} and \drawLine{DE,DF,EF}\\
+Then in \drawLine{DB,DF,BF} and \drawLine{EF,DF,DE}\\
 $\drawSizedLine{BF} \mbox{ and } \drawSizedLine{DB} = \drawSizedLine{EF} \mbox{ and } \drawSizedLine{DE}$,\\
 and \drawSizedLine{DF} is common,\\
 $\therefore \drawAngle{B} = \drawAngle{E}$ \inprop[prop:I.VIII];\\
@@ -6956,7 +6958,7 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
-draw byNamedLineSeq(-1)(AB,BC,CD,DA);
+draw byNamedLineSeq(-1)(DA,CD,BC,AB);
 draw byCircle(O, r, black, 0, 0, 1)(O);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
@@ -7270,7 +7272,7 @@ byLineDefine(B, E, byyellow, 0, 0);
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/4);
-draw byNamedLineSeq(0)(AB,BC,CA);
+draw byNamedLineSeq(0)(CA,BC,AB);
 stopTempScale;
 } to inscribe a circle.}
 
@@ -7283,7 +7285,7 @@ In
 \drawFromCurrentPicture{
 startTempScale(3/4);
 draw byNamedAngle(F, DBF);
-draw byNamedLineSeq(0)(BF,FD,BD);
+draw byNamedLineSeq(0)(BD,FD,BF);
 stopTempScale;
 }
 and
@@ -7352,12 +7354,12 @@ From the points of bisection draw \drawUnitLine{DF} and \drawUnitLine{EF} $\perp
 In
 \drawFromCurrentPicture{
 draw byNamedAngle(FDB);
-draw byNamedLineSeq(0)(DB,BF,DF);
+draw byNamedLineSeq(0)(DF,BF,DB);
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(ADF);
-draw byNamedLineSeq(0)(AD,DF,AF);
+draw byNamedLineSeq(0)(AF,DF,AD);
 }\\
 $\drawUnitLine{DB} = \drawUnitLine{AD}$ (const.),\\
 \drawUnitLine{DF} common,\\
@@ -7404,7 +7406,7 @@ draw byCircle(E, r, byred, 0, 0, 1)(E);
 Draw the two diameters of the circle $\perp$ to each other, and draw \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} and \drawUnitLine{CD}.
 
 \startCenterAlign
-\drawLine[middle][squareABCD]{AB,BC,CD,DA} is a square.
+\drawLine[middle][squareABCD]{DA,CD,BC,AB} is a square.
 
 For, since \drawAngle{A} and \drawAngle{D} are, each of them, in a semicircle, they are right angles \inprop[prop:III.XXXI],
 
@@ -7450,7 +7452,7 @@ byLineDefine(F, G, black, 0, 0);
 byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
-draw byNamedLineSeq(0)(FG,GH,HK,KF);
+draw byNamedLineSeq(0)(KF,HK,GH,FG);
 draw byCircle(E, r, byblue, 0, 0, -1)(E);
 }
 \drawCurrentPictureInMargin
@@ -7459,7 +7461,7 @@ draw byCircle(E, r, byblue, 0, 0, -1)(E);
 Draw two diameters of the given circle perpendicular to each other, and through their extremities draw \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} and \drawUnitLine{KF} tangents to the circle;
 
 \startCenterAlign
-and \drawLine[bottom][squareFGHK]{FG,GH,HK,KF} is a square.
+and \drawLine[bottom][squareFGHK]{KF,HK,GH,FG} is a square.
 
 $\drawAngle{C} = \drawRightAngle$ a right angle, \inprop[prop:III.XVIII]
 
@@ -7623,9 +7625,9 @@ and divide it so that $\drawProportionalLine{AC,CB} \times \drawProportionalLine
 With \drawProportionalLine{AC,CB} as radius, describe \drawCircle[middle][1/5]{A} and place in it from the extremity of the radius, $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \inprop[prop:IV.I];\\
 draw \drawProportionalLine{AD}.
 
-Then \drawLine{AC,CB,BD,AD} is the required triangle.
+Then \drawLine{AD,BD,CB,AC} is the required triangle.
 
-For, draw \drawProportionalLine{CD} and describe \drawCircle[middle][1/4]{F} about \drawLine{AC,CD,AD} \inprop[prop:IV.V]
+For, draw \drawProportionalLine{CD} and describe \drawCircle[middle][1/4]{F} about \drawLine{AD,CD,AC} \inprop[prop:IV.V]
 
 Since $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
 $\therefore$ \drawProportionalLine{BD} is tangent to \circleF\ \inprop[prop:III.XXXVII]\\
@@ -7847,7 +7849,7 @@ draw byCircle(F, r2, byyellow, 0, 0, -1)(F);
 Let
 \drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
-draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
+draw byNamedLineSeq(0)(EA,DE,KD,CK,HC,BH,AB);
 stopTempScale;
 }
 be a given equi\-an\-gu\-lar and equilateral pentagon; it is required to inscribe a circle in it.
@@ -7890,7 +7892,7 @@ and
 \drawFromCurrentPicture{
 startTempScale(2/3);
 draw byNamedAngle(FCK,K);
-draw byNamedLineSeq(0)(FK,FC,CK);
+draw byNamedLineSeq(0)(CK,FC,FK);
 stopTempScale;
 }\\
 we have $\drawAngle{HCF} = \drawAngle{FCK}$ (const,), \drawUnitLine{FC} common,\\
@@ -10449,7 +10451,7 @@ $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$
 
 Draw \drawUnitLine{BE} and \drawUnitLine{CD},\\
 and
-$\drawLine[middle][triangleBDE]{DB,BE,DE}
+$\drawLine[middle][triangleBDE]{DE,BE,DB}
 =
 \drawLine[middle][triangleCDE]{EC,CD,DE}$ \inprop[prop:I.XXXVII];
 
@@ -10577,7 +10579,7 @@ draw byNamedLineSeq(0)(AF,DF,DE,EC,BC,AB);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equiangular triangles
-(\drawLine[bottom][triangleABC]{AB,BC,CA}
+(\drawLine[bottom][triangleABC]{CA,BC,AB}
 and
 \drawLine[bottom][triangleCDE]{CD,DE,EC})
 the sides about the equal angles are proportional, and the sides which are opposite to the equal angles are homologous.
@@ -10754,7 +10756,7 @@ draw byLine(B, G, byblue, 0, 0);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, A, black, 0, 0);
-draw byNamedLineSeq(0)(AB,BC,CA);
+draw byNamedLineSeq(0)(CA,BC,AB);
 draw byAngleWithName(D, E, F, byblue, 1)(E);
 draw byAngleWithName(E, F, D, byyellow, 1)(F);
 draw byAngleWithName(F, D, E, byred, 1)(D);
@@ -10762,10 +10764,10 @@ draw byAngleWithName(D, E, F, byblue, 1)(E);
 byLineDefine(D, E, byyellow, 1, 0);
 byLineDefine(E, F, byred, 1, 0);
 byLineDefine(F, D, byblue, 1, 0);
-draw byNamedLineSeq(0)(DE,EF,FD);
+draw byNamedLineSeq(0)(FD,EF,DE);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{AB,BC,CA} and \drawLine[bottom][triangleDEF]{DE,EF,FD}) have one angle in each equal (\drawAngle{F} equal to \drawAngle{C}), the sides about two other angles ($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$), and each of the remaining angles (\drawAngle{A} and \drawAngle{D}) either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
+\problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{CA,BC,AB} and \drawLine[bottom][triangleDEF]{FD,EF,DE}) have one angle in each equal (\drawAngle{F} equal to \drawAngle{C}), the sides about two other angles ($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$), and each of the remaining angles (\drawAngle{A} and \drawAngle{D}) either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
 
 \startCenterAlign
 First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
@@ -11913,7 +11915,7 @@ draw byNamedArbitraryFigure(AHC) rotated (180-angle(A-C));
 }
 be the diagonal of \parallelogramABCD\ and draw $\drawUnitLine{KH} \parallel \drawUnitLine{AG}$ \inprop[prop:I.XXXI].
 
-Since \drawLine[bottom][parallelogramAKHG]{AK,KH,GH,AG} and \parallelogramABCD\ are about the same diagonal \lineAHC, and have \drawAngle{A} common, they are similar \inprop[prop:VI.XXIV];
+Since \drawLine[bottom][parallelogramAKHG]{AG,GH,KH,AK} and \parallelogramABCD\ are about the same diagonal \lineAHC, and have \drawAngle{A} common, they are similar \inprop[prop:VI.XXIV];
 
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
 but $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (hyp.),\\
@@ -12111,7 +12113,7 @@ draw byNamedLine(AGt,GDt,DEt);
 }
 = \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, and is $\therefore = \squareABHC$;\\
 and if from both these equals be taken the common part \drawPolygon{ACFE},\\
-\drawLine{AE,AG,GD,DE}, which is the square of \drawProportionalLine{AE},\\
+\drawLine{DE,GD,AG,AE}, which is the square of \drawProportionalLine{AE},\\
 will be $= \drawPolygon{EFHB}$, which is $= \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
 that is $\drawProportionalLine{AE}^2 = \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
 $\therefore \drawProportionalLine{AE,EB} : \drawProportionalLine{AE} :: \drawProportionalLine{AE} : \drawProportionalLine{EB}$,\\
@@ -12151,7 +12153,7 @@ byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(-1)(AB,BD,DC,CA);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle (\drawLine[bottom]{AB,BD,DC,CA}), the figure described on the side (\drawProportionalLine{BD,DC}) subtending the right angle is equal to the sum of the figures on the other sides.}
+\problemNP{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle (\drawLine[bottom]{CA,DC,BD,AB}), the figure described on the side (\drawProportionalLine{BD,DC}) subtending the right angle is equal to the sum of the figures on the other sides.}
 
 \startCenterAlign
 From the right angle draw \drawProportionalLine{AD} perpendicular to \drawProportionalLine{BD,DC};\\
@@ -12212,14 +12214,14 @@ byLineDefineWithName(E, D, black, 0, 1)(EDt);
 (\drawFromCurrentPicture[bottom]{
 startTempAngleScale(angleScale*3/5);
 draw byNamedAngle(A, B, BCA);
-draw byNamedLineSeq(0)(ABt,BCt,CAt);
+draw byNamedLineSeq(0)(CAt,BCt,ABt);
 stopTempAngleScale;
 }
 and
 \drawFromCurrentPicture[bottom]{
 startTempAngleScale(angleScale*3/5);
 draw byNamedAngle(D, DCE);
-draw byNamedLineSeq(0)(DCt,CEt,EDt);
+draw byNamedLineSeq(0)(EDt,CEt,DCt);
 stopTempAngleScale;
 }),
 have two sides proportional ($\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$), and be so placed at an angle that the homologous sides are parallel, the remaining sides (\drawUnitLine{BC} and \drawUnitLine{CE}) form one right line.}
@@ -12370,7 +12372,7 @@ draw byNamedLineSeq(0)(noLine,DC,BD,AB,AE,EC,CF);
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{the right line (\drawSizedLine{DC}) bisecting an external angle \drawAngle{DCB,FCD} of the triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/2);
-draw byNamedLineSeq(0)(AB,BC,EC,AE);
+draw byNamedLineSeq(0)(AE,EC,BC,AB);
 stopTempScale;
 } meet the opposite side (\drawSizedLine{AB}) produced, that whole produced side (\drawSizedLine{AB,BD}), and its external segment (\drawSizedLine{BD}) will be proportional to the sides (\drawSizedLine{AE,EC} and \drawSizedLine{BC}), which contain the angle adjacent to the external bisected angle.}
 
@@ -12423,12 +12425,12 @@ draw byCircle(O, r, byyellow, 0, 0, 1/2)(O);
 Let \drawSizedLine{AD} be drawn, making $\drawAngle{CAE} = \drawAngle{EAB}$;\\
 then shall $\drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{BD} \times \drawSizedLine{DC} + \drawSizedLine{AD}^2$.
 
-About \drawLine[bottom]{AB,BD,DC,CA} describe \drawCircle[middle][1/4]{O} \inprop[prop:IV.V],\\
+About \drawLine[bottom]{CA,DC,BD,AB} describe \drawCircle[middle][1/4]{O} \inprop[prop:IV.V],\\
 produce \drawSizedLine{AD} to meet the circle, and draw \drawSizedLine{CE}.
 
 Since $\drawAngle{CAE} = \drawAngle{EAB}$ (hyp.),\\
 and $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI],\\
-$\therefore$ \drawLine[bottom]{AB,BD,AD} and \drawLine[middle]{AD,DE,CE,CA} are equiangular \inprop[prop:I.XXXII];\\
+$\therefore$ \drawLine[bottom]{AD,BD,AB} and \drawLine[middle]{CA,CE,DE,AD} are equiangular \inprop[prop:I.XXXII];\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \inprop[prop:VI.IV];\\
 $\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{AD} \times \drawSizedLine{AD,DE}$ \inprop[prop:VI.XVI]\\
 $= \drawSizedLine{DE} \times \drawSizedLine{AD} + \drawSizedLine{AD}^2$ \inprop[prop:II.III];\\
@@ -12469,14 +12471,14 @@ draw byCircle(O, r, byred, 0, 0, 1/2)(O);
 \problemNP{I}{f}{from any angle of a triangle a straight line be drawn perpendicular to the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the perpendicular and the diameter of the circle described about the triangle.}
 
 \startCenterAlign
-From \drawAngle{A} of \drawLine[bottom]{AB,BD,DC,CA}\\
+From \drawAngle{A} of \drawLine[bottom]{CA,DC,BD,AB}\\
 draw $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
 then shall $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ the diameter of the described circle.
 
 Describe \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], draw its diameter \drawUnitLine{AE}, and draw \drawUnitLine{CE};\\
 then because $\drawAngle{D} = \drawAngle{BCA,ECB}$ (const. and \inpropL[prop:III.XXXI]);\\
 and $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI];\\
-$\therefore$ \drawLine[bottom]{AB,BD,AD} is equiangular to \drawLine[middle]{AE,CE,CA} \inprop[prop:VI.IV];
+$\therefore$ \drawLine[bottom]{AD,BD,AB} is equiangular to \drawLine[middle]{CA,CE,AE} \inprop[prop:VI.IV];
 
 $\therefore \drawUnitLine{AB} : \drawUnitLine{AD} :: \drawUnitLine{AE} : \drawUnitLine{CA}$;\\
 and $\therefore \drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times \drawUnitLine{AE}$ \inprop[prop:VI.XVI].
@@ -12521,7 +12523,7 @@ draw byCircle(O, r, byred, 0, 0, 1/2)(O);
 \problemNP{T}{he}{rectangle contained by the diagonals of a quadrilateral figure inscribed in a circle, is equal to both the rectangles contained by its opposite sides.}
 
 \startCenterAlign
-Let \drawLine{AB,BC,CD,DA} be any quadrilateral figure inscribed in \drawCircle[middle][1/5]{O};\\
+Let \drawLine{DA,CD,BC,AB} be any quadrilateral figure inscribed in \drawCircle[middle][1/5]{O};\\
 and draw \drawUnitLine{BE,ED} and \drawUnitLine{AC};\\
 then $\drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 
