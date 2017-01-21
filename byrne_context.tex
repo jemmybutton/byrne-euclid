@@ -769,7 +769,7 @@ A rhombus is that which has all its sides equal, but its angles are not right an
 \stopDefinitionOnlyNumber
 
 \defineNewPicture{
-	pair A, B, C, D;
+	pair A,B,C,D;
 	numeric s;
 	s := u;
 	A := (0, 0);
@@ -3521,7 +3521,7 @@ draw byPolygon(I,H,D,F)(byred);
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{n}{a parallelogram, the figure composed of one of the parallelograms about the diagonal together with the two complements, is called a Gnomon.}
 
-Thus \drawFromCurrentPicture[middle][gnomonA]{draw byNamedPolygon (AEIG);draw byNamedPolygon (EBHI);draw byNamedPolygon (GIFC);} and \drawFromCurrentPicture[middle][gnomonB]{draw byNamedPolygon (EBHI);draw byNamedPolygon (GIFC);draw byNamedPolygon (IHDF);} are called Gnomons.
+Thus \drawPolygon{AEIG,EBHI,GIFC} and \drawPolygon{EBHI,GIFC,IHDF} are called Gnomons.
 \stopDefinition
 
 \vfill\pagebreak
@@ -5655,7 +5655,7 @@ stopTempScale;
 
 But if the given point\drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
-draw byNamedLineSeq(0)(AB,AD,DE);
+draw byNamedLineSeq(0)(DE,AD,AB);
 stopTempScale;
 } be outside of the circumference,
 
@@ -5670,7 +5670,7 @@ Then \drawUnitLine{AB} will be the tangent required.\\
 For in
 \drawFromCurrentPicture[bottom]{
 scaleFactor := 1/2;
-draw byNamedLineSeq(0)(DE,BE,FB,FD);
+draw byNamedLineSeq(0)(FD,FB,BE,DE);
 }
 and \drawLine[bottom]{BE,DE,AD,AB}
 $\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} common,\\

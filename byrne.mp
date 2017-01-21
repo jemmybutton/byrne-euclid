@@ -61,10 +61,23 @@ lineEndB.noLine := inf;
 
 linecap := butt;
 
-vardef sign (expr x)=
+vardef sign (expr x) =
     if x > 0: 1 fi
     if x < 0: -1 fi
     if x = 0: 1 fi
+enddef;
+
+vardef cycleval (expr v, l) =
+begingroup
+    save rv;
+    numeric rv;
+    if ((v mod l) < 0):
+        rv := l - (v mod l);
+    else:
+        rv := (v mod l);
+    fi;
+    rv
+endgroup
 enddef;
 
 vardef distanceToLine (expr givenPoint, givenLine) =
@@ -402,14 +415,14 @@ begingroup
                 pointNames := substring (0, length(pointNames)-2) of pointNames;
             fi;
             if (textLabels):
-                draw byPolygonLabels(scantokens pointNames)(1, s);
+                draw byLabelsOnPolygon(scantokens pointNames)(1, s);
             fi;
         else:
             forsuffixes lN=linesList:
                 lineShift.lN := s;
                 draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
                 if (textLabels):
-                    draw byPolygonLabels(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1, s);
+                    draw byLabelsOnPolygon(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1, s);
                 fi;
             endfor;
         fi;
@@ -717,11 +730,24 @@ endgroup
 enddef;
 
 vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
-color polygonColor.polygonName;
+color polygonColor.polygonName, polygonPointsList.polygonName;
 path polygonPath.polygonName;
+string polygonPointsList.polygonName;
 begingroup
     polygonPath.polygonName := forsuffixes pN=pointsList: pN -- endfor cycle;
     polygonColor.polygonName := col;
+    polygonPointsList.polygonName := "";
+    forsuffixes pN=pointsList:
+        if (polygonPointsList.polygonName <> ""):
+            if (turningnumber(polygonPath.polygonName) == 1):
+                polygonPointsList.polygonName := str pN & ", " & polygonPointsList.polygonName;
+            else:
+                polygonPointsList.polygonName := polygonPointsList.polygonName & ", " &  str pN;
+            fi;
+        else:
+            polygonPointsList.polygonName := str pN;
+        fi;
+    endfor;
     byNamedPolygon(polygonName)
 endgroup
 enddef;
@@ -748,7 +774,115 @@ begingroup
                 draw (polygonPath.pN scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
             fi;
         endfor;
+        if (textLabels):
+            draw byLabelsOnPolygon(scantokens byMergePolygons(polygonsList))(1, 1);
+        fi;
     )
+endgroup
+enddef;
+
+vardef byMergePolygons(text polygonsList) =
+begingroup
+    save pointsList, preList, postList, mergedList, points, postPoints, i, j, k, l, m, n, o, iteration, beforeJoin, polygonChecked, pointChecked;
+    string pointsList[], preList[], postList[], mergedList, points[], postPoints[];
+    numeric l, m, n, o, iteration;
+    boolean beforeJoin, polygonChecked[], pointChecked[];
+    n := -1;
+    forsuffixes pN=polygonsList:
+        n := n + 1;
+        pointsList[n] := polygonPointsList.pN;
+        polygonChecked[n] := false;
+    endfor;
+    if (n > 0):
+        iteration := -1;
+        m := -1;
+        forever:
+            preList0 := "";
+            postList0 := "";
+            beforeJoin := true;
+            iteration := iteration + 1;
+            l := -1;
+            forsuffixes i = scantokens(pointsList0):
+                l := l + 1;
+                if (l > m):
+                    pointChecked[l] := false;
+                fi;
+                if (beforeJoin):
+                    preList0 := preList0 & ", " & str i;
+                    if (not pointChecked[l]):
+                        for j := 1 step 1 until n:
+                            if (beforeJoin and not polygonChecked[j]):
+                                preList1 := "";
+                                postList1 := "";
+                                forsuffixes k=scantokens(pointsList[j]):
+                                    if (beforeJoin):
+                                        preList1 := preList1 & ", " & str k;
+                                        if (k == i):
+                                            beforeJoin := false;
+                                            polygonChecked[j] := true;
+                                            pointChecked[l] := true;
+                                            o := l;
+                                        fi;
+                                    else:
+                                        postList1 := postList1 & ", " & str k;
+                                    fi;
+                                endfor;
+                            fi;
+                        endfor;
+                    fi;
+                else:
+                    postList0 := postList0 & ", " & str i;
+                fi;
+            endfor;
+            show mergedList;
+            if (not beforeJoin):
+                mergedList := preList0 & postList1 & preList1 & postList0;
+                mergedList := substring (2, length(mergedList)) of mergedList;
+                pointsList0 := polygonCleanup(scantokens(mergedList));
+                if (length(pointsList0) < length(mergedList)):
+                    pointChecked[o] := false;
+                    mergedList := pointsList0;
+                fi;
+                m := l;
+            fi;
+            exitif(beforeJoin or (iteration > 100));
+        endfor;
+    else:
+        mergedList := pointsList0;
+    fi;
+    mergedList
+endgroup
+enddef;
+
+vardef polygonCleanup (text pointsList) =
+begingroup
+    save cleanedList, points, m, n, iteration;
+    string cleanedList, points[];
+    numeric m, n, iteration;
+    n := -1;
+    forsuffixes pL = pointsList:
+        n := n + 1;
+        points[n] := str pL;
+    endfor;
+    iteration := -1;
+    forever:
+        iteration := iteration + 1;
+        m := 0;
+        for i := 0 step 1 until n:
+            if (points[cycleval(i-2, n + 1)] == points[i]):
+                m := m + 2;
+            else:
+                points[cycleval(i-m, n + 1)] := points[i];
+            fi;
+        endfor;
+        n := n - m;
+        exitif((m == 0) or (iteration > 100));
+    endfor;
+    cleanedList := points[0];
+    for i := 1 step 1 until n:
+        cleanedList := cleanedList & ", " & points[i];
+    endfor;
+    cleanedList
 endgroup
 enddef;
 
@@ -1199,12 +1333,12 @@ begingroup
 endgroup
 enddef;
 
-vardef byPolygonLabels(text pointsList)(expr sty, shft)=
+vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
 begingroup
     image(
         if(textLabels):
-            save pointName, pointLoc, i, j, k, l, p, q, stump, sv, a;
-            numeric i, j, k, l, stump, sv, a;
+            save pointName, pointLoc, i, j, k, l, p, q, stump, sv;
+            numeric i, j, k, l, stump, sv;
             string pointName[];
             pair pointLoc[], p[];
             i := -1;
