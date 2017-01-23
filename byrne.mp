@@ -33,11 +33,11 @@ magnitudeScale := 1/3;
 magnitudeGap := 2lineWidth;
 markLength := 5lineWidth;
 
-boolean textLabels, bigPictureMode;
+boolean textLabels, autoLabelingMode;
 
 textLabels := false;
 textLabelShift := lineWidth;
-bigPictureMode := false;
+autoLabelingMode := false;
 
 numeric dpLength[];
 dpLength0 := 2lineWidth;
@@ -152,7 +152,6 @@ def stopTempAngleScale =
     endgroup
 enddef;
 
-
 def startGlobalRotation(expr ang) =
     begingroup
         save globalRotation;
@@ -160,6 +159,17 @@ def startGlobalRotation(expr ang) =
 enddef;
 
 def stopGlobalRotation =
+    endgroup
+enddef;
+
+def startAutoLabeling =
+    begingroup
+        save autoLabelingMode;
+        boolean autoLabelingMode;
+        autoLabelingMode := true;
+enddef;
+
+def stopAutoLabeling =
     endgroup
 enddef;
 
@@ -431,14 +441,14 @@ begingroup
             else:
                 pointNames := substring (0, length(pointNames)-2) of pointNames;
             fi;
-            if (textLabels and not bigPictureMode):
+            if (textLabels and autoLabelingMode):
                 draw byLabelsOnPolygon(scantokens pointNames)(1, s);
             fi;
         else:
             forsuffixes lN=linesList:
                 lineShift.lN := s;
                 draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
-                if (textLabels and not bigPictureMode):
+                if (textLabels and autoLabelingMode):
                     draw byLabelsOnPolygon(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1, s);
                 fi;
             endfor;
@@ -530,7 +540,7 @@ begingroup
             fi;
             j := j + 1;
         endfor;
-        if (textLabels and not bigPictureMode):
+        if (textLabels and autoLabelingMode):
             draw byTextLabel(endNames[0], (0, 0), 90, textLabelShift);
             draw byTextLabel(endNames[1], b, 90, textLabelShift);
         fi;
@@ -634,12 +644,27 @@ begingroup
         forsuffixes aN=arcslist:
             draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, arcShift.aN, arcEndType.aN);
         endfor;
+        if (textLabels and autoLabelingMode):
+            draw byNamedArcLabel(arcslist);
+        fi;
     )
 endgroup
 enddef;
 
 vardef byNamedArc(text arcslist) =
 begingroup
+    image(
+        forsuffixes aN=arcslist:
+            draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, 0, 0);
+        endfor;
+        if (textLabels and autoLabelingMode):
+            draw byNamedArcLabel(arcslist);
+        fi;
+    )
+endgroup
+enddef;
+
+vardef byNamedArcLabel (text arcslist) =
     save pointsListB, pointsListE, pointsListO, i, j, allArcsDefined;
     string pointsListB[], pointsListE[], pointsListO[];
     numeric i, j;
@@ -648,7 +673,6 @@ begingroup
         i := -1;
         allArcsDefined := true;
         forsuffixes aN=arcslist:
-            draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, 0, 0);
             i := i + 1;
             pointsListB[i] := arcBName.aN;
             pointsListE[i] := arcEName.aN;
@@ -657,7 +681,7 @@ begingroup
                 allArcsDefined := false;
             fi;
         endfor;
-        if (textLabels and not bigPictureMode) and allArcsDefined:
+        if allArcsDefined:
             for j := 0 step 1 until i:
                 if (pointsListB[j] <> pointsListE[cycleval(j-1, i+1)]):
                     draw byTextLabel(
@@ -851,7 +875,7 @@ begingroup
                 fi;
             endfor;
             ) rotated globalRotation;
-        if (textLabels and not bigPictureMode):
+        if (textLabels and autoLabelingMode):
             draw byLabelsOnPolygon(scantokens byMergePolygons(polygonsList))(1, 1);
         fi;
     )
@@ -1178,7 +1202,7 @@ begingroup
     clip outputImage to compoundAnglePath;
     image(
         draw outputImage rotated globalRotation;
-        if (textLabels and not bigPictureMode) and (j==2):
+        if (textLabels and autoLabelingMode) and (j==2):
             for i=1,2:
                 draw byTextLabel(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
             endfor;
@@ -1419,6 +1443,8 @@ begingroup
             pair pointLoc[], p[];
             i := -1;
             forsuffixes pN=pointsList:
+                boolean pointDrawn.pN;
+                pointDrawn.pN := false;
                 i := i + 1;
                 pointName[i] := str pN;
                 if (pointName[i] <> "noPoint"):
@@ -1438,16 +1464,8 @@ begingroup
                 pointName[i] := "noPoint";
             fi;
             for j := 0 step 1 until i:
-                if (j == 0):
-                    k := i;
-                    l := j + 1;
-                elseif (j == i):
-                    k := j - 1;
-                    l := 0;
-                else:
-                    k := j - 1;
-                    l := j + 1;
-                fi;
+                k := cycleval(j - 1, i + 1);
+                l := cycleval(j + 1, i + 1);
                 if (pointName[j] <> "noPoint"):
                     p1 := pointLoc[j];
                     stump := 0;
@@ -1466,8 +1484,8 @@ begingroup
                         fi;
                     fi;
                     pair q[];
-                    q4 := (p1-p0) rotated 90;
-                    q5 := (p2-p1) rotated 90;
+                    q4 := unitvector(p1-p0) rotated 90;
+                    q5 := unitvector(p2-p1) rotated 90;
                     if (abs(angle(q4) - angle(q5))>1):
                         q0 := p0 shifted q4;
                         q1 := p1 shifted q4;
@@ -1481,9 +1499,13 @@ begingroup
                             q6 := p1;
                         fi;
                     fi;
-                    if (q6 <> p1):
+                    if (sty == 2) and ((j == 0) or (j == i)):
+                        pointDrawn.scantokens(pointName[j]) := true;
+                    fi;
+                    if (q6 <> p1) and (not pointDrawn.scantokens(pointName[j])):
                         sv := byLabelAngleCompensate(p0, p1, p2, shft);
                         draw byTextLabel(pointName[j], pointLoc[j], angle(q6-p1), textLabelShift+sv);
+                        pointDrawn.scantokens(pointName[j]):= true;
                     fi;
                 fi;
             endfor;

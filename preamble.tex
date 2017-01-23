@@ -29,10 +29,8 @@
 	\defineMPinstance[\currentInstance]\ignorespaces
 	\startreusableMPgraphic{\currentInstance::currentPicture}
 		input byrne;
-		bigPictureMode := true;
 		scaleFactor := \sfB;
 			#3
-		bigPictureMode := false;
 		scaleFactor := \sfA;
 	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}\global\addToUndefineList{#2}\ignorespaces}
 
@@ -127,19 +125,19 @@
 \def\drawUnitLine{\dosingleempty\drawunitline}
 \def\drawunitline[#1]#2{{\ignorespaces
 	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][uline#2#1]{draw byNamedCompoundLine(#1, 0)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 0)(#2);stopAutoLabeling;}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[middle][uline#2]{draw byNamedCompoundLine(1cm, 0)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2]{startAutoLabeling;draw byNamedCompoundLine(1cm, 0)(#2);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 
-\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{draw byNamedCompoundLine(1cm, 1)(#1);}}
+\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{startAutoLabeling;draw byNamedCompoundLine(1cm, 1)(#1);stopAutoLabeling;}}
 
 \def\drawSizedLine{\dosingleempty\drawsizedline}
 \def\drawsizedline[#1]#2{{\ignorespaces
 	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][linesized#2#1]{draw byNamedCompoundLine(#1, 2)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 2)(#2);stopAutoLabeling;}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[middle][linesized#2]{draw byNamedCompoundLine(2cm, 2)(#2);}\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundLine(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 	
 \def\drawTwoRightAngles{\ignorespaces
@@ -148,7 +146,7 @@
 \def\drawRightAngle{\ignorespaces
 \drawFromCurrentPicture[middle][onerightangle]{draw rightAngle;}}
 
-\def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{draw byNamedAngle(#1);draw byNamedAngleDummySides(#1);}}
+\def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{startAutoLabeling;draw byNamedAngle(#1);draw byNamedAngleDummySides(#1);stopAutoLabeling;}}
 
 \def\drawPolygon{\dodoubleempty\drawpolygon}
 \def\drawpolygon[#1][#2]#3{{\ignorespaces
@@ -158,9 +156,9 @@
 		\global\def\plal{middle}\ignorespaces
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][#2]{draw byNamedPolygon(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedPolygon(#3);stopAutoLabeling;}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][polygon#3]{draw byNamedPolygon(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][polygon#3]{startAutoLabeling;draw byNamedPolygon(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 
 \def\drawCircle{\dodoubleempty\drawcircle}
@@ -172,13 +170,14 @@
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
 		\drawFromCurrentPicture[\plal][circle#3]{
-		oldScaleFactor := scaleFactor;
-		scaleFactor := #2;
+		startAutoLabeling;
+		startTempScale(#2);
 		draw byNamedCircle(#3);
-		scaleFactor := oldScaleFactor;
+		stopTempScale;
+		stopAutoLabeling;
 		}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][circle#3]{draw byNamedCircle(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][circle#3]{startAutoLabeling;draw byNamedCircle(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 
 \def\drawArc{\dodoubleempty\drawarc}
@@ -190,13 +189,14 @@
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
 		\drawFromCurrentPicture[\plal][arc#3]{
-		oldScaleFactor := scaleFactor;
-		scaleFactor := #2;
+		startAutoLabeling;
+		startTempScale(#2);
 		draw byNamedArc(#3);
-		scaleFactor := oldScaleFactor;
+		stopTempScale;
+		stopAutoLabeling;
 		}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][arc#3]{draw byNamedArc(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][arc#3]{startAutoLabeling;draw byNamedArc(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 
 \def\drawLine{\dodoubleempty\drawline}
@@ -207,9 +207,9 @@
 		\global\def\plal{middle}\ignorespaces
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][#2]{draw byNamedLineSeq(0)(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][line#3]{draw byNamedLineSeq(0)(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
@@ -220,7 +220,7 @@
 		\global\def\plal{middle}\ignorespaces
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][magnitude#2#3]{draw byNamedMagnitude(#2)(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][magnitude#2#3]{startAutoLabeling;draw byNamedMagnitude(#2)(#3);stopAutoLabeling;}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][magnitude#3]{draw byNamedMagnitude(0)(#3);}\ignorespaces
+		\drawFromCurrentPicture[\plal][magnitude#3]{startAutoLabeling;draw byNamedMagnitude(0)(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}

@@ -84,20 +84,21 @@ draw byPolygon(A,B,E,D)(black);
 draw byPolygon(L,A,G,F)(byred);
 draw byPolygon(C,L,F)(byred);
 draw byPolygon(J,M,I,K)(byblue);
-draw byPolygon(M,C,I)(byblue);
+draw byPolygon (M,C,I)(byblue);
 draw byPolygon(B,J,K,H)(byyellow);
 draw byAngle(F, C, A, byyellow, 0);
 draw byAngle(B, C, I, byyellow, 0);
 draw byAngle(A, C, B, black, 0);
 draw byLine(A, K, black, 1, 0);
-draw byLineFull(B, F, black, 0, 0)(C, G, 1, 1, 0);
-draw byLineFull(A, I, black, 0, 0)(C, H, 1, 1, 0);
-draw byLineFull(C, F, byblue, 1, 0)(C, F, 0, 0, 1/2);
-draw byLineFull(C, I, byred, 1, 0)(C, I, 0, 0, -1/2);
+draw byLineFull(B, F, black, 0, 0)(G, G, 1, 1, -1);
+draw byLineFull(A, I, black, 0, 0)(K, K, 1, 1, 1);
+byLineDefine(C, F, byblue, 1, 0);
+byLineDefine(C, I, byred, 1, 0);
+draw byNamedLineSeq(0)(CF,CI);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
-draw byNamedLineSeq(1/2)(AB,CA,BC);
+draw byNamedLineSeq(-1)(AB,BC,CA);
 byLineDefineWithName (C, A, black, 0, 0)(CAb);
 byLineStylize (M, M, 1, 0, -1) (CAb);
 byLineDefineWithName (A, M, black, 0, 0)(AMb);
@@ -106,6 +107,8 @@ byLineDefineWithName (B, C, black, 0, 0)(BCb);
 byLineStylize (L, L, 0, 1, -1) (BCb);
 byLineDefineWithName (L, B, black, 0, 0)(BLb);
 byLineStylize (C, C, 1, 0, -1) (BLb);
+draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
+draw byLabelsOnPolygon(A, J, C)(2, -1);
 }
 
 \vfill\vfill
@@ -117,7 +120,7 @@ byLineStylize (C, C, 1, 0, -1) (BLb);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2017 ed.\,0.1b}
+{\tfb 2017 ed.\,0.2}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -340,12 +343,16 @@ make $\drawUnitLine{BD} = \drawUnitLine{CE}$, draw \drawUnitLine{BE} and \drawUn
 In
 \drawFromCurrentPicture{
 draw byNamedAngle(BAC);
+startAutoLabeling;
 draw byNamedLineSeq(0)(BE,CE,AC,AB);
+stopAutoLabeling;
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(BAC);
+startAutoLabeling;
 draw byNamedLineSeq(0)(BD,CD,AC,AB);
+stopAutoLabeling;
 }\\
 we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$,\\
 \drawAngle{BAC} common and $\drawUnitLine{AB} = \drawUnitLine{AC}$:\\
@@ -3368,14 +3375,15 @@ draw byAngle(F, C, A, byyellow, 0);
 draw byAngle(B, C, I, byyellow, 0);
 draw byAngle(A, C, B, black, 0);
 draw byLine(A, K, black, 1, 0);
-draw byLineFull(B, F, black, 0, 0)(C, G, 1, 1, 0);
-draw byLineFull(A, I, black, 0, 0)(C, H, 1, 1, 0);
-draw byLineFull(C, F, byblue, 1, 0)(C, F, 0, 0, 1/2);
-draw byLineFull(C, I, byred, 1, 0)(C, I, 0, 0, -1/2);
+draw byLineFull(B, F, black, 0, 0)(G, G, 1, 1, -1);
+draw byLineFull(A, I, black, 0, 0)(K, K, 1, 1, 1);
+byLineDefine(C, F, byblue, 1, 0);
+byLineDefine(C, I, byred, 1, 0);
+draw byNamedLineSeq(0)(CF,CI);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
-draw byNamedLineSeq(-1/2)(AB,BC,CA);
+draw byNamedLineSeq(-1)(AB,BC,CA);
 byLineDefineWithName (C, A, black, 0, 0)(CAb);
 byLineStylize (M, M, 1, 0, -1) (CAb);
 byLineDefineWithName (A, M, black, 0, 0)(AMb);
@@ -3384,6 +3392,8 @@ byLineDefineWithName (B, C, black, 0, 0)(BCb);
 byLineStylize (L, L, 0, 1, -1) (BCb);
 byLineDefineWithName (L, B, black, 0, 0)(BLb);
 byLineStylize (C, C, 1, 0, -1) (BLb);
+draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
+draw byLabelsOnPolygon(A, J, C)(2, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a right angled triangle \drawLine[bottom][triangleABC]{CA,BC,AB} the square on the hypotenuse \drawUnitLine{BC} is equal to the sum of the squares of the sides (\drawUnitLine{CA} and \drawUnitLine{AB}).}
@@ -3403,24 +3413,26 @@ $\therefore
 draw byNamedPolygon(MCI);
 draw byNamedAngle(ACB);
 draw byNamedLine(CAb,AMb);
+draw byLabelsOnPolygon(I,A,C)(1, 1);
 }
 =
 \drawFromCurrentPicture[middle][polygonBLC]{
 draw byNamedPolygon(CLF);
 draw byNamedAngle(ACB);
 draw byNamedLine(BCb,BLb);
+draw byLabelsOnPolygon(B,F,C)(1, 1);
 }
 $.
 
 Again, because $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\
-$\drawFromCurrentPicture[middle][polygonACFG]{draw byNamedPolygon(LAGF,CLF);} = \mbox{ twice } \polygonBLC$,\\
-and $\drawFromCurrentPicture[middle][polygonJMCK]{draw byNamedPolygon(JMIK,MCI);} = \mbox{ twice } \polygonAFC$;
+$\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ twice } \polygonBLC$,\\
+and $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ twice } \polygonAFC$;
 
 $\therefore \polygonACFG = \polygonJMCK$.
 
-In the same manner it can be shown that $\drawFromCurrentPicture[middle][polygonABED]{draw byNamedPolygon(ABED);} = \drawFromCurrentPicture[middle][polygonBJKH]{draw byNamedPolygon(BJKH);}$;
+In the same manner it can be shown that $\drawPolygon[middle][polygonABED]{ABED} = \drawPolygon[middle][polygonBJKH]{BJKH}$;
 
-hence $\drawFromCurrentPicture[middle][polygonABEDpACFG]{draw byNamedPolygon(ABED,LAGF,CLF);} = \drawFromCurrentPicture[middle][polygonBCIH]{draw byNamedPolygon(JMIK,MCI,BJKH);}$.
+hence $\drawPolygon[middle][polygonABEDpACFG]{ABED,LAGF,CLF} = \drawPolygon[middle][polygonBCIH]{JMIK,MCI,BJKH}$.
 
 \stopCenterAlign
 
