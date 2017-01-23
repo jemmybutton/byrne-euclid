@@ -28,14 +28,16 @@ lineWidthHair := 1/2pt;
 u := 1cm;
 scaleFactor := 1;
 angleScale := 1;
+globalRotation := 0;
 magnitudeScale := 1/3;
 magnitudeGap := 2lineWidth;
 markLength := 5lineWidth;
 
-boolean textLabels;
+boolean textLabels, bigPictureMode;
 
 textLabels := false;
 textLabelShift := lineWidth;
+bigPictureMode := false;
 
 numeric dpLength[];
 dpLength0 := 2lineWidth;
@@ -71,10 +73,14 @@ vardef cycleval (expr v, l) =
 begingroup
     save rv;
     numeric rv;
-    if ((v mod l) < 0):
-        rv := l - (v mod l);
+    if (l > 0):
+        if ((v mod l) < 0):
+            rv := l - (v mod l);
+        else:
+            rv := (v mod l);
+        fi;
     else:
-        rv := (v mod l);
+        rv := 0;
     fi;
     rv
 endgroup
@@ -143,6 +149,17 @@ def startTempAngleScale(expr tmpScale) =
 enddef;
 
 def stopTempAngleScale =
+    endgroup
+enddef;
+
+
+def startGlobalRotation(expr ang) =
+    begingroup
+        save globalRotation;
+        globalRotation := ang;
+enddef;
+
+def stopGlobalRotation =
     endgroup
 enddef;
 
@@ -221,7 +238,7 @@ begingroup
         = whatever[bS, bS shifted cutAngle2];
     clippingPath := clippingPathPoint1 -- clippingPathPoint2 -- clippingPathPoint3 -- clippingPathPoint4 -- cycle;
     clip p to clippingPath;
-    p
+    p rotated globalRotation
 endgroup
 enddef;
 
@@ -414,14 +431,14 @@ begingroup
             else:
                 pointNames := substring (0, length(pointNames)-2) of pointNames;
             fi;
-            if (textLabels):
+            if (textLabels and not bigPictureMode):
                 draw byLabelsOnPolygon(scantokens pointNames)(1, s);
             fi;
         else:
             forsuffixes lN=linesList:
                 lineShift.lN := s;
                 draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
-                if (textLabels):
+                if (textLabels and not bigPictureMode):
                     draw byLabelsOnPolygon(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1, s);
                 fi;
             endfor;
@@ -452,14 +469,15 @@ begingroup
         q3 := (dir(lineAngle.lineName - 90) scaled (1/2lineWidth*lineShift.lineName));
         draw (q1--q2) shifted q3 withpen pencircle scaled lineWidthThin withcolor markColor.lineName;
     );
-    p
+    p rotated globalRotation
 endgroup
 enddef;
 
 vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
 begingroup
-    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j;
+    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, globalRotation;
     numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j;
+    globalRotation := 0;
     string lineNames[], endNames[];
     pair a, b;
     i := 0;
@@ -512,7 +530,7 @@ begingroup
             fi;
             j := j + 1;
         endfor;
-        if (textLabels):
+        if (textLabels and not bigPictureMode):
             draw byTextLabel(endNames[0], (0, 0), 90, textLabelShift);
             draw byTextLabel(endNames[1], b, 90, textLabelShift);
         fi;
@@ -524,7 +542,7 @@ enddef;
 % Arcs and circles
 %
 
-vardef byArcRender(expr o, r, b, e, col, dp, th, s, et) =
+vardef byArcRender(expr o, b, e, r, col, dp, th, s, et) =
 save p, q, m, t, currentLineWidth;
 path p[];
 picture q;
@@ -561,14 +579,15 @@ begingroup
         fi;
         clip q to p4;
         draw q;
-    )
+    ) rotated globalRotation
 endgroup
 enddef;
 
-vardef byArc (expr o, r, b, e, col, dp, th, s, et) (suffix arcName) =
+vardef byArcDefine (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
 color arcColor.arcName;
 pair arcCenter.arcName;
 numeric arcDiameter.arcName, arcShift.arcName, arcDashed.arcName, arcBegin.arcName, arcEnd.arcName, arcAngle.arcName, arcThin.arcName, arcEndType.arcName;
+string arcCenterName.arcName, arcBName.arcName, arcEName.arcName;
 begingroup
     arcColor.arcName := col;
     arcDashed.arcName := dp;
@@ -576,10 +595,35 @@ begingroup
     arcShift.arcName := s;
     arcDiameter.arcName := 2r;
     arcCenter.arcName := o;
+    arcCenterName.arcName := str o;
+    arcBName.arcName := "";
+    arcEName.arcName := "";
     arcBegin.arcName := b;
     arcEnd.arcName := e;
     arcEndType.arcName := et;
     arcAngle.arcName := angle((point b of fullcircle) - (point e of fullcircle));
+endgroup
+enddef;
+
+vardef byArcBE (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
+begingroup
+    byArcDefine(o, b, e, r, col, dp, th, s, et) (arcName);
+    byNamedArcExact(arcName)
+endgroup
+enddef;
+
+vardef byArc (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcName) =
+begingroup
+    save b, e;
+    numeric b, e;
+    b := xpart(((fullcircle scaled 2r) shifted o) intersectiontimes (o -- 2[o, pb]));
+    e := xpart(((fullcircle scaled 2r) shifted o) intersectiontimes (o -- 2[o, pe]));
+    if (b > e):
+        b := b - 8;
+    fi;
+    byArcDefine(o, b, e, r, col, dp, th, s, et)(arcName);
+    arcBName.arcName := str pb;
+    arcEName.arcName := str pe;
     byNamedArcExact(arcName)
 endgroup
 enddef;
@@ -587,8 +631,8 @@ enddef;
 vardef byNamedArcExact(text arcslist) =
 begingroup
     image(
-        forsuffixes pN=arcslist:
-            draw byArcRender(arcCenter.pN, arcDiameter.pN, arcBegin.pN, arcEnd.pN, arcColor.pN, arcDashed.pN, arcThin.pN, arcShift.pN, arcEndType.pN);
+        forsuffixes aN=arcslist:
+            draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, arcShift.aN, arcEndType.aN);
         endfor;
     )
 endgroup
@@ -596,10 +640,41 @@ enddef;
 
 vardef byNamedArc(text arcslist) =
 begingroup
+    save pointsListB, pointsListE, pointsListO, i, j, allArcsDefined;
+    string pointsListB[], pointsListE[], pointsListO[];
+    numeric i, j;
+    boolean allArcsDefined;
     image(
-        forsuffixes pN=arcslist:
-            draw byArcRender(arcCenter.pN, arcDiameter.pN, arcBegin.pN, arcEnd.pN, arcColor.pN, arcDashed.pN, arcThin.pN, 0, 0);
+        i := -1;
+        allArcsDefined := true;
+        forsuffixes aN=arcslist:
+            draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, 0, 0);
+            i := i + 1;
+            pointsListB[i] := arcBName.aN;
+            pointsListE[i] := arcEName.aN;
+            pointsListO[i] := arcCenterName.aN;
+            if (arcBName.aN == "") or (arcEName.aN == ""):
+                allArcsDefined := false;
+            fi;
         endfor;
+        if (textLabels and not bigPictureMode) and allArcsDefined:
+            for j := 0 step 1 until i:
+                if (pointsListB[j] <> pointsListE[cycleval(j-1, i+1)]):
+                    draw byTextLabel(
+                        pointsListB[j],
+                        scantokens(pointsListB[j]),
+                        angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
+                        1);
+                fi;
+                if (pointsListE[j] <> pointsListB[cycleval(j+1, i+1)]):
+                    draw byTextLabel(
+                        pointsListE[j],
+                        scantokens(pointsListE[j]),
+                        angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
+                        1);
+                fi;
+            endfor;
+        fi;
     )
 endgroup
 enddef;
@@ -631,7 +706,7 @@ begingroup
     path p;
     image(
         forsuffixes cN=circlesList:
-            draw byArcRender (circleCenter.cN, circleDiameter.cN, 0, 8, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
+            draw byArcRender (circleCenter.cN, 0, 8, circleDiameter.cN, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
         endfor;
     )
 endgroup
@@ -669,7 +744,7 @@ begingroup
             p := (arbitraryFigurePath.pN scaled scaleFactor);
             draw p withpen pencircle scaled lineThickness(arbitraryFigureThin.pN) withcolor arbitraryFigureColor.pN if (arbitraryFigureDashed.pN > 0): dashed byDashPattern(arclength(p), arbitraryFigureDashed.pN) fi;
         endfor;
-    )
+    ) rotated globalRotation
 endgroup
 enddef;
 
@@ -699,7 +774,7 @@ begingroup
         forsuffixes csN=filledCircleSegmentList:
             fill ((subpath (filledCircleSegmentBegin.csN, filledCircleSegmentEnd.csN) of fullcircle)--cycle) scaled (filledCircleSegmentDiameter.csN*scaleFactor) shifted (filledCircleSegmentCenter.csN*scaleFactor) withcolor filledCircleSegmentColor.csN;
         endfor;
-    )
+    ) rotated globalRotation
 endgroup
 enddef;
 
@@ -725,7 +800,7 @@ begingroup
         forsuffixes csN=filledCircleSectorList:
             fill ((subpath (filledCircleSectorBegin.csN, filledCircleSectorEnd.csN) of fullcircle)-- (0, 0) -- cycle) scaled (filledCircleSectorDiameter.csN*scaleFactor) shifted (filledCircleSectorCenter.csN*scaleFactor) withcolor filledCircleSectorColor.csN;
         endfor;
-    )
+    ) rotated globalRotation
 endgroup
 enddef;
 
@@ -767,14 +842,16 @@ enddef;
 vardef byNamedPolygon(text polygonsList) =
 begingroup
     image(
-        forsuffixes pN=polygonsList:
-            if (polygonColor.pN <> white):
-                fill (polygonPath.pN scaled scaleFactor) withcolor polygonColor.pN;
-            else:
-                draw (polygonPath.pN scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
-            fi;
-        endfor;
-        if (textLabels):
+        draw image(
+            forsuffixes pN=polygonsList:
+                if (polygonColor.pN <> white):
+                    fill (polygonPath.pN scaled scaleFactor) withcolor polygonColor.pN;
+                else:
+                    draw (polygonPath.pN scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
+                fi;
+            endfor;
+            ) rotated globalRotation;
+        if (textLabels and not bigPictureMode):
             draw byLabelsOnPolygon(scantokens byMergePolygons(polygonsList))(1, 1);
         fi;
     )
@@ -834,7 +911,6 @@ begingroup
                     postList0 := postList0 & ", " & str i;
                 fi;
             endfor;
-            show mergedList;
             if (not beforeJoin):
                 mergedList := preList0 & postList1 & preList1 & postList0;
                 mergedList := substring (2, length(mergedList)) of mergedList;
@@ -979,7 +1055,7 @@ begingroup
                 fi;
             );
             clip q to ((0, 0)--p1--cycle);
-            draw q shifted (angleCenter.aN scaled scaleFactor);
+            draw (q shifted (angleCenter.aN scaled scaleFactor)) rotated globalRotation;
         endfor;
     )
 endgroup
@@ -1101,8 +1177,8 @@ begingroup
     );
     clip outputImage to compoundAnglePath;
     image(
-        draw outputImage;
-        if (textLabels) and (j==2):
+        draw outputImage rotated globalRotation;
+        if (textLabels and not bigPictureMode) and (j==2):
             for i=1,2:
                 draw byTextLabel(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
             endfor;
@@ -1326,9 +1402,9 @@ begingroup
     labelItself := textext(t) scaled 1/2;
     labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
     bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
-    labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180)*1cm)));
+    labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
     image(
-        draw labelItself shifted (p scaled scaleFactor) shifted (dir(a)*d);
+        draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
     )
 endgroup
 enddef;

@@ -29,8 +29,10 @@
 	\defineMPinstance[\currentInstance]\ignorespaces
 	\startreusableMPgraphic{\currentInstance::currentPicture}
 		input byrne;
+		bigPictureMode := true;
 		scaleFactor := \sfB;
 			#3
+		bigPictureMode := false;
 		scaleFactor := \sfA;
 	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}\global\addToUndefineList{#2}\ignorespaces}
 

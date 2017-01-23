@@ -566,8 +566,8 @@ A diameter of a circle is a straight line drawn through the centre, terminated b
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byblue, 0, 0);
-		draw byArc(O, r, 0, 4, byyellow, 0, 0, 0, 0)(O);
-		draw byArc(O, r, 4, 8, byyellow, 1, 0, 0, 0)(O);
+		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0)(O);
+		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0)(O);
 }
 \startDefinitionOnlyNumber[reference=def:XVIII]
 \drawCurrentPictureInMargin[inside]
@@ -586,8 +586,8 @@ A semicircle is the figure contained by the diameter, and the part of the circle
 	A := point 1 of P;
 	B := point 3 of P;
 		draw byLine(A, B)(byred, 0, 0);
-		draw byArc(O, r, 1, 3, byblue, 0, 0, 0, 0)(O);
-		draw byArc(O, r, 3, 9, byblue, 1, 0, 0, 0)(O);
+		draw byArc(O, A, B)(r, byblue, 0, 0, 0, 0)(O);
+		draw byArc(O, B, A)(r, byblue, 1, 0, 0, 0)(O);
 }
 \startDefinitionOnlyNumber[reference=def:XIX]
 \drawCurrentPictureInMargin[inside]
@@ -1217,7 +1217,9 @@ draw byCircle(B, r2, byblue, 0, 0, -1/2)(B);
 \startCenterAlign
 Draw \drawUnitLine{AB} \inpost[post:I], describe \drawFromCurrentPicture[bottom]{
 startTempScale(scaleFactor*3);
-draw byNamedLineSeq(0)(AB,BD,DA) rotated (180-lineAngle.AB);
+startGlobalRotation(180-lineAngle.AB);
+draw byNamedLineSeq(0)(AB,BD,DA);
+stopGlobalRotation;
 stopTempScale;
 } \inprop[prop:I.I],\\
 produce \drawUnitLine{DA} \inpost[post:II],\\
@@ -1488,10 +1490,16 @@ draw byNamedLineSeq(0)(FD,EF,DE);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other ($\drawUnitLine{CA} = \drawUnitLine{FD}$ and $\drawUnitLine{AB} = \drawUnitLine{DE}$) and also their bases ($\drawUnitLine{BC} = \drawUnitLine{EF}$), equal; then the angles
 (\drawFromCurrentPicture{
-draw byNamedAngle(A) rotated -angleDirection.A;
+startGlobalRotation(-angleDirection.A);
+draw byNamedAngle(A);
+draw byNamedAngleDummySides(A);
+stopGlobalRotation;
 } and
 \drawFromCurrentPicture{
-draw byNamedAngle(D) rotated -angleDirection.D;
+startGlobalRotation(-angleDirection.D);
+draw byNamedAngle(D);
+draw byNamedAngleDummySides(D);
+stopGlobalRotation;
 }) contained by their equal sides are also equal.}
 
 If the equal bases \drawUnitLine{BC} and \drawUnitLine{EF} be conceived to be placed one upon the other, so that the triangles shall lie at the same side of them, and that equal sides \drawUnitLine{AB} and \drawUnitLine{DE}, \drawUnitLine{CA} and \drawUnitLine{FD} be conterminous, the vertex of the one must fall on the vertex of the other; for to suppose them not coincident would contradict the last proposition.
@@ -1629,7 +1637,7 @@ C := B xscaled -1;
 D := 1/2[B, C];
 E := 4/3[D, B];
 F := 4/3[D, C];
-r := arclength(A--B);
+r := abs(A-B);
 c := fullcircle scaled 2r shifted A;
 a1 := xpart(c intersectiontimes (F--1/2[B, C]));
 a2 := xpart(c intersectiontimes (E--1/2[B, C]));
@@ -1639,9 +1647,9 @@ draw byLine(A, D, byred, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,CA);
-draw byArc(A, r, a1, a2, byred, 0, 0, 0, 0)(O);
-draw byArc(A, r, a2-1/4, a2, byred, 1, 0, 0, 0)(Ol);
-draw byArc(A, r, a1, a1+1/4, byred, 1, 0, 0, 0)(Or);
+draw byArc(A, B, C)(r, byred, 0, 0, 0, 0)(O);
+draw byArcBE(A, a2-1/4, a2, r, byred, 1, 0, 0, 0)(Ol);
+draw byArcBE(A, a1, a1+1/4, r, byred, 1, 0, 0, 0)(Or);
 draw byLine(D, B, black, 0, 0);
 draw byLine(B, E, black, 1, 0);
 draw byLine(C, D, byyellow, 0, 0);
@@ -3819,12 +3827,20 @@ $\drawPolygon[bottom]{CLKA} = \drawPolygon[bottom]{DCLH,BDHM}$ \inprop[prop:I.XX
 
 $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH}$ \inprop[prop:I.XLIII]
 
-$\therefore \mbox{\inax[ax:II] } \drawPolygon[bottom]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture[bottom]{draw byNamedPolygon(DCLH,CLKA) rotated 90;} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
+$\therefore \mbox{\inax[ax:II] } \drawPolygon[bottom]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture[bottom]{
+startGlobalRotation(90);
+draw byNamedPolygon(DCLH,CLKA);
+stopGlobalRotation;
+} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
 
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
 and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (const.)
 
-$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawFromCurrentPicture[bottom]{draw byNamedPolygon(DCLH,CLKA,HLEG) rotated 90;}$
+$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawFromCurrentPicture[bottom]{
+startGlobalRotation(90);
+draw byNamedPolygon(DCLH,CLKA,HLEG);
+stopGlobalRotation;
+}$
 
 $\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$
 \stopCenterAlign
@@ -4353,7 +4369,7 @@ byLineDefine(F, E, black, 1, 0);
 byLineDefine(E, G, byblue, 1, 0);
 byLineDefine(G, B, black, 0, 0);
 draw byNamedLineSeq(-1)(FE,EG,GB,HB,HF);
-draw byArc(G, r, 0, 4, byred, 0, 0, 0, 0)(G);
+draw byArc(G, B, F, r, byred, 0, 0, 0, 0)(G);
 byLineDefine(B, F, black, 0, 0);
 }
 \drawCurrentPictureInMargin
@@ -4488,7 +4504,7 @@ A segment of a circle is the figure contained by a straight line and the part of
 	D := point e of fullcircle scaled 2r;
 	draw byAngleWithName(C, A, D, byblue, 0)(A);
 	draw byAngleWithName(C, B, D, byyellow, 0)(B);
-	draw byArc(O, r, b, e, black, 0, 0, 0, 0)(O);
+	draw byArcBE(O, b, e, r, black, 0, 0, 0, 0)(O);
 	draw byLine(C, A, black, 0, 0);
 	draw byLine(C, B, black, 0, 0);
 	draw byLine(D, A, black, 0, 0);
@@ -4510,8 +4526,8 @@ A segment of a circle is the figure contained by a straight line and the part of
 	B := point b of fullcircle scaled 2r;
 	C := point e of fullcircle scaled 2r;
 	draw byAngleWithName(C, A, B, byblue, 0)(A);
-	draw byArc(O, r, b, e, black, 1, 0, 0, 0)(Op);
-	draw byArc(O, r, e, b + 8, black, 0, 0, 0, 0)(Om);
+	draw byArcBE(O, b, e, r, black, 1, 0, 0, 0)(Op);
+	draw byArcBE(O, e, b + 8, r, black, 0, 0, 0, 0)(Om);
 	draw byLine(C, A, black, 0, 0);
 	draw byLine(B, A, black, 0, 0);
 }\drawCurrentPictureInMargin
@@ -4527,7 +4543,7 @@ An angle is said to stand on the part of the circumference, or the arch, interce
 	e := 3;
 	O := (0, 0);
 	draw byFilledCircleSector(O, r, b, e, byyellow)(O);
-	draw byArc(O, r, e, b + 8, black, 0, 0, -1, 0)(O);
+	draw byArcBE(O, e, b + 8, r, black, 0, 0, -1, 0)(O);
 }\drawCurrentPictureInMargin
 A sector of a circle is the figure contained by two radii and the arch between them.
 \stopDefinitionOnlyNumber
@@ -4550,8 +4566,8 @@ A sector of a circle is the figure contained by two radii and the arch between t
 	F := (point e of fullcircle scaled 2r2) shifted N;
 	draw byPolygon(A,B,C)(byred);
 	draw byPolygon(D,E,F)(byred);
-	draw byArc(M, r1, b, e, black, 0, 0, 0, 1)(M);
-	draw byArc(N, r2, b, e, black, 0, 0, 0, 1)(N);
+	draw byArcBE(M, b, e, r1, black, 0, 0, 0, 1)(M);
+	draw byArcBE(N, b, e, r2, black, 0, 0, 0, 1)(N);
 }\drawCurrentPictureInMargin
 Similar segments of circles are those, which contain equal angles.
 \stopDefinitionOnlyNumber
@@ -4772,10 +4788,10 @@ byLineDefine(C, E, byyellow, 0, 0);
 byLineDefine(E, F, black, 0, 0);
 byLineDefine(F, G, black, 1, 0);
 draw byNamedLineSeq(0)(CE,EF,FG);
-draw byArc(M, r1, 4, 0, byred, 0, 0, 0, 0)(Ma);
-draw byArc(N, r2, 4, 0, byblue, 0, 0, 0, 0)(Na);
-draw byArc(N, r2, 4, 8, byblue, 0, 0, 0, 0)(Nb);
-draw byArc(M, r1, 4, 8, byred, 0, 0, 0, 0)(Mb);
+draw byArcBE(M, 4, 0, r1, byred, 0, 0, 0, 0)(Ma);
+draw byArcBE(N, 4, 0, r2, byblue, 0, 0, 0, 0)(Na);
+draw byArcBE(N, 4, 8, r2, byblue, 0, 0, 0, 0)(Nb);
+draw byArcBE(M, 4, 8, r1, byred, 0, 0, 0, 0)(Mb);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles intersect \drawArc{Ma,Na,Nb,Mb} they have not the same centre.}
@@ -5310,10 +5326,10 @@ C := point t4 of cr3;
 draw byLine(A, C, byred, 0, 0);
 draw byMarkLine(3/7, black)(AC);
 draw byMarkLine(4/7, black)(AC);
-draw byArc(P, r1, t3, t4, byblue, 0, 0, 0, 0)(PI);
-draw byArc(P, r1, t4, t3 + 8, black, 0, 0, 0, 0)(PII);
-draw byArc(Q, r1, t5, t6 + 8, byblue, 0, 0, 0, 0)(QI);
-draw byArc(Q, r1, t5, t6, black, 0, 0, 0, 0)(QII);
+draw byArcBE(P, t3, t4, r1, byblue, 0, 0, 0, 0)(PI);
+draw byArcBE(P, t4, t3 + 8, r1, black, 0, 0, 0, 0)(PII);
+draw byArcBE(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0)(QI);
+draw byArcBE(Q, t5, t6, r1, black, 0, 0, 0, 0)(QII);
 }
 
 
@@ -6009,8 +6025,8 @@ draw byLineFull(A, D, byred, 0, 0)(B, D, 1, 0, 0);
 draw byLineFull(B, C, byblue, 0, 0)(A, C, 1, 0, 0);
 draw byLineFull(B, D, byyellow, 0, 0)(A, D, 1, 0, 0);
 draw byLineFull(A, B, black, 0, 0)(A, B, 0, 0, 1);
-draw byArc(M, r1, t1-8, t2, byred, 0, 0, 0, 1)(M);
-draw byArc(N, r2, t3-8, t4, byblue, 0, 0, 0, 1)(N);
+draw byArc(M, A, B, r1, byred, 0, 0, 0, 1)(M);
+draw byArc(N, A, B, r2, byblue, 0, 0, 0, 1)(N);
 }
 \drawCurrentPictureInMargin
 \problemNP{U}{pon}{the same straight line, and upon the same side of it, two similar segments of circles cannot be constructed, which do not coincide.}
@@ -6063,10 +6079,10 @@ C := point length(cr2) of cr2;
 D := point 0 of cr2;
 draw byFilledCircleSegment (M, r, t1, t2, byred)(M);
 draw byLineFull(A, B, black, 0, 0)(A, B, 0, 0, -1);
-draw byArc(M, r, t1, t2, byblue, 0, 0, 1/2, 1)(M);
+draw byArc(M, B, A, r, byblue, 0, 0, 1/2, 1)(M);
 draw byFilledCircleSegment (N, r, t1, t2, byyellow)(N);
 draw byLineFull(C, D, byblue, 0, 0)(C, D, 0, 0, -1);
-draw byArc(N, r, t1, t2, byred, 0, 0, 1/2, 1)(N);
+draw byArc(N, D, C, r, byred, 0, 0, 1/2, 1)(N);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{imilar}{segments
@@ -6117,7 +6133,7 @@ byLineDefine(E, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(DF,EF);
 draw byLine(A, B, black, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
-draw byArc(O, r, -6/5, 5, byblue, 0, 0, 1/2, 0)(O);
+draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{segment}{of a circle being given, to describe the circle of which it is the segment.}
@@ -6164,8 +6180,8 @@ draw byLine(A, C, black, 0, 1);
 byLineDefine(B, G, byblue, 0, 0);
 byLineDefine(C, G, byred, 0, 0);
 draw byNamedLineSeq(0)(BG,CG);
-draw byArc(G, r, t1 + 8, t2, byblue, 0, 0, 0, 0)(G);
-draw byArc(G, r, t1, t2, black, 0, 0, 0, 0)(Gb);
+draw byArc(G, C, B, r, byblue, 0, 0, 0, 0)(G);
+draw byArc(G, B, C, r, black, 0, 0, 0, 0)(Gb);
 byCircleDefine(G, r, byblue, 0, 0, 0)(G);
 draw byAngleWithName(E, D, F, byblue, 0)(D);
 draw byAngleWithName(E, H, F, black, 0)(H);
@@ -6176,8 +6192,8 @@ draw byLine(D, F, black, 0, 1);
 byLineDefine(E, H, byblue, 1, 0);
 byLineDefine(F, H, byred, 1, 0);
 draw byNamedLineSeq(0)(EH,FH);
-draw byArc(H, r, t1 + 8, t2, byred, 0, 0, 0, 0)(H);
-draw byArc(H, r, t1, t2, black, 0, 0, 0, 0)(Hb);
+draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
+draw byArc(H, E, F, r, black, 0, 0, 0, 0)(Hb);
 byCircleDefine(H, r, byred, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
@@ -6265,9 +6281,9 @@ byLineDefine(G, B, black, 0, 1);
 byLineDefine(G, C, black, 0, 1);
 draw byNamedLineSeq(0)(GB,GC);
 draw byLine(G, K, black, 0, 1);
-draw byArc(G, r, t1 + 8, t2, byred, 0, 0, 0, 0)(G);
-draw byArc(G, r, t3, t1, black, 0, 0, 0, 0)(GbI);
-draw byArc(G, r, t2, t3, byred, 1, 0, 0, 0)(GbII);
+draw byArc(G, C, B, r, byred, 0, 0, 0, 0)(G);
+draw byArc(G, B, K, r, black, 0, 0, 0, 0)(GbI);
+draw byArc(G, K, C, r, byred, 1, 0, 0, 0)(GbII);
 byCircleDefine(G, r, byred, 0, 0, 0)(G);
 draw byAngleWithName(E, D, F, byred, 0)(D);
 draw byAngleWithName(E, H, F, byred, 0)(H);
@@ -6276,8 +6292,8 @@ draw byLine(D, E, black, 0, 1);
 byLineDefine(H, E, black, 0, 1);
 byLineDefine(H, F, black, 0, 1);
 draw byNamedLineSeq(0)(HE,HF);
-draw byArc(H, r, t1 + 8, t3, byblue, 0, 0, 0, 0)(H);
-draw byArc(H, r, t1, t3, black, 1, 0, 0, 0)(Hb);
+draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
+draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
 byCircleDefine(H, r, byblue, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
@@ -6323,16 +6339,16 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, K, black, 0, 0);
 byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
-draw byArc(K, r, t1 + 8, t2, byyellow, 0, 0, 0, 0)(K);
-draw byArc(K, r, t1, t2, byblue, 0, 0, 0, 0)(Kb);
+draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
+draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
 byCircleDefine(K, r, byyellow, 0, 0, 0)(K);
 draw byAngleWithName(D, L, E, byyellow, 0)(L);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, black, 1, 0);
 byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
-draw byArc(L, r, t1 + 8, t2, black, 0, 0, 0, 0)(L);
-draw byArc(L, r, t1, t2, byred, 0, 0, 0, 0)(Lb);
+draw byArc(L, E, D, r, black, 0, 0, 0, 0)(L);
+draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
 byCircleDefine(L, r, black, 0, 0, 0)(L);
 }
 \drawCurrentPictureInMargin
@@ -6378,16 +6394,16 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, K, black, 0, 0);
 byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
-draw byArc(K, r, t1 + 8, t2, byyellow, 0, 0, 0, 0)(K);
-draw byArc(K, r, t1, t2, byblue, 0, 0, 0, 0)(Kb);
+draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
+draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
 byCircleDefine(K, r, byyellow, 0, 0, 0)(K);
 draw byAngleWithName(D, L, E, byyellow, 0)(L);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, black, 1, 0);
 byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
-draw byArc(L, r, t1 + 8, t2, black, 0, 0, 0, 0)(L);
-draw byArc(L, r, t1, t2, byred, 0, 0, 0, 0)(Lb);
+draw byArc(L, E, D, r, black, 0, 0, 0, 0)(L);
+draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
 byCircleDefine(L, r, black, 0, 0, 0)(L);
 }
 \drawCurrentPictureInMargin
@@ -6433,8 +6449,8 @@ draw byLine(D, C, byyellow, 0, 0);
 draw byLine(D, B, byblue, 1, 0);
 draw byLine(A, C, black, 0, 0);
 draw byLine(C, B, black, 1, 0);
-draw byArc(E, r, t1, t3, byred, 1, 0, 0, 0)(Er);
-draw byArc(E, r, t3, t2, byred, 0, 0, 0, 0)(El);
+draw byArc(E, B, D, r, byred, 1, 0, 0, 0)(Er);
+draw byArc(E, D, A, r, byred, 0, 0, 0, 0)(El);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{bisect a given arc \drawArc[middle][1/5]{El,Er}.}
@@ -6452,9 +6468,17 @@ and $\drawAngle{ACD} = \drawAngle{DCB}$ (const.)
 
 $\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
 $
-\drawFromCurrentPicture{draw byNamedArc(El) rotated - arcAngle.El;}
+\drawFromCurrentPicture{
+startGlobalRotation(-arcAngle.El);
+draw byNamedArc(El);
+stopGlobalRotation;
+}
 =
-\drawFromCurrentPicture{draw byNamedArc(Er) rotated - arcAngle.Er;}
+\drawFromCurrentPicture{
+startGlobalRotation(-arcAngle.Er);
+draw byNamedArc(Er);
+stopGlobalRotation;
+}
 $ \inprop[prop:III.XXVII],\\
 and therefore the given arc is bisected.
 \stopCenterAlign
@@ -10593,7 +10617,9 @@ Then, because $\drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \d
 and for a like reason $\drawUnitLine{EC} \parallel \drawUnitLine{AB,AF}$,\\
 $\therefore$
 \drawFromCurrentPicture[bottom][polygonACDF]{
-draw byNamedLineSeq(0)(CA,AF,DF,CD) rotated (-lineAngle.CD);
+startGlobalRotation(-lineAngle.CD);
+draw byNamedLineSeq(0)(CA,AF,DF,CD);
+stopGlobalRotation;
 }
 is a parallelogram.
 
@@ -11065,7 +11091,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(C, D, byyellow, 1, 0);
 draw byNamedLineSeq(-1)(AB,BC,CD,AD);
-draw byArc(O, r, 0, 4, byred, 0, 0, 0, 0)(O);
+draw byArc(O, C, A, r, byred, 0, 0, 0, 0)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{find a mean proportional between two given straight lines $\left\{\vcenter{
@@ -11757,11 +11783,15 @@ which are about the diagonal are similar to the whole, and to each other.}
 As \parallelogramABCD\ and \parallelogramAEFG\ have a common angle they are equiangular;\\
 but because $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\
 \drawFromCurrentPicture[bottom]{
-draw byNamedPolygon(AGF) rotated (180-angle(A-C));
+startGlobalRotation(180-angle(A-C));
+draw byNamedPolygon(AGF);
+stopGlobalRotation;
 }
 and
 \drawFromCurrentPicture[bottom]{
-draw byNamedPolygon(GFKD,AGF,FCK) rotated (180-angle(A-C));
+startGlobalRotation(180-angle(A-C));
+draw byNamedPolygon(GFKD,AGF,FCK);
+stopGlobalRotation;
 }
 are similar \inprop[prop:VI.IV],\\
 $\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{GA,DG} : \drawUnitLine{DK,KC}$;
@@ -11911,7 +11941,9 @@ have a common angle, they are about the same diagonal.}
 \startCenterAlign
 For, if possible, let
 \drawFromCurrentPicture[bottom][lineAHC]{
-draw byNamedArbitraryFigure(AHC) rotated (180-angle(A-C));
+startGlobalRotation(180-angle(A-C));
+draw byNamedArbitraryFigure(AHC);
+stopGlobalRotation;
 }
 be the diagonal of \parallelogramABCD\ and draw $\drawUnitLine{KH} \parallel \drawUnitLine{AG}$ \inprop[prop:I.XXXI].
 
@@ -11986,7 +12018,7 @@ draw byNamedLineSeq(0)(CF,DC,DE);
 draw byLine(A, E, byred, 1, 0);
 draw byLine(E, C, byblue, 0, 0);
 draw byLine(C, B, byblue, 1, 0);
-draw byArc(D, r, -1/2, -4 + 1/2, byred, 0, 0, 0, 0)(a);
+draw byArcBE(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0)(a);
 d := (0, 2u);
 G := A shifted d;
 H := C shifted d;
@@ -12043,7 +12075,7 @@ draw byLineFull(E, A, byyellow, 1, 0)(E, A, 0, 0, -1);
 draw byLineFull(A, C, byblue, 0, 0)(A, C, 0, 0, -1);
 draw byLineFull(C, B, byblue, 1, 0)(C, B, 0, 0, -1);
 draw byLineFull(B, F, byyellow, 0, 0)(B, F, 0, 0, -1);
-draw byArc(C, abs(C-D), 0, 4, byred, 0, 0, 0, 0)(a);
+draw byArcBE(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0)(a);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{produce a given straight line (\drawSizedLine{AC,CB}), so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i. e. equal to the square on \drawSizedLine{GH}.}
@@ -12161,14 +12193,20 @@ then $\drawProportionalLine{BD,DC} : \drawProportionalLine{CA} :: \drawProportio
 
 $\therefore
 \drawFromCurrentPicture[bottom][figBC]{
-draw byNamedPolygon(BC) rotated (180-angle(B-C));
+startGlobalRotation(-angle(B-C));
+draw byNamedPolygon(BC);
+stopGlobalRotation;
 } :
 \drawFromCurrentPicture[bottom][figCA]{
-draw byNamedPolygon(CA) rotated (180-angle(C-A));
+startGlobalRotation(-angle(C-A));
+draw byNamedPolygon(CA);
+stopGlobalRotation;
 } :: \drawProportionalLine{BD,DC} : \drawProportionalLine{DC}$ \inprop[prop:VI.XX].\\
 but $\figBC\ :
 \drawFromCurrentPicture[bottom][figAB]{
-draw byNamedPolygon(AB) rotated (180-angle(A-B));
+startGlobalRotation(-angle(A-B));
+draw byNamedPolygon(AB);
+stopGlobalRotation;
 } :: \drawProportionalLine{BD,DC} : \drawProportionalLine{BD}$ \inprop[prop:VI.XX].
 
 Hence $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BD,DC} :: \figAB\ + \figCA\ : \figBC$;\\
@@ -12273,10 +12311,10 @@ draw byLine(G, K, black, 0, 1);
 byLineDefine(G, B, black, 0, 1);
 byLineDefine(G, L, black, 0, 1);
 draw byNamedLineSeq(0)(GB,GL);
-draw byArc(G, r, (q*(ba + 3a1)) - 8, q*ba, byred, 0, 0, 0, 0)(LB);
-draw byArc(G, r, (q*(ba)), (q*(ba + a1)), black, 0, 0, 0, 0)(BC);
-draw byArc(G, r, (q*(ba + a1)), (q*(ba + 2a1)), byred, 0, 0, 0, 0)(CK);
-draw byArc(G, r, (q*(ba + 2a1)), (q*(ba + 3a1)), byblue, 0, 0, 0, 0)(KL);
+draw byArc(G, L, B, r, byred, 0, 0, 0, 0)(LB);
+draw byArc(G, B, C, r, black, 0, 0, 0, 0)(BC);
+draw byArc(G, C, K, r, byred, 0, 0, 0, 0)(CK);
+draw byArc(G, K, L, r, byblue, 0, 0, 0, 0)(KL);
 byCircleDefine(G, r, byred, 0, 0, 0)(G);
 H := (0, -1/2u - 2r);
 D := (dir(aa)*r) shifted H;
@@ -12295,38 +12333,54 @@ draw byLine(H, M, black, 0, 1);
 byLineDefine(H, E, black, 0, 1);
 byLineDefine(H, N, black, 0, 1);
 draw byNamedLineSeq(0)(HE,HN);
-draw byArc(H, r, (q*(ba + 3a2)) - 8, q*ba, byblue, 0, 0, 0, 0)(NE);
-draw byArc(H, r, (q*(ba)), (q*(ba + a2)), byyellow, 1, 0, 0, 0)(EF);
-draw byArc(H, r, (q*(ba + a2)), (q*(ba + 2a2)), byred, 1, 0, 0, 0)(FM);
-draw byArc(H, r, (q*(ba + 2a2)), (q*(ba + 3a2)), byblue, 1, 0, 0, 0)(MN);
+draw byArc(H, N, E, r, byblue, 0, 0, 0, 0)(NE);
+draw byArc(H, E, F, r, byyellow, 1, 0, 0, 0)(EF);
+draw byArc(H, F, M, r, byred, 1, 0, 0, 0)(FM);
+draw byArc(H, M, N, r, byblue, 1, 0, 0, 0)(MN);
 byCircleDefine(H, r, byblue, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equal circles (\drawCircle[middle][1/4]{G}, \drawCircle[middle][1/4]{H}), angles, whether at the centre or circumference, are in the same ratio to one another as the arcs on which they stand ($\drawAngle{BC} : \drawAngle{EF} ::
 \drawFromCurrentPicture[middle][arcBC]{
-draw byNamedArc(BC) rotated (180-angle(B-C));
+startGlobalRotation(180-angle(B-C));
+draw byNamedArc(BC);
+stopGlobalRotation;
 } : \drawFromCurrentPicture[middle][arcEF]{
-draw byNamedArc(EF) rotated (180-angle(E-F));
+startGlobalRotation(180-angle(E-F));
+draw byNamedArc(EF);
+stopGlobalRotation;
 }$); so also are sectors.}
 
 Take in te circumference of \circleG\ any number of arcs
 \drawFromCurrentPicture[middle][arcCK]{
-draw byNamedArc(CK) rotated (180-angle(C-K));
+startGlobalRotation(180-angle(C-K));
+draw byNamedArc(CK);
+stopGlobalRotation;
 },
 \drawFromCurrentPicture[middle][arcKL]{
-draw byNamedArc(KL) rotated (180-angle(K-L));
+startGlobalRotation(180-angle(K-L));
+draw byNamedArc(KL);
+stopGlobalRotation;
 }, \&c. each $= \arcBC$, and also in the circumference of \circleH\ take any number of arcs
 \drawFromCurrentPicture[middle][arcFM]{
-draw byNamedArc(FM) rotated (180-angle(F-M));
+startGlobalRotation(180-angle(F-M));
+draw byNamedArc(FM);
+stopGlobalRotation;
 },
 \drawFromCurrentPicture[middle][arcMN]{
-draw byNamedArc(MN) rotated (180-angle(M-N));
+startGlobalRotation(180-angle(M-N));
+draw byNamedArc(MN);
+stopGlobalRotation;
 }, \&c. each $= \arcEF$, draw the radii to the extremities of the equal arcs.
 
 The since the arcs \arcBC, \arcCK, \arcKL, \&c. are all equal, the angles \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, \&c. are also equal \inprop[prop:III.XXXVII]; $\therefore$ \drawAngle{BC,CK,KL} is the same multiple of \drawAngle{BC} which are \drawFromCurrentPicture[middle][arcBL]{
-draw byNamedArc(BC,CK,KL) rotated (180-angle(B-L));
+startGlobalRotation(180-angle(B-L));
+draw byNamedArc(BC,CK,KL);
+stopGlobalRotation;
 } is of \arcBC; and in the same manner \drawAngle{EF,FM,MN} is the same multiple of \drawAngle{EF}, which the arc\drawAngle{BC} which are \drawFromCurrentPicture[middle][arcEN]{
-draw byNamedArc(EF,FM,MN) rotated (180-angle(E-N));
+startGlobalRotation(180-angle(E-N));
+draw byNamedArc(EF,FM,MN);
+stopGlobalRotation;
 } is of arc \arcEF.
 
 

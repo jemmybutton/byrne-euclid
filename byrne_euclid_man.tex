@@ -176,14 +176,14 @@ Produces a horizontal line with colors and proportions of the given lines. Retur
 \stopsection
 
 \startsection[title={Arcs and circles}]
-\startsubsection[title={byArcRender(expr o, r, b, e, col, dp, th, s, et)}]
+\startsubsection[title={byArcRender(expr o, b, e, r, col, dp, th, s, et)}]
 All functions that make arcs and circles call this one in the end. Returns a picture of an arc with given properties.
 
 {\tt o} — of pair type, coordinates of arc center.
 
-{\tt r} — of numeric type, arc radius.
-
 {\tt b, e} — of numeric type, ends of an arc, in octants (well, not exactly, but fullcircle has length of eight and it's convenient to use arctime on fullcircle).
+
+{\tt r} — of numeric type, arc radius.
 
 {\tt col} — of color type, arc color
 
@@ -195,11 +195,21 @@ All functions that make arcs and circles call this one in the end. Returns a pic
 
 {\tt et} — of numeric type, type of arc ends, 0 for stumps, 1 for oblique
 \stopsubsection
-
-\startsubsection[title={byArc (expr o, r, b, e, col, dp, th, s, et) (suffix arcName)}]
+\startsubsection[title={byArcBE (expr o, b, e, r, col, dp, th, s, et) (suffix arcName)}]
 Defines a new arc with a given name. Returns a picture of that arc.
 
-{\tt o, r, b, e, col, dp, th, s, et} — same as {\tt byArcRender}.
+{\tt o, b, e, r, col, dp, th, s, et} — same as {\tt byArcRender}.
+
+{\tt arcName} — of suffix type, arc name.
+\stopsubsection
+\startsubsection[title={byArc (suffix o, b, e) (r, col, dp, th, s, et) (suffix arcName)}]
+Defines a new arc with a given name. Returns a picture of that arc.
+
+{\tt b} — of suffix type, point where arc begins.
+
+{\tt e} — of suffix type, point where arc ends.
+
+{\tt o, r, col, dp, th, s, et} — same as {\tt byArcRender}.
 
 {\tt arcName} — of suffix type, arc name.
 \stopsubsection
