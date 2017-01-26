@@ -533,7 +533,7 @@ A figure is a surface enclosed on all sides by a line or lines.
 		draw byLine(O, C)(byred, 0, 0);
 		draw byLine(O, E)(byyellow, 0, 0);
 		draw byLine(D, A)(byblue, 0, 0);
-		draw byCircle(O, r, byred, 0, 0, 0)(O);
+		draw byCircleR(O, r, byred, 0, 0, 0)(O);
 }
 \startDefinitionOnlyNumber[reference=def:XV]
 \drawCurrentPictureInMargin[inside]
@@ -556,7 +556,7 @@ This point (from which the equal lines are drawn) is called the centre of the ci
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byyellow, 0, 0);
-		draw byCircle(O, r, byred, 0, 0, 0)(O);
+		draw byCircleR(O, r, byred, 0, 0, 0)(O);
 }
 \startDefinitionOnlyNumber[reference=def:XVII]
 \drawCurrentPictureInMargin[inside]
@@ -1170,8 +1170,8 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
 		draw byNamedLineSeq(1)(AB,CA,BC);
-		draw byCircle(A, r, byblue, 0, 0, 1/2)(A);
-		draw byCircle(B, r, byred, 0, 0, 1/2)(B);
+		draw byCircle(A, B, byblue, 0, 0, 1/2)(A);
+		draw byCircle(B, A, byred, 0, 0, 1/2)(B);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{n}{a given finite straight line (\drawUnitLine{AB}) to describe an equilateral triangle.}
@@ -1215,8 +1215,8 @@ byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(AF,DA,BD,BE);
 draw byNamedLineSeq(0)(AB,BC);
-draw byCircle(D, r3, byred, 0, 0, 1/2)(A);
-draw byCircle(B, r2, byblue, 0, 0, -1/2)(B);
+draw byCircle(D, E, byred, 0, 0, 1/2)(A);
+draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{a given point (\drawUnitLine{DA,AF}) to draw a straight line equal to a given straight line (\drawUnitLine{BC}).}
@@ -1266,7 +1266,7 @@ byLineDefine(B, C, black, 1, 0);
 byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
-draw byCircle(A, r, byblue, 0, 0, 0)(A);
+draw byCircle(A, D, byblue, 0, 0, 0)(A);
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{the greater (\drawUnitLine{AB,BC}) of two given straight lines, to cut off a part equal to the less (\drawUnitLine{EF}).}
@@ -2057,7 +2057,7 @@ LIII := LI shifted (0, -d);
 LIV := LIII shifted (-r2, 0);
 LV := LIII shifted (0, -d);
 LVI := LV shifted (-r1, 0);
-draw byCircle(A, r1, byblue, 0, 0, 0)(A);
+draw byCircle(A, D, byblue, 0, 0, 0)(A);
 byLineDefine(A, D, byblue, 0, 0);
 byLineDefine(B, E, byred, 0, 0);
 byLineDefine(A, B, black, 0, 0);
@@ -2068,7 +2068,7 @@ draw byNamedLineSeq(0)(AD,AB,BE);
 draw byLineWithName (LI, LII, black, 1, 0)(Lu);
 draw byLineWithName (LIII, LIV, byred, 1, 0)(Ld);
 draw byLineWithName (LV, LVI, byblue, 1, 0)(Lt);
-draw byCircle(B, r2, byred, 0, 0, 0)(B);
+draw byCircle(B, E, byred, 0, 0, 0)(B);
 }
 \drawCurrentPictureInMargin
 \problemNP{G}{iven}{three right lines $\left\{\vcenter{
@@ -4435,7 +4435,7 @@ Equal circles are those whose diameters are equal.
 	O := (0, 0);
 	A := (-r, -r);
 	B := (r, -r);
-	draw byCircle(O, r, black, 0, 0, -1)(O);
+	draw byCircleR(O, r, black, 0, 0, -1)(O);
 	draw byLine(A, B, black, 0, 0);
 }\drawCurrentPictureInMargin
 A right line is said to touch a circle when it meets the circle, and being produced does not cut it.
@@ -4452,11 +4452,11 @@ A right line is said to touch a circle when it meets the circle, and being produ
 	B := A shifted (dir(110) scaled (r1-r2));
 	C := A shifted (dir(-130) scaled (r1+r3));
 	fill (fullcircle scaled 2r1) shifted A withcolor byyellow;
-	draw byCircle(A, r1, byyellow, 0, 0, 0)(A);
+	draw byCircleR(A, r1, byyellow, 0, 0, 0)(A);
 	fill (fullcircle scaled 2r2) shifted B withcolor byred;
-	draw byCircle(B, r2, black, 0, 0, -1/2)(B);
+	draw byCircleR(B, r2, black, 0, 0, -1/2)(B);
 	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
-	draw byCircle(C, r3, byblue, 0, 0, -1/2)(C);
+	draw byCircleR(C, r3, byblue, 0, 0, -1/2)(C);
 }\drawCurrentPictureInMargin
 Circles are said to touch one another which meet, but do not cur one another.
 \stopDefinitionOnlyNumber
@@ -4478,7 +4478,7 @@ Circles are said to touch one another which meet, but do not cur one another.
 	byLineDefine(O, E, byred, 0, 0);
 	byLineDefine(O, F, byblue, 0, 0);
 	draw byNamedLineSeq(0)(OE,OF);
-	draw byCircle(O, r, black, 0, 0, 0)(O);
+	draw byCircleR(O, r, black, 0, 0, 0)(O);
 }\drawCurrentPictureInMargin
 Right lines are said to be equally distant from the centre of a circle when the perpendiculars drawn to them from the centre are equal.
 \stopDefinitionOnlyNumber
@@ -4594,7 +4594,7 @@ Similar segments of circles are those, which contain equal angles.
 	O := (0, 0);
 	draw byFilledCircleSegment(O, r3, 0, 8, byred)(OI);
 	draw byFilledCircleSegment(O, r2, 0, 8, white)(OII);
-	draw byCircle(O, r2, black, 0, 0, 0)(OII);
+	draw byCircleR(O, r2, black, 0, 0, 0)(OII);
 	draw byFilledCircleSegment(O, r1, 0, 8, byblue)(OIII);
 }\drawCurrentPictureInMargin
 Circles which have the same centre are called \emph{concentric circles}.
@@ -4629,7 +4629,7 @@ draw byMarkLine(1/2, black)(EC);
 byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(B, G, black, 1, 0);
 draw byNamedLineSeq(0)(AG,BG);
-draw byCircle(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{find the centre of a given circle \drawCircle[middle][1/4]{F}.}
@@ -4662,7 +4662,7 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AD,BD);
-draw byCircle(D, r, byred, 0, 0, 0)(D);
+draw byCircle(D, F, byred, 0, 0, 0)(D);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{A}{straight}{line (\drawSizedLine{AB}) joining two points in the circumference of a circle \drawCircle[middle][1/4]{D}, lies wholly within the circle.}
@@ -4712,7 +4712,7 @@ draw byLine(F, B, byred, 1, 0);
 byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{EF}) drawn through the centre of a circle \drawCircle[middle][1/6]{E} bisect a chord (\drawUnitLine{AF,FB}) which does not pass through the centre, it is perpendicular to it; or, if perpendicular to it, it bisects it.}
@@ -4756,7 +4756,7 @@ draw byAngle(D, E, C, byyellow, 0);
 draw byLine(E, F, black, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, black, 0, 0);
-draw byCircle(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{in a circle two straight lines cut one another, which do not both pass through the centre, they do not bisect one another.}
@@ -4843,8 +4843,8 @@ byLineDefine(C, F, byyellow, 0, 0);
 byLineDefine(F, E, byblue, 1, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CF,FE,EB);
-draw byCircle(M, r1, byred, 0, 0, 0)(M);
-draw byCircle(N, r2, black, 0, 0, -1)(N);
+draw byCircle(M, C, byred, 0, 0, 0)(M);
+draw byCircle(N, C, black, 0, 0, -1)(N);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles \drawCircle{M,N} touch one another internally, they have not the same centre.}
@@ -4886,7 +4886,7 @@ draw byLine(E, B, byred, 1, 0);
 draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircle(E, B, byblue, 0, 0, 0)(E);
 byLineDefine(F, G, byred, 0, 0);
 byLineDefine(F, M, byblue, 0, 0);
 byLineDefine(M, K, byblue, 1, 0);
@@ -4928,7 +4928,7 @@ draw byLine(M, K, byblue, 1, 0);
 draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, D, black, 0, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircle(E, G, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -4974,7 +4974,7 @@ draw byLine(M, F, byblue, 1, 0);
 byLineDefine(D, M, black, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DM,DF);
-draw byCircle(M, r, black, 0, 0, 0)(M);
+draw byCircle(M, E, black, 0, 0, 0)(M);
 }
 \drawCurrentPictureInMargin
 If from a point without a circle, straight lines
@@ -5015,7 +5015,7 @@ draw byLine(K, M, byred, 0, 0);
 byLineDefine(D, G, black, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(DG,DH);
-draw byCircle(M, r, black, 0, 0, 0)(M);
+draw byCircle(M, G, black, 0, 0, 0)(M);
 }
 \drawCurrentPictureInMargin
 Of those lines falling on the convex circumference the least (\drawUnitLine{DG}) which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
@@ -5055,7 +5055,7 @@ byLineDefine(N, M, byyellow, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 byLineDefine(D, O, byred, 1, 0);
 draw byNamedLineSeq(0)(DH,DO,NM);
-draw byCircle(M, r, black, 0, 0, 0)(M);
+draw byCircle(M, H, black, 0, 0, 0)(M);
 }
 \drawCurrentPictureInMargin
 Also the lines making equal angles with that which passes through the centre are equal, whether falling on the concave or convex circumference; and no third line can be drawn equal to them from the same point to the circumference.
@@ -5101,7 +5101,7 @@ draw byLine(D, C, byblue, 0, 0);
 draw byLine(D, F, black, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
-draw byCircle(D, r, byblue, 0, 0, 0)(D);
+draw byCircle(D, A, byblue, 0, 0, 0)(D);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
@@ -5155,8 +5155,8 @@ byLineDefine(Pdd, Hd, byblue, 0, 0);
 draw byNamedLineSeq(0)(PddBd,PddHd);
 draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
 draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
-byCircleDefine(P, r, byred, 0, 0, 0)(PI);
-byCircleDefine(P, r, byblue, 0, 0, 0)(PII);
+byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
+byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{ne}{circle \drawCircle[middle][1/5]{PII} cannot intersect another \drawCircle[middle][1/5]{PI} in more points than two.}
@@ -5195,8 +5195,10 @@ draw byLine(H, D, byyellow, 0, 0);
 draw byLine(D, G, byyellow, 1, 0);
 draw byLine(G, F, black, 0, 0);
 draw byLine(F, K, byblue, 0, 0);
-draw byCircle(M, r1, black, 0, 0, 0)(M);
-draw byCircle(N, r2, byblue, 0, 0, -1)(N);
+byPointLabelDefine(M, "F");
+byPointLabelDefine(N, "G");
+draw byCircle(M, A, black, 0, 0, 0)(M);
+draw byCircle(N, A, byblue, 0, 0, -1)(N);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles \drawCircle[middle][1/4]{N} and \drawCircle[middle][1/5]{M} touch one another internally, the right line joining their centres, being produced, shall pass through a point of contact.}
@@ -5248,8 +5250,8 @@ byLineDefine(D, G, byblue, 0, 0);
 byLineDefine(A, F, byyellow, 1, 0);
 byLineDefine(A, G, byyellow, 0, 0);
 draw byNamedLineSeq(0)(FC,CD,DG,AG,AF);
-draw byCircle(M, r1, byblue, 0, 0, -1/2)(M);
-draw byCircle(N, r2, byred, 0, 0, -1/2)(N);
+draw byCircle(M, A, byblue, 0, 0, -1/2)(M);
+draw byCircle(N, A, byred, 0, 0, -1/2)(N);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circle \drawCircle{M} and \drawCircle{N} touch one another externally, the straight line \drawUnitLine{FC,CD,DG} joining their centres, passes through the point of contact.}
@@ -5294,10 +5296,10 @@ byLineDefine(D, H, byred, 0, 0);
 byLineDefine(B, G, byblue, 1, 0);
 byLineDefine(G, H, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,GH,DH);
-draw byCircle(M, r1, byyellow, 0, 0, 1)(M);
+draw byCircleR(M, r1, byyellow, 0, 0, 1)(M);
 draw byArbitraryFigure(cr2, byblue, 0, 0)(fI);
-byCircleDefine(M, r1, byyellow, 0, 0, 0)(M);
-byCircleDefine(N, r2, byblue, 0, 0, 0)(N);
+byCircleDefineR(M, r1, byyellow, 0, 0, 0)(M);
+byCircleDefineR(N, r2, byblue, 0, 0, 0)(N);
 }
 
 \startsubproposition[title={Figure I.}]\drawCurrentPictureInMargin
@@ -5370,8 +5372,8 @@ byLineDefine(Cd, T, black, 0, 0);
 draw byNamedLineSeq(0)(SAd,AdT,CdT,CdS);
 draw byArbitraryFigure(cr5, byyellow, 0, 0)(fII);
 draw byArbitraryFigure(cr6, byblue, 0, 0)(fIII);
-byCircleDefine(S, r1, byyellow, 0, 0, 0)(S);
-byCircleDefine(T, r2, byblue, 0, 0, 0)(T);
+byCircleDefineR(S, r1, byyellow, 0, 0, 0)(S);
+byCircleDefineR(T, r2, byblue, 0, 0, 0)(T);
 }
 \startsubproposition[title={Figure III.}]\drawCurrentPictureInMargin
 Next, if it be possible, let \drawCircle{S} and \drawCircle{T} touch externally in two points; draw \drawUnitLine{SAd,AdT} joining the centres of the circles, and passing through one of the points of contact, and draw \drawUnitLine{CdS} and \drawUnitLine{CdT}.
@@ -5414,7 +5416,7 @@ draw byLine(A, F, byred, 0, 0);
 draw byLine(F, B, byred, 1, 0);
 draw byLine(C, G, byyellow, 0, 0);
 draw byLine(G, D, byyellow, 1, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{straight lines
@@ -5481,7 +5483,7 @@ draw byLine(D, E, byred, 0, 0);
 draw byLine(E, A, black, 0, 0);
 draw byLine(F, G, byred, 1, 0);
 draw byLine(M, N, byblue, 0, 0);
-draw byCircle(E, r, black, 0, 0, 0)(E);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
@@ -5554,7 +5556,7 @@ draw byLine(F, G, byyellow, 0, 0);
 draw byLine(M, N, black, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byLine(D, A, black, 0, 0);
-draw byCircle(E, r, black, 0, 0, 0)(E);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 Let the given lines be \drawUnitLine{BC} and \drawUnitLine{FG} which either are at different sides of the centre, or intersect; from the centre draw \drawUnitLine{EL,LK} and $\drawUnitLine{EH} \perp \drawUnitLine{FG} \mbox{ and } \drawUnitLine{BC}$,
@@ -5601,7 +5603,7 @@ draw byLine(G, F, black, 1, 0);
 draw byLine(B, D, byyellow, 1, 0);
 draw byLine(D, A, black, 0, 0);
 draw byLineFull(E, K, byyellow, 0, 0)(B, D, 0, 0, -1);
-draw byCircle(D, r, byblue, 0, 0, 0)(D);
+draw byCircleR(D, r, byblue, 0, 0, 0)(D);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BD,DA} of the circle perpendicular to it falls without the circle\\
@@ -5669,8 +5671,8 @@ byLineDefine(D, E, byred, 1, 0);
 byLineDefine(F, B, black, 0, 0);
 byLineDefine(B, E, black, 1, 0);
 draw byNamedLineSeq(0)(AD,DE,BE,FB);
-draw byCircle(E, r1, byred, 0, 0, -1)(EI);
-draw byCircle(E, r2, byyellow, 0, 0, 0)(EII);
+draw byCircleR(E, r1, byred, 0, 0, -1)(EI);
+draw byCircleR(E, r2, byyellow, 0, 0, 0)(EII);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/5]{EI} from a given point, either in or outside of its circumference.}
@@ -5720,7 +5722,7 @@ C := (r, 0);
 G := (r, 6/5r);
 D := 6/5[C, G];
 B := (dir(angle(G-F))*r) shifted F;
-draw byCircle(F, r, byyellow, 0, 0, 0)(F);
+draw byCircleR(F, r, byyellow, 0, 0, 0)(F);
 draw byAngleWithName(F, C, G, byred, 0)(C);
 draw byAngleWithName(C, G, F, byyellow, 0)(G);
 byLineDefine(F, B, byred, 0, 0);
@@ -5764,7 +5766,7 @@ draw byAngle(F, C, E, byyellow, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(C, E, byblue, 0, 0);
 draw byLine(C, F, byred, 1, 0);
-draw byCircle(G, r, byred, 0, 0, 0)(G);
+draw byCircleR(G, r, byred, 0, 0, 0)(G);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawUnitLine{CE} be a tangent to a circle, the straight line \drawUnitLine{AC}, drawn perpendicular to it from point of the contact, passes through the centre of the circle.}
@@ -5801,7 +5803,7 @@ draw byLine(A, C, black, 0, 1);
 draw byLine(E, C, black, 0, 0);
 draw byLine(E, F, byred, 1, 0);
 draw byLine(E, A, byred, 0, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
@@ -5836,7 +5838,7 @@ draw byLine(E, C, black, 0, 1);
 draw byLine(A, B, black, 0, 1);
 draw byLine(E, B, black, 0, 1);
 draw byLine(A, F, black, 0, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -5873,7 +5875,7 @@ draw byLine(D, F, black, 0, 1);
 draw byLine(E, C, black, 0, 1);
 draw byLine(E, F, black, 0, 1);
 draw byLine(D, G, byred, 0, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure III.}]
@@ -5914,7 +5916,7 @@ draw byLine(B, A, black, 0, 1);
 draw byLine(B, E, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
 draw byLine(D, E, black, 0, 1);
-draw byCircle(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
 }\drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
 Let the segment be greater than a semicircle, and draw \drawUnitLine{DF} and \drawUnitLine{BF} to the centre.
@@ -5951,7 +5953,7 @@ draw byLine(B, A, black, 0, 1);
 draw byLine(B, E, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
 draw byLine(D, E, black, 0, 1);
-draw byCircle(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
 }\drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
 Let the segment be a semicircle, or less than a semicircle, draw \drawUnitLine{GA} the diameter, also draw \drawUnitLine{GE}.
@@ -5991,7 +5993,7 @@ draw byLine(C, D, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(B, D, black, 0, 0);
-draw byCircle(E, r, byred, 0, 0, 1/2)(E);
+draw byCircleR(E, r, byred, 0, 0, 1/2)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{opposite angles \drawAngle{DAC,CAB} and \drawAngle{BCA,ACD}, \drawAngle{CDB,BDA} and \drawAngle{ABD,DBC} of any quadrilateral figure inscribed in a circle, are together equal to two right angles.}
@@ -6194,7 +6196,7 @@ byLineDefine(C, G, byred, 0, 0);
 draw byNamedLineSeq(0)(BG,CG);
 draw byArc(G, C, B, r, byblue, 0, 0, 0, 0)(G);
 draw byArc(G, B, C, r, black, 0, 0, 0, 0)(Gb);
-byCircleDefine(G, r, byblue, 0, 0, 0)(G);
+byCircleDefineR(G, r, byblue, 0, 0, 0)(G);
 draw byAngleWithName(E, D, F, byblue, 0)(D);
 draw byAngleWithName(E, H, F, black, 0)(H);
 draw byFilledCircleSegment (H, r, t1, t2, byyellow)(H);
@@ -6206,7 +6208,7 @@ byLineDefine(F, H, byred, 1, 0);
 draw byNamedLineSeq(0)(EH,FH);
 draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
 draw byArc(H, E, F, r, black, 0, 0, 0, 0)(Hb);
-byCircleDefine(H, r, byred, 0, 0, 0)(H);
+byCircleDefineR(H, r, byred, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equal circles \drawCircle[middle][1/5]{G} and \drawCircle[middle][1/5]{H} the arcs \drawArc{Gb}, \drawArc{Hb} on which stand equal angles, whether at the centre of circumference, are equal.}
@@ -6296,7 +6298,7 @@ draw byLine(G, K, black, 0, 1);
 draw byArc(G, C, B, r, byred, 0, 0, 0, 0)(G);
 draw byArc(G, B, K, r, black, 0, 0, 0, 0)(GbI);
 draw byArc(G, K, C, r, byred, 1, 0, 0, 0)(GbII);
-byCircleDefine(G, r, byred, 0, 0, 0)(G);
+byCircleDefineR(G, r, byred, 0, 0, 0)(G);
 draw byAngleWithName(E, D, F, byred, 0)(D);
 draw byAngleWithName(E, H, F, byred, 0)(H);
 draw byLine(D, F, black, 0, 1);
@@ -6306,7 +6308,7 @@ byLineDefine(H, F, black, 0, 1);
 draw byNamedLineSeq(0)(HE,HF);
 draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
 draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
-byCircleDefine(H, r, byblue, 0, 0, 0)(H);
+byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{n}{equal circles \drawCircle[middle][1/3]{G} and \drawCircle[middle][1/3]{H} the angles \drawAngle{BAK} and \drawAngle{D} which stand upon equal arches are equal, whether they be at the centres or at circumferences.}
@@ -6353,7 +6355,7 @@ byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
 draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
 draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
-byCircleDefine(K, r, byyellow, 0, 0, 0)(K);
+byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
 draw byAngleWithName(D, L, E, byyellow, 0)(L);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, black, 1, 0);
@@ -6361,7 +6363,7 @@ byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
 draw byArc(L, E, D, r, black, 0, 0, 0, 0)(L);
 draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
-byCircleDefine(L, r, black, 0, 0, 0)(L);
+byCircleDefineR(L, r, black, 0, 0, 0)(L);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equal circles \drawCircle[middle][1/3]{K} and \drawCircle[middle][1/3]{L} equal chords \drawUnitLine{AB}, \drawUnitLine{DE} cut off equal arches.}
@@ -6408,7 +6410,7 @@ byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
 draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
 draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
-byCircleDefine(K, r, byyellow, 0, 0, 0)(K);
+byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
 draw byAngleWithName(D, L, E, byyellow, 0)(L);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, black, 1, 0);
@@ -6416,7 +6418,7 @@ byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
 draw byArc(L, E, D, r, black, 0, 0, 0, 0)(L);
 draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
-byCircleDefine(L, r, black, 0, 0, 0)(L);
+byCircleDefineR(L, r, black, 0, 0, 0)(L);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equal circles \drawCircle[middle][1/3]{K} and \drawCircle[middle][1/3]{L} the chords \drawUnitLine{AB}, \drawUnitLine{DE} which subtend equal arcs are equal.}
@@ -6518,7 +6520,7 @@ draw byLine(A, B, black, 0, 1);
 draw byLine(A, C, black, 0, 1);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, C, black, 0, 0);
-draw byCircle(E, r, black, 0, 0, 0)(E);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
@@ -6547,7 +6549,7 @@ draw byLine(A, B, black, 0, 1);
 draw byLine(B, D, black, 0, 1);
 draw byLine(A, C, byblue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -6577,7 +6579,7 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byLine(C, D, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
-draw byCircle(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure III.}]
@@ -6619,7 +6621,7 @@ draw byLine(C, B, black, 0, 1);
 draw byLine(D, B, byred, 0, 0);
 draw byLineFull(E, F, byblue, 0, 0)(E, F, 0, 0, 1);
 draw byLine(A, B, black, 0, 0);
-draw byCircle(O, r, byred, 0, 0, 0)(O);
+draw byCircleR(O, r, byred, 0, 0, 0)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawUnitLine{EF} be a tangent to a circle, and from the point of contact a right line \drawUnitLine{DB} be drawn cutting the circle, the angle \drawAngle{FBD} made by this line with the tangent is equal to the angle \drawAngle{A} in the alterate segment of the circle.}
@@ -6663,7 +6665,7 @@ draw byLine(G, B, byyellow, 0, 0);
 draw byLine(A, G, byblue, 0, 0);
 draw byLine(G, E, byblue, 1, 0);
 draw byLineFull(K, D, byred, 0, 0)(K, D, 0, 0, 1);
-draw byCircle(G, r, byblue, 0, 0, 0)(G);
+draw byCircleR(G, r, byblue, 0, 0, 0)(G);
 byAngleDefineWithName(E, A, K, black, 1)(givenRight);
 byAngleDefineWithName(B, A, K, black, 1)(givenObtuse);
 byAngleDefineWithName(D, A, B, black, 1)(givenAcute);
@@ -6707,7 +6709,7 @@ draw byFilledCircleSegment(O, r, -2, 1, byyellow)(O);
 draw byAngleWithName(F, B, A, byblue, 0)(B);
 draw byLine(A, B, black, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
-draw byCircle(O, r, byblue, 0, 0, 0)(O);
+draw byCircleR(O, r, byblue, 0, 0, 0)(O);
 byAngleDefineWithName(F, B, A, byred, 0)(givenAngle);
 }
 \drawCurrentPictureInMargin
@@ -6744,7 +6746,7 @@ draw byLine(A, E, black, 0, 0);
 draw byLine(E, C, black, 1, 0);
 draw byLine(D, E, byblue, 0, 0);
 draw byLine(E, B, byblue, 1, 0);
-draw byCircle(E, r, byyellow, 0, 0, 0)(E);
+draw byCircleR(E, r, byyellow, 0, 0, 0)(E);
 }
 \problemNP{I}{f}{two chords
 $\left\{\vcenter{
@@ -6773,7 +6775,7 @@ draw byLine(H, D, byblue, 1, 0);
 draw byLine(A, E, black, 0, 0);
 draw byLine(E, H, byred, 1, 0);
 draw byLine(H, C, black, 1, 0);
-draw byCircle(E, r, byred, 0, 0, 0)(E);
+draw byCircleR(E, r, byred, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -6804,7 +6806,7 @@ draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, D, byblue, 1, 0);
 draw byLine(A, E, black, 0, 0);
 draw byLine(E, C, black, 1, 0);
-draw byCircle(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure III.}]
@@ -6839,7 +6841,7 @@ draw byLine(F, A, black, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
 draw byNamedLineSeq(0)(DB,DC);
-draw byCircle(F, r, black, 0, 0, 0)(F);
+draw byCircleR(F, r, black, 0, 0, 0)(F);
 }
 \problemNP{I}{f}{from a point without a circle two straight lines be drawn to it, one of which \drawSizedLine{DB} is a tangent to the circle, and the other \drawSizedLine{FA,CF,DC} cuts it; the rectangle under the whole cutting line \drawSizedLine{FA,CF,DC} and the external segment \drawSizedLine{DC} is equal to the square of the tangent \drawSizedLine{DB}.}\unskip
 \drawCurrentPictureInMargin
@@ -6878,7 +6880,7 @@ draw byLine(E, B, byyellow, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, E, black, 0, 0);
 draw byNamedLineSeq(0)(DB,DE);
-draw byCircle(E, r, black, 0, 0, 0)(E);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
 }\drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
 \startCenterAlign
@@ -6921,7 +6923,7 @@ byLineDefine(E, F, byblue, 1, 0);
 byLineDefine(D, B, byred, 0, 0);
 byLineDefine(D, E, byblue, 0, 0);
 draw byNamedLineSeq(0)(BF,DB,DE,EF);
-draw byCircle(F, r, black, 0, 0, 0)(F);
+draw byCircleR(F, r, black, 0, 0, 0)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{from a point outside of a circle two straight lines be drawn, the one \drawSizedLine{CA,DC} cutting the circle, the other \drawSizedLine{DB} meeting it, and if the rectangle contained by the whole cutting line \drawSizedLine{CA,DC} and its external segment \drawSizedLine{DC} be equal to the square of the line meeting the circle, the latter \drawSizedLine{DB} is a tangent to the circle.}
@@ -6995,7 +6997,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(-1)(DA,CD,BC,AB);
-draw byCircle(O, r, black, 0, 0, 1)(O);
+draw byCircleR(O, r, black, 0, 0, 1)(O);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
 A rectilinear figure is said to be \emph{inscribed in} a circle, when the vertex of each angle of the figure is in the circumference of the circle.
@@ -7061,7 +7063,7 @@ byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, A, black, 0, 0);
 draw byNamedLineSeq(-1)(AB,BC,CA);
-draw byCircle(I, r, black, 0, 0, -1)(I);
+draw byCircleR(I, r, black, 0, 0, -1)(I);
 }\drawCurrentPictureInMargin[inside]
 A circle is said to be \emph{circumscribed about} a rectilinear figure, when the circumference passes through the vertex of each angle of the figure.
 
@@ -7077,7 +7079,7 @@ O := (0, 0);
 A := dir(0)*r;
 B := dir(100)*r;
 draw byLine(A, B, black, 0, 0);
-draw byCircle(O, r, byblue, 0, 0, 0)(O);
+draw byCircleR(O, r, byblue, 0, 0, 0)(O);
 }\drawCurrentPictureInMargin[inside]
 A straight line is said to be \emph{inscribed in} a circle, when its extremities are in the circumference.
 \stopDefinitionOnlyNumber
@@ -7111,8 +7113,8 @@ draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, byred, 1, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
-draw byCircle(O, r1, byyellow, 0, 0, 0)(O);
-draw byCircle(C, r2, byblue, 0, 0, 0)(C);
+draw byCircleR(O, r1, byyellow, 0, 0, 0)(O);
+draw byCircleR(C, r2, byblue, 0, 0, 0)(C);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{O} to place a straight line, equal to a given straight line (\drawUnitLine{GH}), not greater than the diameter of the circle.}
@@ -7166,7 +7168,7 @@ draw byArbitraryFigure(B--A--C, black, 0, 1)(BAC);
 draw byArbitraryFigure(D--E--F--cycle, black, 0, 1)(BAC);
 draw byLine(B, C, byyellow, 0, 0);
 draw byLineFull(G, H, byred, 0, 0)(G, H, 0, 0, 2);
-draw byCircle(O, r, black, 0, 0, 0)(O);
+draw byCircleR(O, r, black, 0, 0, 0)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{O} to inscribe a triangle equiangular to a given triangle.}
@@ -7229,7 +7231,7 @@ byLineDefine(M, N, byred, 1, 0);
 draw byLine(G, H, black, 0, 0);
 draw byLine(K, C, byred, 0, 0);
 draw byArbitraryFigure(A--K--B, black, 0, 1)(AKB);
-draw byCircle(K, r, byred, 0, 0, -1)(K);
+draw byCircleR(K, r, byred, 0, 0, -1)(K);
 draw byNamedLineSeq(0)(NL,LM,MN);
 byArbitraryFigureDefine(L--A--K--C--cycle, black, 0, 1)(LAKC);
 }
@@ -7301,7 +7303,7 @@ byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CA);
-draw byCircle(D, r, black, 0, 0, -1)(D);
+draw byCircleR(D, r, black, 0, 0, -1)(D);
 byLineDefine(B, F, black, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
 }
@@ -7373,7 +7375,7 @@ draw byLine(B, C, black, 0, 0);
 fi;
 draw byLine(C, E, byred, 0, 0);
 draw byLine(E, A, byred, 1, 0);
-draw byCircle(F, r, black, 0, 0, 0)(F);
+draw byCircleR(F, r, black, 0, 0, 0)(F);
 enddef;
 proptmp(100, 170, 10, (0, -8u));
 proptmp(80, 160, -20, (0, -4u));
@@ -7434,7 +7436,7 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DA);
-draw byCircle(E, r, byred, 0, 0, 1)(E);
+draw byCircleR(E, r, byred, 0, 0, 1)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{E} to inscribe a square.}
@@ -7489,7 +7491,7 @@ byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(KF,HK,GH,FG);
-draw byCircle(E, r, byblue, 0, 0, -1)(E);
+draw byCircleR(E, r, byblue, 0, 0, -1)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{bout}{a given circle \drawCircle{E} to circumscribe a square.}
@@ -7544,7 +7546,7 @@ byLineDefine(E, D, byblue, 0, 0);
 byLineDefine(D, K, byred, 1, 0);
 byLineDefine(K, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AE,ED,DK,KC);
-draw byCircle(G, r, byyellow, 0, 0, -1)(G);
+draw byCircleR(G, r, byyellow, 0, 0, -1)(G);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in a given square.}
@@ -7593,7 +7595,7 @@ draw byLine(A, E, byblue, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
 draw byLine(B, E, black, 0, 0);
 draw byLine(E, D, black, 1, 0);
-draw byCircle(E, r, black, 0, 0, 0)(E);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe a circle about a given square \drawPolygon{ACD,ABC}.}
@@ -7648,8 +7650,8 @@ draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(A, C, black, 0, 0);
 draw byLine(C, B, black, 1, 0);
-draw byCircle(F, r3, byblue, 0, 0, 0)(F);
-draw byCircle(A, r1, byred, 0, 0, 0)(A);
+draw byCircleR(F, r3, byblue, 0, 0, 0)(F);
+draw byCircleR(A, r1, byred, 0, 0, 0)(A);
 }
 \drawCurrentPicture
 \problemNP{T}{o}{construct an isosceles triangle, in which each of the angles at the base shall be double of the vertical angle.}
@@ -7717,7 +7719,7 @@ byLineDefine(C, D, black, 0, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircle(O, r, byblue, 0, 0, 1)(O);
+draw byCircleR(O, r, byblue, 0, 0, 1)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{n}{a given circle \drawCircle[middle][1/4]{O} to inscribe an equilateral and equiangular pentagon.}
@@ -7772,7 +7774,7 @@ byLineDefine(C, L, byyellow, 0, 0);
 byLineDefine(L, M, black, 0, 0);
 byLineDefine(M, G, black, 0, 0);
 draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
-draw byCircle(F, r2, byred, 0, 0, -1)(F);
+draw byCircleR(F, r2, byred, 0, 0, -1)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe an equilateral pentagon about a given circle \drawCircle[middle][1/5]{F}.}
@@ -7877,7 +7879,7 @@ byLineDefine(K, D, black, 1, 0);
 byLineDefine(D, E, black, 0, 1);
 byLineDefine(E, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
-draw byCircle(F, r2, byyellow, 0, 0, -1)(F);
+draw byCircleR(F, r2, byyellow, 0, 0, -1)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in a given equiangular and equilateral pentagon.}
@@ -7973,7 +7975,7 @@ byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, E, black, 1, 0);
 byLineDefine(E, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircle(F, r, byred, 0, 0, 1)(F);
+draw byCircleR(F, r, byred, 0, 0, 1)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe a circle about a given equilateral and equiangular pentagon.}
@@ -8041,8 +8043,8 @@ draw byLine(C, D, black, 1, 0);
 draw byLine(D, E, byred, 1, 0);
 draw byLine(E, F, byblue, 1, 0);
 draw byLine(F, A, black, 0, 0);
-draw byCircle(D, r, byred, 0, 0, 0)(D);
-draw byCircle(G, r, byyellow, 0, 0, 0)(G);
+draw byCircleR(D, r, byred, 0, 0, 0)(D);
+draw byCircleR(G, r, byyellow, 0, 0, 0)(G);
 byLineDefine(G, C, lineColor.CF, 0, 0);
 byLineDefine(G, D, lineColor.AD, 0, 0);
 byLineDefine(G, E, lineColor.BE, 0, 0);
@@ -8093,7 +8095,7 @@ byLineDefine(C, D, black, 0, 1);
 byLineDefine(D, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
 draw byNamedLineSeq(0)(AC,CD,DA);
-draw byCircle(O, r, byblue, 0, 0, 1)(O);
+draw byCircleR(O, r, byblue, 0, 0, 1)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in an equilateral and equiangular quindecagon in a given circle.}
@@ -12327,7 +12329,7 @@ draw byArc(G, L, B, r, byred, 0, 0, 0, 0)(LB);
 draw byArc(G, B, C, r, black, 0, 0, 0, 0)(BC);
 draw byArc(G, C, K, r, byred, 0, 0, 0, 0)(CK);
 draw byArc(G, K, L, r, byblue, 0, 0, 0, 0)(KL);
-byCircleDefine(G, r, byred, 0, 0, 0)(G);
+byCircleDefineR(G, r, byred, 0, 0, 0)(G);
 H := (0, -1/2u - 2r);
 D := (dir(aa)*r) shifted H;
 E := (dir(ba)*r) shifted H;
@@ -12349,7 +12351,7 @@ draw byArc(H, N, E, r, byblue, 0, 0, 0, 0)(NE);
 draw byArc(H, E, F, r, byyellow, 1, 0, 0, 0)(EF);
 draw byArc(H, F, M, r, byred, 1, 0, 0, 0)(FM);
 draw byArc(H, M, N, r, byblue, 1, 0, 0, 0)(MN);
-byCircleDefine(H, r, byblue, 0, 0, 0)(H);
+byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equal circles (\drawCircle[middle][1/4]{G}, \drawCircle[middle][1/4]{H}), angles, whether at the centre or circumference, are in the same ratio to one another as the arcs on which they stand ($\drawAngle{BC} : \drawAngle{EF} ::
@@ -12482,7 +12484,7 @@ draw byLine(C, A, black, 0, 0);
 draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, E, byyellow, 1, 0);
 draw byLine(C, E, byblue, 1, 0);
-draw byCircle(O, r, byyellow, 0, 0, 1/2)(O);
+draw byCircleR(O, r, byyellow, 0, 0, 1/2)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{an angle of a triangle be bisected by a straight line, which likewise cuts the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the segments of the base, together with the square of the straight line which bisects the angle.}
@@ -12531,7 +12533,7 @@ draw byLine(A, B, byblue, 1, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byyellow, 0, 0);
-draw byCircle(O, r, byred, 0, 0, 1/2)(O);
+draw byCircleR(O, r, byred, 0, 0, 1/2)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{from any angle of a triangle a straight line be drawn perpendicular to the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the perpendicular and the diameter of the circle described about the triangle.}
@@ -12583,7 +12585,7 @@ draw byLine(A, B, black, 1, 0);
 draw byLine(B, C, byblue, 1, 0);
 draw byLine(C, D, black, 0, 0);
 draw byLine(D, A, byyellow, 0, 0);
-draw byCircle(O, r, byred, 0, 0, 1/2)(O);
+draw byCircleR(O, r, byred, 0, 0, 1/2)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{rectangle contained by the diagonals of a quadrilateral figure inscribed in a circle, is equal to both the rectangles contained by its opposite sides.}

@@ -223,19 +223,30 @@ Produces already defined arcs, with {\tt s} and {\tt et} set to 0. Returns a pic
 
 {\tt arcslist} — of text type, comma separated arc names.
 \stopsubsection
-\startsubsection[title={byCircleDefine (expr o, r, col, dp, th, s) (suffix circleName)}]
+\startsubsection[title={byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName)}]
 Defines a new circle with a given name. Returns nothing.
 
-{\tt o, r, col, dp, th, s} — same as {\tt byArcRender}.
+{\tt r, col, dp, th, s} — same as {\tt byArcRender}.
+
+{\tt o} — of suffix type, circle center point.
 
 {\tt circleName} — of suffix type, circle name.
 \stopsubsection
-\startsubsection[title={byCircle (expr o, r, col, dp, th, s) (suffix circleName)}]
+\startsubsection[title={byCircleR (suffix o)(exp r, col, dp, th, s) (suffix circleName)}]
 Defines a new circle with a given name. Returns a picture of that circle.
 
-{\tt o, r, col, dp, th, s} — same as {\tt byArcRender}.
+{\tt r, col, dp, th, s} — same as {\tt byArcRender}.
 
-{\tt circleName} — of suffix type, circle name.
+{\tt o, circleName} — same as {\tt byCircleDefineR}.
+\stopsubsection
+\startsubsection[title={byCircle (suffix o, a)(expr  col, dp, th, s) (suffix circleName)}]
+Defines a new circle with a given name. Returns a picture of that circle.
+
+{\tt col, dp, th, s} — same as {\tt byArcRender}.
+
+{\tt a} — of suffix type, point on circle citcumference.
+
+{\tt o, circleName} — same as {\tt byCircleDefineR}.
 \stopsubsection
 \startsubsection[title={byNamedCircle(text circlesList)}]
 Produces already defined circles, with {\tt s} set to 0. Returns a picture of that circles.

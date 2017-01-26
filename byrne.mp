@@ -688,14 +688,14 @@ vardef byNamedArcLabel (text arcslist) =
                         pointsListB[j],
                         scantokens(pointsListB[j]),
                         angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
-                        1);
+                        textLabelShift);
                 fi;
                 if (pointsListE[j] <> pointsListB[cycleval(j+1, i+1)]):
                     draw byTextLabel(
                         pointsListE[j],
                         scantokens(pointsListE[j]),
                         angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
-                        1);
+                        textLabelShift);
                 fi;
             endfor;
         fi;
@@ -703,10 +703,11 @@ vardef byNamedArcLabel (text arcslist) =
 endgroup
 enddef;
 
-vardef byCircleDefine (expr o, r, col, dp, th, s) (suffix circleName) =
+vardef byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
 color circleColor.circleName;
 pair circleCenter.circleName;
 numeric circleDiameter.circleName, circleShift.circleName, circleDashed.circleName, circleThin.circleName;
+string circleCenterName.circleName, circleAName.circleName;
 begingroup
     circleColor.circleName := col;
     circleDashed.circleName := dp;
@@ -714,12 +715,22 @@ begingroup
     circleShift.circleName := s;
     circleDiameter.circleName := 2r;
     circleCenter.circleName := o;
+    circleCenterName.circleName := str o;
+    circleAName.circleName := "";
 endgroup
 enddef;
 
-vardef byCircle (expr o, r, col, dp, th, s) (suffix circleName) =
+vardef byCircleR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
 begingroup
-    byCircleDefine(o, r, col, dp, th, s)(circleName);
+    byCircleDefineR(o, r, col, dp, th, s)(circleName);
+    byNamedCircle(circleName)
+endgroup
+enddef;
+
+vardef byCircle (suffix o, a)(expr col, dp, th, s) (suffix circleName) =
+begingroup
+    byCircleDefineR(o, abs(a-o), col, dp, th, s)(circleName);
+    circleAName.circleName := str a;
     byNamedCircle(circleName)
 endgroup
 enddef;
@@ -731,6 +742,18 @@ begingroup
     image(
         forsuffixes cN=circlesList:
             draw byArcRender (circleCenter.cN, 0, 8, circleDiameter.cN, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
+            if (textLabels and autoLabelingMode):
+                draw byTextLabel(
+                    circleCenterName.cN,
+                    scantokens(circleCenterName.cN),
+                    0, 0);
+                if (circleAName.cN <> ""):
+                    draw byTextLabel(
+                        circleAName.cN,
+                        scantokens(circleAName.cN),
+                        angle(scantokens(circleCenterName.cN) - scantokens(circleAName.cN)), textLabelShift + lineThickness(circleThin.cN)*(1/2-1/2circleShift.cN));
+                fi;
+            fi;
         endfor;
     )
 endgroup
@@ -1418,15 +1441,26 @@ enddef;
 % Text labels
 %
 
+def byPointLabelDefine(suffix pointName)(expr t) =
+    string pointLabel.pointName;
+    pointLabel.pointName := t;
+enddef;
+
 vardef byTextLabel(expr t, p, a, d) =
 begingroup
     save labelItself, bb;
     path bb;
     picture labelItself;
-    labelItself := textext(t) scaled 1/2;
+    if not string pointLabel.scantokens(t):
+        string pointLabel.scantokens(t);
+        pointLabel.scantokens(t) := t;
+    fi;
+    labelItself := textext(pointLabel.scantokens(t)) scaled 1/2;
     labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
-    bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
-    labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
+    if (d > 0):
+        bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
+        labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
+    fi;
     image(
         draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
     )
