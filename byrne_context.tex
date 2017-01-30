@@ -120,7 +120,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2017 ed.\,0.2}
+{\tfb 2017 ed.\,0.3}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -142,7 +142,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 
 \startintro[title={Introduction}]
 
-\regularLettrine{T}he arts and sciences have become so extensive, that to facilitate their acquirement is of as much importance as to extend their boundaries. Illustration, if it does not shorten the time of study, will at least make it more agreeable. This Work has a greater aim than mere illustration; we do not introduce colors for the purpose of entertainment, or to amuse \emph{by certain combinations of tint and form}, but to assist the mind in its researches after truth, to increase the facilities of introduction, and to diffuse permanent knowledge. If we wanted authorities to prove the importance and usefulness of geometry, we might quote every philosopher since the day of Plato. Among the Greeks, in ancient, as in the school of Pestalozzi and others in recent times, geometry was adopted ad the best gymnastic of the mind. In fact, Euclid's Elements have become, by common consent, the basis of mathematical science all over the civilized globe. But this will not appear extraordinary, if we consider that this sublime science is not only better calculated than other to call forth the spirit of inquiry, the elevate mind, and to strengthen the reasoning faculties, but also it forms the best introduction to most useful and important vocations of human life. Arithmetic, land-surveying, hydrostatics, pneumatics, optics, physical astronomy, etc. are all dependent on the propositions of geometry.
+\regularLettrine{T}he arts and sciences have become so extensive, that to facilitate their acquirement is of as much importance as to extend their boundaries. Illustration, if it does not shorten the time of study, will at least make it more agreeable. This Work has a greater aim than mere illustration; we do not introduce colors for the purpose of entertainment, or to amuse \emph{by certain combinations of tint and form}, but to assist the mind in its researches after truth, to increase the facilities of introduction, and to diffuse permanent knowledge. If we wanted authorities to prove the importance and usefulness of geometry, we might quote every philosopher since the day of Plato. Among the Greeks, in ancient, as in the school of Pestalozzi and others in recent times, geometry was adopted as the best gymnastic of the mind. In fact, Euclid's Elements have become, by common consent, the basis of mathematical science all over the civilized globe. But this will not appear extraordinary, if we consider that this sublime science is not only better calculated than other to call forth the spirit of inquiry, the elevate mind, and to strengthen the reasoning faculties, but also it forms the best introduction to most useful and important vocations of human life. Arithmetic, land-surveying, hydrostatics, pneumatics, optics, physical astronomy, etc. are all dependent on the propositions of geometry.
 
 \kerncharacters[-0.01]{Much however depends on the first communication of any science to a learner, though the best and most easy methods are seldom adopted. Propositions are placed before a student, who though having a sufficient understanding, is told just as much about them on entering at the very threshold of the science, as given him a prepossession most unfavorable to his future study of this delightful subject; or \quotation{the formalities and paraphrenalia of rigour are so ostentatiously put forward, as almost to hide the reality. Endless and perplexing repetitions, which do not confer great exactitude on the reasoning, render the demonstrations involved and obscure, and conceal from the view of the student the consecution of evidence.} Thus an aversion is created in the mind of the pupil, and a subject so calculated to improve the reasoning powers, and give the habit of close thinking, is degraded by a dry and rigid course of instruction into an uninteresting exercise of the memory. To rise the curiosity, and to awaken the listless and dormant powers of younger minds should be the aim of every teacher; but where examples of excellence are wanting, the attempts to attain it are but few, while eminence excites attention and produces imitation. The object of this Work is to introduce a method of teaching geometry, which has been much approved of by many scientific men in this country, as well as in France and America. The plan here adopted forcibly appeals to the eye, the most sensitive and the most comprehensive of our external organs, and its pre-eminence to important subject on the mind is supported by the incontrovertible maxim expressed in well known words of Horace:—}
 
@@ -1090,6 +1090,10 @@ or A is to B, as C is to D.
 	D := dir(90)*s;
 		draw byAngle(B, A, C, white, 0);
 		draw byAngle(B, A, D, white, 0);
+	byPointLabelDefine(A, "");
+	byPointLabelDefine(B, "");
+	byPointLabelDefine(C, "");
+	byPointLabelDefine(D, "");
 }
 
 \symb{\drawAngle{BAC}}
@@ -1109,22 +1113,19 @@ or A is to B, as C is to D.
 	C := (-u, 0);
 	D := (0, u);
 		byLineDefine (A, D, black, 0, 0);
-		byLineStylize (A, B, 0, 0, 0) (AD);
 		byLineDefine (B, D, black, 0, 0);
-		byLineStylize (B, C, 0, 0, 0) (BD);
 		byLineDefine (C, D, black, 0, 0);
-		byLineStylize (C, B, 0, 0, 0) (CD);
+	byPointLabelDefine(A, "");
+	byPointLabelDefine(D, "");
 }
 
 \symb{\drawFromCurrentPicture{
-draw byNamedLine(AD);
 draw byNamedLine(BD);
-draw byNamedLine(CD);
+draw byNamedLineSeq(0)(AD,CD);
 }
 or
 \drawFromCurrentPicture{
-draw byNamedLine(AD);
-draw byNamedLine(BD);
+draw byNamedLineSeq(0)(AD,BD);
 }}
 briefly designates a \emph{point}.
 
@@ -1172,6 +1173,7 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 		draw byNamedLineSeq(1)(AB,CA,BC);
 		draw byCircle(A, B, byblue, 0, 0, 1/2)(A);
 		draw byCircle(B, A, byred, 0, 0, 1/2)(B);
+		draw byLabelsOnPolygon(A, C, B)(0, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{n}{a given finite straight line (\drawUnitLine{AB}) to describe an equilateral triangle.}
@@ -4830,7 +4832,7 @@ numeric r[], a;
 path c[];
 a := 80;
 r1 := 9/4u;
-r2 := 4/3u;
+r2 := 7/4u;
 M := (0, 0);
 N := M shifted (dir(a)*(r1-r2));
 c1 := (fullcircle scaled 2r1) shifted M;
@@ -10262,6 +10264,8 @@ $\therefore$ If there be any number, \&c.
 \stopbook
 
 \startbook[title={Book 6}]\unskip
+
+\vskip -\baselineskip
 
 \startsupersection[title={Definitions}]\unskip
 

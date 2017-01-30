@@ -25,6 +25,7 @@ numeric lS, mD;
 lS := 7/5cm;
 mD := 1/25cm;
 bS := 2/3mm;
+minBranchLength := 1/6cm;
 
 % this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
 primarydef p firstIntersectionTimes q =
@@ -62,43 +63,102 @@ begingroup
 endgroup
 enddef;
 
-vardef findRightSize (expr p, q, lni, li, l, n, i) (suffix pp) =
+vardef findRightSize (expr p, q, lni, li, l, n, i) =
 begingroup
     save bp, ic, rv, s;
     path bp;
     numeric ic, rv, s;
-    s := 1/3[lni, li];
+    s := 1/2[lni, li];
     if (lni > 0):
         rv := s;
     else:
         rv := 0;
     fi;
     bp := (p scaled s) shifted q;
-    ic := checkIfIntersects(bp, l, n)(pp);
+    ic := checkIfIntersects(bp, l, n);
     if (i > 0) and (li > 1/8cm):
         if (ic = 0):
-            rv := findRightSize(p, q, s, li, l, n, i - 1)(pp);
+            rv := findRightSize(p, q, s, li, l, n, i - 1);
         else:
-            rv := findRightSize(p, q, lni, s, l, n, i - 1)(pp);
+            rv := findRightSize(p, q, lni, s, l, n, i - 1);
         fi;
     fi;
     rv
 endgroup
 enddef;
 
-vardef checkIfIntersects (expr p, l, n)(suffix pp) =
+vardef findRightPlace (expr n, pN) =
+begingroup
+    save tp, ts, s, t, sOld, i, j, rp, startPoint, endPoint, cO;
+    path tp, rp;
+    numeric ts, ti, s, t, sOld, i, j, startPoint, endPoint, cO;
+    sOld := 0;
+    rp := (0, 0);
+    t := -1;
+    if (uniformdeviate(10)>2) or (cycle p[n]):
+        if (o[n] = 0): cO := 1; else: cO := 0; fi;
+    else:
+        cO := o[n];
+    fi;
+    o[pN + 1] := cO;
+    if (cycle p[n]):
+        endPoint := arclength(p[n]);
+    else:
+        endPoint := 5/6arclength(p[n]);
+    fi;
+    startPoint := uniformdeviate(1/2endPoint);
+    for i := startPoint step bS until 1/2endPoint + startPoint:
+        j := (arctime i of p[n]);
+        if (checkBranch (n, j) = 0) or (checkBranch (n, j) > sOld):
+            if cycle p[n]:
+                ts := abs(ulcorner(p[n]) - lrcorner(p[n]));
+            else:
+                ts := 1/2arclength(p[n]);
+            fi;
+            if (checkBranch (n, j) > 0):
+                ts := checkBranch (n, j);
+            fi;
+            ti := 3 + mlog(ts/(1/2mm))/256;
+            if (cO = 0):
+                tp := q[cO] rotated (angle(direction j of p[n]) - 90);
+            else:
+                tp := q[cO] rotated (angle(direction j of p[n]) + 90);
+            fi;
+            s := findRightSize(tp, (point j of p[n]), 0, ts, n, pN, ti);
+            if (arclength(tp scaled s) <= minBranchLength):
+                pb[n] := addBranch (n, j, -1);
+            else:
+                pb[n] := addBranch (n, j, s);
+            fi;
+            if (s > sOld):
+                rp := tp scaled s shifted (point j of p[n]);
+                sOld := s;
+                t := j;
+            fi;
+        fi;
+    endfor;
+    if (t >= 0):
+        pb[n] := addBranch (n, t, -1);
+    fi;
+    rp
+endgroup
+enddef;
+
+vardef checkIfIntersects (expr pathItself, l, n) =
 begingroup
     save rv, m, t;
     numeric rv, t;
     rv := 0;
-    t := xpart(p firstIntersectionTimes po[l]);
-    if (xpart((subpath(t + 1/100, length(p)) of p) intersectiontimes po[l]) >= 0)
-        or (xpart((subpath(1/100, length(p)) of p) intersectiontimes po[l]) < 0)
-        or (arclength(subpath (0, t) of p) > 3mD):
+    t := xpart(pathItself firstIntersectionTimes po[l]);
+    if (xpart((subpath(t + 1/100, length(pathItself)) of pathItself) intersectiontimes po[l]) >= 0)
+        or (xpart((subpath(1/100, length(pathItself)) of pathItself) intersectiontimes po[l]) < 0)
+        or (arclength(subpath (0, t) of pathItself) > 3mD):
         rv := rv + 1;
     else:
         for m := 0 step 1 until n:
-            if (l <> m) and (xpart(p intersectiontimes po[m]) >= 0):
+            if (l <> m)
+                and ((xpart(pathItself intersectiontimes po[m]) >= 0)
+                    or (xpart(pathItself intersectiontimes p[m]) >= 0)):
                 rv := rv + 1;
             fi;
         endfor;
@@ -125,29 +185,19 @@ begingroup
     path rv;
     numeric loc;
     loc := round((arclength(subpath(0, l) of p[pn]))/bS);
-    if (s = 0):
-        rv := (subpath (0, loc-1) of pb[pn])
-            -- (1, ypart(point loc of pb[pn]))
-            -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
-    else:
-        rv := (subpath (0, loc-1) of pb[pn])
-            -- (xpart(point loc of pb[pn]), 1)
-            -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
-    fi;
+    rv := (subpath (0, loc-1) of pb[pn])
+        -- (s, ypart(point loc of pb[pn]))
+        -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
     rv
 endgroup
 enddef;
 
-vardef checkBranch (expr pn, l, s) =
+vardef checkBranch (expr pn, l) =
 begingroup
     save rv, loc;
     numeric loc, rv;
     loc := round((arclength(subpath(0, l) of p[pn]))/bS);
-    if (s = 0):
-        rv := xpart(point loc of pb[pn]);
-    else:
-        rv := xpart(point loc of pb[pn]);
-    fi;
+    rv := xpart(point loc of pb[pn]);
     rv
 endgroup
 enddef;
@@ -155,10 +205,10 @@ enddef;
 figNum := 0;
 
 picture currentLetter, cL;
-path p[], pb[], po[], q[], tp;
-% 'o[]' is for curl's orientation, 'cO' is for current curl orientation, lC is temporary for length that curl shares with its parent, 'p[]' is main for paths, 'pb[]' is for 'buds', places where branches are, or tried to spring, 'q[]' is for curl templates, 'tp' is for temporary path in cycle, 's' is for scale, 'startFrom' is for cases when we only need boundry as invisible limit
-numeric o[], cO, lC, tt[], ta, ln[], ll, lc, s, startFrom, symMode, numberOfIterations;
-pair sP;
+path p[], pb[], po[], q[], candidateBranch;
+% 'o[]' is for curl's orientation, 'cO' is for current curl orientation, 'p[]' is main for paths, 'pb[]' is for 'buds', places where branches are, or tried to spring, 'q[]' is for curl templates, 'tp' is for temporary path in cycle, 's' is for scale, 'startFrom' is for cases when we only need boundry as invisible limit
+numeric o[], cO, lC, tt[], ta, ln[], ll, lc, startFrom, symMode, numberOfIterations;
+string shuffledNumbers;
 
 q0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 q1 := q0 yscaled -1;
@@ -215,65 +265,45 @@ forever:
             endfor;
             startFrom := 0;
             symMode := 0;
-            numberOfIterations := 150;
+            numberOfIterations := 20;
         else:
-            pN := 0;
             p0 := (-80/2mm,-15/2mm)--(-80/2mm, 15/2mm)--(80/2mm, 15/2mm)--(80/2mm, -15/2mm)--cycle;
-            po0 := pathOutline(p0, 1/2);
-            pb0 := generateBranchesTemplate(p0);
-            o0 := 0;
-            pN := 1;
-            p1 := (fullcircle scaled 8mm);
-            po1 := pathOutline(p1, 1/2);
-            pb1 := generateBranchesTemplate(p1);
-            o1 := 0;
-            pN := 2;
-            p2 := (fullcircle scaled 5mm) shifted (85/4mm, 0);
-            po2 := pathOutline(p2, 1/2);
-            pb2 := generateBranchesTemplate(p2);
-            o2 := 0;
-            pN := 3;
-            p3 := (fullcircle scaled 5mm) shifted (-85/4mm, 0);
-            po3 := pathOutline(p3, 1/2);
-            pb3 := generateBranchesTemplate(p3);
-            o3 := 0;
+            p1 := (q0 rotated 15) scaled 18mm;
+            p2 := p1 rotated 180;
+            for i := 0 step 1 until 2:
+                pN := i;
+                po[i] := pathOutline(p[i], 1/2);
+                pb[i] := generateBranchesTemplate(p[i]);
+                o[i] := 0;
+            endfor;
             startFrom := 1;
             symMode := 1;
-            numberOfIterations := 200;
+            numberOfIterations := 20;
         fi;
         for nn := 0 step 1 until numberOfIterations:
+            shuffledNumbers := "";
             for i := startFrom step 1 until pN:
-                if (cycle p[i]):
-                    t := arctime uniformdeviate(arclength(p[i])) of p[i];
+                if (uniformdeviate(1) > 1/2):
+                    shuffledNumbers := shuffledNumbers & "," & decimal(i);
                 else:
-                    t := arctime (2mm + uniformdeviate(arclength(p[i])-4mm)) of p[i];
+                    shuffledNumbers := decimal(i) & "," & shuffledNumbers;
                 fi;
-                if checkBranch (i, t, 0) = 0:
-                    if (uniformdeviate(10)>3) or (cycle p[i]):
-                        if (o[i] = 0): cO := 1; else: cO := 0; fi;
-                    else:
-                        cO := o[i];
-                    fi;
-                    pb[i] := addBranch (i, t, 0);
-                    if (cO = 0):
-                        tp := q[cO] rotated (angle(direction t of p[i]) - 90);
-                    else:
-                        tp := q[cO] rotated (angle(direction t of p[i]) + 90);
-                    fi;
-                    s := findRightSize(tp, (point t of p[i]), 0, 1/2arclength(p[i]), i, pN, 10)(p);
-                    if (s > 1/8cm):
+            endfor;
+            shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
+            for i=scantokens(shuffledNumbers):
+                candidateBranch := findRightPlace(i, pN);
+                if (arclength(candidateBranch) >= minBranchLength):
+                    pN := pN + 1;
+                    p[pN] := candidateBranch;
+                    po[pN] := pathOutline(p[pN], 1/2);
+                    pb[pN] := generateBranchesTemplate(p[pN]);
+                    %o[pN] := cO;
+                    if(symMode = 1):
                         pN := pN + 1;
-                        p[pN] := tp scaled s shifted (point t of p[i]);
-                        po[pN] := pathOutline(p[pN], 1/2);
-                        pb[pN] := generateBranchesTemplate(p[pN]);
-                        o[pN] := cO;
-                        if(symMode = 1):
-                            pN := pN + 1;
-                            p[pN] := p[pN-1] rotated 180;
-                            po[pN] := po[pN-1] rotated 180;
-                            pb[pN] := pb[pN-1];
-                            o[pN] := cO;
-                        fi;
+                        p[pN] := p[pN-1] rotated 180;
+                        po[pN] := po[pN-1] rotated 180;
+                        pb[pN] := pb[pN-1];
+                        o[pN] := o[pN-1];
                     fi;
                 fi;
             endfor;

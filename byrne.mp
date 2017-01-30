@@ -351,30 +351,16 @@ begingroup
         fi;
         if (i > 0):
             for j := 0 step 1 until i:
-                if ((j > 0) and (j < i)):
-                    k := j - 1;
-                    l := j + 1;
-                elseif (j == 0):
-                    k := i;
-                    l := j + 1;
-                elseif (j == i):
-                    k := j - 1;
-                    l := 0;
-                fi;
+                k := cycleval (j - 1, i + 1);
+                l := cycleval (j + 1, i + 1);
                 m := 0;
                 n := 0;
                 if (lAname[k] == "noLine"):
-                    k := k - 1;
-                    if (k < 0):
-                        k := i;
-                    fi;
+                    k := cycleval (k - 1, i + 1);
                     m := 1;
                 fi;
                 if (lAname[l] == "noLine"):
-                    l := l + 1;
-                    if (l > i):
-                        l := 0;
-                    fi;
+                    k := cycleval (l + 1, i + 1);
                     n := 1;
                 fi;
                 c := lAname[j];
@@ -1553,6 +1539,6 @@ begingroup
     save ang;
     numeric ang;
     ang := angleValue(a, b, c)/2;
-    (abs(sind(ang)) + abs(cosd(ang)/sind(ang)))*(lineWidth*(1/2-1/2s))
+    ((abs(sind(ang)) + abs(cosd(ang)/sind(ang)))*(lineWidth*(1/2-1/2s)))/2
 endgroup
 enddef;
