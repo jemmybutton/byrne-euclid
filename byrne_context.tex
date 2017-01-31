@@ -5489,7 +5489,7 @@ draw byCircleR(E, r, black, 0, 0, 0)(E);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
-The diameter \drawUnitLine{DE,EA} if $>$ any line \drawUnitLine{MN}.
+The diameter \drawUnitLine{DE,EA} is $>$ any line \drawUnitLine{MN}.
 
 For draw \drawUnitLine{EN} an \drawUnitLine{EM}.
 
@@ -5605,7 +5605,7 @@ draw byLine(G, F, black, 1, 0);
 draw byLine(B, D, byyellow, 1, 0);
 draw byLine(D, A, black, 0, 0);
 draw byLineFull(E, K, byyellow, 0, 0)(B, D, 0, 0, -1);
-draw byCircleR(D, r, byblue, 0, 0, 0)(D);
+draw byCircle(D, A, byblue, 0, 0, 0)(D);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BD,DA} of the circle perpendicular to it falls without the circle\\
@@ -5724,7 +5724,7 @@ C := (r, 0);
 G := (r, 6/5r);
 D := 6/5[C, G];
 B := (dir(angle(G-F))*r) shifted F;
-draw byCircleR(F, r, byyellow, 0, 0, 0)(F);
+draw byCircle(F, C, byyellow, 0, 0, 0)(F);
 draw byAngleWithName(F, C, G, byred, 0)(C);
 draw byAngleWithName(C, G, F, byyellow, 0)(G);
 byLineDefine(F, B, byred, 0, 0);
@@ -6667,7 +6667,7 @@ draw byLine(G, B, byyellow, 0, 0);
 draw byLine(A, G, byblue, 0, 0);
 draw byLine(G, E, byblue, 1, 0);
 draw byLineFull(K, D, byred, 0, 0)(K, D, 0, 0, 1);
-draw byCircleR(G, r, byblue, 0, 0, 0)(G);
+draw byCircle(G, B, byblue, 0, 0, 0)(G);
 byAngleDefineWithName(E, A, K, black, 1)(givenRight);
 byAngleDefineWithName(B, A, K, black, 1)(givenObtuse);
 byAngleDefineWithName(D, A, B, black, 1)(givenAcute);
@@ -6998,7 +6998,7 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
-draw byNamedLineSeq(-1)(DA,CD,BC,AB);
+draw byNamedLineSeq(0)(DA,CD,BC,AB);
 draw byCircleR(O, r, black, 0, 0, 1)(O);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
@@ -7116,7 +7116,7 @@ draw byLine(E, C, byred, 1, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
 draw byCircleR(O, r1, byyellow, 0, 0, 0)(O);
-draw byCircleR(C, r2, byblue, 0, 0, 0)(C);
+draw byCircle(C, E, byblue, 0, 0, 0)(C);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{O} to place a straight line, equal to a given straight line (\drawUnitLine{GH}), not greater than the diameter of the circle.}
@@ -7305,7 +7305,7 @@ byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CA);
-draw byCircleR(D, r, black, 0, 0, -1)(D);
+draw byCircle(D, G, black, 0, 0, -1)(D);
 byLineDefine(B, F, black, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
 }
@@ -7438,7 +7438,7 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DA);
-draw byCircleR(E, r, byred, 0, 0, 1)(E);
+draw byCircle(E, D, byred, 0, 0, 1)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{E} to inscribe a square.}
@@ -7493,7 +7493,7 @@ byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(KF,HK,GH,FG);
-draw byCircleR(E, r, byblue, 0, 0, -1)(E);
+draw byCircle(E, D, byblue, 0, 0, -1)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{bout}{a given circle \drawCircle{E} to circumscribe a square.}
@@ -7652,8 +7652,8 @@ draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(A, C, black, 0, 0);
 draw byLine(C, B, black, 1, 0);
-draw byCircleR(F, r3, byblue, 0, 0, 0)(F);
-draw byCircleR(A, r1, byred, 0, 0, 0)(A);
+draw byCircleABC(A, C, D, byblue, 0, 0, 0)(F);
+draw byCircle(A, B, byred, 0, 0, 0)(A);
 }
 \drawCurrentPicture
 \problemNP{T}{o}{construct an isosceles triangle, in which each of the angles at the base shall be double of the vertical angle.}
@@ -7667,7 +7667,7 @@ draw \drawProportionalLine{AD}.
 
 Then \drawLine{AD,BD,CB,AC} is the required triangle.
 
-For, draw \drawProportionalLine{CD} and describe \drawCircle[middle][1/4]{F} about \drawLine{AD,CD,AC} \inprop[prop:IV.V]
+For, draw \drawProportionalLine{CD} and describe \drawCircle[middle][1/3]{F} about \drawLine{AD,CD,AC} \inprop[prop:IV.V]
 
 Since $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
 $\therefore$ \drawProportionalLine{BD} is tangent to \circleF\ \inprop[prop:III.XXXVII]\\
@@ -7721,7 +7721,7 @@ byLineDefine(C, D, black, 0, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byCircleABC(A, C, D, byblue, 0, 0, 1)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{n}{a given circle \drawCircle[middle][1/4]{O} to inscribe an equilateral and equiangular pentagon.}
@@ -7779,7 +7779,7 @@ draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
 draw byCircleR(F, r2, byred, 0, 0, -1)(F);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{describe an equilateral pentagon about a given circle \drawCircle[middle][1/5]{F}.}
+\problemNP{T}{o}{describe an equilateral pentagon about a given circle \drawCircle[middle][1/4]{F}.}
 
 Draw five tangents through the vertices of the angles of any regular pentagon inscribed in the given circle \circleF\ \inprop[prop:III.XVII].
 
@@ -7881,7 +7881,7 @@ byLineDefine(K, D, black, 1, 0);
 byLineDefine(D, E, black, 0, 1);
 byLineDefine(E, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
-draw byCircleR(F, r2, byyellow, 0, 0, -1)(F);
+draw byCircle(F, H, byyellow, 0, 0, -1)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in a given equiangular and equilateral pentagon.}
@@ -8045,7 +8045,7 @@ draw byLine(C, D, black, 1, 0);
 draw byLine(D, E, byred, 1, 0);
 draw byLine(E, F, byblue, 1, 0);
 draw byLine(F, A, black, 0, 0);
-draw byCircleR(D, r, byred, 0, 0, 0)(D);
+draw byCircle(D, G, byred, 0, 0, 0)(D);
 draw byCircleR(G, r, byyellow, 0, 0, 0)(G);
 byLineDefine(G, C, lineColor.CF, 0, 0);
 byLineDefine(G, D, lineColor.AD, 0, 0);
@@ -12488,7 +12488,7 @@ draw byLine(C, A, black, 0, 0);
 draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, E, byyellow, 1, 0);
 draw byLine(C, E, byblue, 1, 0);
-draw byCircleR(O, r, byyellow, 0, 0, 1/2)(O);
+draw byCircleABC(A, B, C, byyellow, 0, 0, 1/2)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{an angle of a triangle be bisected by a straight line, which likewise cuts the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the segments of the base, together with the square of the straight line which bisects the angle.}
@@ -12537,7 +12537,7 @@ draw byLine(A, B, byblue, 1, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byyellow, 0, 0);
-draw byCircleR(O, r, byred, 0, 0, 1/2)(O);
+draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{from any angle of a triangle a straight line be drawn perpendicular to the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the perpendicular and the diameter of the circle described about the triangle.}
@@ -12589,7 +12589,7 @@ draw byLine(A, B, black, 1, 0);
 draw byLine(B, C, byblue, 1, 0);
 draw byLine(C, D, black, 0, 0);
 draw byLine(D, A, byyellow, 0, 0);
-draw byCircleR(O, r, byred, 0, 0, 1/2)(O);
+draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{rectangle contained by the diagonals of a quadrilateral figure inscribed in a circle, is equal to both the rectangles contained by its opposite sides.}

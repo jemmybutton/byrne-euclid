@@ -689,11 +689,11 @@ vardef byNamedArcLabel (text arcslist) =
 endgroup
 enddef;
 
-vardef byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
+vardef byCircleDefineFree (expr o, r, col, dp, th, s) (suffix circleName) =
 color circleColor.circleName;
 pair circleCenter.circleName;
 numeric circleDiameter.circleName, circleShift.circleName, circleDashed.circleName, circleThin.circleName;
-string circleCenterName.circleName, circleAName.circleName;
+string circleCenterName.circleName, circleAName.circleName, circleBName.circleName, circleCName.circleName;
 begingroup
     circleColor.circleName := col;
     circleDashed.circleName := dp;
@@ -701,8 +701,17 @@ begingroup
     circleShift.circleName := s;
     circleDiameter.circleName := 2r;
     circleCenter.circleName := o;
-    circleCenterName.circleName := str o;
+    circleCenterName.circleName := "";
     circleAName.circleName := "";
+    circleBName.circleName := "";
+    circleCName.circleName := "";
+endgroup
+enddef;
+
+vardef byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
+begingroup
+    byCircleDefineFree(o, r, col, dp, th, s)(circleName);
+    circleCenterName.circleName := str o;
 endgroup
 enddef;
 
@@ -721,6 +730,22 @@ begingroup
 endgroup
 enddef;
 
+vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
+begingroup
+    save o, r;
+    pair o;
+    numeric r;
+    o = whatever[1/2[a, b], 1/2[a, b] shifted ((a-b) rotated 90)]
+        = whatever[1/2[b, c], 1/2[b, c] shifted ((b-c) rotated 90)];
+    r := abs(o - a);
+    byCircleDefineFree(o, r, col, dp, th, s)(circleName);
+    circleAName.circleName := str a;
+    circleBName.circleName := str b;
+    circleCName.circleName := str c;
+    byNamedCircle(circleName)
+endgroup
+enddef;
+
 vardef byNamedCircle(text circlesList) =
 begingroup
     save p;
@@ -729,15 +754,20 @@ begingroup
         forsuffixes cN=circlesList:
             draw byArcRender (circleCenter.cN, 0, 8, circleDiameter.cN, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
             if (textLabels and autoLabelingMode):
-                draw byTextLabel(
-                    circleCenterName.cN,
-                    scantokens(circleCenterName.cN),
-                    0, 0);
-                if (circleAName.cN <> ""):
+                if (circleCenterName.cN <> ""):
                     draw byTextLabel(
-                        circleAName.cN,
-                        scantokens(circleAName.cN),
-                        angle(scantokens(circleCenterName.cN) - scantokens(circleAName.cN)), textLabelShift + lineThickness(circleThin.cN)*(1/2-1/2circleShift.cN));
+                        circleCenterName.cN,
+                        scantokens(circleCenterName.cN),
+                        0, 0);
+                fi;
+                if (circleAName.cN <> ""):
+                    draw byCircleLabel(circleAName.cN, str cN);
+                fi;
+                if (circleBName.cN <> ""):
+                    draw byCircleLabel(circleBName.cN, str cN);
+                fi;
+                if (circleCName.cN <> ""):
+                    draw byCircleLabel(circleCName.cN, str cN);
                 fi;
             fi;
         endfor;
@@ -1450,6 +1480,17 @@ begingroup
     image(
         draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
     )
+endgroup
+enddef;
+
+vardef byCircleLabel(expr l, cn) =
+begingroup
+    save o, d;
+    pair o;
+    numeric d;
+    o := circleCenter.scantokens(cn);
+    d := lineThickness(circleThin.scantokens(cn))*(1/2-1/2circleShift.scantokens(cn));
+    byTextLabel(l, scantokens(l), angle(o - scantokens(l)), textLabelShift + d)
 endgroup
 enddef;
 
