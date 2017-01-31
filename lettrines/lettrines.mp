@@ -20,12 +20,15 @@ input TEX;
 TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\usepackage{gentium}\begin{document}");
 TEXPOST("\end{document}");
 
+vardef log(expr x, b) =
+    (mlog(x)/256)/(mlog(2)/256)
+enddef;
+
 % here we define some measures, common to all images
 numeric lS, mD;
 lS := 7/5cm;
-mD := 1/25cm;
+mD := 1/20cm;
 bS := 2/3mm;
-minBranchLength := 1/6cm;
 
 % this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
 primarydef p firstIntersectionTimes q =
@@ -63,7 +66,7 @@ begingroup
 endgroup
 enddef;
 
-vardef findRightSize (expr p, q, lni, li, l, n, i) =
+vardef findRightSize (expr p, q, lni, li, lDir, l, n, i) =
 begingroup
     save bp, ic, rv, s;
     path bp;
@@ -76,11 +79,19 @@ begingroup
     fi;
     bp := (p scaled s) shifted q;
     ic := checkIfIntersects(bp, l, n);
-    if (i > 0) and (li > 1/8cm):
+    if (i > 0) and (li >= minBranchLength):
         if (ic = 0):
-            rv := findRightSize(p, q, s, li, l, n, i - 1);
+            rv := findRightSize(p, q, s, li, 1, l, n, i - 1);
         else:
-            rv := findRightSize(p, q, lni, s, l, n, i - 1);
+            rv := findRightSize(p, q, lni, s, -1, l, n, i - 1);
+        fi;
+    else:
+        if (ic <> 0):
+            if (lDir = 1):
+                rv := 1/2[s, li];
+            elseif (lDir = -1):
+                rv := 1/2[lni, li];
+            fi;
         fi;
     fi;
     rv
@@ -101,14 +112,10 @@ begingroup
         cO := o[n];
     fi;
     o[pN + 1] := cO;
-    if (cycle p[n]):
-        endPoint := arclength(p[n]);
-    else:
-        endPoint := 5/6arclength(p[n]);
-    fi;
+    endPoint := arclength(pm[n]);
     startPoint := uniformdeviate(1/2endPoint);
     for i := startPoint step bS until 1/2endPoint + startPoint:
-        j := (arctime i of p[n]);
+        j := (arctime i of pm[n]);
         if (checkBranch (n, j) = 0) or (checkBranch (n, j) > sOld):
             if cycle p[n]:
                 ts := abs(ulcorner(p[n]) - lrcorner(p[n]));
@@ -118,20 +125,21 @@ begingroup
             if (checkBranch (n, j) > 0):
                 ts := checkBranch (n, j);
             fi;
-            ti := 3 + mlog(ts/(1/2mm))/256;
+            ti := 2 + log(ts/(1/4mm), 2);
             if (cO = 0):
-                tp := q[cO] rotated (angle(direction j of p[n]) - 90);
+                tp := q[cO] rotated (angle(direction j of pm[n]) - 90);
             else:
-                tp := q[cO] rotated (angle(direction j of p[n]) + 90);
+                tp := q[cO] rotated (angle(direction j of pm[n]) + 90);
             fi;
-            s := findRightSize(tp, (point j of p[n]), 0, ts, n, pN, ti);
+            s := findRightSize(tp, (point j of pm[n]), 0, ts, 0, n, pN, ti);
             if (arclength(tp scaled s) <= minBranchLength):
                 pb[n] := addBranch (n, j, -1);
             else:
                 pb[n] := addBranch (n, j, s);
             fi;
             if (s > sOld):
-                rp := tp scaled s shifted (point j of p[n]);
+                pb[n] := addBranch (n, j, s);
+                rp := tp scaled s shifted (point j of pm[n]);
                 sOld := s;
                 t := j;
             fi;
@@ -152,7 +160,8 @@ begingroup
     t := xpart(pathItself firstIntersectionTimes po[l]);
     if (xpart((subpath(t + 1/100, length(pathItself)) of pathItself) intersectiontimes po[l]) >= 0)
         or (xpart((subpath(1/100, length(pathItself)) of pathItself) intersectiontimes po[l]) < 0)
-        or (arclength(subpath (0, t) of pathItself) > 3mD):
+        or (arclength(subpath (0, t) of pathItself) > 3mD)
+        or (t < 0):
         rv := rv + 1;
     else:
         for m := 0 step 1 until n:
@@ -172,7 +181,7 @@ begingroup
     save rv;
     path rv;
     rv := (0, 0);
-    for i := 1mm step bS until arclength(p):
+    for i := 1 step 1 until round(arclength(p)/bS):
         rv := rv -- (0, 0);
     endfor;
     rv
@@ -184,10 +193,18 @@ begingroup
     save rv, loc;
     path rv;
     numeric loc;
-    loc := round((arclength(subpath(0, l) of p[pn]))/bS);
-    rv := (subpath (0, loc-1) of pb[pn])
-        -- (s, ypart(point loc of pb[pn]))
-        -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
+    loc := round((arclength(subpath(0, l) of pm[pn]))/bS);
+    if (loc < length(pb[pn])) and (loc > 0):
+        rv := (subpath (0, loc-1) of pb[pn])
+            -- (s, ypart(point loc of pb[pn]))
+            -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
+    elseif (loc = 0):
+        rv := (s, ypart(point loc of pb[pn]))
+            -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
+    elseif (loc = length(pb[pn])):
+        rv := (subpath (0, loc-1) of pb[pn])
+            -- (s, ypart(point loc of pb[pn]));
+    fi;
     rv
 endgroup
 enddef;
@@ -196,7 +213,7 @@ vardef checkBranch (expr pn, l) =
 begingroup
     save rv, loc;
     numeric loc, rv;
-    loc := round((arclength(subpath(0, l) of p[pn]))/bS);
+    loc := round((arclength(subpath(0, l) of pm[pn]))/bS);
     rv := xpart(point loc of pb[pn]);
     rv
 endgroup
@@ -205,13 +222,15 @@ enddef;
 figNum := 0;
 
 picture currentLetter, cL;
-path p[], pb[], po[], q[], candidateBranch;
-% 'o[]' is for curl's orientation, 'cO' is for current curl orientation, 'p[]' is main for paths, 'pb[]' is for 'buds', places where branches are, or tried to spring, 'q[]' is for curl templates, 'tp' is for temporary path in cycle, 's' is for scale, 'startFrom' is for cases when we only need boundry as invisible limit
+path p[], pm[], pb[], po[], q[], candidateBranch;
+% 'o[]' is for curl's orientation, 'cO' is for current curl orientation, 'p[]' is main for paths, 'pm[]' is for subpath of p[] that can yield 'buds', 'pb[]' is for 'buds', places where branches are, or tried to spring, 'q[]' is for curl templates, 'tp' is for temporary path in cycle, 's' is for scale, 'startFrom' is for cases when we only need boundry as invisible limit
 numeric o[], cO, lC, tt[], ta, ln[], ll, lc, startFrom, symMode, numberOfIterations;
+pair qi;
 string shuffledNumbers;
 
 q0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 q1 := q0 yscaled -1;
+qi := (1/2, length(q0) - 2);
 
 string lettrinesFile, l, ls[];
 lettrinesFile := "lettrineslist.txt";
@@ -247,38 +266,45 @@ forever:
         if l <> "plate":
             pN := 0;
             p0 := (0,0)--(0, lS)--(lS, lS)--(lS, 0)--cycle;
+            pm0 := p0;
             po0 := pathOutline(p0, 1/2);
-            pb0 := generateBranchesTemplate(p0);
+            pb0 := generateBranchesTemplate(pm0);
             o0 := 0;
             currentLetter := TEX(l);
             for tp within currentLetter:
                 cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 100/2700;
-                cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lS, 1/2lS);%(-1/2[xpart(urcorner(cL)), xpart(ulcorner(cL))], 0) shifted (1/2lS, 40/160cm);
+                cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lS, 1/2lS);
                 draw cL;
                 for item within cL:
                     pN := pN + 1;
                     p[pN] := pathpart item;
+                    pm[pN] := p[pN];
                     po[pN] := pathOutline(p[pN], 1/8);
-                    pb[pN] := generateBranchesTemplate(p[pN]);
+                    pb[pN] := generateBranchesTemplate(pm[pN]);
                     o[pN] := 0;
                 endfor;
             endfor;
             startFrom := 0;
             symMode := 0;
-            numberOfIterations := 20;
+            numberOfIterations := 12;
+            minBranchLength := 1/6cm;
         else:
             p0 := (-80/2mm,-15/2mm)--(-80/2mm, 15/2mm)--(80/2mm, 15/2mm)--(80/2mm, -15/2mm)--cycle;
+            pm0 := p0;
             p1 := (q0 rotated 15) scaled 18mm;
+            pm1 := subpath (0, ypart(qi)) of p1;
             p2 := p1 rotated 180;
+            pm2 := subpath (0, ypart(qi)) of p2;
             for i := 0 step 1 until 2:
                 pN := i;
                 po[i] := pathOutline(p[i], 1/2);
-                pb[i] := generateBranchesTemplate(p[i]);
+                pb[i] := generateBranchesTemplate(pm[i]);
                 o[i] := 0;
             endfor;
             startFrom := 1;
             symMode := 1;
-            numberOfIterations := 20;
+            numberOfIterations := 12;
+            minBranchLength := 1/4cm;
         fi;
         for nn := 0 step 1 until numberOfIterations:
             shuffledNumbers := "";
@@ -291,19 +317,22 @@ forever:
             endfor;
             shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
             for i=scantokens(shuffledNumbers):
-                candidateBranch := findRightPlace(i, pN);
-                if (arclength(candidateBranch) >= minBranchLength):
-                    pN := pN + 1;
-                    p[pN] := candidateBranch;
-                    po[pN] := pathOutline(p[pN], 1/2);
-                    pb[pN] := generateBranchesTemplate(p[pN]);
-                    %o[pN] := cO;
-                    if(symMode = 1):
+                if (xpart(urcorner(pb[i])) >= 0):
+                    candidateBranch := findRightPlace(i, pN);
+                    if (arclength(candidateBranch) >= minBranchLength):
                         pN := pN + 1;
-                        p[pN] := p[pN-1] rotated 180;
-                        po[pN] := po[pN-1] rotated 180;
-                        pb[pN] := pb[pN-1];
-                        o[pN] := o[pN-1];
+                        p[pN] := candidateBranch;
+                        pm[pN] := subpath qi of p[pN];
+                        po[pN] := pathOutline(p[pN], 1/2);
+                        pb[pN] := generateBranchesTemplate(pm[pN]);
+                        if(symMode = 1):
+                            pN := pN + 1;
+                            p[pN] := p[pN-1] rotated 180;
+                            pm[pN] := pm[pN-1] rotated 180;
+                            po[pN] := po[pN-1] rotated 180;
+                            pb[pN] := pb[pN-1];
+                            o[pN] := o[pN-1];
+                        fi;
                     fi;
                 fi;
             endfor;
