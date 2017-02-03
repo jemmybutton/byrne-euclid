@@ -1,4 +1,4 @@
-%    byrne-euclid 0.0.3
+%    byrne-euclid 0.0.4
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2017 Sergey Slyusarev
@@ -761,13 +761,13 @@ begingroup
                         0, 0);
                 fi;
                 if (circleAName.cN <> ""):
-                    draw byCircleLabel(circleAName.cN, str cN);
+                    draw byLabelCircle(circleAName.cN, str cN);
                 fi;
                 if (circleBName.cN <> ""):
-                    draw byCircleLabel(circleBName.cN, str cN);
+                    draw byLabelCircle(circleBName.cN, str cN);
                 fi;
                 if (circleCName.cN <> ""):
-                    draw byCircleLabel(circleCName.cN, str cN);
+                    draw byLabelCircle(circleCName.cN, str cN);
                 fi;
             fi;
         endfor;
@@ -1471,7 +1471,7 @@ begingroup
         string pointLabel.scantokens(t);
         pointLabel.scantokens(t) := t;
     fi;
-    labelItself := textext(pointLabel.scantokens(t)) scaled 1/2;
+    labelItself := textext("\tf\ss " & pointLabel.scantokens(t)) scaled 2/5;
     labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
     if (d > 0):
         bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
@@ -1483,7 +1483,7 @@ begingroup
 endgroup
 enddef;
 
-vardef byCircleLabel(expr l, cn) =
+vardef byLabelCircle(expr l, cn) =
 begingroup
     save o, d;
     pair o;
@@ -1572,6 +1572,12 @@ begingroup
             endfor;
         fi;
     )
+endgroup
+enddef;
+
+vardef byLabelLineEnd (suffix a, b) =
+begingroup
+    byTextLabel(str a, a, angle(a-b), textLabelShift)
 endgroup
 enddef;
 

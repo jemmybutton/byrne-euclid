@@ -372,7 +372,7 @@ But $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \
 \emph{By annexing Letters to the Diagram.}
 \stopalignment
 
-Let the equal sides AB and AC be produced through the extremities BC, of the third side, and in the produced part BD of either, lat any point D be assumed, and from the let AE be cut off equal to AD \inprop[prop:I.III]. Let points E and D, so taken in the produced sides, be connected by straight lines DC and BE with the alternate extremities of the third side of the triangle.
+Let the equal sides AB and AC be produced through the extremities BC, of the third side, and in the produced part BD of either, let any point D be assumed, and from the let AE be cut off equal to AD \inprop[prop:I.III]. Let points E and D, so taken in the produced sides, be connected by straight lines DC and BE with the alternate extremities of the third side of the triangle.
 
 In the triangles DAC and EAB the sides DA and AC are respectively equal to EA and AB, and the included angle A is common to both triangles. Hence \inprop[prop:I.IV] the line DC is equal to BE, the angle ADC to the angle AEB, and the angle ACD to the angle ABE; if from the equal lines AD and AE the equal sides AB and AC be taken, the remainders BD and CE will be equal. Hence in the triangles BDC and CEB, the sides BD and DC are respectively equal to CE and EB, and the angles D and E included by those sides are also equal. Hence \inprop[prop:I.IV] the angles DBC and ECB, which are those included by the third side BC and the productions of the equal sides AB and AC are equal. Also the angles DCB and EBC are equal if those equals be taken from the angles DCA and EBA before proved equal, the remainders, which are the angles ABC and ACD opposite to the equal sides, will be equal.
 
@@ -1179,7 +1179,17 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 \problemNP{O}{n}{a given finite straight line (\drawUnitLine{AB}) to describe an equilateral triangle.}
 
 \startCenterAlign
-Describe \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{draw byNamedLine (AB); draw byNamedCircle (A);}} and \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{draw byNamedLine (AB); draw byNamedCircle (B);}}
+Describe \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
+draw byNamedLine(AB);
+draw byNamedCircle(A);
+draw byLabelLineEnd(A, B);
+draw byLabelLineEnd(B, A);
+}} and \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
+draw byNamedLine(AB); 
+draw byNamedCircle(B);
+draw byLabelLineEnd(A, B);
+draw byLabelLineEnd(B, A);
+}}
 \inpost[post:III];\\
 draw \drawUnitLine{CA} and \drawUnitLine{BC} \inpost[post:I].\\
 Then will \drawLine[bottom][triangleABC]{AB,CA,BC} be equilateral.
