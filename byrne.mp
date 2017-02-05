@@ -70,7 +70,6 @@ vardef sign (expr x) =
 enddef;
 
 vardef cycleval (expr v, l) =
-begingroup
     save rv;
     numeric rv;
     if (l > 0):
@@ -83,11 +82,9 @@ begingroup
         rv := 0;
     fi;
     rv
-endgroup
 enddef;
 
 vardef distanceToLine (expr givenPoint, givenLine) =
-begingroup
     save p;
     pair p[];
     p0 := point 0 of givenLine;
@@ -96,17 +93,14 @@ begingroup
     p2 = whatever[p0, p1];
     p3 := p2;
     arclength(givenPoint -- p3)
-endgroup
 enddef;
 
 vardef angleValue (expr a, b, c) =
-begingroup
     save v;
     numeric v;
     v := angle(a-b) - angle(c-b);
     if (sind(v) < 0): v := -v; fi;
     v
-endgroup
 enddef;
 
 vardef lineThickness(expr th) =
@@ -122,14 +116,12 @@ vardef lineThickness(expr th) =
 enddef;
 
 vardef byDashPattern(expr l, dp) =
-begingroup
     save d, n;
     numeric d[], n;
     n := ceiling(l/dpLength[dp]);
     d1 := 1/3(l/n);
     d2 := 1/3(l/n);
     dashpattern (on d1 off d2 on d1)
-endgroup
 enddef;
 
 def startTempScale(expr tmpScale) =
@@ -178,7 +170,6 @@ enddef;
 %
 
 vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
-begingroup
     save p, la, lineItself, lineBleeding, clippingPath, cutAngle, linePerp, lineStyShift, currentLineWidth, clippingPathPoint, aS, bS;
     picture p;
     path lineItself, lineBleeding, clippingPath;
@@ -249,16 +240,14 @@ begingroup
     clippingPath := clippingPathPoint1 -- clippingPathPoint2 -- clippingPathPoint3 -- clippingPathPoint4 -- cycle;
     clip p to clippingPath;
     p rotated globalRotation
-endgroup
 enddef;
 
-def byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
+vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
 color lineColor.lineName;
 path line.lineName;
 numeric lineShift.lineName, lineDashed.lineName, lineLength.lineName, lineAngle.lineName, lineEndAType.lineName, lineEndBType.lineName;
 pair lineEndA.lineName, lineEndB.lineName, lineDirA.lineName, lineDirB.lineName;
 string lineEndAName.lineName, lineEndBName.lineName;
-begingroup
     lineAngle.lineName := angle(b-a);
     lineColor.lineName := col;
     lineDashed.lineName := dp;
@@ -273,63 +262,49 @@ begingroup
     lineEndBType.lineName := 0;
     lineEndAName.lineName := str a;
     lineEndBName.lineName := str b;
-endgroup
 enddef;
 
-def byLineDefine (suffix a, b) (expr col, dp, th) =
+vardef byLineDefine (suffix a, b) (expr col, dp, th) =
     byLineDefineWithName (a, b, col, dp, th) (scantokens(str a & str b));
 enddef;
 
-def byLineStylize (expr c, d, ct, dt, s) (suffix lineName) =
-begingroup
+vardef byLineStylize (expr c, d, ct, dt, s) (suffix lineName) =
     lineShift.lineName := s;
     lineDirA.lineName := c;
     lineDirB.lineName := d;
     lineEndAType.lineName := ct;
     lineEndBType.lineName := dt;
-endgroup
 enddef;
 
 vardef byLine (suffix a, b)(expr col, dp, th) =
-begingroup
     byLineDefine (a, b) (col, dp, th);
     byNamedLineFull(a, b, 0, 0, 0)(scantokens(str a & str b))
-endgroup
 enddef;
 
 vardef byLineFull (suffix a, b)(expr col, dp, th, c, d, ct, dt, s) =
-begingroup
     byLineDefine (a, b) (col, dp, th);
     byLineStylize (c, d, ct, dt, s)(scantokens(str a & str b));
     byNamedLine(scantokens(str a & str b))
-endgroup
 enddef;
 
 vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-begingroup
     byLineDefineWithName (a, b, col, dp, th) (lineName);
     byNamedLineFull(a, b, 0, 0, 0)(lineName)
-endgroup
 enddef;
 
 vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
-begingroup
     byLineRender(lineEndA.lineName, lineEndB.lineName, lineColor.lineName, lineDashed.lineName, lineThin.lineName, c, d, ct, dt, s, scaleFactor)
-endgroup
 enddef;
 
 vardef byNamedLine(text linesList) =
-begingroup
     image(
         forsuffixes lN=linesList:
             draw byNamedLineFull(lineDirA.lN, lineDirB.lN, lineEndAType.lN, lineEndBType.lN, lineShift.lN)(lN);
         endfor;
     )
-endgroup
 enddef;
 
 vardef byNamedLineSeq(expr s)(text linesList) =
-begingroup
     save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, pointNames;
     string lAname[], lBname[], lName[], c, d, pointNames;
     numeric i, j, k, l, m, n, prp, lShift[];
@@ -440,21 +415,17 @@ begingroup
             endfor;
         fi;
     )
-endgroup
 enddef;
 
 vardef byMarkLine(expr pos, col)(suffix lineName) =
 numeric markPosition.lineName;
 color markColor.lineName;
-begingroup
     markPosition.lineName := pos;
     markColor.lineName := col;
     byNamedMarkLine(lineName)
-endgroup
 enddef;
 
 vardef byNamedMarkLine(suffix lineName) =
-begingroup
     save p, q;
     pair q[];
     picture p;
@@ -466,11 +437,9 @@ begingroup
         draw (q1--q2) shifted q3 withpen pencircle scaled lineWidthThin withcolor markColor.lineName;
     );
     p rotated globalRotation
-endgroup
 enddef;
 
 vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
-begingroup
     save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, globalRotation;
     numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j;
     globalRotation := 0;
@@ -531,7 +500,6 @@ begingroup
             draw byTextLabel(endNames[1], b, 90, textLabelShift);
         fi;
     )
-endgroup
 enddef;
 
 %
@@ -539,13 +507,12 @@ enddef;
 %
 
 vardef byArcRender(expr o, b, e, r, col, dp, th, s, et) =
-save p, q, m, t, currentLineWidth;
-path p[];
-picture q;
-pair t[];
-numeric m[];
-numeric currentLineWidth;
-begingroup
+    save p, q, m, t, currentLineWidth;
+    path p[];
+    picture q;
+    pair t[];
+    numeric m[];
+    numeric currentLineWidth;
     image(
         currentLineWidth := lineThickness(th);
         p0 := ((subpath (b, e) of fullcircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
@@ -576,7 +543,6 @@ begingroup
         clip q to p4;
         draw q;
     ) rotated globalRotation
-endgroup
 enddef;
 
 vardef byArcDefine (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
@@ -584,7 +550,6 @@ color arcColor.arcName;
 pair arcCenter.arcName;
 numeric arcDiameter.arcName, arcShift.arcName, arcDashed.arcName, arcBegin.arcName, arcEnd.arcName, arcAngle.arcName, arcThin.arcName, arcEndType.arcName;
 string arcCenterName.arcName, arcBName.arcName, arcEName.arcName;
-begingroup
     arcColor.arcName := col;
     arcDashed.arcName := dp;
     arcThin.arcName := th;
@@ -598,18 +563,14 @@ begingroup
     arcEnd.arcName := e;
     arcEndType.arcName := et;
     arcAngle.arcName := angle((point b of fullcircle) - (point e of fullcircle));
-endgroup
 enddef;
 
 vardef byArcBE (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
-begingroup
     byArcDefine(o, b, e, r, col, dp, th, s, et) (arcName);
     byNamedArcExact(arcName)
-endgroup
 enddef;
 
 vardef byArc (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcName) =
-begingroup
     save b, e;
     numeric b, e;
     b := xpart(((fullcircle scaled 2r) shifted o) intersectiontimes (o -- 2[o, pb]));
@@ -621,11 +582,9 @@ begingroup
     arcBName.arcName := str pb;
     arcEName.arcName := str pe;
     byNamedArcExact(arcName)
-endgroup
 enddef;
 
 vardef byNamedArcExact(text arcslist) =
-begingroup
     image(
         forsuffixes aN=arcslist:
             draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, arcShift.aN, arcEndType.aN);
@@ -634,11 +593,9 @@ begingroup
             draw byNamedArcLabel(arcslist);
         fi;
     )
-endgroup
 enddef;
 
 vardef byNamedArc(text arcslist) =
-begingroup
     image(
         forsuffixes aN=arcslist:
             draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, 0, 0);
@@ -647,7 +604,6 @@ begingroup
             draw byNamedArcLabel(arcslist);
         fi;
     )
-endgroup
 enddef;
 
 vardef byNamedArcLabel (text arcslist) =
@@ -686,7 +642,6 @@ vardef byNamedArcLabel (text arcslist) =
             endfor;
         fi;
     )
-endgroup
 enddef;
 
 vardef byCircleDefineFree (expr o, r, col, dp, th, s) (suffix circleName) =
@@ -694,7 +649,6 @@ color circleColor.circleName;
 pair circleCenter.circleName;
 numeric circleDiameter.circleName, circleShift.circleName, circleDashed.circleName, circleThin.circleName;
 string circleCenterName.circleName, circleAName.circleName, circleBName.circleName, circleCName.circleName;
-begingroup
     circleColor.circleName := col;
     circleDashed.circleName := dp;
     circleThin.circleName := th;
@@ -705,33 +659,25 @@ begingroup
     circleAName.circleName := "";
     circleBName.circleName := "";
     circleCName.circleName := "";
-endgroup
 enddef;
 
 vardef byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
-begingroup
     byCircleDefineFree(o, r, col, dp, th, s)(circleName);
     circleCenterName.circleName := str o;
-endgroup
 enddef;
 
 vardef byCircleR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
-begingroup
     byCircleDefineR(o, r, col, dp, th, s)(circleName);
     byNamedCircle(circleName)
-endgroup
 enddef;
 
 vardef byCircle (suffix o, a)(expr col, dp, th, s) (suffix circleName) =
-begingroup
     byCircleDefineR(o, abs(a-o), col, dp, th, s)(circleName);
     circleAName.circleName := str a;
     byNamedCircle(circleName)
-endgroup
 enddef;
 
 vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
-begingroup
     save o, r;
     pair o;
     numeric r;
@@ -743,13 +689,9 @@ begingroup
     circleBName.circleName := str b;
     circleCName.circleName := str c;
     byNamedCircle(circleName)
-endgroup
 enddef;
 
 vardef byNamedCircle(text circlesList) =
-begingroup
-    save p;
-    path p;
     image(
         forsuffixes cN=circlesList:
             draw byArcRender (circleCenter.cN, 0, 8, circleDiameter.cN, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
@@ -783,23 +725,18 @@ vardef byArbitraryFigureDefine(expr p, col, dp, th)(suffix arbitraryFigureName) 
 color arbitraryFigureColor.arbitraryFigureName;
 path arbitraryFigurePath.arbitraryFigureName;
 numeric arbitraryFigureDashed.arbitraryFigureName, arbitraryFigureThin.arbitraryFigureName;
-begingroup
     arbitraryFigurePath.arbitraryFigureName := p;
     arbitraryFigureColor.arbitraryFigureName := col;
     arbitraryFigureDashed.arbitraryFigureName := dp;
     arbitraryFigureThin.arbitraryFigureName := th;
-endgroup
 enddef;
 
 vardef byArbitraryFigure(expr p, col, dp, th)(suffix arbitraryFigureName) =
-begingroup
     byArbitraryFigureDefine(p, col, dp, th)(arbitraryFigureName);
     byNamedArbitraryFigure(arbitraryFigureName)
-endgroup
 enddef;
 
 vardef byNamedArbitraryFigure(text arbitraryFiguresList) =
-begingroup
     save p;
     path p;
     image(
@@ -808,7 +745,6 @@ begingroup
             draw p withpen pencircle scaled lineThickness(arbitraryFigureThin.pN) withcolor arbitraryFigureColor.pN if (arbitraryFigureDashed.pN > 0): dashed byDashPattern(arclength(p), arbitraryFigureDashed.pN) fi;
         endfor;
     ) rotated globalRotation
-endgroup
 enddef;
 
 %
@@ -819,18 +755,15 @@ vardef byFilledCircleSegment (expr o, r, b, e, col) (suffix filledCircleSegmentN
 color filledCircleSegmentColor.filledCircleSegmentName;
 pair filledCircleSegmentCenter.filledCircleSegmentName;
 numeric filledCircleSegmentDiameter.filledCircleSegmentName, filledCircleSegmentBegin.filledCircleSegmentName, filledCircleSegmentEnd.filledCircleSegmentName;
-begingroup
     filledCircleSegmentColor.filledCircleSegmentName := col;
     filledCircleSegmentDiameter.filledCircleSegmentName := 2r;
     filledCircleSegmentBegin.filledCircleSegmentName := b;
     filledCircleSegmentEnd.filledCircleSegmentName := e;
     filledCircleSegmentCenter.filledCircleSegmentName := o;
     byNamedFilledCircleSegment(filledCircleSegmentName)
-endgroup
 enddef;
 
 vardef byNamedFilledCircleSegment(text filledCircleSegmentList) =
-begingroup
     save p;
     path p;
     image(
@@ -838,40 +771,32 @@ begingroup
             fill ((subpath (filledCircleSegmentBegin.csN, filledCircleSegmentEnd.csN) of fullcircle)--cycle) scaled (filledCircleSegmentDiameter.csN*scaleFactor) shifted (filledCircleSegmentCenter.csN*scaleFactor) withcolor filledCircleSegmentColor.csN;
         endfor;
     ) rotated globalRotation
-endgroup
 enddef;
 
 vardef byFilledCircleSector (expr o, r, b, e, col) (suffix filledCircleSectorName) =
 color filledCircleSectorColor.filledCircleSectorName;
 pair filledCircleSectorCenter.filledCircleSectorName;
 numeric filledCircleSectorDiameter.filledCircleSectorName, filledCircleSectorBegin.filledCircleSectorName, filledCircleSectorEnd.filledCircleSectorName;
-begingroup
     filledCircleSectorColor.filledCircleSectorName := col;
     filledCircleSectorDiameter.filledCircleSectorName := 2r;
     filledCircleSectorBegin.filledCircleSectorName := b;
     filledCircleSectorEnd.filledCircleSectorName := e;
     filledCircleSectorCenter.filledCircleSectorName := o;
     byNamedFilledCircleSector(filledCircleSectorName)
-endgroup
 enddef;
 
 vardef byNamedFilledCircleSector(text filledCircleSectorList) =
-begingroup
-    save p;
-    path p;
     image(
         forsuffixes csN=filledCircleSectorList:
             fill ((subpath (filledCircleSectorBegin.csN, filledCircleSectorEnd.csN) of fullcircle)-- (0, 0) -- cycle) scaled (filledCircleSectorDiameter.csN*scaleFactor) shifted (filledCircleSectorCenter.csN*scaleFactor) withcolor filledCircleSectorColor.csN;
         endfor;
     ) rotated globalRotation
-endgroup
 enddef;
 
 vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
 color polygonColor.polygonName, polygonPointsList.polygonName;
 path polygonPath.polygonName;
 string polygonPointsList.polygonName;
-begingroup
     polygonPath.polygonName := forsuffixes pN=pointsList: pN -- endfor cycle;
     polygonColor.polygonName := col;
     polygonPointsList.polygonName := "";
@@ -887,11 +812,9 @@ begingroup
         fi;
     endfor;
     byNamedPolygon(polygonName)
-endgroup
 enddef;
 
 vardef byPolygon(text pointsList)(expr col)=
-begingroup
     save polygonName;
     string polygonName;
     polygonName := "";
@@ -899,11 +822,9 @@ begingroup
         polygonName := polygonName & str pN;
     endfor;
     byPolygonWithName(pointsList)(col)(scantokens(polygonName))
-endgroup
 enddef;
 
 vardef byNamedPolygon(text polygonsList) =
-begingroup
     image(
         draw image(
             forsuffixes pN=polygonsList:
@@ -918,11 +839,9 @@ begingroup
             draw byLabelsOnPolygon(scantokens byMergePolygons(polygonsList))(1, 1);
         fi;
     )
-endgroup
 enddef;
 
 vardef byMergePolygons(text polygonsList) =
-begingroup
     save pointsList, preList, postList, mergedList, points, postPoints, i, j, k, l, m, n, o, iteration, beforeJoin, polygonChecked, pointChecked;
     string pointsList[], preList[], postList[], mergedList, points[], postPoints[];
     numeric l, m, n, o, iteration;
@@ -990,11 +909,9 @@ begingroup
         mergedList := pointsList0;
     fi;
     mergedList
-endgroup
 enddef;
 
 vardef polygonCleanup (text pointsList) =
-begingroup
     save cleanedList, points, m, n, iteration;
     string cleanedList, points[];
     numeric m, n, iteration;
@@ -1022,7 +939,6 @@ begingroup
         cleanedList := cleanedList & ", " & points[i];
     endfor;
     cleanedList
-endgroup
 enddef;
 
 %
@@ -1035,7 +951,6 @@ color angleColor.angleName, angleOptionalColor.angleName[];
 numeric angleDirection.angleName;
 pair angleCenter.angleName;
 string angleAName.angleName, angleBName.angleName, angleCName.angleName;
-begingroup
     save p, q;
     path p;
     picture q;
@@ -1050,7 +965,6 @@ begingroup
     angleAName.angleName := str a;
     angleBName.angleName := str b;
     angleCName.angleName := str c;
-endgroup
 enddef;
 
 vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
@@ -1058,10 +972,8 @@ vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
 enddef;
 
 vardef byAngleWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
-begingroup
     byAngleDefineWithName(a, b, c, col, sty)(angleName);
     byNamedAngle(angleName)
-endgroup
 enddef;
 
 vardef byAngle(suffix a, b, c)(expr col, sty) =
@@ -1069,7 +981,6 @@ vardef byAngle(suffix a, b, c)(expr col, sty) =
 enddef;
 
 vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
-begingroup
     save n;
     numeric n;
     n := 0;
@@ -1079,7 +990,6 @@ begingroup
         n := n + 1;
     endfor;
     byNamedAngle(angleName)
-endgroup
 enddef;
 
 vardef byAngleExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
@@ -1087,7 +997,6 @@ vardef byAngleExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
 enddef;
 
 vardef byNamedAngle(text anglesList) =
-begingroup
     save p, q;
     picture q;
     path p[];
@@ -1121,7 +1030,6 @@ begingroup
             draw (q shifted (angleCenter.aN scaled scaleFactor)) rotated globalRotation;
         endfor;
     )
-endgroup
 enddef;
 
 % Following monstrosity draws dummy sides for angles which require them,
@@ -1131,15 +1039,14 @@ enddef;
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
 vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
-save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName;
-string centerName, pointName[];
-pair ac, p[];
-boolean uniqueCenter, angleCheck;
-numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash;
-path compoundAnglePath, compoundAngleArc;
-color lineCol;
-picture outputImage;
-begingroup
+    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName;
+    string centerName, pointName[];
+    pair ac, p[];
+    boolean uniqueCenter, angleCheck;
+    numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash;
+    path compoundAnglePath, compoundAngleArc;
+    color lineCol;
+    picture outputImage;
     centerName := "";
     uniqueCenter := true;
     forsuffixes aN=anglesList:
@@ -1248,7 +1155,6 @@ begingroup
             draw byTextLabel(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
         fi;
     )
-endgroup
 enddef;
 
 vardef byNamedAngleDummySides(text anglesList)=
@@ -1263,7 +1169,6 @@ vardef byNamedAngleSides(text anglesList)(text linesList) =
 enddef;
 
 vardef twoRightAngles =
-begingroup
     save textLabels;
     boolean textLabels;
     textLabels := false;
@@ -1271,11 +1176,9 @@ begingroup
         draw byNamedAngle(rightAngleWN,rightAngleNE);
         draw byNamedAngleDummySides(rightAngleWN,rightAngleNE);
     )
-endgroup
 enddef;
 
 vardef rightAngle =
-begingroup
     save textLabels;
     boolean textLabels;
     textLabels := false;
@@ -1283,7 +1186,6 @@ begingroup
         draw byNamedAngle(rightAngleWN);
         draw byNamedAngleDummySides(rightAngleWN);
     )
-endgroup
 enddef;
 
 % Angles we often need
@@ -1304,14 +1206,13 @@ byAngleDefineWithName (pointW, pointO, pointN)(black, 1)(rightAngleWN);
 %
 
 % along with 'magnitudesymbol' one symbol long 'magnitude' is also defined at the same time.
-def byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) =
+vardef byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) =
 color magnitudeColor.magnitudeSymbolName;
 string magnitudeShape.magnitudeSymbolName;
 numeric magnitudeStyle.magnitudeSymbolName;
 string magnitudeSymbol.magnitudeSymbolName[];
 numeric magnitudeN.magnitudeSymbolName[], magnitudeAlignment.magnitudeSymbolName, magnitudeNumberOfRows.magnitudeSymbolName;
 boolean magnitudeHorizontal.magnitudeSymbolName;
-begingroup
     magnitudeColor.magnitudeSymbolName := col;
     magnitudeShape.magnitudeSymbolName := shp;
     magnitudeStyle.magnitudeSymbolName := sty;
@@ -1320,11 +1221,9 @@ begingroup
     magnitudeAlignment.magnitudeSymbolName := 0;
     magnitudeNumberOfRows.magnitudeSymbolName := 1;
     magnitudeHorizontal.magnitudeSymbolName := false;
-endgroup
 enddef;
 
 vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
-begingroup
     save p, q, i, s;
     path p;
     pair s[];
@@ -1380,16 +1279,14 @@ begingroup
             draw q shifted (s1 scaled i) shifted (s2 scaled i);
         endfor;
     )
-endgroup
 enddef;
 
-def byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
+vardef byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
 string magnitudeSymbol.magnitudeName[];
 numeric magnitudeN.magnitudeName[], magnitudeAlignment.magnitudeName, magnitudeNumberOfRows.magnitudeName;
 boolean magnitudeHorizontal.magnitudeName;
 magnitudeHorizontal.magnitudeName := hor;
 magnitudeAlignment.magnitudeName := al;
-begingroup
     save i;
     numeric i;
     i := 0;
@@ -1408,11 +1305,9 @@ begingroup
         endfor;
     exitif (i >= magnitudeNumberOfRows.magnitudeName);
     endfor;
-endgroup
 enddef;
 
 vardef byNamedMagnitude (expr excl) (suffix magnitudeName) =
-begingroup
     save p, s, h, magC;
     picture p;
     pair s[];
@@ -1450,20 +1345,18 @@ begingroup
             fi;
         endfor;
     )
-endgroup
 enddef;
 
 %
 % Text labels
 %
 
-def byPointLabelDefine(suffix pointName)(expr t) =
-    string pointLabel.pointName;
+vardef byPointLabelDefine(suffix pointName)(expr t) =
+string pointLabel.pointName;
     pointLabel.pointName := t;
 enddef;
 
 vardef byTextLabel(expr t, p, a, d) =
-begingroup
     save labelItself, bb;
     path bb;
     picture labelItself;
@@ -1480,22 +1373,18 @@ begingroup
     image(
         draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
     )
-endgroup
 enddef;
 
 vardef byLabelCircle(expr l, cn) =
-begingroup
     save o, d;
     pair o;
     numeric d;
     o := circleCenter.scantokens(cn);
     d := lineThickness(circleThin.scantokens(cn))*(1/2-1/2circleShift.scantokens(cn));
     byTextLabel(l, scantokens(l), angle(o - scantokens(l)), textLabelShift + d)
-endgroup
 enddef;
 
 vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
-begingroup
     image(
         if(textLabels):
             save pointName, pointLoc, i, j, k, l, p, q, stump, sv;
@@ -1572,20 +1461,15 @@ begingroup
             endfor;
         fi;
     )
-endgroup
 enddef;
 
 vardef byLabelLineEnd (suffix a, b) =
-begingroup
     byTextLabel(str a, a, angle(a-b), textLabelShift)
-endgroup
 enddef;
 
 vardef byLabelAngleCompensate (expr a, b, c, s) =
-begingroup
     save ang;
     numeric ang;
     ang := angleValue(a, b, c)/2;
     ((abs(sind(ang)) + abs(cosd(ang)/sind(ang)))*(lineWidth*(1/2-1/2s)))/2
-endgroup
 enddef;

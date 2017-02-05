@@ -49,7 +49,6 @@ enddef;
 
 % creates outline for a path, that determines how close two lines can get
 vardef pathOutline (expr p, s) =
-begingroup
     path outputPath[];
     outputPath1 := point 0 of p;
     outputPath2 := point 0 of p;
@@ -63,11 +62,9 @@ begingroup
         fi;
     endfor;
     outputPath1..(point length(p) of p shifted (unitvector(direction (length(p) - 1/100) of p) scaled mD))..reverse(subpath(1, length(outputPath2)) of outputPath2)--cycle
-endgroup
 enddef;
 
 vardef findRightSize (expr p, q, lni, li, lDir, l, n, i) =
-begingroup
     save bp, ic, rv, s;
     path bp;
     numeric ic, rv, s;
@@ -95,11 +92,9 @@ begingroup
         fi;
     fi;
     rv
-endgroup
 enddef;
 
 vardef findRightPlace (expr n, pN) =
-begingroup
     save tp, ts, s, t, sOld, i, j, rp, startPoint, endPoint, cO;
     path tp, rp;
     numeric ts, ti, s, t, sOld, i, j, startPoint, endPoint, cO;
@@ -149,11 +144,9 @@ begingroup
         pb[n] := addBranch (n, t, -1);
     fi;
     rp
-endgroup
 enddef;
 
 vardef checkIfIntersects (expr pathItself, l, n) =
-begingroup
     save rv, m, t;
     numeric rv, t;
     rv := 0;
@@ -173,11 +166,9 @@ begingroup
         endfor;
     fi;
     rv
-endgroup
 enddef;
 
 vardef generateBranchesTemplate (expr p) =
-begingroup
     save rv;
     path rv;
     rv := (0, 0);
@@ -185,11 +176,9 @@ begingroup
         rv := rv -- (0, 0);
     endfor;
     rv
-endgroup
 enddef;
 
 vardef addBranch (expr pn, l, s) =
-begingroup
     save rv, loc;
     path rv;
     numeric loc;
@@ -206,17 +195,14 @@ begingroup
             -- (s, ypart(point loc of pb[pn]));
     fi;
     rv
-endgroup
 enddef;
 
 vardef checkBranch (expr pn, l) =
-begingroup
     save rv, loc;
     numeric loc, rv;
     loc := round((arclength(subpath(0, l) of pm[pn]))/bS);
     rv := xpart(point loc of pb[pn]);
     rv
-endgroup
 enddef;
 
 figNum := 0;
