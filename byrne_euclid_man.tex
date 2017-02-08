@@ -30,9 +30,9 @@ That will produce pdf file of the book, but without generated lettrines. To obta
 
 {\tt mpost lettrines.mp} 
 
-Note that this should be done after {\tt context byrne_context.tex}  first run, because {\tt lettrineslist.txt} generated in process contains  list of lettrines, that will be generated.
+Note that this should be done after {\tt context byrne_context.tex}  first run, because {\tt lettrineslist.txt} produced in process contains  list of lettrines, that will be generated.
 
-After that run {\tt context byrne_context.tex} again, to get the book with lettrines.
+After that, run {\tt context byrne_context.tex} again, to get the book with lettrines.
 \stopchapter
 
 \startchapter[title={\MetaPost\ part}]
@@ -42,13 +42,19 @@ All the drawing is done with \MetaPost. All the \MetaPost\ code is independent f
 Some of the parameters are stored in global variables, instead of being passed as arguments, most important of them are listed below.
 
 \startsubsection[title={scaleFactor}]
-All sizes are multiplied by {\tt scaleFactor}.
+Numeric. All sizes are multiplied by {\tt scaleFactor}.
 \stopsubsection
 \startsubsection[title={angleScale}]
-Angles are generally drawn as circle sectors, and circle radii are multiplied by {\tt angleScale}.
+Numeric. Angles are generally drawn as circle sectors, and circle radii are multiplied by {\tt angleScale}.
+\stopsubsection
+\startsubsection[title={globalRotation}]
+Numeric. All the pictures are rotated by {\tt globalRotation} angle. This is important when {\tt textLabels} are turned on.
 \stopsubsection
 \startsubsection[title={magnitudeScale}]
-Magnitude symbols are scaled according to {\tt magnitudeScale}.
+Numeric. Magnitude symbols are scaled according to {\tt magnitudeScale}.
+\stopsubsection
+\startsubsection[title={textLabels}]
+Boolean. If true, text labels are produced.
 \stopsubsection
 \stopsection
 
@@ -451,6 +457,37 @@ Produces a picture ofmagniture. Returns a piture of that magnitude.
 {\tt excl} — of numeric type, what rows to exclude, $0$ — exclude nothing, $-n$ — exclude n-th row (or column if {\tt hor}=true), $n$ — exclude everything but n-th row (or column if {\tt hor}=true).
 
 {\tt magnitudeName} — of suffix type, magnitude symbol name.
+\stopsubsection
+\stopsection
+
+\startsection[title={Labels}]
+\startsubsection[title={byTextLabel(expr t, p, a, d)}]
+Draws a text label. Returns a picture of that label.
+
+{\tt t} — of string type, point name.
+
+{\tt p} — of pair type, label coordinates.
+
+{\tt a} — of numeric type, label angle.
+
+{\tt d} — of numeric type, label distance.
+\stopsubsection
+\startsubsection[title={byLabelsOnPolygon(text pointsList)(expr sty, shft)}]
+Draws text labels on the vertices of the polygon. Returns a picture of that labels.
+
+{\tt pointsList} — of text type, comma separated point names.
+
+{\tt sty} — of numeric type, variants of point processing. 0 — all points are labeled; 1 — points on straight angles are not labeled; 2 — first and last point are not labeled.
+
+{\tt shft} — of numeric type, labels shift (to compensate for line shift).
+\stopsubsection
+\startsubsection[title={byLabelLineEnd (suffix a, b)}]
+Draws text label on on one end of the line.
+
+{\tt a} — of pair type, point to label.
+
+{\tt b} — of pair type, second point of the line.
+
 \stopsubsection
 \stopsection
 \stopchapter
