@@ -335,7 +335,7 @@ vardef byNamedLineSeq(expr s)(text linesList) =
                     m := 1;
                 fi;
                 if (lAname[l] == "noLine"):
-                    k := cycleval (l + 1, i + 1);
+                    l := cycleval (l + 1, i + 1);
                     n := 1;
                 fi;
                 c := lAname[j];
@@ -440,19 +440,40 @@ vardef byNamedMarkLine(suffix lineName) =
 enddef;
 
 vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
-    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, globalRotation;
-    numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j;
+    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, lineNotStraight, lineNotContinuous, globalRotation;
+    numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j, angleCheck[];
     globalRotation := 0;
     string lineNames[], endNames[];
     pair a, b;
+    boolean lineNotStraight, lineNotContinuous;
     i := 0;
     totalLength := 0;
+    lineNotStraight := false;
+    lineNotContinuous := false;
     forsuffixes lN=linesList:
         lineNames[i] := lineEndAName.lN;
         lineNames[i+1] := lineEndBName.lN;
+        if (i > 0):
+            if (lineNames[i] <> lineNames[i-2])
+                and (lineNames[i] <> lineNames[i-1])
+                and (lineNames[i+1] <> lineNames[i-2])
+                and (lineNames[i+1] <> lineNames[i-1]):
+                lineNotContinuous := true;
+            fi;
+        fi;
         i := i + 2;
+        angleCheck[i/2] := abs(cosd(lineAngle.lN));
+        if (abs(angleCheck[i/2] - angleCheck[1]) > 1/100):
+            lineNotStraight := true;
+        fi;
         totalLength := totalLength + lineLength.lN;
     endfor;
+    if (lineNotStraight):
+        errmessage("The line is not straight");
+    fi;
+    if (lineNotContinuous):
+        errmessage("The line is not continuous");
+    fi;
     if (pw <> 0):
         sc := cu**(1 - (1/pw));
         pwL := 1/pw;
@@ -1464,7 +1485,11 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
 enddef;
 
 vardef byLabelLineEnd (suffix a, b) =
-    byTextLabel(str a, a, angle(a-b), textLabelShift)
+    image(
+        if (textLabels):
+            draw byTextLabel(str a, a, angle(a-b), textLabelShift);
+        fi;
+    )
 enddef;
 
 vardef byLabelAngleCompensate (expr a, b, c, s) =
