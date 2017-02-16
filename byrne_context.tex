@@ -486,7 +486,7 @@ When one straight line standing on another straight line makes the adjacent angl
 \drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:XI]
 \startalignment[last]
-An obtuse angle is an angle greater than right angle
+An obtuse angle is an angle greater than a right angle
 \stopalignment
 \stopDefinitionOnlyNumber
 
@@ -638,7 +638,7 @@ A quadrilateral figure is one which is bounded by four sides. The straight lines
 
 \startDefinitionOnlyNumber[reference=def:XXIII]
 \startalignment[last]
-A polygon is a rectilinear figure bounded by more that four sides.
+A polygon is a rectilinear figure bounded by more than four sides.
 \stopalignment
 \stopDefinitionOnlyNumber
 
@@ -1004,7 +1004,7 @@ The \emph{Axioms} of geometry are certain general propositions, the truth of whi
 
 A \emph{Problem} is a proposition in which something is proposed to be done; as a line to be drawn under some given conditions, a circle to be described, some figure to be constructed, \&c.
 
-The \emph{solution} of the problem consists in showing how the thing required may be done by the aid of the rule of straight-edge and compasses.
+The \emph{solution} of the problem consists in showing how the thing required may be done by the aid of the rule or straight-edge and compasses.
 
 The \emph{demonstration} consists in proving that the process indicated in the solution attains the required end.
 
@@ -1064,7 +1064,7 @@ expresses the word \emph{therefore}.
  this sign expresses the product of two or more numbers when placed between them in arithmetic and algebra; but in geometry it is generally used to express a \emph{rectangle}, when placed between \quotation{two straight lines which contain one if its right angles.} A \emph{rectangle} may also be represented by placing a point between two of its conterminous sides.
 
 \symb{$:\ ::\ :$}
- expresses an \emph{analogy} or \emph{proportion}; thus is A, B, C and D represent four magnitudes, and A has to B the same ratio that C has to D, the proportion is thus briefly written
+ expresses an \emph{analogy} or \emph{proportion}; thus if A, B, C and D represent four magnitudes, and A has to B the same ratio that C has to D, the proportion is thus briefly written
 
 $A : B :: C : D$, $A : B = C : D$, or $\dfrac{A}{B} = \dfrac{C}{D}$.
 
@@ -3833,7 +3833,7 @@ byLineDefine(L, E, byblue, 1, 0);
 draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line be divided \drawProportionalLine{BD,DC,CA} into two equal parts and also \drawProportionalLine{BD,DC,CA} into two unequal parts, the rectangle contained by the unequal parts, together with the square of the line between the points of section, is equal to the square of half that line \\
+\problemNP{I}{f}{a straight line be divided \drawProportionalLine{BD,DC} \drawProportionalLine{CA} into two equal parts and also \drawProportionalLine{BD} \drawProportionalLine{DC,CA} into two unequal parts, the rectangle contained by the unequal parts, together with the square of the line between the points of section, is equal to the square of half that line \\
 $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
 }
 
@@ -4103,7 +4103,7 @@ byLineDefine(A, E, black, 1, 0);
 draw byNamedLineSeq(0)(AC,CD,DB,FB,HF,EH,AE);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC,CD,DB} and also into two unequal parts \drawProportionalLine{AC,CD,DB}, the squares of the unequal parts, are together double the squares of half the line, and of the part between the points of section.\\
+\problemNP{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC} \drawProportionalLine{CD,DB} and also into two unequal parts \drawProportionalLine{AC,CD} \drawProportionalLine{DB}, the squares of the unequal parts, are together double the squares of half the line, and of the part between the points of section.\\
 $\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 }
 
@@ -9667,7 +9667,7 @@ $\magnitudeV : \magnitudeVI :: m \magnitudeV : m \magnitudeVI$;\\
 but $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (hyp.),\\
 $\therefore M \magnitudeI : M \magnitudeII :: \magnitudeV : \magnitudeVI$ \inprop[prop:V.XI];\\
 and because $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.),\\
-$\therefore M \magnitudeII : m \magnitudeIII :: \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV];\\
+$\therefore M \magnitudeII : m \magnitudeIII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV];\\
 then, because there are three magnitudes,\\
 $M \magnitudeI, M \magnitudeII, m \magnitudeII$,\\
 and other three $M \magnitudeIV, m \magnitudeV, m \magnitudeVI$,\\
