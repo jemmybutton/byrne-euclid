@@ -3070,7 +3070,7 @@ $\therefore \polygonABED = \mbox{ twice } \polygonCED$.
 \qed
 \stopProposition
 
-\startProposition[title={Prop XLII. Theor.}, reference=prop:I.XLII]
+\startProposition[title={Prop XLII. Prob.}, reference=prop:I.XLII]
 \defineNewPicture{
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
@@ -3558,7 +3558,7 @@ Thus \drawPolygon{AEIG,EBHI,GIFC} and \drawPolygon{EBHI,GIFC,IHDF} are called Gn
 
 \vfill\pagebreak
 
-\startProposition[title={Prop. I. prob.},reference=prop:II.I]
+\startProposition[title={Prop. I. theor.},reference=prop:II.I]
 \defineNewPicture{
 pair B,C,D,E,G,H,K,L;
 numeric w, h;
@@ -4470,7 +4470,7 @@ A right line is said to touch a circle when it meets the circle, and being produ
 	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
 	draw byCircleR(C, r3, byblue, 0, 0, -1/2)(C);
 }\drawCurrentPictureInMargin
-Circles are said to touch one another which meet, but do not cur one another.
+Circles are said to touch one another which meet, but do not cut one another.
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.IV]
@@ -4535,7 +4535,7 @@ A segment of a circle is the figure contained by a straight line and the part of
 	draw byLine(D, B, black, 0, 0);
 	draw byLine(C, D, black, 0, 0);
 }\drawCurrentPictureInMargin
-A segment of a circle is the figure contained by a straight line and the part of the circumference it cuts off.
+An angle in a segment is the angle contained by two straight lines drawn from any point in the circumference of the segment to the extremities of the straight line which is the base of the segment.
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.VIII]
@@ -4650,7 +4650,7 @@ Draw within the circle any straight line \drawUnitLine{AD,DB}, make $\drawUnitLi
 
 For, if it be possible, let any other point as the point of concourse of \drawUnitLine{AG}, \drawUnitLine{DG} and \drawUnitLine{BG} be the centre.
 
-Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp. and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and thetefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; ann in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
+Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp. and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and thetefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
 
 \qed
 \stopProposition
@@ -5089,7 +5089,7 @@ $\therefore \drawUnitLine{DH} \mbox{ is not } = \drawUnitLine{DO}$, nor to any p
 
 Neither is $\drawUnitLine{DH} > \drawUnitLine{DO,ON}$, they are $\therefore =$ to each other.
 \stopCenterAlign
-And any other line drawn from the same point to the circumference muse lie at the same side with one of these lines, and be more or less remote than it from the line passing through the centre, and cannot therefore be equal to it.
+And any other line drawn from the same point to the circumference must lie at the same side with one of these lines, and be more or less remote than it from the line passing through the centre, and cannot therefore be equal to it.
 
 \qed
 \stopsubproposition
@@ -5724,7 +5724,7 @@ $\therefore \drawUnitLine{FD}$ is a tangent to \circleEI.
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XVIII. prob.},reference=prop:III.XVIII]
+\startProposition[title={Prop. XVIII. theor.},reference=prop:III.XVIII]
 \defineNewPicture{
 pair B, C, D, F, G;
 numeric r;
@@ -6142,7 +6142,7 @@ because $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XXV. theor.},reference=prop:III.XXV]
+\startProposition[title={Prop. XXV. prob.},reference=prop:III.XXV]
 \defineNewPicture{
 pair A, B, C, D, E, F, O;
 numeric r;
@@ -6166,14 +6166,13 @@ draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
 
 \startCenterAlign
 From any point in the segment draw \drawUnitLine{BC} and \drawUnitLine{AB},\\
-bisect them, and from the points of bisection
-
+bisect them, and from the points of bisection\\
 draw $\drawUnitLine{EF} \perp \drawUnitLine{BC}$\\
 and $\drawUnitLine{DF} \perp \drawUnitLine{AB}$\\
 where they meet is the centre of the circle.
 \stopCenterAlign
 
-Because \drawUnitLine{BC} terminated in the circle is bisected perpendicularly by \drawUnitLine{EF}, it passes through the center \inprop[prop:III.I], likewise \drawUnitLine{DF} passes through the centre, therefore the centre is in the intersection of these perpendiculars.
+Because \drawUnitLine{BC} terminated in the circle is bisected perpendicularly by \drawUnitLine{EF}, it passes through the centre \inprop[prop:III.I], likewise \drawUnitLine{DF} passes through the centre, therefore the centre is in the intersection of these perpendiculars.
 
 \qed
 \stopProposition
@@ -6453,7 +6452,7 @@ but these are the chords subtending the equal arcs.
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XXX. theor.},reference=prop:III.XXX]
+\startProposition[title={Prop. XXX. prob.},reference=prop:III.XXX]
 \defineNewPicture{
 pair A, B, C, D, E;
 numeric r, t[];
@@ -7251,7 +7250,7 @@ byArbitraryFigureDefine(L--A--K--C--cycle, black, 0, 1)(LAKC);
 \problemNP{A}{bout}{a given circle \drawCircle[middle][1/3]{K} to circumscribe a triangle equiangular to a given triangle.}
 
 \startCenterAlign
-Produce any slide \drawUnitLine{GH}, of a given triangle both ways;
+Produce any side \drawUnitLine{GH}, of a given triangle both ways;
 
 from the centre of the given circle draw \drawUnitLine{KC}, any radius.
 
@@ -7328,7 +7327,7 @@ stopTempScale;
 
 Bisect \drawAngle{EBD,DBF} and \drawAngle{GCD,DCF} \inprop[prop:I.IX] by \drawUnitLine{BD} and \drawUnitLine{CD};
 
-From the point where these lines meed draw \drawUnitLine{FD}, \drawUnitLine{ED} and \drawUnitLine{GD} respectively perpendicular to \drawUnitLine{BC}, \drawUnitLine{AB} and \drawUnitLine{CA}.
+From the point where these lines meet draw \drawUnitLine{FD}, \drawUnitLine{ED} and \drawUnitLine{GD} respectively perpendicular to \drawUnitLine{BC}, \drawUnitLine{AB} and \drawUnitLine{CA}.
 
 \startCenterAlign
 In
@@ -8263,7 +8262,7 @@ $\left{\vcenter{
 as there are in $\drawMagnitude{A} = \drawMagnitude{B}$.
 \stopCenterAlign
 
-The same demonstration olds in any number of magnitudes, which has here been applied to three.
+The same demonstration holds in any number of magnitudes, which has here been applied to three.
 
 $\therefore$ If any number of magnitudes, \&c.
 \stopProposition
@@ -8480,7 +8479,7 @@ $M \drawMagnitude{C} >, = \mbox{ or } < m \drawMagnitude{D}$.
 
 That is, if the first be to the second, as the third is to the fourth; then if $M$ times the first be greater than, equal to, or less than $m$ times the second, then shall $M$ times third be greater than, equal to, or less than $m$ times the fourth, in which $M$ and $m$ are not to be considered particular multiples, but every pair of multiples whatever; nor are such marks as \drawMagnitude{A}, \drawMagnitude{D}, \drawMagnitude{B}, \&c. to be considered any more than representatives of geometrical magnitudes.
 
-The student sould throughly understand this definition before proceeding further.
+The student should throughly understand this definition before proceeding further.
 \stopDefinition
 
 \vfill\pagebreak
@@ -8874,7 +8873,7 @@ byMagnitudeDefine(I, 0, false)(1, 1)(Ia, Ib);
 byMagnitudeSymbolDefine("square", byyellow, 0)(II);
 byMagnitudeSymbolDefine("circle", byblue, 0)(III);
 }
-\problemNP{O}{f}{unequal magnitudes the greater has a greater ratio to the same than the less has : and the same magnitude has a greater ratio to the less than is has to the greater.}
+\problemNP{O}{f}{unequal magnitudes the greater has a greater ratio to the same than the less has: and the same magnitude has a greater ratio to the less than it has to the greater.}
 
 \startCenterAlign
 Let \drawMagnitude[bottom]{I} and \drawMagnitude{II} be two unequal magnitudes,\\
@@ -9475,7 +9474,7 @@ the term \quotation{ex \ae quali in proportione perturbata seu inordinata} infer
 
 \vfill\pagebreak
 
-\startProposition[title={Prop. XXI. Theor.}, reference=prop:V.XXI]
+\startProposition[title={Prop. XX. Theor.}, reference=prop:V.XX]
 \defineNewPicture{
 byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
 byMagnitudeSymbolDefine("semicircleDown", byred, 1)(II);
@@ -9509,10 +9508,10 @@ $\therefore$ If there be three magnitudes, \&c.
 
 \vfill\pagebreak
 
-\startProposition[title={Prop. XX. Theor.}, reference=prop:V.XX]
+\startProposition[title={Prop. XXI. Theor.}, reference=prop:V.XXI]
 \defineNewPicture{
 byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
-byMagnitudeSymbolDefine("wedgeUp", byred, 1)(II);
+byMagnitudeSymbolDefine("wedgeUp", byred, 0)(II);
 byMagnitudeSymbolDefine("square", byblue, 0)(III);
 byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
 byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
@@ -9855,7 +9854,7 @@ When there are any number of magnitudes of the same kind, the first is said to h
 
 And if $\varA$ has to $\varB$ the same ratio which $\varE$ has to $\varF$, and $\varB$ to $\varC$ the same ratio that $\varG$ has to $\varH$, and $\varC$ to $\varD$ the same that $\varK$ has to $\varL$; then by this definition, $\varA$ is said to have to $\varD$ the ratio compounded of ratios which are the same with the ratios of $\varE$ to $\varF$, $\varG$ to $\varH$, and $\varK$ to $\varL$. And the same thing is to be saying, $\varA$ has to $\varD$ the ratio compounded of the ratios of $\varE$ to $\varF$, $\varG$ to $\varH$, and $\varK$ to $\varL$.
 
-In line manner, the same things being supposed; if $\varM$ has to $\varN$ the same ratio which $\varA$ has to $\varD$, then for shortness sake, $\varM$ is said to have to $\varN$ the ratio compounded of the ratios $\varE$ to $\varF$, $\varG$ to $\varH$, and $\varK$ to $\varL$.
+In like manner, the same things being supposed; if $\varM$ has to $\varN$ the same ratio which $\varA$ has to $\varD$, then for shortness sake, $\varM$ is said to have to $\varN$ the ratio compounded of the ratios $\varE$ to $\varF$, $\varG$ to $\varH$, and $\varK$ to $\varL$.
 
 This definition may be better understood from an arithmetical or algebraical illustration; for, in fact, a ratio compounded of several other ratios, is nothing more than a ratio which has for its antecedent the continued product of all antecedents of the ratios compounded, and for its consequent the continued product of all the consequents of the ratios compounded.
 
@@ -10837,7 +10836,8 @@ $\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \inprop[prop:V.IX],\\
 and $\therefore \drawAngle{A} = \drawAngle{BGA}$ \inprop[prop:I.V].
 
 But \drawAngle{A} is less than a right angle (hyp.)\\
-$\therefore$ \drawAngle{BGA} is less than a right angle; and $\therefore$ \drawAngle{CGB} must be greater than a right angle \inprop[prop:I.XIII], but it has been proven $= \drawAngle{D}$ and therefore less than a right angle, which is absurd. $\therefore$ \drawAngle{ABG,GBC} and \drawAngle{E} are not unequal;
+$\therefore$ \drawAngle{BGA} is less than a right angle;\\ 
+and $\therefore$ \drawAngle{CGB} must be greater than a right angle \inprop[prop:I.XIII], but it has been proven $= \drawAngle{D}$ and therefore less than a right angle, which is absurd. $\therefore$ \drawAngle{ABG,GBC} and \drawAngle{E} are not unequal;
 
 $\therefore$ they are equal, and since $\drawAngle{C} = \drawAngle{F}$ (hyp.)\\
 $\therefore \drawAngle{A} = \drawAngle{D}$ \inprop[prop:I.XXXII], and therefore the triangles are equiangular.
@@ -11517,7 +11517,7 @@ $\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \inprop[
 but $\triangleABC : \triangleABG :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$ \inprop[prop:VI.I],
 
 $\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$,\\
-that is to say, the triangles are to one another in the duplicate ratio of their omologous sides \drawUnitLine{EF} and \drawUnitLine{BG,GC} \indef[def:V.XI].
+that is to say, the triangles are to one another in the duplicate ratio of their homologous sides \drawUnitLine{EF} and \drawUnitLine{BG,GC} \indef[def:V.XI].
 \stopCenterAlign
 
 \qed
@@ -11593,7 +11593,7 @@ $\eqalign{
 \drawPolygon{BCD} : \drawPolygon{GHK} &:: \drawPolygon{BDE} : \drawPolygon{GKL} \cr
 &:: \drawPolygon{BEA} : \drawPolygon{GLF} \cr
 }$;\\
-and as one of the antecedents is to on of the consequents, so is the sum of all the antecedents to the sum of all the consequents; that is to say, the similar triangles have to one another the same ratio as the polygons \inprop[prop:V.XII].
+and as one of the antecedents is to one of the consequents, so is the sum of all the antecedents to the sum of all the consequents; that is to say, the similar triangles have to one another the same ratio as the polygons \inprop[prop:V.XII].
 
 
 But \drawPolygon{BCD} is to \drawPolygon{GHK} in the duplicate ratio of \drawUnitLine{BC} to \drawUnitLine{GH};\\
@@ -11834,7 +11834,7 @@ Since, therefore, each of the parallelograms \parallelogramAEFG\ and \parallelog
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XXV. theor.},reference=prop:VI.XXV]
+\startProposition[title={Prop. XXV. prob.},reference=prop:VI.XXV]
 \defineNewPicture[1/2]{
 pair d[];
 pair A, B, C;
@@ -12171,7 +12171,7 @@ Then $\drawFromCurrentPicture[middle][rectangleCFDG]{
 draw byNamedPolygon(ACFE);
 draw byNamedLine(AGt,GDt,DEt);
 }
-= \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, and is $\therefore = \squareABHC$;\\
+= \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, and is $\therefore\ = \squareABHC$;\\
 and if from both these equals be taken the common part \drawPolygon{ACFE},\\
 \drawLine{DE,GD,AG,AE}, which is the square of \drawProportionalLine{AE},\\
 will be $= \drawPolygon{EFHB}$, which is $= \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
@@ -12183,7 +12183,7 @@ and \drawProportionalLine{AE,EB} is divided in extreme and mean ratio \indef[def
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XXXI. prob.},reference=prop:VI.XXXI]
+\startProposition[title={Prop. XXXI. theor.},reference=prop:VI.XXXI]
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, K, L;
 numeric a, r, l[];
@@ -12245,7 +12245,7 @@ and $\therefore \figAB\ + \figCA\ = \figBC$.
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XXXII. prob.},reference=prop:VI.XXXII]
+\startProposition[title={Prop. XXXII. theor.},reference=prop:VI.XXXII]
 \defineNewPicture[1/2]{
 pair A, B, C, D, E;
 numeric s;
