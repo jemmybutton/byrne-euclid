@@ -120,7 +120,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2017 ed.\,0.3}
+{\tfb 2017 ed.\,0.4}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -3520,7 +3520,7 @@ draw byNamedLineSeq(0)(AB,AC);
 
 Thus: the right angled parallelogram \drawFromCurrentPicture{draw byNamedPolygon (ABDC);} is said to be contained by the sides \drawUnitLine{AB} and \drawUnitLine{AC}; or it may be briefly designated by $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
 
-If the adjacent sides are equal; i. e. $\drawUnitLine{AB} = \drawUnitLine{AC}$, then $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$ which is the expression for the rectangle undet \drawUnitLine{AB} and \drawUnitLine{AC} is square, and
+If the adjacent sides are equal; i. e. $\drawUnitLine{AB} = \drawUnitLine{AC}$, then $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$ which is the expression for the rectangle under \drawUnitLine{AB} and \drawUnitLine{AC} is square, and
 
 is equal to $\left\{\eqalign{
 \drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2\cr
@@ -3908,7 +3908,7 @@ byLineDefine(L, E, black, 1, 0);
 draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line be bisected \drawProportionalLine{DC,CA} and produced to any point \drawProportionalLine{BD,DC,CA}, the rectangle contained by the whole line so increased and the part produced, together with the square of half the line, is equal to the square of the line made up of the half, and the produced part.\\
+\problemNP{I}{f}{a straight line be bisected \drawProportionalLine{DC,CA} and produced to any point \drawProportionalLine{BD,DC,CA}, the rectangle contained by the whole line so increased, and the part produced, together with the square of half the line, is equal to the square of the line made up of the half, and the produced part.\\
 $\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
 }
 
@@ -4090,7 +4090,7 @@ draw byAngle(E, F, G, byred, 0);
 draw byAngle(D, F, B, black, 0);
 draw byLine(A, F, black, 0, 0);
 draw byLine(F, D, byred, 1, 0);
-draw byLine(G, F, byyellow, 0, 2);
+draw byLine(G, F, byyellow, 0, -1);
 draw byLine(C, G, byblue, 0, 0);
 draw byLine(G, E, byblue, 1, 0);
 byLineDefine(A, C, byblue, 0, 0);
@@ -4103,7 +4103,7 @@ byLineDefine(A, E, black, 1, 0);
 draw byNamedLineSeq(0)(AC,CD,DB,FB,HF,EH,AE);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC} \drawProportionalLine{CD,DB} and also into two unequal parts \drawProportionalLine{AC,CD} \drawProportionalLine{DB}, the squares of the unequal parts, are together double the squares of half the line, and of the part between the points of section.\\
+\problemNP{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC} \drawProportionalLine{CD,DB} and also into two unequal parts \drawProportionalLine{AC,CD} \drawProportionalLine{DB}, the squares of the unequal parts are together double the squares of half the line, and of the part between the points of section.\\
 $\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 }
 
@@ -4152,7 +4152,7 @@ draw byAngle(F, E, B, byblue, 0);
 draw byAngle(C, B, E, byred, 0);
 draw byAngle(D, B, G, byred, 0);
 draw byAngleWithName(B, G, D, byblue, 0)(G);
-draw byLine(C, E, byred, 0, 2);
+draw byLine(C, E, byred, 0, -1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(C, B, byyellow, 0, 0);
 draw byLine(B, D, byblue, 0, 0);
@@ -5744,7 +5744,7 @@ byLineDefine(F, C, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,FB,FC,CD);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line \drawUnitLine{CD} be a tangent to a circle, the straight line \drawUnitLine{FC} drawn from the centre to the point of contact, is perpendicular to it.}
+\problemNP[4]{I}{f}{a straight line \drawUnitLine{CD} be a tangent to a circle, the straight line \drawUnitLine{FC} drawn from the centre to the point of contact, is perpendicular to it.}
 
 \startCenterAlign
 For, if it be possible, let \drawUnitLine{FB,BG} be $\perp \drawUnitLine{CD}$,\\
@@ -5799,7 +5799,7 @@ Therefore the assumed point is not the centre; and in the same manner it can be 
 \stopProposition
 
 \startProposition[title={Prop. XX. theor.},reference=prop:III.XX]
-\problemNP{T}{he}{angle at the centre of a circle is double the angle at the circumference, when they have the same part of the circumference for their base.}\unskip
+\problemNP[4]{T}{he}{angle at the centre of a circle is double the angle at the circumference, when they have the same part of the circumference for their base.}\unskip
 
 \defineNewPicture{
 pair A, E, F, C;
@@ -6222,7 +6222,7 @@ draw byArc(H, E, F, r, black, 0, 0, 0, 0)(Hb);
 byCircleDefineR(H, r, byred, 0, 0, 0)(H);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{equal circles \drawCircle[middle][1/5]{G} and \drawCircle[middle][1/5]{H} the arcs \drawArc{Gb}, \drawArc{Hb} on which stand equal angles, whether at the centre of circumference, are equal.}
+\problemNP[4]{I}{n}{equal circles \drawCircle[middle][1/5]{G} and \drawCircle[middle][1/5]{H} the arcs \drawArc{Gb}, \drawArc{Hb} on which stand equal angles, whether at the centre of circumference, are equal.}
 
 \startCenterAlign
 For, let $\drawAngle{G} = \drawAngle{H}$ at the centre,\\
@@ -6991,6 +6991,7 @@ A figure is said to be \emph{described about} another figure, when all the sides
 \stopDefinitionOnlyNumber
 
 \defineNewPicture{
+angleScale := 3/4;
 pair A, B, C, D, O;
 numeric r;
 r := 4/5u;
@@ -7007,7 +7008,7 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
-draw byNamedLineSeq(0)(DA,CD,BC,AB);
+draw byNamedLineSeq(1)(DA,CD,BC,AB);
 draw byCircleR(O, r, black, 0, 0, 1)(O);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
@@ -11790,7 +11791,7 @@ byLineDefine(G, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(GA,DG,DK,KC,HC,BH,EB,AE);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{any parallelogram
+\problemNP[4]{I}{n}{any parallelogram
 (\drawFromCurrentPicture[bottom][parallelogramABCD]{
 draw byNamedLine(AE,EB,BH,HC,FH,EF);
 draw byNamedPolygon(GFKD,AGF,FCK);

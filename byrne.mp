@@ -207,10 +207,6 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
         lineItself -- ((point 1 of lineItself) shifted (unitvector((point 1 of lineItself) - (point 0 of lineItself)) scaled dpLength[dp]));
     p := image(
         lineStyShift := (linePerp scaled (1/2currentLineWidth*s));
-        if (th == 2):
-            lineStyShift := linePerp scaled 1/2currentLineWidth;
-            draw (lineBleeding shifted -lineStyShift) withpen pencircle scaled currentLineWidth withcolor black;
-        fi;
         if (dp > 0):
             draw (lineItself shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor white;
             draw (lineItself shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col
@@ -219,6 +215,9 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
             draw (subpath(2, 3) of lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
         else:
             draw (lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
+        fi;
+        if (th < 0):
+            draw (lineBleeding shifted (lineStyShift + (linePerp scaled 1/4currentLineWidth))) withpen pencircle scaled 1/2currentLineWidth withcolor black;
         fi;
     );
     clippingPathPoint1
