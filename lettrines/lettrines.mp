@@ -95,30 +95,32 @@ vardef findRightSize (expr p, q, lni, li, lDir, l, n, i) =
 enddef;
 
 vardef findRightPlace (expr n, pN) =
-    save tp, ts, s, t, sOld, i, j, rp, startPoint, endPoint, cO;
+    save tp, ts, s, t, sOld, i, j, rp, startPoint, endPoint, cO, cOrel;
     path tp, rp;
-    numeric ts, ti, s, t, sOld, i, j, startPoint, endPoint, cO;
+    numeric ts, ti, s, t, sOld, i, j, startPoint, endPoint, cO, cOrel;
     sOld := 0;
     rp := (0, 0);
     t := -1;
     if (uniformdeviate(10)>2) or (cycle p[n]):
         if (o[n] = 0): cO := 1; else: cO := 0; fi;
+        cOrel := 0;
     else:
         cO := o[n];
+        cOrel := 1;
     fi;
     o[pN + 1] := cO;
     endPoint := arclength(pm[n]);
     startPoint := uniformdeviate(1/2endPoint);
     for i := startPoint step bS until 1/2endPoint + startPoint:
         j := (arctime i of pm[n]);
-        if (checkBranch (n, j) = 0) or (checkBranch (n, j) > sOld):
+        if (checkBranch (n, j, cOrel) = 0) or (checkBranch (n, j, cOrel) > sOld):
             if cycle p[n]:
                 ts := abs(ulcorner(p[n]) - lrcorner(p[n]));
             else:
                 ts := 1/2arclength(p[n]);
             fi;
-            if (checkBranch (n, j) > 0):
-                ts := checkBranch (n, j);
+            if (checkBranch (n, j, cOrel) > 0):
+                ts := checkBranch (n, j, cOrel);
             fi;
             ti := 2 + log(ts/(1/4mm), 2);
             if (cO = 0):
@@ -128,12 +130,11 @@ vardef findRightPlace (expr n, pN) =
             fi;
             s := findRightSize(tp, (point j of pm[n]), 0, ts, 0, n, pN, ti);
             if (arclength(tp scaled s) <= minBranchLength):
-                pb[n] := addBranch (n, j, -1);
+                pb[n] := addBranch (n, j, -1, cOrel);
             else:
-                pb[n] := addBranch (n, j, s);
+                pb[n] := addBranch (n, j, s, cOrel);
             fi;
             if (s > sOld):
-                pb[n] := addBranch (n, j, s);
                 rp := tp scaled s shifted (point j of pm[n]);
                 sOld := s;
                 t := j;
@@ -141,7 +142,7 @@ vardef findRightPlace (expr n, pN) =
         fi;
     endfor;
     if (t >= 0):
-        pb[n] := addBranch (n, t, -1);
+        pb[n] := addBranch (n, t, -1, cOrel);
     fi;
     rp
 enddef;
@@ -153,6 +154,7 @@ vardef checkIfIntersects (expr pathItself, l, n) =
     t := xpart(pathItself firstIntersectionTimes po[l]);
     if (xpart((subpath(t + 1/100, length(pathItself)) of pathItself) intersectiontimes po[l]) >= 0)
         or (xpart((subpath(1/100, length(pathItself)) of pathItself) intersectiontimes po[l]) < 0)
+        or (xpart((subpath(1/100, length(pathItself)) of pathItself) intersectiontimes p[l]) >= 0)
         or (arclength(subpath (0, t) of pathItself) > 3mD)
         or (t < 0):
         rv := rv + 1;
@@ -178,30 +180,40 @@ vardef generateBranchesTemplate (expr p) =
     rv
 enddef;
 
-vardef addBranch (expr pn, l, s) =
-    save rv, loc;
+vardef addBranch (expr pn, l, s, o) =
+    save rv, loc, p;
     path rv;
+    pair p;
     numeric loc;
     loc := round((arclength(subpath(0, l) of pm[pn]))/bS);
+    if (o = 0):
+        p := (s, ypart(point loc of pb[pn]));
+    else:
+        p := (xpart(point loc of pb[pn]), s);
+    fi;
     if (loc < length(pb[pn])) and (loc > 0):
         rv := (subpath (0, loc-1) of pb[pn])
-            -- (s, ypart(point loc of pb[pn]))
+            -- p
             -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
     elseif (loc = 0):
-        rv := (s, ypart(point loc of pb[pn]))
+        rv := p
             -- (subpath (loc+1, length(pb[pn])) of pb[pn]);
     elseif (loc = length(pb[pn])):
         rv := (subpath (0, loc-1) of pb[pn])
-            -- (s, ypart(point loc of pb[pn]));
+            -- p;
     fi;
     rv
 enddef;
 
-vardef checkBranch (expr pn, l) =
+vardef checkBranch (expr pn, l, o) =
     save rv, loc;
     numeric loc, rv;
     loc := round((arclength(subpath(0, l) of pm[pn]))/bS);
-    rv := xpart(point loc of pb[pn]);
+    if (o = 0):
+        rv := xpart(point loc of pb[pn]);
+    else:
+        rv := ypart(point loc of pb[pn]);
+    fi;
     rv
 enddef;
 

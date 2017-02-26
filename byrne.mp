@@ -1,4 +1,4 @@
-%    byrne-euclid 0.0.4
+%    byrne-euclid 0.0.5
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2017 Sergey Slyusarev
