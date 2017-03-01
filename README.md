@@ -1,6 +1,6 @@
 MetaPost + ConTeXt rendition of [Oliver Byrne's "The first six books of the Elements of Euclid"](https://en.wikipedia.org/wiki/Oliver_Byrne_(mathematician)#Byrne.27s_Euclid)
 
-![comparison](https://cloud.githubusercontent.com/assets/7447349/23476279/b52898b0-fed3-11e6-8e09-760ab0f03c02.png)
+![comparison](https://cloud.githubusercontent.com/assets/7447349/23476865/895fe97a-fed5-11e6-9955-6e9d92dde4a0.png)
 
 This is not an exact copy of the original, but rather an attempt to implement all the most important features of it in a way that would allow easy modification and creation of similarly styled geometric proofs.
 
