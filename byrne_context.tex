@@ -59,6 +59,7 @@
 
 \defineNewPicture{
 scaleFactor := 7/6;
+angleScale := 4/3;
 pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
 A := (0, 0);
 B := A shifted (-7/10u, -8/7u);
@@ -83,11 +84,11 @@ M = whatever[B, C];
 draw byPolygon(A,B,E,D)(black);
 draw byPolygon(L,A,G,F)(byred);
 draw byPolygon(C,L,F)(byred);
-draw byPolygon(J,M,I,K)(byblue);
-draw byPolygon (M,C,I)(byblue);
-draw byPolygon(B,J,K,H)(byyellow);
+draw byPolygon(J,M,I,K)(byyellow);
+draw byPolygon (M,C,I)(byyellow);
+draw byPolygon(B,J,K,H)(byblue);
 draw byAngle(F, C, A, byyellow, 0);
-draw byAngle(B, C, I, byyellow, 0);
+draw byAngle(B, C, I, byblue, 0);
 draw byAngle(A, C, B, black, 0);
 draw byLine(A, K, black, 1, 0);
 draw byLineFull(B, F, black, 0, 0)(G, G, 1, 1, -1);

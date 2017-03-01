@@ -1,4 +1,4 @@
-%    lettrine-generator 0.0.2
+%    lettrine-generator 0.0.3
 %    MetaPost lettrines generator
 %    Copyright 2017 Sergey Slyusarev
 %
@@ -225,6 +225,7 @@ path p[], pm[], pb[], po[], q[], candidateBranch;
 numeric o[], cO, lC, tt[], ta, ln[], ll, lc, startFrom, symMode, numberOfIterations;
 pair qi;
 string shuffledNumbers;
+picture lettrineImage;
 
 q0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 q1 := q0 yscaled -1;
@@ -261,86 +262,90 @@ forever:
     figNum := figNum + 1;
     outputtemplate := l & decimal(lc) & ".mps";
     beginfig(figNum);
-        if l <> "plate":
-            pN := 0;
-            p0 := (0,0)--(0, lS)--(lS, lS)--(lS, 0)--cycle;
-            pm0 := p0;
-            po0 := pathOutline(p0, 1/2);
-            pb0 := generateBranchesTemplate(pm0);
-            o0 := 0;
-            currentLetter := TEX(l);
-            for tp within currentLetter:
-                cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 100/2700;
-                cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lS, 1/2lS);
-                draw cL;
-                for item within cL:
-                    pN := pN + 1;
-                    p[pN] := pathpart item;
-                    pm[pN] := p[pN];
-                    po[pN] := pathOutline(p[pN], 1/8);
-                    pb[pN] := generateBranchesTemplate(pm[pN]);
-                    o[pN] := 0;
-                endfor;
-            endfor;
-            startFrom := 0;
-            symMode := 0;
-            numberOfIterations := 12;
-            minBranchLength := 1/6cm;
-        else:
-            p0 := (-80/2mm,-15/2mm)--(-80/2mm, 15/2mm)--(80/2mm, 15/2mm)--(80/2mm, -15/2mm)--cycle;
-            pm0 := p0;
-            p1 := (q0 rotated 15) scaled 18mm;
-            pm1 := subpath (0, ypart(qi)) of p1;
-            p2 := p1 rotated 180;
-            pm2 := subpath (0, ypart(qi)) of p2;
-            for i := 0 step 1 until 2:
-                pN := i;
-                po[i] := pathOutline(p[i], 1/2);
-                pb[i] := generateBranchesTemplate(pm[i]);
-                o[i] := 0;
-            endfor;
-            startFrom := 1;
-            symMode := 1;
-            numberOfIterations := 12;
-            minBranchLength := 1/4cm;
-        fi;
-        for nn := 0 step 1 until numberOfIterations:
-            shuffledNumbers := "";
-            for i := startFrom step 1 until pN:
-                if (uniformdeviate(1) > 1/2):
-                    shuffledNumbers := shuffledNumbers & "," & decimal(i);
-                else:
-                    shuffledNumbers := decimal(i) & "," & shuffledNumbers;
-                fi;
-            endfor;
-            shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
-            for i=scantokens(shuffledNumbers):
-                if (xpart(urcorner(pb[i])) >= 0):
-                    candidateBranch := findRightPlace(i, pN);
-                    if (arclength(candidateBranch) >= minBranchLength):
+        lettrineImage := image(
+            if l <> "plate":
+                pN := 0;
+                p0 := (0,0)--(0, lS)--(lS, lS)--(lS, 0)--cycle;
+                pm0 := p0;
+                po0 := pathOutline(p0, 1/2);
+                pb0 := generateBranchesTemplate(pm0);
+                o0 := 0;
+                currentLetter := TEX(l);
+                for tp within currentLetter:
+                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 100/2700;
+                    cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lS, 1/2lS);
+                    draw cL;
+                    for item within cL:
                         pN := pN + 1;
-                        p[pN] := candidateBranch;
-                        pm[pN] := subpath qi of p[pN];
-                        po[pN] := pathOutline(p[pN], 1/2);
+                        p[pN] := pathpart item;
+                        pm[pN] := p[pN];
+                        po[pN] := pathOutline(p[pN], 1/8);
                         pb[pN] := generateBranchesTemplate(pm[pN]);
-                        if(symMode = 1):
+                        o[pN] := 0;
+                    endfor;
+                endfor;
+                startFrom := 0;
+                symMode := 0;
+                numberOfIterations := 12;
+                minBranchLength := 1/6cm;
+            else:
+                p0 := (-80/2mm,-15/2mm)--(-80/2mm, 15/2mm)--(80/2mm, 15/2mm)--(80/2mm, -15/2mm)--cycle;
+                pm0 := p0;
+                p1 := (q0 rotated 15) scaled 18mm;
+                pm1 := subpath (0, ypart(qi)) of p1;
+                p2 := p1 rotated 180;
+                pm2 := subpath (0, ypart(qi)) of p2;
+                for i := 0 step 1 until 2:
+                    pN := i;
+                    po[i] := pathOutline(p[i], 1/2);
+                    pb[i] := generateBranchesTemplate(pm[i]);
+                    o[i] := 0;
+                endfor;
+                startFrom := 1;
+                symMode := 1;
+                numberOfIterations := 12;
+                minBranchLength := 1/4cm;
+            fi;
+            for nn := 0 step 1 until numberOfIterations:
+                shuffledNumbers := "";
+                for i := startFrom step 1 until pN:
+                    if (uniformdeviate(1) > 1/2):
+                        shuffledNumbers := shuffledNumbers & "," & decimal(i);
+                    else:
+                        shuffledNumbers := decimal(i) & "," & shuffledNumbers;
+                    fi;
+                endfor;
+                shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
+                for i=scantokens(shuffledNumbers):
+                    if (xpart(urcorner(pb[i])) >= 0):
+                        candidateBranch := findRightPlace(i, pN);
+                        if (arclength(candidateBranch) >= minBranchLength):
                             pN := pN + 1;
-                            p[pN] := p[pN-1] rotated 180;
-                            pm[pN] := pm[pN-1] rotated 180;
-                            po[pN] := po[pN-1] rotated 180;
-                            pb[pN] := pb[pN-1];
-                            o[pN] := o[pN-1];
+                            p[pN] := candidateBranch;
+                            pm[pN] := subpath qi of p[pN];
+                            po[pN] := pathOutline(p[pN], 1/2);
+                            pb[pN] := generateBranchesTemplate(pm[pN]);
+                            if(symMode = 1):
+                                pN := pN + 1;
+                                p[pN] := p[pN-1] rotated 180;
+                                pm[pN] := pm[pN-1] rotated 180;
+                                po[pN] := po[pN-1] rotated 180;
+                                pb[pN] := pb[pN-1];
+                                o[pN] := o[pN-1];
+                            fi;
                         fi;
                     fi;
+                endfor;
+            endfor;
+            for i := startFrom step 1 until pN:
+                draw p[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi;
+                if (not cycle p[i]):
+                    draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (o[i]=1):-90 else:90 fi + angle(direction length(p[i]) of p[i]))) shifted point length(p[i]) of p[i] withpen pencircle scaled 1/5mm;
                 fi;
             endfor;
-        endfor;
-        for i := startFrom step 1 until pN:
-            draw p[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi;
-            if (not cycle p[i]):
-                draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (o[i]=1):-90 else:90 fi + angle(direction length(p[i]) of p[i]))) shifted point length(p[i]) of p[i] withpen pencircle scaled 1/5mm;
-            fi;
-        endfor;
+        );
+        lettrineImage := lettrineImage shifted -llcorner(lettrineImage);
+        draw lettrineImage;
     endfig;
 endfor;
 end
