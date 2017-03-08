@@ -1326,7 +1326,7 @@ draw byNamedLineSeq(0)(FD,EF,DE);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, (\drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD}) and the angles (\drawAngle{A} and \drawAngle{D}) contained by those equal sides also equal; then their bases or their sides (\drawUnitLine{BC} and \drawUnitLine{EF}) are also equal: and the remaining angles opposite to equal sides are respectively equal ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$): and the triangles are equal in every respect.}
 
-Let two triangles be conceived, to be so placed, that the vertex of one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a place, which is impossible (ax. 10), therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and the triangles \drawLine{CA,BC,AB} and \drawLine{FD,EF,DE} coincide, when applied, they are equal in every respect.
+Let two triangles be conceived, to be so placed, that the vertex of one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a space, which is impossible (ax. 10), therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and as the triangles \drawLine{CA,BC,AB} and \drawLine{FD,EF,DE} coincide, when applied, they are equal in every respect.
 
 \qed
 \stopProposition
@@ -1500,10 +1500,10 @@ draw byAngleWithName(F, D, E, black, 0)(D);
 draw byAngleWithName(C, A, B, black, 0)(A);
 byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, black, 0, 0);
-byLineDefine(C, A, byyellow, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
 byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, black, 0, 1);
-byLineDefine(F, D, byyellow, 0, 1);
+byLineDefine(F, D, byblue, 0, 1);
 draw byNamedLineSeq(0)(CA,BC,AB);
 draw byNamedLineSeq(0)(FD,EF,DE);
 }
@@ -2313,7 +2313,7 @@ make $\drawUnitLine{CA} = \drawUnitLine{GD}$, draw \drawUnitLine{EG}.
 
 In \drawLine[bottom]{CA,BC,AB} and
 \drawLine[bottom]{GD,EG,DE} we have\\
-$\drawUnitLine{AB} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
+$\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
 $\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
 but $\drawAngle{B} = \drawAngle{GED,FEG}$ (hyp.)
 
@@ -2668,7 +2668,7 @@ $\therefore \left\{\eqalign{\drawUnitLine{AB} &= \drawUnitLine{CD}\cr \drawUnitL
 and $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \inax[ax:II]:
 \stopCenterAlign
 
-Therefore the opposite sides and angles of the parallelograms are equal: and as the triangles \drawLine{AD,CD,AC} and \drawLine{AB,BD,AD} are equal in every respect \inprop[prop:I.IV], the diagonal divides the parallelogram into two equal parts.
+Therefore the opposite sides and angles of the parallelogram are equal: and as the triangles \drawLine{AD,CD,AC} and \drawLine{AB,BD,AD} are equal in every respect \inprop[prop:I.IV], the diagonal divides the parallelogram into two equal parts.
 
 \qed
 \stopProposition
@@ -3358,6 +3358,22 @@ And $\therefore \polygonABDC$ is a square. \indef[def:XXVII]
 \startProposition[title={Prop XLVII. Theor.}, reference=prop:I.XLVII]
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
+%forsuffixes i=A, B, C, D, E, F, G, H, I, J, K, L, M:
+%string pointLabel.i;
+%endfor;
+%pointLabel.A := "α";
+%pointLabel.B := "β";
+%pointLabel.C := "γ";
+%pointLabel.D := "δ";
+%pointLabel.E := "ε";
+%pointLabel.F := "ζ";
+%pointLabel.G := "η";
+%pointLabel.H := "θ";
+%pointLabel.I := "ι";
+%pointLabel.J := "κ";
+%pointLabel.K := "λ";
+%pointLabel.L := "μ";
+%pointLabel.M := "ν";
 A := (0, 0);
 B := A shifted (-7/10u, -8/7u);
 C = whatever[A, A shifted ((A-B) rotated 90)] = whatever[B, B shifted dir(0)];
