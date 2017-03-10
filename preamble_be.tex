@@ -1,3 +1,34 @@
+\switchtobodyfont[11pt]
+
+\definefontfeature
+ [default]
+ [default]
+ [protrusion=quality,expansion=quality]
+
+\setupalign[hz,hanging]
+
+\definepapersize[custom]
+ [width=153mm, height=210mm]
+\setuppapersize[custom][custom]
+%\setuppapersize[A5][A5]
+\setuppagenumbering[alternative=doublesided]
+\setuplayout[backspace=14mm,
+	width=80mm,	height=180mm,
+	header=5mm,
+	headerdistance=8mm,
+	topspace=10mm,
+	footer=0mm,
+	margin=52mm]
+\definelayout[title][backspace=15mm,
+	width=123mm,	height=180mm,
+	header=5mm,
+	headerdistance=8mm,
+	topspace=10mm,
+	footer=0mm,
+	margin=52mm]
+	
+\usesymbols[cc]
+
 % Figure placement it definitions is messy, below we define all the indentation, figure and lettrine placing stuff.
 \newdimen\LtI
 \newdimen\PcI
@@ -175,7 +206,8 @@
 \vskip 0.5\baselineskip
 \resetII}
 
-\def\qedNB{\hfill Q. E. D.\vskip 10pt}
+\def\qedstr{Q. E. D.}
+\def\qedNB{\hfill\qedstr\vskip 10pt}
 \def\qed{\qedNB\vfill\pagebreak}
 
 
@@ -199,33 +231,37 @@
 
 \setuppagenumbering[location=]
 
+\def\inpropstr{pr.}
 \definereferenceformat
    [inprop]
-   [left=,right=),text=(pr.~]
+   [left=,right=),text=(\inpropstr~]
 
 \definereferenceformat
    [inpropL]
-   [left=,right=,text=pr.~]
+   [left=,right=,text=\inpropstr~]
 
+\def\inpoststr{post.}
 \definereferenceformat
    [inpost]
-   [left=,right=),text=(post.~]
+   [left=,right=),text=(\inpoststr~]
 
+\def\indefstr{def.}
 \definereferenceformat
    [indef]
-   [left=,right=),text=(def.~]
+   [left=,right=),text=(\indefstr~]
 
 \definereferenceformat
    [indefL]
-   [left=,right=,text=def.~]
+   [left=,right=,text=\indefstr~]
 
+\def\inaxstr{ax.}
 \definereferenceformat
    [inax]
-   [left=,right=),text=(ax.~]
+   [left=,right=),text=(\inaxstr~]
 
 \definereferenceformat
    [inaxL]
-   [left=,right=,text=ax.~]
+   [left=,right=,text=\inaxstr~]
 
 \def\plateName{plate}
 

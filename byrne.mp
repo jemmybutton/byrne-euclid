@@ -1463,7 +1463,7 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                         q3 := p2 shifted q5;
                         q6 = whatever[q0, q1] = whatever[q2, q3];
                     else:
-                        if (sty == 0) or (stump == 1):
+                        if (sty <> 1) or (stump == 1):
                             q6 := p1 shifted q4;
                         else:
                             q6 := p1;
@@ -1483,10 +1483,10 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
     )
 enddef;
 
-vardef byLabelLineEnd (suffix a, b) =
+vardef byLabelLineEnd (suffix a, b)(expr d) =
     image(
         if (textLabels):
-            draw byTextLabel(str a, a, angle(a-b), textLabelShift);
+            draw byTextLabel(str a, a, angle(a-b), textLabelShift+(d*lineWidth));
         fi;
     )
 enddef;

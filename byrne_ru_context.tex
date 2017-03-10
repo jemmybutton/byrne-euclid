@@ -1,0 +1,137 @@
+\input preamble.tex
+\input preamble_be.tex
+
+\def\inpropstr{пр.}
+\def\inpoststr{пост.}
+\def\indefstr{опр.}
+\def\inaxstr{акс.}
+\def\qedstr{Ч. Т. Д.}
+
+\starttext
+\startbook[title={Книга I}]
+\startVerboseProposition[title={Предложение I. Задача}, reference=prop:I.I]
+
+\defineNewPicture[1/2]{
+	pair A, B, C;
+	path P[];
+	numeric r;
+	r := 3/2u;
+	A := (0, 0);
+	B := (r, 0);
+	P1 := fullcircle scaled 2r;
+	P2 := fullcircle scaled 2r shifted B;
+	C := P1 intersectionpoint P2;
+		byLineDefine(A, B, black, 0, 0);
+		byLineDefine(B, C, byred, 0, 0);
+		byLineDefine(C, A, byyellow, 0, 0);
+		draw byNamedLineSeq(1)(AB,CA,BC);
+		draw byCircle(A, B, byblue, 0, 0, 1/2)(A);
+		draw byCircle(B, A, byred, 0, 0, 1/2)(B);
+		draw byLabelsOnPolygon(A, C, B)(0, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{а}{данной ограниченной прямой \drawUnitLine{AB} построить равносторонний треугольник.}
+
+\startCenterAlign
+Опишем \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
+draw byNamedLine(AB);
+draw byNamedCircle(A);
+draw byLabelLineEnd(A, B, 0);
+draw byLabelLineEnd(B, A, 1);
+}} и \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
+draw byNamedLine(AB); 
+draw byNamedCircle(B);
+draw byLabelLineEnd(A, B, 1);
+draw byLabelLineEnd(B, A, 0);
+}}
+\inpost[post:III];\\
+проведем \drawUnitLine{CA} и \drawUnitLine{BC} \inpost[post:I].\\
+Тогда \drawLine[bottom][triangleABC]{AB,CA,BC} равносторонний.
+
+Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV];\\
+и $\drawUnitLine{AB} = \drawUnitLine{BC}$ \indef[def:XV];\\
+$\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[post:I];\\
+и значит \triangleABC\ и есть искомый треугольник.
+\stopCenterAlign
+
+\qed
+\stopVerboseProposition
+
+\startProposition[title={Предложение II. Задача}, reference=prop:I.II]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+path P[];
+numeric r[];
+A := (0, 0);
+B := (-3/5u, -3/5u);
+C := (-2u, -1/3u);
+r1 := abs(A-B);
+D := (fullcircle scaled 2r1 shifted A) intersectionpoint (fullcircle scaled 2r1 shifted B);
+r2 := abs(B-C);
+r3 := r1 + r2;
+P1 := fullcircle scaled 2r2 shifted B;
+P2 := fullcircle scaled 2r3 shifted D;
+E := (D -- 10[D, B]) intersectionpoint P1;
+F := (D -- 10[D, A]) intersectionpoint P2;
+byLineDefine(A, B, black, 1, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(B, D, byred, 0, 0);
+byLineDefine(D, A, byred, 0, 0);
+byLineDefine(B, E, byyellow, 0, 0);
+byLineDefine(A, F, byblue, 0, 0);
+draw byNamedLineSeq(0)(AF,DA,BD,BE);
+draw byNamedLineSeq(0)(AB,BC);
+draw byCircle(D, E, byred, 0, 0, 1/2)(A);
+draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
+draw byLabelsOnPolygon(E, D, A, F)(2, -1);
+draw byLabelsOnPolygon(E, B, C)(2, -1);
+draw byLabelLineEnd(C, B, 0);
+draw byLabelLineEnd(E, B, 1);
+draw byLabelLineEnd(F, A, 1);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{т}{данной точки \drawUnitLine{DA,AF} отложить прямую равную данной прямой \drawUnitLine{BC}.}
+
+\startCenterAlign
+Проведем \drawUnitLine{AB} \inpost[post:I], построим \drawFromCurrentPicture[bottom]{
+startAutoLabeling;
+startTempScale(scaleFactor*3);
+startGlobalRotation(180-lineAngle.AB);
+draw byNamedLineSeq(0)(AB,BD,DA);
+stopGlobalRotation;
+stopTempScale;
+stopAutoLabeling;
+} \inprop[prop:I.I],\\
+продлим \drawUnitLine{BD} \inpost[post:II],\\
+опишем
+\drawFromCurrentPicture{
+draw byNamedLine (BC); 
+draw byNamedCircle(B); 
+draw byLabelLineEnd(B, C, 0); 
+draw byLabelLineEnd(C, B, 0);
+}
+\inpost[post:III], и
+\drawFromCurrentPicture{
+draw byNamedLine (BD, BE);
+draw byNamedCircle(A);
+draw byLabelLineEnd(D, E, 0); 
+draw byLabelLineEnd(E, D, 1);
+}
+\inpost[post:III];\\
+продлим \drawUnitLine{DA} \inpost[post:II],\\
+тогда искомая прямая это \drawUnitLine{AF}.
+
+Поскольку $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \indef[def:XV],\\
+и $\drawUnitLine{BD} = \drawUnitLine{DA}$ (постр.),\\
+$\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[post:III],\\
+но \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
+
+$\therefore \drawUnitLine{AF}$ проведенная из данной точки (\drawUnitLine{DA,AF}) равна данной прямой \drawUnitLine{BC}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\stopbook
+\stoptext
+%\closeout \lettrineslist

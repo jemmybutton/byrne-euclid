@@ -1,37 +1,5 @@
-\switchtobodyfont[11pt]
-
-\definefontfeature
- [default]
- [default]
- [protrusion=quality,expansion=quality]
-
-\setupalign[hz,hanging]
-
-\definepapersize[custom]
- [width=153mm, height=210mm]
-\setuppapersize[custom][custom]
-%\setuppapersize[A5][A5]
-\setuppagenumbering[alternative=doublesided]
-\setuplayout[backspace=14mm,
-	width=80mm,	height=180mm,
-	header=5mm,
-	headerdistance=8mm,
-	topspace=10mm,
-	footer=0mm,
-	margin=52mm]
-\definelayout[title][backspace=15mm,
-	width=123mm,	height=180mm,
-	header=5mm,
-	headerdistance=8mm,
-	topspace=10mm,
-	footer=0mm,
-	margin=52mm]
-
-
 \input preamble.tex
 \input preamble_be.tex
-
-\usesymbols[cc]
 
 \starttext
 
@@ -1183,13 +1151,13 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 Describe \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
 draw byNamedLine(AB);
 draw byNamedCircle(A);
-draw byLabelLineEnd(A, B);
-draw byLabelLineEnd(B, A);
+draw byLabelLineEnd(A, B, 0);
+draw byLabelLineEnd(B, A, 1);
 }} and \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
 draw byNamedLine(AB); 
 draw byNamedCircle(B);
-draw byLabelLineEnd(A, B);
-draw byLabelLineEnd(B, A);
+draw byLabelLineEnd(A, B, 1);
+draw byLabelLineEnd(B, A, 0);
 }}
 \inpost[post:III];\\
 draw \drawUnitLine{CA} and \drawUnitLine{BC} \inpost[post:I].\\
@@ -1230,25 +1198,42 @@ draw byNamedLineSeq(0)(AF,DA,BD,BE);
 draw byNamedLineSeq(0)(AB,BC);
 draw byCircle(D, E, byred, 0, 0, 1/2)(A);
 draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
+draw byLabelsOnPolygon(E, D, A, F)(2, -1);
+draw byLabelsOnPolygon(E, B, C)(2, -1);
+draw byLabelLineEnd(C, B, 0);
+draw byLabelLineEnd(E, B, 1);
+draw byLabelLineEnd(F, A, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{a given point (\drawUnitLine{DA,AF}) to draw a straight line equal to a given straight line (\drawUnitLine{BC}).}
 
 \startCenterAlign
 Draw \drawUnitLine{AB} \inpost[post:I], describe \drawFromCurrentPicture[bottom]{
+startAutoLabeling;
 startTempScale(scaleFactor*3);
 startGlobalRotation(180-lineAngle.AB);
 draw byNamedLineSeq(0)(AB,BD,DA);
 stopGlobalRotation;
 stopTempScale;
+stopAutoLabeling;
 } \inprop[prop:I.I],\\
-produce \drawUnitLine{DA} \inpost[post:II],\\
-describe
-\drawFromCurrentPicture{draw byNamedLine (BC); draw byNamedCircle(B);}
-\inpost[post:III], and
-\drawFromCurrentPicture{draw byNamedLine (BD); draw byNamedLine (BE); draw byNamedCircle(A);}
-\inpost[post:III];\\
 produce \drawUnitLine{BD} \inpost[post:II],\\
+describe
+\drawFromCurrentPicture{
+draw byNamedLine (BC); 
+draw byNamedCircle(B); 
+draw byLabelLineEnd(B, C, 0); 
+draw byLabelLineEnd(C, B, 0);
+}
+\inpost[post:III], and
+\drawFromCurrentPicture{
+draw byNamedLine (BD, BE);
+draw byNamedCircle(A);
+draw byLabelLineEnd(D, E, 0); 
+draw byLabelLineEnd(E, D, 1);
+}
+\inpost[post:III];\\
+produce \drawUnitLine{DA} \inpost[post:II],\\
 then \drawUnitLine{AF} is the line required.
 
 For $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \indef[def:XV],\\
