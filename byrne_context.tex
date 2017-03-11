@@ -1165,7 +1165,7 @@ Then will \drawLine[bottom][triangleABC]{AB,CA,BC} be equilateral.
 
 For $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV];\\
 and $\drawUnitLine{AB} = \drawUnitLine{BC}$ \indef[def:XV];\\
-$\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[post:I];\\
+$\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[ax:I];\\
 and therefore \triangleABC\ is the equilateral triangle required.
 \stopCenterAlign
 
@@ -1190,8 +1190,8 @@ E := (D -- 10[D, B]) intersectionpoint P1;
 F := (D -- 10[D, A]) intersectionpoint P2;
 byLineDefine(A, B, black, 1, 0);
 byLineDefine(B, C, black, 0, 0);
-byLineDefine(B, D, byred, 0, 0);
-byLineDefine(D, A, byred, 0, 0);
+byLineDefine(B, D, byred, 0, 0); 
+byLineDefine(D, A, byred, 0, 0); % improvement: change style of either BD or DA
 byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(AF,DA,BD,BE);
@@ -1265,13 +1265,24 @@ byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
 draw byCircle(A, D, byblue, 0, 0, 0)(A);
+draw byLabelsOnPolygon(B, A, D)(2, -1);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(C, A, 0);
+draw byLabelPoint(B, angle(B-A) + 45, 2);
+draw byLabelsOnPolygon(E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{the greater (\drawUnitLine{AB,BC}) of two given straight lines, to cut off a part equal to the less (\drawUnitLine{EF}).}
 
 \startCenterAlign
 Draw $\drawUnitLine{AD} = \drawUnitLine{EF}$ \inprop[prop:I.II];\\
-describe \drawFromCurrentPicture{draw byNamedLine (AD); draw byNamedCircle(A);} \inpost[post:III],\\
+describe 
+\drawFromCurrentPicture{
+draw byNamedLine (AD); 
+draw byNamedCircle(A);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(A, D, 0);
+} \inpost[post:III],\\
 then $\drawUnitLine{EF} = \drawUnitLine{AB}$
 
 For $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
@@ -1307,11 +1318,13 @@ byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, black, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
 draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
+draw byLabelsOnPolygon(B, A, C)(0, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, (\drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD}) and the angles (\drawAngle{A} and \drawAngle{D}) contained by those equal sides also equal; then their bases or their sides (\drawUnitLine{BC} and \drawUnitLine{EF}) are also equal: and the remaining angles opposite to equal sides are respectively equal ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$): and the triangles are equal in every respect.}
 
-Let two triangles be conceived, to be so placed, that the vertex of one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a space, which is impossible (ax. 10), therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and as the triangles \drawLine{CA,BC,AB} and \drawLine{FD,EF,DE} coincide, when applied, they are equal in every respect.
+Let two triangles be conceived, to be so placed, that the vertex of one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a space, which is impossible \inax[ax:X], therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and as the triangles \drawLine{CA,BC,AB} and \drawLine{FD,EF,DE} coincide, when applied, they are equal in every respect.
 
 \qed
 \stopProposition
@@ -5706,7 +5719,7 @@ stopTempScale;
 \startCenterAlign
 draw \drawUnitLine{DE,AD} from it to the centre, cutting \circleEI;\\
 and draw $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
-describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{AD,DE}$,\\ % These two lines were not originally there, but without them this proof has no sense
+describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{AD,DE}$,\\ % improvement: These two lines were not originally there, but without them this proof has no sense
 draw \drawUnitLine{BE,FB} to the centre from the point where \drawUnitLine{FD} falls on \circleEII\ circumference,\\
 draw \drawUnitLine{AB} from the point where \drawUnitLine{BE,FB} cuts \circleEI,\\
 %

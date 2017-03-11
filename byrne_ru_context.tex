@@ -1,6 +1,8 @@
 \input preamble.tex
 \input preamble_be.tex
 
+\mainlanguage[ru]
+
 \def\inpropstr{пр.}
 \def\inpoststr{пост.}
 \def\indefstr{опр.}
@@ -75,7 +77,7 @@ E := (D -- 10[D, B]) intersectionpoint P1;
 F := (D -- 10[D, A]) intersectionpoint P2;
 byLineDefine(A, B, black, 1, 0);
 byLineDefine(B, C, black, 0, 0);
-byLineDefine(B, D, byred, 0, 0);
+byLineDefine(B, D, byred, 1, 0);
 byLineDefine(D, A, byred, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
@@ -90,7 +92,7 @@ draw byLabelLineEnd(E, B, 1);
 draw byLabelLineEnd(F, A, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{О}{т}{данной точки \drawUnitLine{DA,AF} отложить прямую равную данной прямой \drawUnitLine{BC}.}
+\problemNP{О}{т}{данной точки \drawUnitLine{DA,AF} отложить прямую, равную данной прямой \drawUnitLine{BC}.}
 
 \startCenterAlign
 Проведем \drawUnitLine{AB} \inpost[post:I], построим \drawFromCurrentPicture[bottom]{
@@ -128,6 +130,88 @@ $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[post:III],\\
 
 $\therefore \drawUnitLine{AF}$ проведенная из данной точки (\drawUnitLine{DA,AF}) равна данной прямой \drawUnitLine{BC}.
 \stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение III. Задача}, reference=prop:I.III]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+path P;
+numeric r;
+A := (0, 0);
+r := 7/4u;
+B := A shifted (r, 0);
+C := A shifted (4/3r, 0);
+D := A shifted dir(30)*r;
+E := A shifted (7/6r, -1/6r);
+F := A shifted (7/6r, -7/6r);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, black, 1, 0);
+byLineDefine(A, D, byred, 0, 0);
+draw byNamedLineSeq(0)(BC,AB,AD);
+draw byLine(E, F, byblue, 0, 0);
+draw byCircle(A, D, byblue, 0, 0, 0)(A);
+draw byLabelsOnPolygon(B, A, D)(2, -1);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(C, A, 0);
+draw byLabelPoint(B, angle(B-A) + 45, 2);
+draw byLabelsOnPolygon(E, F)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{т}{большей \drawUnitLine{AB,BC}  из двух данных прямых, отнять прямую, равную меньшей \drawUnitLine{EF}.}
+
+\startCenterAlign
+Проведем $\drawUnitLine{AD} = \drawUnitLine{EF}$ \inprop[prop:I.II];\\
+опишем 
+\drawFromCurrentPicture{
+draw byNamedLine (AD); 
+draw byNamedCircle(A);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(A, D, 0);
+} \inpost[post:III],\\
+тогда $\drawUnitLine{EF} = \drawUnitLine{AB}$
+
+Поскольку $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
+и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (постр.);
+
+$\therefore \drawUnitLine{EF} = \drawUnitLine{AB}$ \inax[ax:I];
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение IV. Теорема}, reference=prop:I.IV]
+\defineNewPicture{
+pair A, B, C, D, E, F, d;
+A := (0, 0);
+B := A shifted (-5/2u, -7/2u);
+C := A shifted (1/3u, -5/2u);
+d := (0, -4u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(A, B, C, byblue, 0)(B);
+draw byAngleWithName(B, C, A, byred, 0)(C);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(CA,BC,AB);
+draw byAngleWithName(E, D, F, byyellow, 0)(D);
+draw byAngleWithName(D, E, F, byblue, 0)(E);
+draw byAngleWithName(E, F, D, byred, 0)(F);
+byLineDefine(D, E, byred, 0, 1);
+byLineDefine(E, F, black, 0, 1);
+byLineDefine(F, D, byblue, 0, 1);
+draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
+draw byLabelsOnPolygon(B, A, C)(0, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{два треугольника имеют по две стороны, равные каждая каждой, ($\drawUnitLine{AB} = \drawUnitLine{DE}$ и $\drawUnitLine{CA} = \drawUnitLine{FD}$) и по равному углу ($\drawAngle{A} = \drawAngle{D}$) содержащемуся между равными прямыми, то они будут иметь и основание равное основанию ($\drawUnitLine{BC} = \drawUnitLine{EF}$), и один треугольник будет равен другому, и остальные углы, стягиваемые равными сторонами, будут равны каждый каждому ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$).}
+
+Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов \drawAngle{A} или \drawAngle{D}, совпадает с вершиной другого, и \drawUnitLine{AB} совпадает \drawUnitLine{DE}, тогда \drawUnitLine{CA} при наложении совпадет с \drawUnitLine{FD}. Следовательно \drawUnitLine{BC} совпает с \drawUnitLine{EF}, или же две прямые будут содержать пространство, что невозможно \inax[ax:X], следовательно $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$, и поскольку треугольники \drawLine{CA,BC,AB} и \drawLine{FD,EF,DE} совпадают при наложении, они равны во всех отношениях.
 
 \qed
 \stopProposition

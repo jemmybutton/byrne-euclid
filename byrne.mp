@@ -1395,6 +1395,14 @@ vardef byTextLabel(expr t, p, a, d) =
     )
 enddef;
 
+vardef byLabelPoint(suffix p)(expr a, d) =
+    image(
+        if (textLabels):
+            draw byTextLabel(str p, p, a, textLabelShift*d);
+        fi;
+    )
+enddef;
+
 vardef byLabelCircle(expr l, cn) =
     save o, d;
     pair o;
