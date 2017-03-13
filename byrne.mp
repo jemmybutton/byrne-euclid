@@ -1464,7 +1464,7 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                     pair q[];
                     q4 := unitvector(p1-p0) rotated 90;
                     q5 := unitvector(p2-p1) rotated 90;
-                    if (abs(angle(q4) - angle(q5))>1):
+                    if (abs(sind(angle(q4) - angle(q5)))>1/1000):
                         q0 := p0 shifted q4;
                         q1 := p1 shifted q4;
                         q2 := p1 shifted q5;

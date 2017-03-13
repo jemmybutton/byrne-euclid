@@ -1205,7 +1205,12 @@ draw byLabelLineEnd(E, B, 1);
 draw byLabelLineEnd(F, A, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point (\drawUnitLine{DA,AF}) to draw a straight line equal to a given straight line (\drawUnitLine{BC}).}
+\problemNP{F}{rom}{a given point (\drawFromCurrentPicture{
+startGlobalRotation(-lineAngle.DA);
+draw byNamedLineSeq(0)(DA,AF);
+draw byLabelPoint(A, 90, 1);
+stopGlobalRotation;
+}) to draw a straight line equal to a given straight line (\drawUnitLine{BC}).}
 
 \startCenterAlign
 Draw \drawUnitLine{AB} \inpost[post:I], describe \drawFromCurrentPicture[bottom]{
@@ -1355,6 +1360,7 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 byLineDefine(B, C, black, 0, 0);
 draw byNamedLineSeq(0)(CD,noLine,BC,noLine,BE,CE,AC,AB,BD);
+draw byLabelsOnPolygon(E, C, A, B, D, C, B)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{any isosceles triangle \drawLine[bottom]{BC,AC,AB} if the equal sides be produced, the external angles at the base are equal, and the internal angles at the base are also equal.}
@@ -1366,13 +1372,17 @@ draw \drawUnitLine{BE} and \drawUnitLine{CD}.
 
 Then in
 \drawFromCurrentPicture{
+startAutoLabeling;
 draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(BE,CE,AC,AB);
+stopAutoLabeling;
 }
 and
 \drawFromCurrentPicture{
+startAutoLabeling;
 draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(BD,CD,AC,AB);
+stopAutoLabeling;
 }\\
 we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ (const.),\\
 \drawAngle{BAC} common to both,\\
@@ -1404,6 +1414,7 @@ byLineDefine(C, A, black, 0, 0);
 byLineDefine(C, D, black, 1, 0);
 draw byNamedLine(BC);
 draw byNamedLineSeq(0)(CA,CD,BD,AB);
+draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{any triangle (\drawLine[bottom][triangleABD]{CA,CD,BD,AB}) if two angles (\drawAngle{A} and \drawAngle{B}) are equal, the sides (\drawUnitLine{CA,CD} and \drawUnitLine{BD}) opposite to them are also equal.}
@@ -1459,6 +1470,12 @@ byLineDefine(F, H, byred, 1, 0);
 draw byNamedLine(EG,FH);
 draw byNamedLineSeq(0)(BC,CA,EA,BE);
 draw byNamedLineSeq(0)(BD,DA,FA,BF);
+string pointLabel.F, pointLabel.E;
+pointLabel.F := "C";
+pointLabel.E := "D";
+draw byLabelsOnPolygon(F, A, C, D, B, F, noPoint)(2, 0);
+draw byLabelsOnPolygon(A, E, B)(2, 0);
+draw byLabelsOnPolygon(H, F, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{n}{the same base (\drawUnitLine{AB}), and on the same side of it there can not be two triangles having their conterminous sides (\drawUnitLine{CA} and \drawUnitLine{DA}, \drawUnitLine{BC} and \drawUnitLine{BD}) at both extremities of the base, equal to each other.}
@@ -1470,7 +1487,7 @@ If it be possible let the two triangles be constructed so that $\left\{\eqalign{
 \startCenterAlign
 $\drawAngle{C,DCB} = \drawAngle{CDA}$ \inprop[prop:I.V]
 
-$\therefore\drawAngle{DCB} < \drawAngle{CDA} \mbox{and}$
+$\therefore \drawAngle{DCB} < \drawAngle{CDA}$ and
 
 $\left.
 \eqalign{
@@ -1479,7 +1496,7 @@ $\left.
 }\right\}\mbox{which is absurd,}$
 \stopCenterAlign
 
-therefore the two triangles cannot have their conterminous sides equal at both extremities of the base.
+\noindent therefore the two triangles cannot have their conterminous sides equal at both extremities of the base.
 
 \qed
 \stopProposition

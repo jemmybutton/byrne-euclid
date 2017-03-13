@@ -92,7 +92,12 @@ draw byLabelLineEnd(E, B, 1);
 draw byLabelLineEnd(F, A, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{О}{т}{данной точки \drawUnitLine{DA,AF} отложить прямую, равную данной прямой \drawUnitLine{BC}.}
+\problemNP{О}{т}{данной точки \drawFromCurrentPicture{
+startGlobalRotation(-lineAngle.DA);
+draw byNamedLineSeq(0)(DA,AF);
+draw byLabelPoint(A, 90, 1);
+stopGlobalRotation;
+} отложить прямую, равную данной прямой \drawUnitLine{BC}.}
 
 \startCenterAlign
 Проведем \drawUnitLine{AB} \inpost[post:I], построим \drawFromCurrentPicture[bottom]{
@@ -212,6 +217,174 @@ draw byLabelsOnPolygon(B, A, C)(0, -1);
 \problemNP{Е}{сли}{два треугольника имеют по две стороны, равные каждая каждой, ($\drawUnitLine{AB} = \drawUnitLine{DE}$ и $\drawUnitLine{CA} = \drawUnitLine{FD}$) и по равному углу ($\drawAngle{A} = \drawAngle{D}$) содержащемуся между равными прямыми, то они будут иметь и основание равное основанию ($\drawUnitLine{BC} = \drawUnitLine{EF}$), и один треугольник будет равен другому, и остальные углы, стягиваемые равными сторонами, будут равны каждый каждому ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$).}
 
 Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов \drawAngle{A} или \drawAngle{D}, совпадает с вершиной другого, и \drawUnitLine{AB} совпадает \drawUnitLine{DE}, тогда \drawUnitLine{CA} при наложении совпадет с \drawUnitLine{FD}. Следовательно \drawUnitLine{BC} совпает с \drawUnitLine{EF}, или же две прямые будут содержать пространство, что невозможно \inax[ax:X], следовательно $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$, и поскольку треугольники \drawLine{CA,BC,AB} и \drawLine{FD,EF,DE} совпадают при наложении, они равны во всех отношениях.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение V. Теорема}, reference=prop:I.V]
+\defineNewPicture[11/40]{
+pair A, B, C, D, E;
+picture q;
+A := (0, 0);
+B := A shifted (u, -2u);
+C := B xscaled -1;
+D := 9/5[A,B];
+E := 9/5[A,C];
+draw byAngle(B, A, C, black, 0);
+draw byAngle(A, B, C, byblue, 0);
+draw byAngle(B, C, A, byblue, 0);
+draw byAngle(C, B, E, byyellow, 0);
+draw byAngle(D, C, B, byyellow, 0);
+draw byAngle(B, D, C, byred, 0);
+draw byAngle(C, E, B, byred, 0);
+byAngleDefine(E, B, D, black, 1);
+byAngleDefine(D, C, E, black, 1);
+byLineDefine(B, D, byyellow, 0, 0);
+byLineDefine(C, E, byyellow, 0, 0);
+byLineDefine(B, E, byblue, 0, 0);
+byLineDefine(C, D, byblue, 0, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+draw byNamedLineSeq(0)(CD,noLine,BC,noLine,BE,CE,AC,AB,BD);
+draw byLabelsOnPolygon(E, C, A, B, D, C, B)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{У}{любого}{равнобедренного треугольника \drawLine[bottom]{BC,AC,AB} углы при основании равны между собой и по продолжении равных сторон углы под основанием будут равны между собой.}
+
+\startCenterAlign
+Продлим \drawUnitLine{AB} и \drawUnitLine{AC} \inpost[post:II],\\
+возьмем $\drawUnitLine{BD} = \drawUnitLine{CE}$ \inprop[prop:I.III];\\
+проведем \drawUnitLine{BE} и \drawUnitLine{CD}.
+
+Тогда в
+\drawFromCurrentPicture{
+startAutoLabeling;
+draw byNamedAngle(BAC);
+draw byNamedLineSeq(0)(BE,CE,AC,AB);
+stopAutoLabeling;
+}
+и
+\drawFromCurrentPicture{
+startAutoLabeling;
+draw byNamedAngle(BAC);
+draw byNamedLineSeq(0)(BD,CD,AC,AB);
+stopAutoLabeling;
+}\\
+получим $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ (конст.),\\
+\drawAngle{BAC} общий обоим,\\
+и $\drawUnitLine{AB} = \drawUnitLine{AC}$ (гип.)\\
+$\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ и $\drawAngle{CEB} = \drawAngle{BDC}$ \inprop[prop:I.IV].
+
+Так же у \drawLine{BE,CE,BC} и \drawLine{BD,CD,BC}\\
+получим $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ и $\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
+$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV]\\
+но $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+
+\startProposition[title={Предложение VI. Теорема}, reference=prop:I.VI]
+\defineNewPicture[1/4]{
+pair A, B, C, D;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+D := A shifted (7/4u, 3u);
+C := 2/3[A, D];
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(A, B, D, black, 0)(B);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, D, byblue, 0, 0);
+byLineDefine(C, A, black, 0, 0);
+byLineDefine(C, D, black, 1, 0);
+draw byNamedLine(BC);
+draw byNamedLineSeq(0)(CA,CD,BD,AB);
+draw byLabelsOnPolygon(A, C, D, B)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{у любого треугольника \drawLine[bottom][triangleABD]{CA,CD,BD,AB} два угла \drawAngle{A} и \drawAngle{B} равны между собой, то и стороны \drawUnitLine{CA,CD} and \drawUnitLine{BD}, стягивающие равные углы, будут равны.}
+
+Предположим, что стороны не равны и одна из них \drawUnitLine{CA,CD} больше чем другая \drawUnitLine{BD}, тогдо отрежем от нее $\drawUnitLine{CA} = \drawUnitLine{BD}$ \inprop[prop:I.III] и проведем \drawUnitLine{BC}.
+
+\startCenterAlign
+Тогда в \drawLine[bottom]{BC,AB,CA} и \triangleABD,\\
+$\drawUnitLine{CA} = \drawUnitLine{BD}$ (постр.),\\
+$\drawAngle{A} = \drawAngle{B}$ (гип.)\\
+и \drawUnitLine{AB} общая обоим,\\
+$\therefore$ эти треугольники равны \inprop[prop:I.IV]\\
+часть равна целому, что не имеет смысла;\\
+$\therefore$ ни одна из сторон \drawUnitLine{CA,CD} или \drawUnitLine{BD} не больше другой,\\
+$\therefore$ они равны.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение VII. Теорема}, reference=prop:I.VII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H;
+A := (0, 0);
+B := A shifted (4u, 0);
+C := A shifted (u, 3u);
+D := C shifted (7/4u, 0);
+E := 1/2[C, D] yscaled -0.7;
+F := E shifted (0, -2u);
+G := 5/4[A, E];
+H := 5/4[A, F];
+draw byAngleWithName(B, C, A, black, 0)(C);
+draw byAngle(D, C, B, byred, 0);
+draw byAngleWithName(A, D, B, byyellow, 0)(D);
+draw byAngle(C, D, A, byblue, 0);
+draw byAngle(B, F, H, black, 0);
+draw byAngle(B, F, E, byred, 0);
+draw byAngle(B, E, G, byyellow, 0);
+draw byAngle(G, E, F, byblue, 0);
+draw byLine(C, D, black, 1, 0);
+draw byLine(E, F, black, 1, 0);
+draw byLine(A, B, black, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+byLineDefine(B, D, byblue, 0, 0);
+byLineDefine(D, A, byred, 0, 0);
+byLineDefine(B, E, byblue, 0, 0);
+byLineDefine(E, A, byred, 0, 0);
+byLineDefine(B, F, byblue, 0, 0);
+byLineDefine(F, A, byred, 0, 0);
+byLineDefine(E, G, byred, 1, 0);
+byLineDefine(F, H, byred, 1, 0);
+draw byNamedLine(EG,FH);
+draw byNamedLineSeq(0)(BC,CA,EA,BE);
+draw byNamedLineSeq(0)(BD,DA,FA,BF);
+string pointLabel.F, pointLabel.E;
+pointLabel.F := "C";
+pointLabel.E := "D";
+draw byLabelsOnPolygon(F, A, C, D, B, F, noPoint)(2, 0);
+draw byLabelsOnPolygon(A, E, B)(2, 0);
+draw byLabelsOnPolygon(H, F, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{о}{одну сторону одной и той же прямой \drawUnitLine{AB} нельзя построить два разных треугольника с равными друг другу смежными сторонами $\drawUnitLine{CA} = \drawUnitLine{DA}$ и $\drawUnitLine{BC} = \drawUnitLine{BD}$.}
+
+Если два треугольника построены на одном основании и по одну сторону от него, то вершина одного может находиться вовне другого, внутри или на одной из его сторон.
+
+Если такое возможно, то построим два треугольника таких, что $\left\{\eqalign{\drawUnitLine{CA}&=\drawUnitLine{BC}\cr \drawUnitLine{DA}&=\drawUnitLine{BD}\cr}\right\}$, затем проведем \drawUnitLine{CD}, тогда
+
+\startCenterAlign
+$\drawAngle{C,DCB} = \drawAngle{CDA}$ \inprop[prop:I.V]
+
+$\therefore\drawAngle{DCB} < \drawAngle{CDA}$ и
+
+$\left.
+\eqalign{
+\therefore\drawAngle{DCB} &< \drawAngle{CDA,D}\cr
+\mbox{но \inprop[prop:I.V]} \drawAngle{DCB} &= \drawAngle{CDA,D}
+}\right\}\mbox{что невозможно,}$
+\stopCenterAlign
+
+\noindent следовательно, смежные стороны таких двух треугольников не могут быть равны.
 
 \qed
 \stopProposition
