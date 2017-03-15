@@ -7,7 +7,9 @@
 \def\inpoststr{пост.}
 \def\indefstr{опр.}
 \def\inaxstr{акс.}
-\def\qedstr{Ч. Т. Д.}
+\def\qedstr{ч. т. д.}
+
+\def\mpPre{textLabels := true;}
 
 \starttext
 \startbook[title={Книга I}]
@@ -385,6 +387,186 @@ $\left.
 \stopCenterAlign
 
 \noindent следовательно, смежные стороны таких двух треугольников не могут быть равны.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение VIII. Теорема}, reference=prop:I.VIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, d;
+A := (0, 0);
+B := A shifted (-u, -4u);
+C := A shifted (3/2u, -3u);
+d := (0, -9/2u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+draw byAngleWithName(F, D, E, black, 0)(D);
+draw byAngleWithName(C, A, B, black, 0)(A);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+byLineDefine(D, E, byred, 0, 1);
+byLineDefine(E, F, black, 0, 1);
+byLineDefine(F, D, byblue, 0, 1);
+draw byNamedLineSeq(0)(CA,BC,AB);
+draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{у двух треугольников по две попарно равных стороны ($\drawUnitLine{CA} = \drawUnitLine{FD}$ и $\drawUnitLine{AB} = \drawUnitLine{DE}$), а также равные основания ($\drawUnitLine{BC} = \drawUnitLine{EF}$), то углы
+\drawFromCurrentPicture{
+startAutoLabeling;
+startGlobalRotation(-angleDirection.A);
+draw byNamedAngle(A);
+draw byNamedAngleDummySides(A);
+stopGlobalRotation;
+stopAutoLabeling;
+} и
+\drawFromCurrentPicture{
+startAutoLabeling;
+startGlobalRotation(-angleDirection.D);
+draw byNamedAngle(D);
+draw byNamedAngleDummySides(D);
+stopGlobalRotation;
+stopAutoLabeling;
+}, заключенные между равными сторонами, равны.}
+
+Если совместить равные основания \drawUnitLine{BC} и \drawUnitLine{EF} так, чтобы треугольники находились по одну сторону, а их равные стороны \drawUnitLine{AB} и \drawUnitLine{DE}, \drawUnitLine{CA} и \drawUnitLine{FD} были смежными, вершина одного будет совпадать с вершиной другого \inprop[prop:I.VII].
+
+Следовательно, стороны \drawUnitLine{AB} и \drawUnitLine{CA}, будут совпадать с \drawUnitLine{DE} и \drawUnitLine{FD}, $\therefore \drawAngle{A} = \drawAngle{D}$.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение IX. Задача}, reference=prop:I.IX]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+A := (0, 2u);
+B := (-4/3u, 0);
+C := B xscaled -1;
+D := A yscaled -1;
+E := 5/4[A, B];
+F := 5/4[A, C];
+draw byAngle(B, A, D, byblue, 0);
+draw byAngle(C, A, D, byyellow, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(A, D, black, 0, 0);
+byLineDefine(D, B, byblue, 0, 0);
+byLineDefine(C, D, byblue, 0, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+byLineDefine(B, E, byred, 1, 0);
+byLineDefine(C, F, byred, 1, 0);
+draw byNamedLine(BC,AD);
+draw byNamedLineSeq(0)(DB,CD);
+draw byNamedLineSeq(0)(BE,AB,CA,CF);
+draw byLabelsOnPolygon(D, B, A, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{ассечь}{данный прямолинейный угол \drawAngle{BAD,CAD} пополам.}
+
+\startCenterAlign
+Возьмем $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III]
+
+проведем \drawUnitLine{BC}, на которой построим \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
+проведем \drawUnitLine{AD}.
+
+Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.),\\
+\drawUnitLine{AD} общая обоим треугольникам\\
+и $\drawUnitLine{CD} = \drawUnitLine{DB}$ (постр.),
+
+$\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение X. Задача}, reference=prop:I.X]
+\defineNewPicture{
+pair A, B, C, D;
+A := (0, 3u);
+B := (-7/4u, 0);
+C := B xscaled -1;
+D := 1/2[B, C];
+draw byAngle(B, A, D, byblue, 0);
+draw byAngle(C, A, D, byyellow, 0);
+draw byLine(A, D, byred, 0, 0);
+byLineDefine(D, B, black, 0, 0);
+byLineDefine(C, D, black, 1, 0);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,CA,CD,DB);
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{ассечь}{данную ограниченную прямую линию \drawUnitLine{DB,CD}.}
+
+\startCenterAlign
+Построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
+проведем \drawUnitLine{AD}, делая $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.IX],
+
+Тогда $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.IV],
+
+поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.)\\
+$\drawAngle{BAD} = \drawAngle{CAD}$\\
+и \drawUnitLine{AD} общая обоим треугольникам.
+
+Следовательно, данная линия рассечена пополам.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop XI. Prob.}, reference=prop:I.XI]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F;
+A := (0, 3u);
+B := (-7/4u, 0);
+C := B xscaled -1;
+D := 1/2[B, C];
+E := 3/2[D, B];
+F := 3/2[D, C];
+draw byAngle(A, D, B, byred, 0);
+draw byAngle(C, D, A, byblue, 0);
+draw byLine(A, D, byyellow, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,CA);
+draw byLine(D, B, black, 0, 0);
+draw byLine(B, E, black, 1, 0);
+draw byLine(C, D, byred, 0, 0);
+draw byLine(F, C, byred, 1, 0);
+draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{И}{з}{данной точки 
+\drawFromCurrentPicture{
+draw byNamedLineSeq(0)(DB,CD);
+draw byLabelPoint(D, 90, 1);
+}
+на данной прямой \drawUnitLine{DB,CD} построить перпендикуляр.}
+
+\startCenterAlign
+Возьмем любую точку 
+\drawFromCurrentPicture{
+draw byNamedLineSeq(0)(CD,FC);
+draw byLabelPoint(C, 90, 1);
+} на данной прямой,\\
+отсечем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
+построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
+проведем \drawUnitLine{AD} и она будет перпендикуляром к данной прямой.
+
+Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.)\\
+$\drawUnitLine{CD} = \drawUnitLine{DB}$ (пост.)\\
+и \drawUnitLine{AD} общая обоим треугольникам.
+
+$\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII]
+
+$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X]
+\stopCenterAlign
 
 \qed
 \stopProposition

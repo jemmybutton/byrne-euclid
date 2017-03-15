@@ -10,6 +10,8 @@
 % Note that every time new MPinstance is defined.
 % Before doing so we clear everything after previous definitions (explained below)
 
+\def\mpPre{}
+
 \def\defineNewPicture{\dodoubleempty\definenewpicture}
 \def\definenewpicture[#1][#2]#3{\ignorespaces
 	\undefineList\ignorespaces
@@ -29,6 +31,7 @@
 	\defineMPinstance[\currentInstance]\ignorespaces
 	\startreusableMPgraphic{\currentInstance::currentPicture}
 		input byrne;
+		\mpPre
 		scaleFactor := \sfB;
 			#3
 		scaleFactor := \sfA;

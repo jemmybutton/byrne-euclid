@@ -1525,16 +1525,20 @@ draw byNamedLineSeq(0)(FD,EF,DE);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other ($\drawUnitLine{CA} = \drawUnitLine{FD}$ and $\drawUnitLine{AB} = \drawUnitLine{DE}$) and also their bases ($\drawUnitLine{BC} = \drawUnitLine{EF}$), equal; then the angles
 (\drawFromCurrentPicture{
+startAutoLabeling;
 startGlobalRotation(-angleDirection.A);
 draw byNamedAngle(A);
 draw byNamedAngleDummySides(A);
 stopGlobalRotation;
+stopAutoLabeling;
 } and
 \drawFromCurrentPicture{
+startAutoLabeling;
 startGlobalRotation(-angleDirection.D);
 draw byNamedAngle(D);
 draw byNamedAngleDummySides(D);
 stopGlobalRotation;
+stopAutoLabeling;
 }) contained by their equal sides are also equal.}
 
 If the equal bases \drawUnitLine{BC} and \drawUnitLine{EF} be conceived to be placed one upon the other, so that the triangles shall lie at the same side of them, and that equal sides \drawUnitLine{AB} and \drawUnitLine{DE}, \drawUnitLine{CA} and \drawUnitLine{FD} be conterminous, the vertex of the one must fall on the vertex of the other; for to suppose them not coincident would contradict the last proposition.
@@ -1566,6 +1570,7 @@ byLineDefine(C, F, byred, 1, 0);
 draw byNamedLine(BC,AD);
 draw byNamedLineSeq(0)(DB,CD);
 draw byNamedLineSeq(0)(BE,AB,CA,CF);
+draw byLabelsOnPolygon(D, B, A, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{bisect a given rectilinear angle (\drawAngle{BAD,CAD}).}
@@ -1601,6 +1606,7 @@ byLineDefine(C, D, black, 1, 0);
 byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,CA,CD,DB);
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{bisect a given finite straight line (\drawUnitLine{DB,CD}).}
@@ -1639,12 +1645,22 @@ draw byLine(D, B, black, 0, 0);
 draw byLine(B, E, black, 1, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(F, C, byred, 1, 0);
+draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point (\drawUnitLine{DB,CD}) in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
+\problemNP{F}{rom}{a given point 
+(\drawFromCurrentPicture{
+draw byNamedLineSeq(0)(DB,CD);
+draw byLabelPoint(D, 90, 1);
+}) in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
 
 \startCenterAlign
-Take any point (\drawUnitLine{CD,FC}) in the given line,\\
+Take any point 
+(\drawFromCurrentPicture{
+draw byNamedLineSeq(0)(CD,FC);
+draw byLabelPoint(C, 90, 1);
+}) in the given line,\\
 cut off $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD} and it shall be perpendicular to the given line.
