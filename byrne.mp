@@ -1451,11 +1451,11 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                         if (pointName[k] == "noPoint"):
                             p2 := pointLoc[l];
                             p0 := 2[p2, p1];
-                            stump := 1;
+                            stump := -1;
                         elseif (pointName[l] == "noPoint"):
                             p0 := pointLoc[k];
                             p2 := 2[p0, p1];
-                            stump := 1;
+                            stump := +1;
                         else:
                             p0 := pointLoc[k];
                             p2 := pointLoc[l];
@@ -1471,7 +1471,7 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                         q3 := p2 shifted q5;
                         q6 = whatever[q0, q1] = whatever[q2, q3];
                     else:
-                        if (sty <> 1) or (stump == 1):
+                        if (sty <> 1) or (stump <> 0):
                             q6 := p1 shifted q4;
                         else:
                             q6 := p1;

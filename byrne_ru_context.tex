@@ -519,7 +519,7 @@ $\drawAngle{BAD} = \drawAngle{CAD}$\\
 \qed
 \stopProposition
 
-\startProposition[title={Prop XI. Prob.}, reference=prop:I.XI]
+\startProposition[title={Предложение XI. Задача}, reference=prop:I.XI]
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F;
 A := (0, 3u);
@@ -567,6 +567,267 @@ $\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII]
 
 $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X]
 \stopCenterAlign
+
+\qed
+\stopProposition
+
+
+\startProposition[title={Предложение XII. Задача}, reference=prop:I.XII]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+path c;
+numeric r, a[];
+A := (0, 3u);
+B := (-7/4u, 0);
+C := B xscaled -1;
+D := 1/2[B, C];
+E := 4/3[D, B];
+F := 4/3[D, C];
+r := abs(A-B);
+c := fullcircle scaled 2r shifted A;
+a1 := xpart(c intersectiontimes (F--1/2[B, C]));
+a2 := xpart(c intersectiontimes (E--1/2[B, C]));
+draw byAngle(A, D, B, byyellow, 0);
+draw byAngle(C, D, A, byblue, 0);
+draw byLine(A, D, byred, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,CA);
+draw byArc(A, B, C)(r, byred, 0, 0, 0, 0)(O);
+draw byArcBE(A, a2-1/4, a2, r, byred, 1, 0, 0, 0)(Ol);
+draw byArcBE(A, a1, a1+1/4, r, byred, 1, 0, 0, 0)(Or);
+draw byLine(D, B, black, 0, 0);
+draw byLine(B, E, black, 1, 0);
+draw byLine(C, D, byyellow, 0, 0);
+draw byLine(F, C, byyellow, 1, 0);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
+draw byLabelLineEnd(B, A, 0);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(C, A, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{ровести}{перпендикуляр к данной неограниченной прямой \drawUnitLine{DB,CD} из данной, не находящейся на ней точки \drawFromCurrentPicture[middle][pointA]{
+startTempScale(scaleFactor/2);
+draw byNamedLine(AD);
+draw byNamedLineSeq(0)(AB,CA);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
+stopTempScale;
+}.}
+
+\startCenterAlign
+Взяв данную точку \pointA\ в качестве центра по одну сторону прямой, и любое расстояние, позволяющее достигнуть другой стороны, построим \drawArc{O}.
+
+Возьмем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.X],\\
+проведем \drawUnitLine{AB}, \drawUnitLine{CA} и \drawUnitLine{AD}.
+
+Тогда $\drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$.
+
+Поскольку \inprop[prop:I.VIII], раз $\drawUnitLine{DB} = \drawUnitLine{CD}$ (постр.),\\
+\drawUnitLine{AD} общая обоим треугольникам,\\
+и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV],
+
+$\therefore \drawAngle{ADB} = \drawAngle{CDA}$,
+
+и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X]
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIII. Теорема}, reference=prop:I.XIII]
+\defineNewPicture{
+pair A, B, C, D, E;
+A := (0, 5/2u);
+B := (-7/4u, 0);
+C := B xscaled -1;
+D := (xpart(A), ypart(B));
+E := (2/3xpart(C), 2/3ypart(A));
+draw byAngle(A, D, B, byyellow, 0);
+draw byAngle(E, D, A, byred, 0);
+draw byAngle(C, D, E, byblue, 0);
+draw byLine(A, D, black, 0, 0);
+draw byLine(E, D, byyellow, 0, 0);
+draw byLine(B, C, byred, 0, 0);
+draw byLabelsOnPolygon(C, D, B, noPoint)(0, 0);
+draw byLabelLineEnd(E, D, 0);
+draw byLabelLineEnd(A, D, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая линия \drawUnitLine{ED} восставленная на другой прямой линии \drawUnitLine{BC} образует с ней углы, то это будут либо два прямых угла, либо их сумма будет равна двум прямым углам.}
+
+\startCenterAlign
+Если \drawUnitLine{ED} $\perp$ к \drawUnitLine{BC} тогда,\\
+\drawAngle{ADB,EDA} и $\drawAngle{CDE} = \drawTwoRightAngles$ \indef[def:X],
+
+но если \drawUnitLine{ED} будет не $\perp$ к \drawUnitLine{BC},\\
+проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$; \inprop[prop:I.XI]\\
+$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ (постр.),\\
+$\drawAngle{ADB} = \drawAngle{CDE,EDA} = \drawAngle{EDA} + \drawAngle{CDE}$
+
+$\therefore \drawAngle{ADB} + \drawAngle{CDE,EDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \inax[ax:II]
+
+$= \drawAngle{ADB,EDA} + \drawAngle{CDE} = \drawTwoRightAngles$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIV. Теорема}, reference=prop:I.XIV]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E;
+A := (u, 5/2u);
+B := (-7/4u, 0);
+C := B xscaled -1;
+D := (0, 0);
+E := (xpart(C), -1/2ypart(A));
+draw byAngle(B, D, A, byyellow, 0);
+draw byAngle(C, D, A, byblue, 0);
+draw byAngle(E, D, C, byred, 0);
+draw byLine(A, D, byred, 0, 0);
+draw byLine(E, D, byyellow, 0, 0);
+draw byLine(B, D, byblue, 0, 0);
+draw byLine(C, D, black, 0, 0);
+draw byLabelsOnPolygon(E, D, B, noPoint)(0, 0);
+draw byLabelLineEnd(A, D, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{две прямые \drawUnitLine{BD} и \drawUnitLine{CD} образуют с третьей \drawUnitLine{AD} смежные углы, находясь по разные стороны от нее, и эти углы \drawAngle{BDA} и \drawAngle{CDA} равны двум прямым углам, то эти прямые будут лежать на одной прямой.}
+
+\startCenterAlign
+Действительно, пусть \drawUnitLine{ED}, а не \drawUnitLine{CD}, будет продолжением \drawUnitLine{BD},\\
+тогда $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$
+
+но, согласно гипотезе $\drawAngle{BDA} + \drawAngle{CDA} = \drawTwoRightAngles$
+
+$\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$, \inax[ax:III];\\ 
+что не имеет смысла \inax[ax:IX].
+
+$\therefore \drawUnitLine{ED}$ не является продолжением \drawUnitLine{BD}, и то же можно показать для любой другой прямой линии, за исключением \drawUnitLine{CD}, $\therefore \drawUnitLine{CD}$ является продложением \drawUnitLine{BD}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XV. Теорема}, reference=prop:I.XV]
+\defineNewPicture{
+pair A, B, C, D, E;
+A := (7/4u, 3/2u);
+B := A scaled -1;
+C := A xscaled -1;
+D := C scaled -1;
+E := (A--B) intersectionpoint (C--D);
+draw byAngle(B, E, C, byyellow, 0);
+draw byAngle(C, E, A, byred, 0);
+draw byAngle(A, E, D, black, 0);
+draw byAngle(D, E, B, byblue, 0);
+draw byLine(A, B, byred, 0, 0);
+draw byLine(C, D, black, 0, 0);
+draw byLabelsOnPolygon(C, E, A, noPoint)(0, 0);
+draw byLabelPoint(B, lineAngle.AB + 90, 1);
+draw byLabelPoint(D, lineAngle.CD - 90, 1);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{две прямых линии \drawUnitLine{AB} и \drawUnitLine{CD} пересекаются, вертикальные углы \drawAngle{BEC} и \drawAngle{AED}, \drawAngle{CEA} и \drawAngle{DEB} будут равны между собой.}
+
+\startCenterAlign
+$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$
+
+$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$
+
+$\therefore \drawAngle{BEC} = \drawAngle{AED}$.
+
+Таким же образом можно показать, что\\
+$\drawAngle{CEA} = \drawAngle{DEB}$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XVI. Теорема}, reference=prop:I.XVI]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G;
+A := (0, 0);
+B := A shifted (3/2u, 7/2u);
+C := A shifted (3u, 0);
+D := B shifted (3u, 0);
+E = whatever[A, D] = whatever[B, C];
+F := (xpart(D), ypart(A));
+G := 4/3[B, C];
+draw byAngleWithName(B, A, C, byblue, 0)(A);
+draw byAngleWithName(C, B, A, black, 0)(B);
+draw byAngle(A, E, B, byyellow, 0);
+draw byAngle(D, E, C, byyellow, 0);
+draw byAngle(E, C, D, black, 0);
+draw byAngle(G, C, A, byred, 0);
+draw byAngle(D, C, F, black, 1);
+byLineDefine(C, F, black, 1, 0);
+byLineDefine(C, G, black, 0, 0);
+byLineDefine(B, E, byblue, 0, 0);
+byLineDefine(E, C, byblue, 1, 0);
+byLineDefine(A, E, byred, 0, 0);
+byLineDefine(E, D, byred, 1, 0);
+byLineDefine(A, B, byyellow, 1, 0);
+byLineDefine(A, C, black, 0, 0);
+byLineDefine(C, D, byyellow, 0, 0);
+draw byNamedLineSeq(0)(AE,ED,CD);
+draw byNamedLineSeq(0)(EC,CG,noLine,CF,AC,AB,BE);
+draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
+draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[bottom]{BE,EC,AC,AB} внешний угол \drawFromCurrentPicture[bottom][anglesECDpDCF]{
+startAutoLabeling;
+draw byNamedAngleSides(ECD,DCF)(CF);
+stopAutoLabeling;
+} будет больше любого из противолежащих ему внутренних углов \drawAngle{B} or \drawAngle{A}.
+}
+
+\startCenterAlign
+Сделаем $\drawUnitLine{BE} = \drawUnitLine{EC}$ \inprop[prop:I.X];\\
+проведем \drawUnitLine{AE} и продлим до $\drawUnitLine{ED} = \drawUnitLine{AE}$;\\
+проведем \drawUnitLine{CD}. В \drawLine{BE,AE,AB} и \drawLine{EC,ED,CD};\\
+$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV] и $\drawUnitLine{AE} = \drawUnitLine{ED}$ (постр.),\\
+$\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
+$\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
+
+Так же можно показать, что при продлении \drawUnitLine{AC,CF}, $\drawAngle{GCA} > \drawAngle{A}$ \\
+и, следовательно \anglesECDpDCF\ который $= \drawAngle{GCA}$ будет $> \drawAngle{A}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XVII. Теорема}, reference=prop:I.XVII]
+\defineNewPicture[1/4]{
+pair A, B, C, D;
+A := (0, 0);
+B := A shifted (3/2u, 5/2u);
+C := A shifted (9/4u, 0);
+D := C shifted (u, 0);
+draw byAngleWithName(B, A, C, byblue, 0)(A);
+draw byAngleWithName(A, B, C, black, 0)(B);
+draw byAngle(A, C, B, byred, 0);
+draw byAngle(B, C, D, byyellow, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(A, C, black, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+draw byNamedLineSeq(0)(noLine,BC,AB,AC,CD);
+draw byLabelsOnPolygon(D, C, A, B)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{о}{всяком треугольнике \drawLine[bottom]{AB,BC,AC} любые два угла взятые вместе меньше двух прямых углов.}
+
+\startCenterAlign
+Продлим \drawUnitLine{AC}, тогда\\
+$\drawAngle{ACB} + \drawAngle{BCD} = \drawTwoRightAngles$
+
+Но $\drawAngle{BCD} > \drawAngle{A}$ \inprop[prop:I.XVI]
+
+$\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$,
+\stopCenterAlign
+
+\noindent и таким же образом можно показать, что любые два других угла вместе будут меньшн двух прямых углов.
 
 \qed
 \stopProposition

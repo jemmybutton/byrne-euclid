@@ -1521,6 +1521,8 @@ byLineDefine(E, F, black, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
 draw byNamedLineSeq(0)(CA,BC,AB);
 draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other ($\drawUnitLine{CA} = \drawUnitLine{FD}$ and $\drawUnitLine{AB} = \drawUnitLine{DE}$) and also their bases ($\drawUnitLine{BC} = \drawUnitLine{EF}$), equal; then the angles
@@ -1705,17 +1707,21 @@ draw byLine(D, B, black, 0, 0);
 draw byLine(B, E, black, 1, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(F, C, byyellow, 1, 0);
+draw byLabelLineEnd(B, A, 0);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line (\drawUnitLine[1.2cm]{DB,CD}) from a~given point (\drawFromCurrentPicture[middle][pointA]{
 startTempScale(scaleFactor/2);
 draw byNamedLine(AD);
 draw byNamedLineSeq(0)(AB,CA);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
 stopTempScale;
 }) without.}
 
 \startCenterAlign
-With the given point \pointA\ as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}.
+With the given point \pointA\ as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}. % improvement: the distance mentioned here seems not to be in the original drawing, it should either be drawn, or not be referenced graphically as DB
 
 Make $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.X],\\
 draw \drawUnitLine{AB}, \drawUnitLine{CA} and \drawUnitLine{AD}.
@@ -1748,6 +1754,9 @@ draw byAngle(C, D, E, byblue, 0);
 draw byLine(A, D, black, 0, 0);
 draw byLine(E, D, byyellow, 0, 0);
 draw byLine(B, C, byred, 0, 0);
+draw byLabelsOnPolygon(C, D, B, noPoint)(0, 0);
+draw byLabelLineEnd(E, D, 0);
+draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{W}{hen}{a straight line (\drawUnitLine{ED}) standing upon another straight line (\drawUnitLine{BC}) makes angles with it; they are either two right angles or together equal to two right angles.}
@@ -1784,6 +1793,8 @@ draw byLine(A, D, byred, 0, 0);
 draw byLine(E, D, byyellow, 0, 0);
 draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, black, 0, 0);
+draw byLabelsOnPolygon(E, D, B, noPoint)(0, 0);
+draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two straight lines (\drawUnitLine{BD} and \drawUnitLine{CD}) meeting a third straight line (\drawUnitLine{AD}), at the same point, and at opposite sides of it, make with it adjacent angles (\offsetPicture{0pt}{15pt}{\drawAngle{BDA}} and \drawAngle{CDA}) equal to two right angles; these straight lines lie in one continuous straight line.}
@@ -1816,6 +1827,9 @@ draw byAngle(A, E, D, black, 0);
 draw byAngle(D, E, B, byblue, 0);
 draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, black, 0, 0);
+draw byLabelsOnPolygon(C, E, A, noPoint)(0, 0);
+draw byLabelPoint(B, lineAngle.AB + 90, 1);
+draw byLabelPoint(D, lineAngle.CD - 90, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) intersect on another, the vertical angles \drawAngle{BEC} and \drawAngle{AED}, \drawAngle{CEA} and \drawAngle{DEB} are equal.}
@@ -1862,10 +1876,14 @@ byLineDefine(A, C, black, 0, 0);
 byLineDefine(C, D, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AE,ED,CD);
 draw byNamedLineSeq(0)(EC,CG,noLine,CF,AC,AB,BE);
+draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
+draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a side of a triangle (\drawLine[bottom]{BE,EC,AC,AB}) is produced, the external angle (\drawFromCurrentPicture[bottom][anglesECDpDCF]{
+startAutoLabeling;
 draw byNamedAngleSides(ECD,DCF)(CF);
+stopAutoLabeling;
 }) is greater than either of the internal remote angles (\drawAngle{B} or \drawAngle{A})
 }
 
@@ -1900,12 +1918,13 @@ byLineDefine(B, C, byblue, 0, 0);
 byLineDefine(A, C, black, 0, 0);
 byLineDefine(C, D, black, 0, 0);
 draw byNamedLineSeq(0)(noLine,BC,AB,AC,CD);
+draw byLabelsOnPolygon(D, C, A, B)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{ny}{two angles of a triangle \drawLine[bottom]{AB,BC,AC} are together less than two right angles.}
 
 \startCenterAlign
-Produce \drawUnitLine{CD}, then will\\
+Produce \drawUnitLine{AC}, then will\\
 $\drawAngle{ACB} + \drawAngle{BCD} = \drawTwoRightAngles$
 
 But $\drawAngle{BCD} > \drawAngle{A}$ \inprop[prop:I.XVI]
