@@ -903,7 +903,7 @@ $\therefore \drawUnitLine{BC} > \drawUnitLine{CA}$.
 \qed
 \stopProposition
 
-\startProposition[title={Prop XX. Theor.}, reference=prop:I.XX]
+\startProposition[title={Предложение XX. Теорема}, reference=prop:I.XX]
 \defineNewPicture{
 pair A, B, C, D;
 A := (0, 0);
@@ -938,6 +938,144 @@ $\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \inax[ax:IX]
 $\therefore \drawUnitLine{DA} + \drawUnitLine{CD} > \drawUnitLine{AB}$ \inprop[prop:I.XIX]
 
 и $\therefore \drawUnitLine{DA} + \drawUnitLine{BD} > \drawUnitLine{AB}$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXI. Теорема}, reference=prop:I.XXI]
+\defineNewPicture{
+pair A, B, C, D, E;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+C := A shifted (3u, 4u);
+D := 1/2[1/2[A, B], C];
+E = whatever[A, D] = whatever[B, C];
+draw byAngleWithName(B, D, A, byred, 0)(D);
+draw byAngleWithName(B, E, D, byblue, 0)(E);
+draw byAngleWithName(B, C, A, byyellow, 0)(C);
+byLineDefine(B, D, byyellow, 0, 0);
+byLineDefine(A, D, black, 0, 0);
+byLineDefine(D, E, black, 1, 0);
+byLineDefine(A, B, byblue, 1, 0);
+byLineDefine(B, E, byred, 1, 0);
+byLineDefine(E, C, byred, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLine(BD);
+draw byNamedLineSeq(0)(AD,DE);
+draw byNamedLineSeq(0)(CA,EC,BE,AB);
+draw byLabelsOnPolygon(A, C, E, B)(0, 0);
+draw byLabelsOnPolygon(A, D, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{из любой точки \drawFromCurrentPicture{
+startTempScale(1/5);
+draw byNamedLineSeq(0)(AD,BD);
+draw byLabelsOnPolygon(A, D, B)(2, 0);
+stopTempScale;
+} внутри треугольника \drawFromCurrentPicture[bottom]{
+startAutoLabeling;
+startTempScale(1/5);
+draw byNamedLineSeq(0)(CA,EC,BE,AB);
+stopTempScale;
+stopAutoLabeling;
+} провести прямые линии к концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника, и будут заключать больший угол.}
+
+\startCenterAlign
+Продлим \drawSizedLine{AD},\\
+$\drawSizedLine{CA} + \drawSizedLine{EC} > \drawSizedLine{AD,DE}$ \inprop[prop:I.XX],\\
+добавим к каждой \drawSizedLine{BE},\\
+$\drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD,DE} + \drawSizedLine{BE}$ \inax[ax:IV]
+
+Таким же образом можно показать, что\\
+$\drawSizedLine{AD,DE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+$\therefore \drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+что и требовалось доказать.
+
+Далее $\drawAngle{E} > \drawAngle{C}$ \inprop[prop:I.XVI],\\
+и также $\drawAngle{D} > \drawAngle{E}$ \inprop[prop:I.XVI],
+
+$\therefore \drawAngle{D} > \drawAngle{C}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXII. Теорема}, reference=prop:I.XXII]
+\defineNewPicture[1/2]{
+numeric r[], d;
+pair A, B, C, D, E, LI, LII, LIII, LIV, LV, LVI;
+path q[];
+r1 := 3/2u;
+r2 := 4/3u;
+r3 := (2/3)*(r1+r2);
+d := 1/3u;
+A := (0, 0);
+B := A shifted (r3, 0);
+q1 := (fullcircle scaled 2r1) shifted A;
+q2 := (fullcircle scaled 2r2) shifted B;
+C := q1 intersectionpoint q2;
+D := point 11/2 of q1;
+E := point 3/4 of q2;
+LI := (xpart(point 0 of q2), ypart(point 6 of q1) - 1/2d);
+LII := LI shifted (-r3, 0);
+LIII := LI shifted (0, -d);
+LIV := LIII shifted (-r2, 0);
+LV := LIII shifted (0, -d);
+LVI := LV shifted (-r1, 0);
+draw byCircle(A, D, byblue, 0, 0, 0)(A);
+byLineDefine(A, D, byblue, 0, 0);
+byLineDefine(B, E, byred, 0, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(C, A, byyellow, 1, 0);
+draw byNamedLineSeq(0)(BC,CA);
+draw byNamedLineSeq(0)(AD,AB,BE);
+draw byLineWithName (LII, LI, black, 1, 0)(L');
+draw byLineWithName (LIV, LIII, byred, 1, 0)(L'');
+draw byLineWithName (LVI, LV, byblue, 1, 0)(L''');
+draw byCircle(B, E, byred, 0, 0, 0)(B);
+draw byLabelsOnPolygon(D, A, C)(2, 0);
+draw byLabelsOnPolygon(E, B, A)(2, 0);
+draw byLabelsOnPolygon(A, C, B)(2, 0);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(E, B, 0);
+draw byLabelLine(L', L'', L''');
+}
+\drawCurrentPictureInMargin
+\problemNP{И}{з}{трех прямых линий $\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{L'}}
+\nointerlineskip\hbox{\drawSizedLine{L''}}
+\nointerlineskip\hbox{\drawSizedLine{L'''}}}\right.$
+таких, что любые две вместе длиннее третьей, составить треугольник.}
+
+\startCenterAlign
+Предположим $\drawSizedLine{AB} = \drawSizedLine{L'}$ \inprop[prop:I.III].
+
+$\left.\eqalign{
+\mbox{Проведем } \drawSizedLine{AD} &= \drawSizedLine{L'''}\cr
+\mbox{и } \drawSizedLine{BE} &= \drawSizedLine{L''}
+}\right\}\mbox{\inprop[prop:I.II].}$
+
+Взяв \drawSizedLine{AD} и \drawSizedLine{BE} как радиусы, опишем
+\drawFromCurrentPicture{
+draw byNamedLine(AD); draw byNamedCircle(A);
+draw byLabelLineEnd(A, D, 0);
+draw byLabelLineEnd(D, A, 0);
+} и
+\offsetPicture{12pt}{0pt}{\drawFromCurrentPicture{
+draw byNamedLine(BE); draw byNamedCircle(B);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelLineEnd(E, B, 0);
+}} \inpost[post:III];\\
+проведем \drawSizedLine{CA} и \drawSizedLine{BC},\\
+тогда \drawLine[bottom]{CA,BC,AB} будет искомым треугольником.
+
+$\left.\eqalign{
+\mbox{Поскольку } \drawSizedLine{AB} &= \drawSizedLine{L'} \mbox{,} \cr
+\drawSizedLine{BC} &= \drawSizedLine{BE} = \drawSizedLine{L''} \cr
+\mbox{и } \drawSizedLine{CA} &= \drawSizedLine{AD} = \drawSizedLine{L'''} \cr
+}\right\}\mbox{(постр.)}$
 \stopCenterAlign
 
 \qed

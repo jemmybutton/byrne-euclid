@@ -2072,17 +2072,22 @@ byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLine(BD);
 draw byNamedLineSeq(0)(AD,DE);
 draw byNamedLineSeq(0)(CA,EC,BE,AB);
+draw byLabelsOnPolygon(A, C, E, B)(0, 0);
+draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{from any point (\drawFromCurrentPicture{
 startTempScale(1/5);
 draw byNamedLineSeq(0)(AD,BD);
+draw byLabelsOnPolygon(A, D, B)(2, 0);
 stopTempScale;
 }) within a triangle \drawFromCurrentPicture[bottom]{
+startAutoLabeling;
 startTempScale(1/5);
 draw byNamedLineSeq(0)(CA,EC,BE,AB);
 stopTempScale;
-} straight lines be drawn to the extremities of one side (\drawSizedLine{DE}), these lines must be together less than the two other sides, but must contain a greater angle.}
+stopAutoLabeling;
+} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the two other sides, but must contain a greater angle.}
 
 \startCenterAlign
 Produce \drawSizedLine{AD},\\
@@ -2091,8 +2096,8 @@ add \drawSizedLine{BE} to each,\\
 $\drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD,DE} + \drawSizedLine{BE}$ \inax[ax:IV]
 
 in the same manner it may be shown that\\
-$\drawSizedLine{AD,DE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{EC}$,\\
-$\therefore \drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD} + \drawSizedLine{EC}$,\\
+$\drawSizedLine{AD,DE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+$\therefore \drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
 which was to be proved.
 
 Again $\drawAngle{E} > \drawAngle{C}$ \inprop[prop:I.XVI],\\
@@ -2104,7 +2109,7 @@ $\therefore \drawAngle{D} > \drawAngle{C}$.
 \qed
 \stopProposition
 
-\startProposition[title={Prop XXII. Theor.}, reference=prop:I.XXII]
+\startProposition[title={Prop XXII. Prob.}, reference=prop:I.XXII]
 \defineNewPicture[1/2]{
 numeric r[], d;
 pair A, B, C, D, E, LI, LII, LIII, LIV, LV, LVI;
@@ -2112,7 +2117,7 @@ path q[];
 r1 := 3/2u;
 r2 := 4/3u;
 r3 := (2/3)*(r1+r2);
-d := 1/4u;
+d := 1/3u;
 A := (0, 0);
 B := A shifted (r3, 0);
 q1 := (fullcircle scaled 2r1) shifted A;
@@ -2120,7 +2125,7 @@ q2 := (fullcircle scaled 2r2) shifted B;
 C := q1 intersectionpoint q2;
 D := point 11/2 of q1;
 E := point 3/4 of q2;
-LI := (xpart(point 0 of q2), ypart(point 6 of q1));
+LI := (xpart(point 0 of q2), ypart(point 6 of q1) - 1/2d);
 LII := LI shifted (-r3, 0);
 LIII := LI shifted (0, -d);
 LIV := LIII shifted (-r2, 0);
@@ -2134,40 +2139,50 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, A, byyellow, 1, 0);
 draw byNamedLineSeq(0)(BC,CA);
 draw byNamedLineSeq(0)(AD,AB,BE);
-draw byLineWithName (LI, LII, black, 1, 0)(Lu);
-draw byLineWithName (LIII, LIV, byred, 1, 0)(Ld);
-draw byLineWithName (LV, LVI, byblue, 1, 0)(Lt);
+draw byLineWithName (LI, LII, black, 1, 0)(L');
+draw byLineWithName (LIII, LIV, byred, 1, 0)(L'');
+draw byLineWithName (LV, LVI, byblue, 1, 0)(L''');
 draw byCircle(B, E, byred, 0, 0, 0)(B);
+draw byLabelsOnPolygon(D, A, C)(2, 0);
+draw byLabelsOnPolygon(E, B, A)(2, 0);
+draw byLabelsOnPolygon(A, C, B)(2, 0);
+draw byLabelLineEnd(D, A, 0);
+draw byLabelLineEnd(E, B, 0);
+draw byLabelLine(L', L'', L''');
 }
 \drawCurrentPictureInMargin
 \problemNP{G}{iven}{three right lines $\left\{\vcenter{
-\nointerlineskip\hbox{\drawSizedLine{Lu}}
-\nointerlineskip\hbox{\drawSizedLine{Ld}}
-\nointerlineskip\hbox{\drawSizedLine{Lt}}}\right.$
+\nointerlineskip\hbox{\drawSizedLine{L'}}
+\nointerlineskip\hbox{\drawSizedLine{L''}}
+\nointerlineskip\hbox{\drawSizedLine{L'''}}}\right.$
 the sum of any two greater than the third, to construct a triangle whose sides shall be respectively equal to the given lines.}
 
 \startCenterAlign
-Assume $\drawSizedLine{AB} = \drawSizedLine{Lu}$ \inprop[prop:I.III].
+Assume $\drawSizedLine{AB} = \drawSizedLine{L'}$ \inprop[prop:I.III].
 
 $\left.\eqalign{
-\mbox{Draw } \drawSizedLine{AD} &= \drawSizedLine{Ld}\cr
-\mbox{and } \drawSizedLine{BE} &= \drawSizedLine{Lt}
+\mbox{Draw } \drawSizedLine{AD} &= \drawSizedLine{L'''}\cr
+\mbox{and } \drawSizedLine{BE} &= \drawSizedLine{L''}
 }\right\}\mbox{\inprop[prop:I.II].}$
 
 With \drawSizedLine{AD} and \drawSizedLine{BE} as radii, describe
 \drawFromCurrentPicture{
-draw byNamedLine (AD); draw byNamedCircle (A);
+draw byNamedLine(AD); draw byNamedCircle(A);
+draw byLabelLineEnd(A, D, 0);
+draw byLabelLineEnd(D, A, 0);
 } and
 \offsetPicture{12pt}{0pt}{\drawFromCurrentPicture{
-draw byNamedLine (BE); draw byNamedCircle (B);
+draw byNamedLine(BE); draw byNamedCircle(B);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelLineEnd(E, B, 0);
 }} \inpost[post:III];\\
 draw \drawSizedLine{CA} and \drawSizedLine{BC},\\
 then will \drawLine[bottom]{CA,BC,AB} be the triangle required.
 
 $\left.\eqalign{
-\mbox{For } \drawSizedLine{AB} &= \drawSizedLine{Lu} \mbox{,} \cr
-\drawSizedLine{BC} &= \drawSizedLine{BE} = \drawSizedLine{Ld} \cr
-\mbox{and } \drawSizedLine{CA} &= \drawSizedLine{AD} = \drawSizedLine{Lt} \cr
+\mbox{For } \drawSizedLine{AB} &= \drawSizedLine{L'} \mbox{,} \cr
+\drawSizedLine{BC} &= \drawSizedLine{BE} = \drawSizedLine{L''} \cr
+\mbox{and } \drawSizedLine{CA} &= \drawSizedLine{AD} = \drawSizedLine{L'''} \cr
 }\right\}\mbox{(const.)}$
 \stopCenterAlign
 

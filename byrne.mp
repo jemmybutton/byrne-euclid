@@ -246,7 +246,8 @@ color lineColor.lineName;
 path line.lineName;
 numeric lineShift.lineName, lineDashed.lineName, lineLength.lineName, lineAngle.lineName, lineEndAType.lineName, lineEndBType.lineName;
 pair lineEndA.lineName, lineEndB.lineName, lineDirA.lineName, lineDirB.lineName;
-string lineEndAName.lineName, lineEndBName.lineName;
+string lineEndAName.lineName, lineEndBName.lineName, lineLabel.lineName;
+boolean lineUseLineLabel.lineName;
     lineAngle.lineName := angle(b-a);
     lineColor.lineName := col;
     lineDashed.lineName := dp;
@@ -261,6 +262,8 @@ string lineEndAName.lineName, lineEndBName.lineName;
     lineEndBType.lineName := 0;
     lineEndAName.lineName := str a;
     lineEndBName.lineName := str b;
+    lineUseLineLabel.lineName := false;
+    lineLabel.lineName := str lineName;
 enddef;
 
 vardef byLineDefine (suffix a, b) (expr col, dp, th) =
@@ -288,6 +291,7 @@ enddef;
 
 vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
     byLineDefineWithName (a, b, col, dp, th) (lineName);
+    lineUseLineLabel.lineName := true;
     byNamedLineFull(a, b, 0, 0, 0)(lineName)
 enddef;
 
@@ -510,14 +514,23 @@ vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
                     fi;
                 fi;
             else:
-                endNames[0] := lineEndAName.lN;
-                endNames[1] := lineEndBName.lN;
+                if (lineUseLineLabel.lN):
+                    endNames[0] := str lN;
+                    endNames[1] := str lN;
+                else:
+                    endNames[0] := lineEndAName.lN;
+                    endNames[1] := lineEndBName.lN;
+                fi;
             fi;
             j := j + 1;
         endfor;
         if (textLabels and autoLabelingMode):
-            draw byTextLabel(endNames[0], (0, 0), 90, textLabelShift);
-            draw byTextLabel(endNames[1], b, 90, textLabelShift);
+            if (endNames[0] <> endNames[1]):
+                draw byTextLabel(pointLabel)(endNames[0], (0, 0), 90, textLabelShift);
+                draw byTextLabel(pointLabel)(endNames[1], b, 90, textLabelShift);
+            else:
+                draw byTextLabel(lineLabel)(endNames[0], 1/2[(0, 0), b], 90, textLabelShift);
+            fi;
         fi;
     )
 enddef;
@@ -646,14 +659,14 @@ vardef byNamedArcLabel (text arcslist) =
         if allArcsDefined:
             for j := 0 step 1 until i:
                 if (pointsListB[j] <> pointsListE[cycleval(j-1, i+1)]):
-                    draw byTextLabel(
+                    draw byTextLabel(pointLabel)(
                         pointsListB[j],
                         scantokens(pointsListB[j]),
                         angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
                         textLabelShift);
                 fi;
                 if (pointsListE[j] <> pointsListB[cycleval(j+1, i+1)]):
-                    draw byTextLabel(
+                    draw byTextLabel(pointLabel)(
                         pointsListE[j],
                         scantokens(pointsListE[j]),
                         angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
@@ -717,7 +730,7 @@ vardef byNamedCircle(text circlesList) =
             draw byArcRender (circleCenter.cN, 0, 8, circleDiameter.cN, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
             if (textLabels and autoLabelingMode):
                 if (circleCenterName.cN <> ""):
-                    draw byTextLabel(
+                    draw byTextLabel(pointLabel)(
                         circleCenterName.cN,
                         scantokens(circleCenterName.cN),
                         0, 0);
@@ -1170,9 +1183,9 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
         draw outputImage rotated globalRotation;
         if (textLabels and autoLabelingMode) and (j==2):
             for i=1,2:
-                draw byTextLabel(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
+                draw byTextLabel(pointLabel)(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
             endfor;
-            draw byTextLabel(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
+            draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
         fi;
     )
 enddef;
@@ -1376,15 +1389,15 @@ string pointLabel.pointName;
     pointLabel.pointName := t;
 enddef;
 
-vardef byTextLabel(expr t, p, a, d) =
+vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
     save labelItself, bb;
     path bb;
     picture labelItself;
-    if not string pointLabel.scantokens(t):
-        string pointLabel.scantokens(t);
-        pointLabel.scantokens(t) := t;
+    if not string labelType.scantokens(t):
+        string labelType.scantokens(t);
+        labelType.scantokens(t) := t;
     fi;
-    labelItself := textext("\tf\ss " & pointLabel.scantokens(t)) scaled 2/5;
+    labelItself := textext("\tf\ss " & labelType.scantokens(t)) scaled 2/5;
     labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
     if (d > 0):
         bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
@@ -1398,7 +1411,22 @@ enddef;
 vardef byLabelPoint(suffix p)(expr a, d) =
     image(
         if (textLabels):
-            draw byTextLabel(str p, p, a, textLabelShift*d);
+            draw byTextLabel(pointLabel)(str p, p, a, textLabelShift*d);
+        fi;
+    )
+enddef;
+
+vardef byLabelLine(text linesList) =
+    image(
+        if (textLabels):
+        forsuffixes lN=linesList:
+            if (lineUseLineLabel.lN):
+                draw byTextLabel(pointLabel)(lineLabel.lN, 1/2[lineEndA.lN, lineEndB.lN], lineAngle.lN + 90, textLabelShift);
+            else:
+                draw byTextLabel(pointLabel)(lineEndAName.lN, lineEndA.lN, lineAngle.lN + 90, textLabelShift);
+                draw byTextLabel(pointLabel)(lineEndBName.lN, lineEndB.lN, lineAngle.lN + 90, textLabelShift);
+            fi;
+        endfor;
         fi;
     )
 enddef;
@@ -1409,7 +1437,7 @@ vardef byLabelCircle(expr l, cn) =
     numeric d;
     o := circleCenter.scantokens(cn);
     d := lineThickness(circleThin.scantokens(cn))*(1/2-1/2circleShift.scantokens(cn));
-    byTextLabel(l, scantokens(l), angle(o - scantokens(l)), textLabelShift + d)
+    byTextLabel(pointLabel)(l, scantokens(l), angle(o - scantokens(l)), textLabelShift + d)
 enddef;
 
 vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
@@ -1482,7 +1510,7 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                     fi;
                     if (q6 <> p1) and (not pointDrawn.scantokens(pointName[j])):
                         sv := byLabelAngleCompensate(p0, p1, p2, shft);
-                        draw byTextLabel(pointName[j], pointLoc[j], angle(q6-p1), textLabelShift+sv);
+                        draw byTextLabel(pointLabel)(pointName[j], pointLoc[j], angle(q6-p1), textLabelShift+sv);
                         pointDrawn.scantokens(pointName[j]):= true;
                     fi;
                 fi;
@@ -1494,7 +1522,7 @@ enddef;
 vardef byLabelLineEnd (suffix a, b)(expr d) =
     image(
         if (textLabels):
-            draw byTextLabel(str a, a, angle(a-b), textLabelShift+(d*lineWidth));
+            draw byTextLabel(pointLabel)(str a, a, angle(a-b), textLabelShift+(d*lineWidth));
         fi;
     )
 enddef;
