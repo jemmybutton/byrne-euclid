@@ -827,7 +827,118 @@ $\drawAngle{ACB} + \drawAngle{BCD} = \drawTwoRightAngles$
 $\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$,
 \stopCenterAlign
 
-\noindent и таким же образом можно показать, что любые два других угла вместе будут меньшн двух прямых углов.
+\noindent и таким же образом можно показать, что любые два других угла вместе будут меньше двух прямых углов.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XVIII. Теорема}, reference=prop:I.XVIII]
+\defineNewPicture[1/4]{
+pair A, B, C, D;
+A := (0, 0);
+B := A shifted (5/2u, -1/2u);
+C := A shifted (3/2u, 2u);
+D := 2[C, A];
+draw byAngleWithName(C, A, B, byblue, 0)(A);
+draw byAngle(A, B, C, black, 0);
+draw byAngle(D, B, A, byred, 0);
+draw byAngleWithName(B, D, A, byyellow, 0)(D);
+draw byLine(A, B, byyellow, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(B, D, black, 0, 0);
+byLineDefine(D, A, byred, 1, 0);
+draw byNamedLineSeq(0)(AC,BC,BD,DA);
+draw byLabelsOnPolygon(A, C, B, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{о}{всяком треугольнике \drawLine{AC,BC,BD,DA}, если одна сторона \drawUnitLine{DA,AC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т. е. $\drawAngle{ABC,DBA} > \drawAngle{D}$}
+
+\startCenterAlign
+Сделаем $\drawUnitLine{AC} = \drawUnitLine{BC}$ \inprop[prop:I.III],\\ проведем \drawUnitLine{AB},
+
+Тогда $\drawAngle{A} = \drawAngle{ABC}$ \inprop[prop:I.V];
+
+но $\drawAngle{ABC} > \drawAngle{D}$ \inprop[prop:I.XVI]
+
+$\therefore \drawAngle{ABC} > \drawAngle{D}$\\
+и тем более $\drawAngle{ABC,DBA} > \drawAngle{D}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIX. Теорема}, reference=prop:I.XIX]
+\defineNewPicture[1/4]{
+pair A, B, C;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+C := A shifted (u, 3u);
+draw byAngleWithName(C, A, B, byblue, 0)(A);
+draw byAngleWithName(A, B, C, byred, 0)(B);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(CA,BC,AB);
+draw byLabelsOnPolygon(B, A, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{о}{всяком треугольнике \drawLine[bottom]{CA,BC,AB} если один угол \drawAngle{A} больше другого \drawAngle{B}, то сторона \drawUnitLine{BC} противолежащая большему углу, больше стороны \drawUnitLine{CA} противолежащей меньшему.}
+
+\startCenterAlign
+Если \drawUnitLine{BC} не больше \drawUnitLine{CA} тогда\\
+$\drawUnitLine{BC} =$ или $< \drawUnitLine{CA}$.
+
+Если $\drawUnitLine{BC} = \drawUnitLine{CA}$ тогда\\
+$\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V],\\
+что противоречит гипотезе.
+
+\drawUnitLine{BC} также не меньше \drawUnitLine{CA};\\ 
+поскольку, если это так, то $\drawAngle{A} < \drawAngle{B}$ \inprop[prop:I.XVIII]\\
+что противоречит гипотезе:
+
+$\therefore \drawUnitLine{BC} > \drawUnitLine{CA}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop XX. Theor.}, reference=prop:I.XX]
+\defineNewPicture{
+pair A, B, C, D;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+D := A shifted (4/3u, 3/2u);
+C := ((fullcircle scaled 2arclength(D--B)) shifted D) intersectionpoint (D--10[A, D]);
+draw byAngleWithName(B, C, A, byred, 0)(C);
+draw byAngle(C, B, D, byblue, 0);
+draw byAngle(D, B, A, byyellow, 0);
+byLineDefine(B, D, byred, 0, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(C, D, byblue, 1, 0);
+byLineDefine(D, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(BD);
+draw byNamedLineSeq(0)(DA,CD,BC,AB);
+draw byLabelsOnPolygon(D, C, B, A)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Л}{юбые}{две стороны \drawUnitLine{DA} и \drawUnitLine{BD} всякого треугольника \drawLine[bottom]{DA,BD,AB} взятые вместе больше третьей стороны  \drawUnitLine{AB}.}
+
+\startCenterAlign
+Продлим \drawUnitLine{DA},\\
+и сделаем $\drawUnitLine{CD} = \drawUnitLine{BD}$ \inprop[prop:I.III];\\
+проведем \drawUnitLine{BC}.
+
+Тогда, поскольку $\drawUnitLine{CD} = \drawUnitLine{BD}$ (постр.),\\
+$\drawAngle{CBD} = \drawAngle{C}$ \inprop[prop:I.V]
+
+$\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \inax[ax:IX]
+
+$\therefore \drawUnitLine{DA} + \drawUnitLine{CD} > \drawUnitLine{AB}$ \inprop[prop:I.XIX]
+
+и $\therefore \drawUnitLine{DA} + \drawUnitLine{BD} > \drawUnitLine{AB}$
+\stopCenterAlign
 
 \qed
 \stopProposition

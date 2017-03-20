@@ -1,6 +1,9 @@
 \input preamble.tex
 \input preamble_be.tex
 
+% to turn text labels on uncomment next line
+% \def\mpPre{textLabels := true;}
+
 \starttext
 
 \setuplayout[title]
@@ -1954,6 +1957,7 @@ byLineDefine(B, C, byblue, 0, 0);
 byLineDefine(B, D, black, 0, 0);
 byLineDefine(D, A, byred, 1, 0);
 draw byNamedLineSeq(0)(AC,BC,BD,DA);
+draw byLabelsOnPolygon(A, C, B, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{any triangle \drawLine{AC,BC,BD,DA} if one side \drawUnitLine{DA,AC} be greater than another \drawUnitLine[0.5cm]{BC}, the angle opposite to the greater side is greater than the angle opposite to the less. i. e. $\drawAngle{ABC,DBA} > \drawAngle{D}$}
@@ -1984,9 +1988,10 @@ byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(0)(CA,BC,AB);
+draw byLabelsOnPolygon(B, A, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less}
+\problemNP{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less.}
 
 \startCenterAlign
 If \drawUnitLine{BC} be not greater than \drawUnitLine{CA} then must\\
@@ -2000,7 +2005,7 @@ which is contrary to the hypothesis.
 $\drawAngle{A} < \drawAngle{B}$ \inprop[prop:I.XVIII]\\
 which is contrary to the hypothesis:
 
-$\therefore \drawUnitLine{BC} < \drawUnitLine{CA}$.
+$\therefore \drawUnitLine{BC} > \drawUnitLine{CA}$.
 \stopCenterAlign
 
 \qed
@@ -2023,6 +2028,7 @@ byLineDefine(C, D, byblue, 1, 0);
 byLineDefine(D, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(BD);
 draw byNamedLineSeq(0)(DA,CD,BC,AB);
+draw byLabelsOnPolygon(D, C, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{ny}{two sides \drawUnitLine{DA} and \drawUnitLine{BD} of a triangle \drawLine[bottom]{DA,BD,AB} taken together are greater than the third side (\drawUnitLine{AB}).}
