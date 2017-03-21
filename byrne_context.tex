@@ -2198,7 +2198,7 @@ B := A shifted (7/2u, 0);
 C := A shifted (3u, 11/5u);
 D := 5/4[A, B];
 E := 7/6[A, C];
-d := (0, -5/2u);
+d := (0, -3u);
 F := A shifted d;
 G := B shifted d;
 H := C shifted d;
@@ -2216,11 +2216,14 @@ byLineDefine(F, G, black, 0, 0);
 byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(noLine,GH,HF,FG,GJ);
+draw byLabelsOnPolygon(D, B, A, C, E, noPoint)(0, 0);
+draw byLabelsOnPolygon(noPoint,J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{t}{a given point (\drawFromCurrentPicture{
 startTempScale(scaleFactor/2);
 draw byNamedLineSeq(0)(FG,HF);
+draw byLabelsOnPolygon(G, F, H)(2, 0);
 stopTempScale;
 }) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
 
@@ -2266,23 +2269,31 @@ byLineDefine(E, F, byblue, 0, 1);
 byLineDefine(F, G, byyellow, 0, 1);
 byLineDefine(G, E, byred, 0, 1);
 draw byNamedLineSeq(0)(EF,FG,GE);
+draw byLabelsOnPolygon(D, A, B, C)(0, 0);
+draw byLabelsOnPolygon(G, E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other (\drawUnitLine{AB} to \drawUnitLine{EF} and \drawUnitLine{AD} to \drawUnitLine{GE}), and if one of the angles
 (\drawFromCurrentPicture[bottom]{
+startAutoLabeling;
 draw byNamedAngleSides(BAC,CAD)(AB,CA,AD);
+stopAutoLabeling;
 })
 contained by the equal sides be greater than the other
-(\drawFromCurrentPicture[bottom][angleBAC]{
-draw byNamedAngleSides(BAC)(AB, CA);
+(\drawFromCurrentPicture[bottom][angleFEG]{
+startAutoLabeling;
+draw byNamedAngleSides(FEG)(EF, GE);
+stopAutoLabeling;
 }),
 the side (\drawUnitLine{BD}) which is opposite to the greater angle is greater than the side (\drawUnitLine{FG}) which is opposite to the less angle.
 }
 
 \startCenterAlign
-Make $\angleBAC = \drawFromCurrentPicture[bottom][angleFEG]{
-draw byNamedAngleSides(FEG)(EF, GE);
-}$ \inprop[prop:I.XXIII],\\
+Make $\drawFromCurrentPicture[bottom][angleBAC]{
+startAutoLabeling;
+draw byNamedAngleSides(BAC)(AB, CA);
+stopAutoLabeling;
+} = \angleFEG$ \inprop[prop:I.XXIII],\\
 and $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
 draw \drawUnitLine{CD} and \drawUnitLine{BC}.
 
@@ -2321,6 +2332,8 @@ byLineDefine(D, E, byblue, 0, 1);
 byLineDefine(E, F, byyellow, 0, 1);
 byLineDefine(F, D, byred, 0, 1);
 draw byNamedLineSeq(0)(DE,EF,FD);
+draw byLabelsOnPolygon(A, B, C)(0, 0);
+draw byLabelsOnPolygon(D, E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides (\drawUnitLine[0.7cm]{AB} and \drawUnitLine[0.7cm]{CA}) respectively equal to two sides (\drawUnitLine{DE} and \drawUnitLine{FD}) of the other, but their bases unequal, the angle subtended by the greater base (\drawUnitLine{BC}) of the one, must be greater than the angle subtended by the less base (\drawUnitLine{EF}) of the other.}
@@ -2371,6 +2384,8 @@ byLineDefine(E, F, black, 0, 1);
 byLineDefine(F, G, byred, 1, 1);
 byLineDefine(G, D, byred, 0, 1);
 draw byNamedLineSeq(0)(GD,FG,EF,DE);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+draw byLabelsOnPolygon(D, G, F, E)(0, 0);
 }
 \problemNP{I}{f}{two triangles have two angles of the one respectively equal to two angles of the other ($\drawAngle{A} = \drawAngle{D}$ and $\drawAngle{B} = \drawAngle{GED,FEG}$), and a side of the one equal to a side of the other similarly placed with respect to the equal angles, the remaining sides and angles are respectively equal to one another.}
 \drawCurrentPictureInMargin
@@ -2397,44 +2412,46 @@ $\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$, and $\drawAngle{C} = \drawAn
 \vfill\pagebreak
 
 \defineNewPicture{
-pair H, I, J, K, L, M, N, d;
+pair A, B, C, D, E, F, G, d;
 d := (0, -4u);
-H := (0, 0);
-I := H shifted (3u, 0);
-J := H shifted (1u, 3u);
-K := H shifted d;
-L := I shifted d;
-M := J shifted d;
-N := 3/4[K, L];
-draw byAngleWithName(I, H, J, byyellow, 0)(H);
-draw byAngleWithName(J, I, H, byred, 0)(I);
-byLineDefine(H, I, byblue, 0, 0);
-byLineDefine(I, J, black, 0, 0);
-byLineDefine(J, H, byred, 0, 0);
-draw byNamedLineSeq(0)(JH,IJ,HI);
-draw byAngleWithName(L, K, M, byyellow, 0)(K);
-draw byAngleWithName(M, N, K, black, 0)(N);
-draw byAngleWithName(M, L, K, byred, 0)(L);
-draw byLine(M, N, byyellow, 0, 1);
-byLineDefine(K, N, byblue, 0, 1);
-byLineDefine(N, L, byblue, 1, 1);
-byLineDefine(L, M, black, 0, 1);
-byLineDefine(M, K, byred, 0, 1);
-draw byNamedLineSeq(0)(MK,LM,NL,KN);
+A := (0, 0);
+B := A shifted (3u, 0);
+C := A shifted (1u, 3u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+G := 3/4[D, E];
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(C, B, A, byred, 0)(B);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(CA,AB,BC);
+draw byAngleWithName(F, D, E, byyellow, 0)(D);
+draw byAngleWithName(F, G, D, black, 0)(G);
+draw byAngleWithName(F, E, D, byred, 0)(E);
+draw byLine(F, G, byyellow, 0, 1);
+byLineDefine(D, G, byblue, 0, 1);
+byLineDefine(G, E, byblue, 1, 1);
+byLineDefine(E, F, black, 0, 1);
+byLineDefine(F, D, byred, 0, 1);
+draw byNamedLineSeq(0)(FD,EF,GE,DG);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+draw byLabelsOnPolygon(D, F, E, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Case II.}]
 \startCenterAlign
-Again, let $\drawUnitLine{JH} = \drawUnitLine{MK}$, which lie opposite the equal angles \drawAngle{I} and \drawAngle{L}. If it be possible, let $\drawUnitLine{KN,NL} > \drawUnitLine{HI}$, then take $\drawUnitLine{KN} = \drawUnitLine{HI}$, draw \drawUnitLine{MN}.
+Again, let $\drawUnitLine{CA} = \drawUnitLine{FD}$, which lie opposite the equal angles \drawAngle{B} and \drawAngle{E}. If it be possible, let $\drawUnitLine{DG,GE} > \drawUnitLine{AB}$, then take $\drawUnitLine{DG} = \drawUnitLine{AB}$, draw \drawUnitLine{FG}.
 
-Then in \drawLine[bottom]{JH,IJ,HI} and \drawLine[bottom]{MK,MN,KN} we have $\drawUnitLine{JH} = \drawUnitLine{MK}$, $\drawUnitLine{HI} = \drawUnitLine{KN}$ and $\drawAngle{H} = \drawAngle{K}$,
+Then in \drawLine[bottom]{CA,BC,AB} and \drawLine[bottom]{FD,FG,DG} we have $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ and $\drawAngle{A} = \drawAngle{D}$,
 
-$\therefore \drawAngle{I} = \drawAngle{N}$ \inprop[prop:I.IV]\\
-but $\drawAngle{I} = \drawAngle{L}$ (hyp.)
+$\therefore \drawAngle{B} = \drawAngle{G}$ \inprop[prop:I.IV]\\
+but $\drawAngle{B} = \drawAngle{E}$ (hyp.)
 
-$\therefore \drawAngle{N} = \drawAngle{L}$ which is absurd \inprop[prop:I.XVI]
+$\therefore \drawAngle{G} = \drawAngle{E}$ which is absurd \inprop[prop:I.XVI]
 
-Consequently, neither of the sides \drawUnitLine{HI} or \drawUnitLine{KN,NL} is greater than the other, hence they must be equal. It follows (by \inpropL[prop:I.IV]) that the triangles are equal in all respects.
+Consequently, neither of the sides \drawUnitLine{AB} or \drawUnitLine{DG,GE} is greater than the other, hence they must be equal. It follows (by \inpropL[prop:I.IV]) that the triangles are equal in all respects.
 \stopCenterAlign
 \stopsubproposition
 

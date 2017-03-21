@@ -12,6 +12,15 @@
 \def\mpPre{textLabels := true;}
 
 \starttext
+\setuplayout[title]
+\setupheader [state=stop]
+~\vfill
+~\hfill\symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]\hfill~
+\vfill~
+\pagebreak\ \pagebreak
+\setupheader[state=start]
+\setuplayout[reset]
+
 \startbook[title={Книга I}]
 \startVerboseProposition[title={Предложение I. Задача}, reference=prop:I.I]
 
@@ -1001,7 +1010,7 @@ $\therefore \drawAngle{D} > \drawAngle{C}$.
 \qed
 \stopProposition
 
-\startProposition[title={Предложение XXII. Теорема}, reference=prop:I.XXII]
+\startProposition[title={Предложение XXII. Задача}, reference=prop:I.XXII]
 \defineNewPicture[1/2]{
 numeric r[], d;
 pair A, B, C, D, E, LI, LII, LIII, LIV, LV, LVI;
@@ -1077,6 +1086,276 @@ $\left.\eqalign{
 \mbox{и } \drawSizedLine{CA} &= \drawSizedLine{AD} = \drawSizedLine{L'''} \cr
 }\right\}\mbox{(постр.)}$
 \stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIII. Задача}, reference=prop:I.XXIII]
+\defineNewPicture{
+angleScale := 3/2;
+pair A, B, C, D, E, F, G, H, J, d;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+C := A shifted (3u, 11/5u);
+D := 5/4[A, B];
+E := 7/6[A, C];
+d := (0, -3u);
+F := A shifted d;
+G := B shifted d;
+H := C shifted d;
+J := D shifted d;
+draw byAngleWithName(B, A, C, byred, 0)(A);
+draw byAngleWithName(G, F, H, byblue, 0)(F);
+byLineDefine(B, D, black, 1, 1);
+byLineDefine(C, E, byblue, 1, 1);
+byLineDefine(A, B, black, 0, 1);
+byLineDefine(C, A, byblue, 0, 1);
+draw byLine(B, C, byred, 0, 1);
+draw byNamedLineSeq(0)(CE,CA,AB,BD);
+byLineDefine(G, J, black, 1, 0);
+byLineDefine(F, G, black, 0, 0);
+byLineDefine(G, H, byred, 0, 0);
+byLineDefine(H, F, byyellow, 0, 0);
+draw byNamedLineSeq(0)(noLine,GH,HF,FG,GJ);
+draw byLabelsOnPolygon(D, B, A, C, E, noPoint)(0, 0);
+draw byLabelsOnPolygon(noPoint, J, G, F, H, G)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{ри}{данной точке \drawFromCurrentPicture{
+startTempScale(scaleFactor/2);
+draw byNamedLineSeq(0)(FG,HF);
+draw byLabelsOnPolygon(G, F, H)(2, 0);
+stopTempScale;
+} на данной прямой \drawUnitLine{FG,GJ}, построить угол равный данному прямолинейному углу \drawAngle{A}.}
+
+Проведем \drawUnitLine{BC} между любыми двумя точками сторонами данного угла.
+
+\startCenterAlign
+Построим \drawLine[bottom]{HF,GH,FG} \inprop[prop:I.XXII]\\
+такой, что $\drawUnitLine{FG} = \drawUnitLine{AB}$, $\drawUnitLine{HF} = \drawUnitLine{CA}$\\
+и $\drawUnitLine{GH} = \drawUnitLine{BC}$.
+
+Тогда $\drawAngle{A} = \drawAngle{F}$ \inprop[prop:I.VIII].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIV. Теорема}, reference=prop:I.XXIV]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, d;
+A := (0, 0);
+B := A shifted (u, -5/2u);
+C := A shifted (-u, -7/2u);
+D := (xpart(C) - 3/2u, ypart(B));
+d := (0, -4u);
+E := A shifted d;
+F := B shifted d;
+G := C shifted d;
+draw byAngle(B, A, C, black, 2);
+draw byAngle(C, A, D, black, 3);
+draw byAngle(F, E, G, black, 2);
+draw byAngle(B, D, A, byblue, 0);
+draw byAngle(C, D, B, byred, 0);
+draw byAngle(D, C, A, byyellow, 0);
+draw byAngle(A, C, B, black, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, black, 1, 0);
+draw byLine(C, A, byred, 0, 0);
+draw byLine(B, D, black, 0, 0);
+byLineDefine(A, D, byred, 1, 0);
+byLineDefine(C, D, byblue, 1, 0);
+draw byNamedLineSeq(0)(AB,AD,CD,BC);
+byLineDefine(E, F, byblue, 0, 1);
+byLineDefine(F, G, byyellow, 0, 1);
+byLineDefine(G, E, byred, 0, 1);
+draw byNamedLineSeq(0)(EF,FG,GE);
+draw byLabelsOnPolygon(D, A, B, C)(0, 0);
+draw byLabelsOnPolygon(G, E, F)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{у двух треугольников по две стороны соотверственно равны друг другу ($\drawUnitLine{AB} = \drawUnitLine{EF}$ и $\drawUnitLine{AD} = \drawUnitLine{GE}$), и угол заключенный ними в одном
+\drawFromCurrentPicture[bottom]{
+startAutoLabeling;
+draw byNamedAngleSides(BAC,CAD)(AB,CA,AD);
+stopAutoLabeling;
+}
+больше, чем в другом
+\drawFromCurrentPicture[bottom][angleFEG]{
+startAutoLabeling;
+draw byNamedAngleSides(FEG)(EF, GE);
+stopAutoLabeling;
+},
+то сторона \drawUnitLine{BD} противолежащая большему углу больше стороны, противолежащей меньшему \drawUnitLine{FG}.
+}
+
+\startCenterAlign
+Сделаем $\drawFromCurrentPicture[bottom][angleBAC]{
+startAutoLabeling;
+draw byNamedAngleSides(BAC)(AB, CA);
+stopAutoLabeling;
+} = \angleFEG$ \inprop[prop:I.XXIII],\\
+и $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
+проведем \drawUnitLine{CD} и \drawUnitLine{BC}.
+
+Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I]. гип. постр.)\\
+$\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V]
+но $\drawAngle{CDB} < \drawAngle{DCA}$,\\
+и $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
+
+$\therefore \drawUnitLine{BD} > \drawUnitLine{BC}$ \inprop[prop:I.XIX]
+
+но $\drawUnitLine{BC} = \drawUnitLine{FG}$ \inprop[prop:I.IV]
+
+$\therefore \drawUnitLine{BD} > \drawUnitLine{FG}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXV. Теорема}, reference=prop:I.XXV]
+\defineNewPicture{
+pair A, B, C, D, E, F, d;
+A := (0, 0);
+B := A shifted (u, -3u);
+C := A shifted (-7/4u, -4u);
+d := (0, -9/2u);
+D := A shifted d;
+E := ((B shifted -A) rotated -10) shifted d;
+F := C shifted d;
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(E, D, F, black, 0)(D);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(AB,BC,CA);
+byLineDefine(D, E, byblue, 0, 1);
+byLineDefine(E, F, byyellow, 0, 1);
+byLineDefine(F, D, byred, 0, 1);
+draw byNamedLineSeq(0)(DE,EF,FD);
+draw byLabelsOnPolygon(A, B, C)(0, 0);
+draw byLabelsOnPolygon(D, E, F)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{у двух треугольников две стороны \drawUnitLine{AB} и \drawUnitLine{CA} соответственно равны двум сторонам \drawUnitLine{DE} и \drawUnitLine{FD} другого, но основания неравны, то угол над большим основанием \drawUnitLine{BC} одного треугольника меньше угла под меньшим \drawUnitLine{EF} другого.}
+
+\startCenterAlign
+$\drawAngle{A} =\mbox{, } > \mbox{ или } < \drawAngle{D}$
+
+\drawAngle{A} не равен \drawAngle{D}\\
+поскольку если $\drawAngle{A} = \drawAngle{D}$ то $\drawUnitLine{BC} = \drawUnitLine{EF}$ \inprop[prop:I.IV]\\
+что противоречит гипотезе;
+
+\drawAngle{A} не меньше \drawAngle{D}\\
+поскольку если $\drawAngle{A} < \drawAngle{D}$\\
+то $\drawUnitLine{BC} < \drawUnitLine{EF}$ \inprop[prop:I.XXIV],\\
+что противоречит гипотезе:
+
+$\therefore \drawAngle{A} > \drawAngle{D}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXVI. Теорема}, reference=prop:I.XXVI]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, d;
+A := (0, 0);
+B := A shifted (3u, 0);
+C := A shifted (2u, 3u);
+d := (0, -4u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+G := 3/4[D, F];
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(C, B, A, byred, 0)(B);
+draw byAngleWithName(A, C, B, black, 1)(C);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(CA,BC,AB);
+draw byAngleWithName(E, D, F, byyellow, 0)(D);
+draw byAngle(G, E, D, black, 0);
+draw byAngle(F, E, G, byblue, 0);
+draw byAngleWithName(D, F, E, black, 1)(F);
+draw byLine(E, G, byyellow, 0, 1);
+byLineDefine(D, E, byblue, 0, 1);
+byLineDefine(E, F, black, 0, 1);
+byLineDefine(F, G, byred, 1, 1);
+byLineDefine(G, D, byred, 0, 1);
+draw byNamedLineSeq(0)(GD,FG,EF,DE);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+draw byLabelsOnPolygon(D, G, F, E)(0, 0);
+}
+\problemNP{Е}{сли}{у двух треугольников два угла соответственно равны двум углам другого ($\drawAngle{A} = \drawAngle{D}$ и $\drawAngle{B} = \drawAngle{GED,FEG}$), и одна сторона равна одного равна так же расположенной стороне другого, то и остальные стороны и углы соответственно равны друг другу.}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай I.}]
+\startCenterAlign
+Пусть  \drawUnitLine{AB} и \drawUnitLine{DE}, лежащие между равными углами равны,\\
+тогда $\drawUnitLine{CA} = \drawUnitLine{GD,FG}$.
+
+Поскольку, если \drawUnitLine{GD,FG} больше,\\
+сделаем $\drawUnitLine{CA} = \drawUnitLine{GD}$, проведем \drawUnitLine{EG}.
+
+В \drawLine[bottom]{CA,BC,AB} и
+\drawLine[bottom]{GD,EG,DE} получим \\
+$\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
+$\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
+но $\drawAngle{B} = \drawAngle{GED,FEG}$ (hyp.)
+
+и следовательно $\drawAngle{GED} = \drawAngle{GED,FEG}$, что не имеет смысла, а значит ни \drawUnitLine{CA} ни \drawUnitLine{GD,FG} не больше другой, и $\therefore$ они равны;
+
+$\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$, и $\drawAngle{C} = \drawAngle{F}$ \inprop[prop:I.IV].
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\defineNewPicture{
+pair A, B, C, D, E, F, G, d;
+d := (0, -4u);
+A := (0, 0);
+B := A shifted (3u, 0);
+C := A shifted (1u, 3u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+G := 3/4[D, E];
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(C, B, A, byred, 0)(B);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(CA,AB,BC);
+draw byAngleWithName(F, D, E, byyellow, 0)(D);
+draw byAngleWithName(F, G, D, black, 0)(G);
+draw byAngleWithName(F, E, D, byred, 0)(E);
+draw byLine(F, G, byyellow, 0, 1);
+byLineDefine(D, G, byblue, 0, 1);
+byLineDefine(G, E, byblue, 1, 1);
+byLineDefine(E, F, black, 0, 1);
+byLineDefine(F, D, byred, 0, 1);
+draw byNamedLineSeq(0)(FD,EF,GE,DG);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+draw byLabelsOnPolygon(D, F, E, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай II.}]
+\startCenterAlign
+Теперь пусть $\drawUnitLine{CA} = \drawUnitLine{FD}$, лежат против равных углов \drawAngle{B} и \drawAngle{E}.\\ 
+Если такое возможно, пусть $\drawUnitLine{DG,GE} > \drawUnitLine{AB}$, тогда возьмем $\drawUnitLine{DG} = \drawUnitLine{AB}$, проведем \drawUnitLine{FG}.
+
+Тогда в \drawLine[bottom]{CA,BC,AB} и \drawLine[bottom]{FD,FG,DG} получим $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ и $\drawAngle{A} = \drawAngle{D}$,
+
+$\therefore \drawAngle{B} = \drawAngle{G}$ \inprop[prop:I.IV]\\
+но $\drawAngle{B} = \drawAngle{E}$ (гип.)
+
+$\therefore \drawAngle{G} = \drawAngle{E}$ что не имеет смысла \inprop[prop:I.XVI]
+
+Следовательно, ни \drawUnitLine{AB} ни \drawUnitLine{DG,GE} не больше другой, а значит они равны. Следовательно (согласно \inpropL[prop:I.IV]) треугольники равны во всех отношениях.
+\stopCenterAlign
+\stopsubproposition
 
 \qed
 \stopProposition
