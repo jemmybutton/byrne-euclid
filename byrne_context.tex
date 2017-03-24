@@ -2481,6 +2481,7 @@ byLineDefine(I, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,IC,IA,AB);
 draw byLine(G, H, black, 0, 0);
+draw byLabelLine(AB, CD, GH);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{CD} and \drawUnitLine{AB}) makes with them the alternate angles (\drawAngle{CFE} and \drawAngle{FEB}; \drawAngle{EFD} and \drawAngle{AEF}) equal, these two straight lines are parallel.}
@@ -2513,6 +2514,7 @@ draw byAngle(E, F, D, byred, 0);
 draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(G, H, black, 0, 0);
+draw byLabelLine(AB, CD, GH);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFE}$ or $\drawAngle{BEG} = \drawAngle{EFD}$), or if it makes two internal angles at the same side (\drawAngle{EFD} and \drawAngle{FEB}, or \drawAngle{CFE} and \drawAngle{AEF}) together equal to two right angles, those two straight lines are parallel.}
@@ -2558,6 +2560,9 @@ draw byLine(E, J, black, 1, 0);
 draw byLine(A, B, byyellow, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
+draw byLabelsOnPolygon(A, E, G)(2, 0);
+draw byLabelPoint(I, lineAngle.IE - 90, 1);
+draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{ straight}{line (\drawUnitLine{GH}) falling on two parallel straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), makes the alternate angles equal to one another; and also the external equal to the internal and opposite angle on the same side; and the two internal angles on the same side together equal to two right angles.}
@@ -2593,6 +2598,10 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(E, F, byblue, 0, 0);
 draw byLine(J, K, black, 0, 0);
+draw byLabelLine(AB, CD, EF, JK);
+draw byLabelsOnPolygon(J, G, A)(2, 0);
+draw byLabelsOnPolygon(J, I, C)(2, 0);
+draw byLabelsOnPolygon(J, H, E)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{traight}{lines (\drawUnitLine{AB} and \drawUnitLine{EF}) which are parallel to the same straight line (\drawUnitLine{CD}), are parallel to one another.}

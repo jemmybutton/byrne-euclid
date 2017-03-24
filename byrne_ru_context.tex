@@ -1360,6 +1360,169 @@ $\therefore \drawAngle{G} = \drawAngle{E}$ что не имеет смысла \
 \qed
 \stopProposition
 
+\startProposition[title={Предложение XXVII. Теорема}, reference=prop:I.XXVII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, d;
+A := (0, 0);
+B := A shifted (8/3u, 0);
+d := (0, -7/4u);
+C := A shifted d;
+D := B shifted d;
+E := 1/3[A, B];
+F := 2/3[C, D];
+G := 3/2[F, E];
+H := 3/2[E, F];
+I := 1/2[A, C] shifted (-2u, 0);
+draw byAngle(A, E, F, byyellow, 0);
+draw byAngle(F, E, B, byred, 0);
+draw byAngle(C, F, E, byblue, 0);
+draw byAngle(E, F, D, byyellow, 0);
+byLineDefine(I, A, byblue, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(I, C, byred, 0, 0);
+byLineDefine(C, D, byred, 0, 0);
+draw byNamedLineSeq(0)(CD,IC,IA,AB);
+draw byLine(G, H, black, 0, 0);
+draw byLabelLine(AB, CD, GH);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая \drawUnitLine{GH}, пересекая две другие прямые \drawUnitLine{CD} и \drawUnitLine{AB}, образует накрестлежащие углы \drawAngle{CFE}, \drawAngle{FEB} и \drawAngle{EFD} и \drawAngle{AEF} равные между собой, то две пересекаемые прямые параллельны.}
+
+Если \drawUnitLine{CD} не параллельна \drawUnitLine{AB}, то они сойдутся по продолжении.
+
+Если это возможно, пусть они не будут параллельны, но сойдутся, если их продолжить; тогда внешний угол \drawAngle{FEB} будет больше \drawAngle{CFE} \inprop[prop:I.XVI], но они равны (гип.), что не имеет смысла. Таким же образом можно показать, что они не сойдутся с другой стороны; $\therefore$ они параллельны.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXVIII. Теорема}, reference=prop:I.XXVIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, d;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+d := (0, -3/2u);
+C := A shifted d;
+D := B shifted d;
+E := 9/20[A, B];
+F := 11/20[C, D];
+G := 7/4[F, E];
+H := 4/3[E, F];
+draw byAngle(G, E, A, black, 0);
+draw byAngle(B, E, G, byyellow, 0);
+draw byAngle(A, E, F, byred, 0);
+draw byAngle(F, E, B, byblue, 0);
+draw byAngle(C, F, E, byblue, 0);
+draw byAngle(E, F, D, byred, 0);
+draw byLine(A, B, byred, 0, 0);
+draw byLine(C, D, byyellow, 0, 0);
+draw byLine(G, H, black, 0, 0);
+draw byLabelLine(AB, CD, GH);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая \drawUnitLine{GH}, падающая на две прямые \drawUnitLine{AB} и \drawUnitLine{CD} образует внешний угол, равный внутреннему противолежащему с той же стороны $\drawAngle{GEA} = \drawAngle{CFE}$ или $\drawAngle{BEG} = \drawAngle{EFD}$, или внутренние углы с одной стороны \drawAngle{EFD} и \drawAngle{FEB} или \drawAngle{CFE} и \drawAngle{AEF} вместе равны двум прямым углам, то прямые параллельны.}
+
+\startCenterAlign
+Во-первых, если $\drawAngle{GEA} = \drawAngle{CFE}$,\\ 
+то $\drawAngle{GEA} = \drawAngle{FEB}$ \inprop[prop:I.XV],\\
+$\therefore \drawAngle{CFE} = \drawAngle{FEB} \therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
+
+Во-вторых, если $\drawAngle{CFE} + \drawAngle{AEF} = \drawTwoRightAngles$,\\
+то $\drawAngle{AEF} + \drawAngle{FEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII],\\
+$\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB}$ \inax[ax:III]
+
+$\therefore \drawAngle{CFE} = \drawAngle{FEB}$
+
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIX. Теорема}, reference=prop:I.XXIX]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, J, d[];
+A := (0, 0);
+B := A shifted (7/2u, 0);
+d1 := (0, -2u);
+C := A shifted d1;
+D := B shifted d1;
+E := 11/20[A, B];
+F := 9/20[C, D];
+G := 7/4[F, E];
+H := 4/3[E, F];
+d2 := (3/2u, 1/2u);
+I := E shifted -d2;
+J := E shifted d2;
+draw byAngle(I, E, A, byblue, 0);
+draw byAngle(F, E, I, byyellow, 0);
+draw byAngle(B, E, F, black, 0);
+draw byAngle(G, E, B, byred, 0);
+draw byAngle(E, F, D, black, 0);
+draw byLine(I, E, black, 0, 0);
+draw byLine(E, J, black, 1, 0);
+draw byLine(A, B, byyellow, 0, 0);
+draw byLine(C, D, byred, 0, 0);
+draw byLine(G, H, byblue, 0, 0);
+draw byLabelLine(AB, CD, GH);
+draw byLabelsOnPolygon(A, E, G)(2, 0);
+draw byLabelPoint(I, lineAngle.IE - 90, 1);
+draw byLabelPoint(J, lineAngle.EJ + 90, 1);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямая}{\drawUnitLine{GH}, падающая на две параллельные прямые \drawUnitLine{AB} и \drawUnitLine{CD}, образует накрестлежащие углы, равные между собой, внешний и противолежащий с той же стороны внутренний углы, равные между собой, а также внутренние односторонние углы, равные двум прямым углам.}
+
+Если накрестлежащие углы \drawAngle{IEA,FEI} и \drawAngle{EFD} не равны, проведем \drawUnitLine{IE}, так, чтобы $\drawAngle{FEI} = \drawAngle{EFD}$ \inprop[prop:I.XXIII].
+
+Следовательно $\drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII] и, следовательно, две пересекающихся прямых параллельны одной и той же прямой, что невозможно \inax[ax:XII].
+
+А значит \drawAngle{IEA,FEI} и \drawAngle{EFD} не являются неравными, то есть, они равны $\drawAngle{IEA,FEI} = \drawAngle{GEB}$ \inprop[prop:I.XV]; $\therefore \drawAngle{GEB} = \drawAngle{EFD}$, внешний угол равен внутреннему, противолежащему с той же стороны: если к обоим добавить \drawAngle{BEF}, то $\drawAngle{EFD} + \drawAngle{BEF} = \drawAngle{BEF,GEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]. Другими словами, два внутренних угла по одну сторону пересекающей прямой равны двум прямым углам.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXX. Теорема}, reference=prop:I.XXX]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, J, K, d;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+d := (0, -u);
+C := A shifted d;
+D := B shifted d;
+E := C shifted d;
+F := D shifted d;
+G := 13/20[A, B];
+H := 7/20[E, F];
+I := (G--H) intersectionpoint (C--D);
+J := 3/2[H, G];
+K := 5/4[G, H];
+draw byAngleWithName(B, G, J, byyellow, 0)(G);
+draw byAngleWithName(D, I, J, byblue, 0)(I);
+draw byAngleWithName(F, H, J, byred, 0)(H);
+draw byLine(A, B, byred, 0, 0);
+draw byLine(C, D, byyellow, 0, 0);
+draw byLine(E, F, byblue, 0, 0);
+draw byLine(J, K, black, 0, 0);
+draw byLabelLine(AB, CD, EF, JK);
+draw byLabelsOnPolygon(J, G, A)(2, 0);
+draw byLabelsOnPolygon(J, I, C)(2, 0);
+draw byLabelsOnPolygon(J, H, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямые}{\drawUnitLine{AB} и \drawUnitLine{EF} параллельные одной и той же прямой \drawUnitLine{CD}, параллельны между собой}
+
+\startCenterAlign
+Пусть \drawUnitLine{JK} пересекает $\left\{\vcenter{\nointerlineskip\hbox{\drawUnitLine{AB}}\nointerlineskip\hbox{\drawUnitLine{CD}}\nointerlineskip\hbox{\drawUnitLine{EF}}}\right\}$;
+
+Тогда $\drawAngle{G} = \drawAngle{I} = \drawAngle{H}$ \inprop[prop:I.XXIX],
+
+$\therefore \drawAngle{G} = \drawAngle{H}$
+
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \inprop[prop:I.XXVII].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 \stoptext
 %\closeout \lettrineslist
