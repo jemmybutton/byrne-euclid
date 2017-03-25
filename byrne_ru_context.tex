@@ -1523,6 +1523,171 @@ $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \inprop[prop:I.XXVII]
 \qed
 \stopProposition
 
+\startProposition[title={Предложение XXXI. Задача}, reference=prop:I.XXXI]
+\defineNewPicture[1/6]{
+pair A, B, C, D, E, F, d;
+A := (0, 0);
+B := A shifted (7/2u, 0);
+d := (0, -3u);
+C := A shifted d;
+D := B shifted d;
+E := 4/5[A, B];
+F := 1/5[C, D];
+draw byAngleWithName(F, E, A, byyellow, 0)(E);
+draw byAngleWithName(E, F, D, byred, 0)(F);
+draw byLine(E, F, black, 0, 0);
+draw byLine(A, E, byred, 0, 0);
+draw byLine(E, B, byred, 1, 0);
+draw byLine(C, F, byblue, 0, 0);
+draw byLine(F, D, byblue, 0, 0);
+draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{ровести}{через данную точку 
+\drawFromCurrentPicture[middle][pointE]{
+draw byNamedLineSeq(0)(AE,EF);
+draw byLabelsOnPolygon(A, E, F)(2, 0);
+} 
+прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
+
+\startCenterAlign
+Проведем \drawUnitLine{EF} из точки \pointE к любой точке
+\drawFromCurrentPicture[middle][pointF]{
+draw byNamedLineSeq(0)(FD,EF);
+draw byLabelsOnPolygon(D, F, E)(2, 0);
+}
+на \drawUnitLine{CF,FD},
+
+сделаем $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
+
+тогда $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF,FD}$ \inprop[prop:I.XXVII].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXII. Теорема}, reference=prop:I.XXXII]
+\defineNewPicture[1/6]{
+pair A, B, C, D, E;
+A := (0, 0);
+B := A shifted (-7/4u, -3u);
+C := A shifted (7/4u, -3u);
+D := 4/3[B, A];
+E := A shifted (unitvector(C-B) scaled 3/2u);
+draw byAngle(D, A, E, byred, 0);
+draw byAngle(E, A, C, black, 0);
+draw byAngle(C, A, B, byblue, 0);
+draw byAngleWithName(A, B, C, byyellow, 0)(B);
+draw byAngleWithName(B, C, A, black, 0)(C);
+draw byLine(A, E, byblue, 0, 0);
+byLineDefine(A, D, black, 1, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(C, A, byyellow, 0, 0);
+draw byNamedLineSeq(0)(CA,noLine,AD,AB,BC);
+draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{П}{о}{продлении любой стороны треугольника \drawUnitLine{AB}, the внешний угол \drawAngle{DAE,EAC} равен сумме двух внутренних и противолежащих \drawAngle{B} и \drawAngle{C}, а три внутренних угла треугольника вместе равны двум прямым углам.}
+
+\startCenterAlign
+Через точку
+\drawFromCurrentPicture[middle][pointF]{
+draw byNamedLineSeq(0)(AB,CA);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
+}
+проведем \\
+$\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
+
+Тогда $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXIX],
+
+$\therefore \drawAngle{B} + \drawAngle{C} = \drawAngle{DAE,EAC}$ \inax[ax:II],
+
+и следовательно\\
+$\drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{DAE,EAC,CAB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXIII. Теорема}, reference=prop:I.XXXIII]
+\defineNewPicture[1/4]{
+pair A, B, C, D, d[];
+d1 := (5/2u, 0);
+d2 := (-7/8u, -3u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+draw byAngle(B, A, D, byyellow, 0);
+draw byAngle(D, A, C, byred, 0);
+draw byAngle(C, D, A, black, 0);
+draw byAngle(A, D, B, byblue, 0);
+draw byLine(A, D, black, 0, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(C, D, byred, 1, 0);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(B, D, byyellow, 0, 0);
+draw byNamedLineSeq(0)(AB,BD,CD,AC);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямые}{\drawUnitLine{AC} и \drawUnitLine{BD}, соединяющие с одной и той же стороны равные и параллельные прямые\drawUnitLine{AB} и \drawUnitLine{CD}, сами равны и параллельны.}
+
+\startCenterAlign
+Проведем диагональ \drawUnitLine{AD}.
+
+$\drawUnitLine{AB} = \drawUnitLine{CD}$ (гип.)\\
+$\drawAngle{BAD} = \drawAngle{CDA}$ \inprop[prop:I.XXIX]\\
+и \drawUnitLine{AD} общая обоим треугольникам;
+
+$\therefore \drawUnitLine{AC} = \drawUnitLine{BD}$, и $\drawAngle{ADB} = \drawAngle{DAC}$ \inprop[prop:I.IV];
+
+и $\therefore \drawUnitLine{AC} \parallel \drawUnitLine{BD}$ \inprop[prop:I.XXVII].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXIV. Теорема}, reference=prop:I.XXXIV]
+\defineNewPicture{
+pair A, B, C, D, d[];
+d1 := (5/2u, 0);
+d2 := (-7/8u, -3u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+draw byAngle(B, A, D, byblue, 0);
+draw byAngle(D, A, C, byred, 0);
+draw byAngle(C, D, A, byyellow, 0);
+draw byAngle(A, D, B, byred, 0);
+draw byAngleWithName(A, C, D, black, 0)(C);
+draw byAngleWithName(D, B, A, black, 0)(B);
+draw byLine(A, D, black, 0, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(C, D, byred, 1, 0);
+byLineDefine(A, C, byyellow, 0, 0);
+byLineDefine(B, D, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,BD,CD,AC);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{ротивоположные}{стороны и углы параллелограмма равны, а диагональ \drawUnitLine{AD} делит его на две равные части.}
+
+\startCenterAlign
+Поскольку $\left\{\eqalign{\drawAngle{BAD} &= \drawAngle{CDA}\cr\drawAngle{DAC} &= \drawAngle{ADB}\cr}\right\}$ \inprop[prop:I.XXIX]\\
+и \drawUnitLine{AD} общая обоим треугольникам.
+
+$\therefore \left\{\eqalign{\drawUnitLine{AB} &= \drawUnitLine{CD}\cr \drawUnitLine{AC} &= \drawUnitLine{BD}\cr \drawAngle{B} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXVI]\\
+и $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \inax[ax:II]:
+\stopCenterAlign
+
+Следовательно, противоположные стороныи углы параллелограмма равны. И, поскольку треугольники \drawLine{AD,CD,AC} и \drawLine{AB,BD,AD} равны во всех отношениях \inprop[prop:I.IV], диагональ делит параллелограмм на две равные части. 
+
+\qed
+\stopProposition
+
 \stopbook
 \stoptext
 %\closeout \lettrineslist

@@ -2636,16 +2636,27 @@ draw byLine(A, E, byred, 0, 0);
 draw byLine(E, B, byred, 1, 0);
 draw byLine(C, F, byblue, 0, 0);
 draw byLine(F, D, byblue, 0, 0);
+draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point \drawLine[middle][pointE]{AE,EF} to draw a straight line parallel to a given straight line (\drawUnitLine{CF}).}
+\problemNP{F}{rom}{a given point
+\drawFromCurrentPicture[middle][pointE]{
+draw byNamedLineSeq(0)(AE,EF);
+draw byLabelsOnPolygon(A, E, F)(2, 0);
+}
+to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
 
 \startCenterAlign
-Draw \drawUnitLine{EF} from the point \pointE to any point \drawLine[middle][pointF]{FD,EF} in \drawUnitLine{CF},
+Draw \drawUnitLine{EF} from the point \pointE to any point 
+\drawFromCurrentPicture[middle][pointF]{
+draw byNamedLineSeq(0)(FD,EF);
+draw byLabelsOnPolygon(D, F, E)(2, 0);
+}
+in \drawUnitLine{CF,FD},
 
 make $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
 
-then $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF}$ \inprop[prop:I.XXVII].
+then $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF,FD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
 
 \qed
@@ -2670,12 +2681,18 @@ byLineDefine(A, B, black, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(CA,noLine,AD,AB,BC);
+draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{any side (\drawUnitLine{AB}) of a triangle by produced, the external angle (\drawAngle{DAE,EAC}) is equal to the sum of two internal and opposite angles (\drawAngle{B} and \drawAngle{C}), and the three internal angles of any triangle taken together are equal to two right angles.}
 
 \startCenterAlign
-Through the point \drawLine{AB,CA} draw\\
+Through the point 
+\drawFromCurrentPicture[middle][pointF]{
+draw byNamedLineSeq(0)(AB,CA);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
+}
+draw\\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 
 Then $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXIX],
@@ -2683,12 +2700,7 @@ Then $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \dr
 $\therefore \drawAngle{B} + \drawAngle{C} = \drawAngle{DAE,EAC}$ \inax[ax:II],
 
 and therefore\\
-$\drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} =
-\drawFromCurrentPicture{
-draw byNamedAngle(DAE);
-draw byNamedAngle(EAC);
-draw byNamedAngle(CAB);
-} = \drawTwoRightAngles$ \inprop[prop:I.XIII]
+$\drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{DAE,EAC,CAB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]
 \stopCenterAlign
 
 \qed
@@ -2713,6 +2725,7 @@ byLineDefine(C, D, byred, 1, 0);
 byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(B, D, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BD,CD,AC);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{traight}{lines (\drawUnitLine{AC} and \drawUnitLine{BD}) which join the adjacent extremities of two equal and parallel straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), are themselves parallel.}
@@ -2753,6 +2766,7 @@ byLineDefine(C, D, byred, 1, 0);
 byLineDefine(A, C, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,BD,CD,AC);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{opposite sides and angles of any parallelogram are equal, and the diagonal (\drawUnitLine{AD}) divides it into two equal parts.}
