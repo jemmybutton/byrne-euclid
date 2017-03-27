@@ -1592,7 +1592,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 
 \startCenterAlign
 Через точку
-\drawFromCurrentPicture[middle][pointF]{
+\drawFromCurrentPicture{
 draw byNamedLineSeq(0)(AB,CA);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
@@ -1684,6 +1684,241 @@ $\therefore \left\{\eqalign{\drawUnitLine{AB} &= \drawUnitLine{CD}\cr \drawUnitL
 \stopCenterAlign
 
 Следовательно, противоположные стороныи углы параллелограмма равны. И, поскольку треугольники \drawLine{AD,CD,AC} и \drawLine{AB,BD,AD} равны во всех отношениях \inprop[prop:I.IV], диагональ делит параллелограмм на две равные части. 
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXV. Теорема}, reference=prop:I.XXXV]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, d[];
+d1 := (7/4u, 0);
+d2 := (u, -3u);
+d3 := (-2u, -3u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+E := C shifted -d3;
+F := D shifted -d3;
+G := (B--D) intersectionpoint (C--E);
+draw byPolygon(A,B,G,C)(byyellow);
+draw byPolygon(E,F,D,G)(byyellow);
+draw byPolygon(B,E,G)(byyellow);
+draw byPolygon(C,D,G)(byblue);
+draw byAngleWithName(B, A, C, byred, 0)(A);
+draw byAngleWithName(E, B, D, byblue, 0)(B);
+draw byAngleWithName(A, E, C, black, 0)(E);
+draw byAngleWithName(A, F, D, white, 0)(F);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(B, D, byred, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+draw byNamedLineSeq(0)(AC,CD,BD);
+draw byLabelsOnPolygon(C, A, B, E, F, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{араллелограммы}{, находящиеся на одном и том же основании и между одними и теми же параллельными прямыми, равны по площади между собой.}
+
+\startCenterAlign
+Из параллельности прямых следует,\\
+$\left.\eqalign{
+\drawAngle{A} &= \drawAngle{B};\cr
+\drawAngle{E} &= \drawAngle{F};\cr
+\mbox{и } \drawUnitLine{AC} &= \drawUnitLine{BD}\cr
+}\right\}
+\eqalign{
+&\mbox{\inprop[prop:I.XXIX]}\cr
+&\mbox{\inprop[prop:I.XXIX]}\cr
+&\mbox{\inprop[prop:I.XXXIV]}\cr
+}$
+
+Но
+$\drawFromCurrentPicture[middle][polygonABC]{
+startAutoLabeling;
+draw byNamedPolygon (ABGC, BEG);
+stopAutoLabeling;
+draw byNamedLine (AC);
+}
+=
+\drawFromCurrentPicture[middle][polygonEFD]{
+startAutoLabeling;
+draw byNamedPolygon (EFDG, BEG);
+stopAutoLabeling;
+draw byNamedLine (BD);
+}$ \inprop[prop:I.VIII]
+
+$\therefore
+\drawFromCurrentPicture[middle][polygonAFDC]{
+startAutoLabeling;
+draw byNamedPolygon (ABGC, EFDG, BEG, CDG);
+stopAutoLabeling;
+draw byNamedLine (AC);
+} - \polygonEFD =
+\drawPolygon{ABGC, CDG}$,\\
+и $\drawPolygon{ABGC, CDG} - \polygonABC =
+\drawPolygon{EFDG, CDG}$;
+
+$\therefore \drawPolygon{ABGC, CDG} = \drawPolygon{EFDG, CDG}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXVI. Теорема}, reference=prop:I.XXXVI]
+\defineNewPicture[1/5]{
+pair A, B, C, D, E, F, G, H, J, I, d[];
+numeric h;
+h := 3u;
+d1 := (3/2u, 0);
+d2 := (2/3u, -h);
+d3 := (-8/3u, -h);
+d4 := (-1/2u, -h);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+E := C shifted -d3;
+F := D shifted -d3;
+G := E shifted d4;
+H := F shifted d4;
+I := (B--D) intersectionpoint (C--E);
+J := (E--G) intersectionpoint (D--F);
+draw byPolygon(A,B,I,C)(byred);
+draw byPolygon(C,D,I)(byred);
+draw byPolygon(I,D,J,E)(byblue);
+draw byPolygon(E,F,J)(byyellow);
+draw byPolygon(J,F,H,G)(byyellow);
+byLineDefine(C, E, byyellow, 0, 0);
+byLineDefine(D, F, black, 1, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(E, F, byred, 0, 0);
+draw byNamedLineSeq(0)(CE,EF,DF,CD);
+draw byLineFull(G, H, byblue, 0, 0)(E, F, 1, 1, 0);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+draw byLabelsOnPolygon(E, F, H, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{араллелограммы}{\drawPolygon[bottom][polygonABDC]{ABIC, CDI}~и~\drawPolygon[bottom][polygonEFHG]{EFJ, JFHG} на равных основаниях и между одними параллельными прямыми равны по площади.}
+
+\startCenterAlign
+Проведем \drawUnitLine{CE} и \drawUnitLine{DF}\\
+$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (\inpropL[prop:I.XXXIV], и гип.);
+
+$\therefore \drawUnitLine{CD} = \mbox{ and } \parallel \drawUnitLine{EF}$;
+
+$\therefore \drawUnitLine{CE} = \mbox{ and } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXV]
+
+И следовательно
+\drawPolygon[bottom][polygonCDFE]{CDI, IDJE, EFJ}
+параллелограмм,
+
+но $\polygonABDC = \polygonCDFE = \polygonEFHG$ \inprop[prop:I.XXXV]
+
+$\therefore \polygonABDC = \polygonEFHG$ \inax[ax:I].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXVII. Теорема}, reference=prop:I.XXXVII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, d[];
+d1 := (3/2u, 0);
+d2 := (3/4u, -5/2u);
+d3 := (-7/4u, -5/2u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+E := C shifted -d3;
+F := D shifted -d3;
+G := (B--D) intersectionpoint (C--E);
+H := 11/10[F, A];
+I := 11/10[A, F];
+draw byPolygon(A,B,C)(byblue);
+draw byPolygon(B,C,G)(byyellow);
+draw byPolygon(C,D,G)(byyellow);
+draw byPolygon(D,G,E)(black);
+draw byPolygon(E,F,D)(byred);
+draw byLine(B, D, byred, 0, 0);
+draw byLine(E, C, byblue, 0, 0);
+byLineDefine(A, C, byred, 1, 0);
+byLineDefine(F, D, byblue, 1, 0);
+byLineDefine(C, D, black, 0, 0);
+draw byNamedLineSeq(0)(AC,CD,FD);
+draw byLine(H, I, black, 1, 0);
+draw byLabelsOnPolygon(D, C, A, B, E, F)(0, 0);
+draw byLabelLine(HI);
+}
+\drawCurrentPictureInMargin
+\problemNP{Т}{реугольники}{
+\drawPolygon[bottom][polygonBCD]{BCG, CDG} и~\drawPolygon[bottom][polygonCDE]{DGE, CDG}
+на одном основании \drawUnitLine{CD} и между теми же параллельными равны.}
+
+\startCenterAlign
+$\left.\eqalign{\mbox{Проведем} \drawUnitLine{AC} &\parallel \drawUnitLine{BD}\cr
+\drawUnitLine{FD} &\parallel \drawUnitLine{EC}}\right\}\mbox{\inprop[prop:I.XXXI]}$
+
+Проведем \drawUnitLine{HI}.
+
+\drawPolygon[bottom][polygonABDC]{ABC, BCG, CDG}
+и
+\drawPolygon[bottom][polygonEFDC]{DGE, CDG, EFD}
+являются параллелограммами на одном основании и между одними параллельными прямыми и, следовательно, равными между собой. \inprop[prop:I.XXXV]
+
+$\therefore \left\{\eqalign{\polygonABDC &= \mbox{ дважды } \polygonBCD\cr\polygonEFDC &= \mbox{ дважды } \polygonCDE\cr}\right\}$ \inprop[prop:I.XXXIV]
+
+$\therefore \polygonBCD = \polygonCDE$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXVIII. Теорема}, reference=prop:I.XXXVIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, J, I, d[];
+numeric h;
+h := 5/2u;
+d1 := (3/2u, 0);
+d2 := (2/3u, -h);
+d3 := (-8/3u, -h);
+d4 := (-1/2u, -h);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+E := C shifted -d3;
+F := D shifted -d3;
+G := E shifted d4;
+H := F shifted d4;
+I := (xpart(A), ypart(C));
+J := (xpart(F), ypart(C));
+draw byPolygon(A,B,C)(byyellow);
+draw byPolygon(B,C,D)(byred);
+draw byPolygon(E,F,H)(black);
+draw byPolygon(E,G,H)(byblue);
+draw byLine(B, D, byblue, 0, 0);
+draw byLine(E, G, byred, 0, 0);
+byLineDefine(A, C, byblue, 1, 0);
+byLineDefine(F, H, byred, 1, 0);
+byLineDefine(A, F, black, 1, 0);
+draw byNamedLineSeq(0)(AC,AF,FH);
+draw byLine(I, J, black, 1, 0);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+draw byLabelsOnPolygon(E, F, H, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Т}{реугольники}{\drawPolygon[bottom][polygonBCD]{BCD} and \drawPolygon[bottom][polygonEGH]{EGH} на равных основаниях и между теми же параллельными прмыми равны.}
+
+\startCenterAlign
+$\left.\eqalign{\mbox{Проведем } \drawUnitLine{AC} &\parallel \drawUnitLine{BD}\cr
+\mbox{и } \drawUnitLine{FH} &\parallel \drawUnitLine{EG}}\right\}\mbox{\inprop[prop:I.XXXI]}$\\
+$\drawPolygon[bottom][polygonABDC]{ABC, BCD} = \drawPolygon[bottom][polygonEFHG]{EFH, EGH}$ \inprop[prop:I.XXXVI];
+
+но $\polygonABDC = \mbox{ дважды } \polygonBCD$ \inprop[prop:I.XXXIV],\\
+и $\polygonEFHG = \mbox{ дважды } \polygonEGH$ \inprop[prop:I.XXXIV],
+
+$\therefore \polygonBCD = \polygonEGH$ \inax[ax:VII].
+\stopCenterAlign
 
 \qed
 \stopProposition

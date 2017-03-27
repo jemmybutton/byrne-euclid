@@ -2688,7 +2688,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 
 \startCenterAlign
 Through the point 
-\drawFromCurrentPicture[middle][pointF]{
+\drawFromCurrentPicture{
 draw byNamedLineSeq(0)(AB,CA);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
@@ -2809,6 +2809,7 @@ byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(B, D, byred, 0, 0);
 byLineDefine(C, D, black, 0, 0);
 draw byNamedLineSeq(0)(AC,CD,BD);
+draw byLabelsOnPolygon(C, A, B, E, F, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{P}{arallelograms}{on the same base, and between the same parallels, are (in area) equal.}
@@ -2828,29 +2829,31 @@ $\left.\eqalign{
 
 But
 $\drawFromCurrentPicture[middle][polygonABC]{
+startAutoLabeling;
 draw byNamedPolygon (ABGC, BEG);
+stopAutoLabeling;
 draw byNamedLine (AC);
 }
 =
 \drawFromCurrentPicture[middle][polygonEFD]{
+startAutoLabeling;
 draw byNamedPolygon (EFDG, BEG);
+stopAutoLabeling;
 draw byNamedLine (BD);
 }$ \inprop[prop:I.VIII]
 
 $\therefore
 \drawFromCurrentPicture[middle][polygonAFDC]{
+startAutoLabeling;
 draw byNamedPolygon (ABGC, EFDG, BEG, CDG);
+stopAutoLabeling;
 draw byNamedLine (AC);
-} minus \polygonEFD =
-\drawFromCurrentPicture[middle][polygonABDC]{
-draw byNamedPolygon (ABGC, CDG);
-}$,\\
-and $\polygonAFDC minus \polygonABC =
-\drawFromCurrentPicture[middle][polygonEFDC]{
-draw byNamedPolygon (EFDG, CDG);
-}$;
+} - \polygonEFD =
+\drawPolygon{ABGC, CDG}$,\\
+and $\drawPolygon{ABGC, CDG} - \polygonABC =
+\drawPolygon{EFDG, CDG}$;
 
-$\therefore \polygonABDC = \polygonEFDC$.
+$\therefore \drawPolygon{ABGC, CDG} = \drawPolygon{EFDG, CDG}$.
 \stopCenterAlign
 
 \qed
@@ -2886,13 +2889,11 @@ byLineDefine(C, D, black, 0, 0);
 byLineDefine(E, F, byred, 0, 0);
 draw byNamedLineSeq(0)(CE,EF,DF,CD);
 draw byLineFull(G, H, byblue, 0, 0)(E, F, 1, 1, 0);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{P}{arallelograms}{(\drawFromCurrentPicture[bottom][polygonABDC]{
-draw byNamedPolygon(ABIC, CDI);
-}~and~\drawFromCurrentPicture[bottom][polygonEFHG]{
-draw byNamedPolygon(EFJ, JFHG);
-}) on equal bases, and between the same parallels are equal.}
+\problemNP{P}{arallelograms}{(\drawPolygon[bottom][polygonABDC]{ABIC, CDI}~and~\drawPolygon[bottom][polygonEFHG]{EFJ, JFHG}) on equal bases, and between the same parallels are equal.}
 
 \startCenterAlign
 Draw \drawUnitLine{CE} and \drawUnitLine{DF}\\
@@ -2903,9 +2904,7 @@ $\therefore \drawUnitLine{CD} = \mbox{ and } \parallel \drawUnitLine{EF}$;
 $\therefore \drawUnitLine{CE} = \mbox{ and } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXV]
 
 And therefore
-\drawFromCurrentPicture[bottom][polygonCDFE]{
-draw byNamedPolygon(CDI, IDJE, EFJ);
-}
+\drawPolygon[bottom][polygonCDFE]{CDI, IDJE, EFJ}
 is a parallelogram:
 
 but $\polygonABDC = \polygonCDFE = \polygonEFHG$ \inprop[prop:I.XXXV]
@@ -2943,14 +2942,12 @@ byLineDefine(F, D, byblue, 1, 0);
 byLineDefine(C, D, black, 0, 0);
 draw byNamedLineSeq(0)(AC,CD,FD);
 draw byLine(H, I, black, 1, 0);
+draw byLabelsOnPolygon(D, C, A, B, E, F)(0, 0);
+draw byLabelLine(HI);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{
-\drawFromCurrentPicture[bottom][polygonBCD]{
-draw byNamedPolygon(BCG, CDG);
-} and~\drawFromCurrentPicture[bottom][polygonCDE]{
-draw byNamedPolygon(DGE, CDG);
-}
+\drawPolygon[bottom][polygonBCD]{BCG, CDG} and~\drawPolygon[bottom][polygonCDE]{DGE, CDG}
 on the same base (\drawUnitLine{CD}) and between the same parallels are equal.
 }
 
@@ -2960,13 +2957,9 @@ $\left.\eqalign{\mbox{Draw} \drawUnitLine{AC} &\parallel \drawUnitLine{BD}\cr
 
 Produce \drawUnitLine{HI}.
 
-\drawFromCurrentPicture[bottom][polygonABDC]{
-draw byNamedPolygon(ABC, BCG, CDG);
-}
+\drawPolygon[bottom][polygonABDC]{ABC, BCG, CDG}
 and
-\drawFromCurrentPicture[bottom][polygonEFDC]{
-draw byNamedPolygon(DGE, CDG, EFD);
-}
+\drawPolygon[bottom][polygonEFDC]{DGE, CDG, EFD}
 are parallelograms on the same base and between the same parallels, and therefore equal. \inprop[prop:I.XXXV]
 
 $\therefore \left\{\eqalign{\polygonABDC &= \mbox{ twice } \polygonBCD\cr\polygonEFDC &= \mbox{ twice } \polygonCDE\cr}\right\}$ \inprop[prop:I.XXXIV]
@@ -3007,18 +3000,16 @@ byLineDefine(F, H, byred, 1, 0);
 byLineDefine(A, F, black, 1, 0);
 draw byNamedLineSeq(0)(AC,AF,FH);
 draw byLine(I, J, black, 1, 0);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{riangles}{(\drawFromCurrentPicture[bottom][polygonBCD]{draw byNamedPolygon(BCD);} and \drawFromCurrentPicture[bottom][polygonEGH]{draw byNamedPolygon(EGH);}) on equal bases and between the same parallels are equal.}
+\problemNP{T}{riangles}{(\drawPolygon[bottom][polygonBCD]{BCD} and \drawPolygon[bottom][polygonEGH]{EGH}) on equal bases and between the same parallels are equal.}
 
 \startCenterAlign
-$\left.\eqalign{\mbox{Draw} \drawUnitLine{AC} &\parallel \drawUnitLine{BD}\cr
-\mbox{and} \drawUnitLine{FH} &\parallel \drawUnitLine{EG}}\right\}\mbox{\inprop[prop:I.XXXI]}$\\
-$\drawFromCurrentPicture[bottom][polygonABDC]{
-draw byNamedPolygon(ABC, BCD);
-} = \drawFromCurrentPicture[bottom][polygonEFHG]{
-draw byNamedPolygon(EFH, EGH);
-}$ \inprop[prop:I.XXXVI];
+$\left.\eqalign{\mbox{Draw } \drawUnitLine{AC} &\parallel \drawUnitLine{BD}\cr
+\mbox{and } \drawUnitLine{FH} &\parallel \drawUnitLine{EG}}\right\}\mbox{\inprop[prop:I.XXXI]}$\\
+$\drawPolygon[bottom][polygonABDC]{ABC, BCD} = \drawPolygon[bottom][polygonEFHG]{EFH, EGH}$ \inprop[prop:I.XXXVI];
 
 but $\polygonABDC = \mbox{ twice } \polygonBCD$ \inprop[prop:I.XXXIV],\\
 and $\polygonEFHG = \mbox{ twice } \polygonEGH$ \inprop[prop:I.XXXIV],
@@ -3053,11 +3044,7 @@ draw byNamedLineSeq(0)(AB,AF,DF,CD,CG);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{triangles
-\drawFromCurrentPicture[bottom][polygonADC]{
-draw byNamedPolygon(AEC, ECD);
-} and~\drawFromCurrentPicture[bottom][polygonBDC]{
-draw byNamedPolygon(BED, ECD);
-}
+\drawPolygon[bottom][polygonADC]{AEC, ECD} and~\drawPolygon[bottom][polygonBDC]{BED, ECD}
 on the same base (\drawUnitLine{CD}) and on the same side of it, are between the same parallels.}
 
 \startCenterAlign
@@ -3067,9 +3054,7 @@ Draw \drawUnitLine{DF}.
 
 Because $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (const.)\\
 $\polygonADC =
-\drawFromCurrentPicture[bottom][polygonFDC]{
-draw byNamedPolygon(BED, ECD, FBD);
-}$ \inprop[prop:I.XXXVII];\\
+\drawPolygon[bottom][polygonFDC]{BED, ECD, FBD}$ \inprop[prop:I.XXXVII];\\
 but $\polygonADC = \polygonBDC$ (hyp.);
 
 $\therefore \polygonBDC = \polygonFDC$, a part equal to the whole, which is absurd.
@@ -3158,22 +3143,16 @@ draw byLineFull(D, E, black, 0, 0)(A, C, 1, 1, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{a parallelogram
-\drawFromCurrentPicture[bottom][polygonABED]{
-draw byNamedPolygon(ABFG,GFE,AGD,DEG);
-}
+\drawPolygon[bottom][polygonABED]{ABFG,GFE,AGD,DEG}
 and a triangle
-\drawFromCurrentPicture[bottom][polygonCED]{
-draw byNamedPolygon(GFE,DEG,CFE);
-}
+\drawPolygon[bottom][polygonCED]{GFE,DEG,CFE}
 are upon the same base \drawUnitLine{DE} and between the same parallels \drawUnitLine{AC} and \drawUnitLine{DE}, the parallelogram is double the triangle.}
 
 \startCenterAlign
 Draw \drawUnitLine{AE} the diagonal;
 
 Then
-$\drawFromCurrentPicture[bottom][polygonAED]{
-draw byNamedPolygon(AGD,DEG);
-} = \polygonCED$ \inprop[prop:I.XXXVII]\\
+$\drawPolygon[bottom][polygonAED]{AGD,DEG} = \polygonCED$ \inprop[prop:I.XXXVII]\\
 $\polygonABED = \mbox{ twice } \polygonAED$ \inprop[prop:I.XXXIV]
 
 $\therefore \polygonABED = \mbox{ twice } \polygonCED$.
@@ -3217,17 +3196,11 @@ Draw \drawUnitLine{CE}.
 Make $\drawAngle{E} = \drawAngle{EE}$ \inprop[prop:I.XXIII]\\
 Draw $\left\{\eqalign{\drawUnitLine{AD} &\parallel \drawUnitLine{BE}\cr\drawUnitLine{AC} &\parallel \drawUnitLine{DE}\cr}\right\}$ \inprop[prop:I.XXXI]
 
-$\drawFromCurrentPicture[bottom][polygonABED]{
-draw byNamedPolygon(ABFD,DEF);
-}
+$\drawPolygon[bottom][polygonABED]{ABFD,DEF}
 = \mbox{ twice }
-\drawFromCurrentPicture[bottom][polygonCED]{
-draw byNamedPolygon(DEF,CFE);
-}$ \inprop[prop:I.XLI]\\
+\drawPolygon[bottom][polygonCED]{DEF,CFE}$ \inprop[prop:I.XLI]\\
 but $\polygonCED =
-\drawFromCurrentPicture[bottom][polygonDCG]{
-draw byNamedPolygon(ECG);
-}$ \inprop[prop:I.XXXVIII]
+\drawPolygon[bottom][polygonDCG]{ECG}$ \inprop[prop:I.XXXVIII]
 
 $\therefore \polygonABED = \polygonCDG$.
 \stopCenterAlign
@@ -3261,26 +3234,14 @@ draw byPolygon(G,D,E)(byred);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{complements
-\drawFromCurrentPicture[bottom][polygonHBGE]{
-draw byNamedPolygon(HBGE);
-}
+\drawPolygon[bottom][polygonHBGE]{HBGE}
 and
-\drawFromCurrentPicture[bottom][polygonFCIE]{
-draw byNamedPolygon(FCIE);
-}
+\drawPolygon[bottom][polygonFCIE]{FCIE}
 of the parallelograms which are about the diagonal of a parallelogram are equal.}
 
 \startCenterAlign
-$\drawFromCurrentPicture[bottom][polygonADC]{
-draw byNamedPolygon(AEF,FCIE,IDE);
-} = \drawFromCurrentPicture[bottom][polygonABD]{
-draw byNamedPolygon(AEH,HBGE,GDE);
-}$ \inprop[prop:I.XXXIV]\\
-and $\drawFromCurrentPicture[bottom][polygonAEFpIDE]{
-draw byNamedPolygon(AEF,IDE);
-} = \drawFromCurrentPicture[bottom][polygonAEHpGDE]{
-draw byNamedPolygon(AEH,GDE);
-}$ \inprop[prop:I.XXXIV]
+$\drawPolygon[bottom][polygonADC]{AEF,FCIE,IDE} = \drawPolygon[bottom][polygonABD]{AEH,HBGE,GDE}$ \inprop[prop:I.XXXIV]\\
+and $\drawPolygon[bottom][polygonAEFpIDE]{AEF,IDE} = \drawPolygon[bottom][polygonAEHpGDE]{AEH,GDE}$ \inprop[prop:I.XXXIV]
 
 $\therefore \polygonFCIE = \polygonHBGE$ \inax[ax:III]
 \stopCenterAlign
@@ -3330,15 +3291,15 @@ draw byNamedLineSeq(0)(FE,EG,BG,HB,AH,AF,FC,CD);
 }
 \drawCurrentPicture
 \initialIndentation{8}
-\problem{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawFromCurrentPicture[bottom][polygonJKL]{draw byNamedPolygon(JKL);}), and having an angle equal to a given rectilinear angle (\drawAngle{FF}).}
+\problem{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawPolygon[bottom][polygonJKL]{JKL}), and having an angle equal to a given rectilinear angle (\drawAngle{FF}).}
 
 \startCenterAlign
-Make $\drawFromCurrentPicture[bottom][polygonAHEF]{draw byNamedPolygon(AHEF);} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{FF}$ \inprop[prop:I.XLII]\\
+Make $\drawPolygon[bottom][polygonAHEF]{AHEF} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{FF}$ \inprop[prop:I.XLII]\\
 and having one of its sides \drawUnitLine{FE} conterminous with and in continuation of \drawUnitLine{EG}.
 
 Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$ draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued; draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
 
-$\polygonAHEF = \drawFromCurrentPicture[bottom][polygonEGDI]{draw byNamedPolygon(EGDI);}$ \inprop[prop:I.XLIII]\\
+$\polygonAHEF = \drawPolygon[bottom][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
 but $\polygonAHEF = \polygonJKL$ (const.)
 
 $\therefore \polygonEGDI = \polygonAHEF$;
