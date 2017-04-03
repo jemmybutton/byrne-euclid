@@ -1923,6 +1923,248 @@ $\therefore \polygonBCD = \polygonEGH$ \inax[ax:VII].
 \qed
 \stopProposition
 
+\startProposition[title={Предложение XXXIX. Теорема}, reference=prop:I.XXXIX]
+\defineNewPicture{
+pair A, B, C, D, E, F, G;
+A := (0, 0);
+B := A shifted (5/2u, 0);
+C := A shifted (u, -5/2u);
+D := C shifted (3u, 0);
+E = whatever[A, D] = whatever[B, C];
+F := 5/4[C, B];
+G := 6/4[C, B];
+draw byPolygon(A,B,E)(byred);
+draw byPolygon(A,E,C)(byyellow);
+draw byPolygon(B,E,D)(black);
+draw byPolygon(E,C,D)(byyellow);
+draw byPolygon(F,B,D)(byblue);
+byLineDefine(A, F, byred, 0, 0);
+byLineDefine(D, F, byyellow, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(C, G, black, 1, 0);
+draw byNamedLineSeq(0)(AB,AF,DF,CD,CG);
+draw byLabelsOnPolygon(F, D, C, A)(2, 0);
+draw byLabelsOnPolygon(A, B, F)(2, 0);
+draw byLabelsOnPolygon(A, F, G, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{авные}{треугольники
+\drawPolygon[bottom][polygonADC]{AEC, ECD} и~\drawPolygon[bottom][polygonBDC]{BED, ECD}, находящиеся на одном основании \drawUnitLine{CD} и с одной и той же стороны, находятся между теми же параллельными прямыми.}
+
+\startCenterAlign
+Если \drawUnitLine{AB}, соединяющая вершины треугольников, не $\parallel \drawUnitLine{CD}$, проведем $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXXI], касающуюся \drawUnitLine{CG}.
+
+Проведем \drawUnitLine{DF}.
+
+Поскольку $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (постр.)\\
+$\polygonADC =
+\drawPolygon[bottom][polygonFDC]{BED, ECD, FBD}$ \inprop[prop:I.XXXVII];\\
+но $\polygonADC = \polygonBDC$ (hyp.);
+
+$\therefore \polygonBDC = \polygonFDC$, часть равна целому, что не имеет смысла.
+
+$\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$; и таким же образом можно показать, что никакая другая линия, кроме \drawUnitLine{AB} не $\parallel \drawUnitLine{CD}$; $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XL. Теорема}, reference=prop:I.XL]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, d;
+A := (0, 0);
+B := A shifted (5/2u, 0);
+C := A shifted (-u, -9/4u);
+d := (2u, 0);
+D := C shifted d;
+E := B shifted (-1/2u, -9/4u);
+F := E shifted d;
+G := 5/4[E, B];
+H := 2[B, G];
+draw byPolygon(A,C,D)(byyellow);
+draw byPolygon(B,E,F)(byred);
+draw byPolygon(G,B,F)(byblue);
+draw byLine(E, H, black, 1, 0);
+byLineDefine(A, G, byred, 0, 0);
+byLineDefine(F, G, byyellow, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(E, F, black, 0, 0);
+byLineDefine(D, E, byblue, 1, 0);
+draw byNamedLineSeq(0)(AB,AG,FG,EF,DE,CD);
+draw byLabelsOnPolygon(G, F, E, D, C, A)(2, 0);
+draw byLabelsOnPolygon(A, B, G)(2, 0);
+draw byLabelsOnPolygon(A, G, H, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{авные}{треугольники
+\drawFromCurrentPicture[bottom][polygonACD]{
+startAutoLabeling;
+draw byNamedPolygon (ACD);
+stopAutoLabeling;
+draw byNamedLineFull(A, A, 1, 1, 0)(CD);
+}
+и
+\drawFromCurrentPicture[bottom][polygonBEF]{
+startAutoLabeling;
+draw byNamedPolygon (BEF);
+stopAutoLabeling;
+draw byNamedLineFull(B, B, 1, 1, 0)(EF);
+} находящиеся на равных основаниях и с одной и той же стороны, находятся между теми же параллельными.}
+
+\startCenterAlign
+Если \drawSizedLine{AB} соединяющая вершины треугольников не $\parallel \drawSizedLine{CD,DE,EF}$,\\
+проведем \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI], касающуюся \drawSizedLine{EH}.\\
+Проведем \drawSizedLine{FG}.
+
+Поскольку $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (постр.)\\
+$\polygonACD =
+\drawFromCurrentPicture[bottom][polygonGEF]{
+startAutoLabeling;
+draw byNamedPolygon (BEF, GBF);
+stopAutoLabeling;
+draw byNamedLineFull(G, G, 1, 1, 0)(EF);
+}$ но $\polygonACD = \polygonBEF$
+
+$\therefore \polygonBEF = \polygonGEF$, часть равна целому, что не имеет смысла.
+
+$\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CD,DE,EF}$: и таким же образом можно показать, что никакая другая линия, кроме \drawSizedLine{AB} не $\parallel \drawSizedLine{CD,DE,EF}$: $\therefore \drawSizedLine{AB} \parallel \drawSizedLine{CD,DE,EF}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XL. Теорема}, reference=prop:I.XLI]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, d;
+A := (0, 0);
+d := (2u, 0);
+B := A shifted d;
+C := B shifted (2u, 0);
+D := A shifted (4/3u, -3u);
+E := D shifted d;
+F = whatever[B, E] = whatever[D, C];
+G = whatever[A, E] = whatever[D, C];
+draw byPolygon(A,B,F,G)(byyellow);
+draw byPolygon(G,F,E)(byyellow);
+draw byPolygon(A,G,D)(byblue);
+draw byPolygon(D,E,G)(byblue);
+draw byPolygon(C,F,E)(byred);
+draw byLine(A, E, byred, 0, 0);
+draw byLineFull(A, C, black, 1, 0)(D, E, 1, 1, 0);
+draw byLineFull(D, E, black, 0, 0)(A, C, 1, 1, 0);
+draw byLabelsOnPolygon(E, D, A, B, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{параллелограмм \drawPolygon[bottom][polygonABED]{ABFG,GFE,AGD,DEG} и треугольник \drawPolygon[bottom][polygonCED]{GFE,DEG,CFE} стоят на одном основании \drawUnitLine{DE} и между теми же параллельными прямыми \drawUnitLine{AC} и \drawUnitLine{DE}, то параллелограмм вдвое больше треугольника.}
+
+\startCenterAlign
+Проведем диагональ \drawUnitLine{AE};
+
+тогда $\drawPolygon[bottom][polygonAED]{AGD,DEG} = \polygonCED$ \inprop[prop:I.XXXVII]\\
+$\polygonABED = \mbox{ дважды } \polygonAED$ \inprop[prop:I.XXXIV]
+
+$\therefore \polygonABED = \mbox{ дважды } \polygonCED$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XLII. Задача}, reference=prop:I.XLII]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, I, J, d;
+A := (0, 0);
+d := (2u, 0);
+B := A shifted d;
+C := B shifted (2u, 0);
+D := A shifted (u, -3u);
+E := D shifted d;
+F := (B--E) intersectionpoint (D--C);
+G := 2[D, E];
+H := B shifted (xpart(G)-xpart(E), -ypart(D)-u);
+I := E shifted (xpart(G)-xpart(E), -ypart(D)-u);
+J := D shifted (xpart(G)-xpart(E), -ypart(D)-u);
+draw byPolygon(A,B,F,D)(byyellow);
+draw byPolygon(D,E,F)(byyellow);
+draw byPolygon(C,F,E)(byblue);
+draw byPolygon(E,C,G)(black);
+draw byAngleWithName(B, E, D, byblue, 0)(E);
+draw byAngleWithName(H, I, J, byyellow, 0)(I);
+angleStandalone.I := true;
+draw byLine(A, D, byred, 1, 0);
+draw byLine(B, E, byred, 0, 0);
+draw byLine(C, E, byyellow, 0, 0);
+draw byLine(A, C, byblue, 0, 0);
+draw byLine(D, E, black, 0, 0);
+draw byLine(E, G, black, 1, 0);
+draw byLabelsOnPolygon(G, E, D, A, B, C)(0, 0);
+startAutoLabeling;
+draw byNamedAngleSidesFull(I)();
+stopAutoLabeling;
+}
+\drawCurrentPicture
+\problemNP[2]{П}{остроить}{параллелограмм, равный данному треугольника
+\drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} и с данным углом \drawAngle{I}.}
+
+\startCenterAlign
+Сделаем $\drawUnitLine{DE} = \drawUnitLine{EG}$ \inprop[prop:I.X]\\
+Проведем \drawUnitLine{CE}.
+
+Сделаем $\drawAngle{E} = \drawAngle{I}$ \inprop[prop:I.XXIII]\\
+Проведем $\left\{\eqalign{\drawUnitLine{AD} &\parallel \drawUnitLine{BE}\cr\drawUnitLine{AC} &\parallel \drawUnitLine{DE}\cr}\right\}$ \inprop[prop:I.XXXI]
+
+$\drawPolygon[bottom][polygonABED]{ABFD,DEF}
+= \mbox{ дважды }
+\drawPolygon[bottom][polygonCED]{DEF,CFE}$ \inprop[prop:I.XLI]\\
+но $\polygonCED =
+\drawPolygon[bottom][polygonDCG]{ECG}$ \inprop[prop:I.XXXVIII]
+
+$\therefore \polygonABED = \polygonCDG$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XLIII. Теорема}, reference=prop:I.XLIII]
+\defineNewPicture[2/5]{
+pair A, B, C, D, E, F, G, H, I, d[];
+path q[];
+d1 := (5/2u, 0);
+d2 := (-u, -3u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+E := 2/5[A, D];
+q1 := (E shifted d1) -- (E shifted -d1);
+q2 := (E shifted d2) -- (E shifted -d2);
+F := q1 intersectionpoint (A--C);
+G := q1 intersectionpoint (B--D);
+H := q2 intersectionpoint (A--B);
+I := q2 intersectionpoint (C--D);
+draw byPolygon(A,E,H)(byyellow);
+draw byPolygon(A,E,F)(byyellow);
+draw byPolygon(H,B,G,E)(byblue);
+draw byPolygon(F,C,I,E)(black);
+draw byPolygon(I,D,E)(byred);
+draw byPolygon(G,D,E)(byred);
+draw byLabelsOnPolygon(C, F, A, H, B, G, D, I)(0, 0);
+draw byLabelsOnPolygon(F, E, H)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Д}{ополнения}{\drawPolygon[bottom][polygonHBGE]{HBGE} и \drawPolygon[bottom][polygonFCIE]{FCIE} параллелограммов на одной диагонали параллелограмма, равны между собой.}
+
+\startCenterAlign
+$\drawPolygon[bottom][polygonADC]{AEF,FCIE,IDE} = \drawPolygon[bottom][polygonABD]{AEH,HBGE,GDE}$ \inprop[prop:I.XXXIV]\\
+и $\drawPolygon[bottom][polygonAEFpIDE]{AEF,IDE} = \drawPolygon[bottom][polygonAEHpGDE]{AEH,GDE}$ \inprop[prop:I.XXXIV]
+
+$\therefore \polygonFCIE = \polygonHBGE$ \inax[ax:III]
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 \stoptext
 %\closeout \lettrineslist

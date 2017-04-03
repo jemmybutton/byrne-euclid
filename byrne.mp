@@ -984,6 +984,7 @@ color angleColor.angleName, angleOptionalColor.angleName[];
 numeric angleDirection.angleName;
 pair angleCenter.angleName;
 string angleAName.angleName, angleBName.angleName, angleCName.angleName;
+boolean angleStandalone.angleName;
     save p, q;
     path p;
     picture q;
@@ -998,6 +999,7 @@ string angleAName.angleName, angleBName.angleName, angleCName.angleName;
     angleAName.angleName := str a;
     angleBName.angleName := str b;
     angleCName.angleName := str c;
+    angleStandalone.angleName := false;
 enddef;
 
 vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
@@ -1119,9 +1121,17 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             angleType[angleNum] := 0;
                         fi;
                         if (j == 1):
-                            pointName[angleNum] := angleAName.aN;
+                            if (angleStandalone.aN):
+                                pointName[angleNum] := "";
+                            else:
+                                pointName[angleNum] := angleAName.aN;
+                            fi;
                         elseif (j == 2):
-                            pointName[angleNum] := angleCName.aN;
+                            if (angleStandalone.aN):
+                                pointName[angleNum] := "";
+                            else:
+                                pointName[angleNum] := angleCName.aN;
+                            fi;
                         fi;
                         angleCount[angleNum] := 1;
                     fi;

@@ -3041,6 +3041,9 @@ byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, D, black, 0, 0);
 byLineDefine(C, G, black, 1, 0);
 draw byNamedLineSeq(0)(AB,AF,DF,CD,CG);
+draw byLabelsOnPolygon(F, D, C, A)(2, 0);
+draw byLabelsOnPolygon(A, B, F)(2, 0);
+draw byLabelsOnPolygon(A, F, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{triangles
@@ -3088,16 +3091,23 @@ byLineDefine(C, D, black, 0, 0);
 byLineDefine(E, F, black, 0, 0);
 byLineDefine(D, E, byblue, 1, 0);
 draw byNamedLineSeq(0)(AB,AG,FG,EF,DE,CD);
+draw byLabelsOnPolygon(G, F, E, D, C, A)(2, 0);
+draw byLabelsOnPolygon(A, B, G)(2, 0);
+draw byLabelsOnPolygon(A, G, H, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{triangles
 (\drawFromCurrentPicture[bottom][polygonACD]{
+startAutoLabeling;
 draw byNamedPolygon (ACD);
+stopAutoLabeling;
 draw byNamedLineFull(A, A, 1, 1, 0)(CD);
 }
 and
 \drawFromCurrentPicture[bottom][polygonBEF]{
+startAutoLabeling;
 draw byNamedPolygon (BEF);
+stopAutoLabeling;
 draw byNamedLineFull(B, B, 1, 1, 0)(EF);
 }) on equal bases, and on the same side, are between the same parallels.}
 
@@ -3109,7 +3119,9 @@ Draw \drawSizedLine{FG}.
 Because $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (const.)\\
 $\polygonACD =
 \drawFromCurrentPicture[bottom][polygonGEF]{
+startAutoLabeling;
 draw byNamedPolygon (BEF, GBF);
+stopAutoLabeling;
 draw byNamedLineFull(G, G, 1, 1, 0)(EF);
 }$ but $\polygonACD = \polygonBEF$
 
@@ -3140,6 +3152,7 @@ draw byPolygon(C,F,E)(byred);
 draw byLine(A, E, byred, 0, 0);
 draw byLineFull(A, C, black, 1, 0)(D, E, 1, 1, 0);
 draw byLineFull(D, E, black, 0, 0)(A, C, 1, 1, 0);
+draw byLabelsOnPolygon(E, D, A, B, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{a parallelogram
@@ -3163,7 +3176,7 @@ $\therefore \polygonABED = \mbox{ twice } \polygonCED$.
 
 \startProposition[title={Prop XLII. Prob.}, reference=prop:I.XLII]
 \defineNewPicture{
-pair A, B, C, D, E, F, G, d;
+pair A, B, C, D, E, F, G, H, I, J, d;
 A := (0, 0);
 d := (2u, 0);
 B := A shifted d;
@@ -3172,28 +3185,36 @@ D := A shifted (u, -3u);
 E := D shifted d;
 F := (B--E) intersectionpoint (D--C);
 G := 2[D, E];
+H := B shifted (xpart(G)-xpart(E), -ypart(D)-u);
+I := E shifted (xpart(G)-xpart(E), -ypart(D)-u);
+J := D shifted (xpart(G)-xpart(E), -ypart(D)-u);
 draw byPolygon(A,B,F,D)(byyellow);
 draw byPolygon(D,E,F)(byyellow);
 draw byPolygon(C,F,E)(byblue);
 draw byPolygon(E,C,G)(black);
 draw byAngleWithName(B, E, D, byblue, 0)(E);
-draw byAngleWithName(B, E, D, byyellow, 0)(EE) shifted (xpart(G)-xpart(E), -ypart(D)-u);
+draw byAngleWithName(H, I, J, byyellow, 0)(I);
+angleStandalone.I := true;
 draw byLine(A, D, byred, 1, 0);
 draw byLine(B, E, byred, 0, 0);
 draw byLine(C, E, byyellow, 0, 0);
 draw byLine(A, C, byblue, 0, 0);
 draw byLine(D, E, black, 0, 0);
 draw byLine(E, G, black, 1, 0);
+draw byLabelsOnPolygon(G, E, D, A, B, C)(0, 0);
+startAutoLabeling;
+draw byNamedAngleSidesFull(I)();
+stopAutoLabeling;
 }
 \drawCurrentPicture
 \problemNP[2]{T}{o}{construct a parallelogram equal to a given triangle
-\drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} and having an angle equal to a given rectilinear angle \drawAngle{EE}.}
+\drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} and having an angle equal to a given rectilinear angle \drawAngle{I}.}
 
 \startCenterAlign
 Make $\drawUnitLine{DE} = \drawUnitLine{EG}$ \inprop[prop:I.X]\\
 Draw \drawUnitLine{CE}.
 
-Make $\drawAngle{E} = \drawAngle{EE}$ \inprop[prop:I.XXIII]\\
+Make $\drawAngle{E} = \drawAngle{I}$ \inprop[prop:I.XXIII]\\
 Draw $\left\{\eqalign{\drawUnitLine{AD} &\parallel \drawUnitLine{BE}\cr\drawUnitLine{AC} &\parallel \drawUnitLine{DE}\cr}\right\}$ \inprop[prop:I.XXXI]
 
 $\drawPolygon[bottom][polygonABED]{ABFD,DEF}
@@ -3231,6 +3252,8 @@ draw byPolygon(H,B,G,E)(byblue);
 draw byPolygon(F,C,I,E)(black);
 draw byPolygon(I,D,E)(byred);
 draw byPolygon(G,D,E)(byred);
+draw byLabelsOnPolygon(C, F, A, H, B, G, D, I)(0, 0);
+draw byLabelsOnPolygon(F, E, H)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{complements
