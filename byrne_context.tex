@@ -3274,10 +3274,12 @@ $\therefore \polygonFCIE = \polygonHBGE$ \inax[ax:III]
 
 \startProposition[title={Prop XLIV. Prob.}, reference=prop:I.XLIV]
 \defineNewPicture{
-pair A, B, C, D, E, F, G, H, I, J, K, L, d[];
+pair A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, d[];
 path q[];
 d1 := (3u, 0);
 d2 := (-3/2u, -3u);
+d3 := (3/2u, 5/2u);
+d4 := -d2 +1/2d1;
 A := (0, 0);
 B := A shifted d1;
 C := A shifted d2;
@@ -3289,16 +3291,20 @@ F := q1 intersectionpoint (A--C);
 G := q1 intersectionpoint (B--D);
 H := q2 intersectionpoint (A--B);
 I := q2 intersectionpoint (C--D);
-J := A shifted (-1/2u, 0);
+J := A shifted d3;
 K := J shifted (2(xpart(A)-xpart(H)), 0);
-L := (xpart(1/3[J, K]), ypart(F));
+L := (xpart(1/3[J, K]), ypart(F)-ypart(A)+ypart(J));
+M := A shifted d4;
+N := F shifted d4;
+O := E shifted d4;
 draw byPolygon(J,K,L)(byred);
 draw byPolygon(A,H,E,F)(byyellow);
 draw byPolygon(E,G,D,I)(byblue);
 draw byAngleWithName(A, F, E, byblue, 0)(F);
 draw byAngleWithName(F, E, I, byred, 0)(E);
 draw byAngleWithName(E, I, D, black, 0)(I);
-draw byAngleWithName(A, F, E, byyellow, 0)(FF) shifted d1 shifted (0, ypart(D)-ypart(F));
+draw byAngleWithName(M, N, O, byyellow, 0)(N);
+angleStandalone.N := true;
 draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, black, 0, 1);
 byLineDefine(A, F, byred, 1, 0);
@@ -3311,13 +3317,18 @@ byLineDefine(F, E, black, 1, 0);
 byLineDefine(E, G, black, 0, 0);
 byLineDefine(C, D, byyellow, 1, 0);
 draw byNamedLineSeq(0)(FE,EG,BG,HB,AH,AF,FC,CD);
+draw byLabelsOnPolygon(K, J, L)(0, 0);
+draw byLabelsOnPolygon(F, A, H, B, G, D, I, C)(0, 0);
+draw byLabelsOnPolygon(F, E, H)(2, 0);
+startAutoLabeling;
+draw byNamedAngleSidesFull(N)();
+stopAutoLabeling;
 }
 \drawCurrentPicture
-\initialIndentation{8}
-\problem{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawPolygon[bottom][polygonJKL]{JKL}), and having an angle equal to a given rectilinear angle (\drawAngle{FF}).}
+\problemNP{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawPolygon[bottom][polygonJKL]{JKL}), and having an angle equal to a given rectilinear angle (\drawAngle{N}).}
 
 \startCenterAlign
-Make $\drawPolygon[bottom][polygonAHEF]{AHEF} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{FF}$ \inprop[prop:I.XLII]\\
+Make $\drawPolygon[bottom][polygonAHEF]{AHEF} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{N}$ \inprop[prop:I.XLII]\\
 and having one of its sides \drawUnitLine{FE} conterminous with and in continuation of \drawUnitLine{EG}.
 
 Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$ draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued; draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
@@ -3325,9 +3336,9 @@ Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLi
 $\polygonAHEF = \drawPolygon[bottom][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
 but $\polygonAHEF = \polygonJKL$ (const.)
 
-$\therefore \polygonEGDI = \polygonAHEF$;
+$\therefore \polygonEGDI = \polygonJKL$;
 
-and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{FF}$ (\inpropL[prop:I.XXIX] and const.)
+and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and const.)
 \stopCenterAlign
 
 \qed
@@ -3335,7 +3346,7 @@ and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{FF}$ (\inpropL[pr
 
 \startProposition[title={Prop XLV. Prob.}, reference=prop:I.XLV]
 \defineNewPicture{
-pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
+pair A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, d[];
 numeric a, h[], b[], s[];
 a := 15;
 A := (0, 0);
@@ -3355,6 +3366,7 @@ s3 := (b3 * h3)/2;
 d1 := (0, ypart(D)-u);
 d2 := (0, -b3/2) rotated -a;
 d3 := (h3*(1/cosd(a)), 0);
+d6 := (u, 0);
 F := (-u, 0) shifted d1;
 G := F shifted d3;
 H := F shifted d2;
@@ -3365,6 +3377,9 @@ K := J shifted d2;
 d5 := (2*(s1/b3)*(1/cosd(a)), 0);
 L := J shifted d5;
 M := L shifted d2;
+N := L shifted d6;
+O := M shifted d6;
+P := K shifted d6;
 draw byPolygon(A,B,C)(byred);
 draw byPolygon(A,C,D)(byyellow);
 draw byPolygon(A,D,E)(byblue);
@@ -3377,9 +3392,15 @@ draw byPolygon(J,L,M,K)(byred);
 draw byAngleWithName(G, I, H, byyellow, 0)(I);
 draw byAngleWithName(J, K, I, black, 0)(K);
 draw byAngleWithName(L, M, K, byblue, 0)(M);
-draw byAngleWithName(L, M, K, byred, 0)(O) shifted (u, 0);
+draw byAngleWithName(N, O, P, byred, 0)(O);
+angleStandalone.O := true;
 draw byLine(G, I, byred, 0, 0);
 draw byLine(J, K, byblue, 0, 0);
+draw byLabelsOnPolygon(A, B, C, D, E)(0, 0);
+draw byLabelsOnPolygon(F, G, J, L, M, K, I, H)(0, 0);
+startAutoLabeling;
+draw byNamedAngleSidesFull(O)();
+stopAutoLabeling;
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{T}{o}{construct a parallelogram equal to a given rectilinear figure (\drawPolygon[middle][polygonABCDE]{ABC,ACD,ADE}) on an angle, equal to a given rectilinear angle (\drawAngle{O}).}
@@ -3423,6 +3444,7 @@ byLineDefine(B, D, byyellow, 0, 0);
 byLineDefine(D, C, black, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,BD,DC,CA);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{U}{pon}{a given straight line (\drawUnitLine{DC}) to construct a square.}
@@ -3437,6 +3459,7 @@ In
 startTempAngleScale(angleScale*3/4);
 draw byNamedAngle(A,B,C,D);
 draw byNamedLineSeq(0)(AB,BD,DC,CA);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 stopTempAngleScale;
 }
 $\drawUnitLine{CA} = \drawUnitLine{DC}$ (const.)\\
@@ -3580,13 +3603,14 @@ byLineDefine(A, D, black, 1, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(B, D, byred, 1, 0);
 draw byNamedLineSeq(0)(AC,AD,BD,BC);
+draw byLabelsOnPolygon(D, B, C, A)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{the square of one side (\drawUnitLine{BC}) of a triangle is equal to the squares of the other two sides (\drawUnitLine{AB} and \drawUnitLine{AC}), the angle (\drawAngle{DAB}) subtended by that side is a right angle.}
 
 \startCenterAlign
 Draw $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ and $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])\\
-and also draw \drawUnitLine{BD} also.
+and draw \drawUnitLine{BD} also.
 
 Since $\drawUnitLine{AD} = \drawUnitLine{AC}$ (const.)\\
 $\drawUnitLine{AD}^2 = \drawUnitLine{AC}^2$;

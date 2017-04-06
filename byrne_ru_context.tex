@@ -2165,6 +2165,366 @@ $\therefore \polygonFCIE = \polygonHBGE$ \inax[ax:III]
 \qed
 \stopProposition
 
+\startProposition[title={Предложение XLIV. Задача}, reference=prop:I.XLIV]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, d[];
+path q[];
+d1 := (3u, 0);
+d2 := (-3/2u, -3u);
+d3 := (3/2u, 5/2u);
+d4 := -d2 +1/2d1;
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := C shifted d1;
+E := 2/5[C, B];
+q1 := (E shifted d1) -- (E shifted -d1);
+q2 := (E shifted d2) -- (E shifted -d2);
+F := q1 intersectionpoint (A--C);
+G := q1 intersectionpoint (B--D);
+H := q2 intersectionpoint (A--B);
+I := q2 intersectionpoint (C--D);
+J := A shifted d3;
+K := J shifted (2(xpart(A)-xpart(H)), 0);
+L := (xpart(1/3[J, K]), ypart(F)-ypart(A)+ypart(J));
+M := A shifted d4;
+N := F shifted d4;
+O := E shifted d4;
+draw byPolygon(J,K,L)(byred);
+draw byPolygon(A,H,E,F)(byyellow);
+draw byPolygon(E,G,D,I)(byblue);
+draw byAngleWithName(A, F, E, byblue, 0)(F);
+draw byAngleWithName(F, E, I, byred, 0)(E);
+draw byAngleWithName(E, I, D, black, 0)(I);
+draw byAngleWithName(M, N, O, byyellow, 0)(N);
+angleStandalone.N := true;
+draw byLine(B, E, byred, 0, 0);
+draw byLine(E, C, black, 0, 1);
+byLineDefine(A, F, byred, 1, 0);
+byLineDefine(F, C, black, 0, 1);
+draw byLine(H, E, byblue, 1, 0);
+byLineDefine(B, G, byyellow, 0, 0);
+byLineDefine(A, H, byblue, 0, 0);
+byLineDefine(H, B, black, 0, 0);
+byLineDefine(F, E, black, 1, 0);
+byLineDefine(E, G, black, 0, 0);
+byLineDefine(C, D, byyellow, 1, 0);
+draw byNamedLineSeq(0)(FE,EG,BG,HB,AH,AF,FC,CD);
+draw byLabelsOnPolygon(K, J, L)(0, 0);
+draw byLabelsOnPolygon(F, A, H, B, G, D, I, C)(0, 0);
+draw byLabelsOnPolygon(F, E, H)(2, 0);
+startAutoLabeling;
+draw byNamedAngleSidesFull(N)();
+stopAutoLabeling;
+}
+\drawCurrentPicture
+\problemNP[2]{К}{ данной}{прямой линии \drawUnitLine{EG} приложить параллелограмм, равный данному треугольнику \drawPolygon[bottom][polygonJKL]{JKL}, и с углом, равным данному прямолинейному углу \drawAngle{N}.}
+
+\startCenterAlign
+Сделаем $\drawPolygon[bottom][polygonAHEF]{AHEF} = \polygonJKL$ с $\drawAngle{F} = \drawAngle{N}$ \inprop[prop:I.XLII]\\
+и со стороной \drawUnitLine{FE} смежной и являющейся продолжением \drawUnitLine{EG}.
+
+Продлим \drawUnitLine{AH} до $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$\\
+проведем \drawUnitLine{BE}, продлим ее, до продолжения \drawUnitLine{AF};\\ 
+проведем $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ до продолжения  \drawUnitLine{BG} и продлим \drawUnitLine{HE}.
+
+$\polygonAHEF = \drawPolygon[bottom][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
+но $\polygonAHEF = \polygonJKL$ (постр.)
+
+$\therefore \polygonEGDI = \polygonJKL$;
+
+и $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] и постр.)
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XLV. Задача}, reference=prop:I.XLV]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, d[];
+numeric a, h[], b[], s[];
+a := 15;
+A := (0, 0);
+B := A shifted (0, 2u);
+C := A shifted (4/3u, u);
+D := A shifted (2u, -3/2u);
+E := A shifted (-6/5u, -u);
+b1 := arclength(B--C);
+h1 := distanceToLine(A, B--C);
+s1 := (b1 * h1)/2;
+b2 := arclength(C--D);
+h2 := distanceToLine(A, C--D);
+s2 := (b2 * h2)/2;
+b3 := arclength(D--E);
+h3 := distanceToLine(A, D--E);
+s3 := (b3 * h3)/2;
+d1 := (0, ypart(D)-u);
+d2 := (0, -b3/2) rotated -a;
+d3 := (h3*(1/cosd(a)), 0);
+d6 := (u, 0);
+F := (-u, 0) shifted d1;
+G := F shifted d3;
+H := F shifted d2;
+I := G shifted d2;
+d4 := (2*(s2/b3)*(1/cosd(a)), 0);
+J := G shifted d4;
+K := J shifted d2;
+d5 := (2*(s1/b3)*(1/cosd(a)), 0);
+L := J shifted d5;
+M := L shifted d2;
+N := L shifted d6;
+O := M shifted d6;
+P := K shifted d6;
+draw byPolygon(A,B,C)(byred);
+draw byPolygon(A,C,D)(byyellow);
+draw byPolygon(A,D,E)(byblue);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(A, D, byred, 0, 0);
+draw byNamedLineSeq(0)(AC,AD);
+draw byPolygon(F,G,I,H)(byblue);
+draw byPolygon(G,J,K,I)(byyellow);
+draw byPolygon(J,L,M,K)(byred);
+draw byAngleWithName(G, I, H, byyellow, 0)(I);
+draw byAngleWithName(J, K, I, black, 0)(K);
+draw byAngleWithName(L, M, K, byblue, 0)(M);
+draw byAngleWithName(N, O, P, byred, 0)(O);
+angleStandalone.O := true;
+draw byLine(G, I, byred, 0, 0);
+draw byLine(J, K, byblue, 0, 0);
+draw byLabelsOnPolygon(A, B, C, D, E)(0, 0);
+draw byLabelsOnPolygon(F, G, J, L, M, K, I, H)(0, 0);
+startAutoLabeling;
+draw byNamedAngleSidesFull(O)();
+stopAutoLabeling;
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{П}{остроить}{параллелограмм равный данной прямолинейной фигуре \drawPolygon[middle][polygonABCDE]{ABC,ACD,ADE} в угле, равном данному прямолинейному углу \drawAngle{O}.}
+
+\startCenterAlign
+Проведем \drawUnitLine{AD} и \drawUnitLine{AC}, делящие прямолинейную фигуру на треугольники.
+
+Построим $\drawPolygon{FGIH} = \drawPolygon{ADE}$\\
+с $\drawAngle{I} = \drawAngle{O}$ \inprop[prop:I.XLII]\\
+к \drawUnitLine{GI} приложим $\drawPolygon{GJKI} = \drawPolygon{ACD}$\\
+с $\drawAngle{K} = \drawAngle{O}$ \inprop[prop:I.XLIV]\\
+к \drawUnitLine{JK} приложим $\drawPolygon{JLMK} = \drawPolygon{ABC}$\\
+с $\drawAngle{M} = \drawAngle{O}$ \inprop[prop:I.XLIV]
+
+$\therefore \drawPolygon[middle][polygonFLMH]{FGIH,GJKI,JLMK} = \polygonABCDE$\\
+и \polygonFLMH является параллелограммом. (\inpropL[prop:I.XXIX], \inpropL[prop:I.XIV], \inpropL[prop:I.XXX])\\
+с $\drawAngle{M} = \drawAngle{O}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XLVI. Задача}, reference=prop:I.XLVI]
+\defineNewPicture{
+pair A, B, C, D;
+numeric d;
+d := 7/2u;
+A := (0, 0);
+B := A shifted (d, 0);
+C := A shifted (0, -d);
+D := A shifted (d, -d);
+draw byAngleWithName(B, A, C, black, 0)(A);
+draw byAngleWithName(D, B, A, byblue, 0)(B);
+draw byAngleWithName(C, D, B, byred, 0)(D);
+draw byAngleWithName(A, C, D, byyellow, 0)(C);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, D, byyellow, 0, 0);
+byLineDefine(D, C, black, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,BD,DC,CA);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{а}{данной прямой \drawUnitLine{DC} построить квадрат.}
+
+\startCenterAlign
+Проведем $\drawUnitLine{CA} \perp \mbox{ and } = \drawUnitLine{DC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])
+
+Проведем $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, и касающуюся \drawUnitLine{BD} проведенную $\parallel \drawUnitLine{CA}$.
+
+В
+\drawFromCurrentPicture[bottom][polygonABDC]{
+startTempAngleScale(angleScale*3/4);
+draw byNamedAngle(A,B,C,D);
+draw byNamedLineSeq(0)(AB,BD,DC,CA);
+draw byLabelsOnPolygon(A, B, D, C)(0, 0);
+stopTempAngleScale;
+}
+$\drawUnitLine{CA} = \drawUnitLine{DC}$ (постр.)\\
+$\drawAngle{C} = \mbox{right angle}$ (постр.)
+
+$\therefore \drawAngle{D} = \drawAngle{C} = \mbox{прямому углу}$ \inprop[prop:I.XXIX], и оставшиеся стороны и углы должны быть равны, \inprop[prop:I.XXXIV]
+
+И $\therefore \polygonABDC$ является квадратом. \indef[def:XXVII]
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XLVII. Теорема}, reference=prop:I.XLVII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
+%forsuffixes i=A, B, C, D, E, F, G, H, I, J, K, L, M:
+%string pointLabel.i;
+%endfor;
+%pointLabel.A := "α";
+%pointLabel.B := "β";
+%pointLabel.C := "γ";
+%pointLabel.D := "δ";
+%pointLabel.E := "ε";
+%pointLabel.F := "ζ";
+%pointLabel.G := "η";
+%pointLabel.H := "θ";
+%pointLabel.I := "ι";
+%pointLabel.J := "κ";
+%pointLabel.K := "λ";
+%pointLabel.L := "μ";
+%pointLabel.M := "ν";
+A := (0, 0);
+B := A shifted (-7/10u, -8/7u);
+C = whatever[A, A shifted ((A-B) rotated 90)] = whatever[B, B shifted dir(0)];
+d1 := (B-A) rotated -90;
+D := A shifted d1;
+E := B shifted d1;
+d2 := (A-C) rotated -90;
+F := C shifted d2;
+G := A shifted d2;
+d3 := (C-B) rotated -90;
+H := B shifted d3;
+I := C shifted d3;
+J = whatever[A, A shifted dir(90)];
+J = whatever[B, C];
+K = whatever[A, A shifted dir(90)];
+K = whatever[H, I];
+L = whatever[B, F];
+L = whatever[A, C];
+M = whatever[A, I];
+M = whatever[B, C];
+draw byPolygon(A,B,E,D)(black);
+draw byPolygon(L,A,G,F)(byred);
+draw byPolygon(C,L,F)(byred);
+draw byPolygon(J,M,I,K)(byblue);
+draw byPolygon (M,C,I)(byblue);
+draw byPolygon(B,J,K,H)(byyellow);
+draw byAngle(F, C, A, byyellow, 0);
+draw byAngle(B, C, I, byyellow, 0);
+draw byAngle(A, C, B, black, 0);
+draw byLine(A, K, black, 1, 0);
+draw byLineFull(B, F, black, 0, 0)(G, G, 1, 1, -1);
+draw byLineFull(A, I, black, 0, 0)(K, K, 1, 1, 1);
+byLineDefine(C, F, byblue, 1, 0);
+byLineDefine(C, I, byred, 1, 0);
+draw byNamedLineSeq(0)(CF,CI);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(-1)(AB,BC,CA);
+byLineDefineWithName (C, A, black, 0, 0)(CAb);
+byLineStylize (M, M, 1, 0, -1) (CAb);
+byLineDefineWithName (A, M, black, 0, 0)(AMb);
+byLineStylize (C, C, 0, 1, -1) (AMb);
+byLineDefineWithName (B, C, black, 0, 0)(BCb);
+byLineStylize (L, L, 0, 1, -1) (BCb);
+byLineDefineWithName (L, B, black, 0, 0)(BLb);
+byLineStylize (C, C, 1, 0, -1) (BLb);
+draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
+draw byLabelsOnPolygon(A, J, C)(2, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{прямоугольном}{треугольнике \drawLine[bottom][triangleABC]{CA,BC,AB} квадрат гипотенузы \drawUnitLine{BC} равен сумме квадратов катетов \drawUnitLine{CA} и \drawUnitLine{AB}.}
+
+\startCenterAlign
+На \drawUnitLine{BC}, \drawUnitLine{CA}, \drawUnitLine{AB} построим квадраты, \inprop[prop:I.XLVI]
+
+Проведем $\drawUnitLine{AK} \parallel \drawUnitLine{CI}$ \inprop[prop:I.XXXI]\\
+также проведем \drawUnitLine{BF} and \drawUnitLine{AI}.\\
+$\drawAngle{BCI} = \drawAngle{FCA}$,
+
+К каждому добавим \drawAngle{ACB} $\therefore \drawAngle{BCI,ACB} = \drawAngle{FCA,ACB}$,\\
+$\drawUnitLine{BC} = \drawUnitLine{CI}$ и $\drawUnitLine{CA} = \drawUnitLine{CF}$;
+
+$\therefore
+\drawFromCurrentPicture[middle][polygonAFC]{
+draw byNamedPolygon(MCI);
+draw byNamedAngle(ACB);
+draw byNamedLine(CAb,AMb);
+draw byLabelsOnPolygon(I,A,C)(1, 1);
+}
+=
+\drawFromCurrentPicture[middle][polygonBLC]{
+draw byNamedPolygon(CLF);
+draw byNamedAngle(ACB);
+draw byNamedLine(BCb,BLb);
+draw byLabelsOnPolygon(B,F,C)(1, 1);
+}
+$.
+
+Теперь, поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\
+$\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ дважды } \polygonBLC$,\\
+и $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ дважды } \polygonAFC$;
+
+$\therefore \polygonACFG = \polygonJMCK$.
+
+Так же можно показать, что $\drawPolygon[middle][polygonABED]{ABED} = \drawPolygon[middle][polygonBJKH]{BJKH}$;
+
+а значит $\drawPolygon[middle][polygonABEDpACFG]{ABED,LAGF,CLF} = \drawPolygon[middle][polygonBCIH]{JMIK,MCI,BJKH}$.
+
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XLVIII. Теорема}, reference=prop:I.XLVIII]
+\defineNewPicture{
+pair A, B, C, D;
+numeric d;
+d := 7/4u;
+A := (0, 0);
+B := A shifted (0, 3u);
+C := A shifted (d, 0);
+D := A shifted (-d, 0);
+draw byAngle(B, A, C, byred, 0);
+draw byAngle(D, A, B, byyellow, 0);
+draw byLine(A, B, byblue, 0, 0);
+byLineDefine(A, C, black, 0, 0);
+byLineDefine(A, D, black, 1, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(B, D, byred, 1, 0);
+draw byNamedLineSeq(0)(AC,AD,BD,BC);
+draw byLabelsOnPolygon(D, B, C, A)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{в треугольнике квадрат одной стороны \drawUnitLine{BC} равен сумме квадратов двух других сторон \drawUnitLine{AB} и \drawUnitLine{AC}, то угол \drawAngle{DAB}, заключенный между этими двумя сторонами прямой.}
+
+\startCenterAlign
+Проведем $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ и $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])\\
+также проведем \drawUnitLine{BD}.
+
+Поскольку $\drawUnitLine{AD} = \drawUnitLine{AC}$ (постр.)\\
+$\drawUnitLine{AD}^2 = \drawUnitLine{AC}^2$;
+
+$\therefore \drawUnitLine{AD}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{AC}^2 + \drawUnitLine{AB}^2$
+
+но $\drawUnitLine{AD}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BD}^2$ \inprop[prop:I.XLVII],\\
+и $\drawUnitLine{AC}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BC}^2$ (гип.)
+
+$\therefore \drawUnitLine{BD}^2 = \drawUnitLine{BC}^2$,
+
+$\therefore \drawUnitLine{BD} = \drawUnitLine{BC}$;
+
+и $\therefore \drawAngle{DAB} = \drawAngle{BAC}$ \inprop[prop:I.VIII],
+
+следовательно \drawAngle{BAC} прямой угол.
+\stopCenterAlign
+
+\qed
+
+\stopProposition
+
 \stopbook
 \stoptext
 %\closeout \lettrineslist
