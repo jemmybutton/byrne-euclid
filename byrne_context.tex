@@ -3650,11 +3650,12 @@ draw byPolygon(A,B,D,C)(byblue);
 byLineDefine(A, B, black, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AC);
+draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{rectangle}{or a right angled parallelogram is said to be contained by any two of its adjacent or conterminous sides.}
 
-Thus: the right angled parallelogram \drawFromCurrentPicture{draw byNamedPolygon (ABDC);} is said to be contained by the sides \drawUnitLine{AB} and \drawUnitLine{AC}; or it may be briefly designated by $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
+Thus: the right angled parallelogram \drawPolygon{ABDC} is said to be contained by the sides \drawUnitLine{AB} and \drawUnitLine{AC}; or it may be briefly designated by $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
 
 If the adjacent sides are equal; i. e. $\drawUnitLine{AB} = \drawUnitLine{AC}$, then $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$ which is the expression for the rectangle under \drawUnitLine{AB} and \drawUnitLine{AC} is a square, and
 
@@ -3685,6 +3686,8 @@ draw byPolygon(A,E,I,G)(byblue);
 draw byPolygon(E,B,H,I)(byyellow);
 draw byPolygon(G,I,F,C)(byyellow);
 draw byPolygon(I,H,D,F)(byred);
+draw byLabelsOnPolygon(C, F, D, H, B, E, A, G)(0,0);
+draw byLabelsOnPolygon(G, I, F)(2,0);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{n}{a parallelogram, the figure composed of one of the parallelograms about the diagonal, together with the two complements, is called a Gnomon.}
@@ -3696,7 +3699,7 @@ Thus \drawPolygon{AEIG,EBHI,GIFC} and \drawPolygon{EBHI,GIFC,IHDF} are called Gn
 
 \startProposition[title={Prop. I. theor.},reference=prop:II.I]
 \defineNewPicture{
-pair B,C,D,E,G,H,K,L;
+pair B, C, D, E, G, H, K, L, M, N;
 numeric w, h;
 w := 7/2u;
 h := 3u;
@@ -3708,12 +3711,15 @@ K := 2/5[G, H];
 D := 2/5[B, C];
 L := 3/4[G, H];
 E := 3/4[B, C];
+M := G shifted (0, -2/3u);
+N := M shifted (h, 0);
 draw byPolygon(G,K,D,B)(byyellow);
 draw byPolygon(K,L,E,D)(byblue);
 draw byPolygon(L,H,C,E)(byred);
 draw byLine(K, D, black, 1, 0);
 draw byLine(L, E, black, 1, 0);
 byLineDefine(G, B, black, 0, 0);
+draw byLineWithName(M, N, black, 0, 0)(A);
 byLineDefine(H, C, black, 1, 0);
 byLineDefine(G, K, byblue, 0, 0);
 byLineDefine(K, L, byred, 0, 0);
@@ -3722,13 +3728,15 @@ byLineDefine(B, D, byblue, 1, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, C, byyellow, 1, 0);
 draw byNamedLineSeq(0)(GK,KL,LH,HC,EC,DE,BD,GB);
+draw byLabelsOnPolygon(B, D, E, C, H, L, K, G)(0, 0);
+draw byLabelLine(A);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{T}{he}{rectangle contained by two straight lines, one of which is divided into any number of parts,
-$\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB} = \left\{\eqalign{
-&\drawProportionalLine{GB} \cdot \drawProportionalLine{GK}\cr
-+&\drawProportionalLine{GB} \cdot \drawProportionalLine{KL}\cr
-+&\drawProportionalLine{GB} \cdot \drawProportionalLine{LH}}\right.$\\
+$\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalign{
+&\drawProportionalLine{A} \cdot \drawProportionalLine{GK}\cr
++&\drawProportionalLine{A} \cdot \drawProportionalLine{KL}\cr
++&\drawProportionalLine{A} \cdot \drawProportionalLine{LH}}\right.$\\
 is equal to the sum of the rectangles contained by the undivided line, and several parts of the divided line.}
 
 \startCenterAlign
@@ -3754,7 +3762,7 @@ $\polygonKLED = \drawProportionalLine{KL} \cdot \drawProportionalLine{GB}$,
 
 $\polygonLHCE = \drawProportionalLine{LH} \cdot \drawProportionalLine{GB}$
 
-$\therefore \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB} = \drawProportionalLine{GK} \cdot \drawProportionalLine{GB} + \drawProportionalLine{KL} \cdot \drawProportionalLine{GB} + \drawProportionalLine{LH} \cdot \drawProportionalLine{GB}$.
+$\therefore \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \drawProportionalLine{GK} \cdot \drawProportionalLine{A} + \drawProportionalLine{KL} \cdot \drawProportionalLine{A} + \drawProportionalLine{LH} \cdot \drawProportionalLine{A}$.
 \stopCenterAlign
 
 \qed
@@ -3779,6 +3787,7 @@ byLineDefine(B, E, black, 1, 0);
 byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(C, B, byred, 0, 0);
 draw byNamedLineSeq(0)(AD,AC,CB,BE);
+draw byLabelsOnPolygon(A, C, B, E, F, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{AC,CB}, the square of the whole line is equal to the sum of the rectangles contained by the whole line and each of its parts.\\
@@ -3827,6 +3836,7 @@ byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, E, byblue, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CD,noLine,DF,DE,EB,BC);
+draw byLabelsOnPolygon(B, C, A, F, D, E)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DE,DF}, the rectangle contained by the whole line and either of its parts, is equal to the square of that part, together with the rectangle under the parts.\\
@@ -3838,9 +3848,9 @@ Describe \drawPolygon[bottom]{CBED} \inprop[prop:I.XLVI]
 
 Describe \drawPolygon[bottom]{ACDF} \inprop[prop:I.XXXI]
 
-Then $\drawPolygon[bottom][polygonABEF]{ACDF,CBED} = \polygonCBED + \polygonACFD$, but\\
+Then $\drawPolygon[bottom][polygonABEF]{ACDF,CBED} = \polygonCBED + \polygonACDF$, but\\
 $\polygonABEF = \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE}$ and\\
-$\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACFD = \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$,
+$\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACDF = \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$,
 
 $\therefore \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$:
 

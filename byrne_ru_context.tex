@@ -2524,6 +2524,228 @@ $\therefore \drawUnitLine{BD} = \drawUnitLine{BC}$;
 \qed
 
 \stopProposition
+\stopbook
+
+\startbook[title={Книга 2}]
+\startDefinition[title={Определение I},reference=def:II.I]
+
+\defineNewPicture{
+pair A, B, C, D;
+numeric w, h;
+w := 7/2u;
+h := 3u;
+A := (0, 0);
+B := (w, 0);
+C := (0, h);
+D := (w, h);
+draw byPolygon(A,B,D,C)(byblue);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+draw byNamedLineSeq(0)(AB,AC);
+draw byLabelsOnPolygon(A, C, D, B)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{ всяком}{прямоугольнике или прямоугольном параллелограмме говорят, что он заключается между любыми двумя своими смежными сторонами.}
+
+Таким образом, про прямоугольный параллелограмм про \drawPolygon{ABDC} можно сказать, что он заключен между сторонами \drawUnitLine{AB} и \drawUnitLine{AC}, что можно записать короче в виде $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
+
+Если смежные стороны равны, т. е. $\drawUnitLine{AB} = \drawUnitLine{AC}$, то $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$, что обозначает прямоугольник, заключенный между \drawUnitLine{AB} и \drawUnitLine{AC}, является квадратом\\
+и равен $\left\{\eqalign{
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2\cr
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2}\right.$
+
+\stopDefinition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение II},reference=def:II.II]
+
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, I, d[];
+d1 := (3u, 0);
+d2 := (1/2u, 3u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d2;
+D := A shifted d1 shifted d2;
+E := 2/3[A, B];
+F := 2/3[C, D];
+G := 2/3[A, C];
+H := 2/3[B, D];
+I = whatever[E, F] = whatever[G, H];
+draw byPolygon(A,E,I,G)(byblue);
+draw byPolygon(E,B,H,I)(byyellow);
+draw byPolygon(G,I,F,C)(byyellow);
+draw byPolygon(I,H,D,F)(byred);
+draw byLabelsOnPolygon(C, F, D, H, B, E, A, G)(0,0);
+draw byLabelsOnPolygon(G, I, F)(2,0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{о}{ всяком параллелограмме, фигура образованная  одним из параллелограммов на на его диаметре вместе с двумя дополнениями, называется гномоном.}
+
+Так, \drawPolygon{AEIG,EBHI,GIFC} и \drawPolygon{EBHI,GIFC,IHDF} являются гномонами.
+\stopDefinition
+
+\vfill\pagebreak
+
+\startProposition[title={Предложение I. Теорема},reference=prop:II.I]
+\defineNewPicture[1/4]{
+pair B, C, D, E, G, H, K, L, M, N;
+numeric w, h;
+w := 7/2u;
+h := 3u;
+G := (0, 0);
+H := (w, 0);
+B := (0, h);
+C := (w, h);
+K := 2/5[G, H];
+D := 2/5[B, C];
+L := 3/4[G, H];
+E := 3/4[B, C];
+M := G shifted (0, -2/3u);
+N := M shifted (h, 0);
+draw byPolygon(G,K,D,B)(byyellow);
+draw byPolygon(K,L,E,D)(byblue);
+draw byPolygon(L,H,C,E)(byred);
+draw byLine(K, D, black, 1, 0);
+draw byLine(L, E, black, 1, 0);
+byLineDefine(G, B, black, 0, 0);
+draw byLineWithName(M, N, black, 0, 0)(A);
+byLineDefine(H, C, black, 1, 0);
+byLineDefine(G, K, byblue, 0, 0);
+byLineDefine(K, L, byred, 0, 0);
+byLineDefine(L, H, byyellow, 0, 0);
+byLineDefine(B, D, byblue, 1, 0);
+byLineDefine(D, E, byred, 1, 0);
+byLineDefine(E, C, byyellow, 1, 0);
+draw byNamedLineSeq(0)(GK,KL,LH,HC,EC,DE,BD,GB);
+draw byLabelsOnPolygon(B, D, E, C, H, L, K, G)(0, 0);
+draw byLabelLine(A);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямоугольник}{заключенный между двумя прямыми линиями, одна из которых рассечена на сколько угодно отрезков, равен сумме прямоугольников,заключенных между нерассеченной прямой и каждым из этих отрезков.\\
+$\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalign{
+&\drawProportionalLine{A} \cdot \drawProportionalLine{GK}\cr
++&\drawProportionalLine{A} \cdot \drawProportionalLine{KL}\cr
++&\drawProportionalLine{A} \cdot \drawProportionalLine{LH}}\right.$}
+
+\startCenterAlign
+Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{A}$ (\inpropL[prop:I.II], \inpropL[prop:I.III]); complete the parallelograms, that is to say,
+
+Draw $\left\{\eqalign{
+\drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \cr
+\vcenter{
+\nointerlineskip\hbox{\drawProportionalLine{KD}}
+\nointerlineskip\hbox{\drawProportionalLine{LE}}
+\nointerlineskip\hbox{\drawProportionalLine{HC}}} &\parallel \drawProportionalLine{GB}
+}\right\}$ \inprop[prop:I.XXXI]
+
+$\drawPolygon{GKDB,KLED,LHCE} =
+\drawPolygon{GKDB} +
+\drawPolygon{KLED} +
+\drawPolygon{LHCE}$\\
+$\drawPolygon{GKDB,KLED,LHCE} = \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB}$\\
+$\polygonGKDB = \drawProportionalLine{GK} \cdot \drawProportionalLine{GB}$,
+$\polygonKLED = \drawProportionalLine{KL} \cdot \drawProportionalLine{GB}$,\\
+$\polygonLHCE = \drawProportionalLine{LH} \cdot \drawProportionalLine{GB}$
+
+$\therefore \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \drawProportionalLine{GK} \cdot \drawProportionalLine{A} + \drawProportionalLine{KL} \cdot \drawProportionalLine{A} + \drawProportionalLine{LH} \cdot \drawProportionalLine{A}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение II. Теорема},reference=prop:II.II]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F;
+numeric w;
+w := 7/2u;
+A := (0, w);
+B := (w, w);
+C := 2/3[A, B];
+D := (0, 0);
+E := (w, 0);
+F := 2/3[D, E];
+draw byPolygon(A,C,F,D)(byred);
+draw byPolygon(C,B,E,F)(byyellow);
+draw byLine(C, F, black, 0, 0);
+byLineDefine(A, D, black, 1, 0);
+byLineDefine(B, E, black, 1, 0);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(C, B, byred, 0, 0);
+draw byNamedLineSeq(0)(AD,AC,CB,BE);
+draw byLabelsOnPolygon(A, C, B, E, F, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая линия как-либо рассечена \drawProportionalLine{AC,CB}, квадат всей линии равен сумме прямоугольников, заключенных между целой линией и каждой из ее частей.\\
+$\drawProportionalLine{AC,CB}^2 = \left\{\eqalign{
+& \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC} \cr
++ & \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}
+}\right.$
+}
+
+\startCenterAlign
+Опишем \drawPolygon[bottom][polygonABED]{ACFD,CBEF} \inprop[prop:I.XLVI]
+
+Проведем \drawProportionalLine{CF} параллельную \drawProportionalLine{AD} \inprop[prop:I.XXXI]
+
+$\polygonABED = \drawProportionalLine{AC,CB}^2$
+
+$\drawPolygon{ACFD} = \drawProportionalLine{CF} \cdot \drawProportionalLine{AC} = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC}$
+
+$\drawPolygon{CBEF} = \drawProportionalLine{CF} \cdot \drawProportionalLine{CB} = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}$
+
+$\polygonABED = \drawPolygon{ACFD} + \drawPolygon{CBEF}$
+
+$\therefore \drawProportionalLine{AC,CB}^2 = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC} + \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. III. theor.},reference=prop:II.III]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+numeric w, h;
+w := -4u;
+h := 11/4u;
+A := (0, h);
+B := (w, h);
+C := (w+h, h);
+D := (w+h, 0);
+E := (w, 0);
+F := (0, 0);
+draw byPolygon(A,C,D,F)(byyellow);
+draw byPolygon(C,B,E,D)(byred);
+byLineDefine(D, F, byred, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(C, D, byblue, 0, 0);
+byLineDefine(D, E, byblue, 0, 0);
+byLineDefine(E, B, byblue, 0, 0);
+draw byNamedLineSeq(0)(CD,noLine,DF,DE,EB,BC);
+draw byLabelsOnPolygon(B, C, A, F, D, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая линия как-либо рассечена \drawProportionalLine{DE,DF}, то прямоугольник, заключенный между всей прямой и ее частью равен квадрату этой части, вместе с прямоугольником, заключенным между частями.\\
+$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, или \\
+$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.}
+
+\startCenterAlign
+Опишем \drawPolygon{CBED} \inprop[prop:I.XLVI]
+
+Опишем \drawPolygon{ACDF} \inprop[prop:I.XXXI]
+
+Тогда $\drawPolygon[middle][polygonABEF]{ACDF,CBED} = \polygonCBED + \polygonACDF$, но\\
+$\polygonABEF = \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE}$ и\\
+$\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACDF = \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$,
+
+$\therefore \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$:
+
+Таким же образом можно показать, что $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
 
 \stopbook
 \stoptext
