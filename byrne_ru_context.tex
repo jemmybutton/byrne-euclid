@@ -2703,7 +2703,7 @@ $\therefore \drawProportionalLine{AC,CB}^2 = \drawProportionalLine{AC,CB} \cdot 
 \qed
 \stopProposition
 
-\startProposition[title={Prop. III. theor.},reference=prop:II.III]
+\startProposition[title={Предложение III. Теорема},reference=prop:II.III]
 \defineNewPicture{
 pair A, B, C, D, E, F;
 numeric w, h;
@@ -2742,6 +2742,364 @@ $\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACDF = \drawProportionalL
 $\therefore \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$:
 
 Таким же образом можно показать, что $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение IV. Теорема},reference=prop:II.IV]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, K;
+numeric w;
+w := 4u;
+A := (0, w);
+B := (w, w);
+C :=2/3[A, B];
+D := (0, 0);
+E := (w, 0);
+F := 2/3[D, E];
+H := 2/3[D, A];
+K := 2/3[E, B];
+G = whatever[H, K] = whatever[F, C];
+draw byPolygon(A,C,G,H)(byyellow);
+draw byPolygon(G,K,E,F)(byyellow);
+draw byPolygon(D,H,G)(byblue);
+draw byPolygon(G,B,C)(byred);
+draw byAngle(F, D, G, byyellow, 0);
+draw byAngle(F, G, D, byred, 0);
+draw byAngle(K, G, B, black, 0);
+draw byAngle(G, B, K, byblue, 0);
+draw byLine(H, G, byred, 1, 0);
+draw byLine(G, K, byred, 0, 0);
+draw byLine(C, G, byblue, 1, 0);
+draw byLine(F, G, byblue, 0, 0);
+byLineDefine(E, K, byblue, 0, 0);
+byLineDefine(F, E, byred, 0, 0);
+byLineDefine(D, F, byblue, 0, 0);
+byLineDefine(K, B, byred, 0, 0);
+byLineDefine(G, D, black, 0, 0);
+byLineDefine(B, G, black, 1, 0);
+draw byNamedLineSeq(-1)(BG,GD,DF,FE,EK,KB);
+byLineDefine(A, D, black, 0, 0);
+byLineStylize(B, E, 0, 0, -1)(AD);
+byLineDefine(B, A, black, 0, 0);
+byLineStylize(E, D, 0, 0, -1)(BA);
+draw byLabelsOnPolygon(A, C, B, K, E, F, D, H)(0, 0);
+draw byLabelsOnPolygon(H, G, C)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DF,FE}, квадрат всей прямой равен квадратам частей, с дважды взятым прямоугольником, заключенным между частями.\\
+$\drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{дважды} \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
+}
+
+\startCenterAlign
+Опишем \drawLine[bottom][squareABED]{AD,BA,KB,EK,FE,DF} \inprop[prop:I.XLVI]\\
+проведем \drawProportionalLine{BG,GD} \inpost[post:I]\\
+и $\left\{\eqalign{
+\drawProportionalLine{FG,CG} &\parallel \drawProportionalLine{EK,KB} \cr
+\drawProportionalLine{HG,GK} &\parallel \drawProportionalLine{DF,FE}
+}\right\}$ \inprop[prop:I.XXXI]\\
+$\drawAngle{GBK} = \drawAngle{FDG}$ \inprop[prop:I.V],\\
+$\drawAngle{GBK} = \drawAngle{FGD}$ \inprop[prop:I.XXIX],\\
+$\therefore \drawAngle{FDG} = \drawAngle{FGD}$\\
+$\therefore$ согласно (\inpropL[prop:I.VI], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV])\\ $\drawFromCurrentPicture[middle][squareFGHD]{
+draw byNamedPolygon(DHG);
+draw byNamedLineFull(G, G, 1, 0, -1)(DF);
+draw byNamedLineFull(D, D, 0, 1, -1)(FG);
+draw byLabelsOnPolygon(D, H, G, F)(0, 0);
+} \mbox{ является квадратом } = \drawProportionalLine{DF}^2$.\\
+Аналогично \drawFromCurrentPicture[middle][squareKBCG]{
+draw byNamedPolygon(GBC);
+draw byNamedLineFull(B, B, 1, 0, -1)(GK);
+draw byNamedLineFull(G, G, 0, 1, -1)(KB);
+draw byLabelsOnPolygon(G, C, B, K)(0, 0);
+} является квадратом $= \drawProportionalLine{GK}^2$,\\
+$\drawPolygon[middle]{ACGH} = \drawPolygon[middle]{GKEF} = \drawProportionalLine{DF} \cdot \drawProportionalLine{GK}$ \inprop[prop:I.XLIII]\\
+Но $\drawFromCurrentPicture[middle][squareABEDf]{
+draw byNamedPolygon(GBC,DHG,ACGH,GKEF);
+draw byNamedLineFull(G, G, 1, 0, -1)(DF);
+draw byNamedLineFull(D, D, 0, 1, -1)(FG);
+draw byNamedLineFull(B, B, 1, 0, -1)(GK);
+draw byNamedLineFull(G, G, 0, 1, -1)(KB);
+draw byLabelsOnPolygon(A, B, E, D)(0, 0);
+} = \squareFGHD + \drawPolygon{ACGH} + \drawPolygon{GKEF} + \squareKBCG$,\\
+$\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ дважды } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение V. Теорема},reference=prop:II.V]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, K, L, M;
+numeric h;
+h := 6u;
+A := (0, -h);
+B := (0, 0);
+C := 1/2[A, B];
+D := 2/5[B, C];
+E := (1/2h, -1/2h);
+F := (1/2h, 0);
+G := (xpart(F), ypart(D));
+H = whatever[D, G] = whatever[B, E];
+K := (xpart(H), ypart(A));
+L := (xpart(H), ypart(C));
+M := (xpart(H), ypart(B));
+draw byPolygon(B,D,H,M)(byblue);
+draw byPolygon(D,C,L,H)(byyellow);
+draw byPolygon(C,L,K,A)(black);
+draw byPolygon(M,H,G,F)(byyellow);
+draw byPolygon(H,L,E,G)(byred);
+draw byLine(H, G, black, 1, 0);
+draw byLine(D, H, byred, 0, 0);
+byLineDefine(L, M, black, 1, 0);
+byLineDefine(C, L, byred, 0, 0);
+byLineDefine(B, D, byred, 0, 0);
+byLineDefine(D, C, byblue, 0, 0);
+byLineDefine(C, A, byyellow, 0, 0);
+byLineDefine(E, B, black, 0, 0);
+byLineDefine(A, K, byred, 1, 0);
+byLineDefine(K, L, byyellow, 0, 0);
+byLineDefine(L, E, byblue, 1, 0);
+draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
+draw byLabelsOnPolygon(A, C, D, B, M, F, G, E, L, K)(0, 0);
+draw byLabelsOnPolygon(M, H, G)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая \drawProportionalLine{BD,DC,CA} рассечена на равные \drawProportionalLine{BD,DC} \drawProportionalLine{CA} и неравные \drawProportionalLine{BD} \drawProportionalLine{DC,CA} отрезки, прямоугольник, заключенный между неравными частями, вместе с квадратом отрезка между сечениями, равен квадрату половины всей прямой. \\
+$\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
+}
+
+\startCenterAlign
+Опишем \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI], проведем \drawProportionalLine{EB}\\
+и $\left\{\eqalign{
+\drawProportionalLine{DH,HG} & \parallel \drawProportionalLine{CL,LE} \cr
+\drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \cr
+\drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
+}\right\}$ \inprop[prop:I.XXXI]\\
+$\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI]\\
+$\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]\\
+$\therefore \mbox{\inax[ax:II] } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture{
+startGlobalRotation(90);
+startAutoLabeling;
+draw byNamedPolygon(DCLH,CLKA);
+stopAutoLabeling;
+stopGlobalRotation;
+} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$\\
+но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
+и $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (постр.)\\
+$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawFromCurrentPicture{
+startGlobalRotation(90);
+startAutoLabeling;
+draw byNamedPolygon(DCLH,CLKA,HLEG);
+stopAutoLabeling;
+stopGlobalRotation;
+}$
+
+$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение VI. Теорема},reference=prop:II.VI]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, K, L, M;
+numeric h, s;
+h := 5u;
+s := 2/5h;
+A := (0, h);
+B := (0, 0);
+C := A shifted (0, -s);
+D := A shifted (0, -2s);
+E := (-h+s, h-s);
+F := (-h+s, 0);
+G := (xpart(F), ypart(D));
+H = whatever[D, G] = whatever[B, E];
+K := (xpart(H), ypart(A));
+L := (xpart(H), ypart(C));
+M := (xpart(H), ypart(B));
+draw byPolygon(B,D,H,M)(byblue);
+draw byPolygon(D,C,L,H)(byyellow);
+draw byPolygon(C,L,K,A)(black);
+draw byPolygon(M,H,G,F)(byyellow);
+draw byPolygon(H,L,E,G)(byred);
+draw byLine(H, G, byblue, 1, 0);
+draw byLine(D, H, byred, 0, 0);
+byLineDefine(L, M, black, 1, 0);
+byLineDefine(C, L, byred, 0, 0);
+byLineDefine(B, D, byred, 0, 0);
+byLineDefine(D, C, byblue, 0, 0);
+byLineDefine(C, A, byyellow, 0, 0);
+byLineDefine(E, B, black, 0, 0);
+byLineDefine(A, K, byred, 1, 0);
+byLineDefine(K, L, byyellow, 0, 0);
+byLineDefine(L, E, black, 1, 0);
+draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
+draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(0, 0);
+draw byLabelsOnPolygon(L, H, D)(2, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и продленной частью, вместе с квадратом половины исходной линии, равен квадрату линии составленной из половины исходной линии и продленной части.\\
+$\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
+}
+
+\startCenterAlign
+Опишем \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI], проведем \drawProportionalLine{EB}
+
+и $\left\{\eqalign{
+\drawProportionalLine{HG,DH} & \parallel \drawProportionalLine{LE,CL} \cr
+\drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \cr
+\drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
+}\right\}$ \inprop[prop:I.XXXI]
+
+$\drawPolygon{MHGF} = \drawPolygon{DCLH} = \drawPolygon{CLKA}$ (\inpropL[prop:I.XXXVI], \inpropL[prop:I.XLIII])\\
+$\therefore \drawPolygon{BDHM,DCLH,MHGF} = \drawPolygon{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
+но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
+$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ (постр., \inaxL[ax:II])
+
+$\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение VII. Теорема},reference=prop:II.VII]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, N;
+numeric w;
+w := 7/2u;
+A := (0, w);
+B := (w, w);
+C := 3/5[A, B];
+D := (0, 0);
+E := (w, 0);
+N := 3/5[D, E];
+F := 3/5[E, B];
+G = whatever[D, B] = whatever[N, C];
+H := whatever[A, D] = whatever[F, G];
+draw byPolygon(D,N,G,H)(byred);
+draw byPolygon(N,E,F,G)(black);
+draw byPolygon(H,G,C,A)(byyellow);
+draw byPolygon(G,F,B,C)(byblue);
+draw byLine(G, N, byblue, 0, 0);
+draw byLine(G, F, byred, 0, 0);
+draw byLine(G, H, black, 1, 0);
+draw byLine(G, C, black, 1, 0);
+byLineDefine(B, D, black, 0, 0);
+byLineDefine(D, N, byblue, 0, 0);
+byLineDefine(N, E, byred, 0, 0);
+byLineDefine(E, B, byyellow, 0, 0);
+draw byNamedLineSeq(-1)(BD,DN,NE,EB);
+draw byLabelsOnPolygon(D, H, A, C, B, F, E, N)(0, 0);
+draw byLabelsOnPolygon(H, G, C)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DN,NE}, то вместе квадрат всей прямой и одной из ее частей равны дважды взятому прямоугольнику, заключенному между всей прямой и этой ее частью, вместе с квадратом другой части.\\
+$\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$
+}
+
+\startCenterAlign
+Опишем \drawPolygon[middle][squareABED]{DNGH,NEFG,HGCA,GFBC}. \inprop[prop:I.XLVI], проведем \drawProportionalLine{BD} \inpost[post:I],\\
+и $\left\{\eqalign{
+\drawProportionalLine{GN,GC} &\parallel \drawProportionalLine{EB} \cr
+\drawProportionalLine{GH,GF} &\parallel \drawProportionalLine{DN,NE}
+}\right\}$\\
+$\drawPolygon{HGCA} = \drawPolygon{NEFG}$ \inprop[prop:I.XLIII],\\
+добавим $\drawPolygon{GFBC} = \drawProportionalLine{NE}^2$ к обоим \inprop[prop:II.IV]
+
+$\drawPolygon{HGCA,GFBC} = \drawPolygon{NEFG,GFBC} = \drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE}$\\
+$\drawPolygon{DNGH} = \drawProportionalLine{DN}^2$ \inprop[prop:II.IV]\\
+$\drawPolygon{HGCA,GFBC} + \drawPolygon{NEFG,GFBC} + \drawPolygon{DNGH} = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2 = \squareABED + \drawPolygon{GFBC}$;
+
+$\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение VIII. Теорема},reference=prop:II.VIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, K, L, M, N, O, P, Q, R;
+numeric w, d;
+w := 7/2u;
+d := u;
+A := (0, w + d);
+B := (w, w + d);
+C := (w - d, w + d);
+D := (w + d, w + d);
+E := (0, 0);
+F := (w + d, 0);
+G := (w - d, w);
+H := (w - d, 0);
+K := (w, w);
+L := (w, 0);
+M := (0, w);
+N := (w + d, w);
+O := (0, w - d);
+P := (w + d, w - d);
+Q := (w - d, w - d);
+R := (w, w - d);
+draw byLine(C, Q, byblue, 1, 0);
+draw byLine(B, R, black, 1, 0);
+draw byLine(Q, H, byblue, 0, 0);
+draw byLine(R, L, byblue, 0, 0);
+draw byLine(M, G, black, 1, 0);
+draw byLine(O, Q, byred, 1, 0);
+draw byLine(G, N, byred, 0, 0);
+draw byLine(Q, P, byred, 0, 0);
+draw byLine(D, E, black, 0, 0);
+byLineDefine(E, H, byblue, 0, 0);
+byLineDefine(H, L, byred, 0, 0);
+byLineDefine(L, F, byyellow, 0, 0);
+byLineDefine(F, P, byblue, 0, 0);
+byLineDefine(P, N, byyellow, 0, 0);
+byLineDefine(N, D, byred, 0, 0);
+byLineDefine(A, D, black, 0, 0);
+byLineDefine(E, A, black, 0, 0);
+draw byNamedLineSeq(0)(EH,HL,LF,FP,PN,ND,AD,EA);
+byLineDefine(D, F, black, 0, 0);
+byLineDefine(B, L, black, 0, 1);
+byLineDefine(C, H, black, 0, 1);
+byLineDefine(M, N, black, 0, 1);
+byLineDefine(O, P, black, 0, 1);
+draw byLabelsOnPolygon(A, C, B, D, N, P, F, L, H, E, O, M)(0, 0);
+}
+\drawCurrentPicture
+\problemNP{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{EH,HL}, квадрат всей прямой вместе с любой ее частью равен четырежды прямоугольнику, заключенному между всей прямой и этой ее частью, вместе с квадратом другой части. \\
+$\drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
+}
+
+\startCenterAlign
+Продлим \drawProportionalLine{EH,HL} и сделаем $\drawProportionalLine{LF} = \drawProportionalLine{HL}$
+
+Построим \drawFromCurrentPicture{
+draw byNamedLine(BL,CH,MN,OP);
+startAutoLabeling;
+draw byNamedLineSeq(0)(LF,HL,EH,EA,AD,DF);
+stopAutoLabeling;
+} \inprop[prop:I.XLVI];\\
+проведем \drawProportionalLine{DE},
+
+$\left.\eqalign{
+\left.\eqalign{
+\vcenter{
+\nointerlineskip\hbox{\drawProportionalLine{CQ,QH}}
+\nointerlineskip\hbox{\drawProportionalLine{BR,RL}}
+}
+}\right\} & \parallel \drawProportionalLine{FP,PN,ND}\cr
+\left.\eqalign{
+\vcenter{
+\nointerlineskip\hbox{\drawProportionalLine{OQ,QP}}
+\nointerlineskip\hbox{\drawProportionalLine{MG,GN}}
+}
+}\right\} & \parallel \drawProportionalLine{EH,HL,LF}\cr
+}\right\}$ \inprop[prop:I.XXXI]
+
+$\drawProportionalLine{EH,HL,LF}^2 = \drawProportionalLine{LF}^2 + \drawProportionalLine{EH,HL}^2 + 2 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{LF}$ \inprop[prop:II.IV]\\
+но $\drawProportionalLine{HL}^2 + \drawProportionalLine{EH,HL}^2 = 2 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$ \inprop[prop:II.VII]
+
+$\therefore \drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
 \stopCenterAlign
 
 \qed

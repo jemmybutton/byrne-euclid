@@ -3719,7 +3719,7 @@ draw byPolygon(L,H,C,E)(byred);
 draw byLine(K, D, black, 1, 0);
 draw byLine(L, E, black, 1, 0);
 byLineDefine(G, B, black, 0, 0);
-draw byLineWithName(M, N, black, 0, 0)(A);
+draw byLineWithName(M, N, black, 0, 0)(A); % improvement: the line wasn't there, but it should've been
 byLineDefine(H, C, black, 1, 0);
 byLineDefine(G, K, byblue, 0, 0);
 byLineDefine(K, L, byred, 0, 0);
@@ -3897,6 +3897,8 @@ byLineDefine(A, D, black, 0, 0);
 byLineStylize(B, E, 0, 0, -1)(AD);
 byLineDefine(B, A, black, 0, 0);
 byLineStylize(E, D, 0, 0, -1)(BA);
+draw byLabelsOnPolygon(A, C, B, K, E, F, D, H)(0, 0);
+draw byLabelsOnPolygon(H, G, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DF,FE}, the square of the whole line is equal to the squares of the parts, together with twice the rectangle contained by the parts.\\
@@ -3920,12 +3922,14 @@ $\therefore$ by (\inpropL[prop:I.VI], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXX
 draw byNamedPolygon(DHG);
 draw byNamedLineFull(G, G, 1, 0, -1)(DF);
 draw byNamedLineFull(D, D, 0, 1, -1)(FG);
+draw byLabelsOnPolygon(D, H, G, F)(0, 0);
 } \mbox{ is a square } = \drawProportionalLine{DF}^2$.
 
 For the same reasons \drawFromCurrentPicture[bottom][squareKBCG]{
 draw byNamedPolygon(GBC);
 draw byNamedLineFull(B, B, 1, 0, -1)(GK);
 draw byNamedLineFull(G, G, 0, 1, -1)(KB);
+draw byLabelsOnPolygon(G, C, B, K)(0, 0);
 } is a square $= \drawProportionalLine{GK}^2$,
 
 $\drawPolygon[bottom]{ACGH} = \drawPolygon[middle]{GKEF} = \drawProportionalLine{DF} \cdot \drawProportionalLine{GK}$ \inprop[prop:I.XLIII]
@@ -3936,6 +3940,7 @@ draw byNamedLineFull(G, G, 1, 0, -1)(DF);
 draw byNamedLineFull(D, D, 0, 1, -1)(FG);
 draw byNamedLineFull(B, B, 1, 0, -1)(GK);
 draw byNamedLineFull(G, G, 0, 1, -1)(KB);
+draw byLabelsOnPolygon(A, B, E, D)(0, 0);
 } = \squareFGHD + \drawPolygon{ACGH} + \drawPolygon{GKEF} + \squareKBCG$,
 
 $\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ twice } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
@@ -3977,6 +3982,8 @@ byLineDefine(A, K, byred, 1, 0);
 byLineDefine(K, L, byyellow, 0, 0);
 byLineDefine(L, E, byblue, 1, 0);
 draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
+draw byLabelsOnPolygon(A, C, D, B, M, F, G, E, L, K)(0, 0);
+draw byLabelsOnPolygon(M, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be divided \drawProportionalLine{BD,DC} \drawProportionalLine{CA} into two equal parts and also \drawProportionalLine{BD} \drawProportionalLine{DC,CA} into two unequal parts, the rectangle contained by the unequal parts, together with the square of the line between the points of section, is equal to the square of half that line \\
@@ -3988,7 +3995,7 @@ Describe \drawPolygon[bottom][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XL
 
 draw \drawProportionalLine{EB}\\
 and $\left\{\eqalign{
-\drawProportionalLine{HG,DH} & \parallel \drawProportionalLine{CL,LE} \cr
+\drawProportionalLine{DH,HG} & \parallel \drawProportionalLine{CL,LE} \cr
 \drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \cr
 \drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
 }\right\}$ \inprop[prop:I.XXXI]
@@ -3999,7 +4006,9 @@ $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH}$ \inprop[prop:I.XLIII]
 
 $\therefore \mbox{\inax[ax:II] } \drawPolygon[bottom]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture[bottom]{
 startGlobalRotation(90);
+startAutoLabeling;
 draw byNamedPolygon(DCLH,CLKA);
+stopAutoLabeling;
 stopGlobalRotation;
 } = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
 
@@ -4008,7 +4017,9 @@ and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (const.)
 
 $\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawFromCurrentPicture[bottom]{
 startGlobalRotation(90);
+startAutoLabeling;
 draw byNamedPolygon(DCLH,CLKA,HLEG);
+stopAutoLabeling;
 stopGlobalRotation;
 }$
 
@@ -4052,6 +4063,8 @@ byLineDefine(A, K, byred, 1, 0);
 byLineDefine(K, L, byyellow, 0, 0);
 byLineDefine(L, E, black, 1, 0);
 draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
+draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(0, 0);
+draw byLabelsOnPolygon(L, H, D)(2, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be bisected \drawProportionalLine{DC,CA} and produced to any point \drawProportionalLine{BD,DC,CA}, the rectangle contained by the whole line so increased, and the part produced, together with the square of half the line, is equal to the square of the line made up of the half, and the produced part.\\
@@ -4071,7 +4084,7 @@ $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH} = \drawPolygon[bottom]{
 $\therefore \drawPolygon[bottom]{BDHM,DCLH,MHGF} = \drawPolygon[bottom]{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
 
-$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (const, \inaxL[ax:II])
+$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (const., \inaxL[ax:II])
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
 \stopCenterAlign
@@ -4106,6 +4119,8 @@ byLineDefine(D, N, byblue, 0, 0);
 byLineDefine(N, E, byred, 0, 0);
 byLineDefine(E, B, byyellow, 0, 0);
 draw byNamedLineSeq(-1)(BD,DN,NE,EB);
+draw byLabelsOnPolygon(D, H, A, C, B, F, E, N)(0, 0);
+draw byLabelsOnPolygon(H, G, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DN,NE}, the squares of the whole line and one of the parts are equal to twice the rectangle contained by the whole line and that part, together with the square of the other parts.\\
@@ -4113,7 +4128,7 @@ $\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportion
 }
 
 \startCenterAlign
-Describe \drawPolygon[bottom][squareABED]{DNGH,NEFG,HGCA,GFBC}. \inprop[prop:I.XLVI], draw \drawProportionalLine{BD} \inpost[post:I],\\
+Describe \drawPolygon[bottom][squareABED]{DNGH,NEFG,HGCA,GFBC} \inprop[prop:I.XLVI], draw \drawProportionalLine{BD} \inpost[post:I],\\
 and $\left\{\eqalign{
 \drawProportionalLine{GN,GC} &\parallel \drawProportionalLine{EB} \cr
 \drawProportionalLine{GH,GF} &\parallel \drawProportionalLine{DN,NE}
@@ -4176,6 +4191,7 @@ byLineDefine(B, L, black, 0, 1);
 byLineDefine(C, H, black, 0, 1);
 byLineDefine(M, N, black, 0, 1);
 byLineDefine(O, P, black, 0, 1);
+draw byLabelsOnPolygon(A, C, B, D, N, P, F, L, H, E, O, M)(0, 0);
 }
 \drawCurrentPicture
 \problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{EH,HL}, the square of the sum of the whole line and any of its parts is equal to four times the rectangle contained by the whole line, and that part together with the square of the other part. \\
