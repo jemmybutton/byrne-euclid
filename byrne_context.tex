@@ -4263,6 +4263,8 @@ byLineDefine(H, F, black, 0, 0);
 byLineDefine(E, H, black, 1, 0);
 byLineDefine(A, E, black, 1, 0);
 draw byNamedLineSeq(0)(AC,CD,DB,FB,HF,EH,AE);
+draw byLabelsOnPolygon(E, F, B, D, C, A)(0, 0);
+draw byLabelsOnPolygon(C, G, E)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC} \drawProportionalLine{CD,DB} and also into two unequal parts \drawProportionalLine{AC,CD} \drawProportionalLine{DB}, the squares of the unequal parts are together double the squares of half the line, and of the part between the points of section.\\
@@ -4326,6 +4328,8 @@ byLineDefine(D, G, byred, 1, 0);
 byLineDefine(A, G, black, 0, 0);
 byLineDefine(A, E, byblue, 1, 0);
 draw byNamedLineSeq(0)(EF,FD,DG,AG,AE);
+draw byLabelsOnPolygon(A, E, F, D, G)(0, 0);
+draw byLabelsOnPolygon(G, B, C, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawProportionalLine{AC,CB} be bisected and produced to any point \drawProportionalLine{AC,CB,BD}, the squares of the whole produced line, and of the produced part, are together double of the squares of half line, and of the line made up of the half and produced part.\\
@@ -4361,7 +4365,6 @@ $\therefore \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 
 \stopCenterAlign
 
 \qed
-
 \stopProposition
 
 \startProposition[title={Prop. XI. prob.},reference=prop:II.XI]
@@ -4390,6 +4393,7 @@ byLineDefine(E, A, byblue, 0, 0);
 byLineDefine(A, F, byyellow, 0, 0);
 draw byNamedLineSeq(1)(BE,HB,AH);
 draw byNamedLine(CE,EA,AF,KG);
+draw byLabelsOnPolygon(F, A, E, C, K, D, B, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{divide a given straight line \drawProportionalLine{AH,HB} in such a manner, that the rectangle contained by the whole line and one of its parts may be equal to the square of the other.\\
@@ -4430,6 +4434,7 @@ byLineDefine(A, D, black, 1, 0);
 byLineDefine(D, B, byyellow, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
 draw byNamedLineSeq(0)(DB,AD,CA,BC);
+draw byLabelsOnPolygon(C, B, D, A)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{any obtuse angled triangle, the square of the side subtending the obtuse angle exceeds the sum of the squares of the sides containing the obtuse angle, by twice the rectangle contained by either of these sides and the produced parts of the same from the obtuse angle to the perpendicular let fall on it from the opposite acute angle.\\
@@ -4464,7 +4469,7 @@ A := (2/5w, h);
 B:= (0, 0);
 C := (w, 0);
 D = whatever[B, C] = (xpart(A), whatever);
-d := (0, -h - 1/2u);
+d := (0, -h -4/3u);
 E := (w, h) shifted d;
 F := (0, 0) shifted d;
 G := (2/5w, 0) shifted d;
@@ -4481,11 +4486,15 @@ byLineDefine(F, G, black, 0, 0);
 byLineDefine(G, H, black, 1, 0);
 byLineDefine(H, E, byyellow, 0, 0);
 draw byNamedLineSeq(0)(EF,FG,GH,HE);
+label.top("First", (xpart(1/2[B, C]), ypart(A) + 1/4u));
+label.top("Second", (xpart(1/2[F, H]), ypart(E)));
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
+draw byLabelsOnPolygon(F, E, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{any triangle, the square of the side subtending an acute angle, is less than the sum of the squares of the sides containing that angle, by twice the rectangle contained by either of these sides, and the part of it intercepted between the foot of the perpendicular let fall on it from the opposite angle, and the angular point of the acute angle.\\
 First.\\
-$\drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{DC}$.\\
+$\drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$.\\
 Second.\\
 $\drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ by $2 \cdot \drawProportionalLine{FG} \cdot \drawProportionalLine{FG,GH}$.
 }
@@ -4543,6 +4552,8 @@ r := abs(B - G);
 H := (D--(E shifted ((E-D)*10))) intersectionpoint ((fullcircle scaled 2r) shifted G);
 forsuffixes i=a,b,c,d,e,f:
 	i := i shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
+	string pointLabel.i;
+	pointLabel.i := "";
 endfor;
 draw byPolygon(a,b,c,d,e,f)(byyellow);
 draw byPolygon(B,C,D,E)(byred);
@@ -4557,6 +4568,8 @@ byLineDefine(G, B, black, 0, 0);
 draw byNamedLineSeq(-1)(FE,EG,GB,HB,HF);
 draw byArc(G, B, F, r, byred, 0, 0, 0, 0)(G);
 byLineDefine(B, F, black, 0, 0);
+draw byLabelsOnPolygon(B, C, D, E, F, H)(0, 0);
+draw byLabelsOnPolygon(H, G, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{T}{o}{draw a right line of which the square shall be equal to a given rectilinear figure.\\
@@ -4573,7 +4586,9 @@ Describe
 \drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
 draw byNamedLineFull(B, F, 0, 0, 1)(BF);
+startAutoLabeling;
 draw byNamedArc(G);
+stopAutoLabeling;
 stopTempScale;
 }
 \inpost[post:III],\\

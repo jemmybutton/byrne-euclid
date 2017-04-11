@@ -3105,6 +3105,385 @@ $\therefore \drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH
 \qed
 \stopProposition
 
+\startProposition[title={Предложение IX. Теорема},reference=prop:II.IX]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H;
+numeric w;
+w := 5u;
+A := (-1/2w, 0);
+B := (1/2w, 0);
+C := (0, 0);
+D := (1/5w, 0);
+E := (0, 1/2w);
+F = whatever[E, B] = (xpart(D), whatever);
+G = whatever[E, C] = (whatever, ypart(F));
+H := 1/2[E, F];
+draw byAngleWithName(E, A, B, byyellow, 0)(A);
+draw byAngleWithName(A, B, E, byblue, 0)(B);
+draw byAngle(A, E, C, byyellow, 0);
+draw byAngle(C, E, B, byred, 0);
+draw byAngle(E, F, G, byred, 0);
+draw byAngle(D, F, B, black, 0);
+draw byLine(A, F, black, 0, 0);
+draw byLine(F, D, byred, 1, 0);
+draw byLine(G, F, byyellow, 0, -1);
+draw byLine(C, G, byblue, 0, 0);
+draw byLine(G, E, byblue, 1, 0);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(C, D, byyellow, 0, 0);
+byLineDefine(D, B, byred, 0, 0);
+byLineDefine(F, B, byyellow, 1, 0);
+byLineDefine(H, F, black, 0, 0);
+byLineDefine(E, H, black, 1, 0);
+byLineDefine(A, E, black, 1, 0);
+draw byNamedLineSeq(0)(AC,CD,DB,FB,HF,EH,AE);
+draw byLabelsOnPolygon(E, F, B, D, C, A)(0, 0);
+draw byLabelsOnPolygon(C, G, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая рассечена на равные \drawProportionalLine{AC} \drawProportionalLine{CD,DB} и неравные \drawProportionalLine{AC,CD} \drawProportionalLine{DB} части, квадраты неравных частей вместе вдвое больше квадрата на половине, вместе с квадратом отрезка между сечениями.\\
+$\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
+}
+
+\startCenterAlign
+Сделаем $\drawProportionalLine{CG,GE} \perp \mbox{ и } = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CD,DB}$,\\
+Проведем \drawProportionalLine{AE} и \drawProportionalLine{EH,HF,FB},\\
+$\drawProportionalLine{FD} \parallel \drawProportionalLine{CG,GE}$, $ \drawProportionalLine{GF} \parallel \drawProportionalLine{CD,DB}$ и проведем \drawProportionalLine{AF}.
+
+$\drawAngle{A} = \drawAngle{AEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
+$\drawAngle{B} = \drawAngle{DFB}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
+$\therefore \drawAngle{AEC,CEB} = \drawRightAngle$.
+
+$\drawAngle{B} = \drawAngle{CEB} = \drawAngle{EFG} = \drawAngle{DFB}$ (\inpropL[prop:I.V], \inpropL[prop:I.XXIX]).\\
+Значит $\drawProportionalLine{FD} = \drawProportionalLine{DB}$, $\drawProportionalLine{GE} = \drawProportionalLine{GF} = \drawProportionalLine{CD}$ (\inpropL[prop:I.VI], \inpropL[prop:I.XXXIV])
+
+$\drawProportionalLine{AF}^2 = \left\{\eqalign{
+&\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{FD}^2 \mbox{, or } + \drawProportionalLine{DB}^2 \cr
+&= \left\{\eqalign{
+&= \drawProportionalLine{AE}^2 + \drawProportionalLine{EH,HF}^2 \cr
+&= 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2
+}\right. \mbox{ \inprop[prop:I.XLVII]}
+}\right.$
+
+$\therefore \drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение X. Теорема},reference=prop:II.X]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G;
+numeric w;
+w := 7/2u;
+A := (0, 0);
+B := (w, 0);
+C := 1/2[A, B];
+D := 4/3[A, B];
+E := (w/2, w/2);
+F := (xpart(D), ypart(E));
+G = whatever[E, B] = whatever[F, D];
+draw byAngleWithName(E, A, C, black, 0)(A);
+draw byAngle(C, E, A, byyellow, 0);
+draw byAngle(B, E, C, byyellow, 0);
+draw byAngle(F, E, B, byblue, 0);
+draw byAngle(C, B, E, byred, 0);
+draw byAngle(D, B, G, byred, 0);
+draw byAngleWithName(B, G, D, byblue, 0)(G);
+draw byLine(C, E, byred, 0, -1);
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, B, byyellow, 0, 0);
+draw byLine(B, D, byblue, 0, 0);
+draw byLine(E, B, black, 0, 0);
+draw byLine(B, G, black, 1, 0);
+byLineDefine(E, F, byyellow, 1, 0);
+byLineDefine(F, D, byred, 0, 0);
+byLineDefine(D, G, byred, 1, 0);
+byLineDefine(A, G, black, 0, 0);
+byLineDefine(A, E, byblue, 1, 0);
+draw byNamedLineSeq(0)(EF,FD,DG,AG,AE);
+draw byLabelsOnPolygon(A, E, F, D, G)(0, 0);
+draw byLabelsOnPolygon(G, B, C, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая линия \drawProportionalLine{AC,CB} рассечена пополам и продлена до любой точки \drawProportionalLine{AC,CB,BD}, квадрат всей линии вместе с квадратом продленной части равны дважды квадрату половины исходной линии вместе к квадратом половины вместе с продленной частью.\\
+$\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
+}
+
+\startCenterAlign
+Сделаем $\drawProportionalLine{CE} \perp \mbox{ и } = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CB}$,
+
+проведем \drawProportionalLine{AE} и \drawProportionalLine{EB,BG},
+
+и $\left\{\eqalign{
+\drawProportionalLine{FD,DG} & \parallel \drawProportionalLine{CE} \cr
+\drawProportionalLine{EF} & \parallel \drawProportionalLine{CB,BD}
+}\right\}$ \inprop[prop:I.XXXI]
+
+также проведем \drawProportionalLine{AG}.
+
+$\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
+$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
+$\therefore \drawAngle{CEA,BEC} = \drawRightAngle$.
+
+$\drawAngle{A} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} = \frac{1}{2}\drawRightAngle$ (\inpropL[prop:I.V], \inpropN[prop:I.XXXII], \inpropN[prop:I.XXIX], \inpropN[prop:I.XXXIV]),
+
+и $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropN[prop:I.XXXIV]).
+
+Тогда, согласно \inprop[prop:I.XLVII]\\
+$\drawProportionalLine{AG}^2 = \left\{\eqalign{
+& \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{DG}^2 \mbox{ or } \drawProportionalLine{BD}^2 \cr
+& \left\{\eqalign{
+& + \drawProportionalLine{AE}^2 = 2 \cdot \drawProportionalLine{AC}^2 \cr
+& + \drawProportionalLine{EB,BG}^2 = 2\cdot \drawProportionalLine{EF}^2
+}\right.
+}\right.$
+
+$\therefore \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XI. Задача},reference=prop:II.XI]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, K;
+numeric w;
+w := 7/2u;
+A := (0, 0);
+B := (w, 0);
+C := (0, w);
+D := (w, w);
+E := 1/2[A, C];
+F := E shifted (0, -abs(E-B));
+G := F shifted (abs(F-A), 0);
+H = whatever[A, B] = (xpart(G), whatever);
+K = whatever[G, H] = whatever[C, D];
+draw byPolygon(A,H,K,C)(byyellow);
+draw byPolygon(H,B,D,K)(byblue);
+draw byPolygon(A,H,G,F)(byblue);
+byLineDefine(K, G, black, 1, 0);
+byLineDefine(A, H, byred, 0, 0);
+byLineDefine(H, B, byred, 1, 0);
+byLineDefine(B, E, black, 0, 0);
+byLineDefine(C, E, byblue, 1, 0);
+byLineDefine(E, A, byblue, 0, 0);
+byLineDefine(A, F, byyellow, 0, 0);
+draw byNamedLineSeq(1)(BE,HB,AH);
+draw byNamedLine(CE,EA,AF,KG);
+draw byLabelsOnPolygon(F, A, E, C, K, D, B, H, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Д}{анную}{прямую \drawProportionalLine{AH,HB} рассечь так, чтобы прямоугольник, заключенный между всей прямой и одной из ее частей был равен квадрату другой части.\\
+$\drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
+}
+
+\startCenterAlign
+Опишем \drawPolygon{AHKC,HBDK} \inprop[prop:I.XLVI],\\
+сделаем $\drawProportionalLine{EA} = \drawProportionalLine{CE}$ \inprop[prop:I.X],\\
+проведем \drawProportionalLine{BE},\\
+возьмем $\drawProportionalLine{EA,AF} = \drawProportionalLine{BE}$ \inprop[prop:I.III],\\
+на \drawProportionalLine{AF} опишем \drawPolygon{AHGF} \inprop[prop:I.XLVI],\\
+Продлим \drawProportionalLine{KG} \inpost[post:II].
+
+Тогда, \inprop[prop:II.VI] $\drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EA,AF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AH,HB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AH,HB}^2$, или,\\
+$\drawPolygon{AHKC,AHGF} = \drawPolygon{AHKC,HBDK} \therefore \drawPolygon{AHGF} = \drawPolygon{HBDK}$
+
+$\therefore \drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
+
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XII. Теорема},reference=prop:II.XII]
+\defineNewPicture{
+pair A, B, C, D;
+numeric w, h;
+w := 7/2u;
+h := 3u;
+A := (3/5w, 0);
+B := (w, h);
+C := (0, 0);
+D := (w, 0);
+draw byLine(B, A, byred, 0, 0);
+byLineDefine(C, A, black, 0, 0);
+byLineDefine(A, D, black, 1, 0);
+byLineDefine(D, B, byyellow, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+draw byNamedLineSeq(0)(DB,AD,CA,BC);
+draw byLabelsOnPolygon(C, B, D, A)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{о}{всяком тупоугольном треугольнике, квадрат на стороне, стягивающей тупой угол, больше суммы квадратов на сторонах, содержащих тупой угол на дважды прямоугольник, заключенный между какой-либо из этих сторон и продолжением этой стороны от тупого угла до перпендикуляра, падающего от противоположного острого угла.\\
+$\drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$
+}
+
+\startCenterAlign
+Согласно \inpropL[prop:II.IV]\\
+$\drawProportionalLine{CA,AD}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$:
+
+добавим $\drawProportionalLine{DB}^2$ к обоим\\
+$\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \inprop[prop:I.XLVII]\\
+$= 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \left\{\eqalign{
+&\drawProportionalLine{AD}^2 \cr
+&\drawProportionalLine{DB}^2
+}\right\}$ или\\
+$+ \drawProportionalLine{BA}^2$ \inprop[prop:I.XLVII].
+
+$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$: значит $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIII. Теорема},reference=prop:II.XIII]
+\defineNewPicture{
+pair A,B,C,D,E,F,G,H, d;
+numeric w, h;
+w := 3u;
+h := 3u;
+A := (2/5w, h);
+B:= (0, 0);
+C := (w, 0);
+D = whatever[B, C] = (xpart(A), whatever);
+d := (0, -h -4/3u);
+E := (w, h) shifted d;
+F := (0, 0) shifted d;
+G := (2/5w, 0) shifted d;
+H = whatever[F, G] = (xpart(E), whatever);
+draw byLine(A, D, byyellow, 0, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, D, black, 0, 0);
+byLineDefine(D, C, black, 1, 0);
+byLineDefine(C, A, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,BD,DC,CA);
+draw byLine(E, G, byblue, 0, 0);
+byLineDefine(E, F, byred, 0, 0);
+byLineDefine(F, G, black, 0, 0);
+byLineDefine(G, H, black, 1, 0);
+byLineDefine(H, E, byyellow, 0, 0);
+draw byNamedLineSeq(0)(EF,FG,GH,HE);
+label.top("Первый случай", (xpart(1/2[B, C]), ypart(A) + 1/4u));
+label.top("Второй случай", (xpart(1/2[F, H]), ypart(E)));
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
+draw byLabelsOnPolygon(F, E, H, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{о}{всяком треугольнике, квадрат стороны, стягивающей острый угол меньше суммы квадратов сторон, содержащих этот угол, на дважды прямоугольник, заключенный между любой из этих сторон и отрезком, отсекаемым перпендикуляром из противоположного угла от этого отрезка или от продленного отрезка.\\
+Первый случай.\\
+$\drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ на $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$.\\
+Второй случай.\\
+$\drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ на $2 \cdot \drawProportionalLine{FG} \cdot \drawProportionalLine{FG,GH}$.
+}
+
+\startCenterAlign
+Предположим, перпендикуляр падает внутри треугольника, тогда  \inprop[prop:II.VII]\\
+$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2$,\\
+к каждой добавим $\drawProportionalLine{AD}^2$ тогда,\\
+$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 + \drawProportionalLine{AD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 + \drawProportionalLine{AD}^2$\\
+$\therefore$ \inprop[prop:I.XLVII]\\
+$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{CA}^2$,\\
+и $\therefore \drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ на $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{DC}$
+
+Теперь предположим, что перпендикуляр падает вовне треугольника, тогда \inprop[prop:II.VII]\\
+$\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2$,\\
+к каждой добавим $\drawProportionalLine{HE}^2$ тогда\\
+$\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 + \drawProportionalLine{HE}^2= 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2 + \drawProportionalLine{HE}^2$\\
+$\therefore$ \inprop[prop:I.XLVII]\\
+$\drawProportionalLine{EF} + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG}^2 + \drawProportionalLine{EG}^2$,\\
+$\therefore \drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ на $2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIV. Задача},reference=prop:II.XIV]
+\defineNewPicture[1/3]{
+path A;
+pair a, b, c, d, e, f;
+pair B, C, D, E, F, G, H;
+numeric w, h, s, r;
+a := (0, 0);
+b := (u, 1/4u);
+c := (2u, 1/5u);
+d := (11/5u, -u);
+e := (7/8u, -2u);
+f := (1/8u, -3/4u);
+A := a--b--c--d--e--f--cycle;
+s := 0;
+for i := 1 step 1 until length(A) - 1:
+	s := s + 1/2(
+		abs((point 0 of A) - (point i of A))
+		*distanceToLine((point i + 1 of A), (point 0 of A)--(point i of A))
+		);
+endfor;
+w := 5/2u;
+h := s/w;
+B := (w, 0);
+C := (w, -h);
+D := (0, -h);
+E := (0, 0);
+F := (-h, 0);
+G := 1/2[B, F];
+r := abs(B - G);
+H := (D--(E shifted ((E-D)*10))) intersectionpoint ((fullcircle scaled 2r) shifted G);
+forsuffixes i=a,b,c,d,e,f:
+	i := i shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
+	string pointLabel.i;
+	pointLabel.i := "";
+endfor;
+draw byPolygon(a,b,c,d,e,f)(byyellow);
+draw byPolygon(B,C,D,E)(byred);
+draw byLine(H, G, byred, 0, 0);
+draw byLine(H, E, byblue, 0, 0);
+draw byLine(E, D, byyellow, 0, 0);
+byLineDefine(H, F, black, 0, 1);
+byLineDefine(H, B, black, 0, 1);
+byLineDefine(F, E, black, 1, 0);
+byLineDefine(E, G, byblue, 1, 0);
+byLineDefine(G, B, black, 0, 0);
+draw byNamedLineSeq(-1)(FE,EG,GB,HB,HF);
+draw byArc(G, B, F, r, byred, 0, 0, 0, 0)(G);
+byLineDefine(B, F, black, 0, 0);
+draw byLabelsOnPolygon(B, C, D, E, F, H)(0, 0);
+draw byLabelsOnPolygon(H, G, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{остроить}{квадрат, равный данной прямолинейной фигуре.\\~\\
+Провести \drawSizedLine{HE} такую, что $\drawSizedLine{HE}^2 = \drawPolygon{abcdef}$
+}
+
+\startCenterAlign
+Сделаем $\drawPolygon{BCDE} = \drawPolygon{abcdef}$ \inprop[prop:I.XLV],
+
+Продлим \drawSizedLine{EG,GB} до $\drawSizedLine{FE} = \drawSizedLine{ED}$;\\
+Возьмем $\drawSizedLine{FE,EG} = \drawSizedLine{GB}$ \inprop[prop:I.X],
+
+Опишем
+\drawFromCurrentPicture{
+startTempScale(1/3);
+draw byNamedLineFull(B, F, 0, 0, 1)(BF);
+startAutoLabeling;
+draw byNamedArc(G);
+stopAutoLabeling;
+stopTempScale;
+}
+\inpost[post:III],\\
+и продлим до нее \drawSizedLine{ED}: проведем \drawSizedLine{HG}.
+
+$\drawSizedLine{HF}^2 \mbox{ или } \drawSizedLine{HG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$ \inprop[prop:II.V],\\
+но $\drawSizedLine{HG}^2 = \drawSizedLine{HE} ^2 + \drawSizedLine{EG}^2$ \inprop[prop:I.XLVII];
+
+$\therefore \drawSizedLine{HE}^2 + \drawSizedLine{EG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$
+
+$\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB}$,
+
+и $\therefore \drawSizedLine{HE}^2 = \drawPolygon{BCDE} = \drawPolygon{abcdef}$
+\stopCenterAlign
+
+\qed
+\stopProposition
 \stopbook
 \stoptext
 %\closeout \lettrineslist
