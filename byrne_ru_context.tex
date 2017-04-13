@@ -3370,7 +3370,7 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 draw byLabelsOnPolygon(F, E, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{В}{о}{всяком треугольнике, квадрат стороны, стягивающей острый угол меньше суммы квадратов сторон, содержащих этот угол, на дважды прямоугольник, заключенный между любой из этих сторон и отрезком, отсекаемым перпендикуляром из противоположного угла от этого отрезка или от продленного отрезка.\\
+\problemNP{В}{о}{всяком треугольнике, квадрат стороны, стягивающей острый угол меньше суммы квадратов сторон, содержащих этот угол, на дважды прямоугольник, заключенный между любой из этиcamera = bpy.data.objects['Camera']х сторон и отрезком, отсекаемым перпендикуляром из противоположного угла от этого отрезка или от продленного отрезка.\\
 Первый случай.\\
 $\drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ на $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$.\\
 Второй случай.\\
@@ -3485,5 +3485,212 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 \qed
 \stopProposition
 \stopbook
+
+\startbook[title={Книга III}]
+
+\startsupersection[title={Определения}]
+
+\startDefinitionOnlyNumber[reference=def:III.I]
+Равными кругами называют те, у которых равны диаметры.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.II]
+\defineNewPicture{
+	pair O, A, B;
+	numeric r;
+	r := 3/4u;
+	O := (0, 0);
+	A := (-r, -r);
+	B := (r, -r);
+	draw byCircleR(O, r, black, 0, 0, -1)(O);
+	draw byLine(A, B, black, 0, 0);
+}\drawCurrentPictureInMargin
+Про прямую говорят, что она касается круга, если она встречает круг, но при продолжении не пересекает его.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.III]
+\defineNewPicture{
+	pair A, B, C;
+	numeric r[];
+	r1 := 2/3u;
+	r2 := 1/2r1;
+	r3 := 2/5r1;
+	A := (0, 0);
+	B := A shifted (dir(110) scaled (r1-r2));
+	C := A shifted (dir(-130) scaled (r1+r3));
+	fill (fullcircle scaled 2r1) shifted A withcolor byyellow;
+	draw byCircleR(A, r1, byyellow, 0, 0, 0)(A);
+	fill (fullcircle scaled 2r2) shifted B withcolor byred;
+	draw byCircleR(B, r2, black, 0, 0, -1/2)(B);
+	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
+	draw byCircleR(C, r3, byblue, 0, 0, -1/2)(C);
+}\drawCurrentPictureInMargin
+Про круги говорят, что они касаются друг друга, если они встречаясь, не пересекают друг друга.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.IV]
+\defineNewPicture{
+	pair O, A, B, C, D, E, F;
+	numeric r;
+	r := 3/4u;
+	O := (0, 0);
+	A := dir(170) scaled r;
+	B := dir(-110) scaled r;
+	C := A xscaled -1;
+	D := B xscaled -1;
+	E := 1/2[A, B];
+	F := 1/2[C, D];
+	draw byLine(A, B, black, 0, 0);
+	draw byLine(C, D, black, 0, 0);
+	byLineDefine(O, E, byred, 0, 0);
+	byLineDefine(O, F, byblue, 0, 0);
+	draw byNamedLineSeq(0)(OE,OF);
+	draw byCircleR(O, r, black, 0, 0, 0)(O);
+}\drawCurrentPictureInMargin
+Про прямые говорят, что они равноотстоят от центра круга, если перпендикуляры проведенные к ним из центра круга равны.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.V]
+Про прямую, перпендикуляр к которой длиннее, говорят, что она отстоит дальше от центра круга.
+\stopDefinitionOnlyNumber
+
+\vfill\pagebreak
+
+\startDefinitionOnlyNumber[reference=def:III.VI]
+\defineNewPicture{
+	pair A, B;
+	numeric r;
+	r := 3/4u;
+	A := (0, 0);
+	B := (0, -1/8u);
+	draw byFilledCircleSegment(A, r, 1/2, 4 - 1/2, byred)(A);
+	draw byFilledCircleSegment(B, r, 4 - 1/2, 8 + 1/2, byblue)(B);
+}\drawCurrentPictureInMargin
+Сегментом круга называется фигура, заключающаяся между прямой и частью кругя, отсекаемой этой прямой.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.VII]
+\defineNewPicture{
+	pair O, A, B, C;
+	numeric r, b, e;
+	r := u;
+	b := 1/2;
+	e := 4-1/2;
+	O := (0, 0);
+	A := O shifted (point b of fullcircle scaled 2r);
+	B := O shifted (point e of fullcircle scaled 2r);
+	C := B shifted ((unitvector(B-O) rotated -90) scaled r);
+	draw byAngleWithName(C, B, A, byred, 0)(B);
+	draw byArcBE(O, b, e, r, black, 0, 0, 0, 0)(O);
+	draw byLine(A, B, black, 0, 0);
+	draw byLine(B, C, black, 0, 0);
+	draw byLine(O, B, black, 1, 0);
+}\drawCurrentPictureInMargin
+Углом сегмента называется угол между основанием сегмента и перпендикуляром к отрезку, соединяющему центр круга с одним из концов основания сегмента.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.VIII]
+\defineNewPicture{
+	pair O, A, B, C, D;
+	numeric r, b, e;
+	r := u;
+	b := -1;
+	e := 5;
+	O := (0, 0);
+	A := dir(100) scaled r;
+	B := dir(30) scaled r;
+	C := point b of fullcircle scaled 2r;
+	D := point e of fullcircle scaled 2r;
+	draw byAngleWithName(C, A, D, byblue, 0)(A);
+	draw byAngleWithName(C, B, D, byyellow, 0)(B);
+	draw byArcBE(O, b, e, r, black, 0, 0, 0, 0)(O);
+	draw byLine(C, A, black, 0, 0);
+	draw byLine(C, B, black, 0, 0);
+	draw byLine(D, A, black, 0, 0);
+	draw byLine(D, B, black, 0, 0);
+	draw byLine(C, D, black, 0, 0);
+}\drawCurrentPictureInMargin
+Углом в сегменте называют угол, заключающийся между прямыми, проведенными из какой-либо точки на окружности сегмента к концам основания сегмента.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.IX]
+\defineNewPicture{
+	pair O, A, B, C;
+	numeric r, b, e;
+	r := 2/3u;
+	b := -3/2;
+	e := 9/2;
+	O := (0, 0);
+	A := dir(80) scaled r;
+	B := point b of fullcircle scaled 2r;
+	C := point e of fullcircle scaled 2r;
+	draw byAngleWithName(C, A, B, byblue, 0)(A);
+	draw byArcBE(O, b, e, r, black, 1, 0, 0, 0)(Op);
+	draw byArcBE(O, e, b + 8, r, black, 0, 0, 0, 0)(Om);
+	draw byLine(C, A, black, 0, 0);
+	draw byLine(B, A, black, 0, 0);
+}\drawCurrentPictureInMargin
+Про угол говорят, что он опирается на дугу, если заключающие его прямые отсекают эту дугу.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.X]
+\defineNewPicture{
+	pair O;
+	numeric r, b, e;
+	r := 2/3u;
+	b := 1;
+	e := 3;
+	O := (0, 0);
+	draw byFilledCircleSector(O, r, b, e, byyellow)(O);
+	draw byArcBE(O, e, b + 8, r, black, 0, 0, -1, 0)(O);
+}\drawCurrentPictureInMargin
+Сектором круга называют фигуру, заключающуюся между двумя радиусами и дугой между ними.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.XI]
+\defineNewPicture{
+	pair M, N, A, B, C, D, E, F;
+	numeric r[], b, e;
+	r1 := 3/2u;
+	r2 := u;
+	b := 1;
+	e := 3;
+	M := (0, 0);
+	N := (0, -1/3u);
+	A := (point b of fullcircle scaled 2r1) shifted M;
+	B := (point 1/3[b,e] of fullcircle scaled 2r1) shifted M;
+	C := (point e of fullcircle scaled 2r1) shifted M;
+	D := (point b of fullcircle scaled 2r2) shifted N;
+	E := (point 1/3[b,e] of fullcircle scaled 2r2) shifted N;
+	F := (point e of fullcircle scaled 2r2) shifted N;
+	draw byPolygon(A,B,C)(byred);
+	draw byPolygon(D,E,F)(byred);
+	draw byArcBE(M, b, e, r1, black, 0, 0, 0, 1)(M);
+	draw byArcBE(N, b, e, r2, black, 0, 0, 0, 1)(N);
+}\drawCurrentPictureInMargin
+Подобными сегментами называют сегменты, углы в которых равны.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III.XII]
+\defineNewPicture{
+	pair O;
+	numeric r[];
+	r1 := 1/3u;
+	r2 := 1/2u;
+	r3 := 3/4u;
+	O := (0, 0);
+	draw byFilledCircleSegment(O, r3, 0, 8, byred)(OI);
+	draw byFilledCircleSegment(O, r2, 0, 8, white)(OII);
+	draw byCircleR(O, r2, black, 0, 0, 0)(OII);
+	draw byFilledCircleSegment(O, r1, 0, 8, byblue)(OIII);
+}\drawCurrentPictureInMargin
+Круги, имеющие один центр называют концентрическими.
+\stopDefinitionOnlyNumber
+\stopsupersection
+
+\vfill\pagebreak
+
+\stopbook
+
 \stoptext
 %\closeout \lettrineslist

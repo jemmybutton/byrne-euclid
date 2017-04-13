@@ -4692,6 +4692,12 @@ A segment of a circle is the figure contained by a straight line and the part of
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.VII]
+An angle of a segment is that contained by a straight line and a circumference of a circle. 
+\stopDefinitionOnlyNumber
+
+% improvement: originally, seventh definition was missed
+
+\startDefinitionOnlyNumber[reference=def:III.VIII]
 \defineNewPicture{
 	pair O, A, B, C, D;
 	numeric r, b, e;
@@ -4715,7 +4721,7 @@ A segment of a circle is the figure contained by a straight line and the part of
 An angle in a segment is the angle contained by two straight lines drawn from any point in the circumference of the segment to the extremities of the straight line which is the base of the segment.
 \stopDefinitionOnlyNumber
 
-\startDefinitionOnlyNumber[reference=def:III.VIII]
+\startDefinitionOnlyNumber[reference=def:III.IX]
 \defineNewPicture{
 	pair O, A, B, C;
 	numeric r, b, e;
@@ -4735,7 +4741,7 @@ An angle in a segment is the angle contained by two straight lines drawn from an
 An angle is said to stand on the part of the circumference, or the arch, intercepted between the right lines that contain the angle.
 \stopDefinitionOnlyNumber
 
-\startDefinitionOnlyNumber[reference=def:III.IX]
+\startDefinitionOnlyNumber[reference=def:III.X]
 \defineNewPicture{
 	pair O;
 	numeric r, b, e;
@@ -4749,7 +4755,7 @@ An angle is said to stand on the part of the circumference, or the arch, interce
 A sector of a circle is the figure contained by two radii and the arch between them.
 \stopDefinitionOnlyNumber
 
-\startDefinitionOnlyNumber[reference=def:III.X]
+\startDefinitionOnlyNumber[reference=def:III.XI]
 \defineNewPicture{
 	pair M, N, A, B, C, D, E, F;
 	numeric r[], b, e;
@@ -4773,7 +4779,7 @@ A sector of a circle is the figure contained by two radii and the arch between t
 Similar segments of circles are those, which contain equal angles.
 \stopDefinitionOnlyNumber
 
-\startDefinitionOnlyNumber[reference=def:III.XI]
+\startDefinitionOnlyNumber[reference=def:III.XII]
 \defineNewPicture{
 	pair O;
 	numeric r[];
@@ -4789,6 +4795,8 @@ Similar segments of circles are those, which contain equal angles.
 Circles which have the same centre are called \emph{concentric circles}.
 \stopDefinitionOnlyNumber
 \stopsupersection
+
+% improvement: this last definition was not marked as definition in Byrne's book, and is not present in conventional editions of the Elements, but since it sort of is, let it be
 
 \vfill\pagebreak
 
@@ -6427,7 +6435,7 @@ draw byNamedArc(H);
 draw byNamedLine(EF);
 stopTempScale;
 }
-are similar \indef[def:III.X];\\
+are similar \indef[def:III.XI];\\
 they are also equal \inprop[prop:III.XXIV]
 \stopCenterAlign
 
@@ -12598,7 +12606,7 @@ then \arcBL (or $m$ times \arcBC) $>, =, < \arcEN$ (or $n$ times \arcEF);
 
 $\therefore \drawAngle{BC} : \drawAngle{EF} :: \arcBC\ : \arcEF$ \indef[def:V.V], or the angles at the centre are as the arcs on which they stand; but the angles at the circumference being halves of the angles at the centre \inprop[prop:III.XX] are in the same ratio \inprop[prop:V.XV], and therefore are as the arcs on which they stand.
 
-It is evident, that sectors in equal circles, and on equal arcs are equal (\inpropL[prop:I.IV], \inpropL[prop:III.XXIV], \inpropL[prop:III.XXVII], and \indefL[def:III.IX]). Hence, if the sectors be substituted for the angles in the above demonstration, the second part of the proportion will be established, that is, in equal circles the sectors have the same ratio to one another as the arcs on which they stand.
+It is evident, that sectors in equal circles, and on equal arcs are equal (\inpropL[prop:I.IV], \inpropN[prop:III.XXIV], \inpropN[prop:III.XXVII], and \indefL[def:III.X]). Hence, if the sectors be substituted for the angles in the above demonstration, the second part of the proportion will be established, that is, in equal circles the sectors have the same ratio to one another as the arcs on which they stand.
 
 \qed
 \stopProposition
