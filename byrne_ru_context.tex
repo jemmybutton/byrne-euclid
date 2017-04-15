@@ -3790,6 +3790,196 @@ $\therefore$ любая точка на \drawSizedLine{AB} находится в
 \qed
 \stopProposition
 
+\startProposition[title={Предложение III. Теорема},reference=prop:III.III]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F;
+numeric r;
+r := 9/4u;
+E := (0, 0);
+A := (dir(-90 - 60) scaled r) shifted E;
+B := (dir(-90 + 60) scaled r) shifted E;
+C := (dir(90) scaled r) shifted E;
+D := (dir(-90) scaled r) shifted E;
+F = whatever[A, B] = whatever[C, D];
+draw byAngleWithName(E, A, F, byblue, 0)(A);
+draw byAngle(A, F, E, black, 0);
+draw byAngle(E, F, B, byyellow, 0);
+draw byAngleWithName(F, B, E, byred, 0)(B);
+draw byLine(C, E, black, 1, 0);
+draw byLine(E, F, black, 0, 0);
+draw byLine(F, D, black, 1, 0);
+draw byLine(A, F, byred, 0, 0);
+draw byLine(F, B, byred, 1, 0);
+byLineDefine(A, E, byyellow, 0, 0);
+byLineDefine(E, B, byblue, 0, 0);
+draw byNamedLineSeq(0)(AE,EB);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(A, E, 0);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelsOnPolygon(D, F, A)(2, 0);
+draw byLabelsOnPolygon(A, E, C)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{некоторая прямая \drawUnitLine{EF}, проходящая через центр круга \drawCircle[1/6]{E}, рассекает пополам хорду \drawUnitLine{AF,FB}, не проходящую через центр, то эта прямая ей перпендикулярна; а если перпендикулярна, то рассекает хорду пополам.}
+
+\startCenterAlign
+Проведем \drawUnitLine{AE} и \drawUnitLine{EB} к центру круга.
+
+В \drawLine[bottom][triangleAEF]{AE,EF,AF} и \drawLine[bottom][triangleFEB]{EF,EB,FB}\\
+$\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая,\\
+и $\drawUnitLine{AF} = \drawUnitLine{FB}, \therefore \drawAngle{AFE} = \drawAngle{EFB}$ \inprop[prop:I.VIII]\\
+и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \inprop[prop:I.X]
+
+Теперь, пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$\\
+Тогда в  \triangleAEF\ and \triangleFEB\\
+$\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V]\\
+$\drawAngle{AFE} = \drawAngle{EFB}$ (гип.)\\
+и $\drawUnitLine{AE} = \drawUnitLine{EB}$
+
+$\therefore \drawUnitLine{AF} = \drawUnitLine{FB}$ \inprop[prop:I.XXVI]
+
+и $\therefore \drawUnitLine{EF}$ рассекает \drawUnitLine{AF,FB} пополам.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение IV. Теорема},reference=prop:III.IV]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+numeric r;
+r := 9/4u;
+F := (0, 0);
+A := (dir(-175)*r) shifted F;
+B := (dir(-140)*r) shifted F;
+C := (dir(-50)*r) shifted F;
+D := (dir(-10)*r) shifted F;
+E = whatever[A, C] = whatever[B, D];
+draw byAngle(F, E, D, byblue, 0);
+draw byAngle(D, E, C, byyellow, 0);
+draw byLine(E, F, black, 1, 0);
+draw byLine(B, D, byred, 0, 0);
+draw byLine(A, C, black, 0, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelLineEnd(A, F, 0);
+draw byLabelLineEnd(B, F, 0);
+draw byLabelLineEnd(C, F, 0);
+draw byLabelLineEnd(D, F, 0);
+draw byLabelLineEnd(F, E, 0);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{в круге две прямые, не проходящие через центр, пересекаются, они не делят друг друга пополам.}
+
+Если одна из прямых проходит через центр, очевидно, она ее не может рассекать пополам другая прямая, не проходящая через центр.
+
+Но если ни одна из прямых \drawUnitLine{AC} или \drawUnitLine{BD} не проходит через центр, проведем \drawUnitLine{EF} из центра к точке их пересечения.
+
+\startCenterAlign
+Если \drawUnitLine{AC} делится пополам, \drawUnitLine{EF} $\perp$ ей \inprop[prop:III.III]\\
+$\therefore \drawAngle{FED,DEC} = \drawRightAngle$\\
+и если \drawUnitLine{BD} делится пополам, $\drawUnitLine{EF} \perp \drawUnitLine{BD}$ \inprop[prop:III.III]\\
+$\therefore \drawAngle{FED} = \drawRightAngle$;
+
+и $\therefore \drawAngle{FED} = \drawAngle{FED,DEC}$;\\
+часть равна целому, что невозможно.
+
+$\therefore$ \drawUnitLine{AC} и \drawUnitLine{BD} не~делят друг друга пополам.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение V. Теорема},reference=prop:III.V]
+\defineNewPicture{
+pair M, N, E, F, G, C;
+numeric r[], s;
+path c[];
+r1 := 2u;
+r2 := 2u;
+s := u;
+M := (1/2s, 0);
+N := (-1/2s, 0);
+c1 := (fullcircle scaled 2r1) shifted M;
+c2 := (fullcircle scaled 2r2) shifted N;
+E := 1/2[M, N];
+C := (subpath(0, 4) of c1) intersectionpoint (subpath(0, 4) of c2);
+G := point 7/2 of c2;
+F := c1 intersectionpoint (E--G);
+byLineDefine(C, E, byyellow, 0, 0);
+byLineDefine(E, F, black, 0, 0);
+byLineDefine(F, G, black, 1, 0);
+draw byNamedLineSeq(0)(CE,EF,FG);
+draw byArcBE(M, 4, 0, r1, byred, 0, 0, 0, 0)(Ma);
+draw byArcBE(N, 4, 0, r2, byblue, 0, 0, 0, 0)(Na);
+draw byArcBE(N, 4, 8, r2, byblue, 0, 0, 0, 0)(Nb);
+draw byArcBE(M, 4, 8, r1, byred, 0, 0, 0, 0)(Mb);
+draw byLabelLineEnd(C, E, 0);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelsOnPolygon(C, E, F)(2, 0);
+draw byLabelsOnPolygon(C, F, E)(2, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{два круга секут друг друга \drawArc{Ma,Na,Nb,Mb} их центры не совпадают.}
+
+Допустим это возможно, и два пересекающихся круга имеют общий центр. Из предпологаемого центра проведем \drawUnitLine{CE} к точке пересечения и \drawUnitLine{EF,FG} пересекающую окружности.
+
+\startCenterAlign
+Тогда $\drawUnitLine{CE} = \drawUnitLine{EF}$ \inprop[prop:I.XV]\\
+и $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \inprop[prop:I.XV]
+
+$\therefore \drawUnitLine{EF} = \drawUnitLine{EF,FG}$\\
+часть равна целому, что невозможно.
+
+$\therefore$ круги, пересекающиеся в любой точке не могут иметь общего центра.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. VI. theor.},reference=prop:III.VI]
+\defineNewPicture{
+pair M, N, B, C, E, F;
+numeric r[], a;
+path c[];
+a := 80;
+r1 := 9/4u;
+r2 := 7/4u;
+M := (0, 0);
+N := M shifted (dir(a)*(r1-r2));
+c1 := (fullcircle scaled 2r1) shifted M;
+c2 := (fullcircle scaled 2r2) shifted N;
+F := 1/2[M, N];
+C :=c1 intersectionpoint (M--(M shifted (dir(a)*2r1)));
+B := point -3/2 of c1;
+E := c2 intersectionpoint (F--B);
+byLineDefine(C, F, byyellow, 0, 0);
+byLineDefine(F, E, byblue, 1, 0);
+byLineDefine(E, B, byblue, 0, 0);
+draw byNamedLineSeq(0)(CF,FE,EB);
+draw byCircle(M, C, byred, 0, 0, 0)(M);
+draw byCircle(N, C, black, 0, 0, -1)(N);
+draw byLabelLineEnd(C, F, 0);
+draw byLabelLineEnd(B, F, 0);
+draw byLabelsOnPolygon(E, F, C)(2, 0);
+draw byLabelPoint(E, angle(B-F)+45, 2);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{два круга \drawFromCurrentPicture{draw byNamedCircle(M,N);} касаются друг друга, то у них не один и тот же центр.}
+
+Действительно, пусть это возможно, и у кругов будет один центр. Из предпологаемого центра проведем \drawUnitLine{FE,EB} и \drawUnitLine{CF} к точке касания.
+
+\startCenterAlign
+Тогда $\drawUnitLine{CF} = \drawUnitLine{FE}$ \inprop[prop:I.XV]\\
+и $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \inprop[prop:I.XV]
+
+$\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
+\stopCenterAlign
+\noindent часть равна целому, что невозможно. Следовательно, выбранная точка не является центром обоих кругов и таким же образом можно показать, что так же и никакая другая.
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext

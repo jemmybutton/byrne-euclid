@@ -4917,6 +4917,10 @@ byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(A, E, 0);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelsOnPolygon(D, F, A)(2, 0);
+draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{EF}) drawn through the centre of a circle \drawCircle[middle][1/6]{E} bisect a chord (\drawUnitLine{AF,FB}) which does not pass through the centre, it is perpendicular to it; or, if perpendicular to it, it bisects it.}
@@ -4961,6 +4965,12 @@ draw byLine(E, F, black, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, black, 0, 0);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelLineEnd(A, F, 0);
+draw byLabelLineEnd(B, F, 0);
+draw byLabelLineEnd(C, F, 0);
+draw byLabelLineEnd(D, F, 0);
+draw byLabelLineEnd(F, E, 0);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{in a circle two straight lines cut one another, which do not both pass through the centre, they do not bisect one another.}
@@ -5008,6 +5018,10 @@ draw byArcBE(M, 4, 0, r1, byred, 0, 0, 0, 0)(Ma);
 draw byArcBE(N, 4, 0, r2, byblue, 0, 0, 0, 0)(Na);
 draw byArcBE(N, 4, 8, r2, byblue, 0, 0, 0, 0)(Nb);
 draw byArcBE(M, 4, 8, r1, byred, 0, 0, 0, 0)(Mb);
+draw byLabelLineEnd(C, E, 0);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelsOnPolygon(C, E, F)(2, 0);
+draw byLabelsOnPolygon(C, F, E)(2, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles intersect \drawArc{Ma,Na,Nb,Mb} they have not the same centre.}
@@ -5049,9 +5063,13 @@ byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CF,FE,EB);
 draw byCircle(M, C, byred, 0, 0, 0)(M);
 draw byCircle(N, C, black, 0, 0, -1)(N);
+draw byLabelLineEnd(C, F, 0);
+draw byLabelLineEnd(B, F, 0);
+draw byLabelsOnPolygon(E, F, C)(2, 0);
+draw byLabelPoint(E, angle(B-F)+45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two circles \drawCircle{M,N} touch one another internally, they have not the same centre.}
+\problemNP{I}{f}{two circles \drawFromCurrentPicture{draw byNamedCircle(M,N);} touch one another internally, they have not the same centre.}
 
 For, if it be possible, let both circles have the same centre; from such a supposed centre draw \drawUnitLine{FE,EB}, and \drawUnitLine{CF} to the point of contact.
 
