@@ -3690,6 +3690,106 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 
 \vfill\pagebreak
 
+\startProposition[title={Предложение I. Задача},reference=prop:III.I]
+\defineNewPicture{
+pair A, B, C, D, E, F, G;
+numeric r, a;
+r := 9/4u;
+F := (0, 0);
+A := F shifted (dir(170)*r);
+B := F shifted (dir(-95)*r);
+D := 1/2[A, B];
+C := F shifted (dir(angle(A-B) - 90)*r);
+E := F shifted (dir(angle(A-B) +90)*r);
+G := F shifted (dir(-45)*1/2r);
+a := -angle(G-D);
+forsuffixes i=A, B, D, C, E, F, G:
+	i := i rotated a;
+endfor;
+draw byAngle(A, D, F, byblue, 0);
+draw byAngle(F, D, G, byyellow, 0);
+draw byAngle(G, D, B, black, 0);
+draw byLine(D, G)(byblue, 1, 0);
+draw byLine(A, D)(byred, 0, 0);
+draw byLine(D, B)(byred, 1, 0);
+draw byLine(E, C)(black, 0, 0);
+draw byMarkLine(1/2, black)(EC);
+byLineDefine(A, G, byblue, 0, 0);
+byLineDefine(B, G, black, 1, 0);
+draw byNamedLineSeq(0)(AG,BG);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelsOnPolygon(A, G, B)(0, 0);
+draw byLabelsOnPolygon(E, D, A)(2, 0);
+draw byLabelsOnPolygon(E, F, C)(2, -4);
+draw byLabelLineEnd(E, C, 0);
+draw byLabelLineEnd(C, E, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{айти}{центр данного круга \drawCircle[middle][1/4]{F}.}
+
+\startCenterAlign
+Проведем внутри круга любую прямую \drawUnitLine{AD,DB},\\
+сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$, проведем $\drawUnitLine{EC} \perp \drawUnitLine{AD,DB}$; рассечем пополам \drawUnitLine{EC}, точка рассечения и есть центр.\\
+Действительно, пусть это не так, тогда пусть другая точка будет центром, и проведем от нее \drawUnitLine{AG}, \drawUnitLine{DG} и \drawUnitLine{BG}.\\
+Поскольку в \drawLine{AG,DG,AD} и \drawLine{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (гип. и \indefL[def:XV]),\\ 
+$\drawUnitLine{AD} = \drawUnitLine{DB}$ (постр.) и \drawUnitLine{DG} общая обоим,\\
+$\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], и, сдедовательно, являются прямыми углами;\\
+но $\drawAngle{FDG,GDB} = \drawRightAngle$ (постр.), $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI]\\ 
+что невозможно;
+\stopCenterAlign
+
+\noindent значит, выбранная точка не центр круга, и так эе можно показать, что никакая другая точка, не на \drawUnitLine{EC} не является центром, значит, центр находится на \drawUnitLine{EC}, и, следовательно, точка, где \drawUnitLine{EC} рассекается пополам и есть центр.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение II. Теорема},reference=prop:III.II]
+\defineNewPicture{
+pair A, B, D, E, F;
+numeric r;
+r := 9/4u;
+D := (0, 0);
+A := (dir(185) scaled r) shifted D;
+B := (dir(-70) scaled r) shifted D;
+E := 3/5[A, B];
+F := (dir(angle(E-D)) scaled r) shifted D;
+draw byAngleWithName(D, A, B, byblue, 0)(A);
+draw byAngleWithName(A, E, D, byyellow, 0)(E);
+draw byAngleWithName(A, B, D, black, 0)(B);
+draw byLine(D, E, black, 0, 0);
+draw byLine(E, F, black, 1, 0);
+draw byLine(A, B, byred, 0, 0);
+byLineDefine(A, D, byyellow, 0, 0);
+byLineDefine(B, D, byblue, 0, 0);
+draw byNamedLineSeq(0)(AD,BD);
+draw byCircleR(D, r, byred, 0, 0, 0)(D);
+draw byLabelsOnPolygon(B, F, A, D)(0, 0);
+draw byLabelsOnPolygon(A, E, F)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{П}{рямая}{\drawSizedLine{AB}, соединяющая две точки на окружности круга \drawCircle[middle][1/4]{D}, целиком находится внутри круга.}
+
+\startCenterAlign
+Найдем центр \circleD\ \inprop[prop:III.I];\\
+из центра проведем \drawSizedLine{DE} к любой точке \drawSizedLine{AB}, пересекающую окружность;\\
+проведем \drawSizedLine{AD} и \drawSizedLine{BD}.
+
+Тогда $\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V]\\
+но $\drawAngle{E} > \drawAngle{A} \mbox{ или } > \drawAngle{B}$ \inprop[prop:I.XVI]
+
+$\therefore \drawSizedLine{AD} > \drawSizedLine{DE}$ \inprop[prop:I.XIX]\\
+но $\drawSizedLine{AD} = \drawSizedLine{DE,EF}$,
+
+$\therefore \drawSizedLine{DE,EF} > \drawSizedLine{DE}$;
+
+$\therefore \drawSizedLine{DE} < \drawSizedLine{DE,EF}$;
+
+$\therefore$ любая точка на \drawSizedLine{AB} находится внутри круга.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext

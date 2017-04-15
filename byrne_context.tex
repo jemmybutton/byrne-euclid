@@ -4803,7 +4803,7 @@ Circles which have the same centre are called \emph{concentric circles}.
 \startProposition[title={Prop. I. prob.},reference=prop:III.I]
 \defineNewPicture{
 pair A, B, C, D, E, F, G;
-numeric r;
+numeric r, a;
 r := 9/4u;
 F := (0, 0);
 A := F shifted (dir(170)*r);
@@ -4812,8 +4812,9 @@ D := 1/2[A, B];
 C := F shifted (dir(angle(A-B) - 90)*r);
 E := F shifted (dir(angle(A-B) +90)*r);
 G := F shifted (dir(-45)*1/2r);
+a := -angle(G-D);
 forsuffixes i=A, B, D, C, E, F, G:
-	i := ((i shifted -F) rotated -angle(G-D)) shifted F;
+	i := i rotated a;
 endfor;
 draw byAngle(A, D, F, byblue, 0);
 draw byAngle(F, D, G, byyellow, 0);
@@ -4827,6 +4828,11 @@ byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(B, G, black, 1, 0);
 draw byNamedLineSeq(0)(AG,BG);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelsOnPolygon(A, G, B)(0, 0);
+draw byLabelsOnPolygon(E, D, A)(2, 0);
+draw byLabelsOnPolygon(E, F, C)(2, -4);
+draw byLabelLineEnd(E, C, 0);
+draw byLabelLineEnd(C, E, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{find the centre of a given circle \drawCircle[middle][1/4]{F}.}
@@ -4835,7 +4841,7 @@ Draw within the circle any straight line \drawUnitLine{AD,DB}, make $\drawUnitLi
 
 For, if it be possible, let any other point as the point of concourse of \drawUnitLine{AG}, \drawUnitLine{DG} and \drawUnitLine{BG} be the centre.
 
-Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp. and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and thetefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
+Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp. and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and therefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
 
 \qed
 \stopProposition
@@ -4859,7 +4865,9 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AD,BD);
-draw byCircle(D, F, byred, 0, 0, 0)(D);
+draw byCircleR(D, r, byred, 0, 0, 0)(D);
+draw byLabelsOnPolygon(B, F, A, D)(0, 0);
+draw byLabelsOnPolygon(A, E, F)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{A}{straight}{line (\drawSizedLine{AB}) joining two points in the circumference of a circle \drawCircle[middle][1/4]{D}, lies wholly within the circle.}
@@ -4870,7 +4878,7 @@ from the centre draw \drawSizedLine{DE} to any point in \drawSizedLine{AB}, meet
 draw \drawSizedLine{AD} and \drawSizedLine{BD}.
 
 Then $\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V]\\
-but $\drawAngle{E} > \drawAngle{A} \mbox{ or } > \drawAngle{A}$ \inprop[prop:I.XVI]
+but $\drawAngle{E} > \drawAngle{A} \mbox{ or } > \drawAngle{B}$ \inprop[prop:I.XVI]
 
 $\therefore \drawSizedLine{AD} > \drawSizedLine{DE}$ \inprop[prop:I.XIX]\\
 but $\drawSizedLine{AD} = \drawSizedLine{DE,EF}$,
@@ -4883,7 +4891,6 @@ $\therefore$ every point in \drawSizedLine{AB} lies within the circle.
 \stopCenterAlign
 
 \qed
-
 \stopProposition
 
 \startProposition[title={Prop. III. theor.},reference=prop:III.III]
