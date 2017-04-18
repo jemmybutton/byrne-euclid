@@ -747,7 +747,6 @@ vardef byNamedCircle(text circlesList) =
             fi;
         endfor;
     )
-endgroup
 enddef;
 
 %

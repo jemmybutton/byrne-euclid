@@ -304,7 +304,7 @@ A := (0, 0);
 B := A shifted (7/2u, 0);
 D := A shifted (7/4u, 3u);
 C := 2/3[A, D];
-draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(B, A, D, byyellow, 0)(A);
 draw byAngleWithName(A, B, D, black, 0)(B);
 byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(A, B, byred, 0, 0);
@@ -316,9 +316,9 @@ draw byNamedLineSeq(0)(CA,CD,BD,AB);
 draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{у любого треугольника \drawLine[bottom][triangleABD]{CA,CD,BD,AB} два угла \drawAngle{A} и \drawAngle{B} равны между собой, то и стороны \drawUnitLine{CA,CD} and \drawUnitLine{BD}, стягивающие равные углы, будут равны.}
+\problemNP{Е}{сли}{у любого треугольника \drawLine[bottom][triangleABD]{CA,CD,BD,AB} два угла \drawAngle{A} и \drawAngle{B} равны между собой, то и стороны \drawUnitLine{CA,CD} и \drawUnitLine{BD}, стягивающие равные углы, будут равны.}
 
-Предположим, что стороны не равны и одна из них \drawUnitLine{CA,CD} больше чем другая \drawUnitLine{BD}, тогдо отрежем от нее $\drawUnitLine{CA} = \drawUnitLine{BD}$ \inprop[prop:I.III] и проведем \drawUnitLine{BC}.
+Предположим, что стороны не равны и одна из них \drawUnitLine{CA,CD} больше чем другая \drawUnitLine{BD}, тогда отрежем от нее $\drawUnitLine{CA} = \drawUnitLine{BD}$ \inprop[prop:I.III] и проведем \drawUnitLine{BC}.
 
 \startCenterAlign
 Тогда в \drawLine[bottom]{BC,AB,CA} и \triangleABD,\\
@@ -326,7 +326,7 @@ $\drawUnitLine{CA} = \drawUnitLine{BD}$ (постр.),\\
 $\drawAngle{A} = \drawAngle{B}$ (гип.)\\
 и \drawUnitLine{AB} общая обоим,\\
 $\therefore$ эти треугольники равны \inprop[prop:I.IV]\\
-часть равна целому, что не имеет смысла;\\
+часть равна целому, что невозможно;\\
 $\therefore$ ни одна из сторон \drawUnitLine{CA,CD} или \drawUnitLine{BD} не больше другой,\\
 $\therefore$ они равны.
 \stopCenterAlign
@@ -3820,7 +3820,7 @@ draw byLabelsOnPolygon(D, F, A)(2, 0);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{некоторая прямая \drawUnitLine{EF}, проходящая через центр круга \drawCircle[1/6]{E}, рассекает пополам хорду \drawUnitLine{AF,FB}, не проходящую через центр, то эта прямая ей перпендикулярна; а если перпендикулярна, то рассекает хорду пополам.}
+\problemNP{Е}{сли}{некоторая прямая \drawUnitLine{EF}, проходящая через центр круга \drawCircle[middle][1/6]{E}, рассекает пополам хорду \drawUnitLine{AF,FB}, не проходящую через центр, то эта прямая ей перпендикулярна; а если перпендикулярна, то рассекает хорду пополам.}
 
 \startCenterAlign
 Проведем \drawUnitLine{AE} и \drawUnitLine{EB} к центру круга.
@@ -3937,7 +3937,7 @@ $\therefore$ круги, пересекающиеся в любой точке �
 \qed
 \stopProposition
 
-\startProposition[title={Prop. VI. theor.},reference=prop:III.VI]
+\startProposition[title={Предложение VI. Теорема},reference=prop:III.VI]
 \defineNewPicture{
 pair M, N, B, C, E, F;
 numeric r[], a;
@@ -3976,6 +3976,133 @@ draw byLabelPoint(E, angle(B-F)+45, 2);
 $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 \stopCenterAlign
 \noindent часть равна целому, что невозможно. Следовательно, выбранная точка не является центром обоих кругов и таким же образом можно показать, что так же и никакая другая.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение VII. Теорема},reference=prop:III.VII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H;
+numeric r;
+r := 2u;
+E := (0, 0);
+A := E shifted (dir(90)*r);
+D := E shifted (dir(-90)*r);
+F := 2/3[E, D];
+B := E shifted (dir(90-70)*r);
+C := E shifted (dir(-5)*r);
+H := E shifted (dir(-170)*r);
+G := E shifted (dir(90+70)*r);
+draw byLine(F, B, byred, 0, 0);
+draw byLine(F, C, byblue, 0, 0);
+draw byLine(F, A, black, 0, 0);
+draw byLine(F, D, byyellow, 0, 0);
+draw byLine(F, G, byblue, 1, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(A, E, 0);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelLineEnd(C, E, 0);
+draw byLabelLineEnd(D, E, 0);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelsOnPolygon(D, F, G)(2, 0);
+draw byLabelsOnPolygon(F, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{из точки в круге \drawFromCurrentPicture{
+startTempScale(4/9);
+draw byNamedCircle(E);
+draw byLabelPoint(F, 0, 0);
+stopTempScale;
+}, не являющейся центром к окружности проведены прямые линии
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawUnitLine{FA}, \drawUnitLine{FB}}
+\nointerlineskip\hbox{\drawUnitLine{FC}, \drawUnitLine{FD}}
+}\right.$
+наибольшая из них та \drawUnitLine{FA}, что проходит через центр, а меньшая — та, что является оставшейся частью диаметра \drawUnitLine{FD}. \\
+Из остальных, та \drawUnitLine{FB}, что ближе к проходящей через центр больше той \drawUnitLine{FC}, что проходит дальше.\\
+Линии \drawUnitLine{FG} и \drawUnitLine{FB} под равными углами к линии, проходящей через центр и по разные стороны от нее равны между собой и из той же точки нельзя провести третью линию той же длины к окружности.}
+
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H;
+numeric r;
+r := 2u;
+E := (0, 0);
+A := E shifted (dir(90)*r);
+D := E shifted (dir(-90)*r);
+F := 2/3[E, D];
+B := E shifted (dir(20)*r);
+C := E shifted (dir(-5)*r);
+G := E shifted (dir(15)*r);
+H := E shifted (dir(-170)*r);
+draw byAngle(B, E, C, black, 0);
+draw byAngle(C, E, F, byyellow, 0);
+draw byLine(F, B, byred, 0, 0);
+draw byLine(E, C, byblue, 1, 0);
+draw byLine(F, C, byblue, 0, 0);
+draw byLine(E, B, byred, 1, 0);
+draw byLine(A, E, black, 1, 0);
+draw byLine(E, F, black, 0, 0);
+draw byLine(F, D, byyellow, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(A, E, 0);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelLineEnd(C, E, 0);
+draw byLabelLineEnd(D, E, 0);
+draw byLabelsOnPolygon(D, F, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Часть I}]
+Из центра круга проведем \drawUnitLine{EB} и \drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX]. Таким же образом можно показать, что \drawUnitLine{EF,AE} больше \drawUnitLine{FC}, или любой другой линии, проведенной из той же точки к окружности. 
+
+Теперь, согласно \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (акс.), и так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к окружности. 
+
+Теперь, в \drawLine[middle][triangleEFB]{FB,EF,EB} и \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, и $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] и так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к окружности и проходящей дальше \drawUnitLine{EF,AE}.
+\stopsubproposition
+
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, M;
+numeric r;
+r := 2u;
+E := (0, 0);
+A := E shifted (dir(90)*r);
+D := E shifted (dir(-90)*r);
+F := 2/3[E, D];
+B := E shifted (dir(90-70)*r);
+H := E shifted (dir(-170)*r);
+G := E shifted (dir(90+70)*r);
+M = whatever[E, H] = whatever[F, G];
+draw byAngle(B, F, E, byyellow, 0);
+draw byAngle(G, F, E, byred, 0);
+draw byLine(F, B, byred, 0, 0);
+draw byLine(E, B, byred, 1, 0);
+draw byLine(E, M, byyellow, 0, 0);
+draw byLine(M, H, byyellow, 1, 0);
+draw byLine(F, M, byblue, 0, 0);
+draw byLine(M, G, byblue, 1, 0);
+draw byLine(A, E, black, 1, 0);
+draw byLine(E, F, black, 0, 0);
+draw byLine(F, D, black, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelLineEnd(H, E, 0);
+draw byLabelsOnPolygon(D, F, M, H)(2, 0);
+draw byLabelsOnPolygon(M, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Часть II}]
+\startCenterAlign
+Если $\drawAngle{GFE} = \drawAngle{BFE}$, то $\drawUnitLine{FM,MG} = \drawUnitLine{FB}$,\\
+Если нет, возьмем $\drawUnitLine{FM} = \drawUnitLine{FB}$, проведем \drawUnitLine{EM,MH},\\
+тогда в \drawLine[middle][triangleEFM]{EM,EF,FM} и \drawLine[middle][triangleEFB]{FB,EF,EB}, \drawUnitLine{EF} общая,\\
+$\drawAngle{GFE} = \drawAngle{BFE}$ и $\drawUnitLine{FB} = \drawUnitLine{FM}$\\
+$\therefore \drawUnitLine{EB} = \drawUnitLine{EM}$ \inprop[prop:I.IV]\\
+$\therefore \drawUnitLine{EB} = \drawUnitLine{EM,MH} = \drawUnitLine{EM}$\\
+часть равна целому, что невозможно:
+\stopCenterAlign
+
+$\therefore \drawUnitLine{FB} = \drawUnitLine{FM,MG}$; и никакая другая линия равная \drawUnitLine{FB}, проведенная из той же точки к окружности, поскольку, будь она ближе к проходящей через центр, она была бы больше, а дальше — меньше.
+\stopsubproposition
 
 \qed
 \stopProposition

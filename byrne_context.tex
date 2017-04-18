@@ -1,6 +1,8 @@
 \input preamble.tex
 \input preamble_be.tex
 
+%\def\mpPre{textLabels := true;}
+
 % to turn text labels on uncomment next line
 % \def\mpPre{textLabels := true;}
 
@@ -1408,7 +1410,7 @@ A := (0, 0);
 B := A shifted (7/2u, 0);
 D := A shifted (7/4u, 3u);
 C := 2/3[A, D];
-draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(B, A, D, byyellow, 0)(A);
 draw byAngleWithName(A, B, D, black, 0)(B);
 byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(A, B, byred, 0, 0);
@@ -5086,9 +5088,9 @@ $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 
 \startProposition[title={Prop. VII. theor.},reference=prop:III.VII]
 \defineNewPicture[1/2]{
-pair A, B, C, D, E, F, G, H, K, M;
+pair A, B, C, D, E, F, G, H, K, M, N, d;
 numeric r;
-r := 9/4u;
+r := 2u;
 E := (0, 0);
 A := E shifted (dir(90)*r);
 D := E shifted (dir(-90)*r);
@@ -5099,6 +5101,7 @@ G := E shifted (dir(15)*r);
 H := E shifted (dir(-170)*r);
 K := E shifted (dir(175)*r);
 M = whatever[E, H] = whatever[F, K];
+N := D;
 draw byAngle(B, E, C, black, 0);
 draw byAngle(C, E, F, byyellow, 0);
 draw byLine(F, B, byred, 0, 0);
@@ -5108,37 +5111,15 @@ draw byLine(E, B, byred, 1, 0);
 draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
-draw byCircle(E, B, byblue, 0, 0, 0)(E);
-byLineDefine(F, G, byred, 0, 0);
-byLineDefine(F, M, byblue, 0, 0);
-byLineDefine(M, K, byblue, 1, 0);
-}
-\problemNP[2]{I}{f}{from any point within a circle \drawCircle[middle][1/3]{E} which is not the centre, lines
-$\left\{\vcenter{
-\nointerlineskip\hbox{\drawUnitLine{EF,AE}}
-\nointerlineskip\hbox{\drawUnitLine{FB}}
-\nointerlineskip\hbox{\drawUnitLine{FC}}}\right.$
-are drawn to the circumference; the greatest of those lines is that (\drawUnitLine{EF,AE}) which passes through the centre, and the least is the remaining part (\drawUnitLine{FD}) of the diameter.\\
-Of the others, that (\drawUnitLine{FB}) which is nearer to the line passing through the centre, is greater than that (\drawUnitLine{FC}) which is more remote.\\
-Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
-
-\drawCurrentPictureInMargin
-\startsubproposition[title={Figure I.}]
-To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (ax.), and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
-\stopsubproposition
-
-\defineNewPicture[1/2]{
-pair A, B, C, D, E, F, G, H, K, M;
-numeric r;
-r := 9/4u;
-E := (0, 0);
-A := E shifted (dir(90)*r);
-D := E shifted (dir(-90)*r);
-F := 2/3[E, D];
-G := E shifted (dir(15)*r);
-H := E shifted (dir(-170)*r);
-K := E shifted (dir(175)*r);
-M = whatever[E, H] = whatever[F, K];
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(A, E, 0);
+draw byLabelLineEnd(B, E, 0);
+draw byLabelLineEnd(C, E, 0);
+draw byLabelLineEnd(D, E, 0);
+draw byLabelsOnPolygon(D, F, E, A)(2, 0);
+label.top("Fig. 1", (0, r + 1/4u));
+d := (0, -2r -u);
+draw image(
 draw byAngle(G, F, E, byyellow, 0);
 draw byAngle(K, F, E, byred, 0);
 draw byLine(F, G, byred, 0, 0);
@@ -5149,10 +5130,35 @@ draw byLine(F, M, byblue, 0, 0);
 draw byLine(M, K, byblue, 1, 0);
 draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
-draw byLine(F, D, black, 0, 0);
-draw byCircle(E, G, byblue, 0, 0, 0)(E);
+draw byLine(F, N, black, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelLineEnd(K, E, 0);
+draw byLabelLineEnd(H, E, 0);
+draw byLabelsOnPolygon(D, F, M, H)(2, 0);
+draw byLabelsOnPolygon(M, E, A)(2, 0);
+label.top("Fig. 2", (0, r));
+) shifted d;
 }
 \drawCurrentPictureInMargin
+\problemNP[2]{I}{f}{from any point within a circle \drawFromCurrentPicture{
+startTempScale(1/3);
+draw byNamedCircle(E);
+draw byLabelPoint(F, 0, 0);
+stopTempScale;
+} which is not the centre, lines
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawUnitLine{EF,AE}}
+\nointerlineskip\hbox{\drawUnitLine{FB}}
+\nointerlineskip\hbox{\drawUnitLine{FC}}}\right.$
+are drawn to the circumference; the greatest of those lines is that (\drawUnitLine{EF,AE}) which passes through the centre, and the least is the remaining part (\drawUnitLine{FD}) of the diameter.\\
+Of the others, that (\drawUnitLine{FB}) which is nearer to the line passing through the centre, is greater than that (\drawUnitLine{FC}) which is more remote.\\
+Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
+
+\startsubproposition[title={Figure I.}]
+To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (ax.), and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
+\stopsubproposition
+
 \startsubproposition[title={Figure II.}]
 \startCenterAlign
 If $\drawAngle{KFE} = \drawAngle{GFE}$ then $\drawUnitLine{FM,MK} = \drawUnitLine{FG}$,\\
@@ -5171,7 +5177,6 @@ $\therefore \drawUnitLine{FG} = \drawUnitLine{FM,MK}$; and no other line is equa
 \stopsubproposition
 
 \qed
-
 \stopProposition
 
 \startProposition[title={Prop. VIII. theor.},reference=prop:III.VIII]
