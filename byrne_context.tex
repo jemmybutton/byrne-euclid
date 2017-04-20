@@ -5202,6 +5202,10 @@ byLineDefine(D, M, black, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DM,DF);
 draw byCircle(M, E, black, 0, 0, 0)(M);
+draw byLabelLineEnd(F, M, 0);
+draw byLabelLineEnd(E, M, 0);
+draw byLabelLineEnd(A, M, 0);
+draw byLabelsOnPolygon(F, D, M, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 If from a point without a circle, straight lines
@@ -5218,7 +5222,7 @@ for since $\drawUnitLine{MA} = \drawUnitLine{ME}$, if \drawUnitLine{DM} be added
 but $> \drawUnitLine{DE}$ \inprop[prop:I.XX]\\
 $\therefore$ \drawUnitLine{DM,MA} is greater than any other line drawn from the same point to the concave circumference.\\
 Again in \drawLine[middle][triangleDFM]{DM,MF,DF} and \drawLine[middle][triangleDEM]{DM,ME,DE}, $\drawUnitLine{MF} = \drawUnitLine{ME}$, and \drawUnitLine{DM} common,\\
-but $\drawAngle{DMF,FME} > \drawAngle{FME}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \inprop[prop:I.XXIV];\\
+but $\drawAngle{DMF,FME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \inprop[prop:I.XXIV];\\
 and in like manner \drawUnitLine{DE} may be shown $>$ than any other line more remote from \drawUnitLine{DM,MA}.
 \stopCenterAlign
 \stopsubproposition
@@ -5243,6 +5247,11 @@ byLineDefine(D, G, black, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(DG,DH);
 draw byCircle(M, G, black, 0, 0, 0)(M);
+draw byLabelsOnPolygon(K, H, M)(2, -2);
+draw byLabelsOnPolygon(G, K, M)(2, -2);
+draw byLabelsOnPolygon(D, G, K)(2, -2);
+draw byLabelsOnPolygon(H, D, G)(2, 0);
+draw byLabelsOnPolygon(G, M, H)(2, 0);
 }
 \drawCurrentPictureInMargin
 Of those lines falling on the convex circumference the least (\drawUnitLine{DG}) which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
@@ -5255,7 +5264,7 @@ $\therefore \drawUnitLine{DK} > \drawUnitLine{DG}$ \inax[ax:V]
 Again, since $\drawUnitLine{HM} + \drawUnitLine{DH} > \drawUnitLine{KM} + \drawUnitLine{DK}$ \inprop[prop:I.XXI],\\
 and $\drawUnitLine{HM} = \drawUnitLine{KM}$,
 
-$\therefore \drawUnitLine{DK} < \drawUnitLine{DH}$. And so of others
+$\therefore \drawUnitLine{DK} < \drawUnitLine{DH}$. And so of others.
 \stopCenterAlign
 \stopsubproposition
 
@@ -5283,6 +5292,11 @@ byLineDefine(D, H, byblue, 1, 0);
 byLineDefine(D, O, byred, 1, 0);
 draw byNamedLineSeq(0)(DH,DO,NM);
 draw byCircle(M, H, black, 0, 0, 0)(M);
+draw byLabelsOnPolygon(H, D, O, N)(2, 0);
+draw byLabelsOnPolygon(N, M, H)(2, 0);
+draw byLabelsOnPolygon(G, H, M)(2, -2);
+draw byLabelsOnPolygon(M, B, G)(2, -2);
+draw byLabelsOnPolygon(M, N, B)(2, -2);
 }
 \drawCurrentPictureInMargin
 Also the lines making equal angles with that which passes through the centre are equal, whether falling on the concave or convex circumference; and no third line can be drawn equal to them from the same point to the circumference.
@@ -5329,15 +5343,25 @@ draw byLine(D, F, black, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
 draw byCircle(D, A, byblue, 0, 0, 0)(D);
+draw byLabelLineEnd(A, D, 0);
+draw byLabelLineEnd(B, D, 0);
+draw byLabelLineEnd(C, D, 0);
+draw byLabelLineEnd(H, D, 0);
+draw byLabelLineEnd(L, D, 0);
+draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
 
-For if it be supposed that the point \drawLine{DB,DC} in which more than two equal straight lines meet is not the centre, some other point \drawUnitLine{DF,FL} must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
+For if it be supposed that the point \drawFromCurrentPicture{
+draw byNamedLineSeq(0)(DB,DC);
+draw byLabelsOnPolygon(B, D, C)(2, 0);
+} in which more than two equal straight lines meet is not the centre, some other point \drawUnitLine{DF,FL} must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
 
 Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawFromCurrentPicture[middle][pointD]{
 draw byNamedLine(DB);
 draw byNamedLineSeq(0)(DH,DC);
+draw byLabelsOnPolygon(H, D, C)(2, 0);
 }, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (hyp.) which is absurd.
 
 The same may be demonstrated of any other point, different from \pointD, which must be the centre of the circle.
@@ -5346,7 +5370,7 @@ The same may be demonstrated of any other point, different from \pointD, which m
 \stopProposition
 
 \startProposition[title={Prop. X. theor.},reference=prop:III.X]
-\defineNewPicture{
+\defineNewPicture[1/5]{
 pair P, G, H, B, d, dd;
 pair Pd, Gd, Hd, Bd, Pdd;
 numeric r, t[];
@@ -5384,18 +5408,31 @@ draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
 draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
 byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
 byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
+draw byLabelLineEnd(G, P, 0);
+draw byLabelLineEnd(B, P, 0);
+draw byLabelLineEnd(H, P, 0);
+draw byLabelsOnPolygon(G, P, H)(2, 0);
+string pointLabel.Gd, pointLabel.Hd, pointLabel.Bd, pointLabel.Dd, pointLabel.Pdd;
+pointLabel.Gd := "G";
+pointLabel.Hd := "H";
+pointLabel.Bd := "B";
+pointLabel.Dd := "D";
+pointLabel.Pdd := "P";
+draw byLabelLineEnd(Gd, Pdd, 0);
+draw byLabelPoint(Bd, 180, 2);
+draw byLabelPoint(Hd, 0, 2);
+draw byLabelsOnPolygon(Hd, Pdd, Bd)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{O}{ne}{circle \drawCircle[middle][1/5]{PII} cannot intersect another \drawCircle[middle][1/5]{PI} in more points than two.}
+\problemNP{O}{ne}{circle \drawFromCurrentPicture{draw byNamedCircle(PII);} cannot intersect another \drawFromCurrentPicture[middle][circlePI]{draw byNamedCircle(PI);} in more points than two.}
 
-For if it be possible, let it intersect in three points; from the centre of \circlePII\ draw \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} to the points of intersection;
+For if it be possible, let it intersect in three points; from the centre of \drawCircle{PII} draw \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} to the points of intersection;
 
 $\therefore \drawUnitLine{PG} = \drawUnitLine{PB} = \drawUnitLine{PH}$ \indef[def:XV], but as the circles intersect, they have not the same centre \inprop[prop:III.V]:
 
 $\therefore$ the assumed point is not the centre of \circlePI , and $\therefore$ as \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} from a point not the centre, they are not equal (\inpropL[prop:III.VII], \inpropL[prop:III.VIII]); but it was shown before that they were equal, which is absurd; the circles therefore do not intersect in three points.
 
 \qed
-
 \stopProposition
 
 \startProposition[title={Prop. XI. theor.},reference=prop:III.XI]

@@ -4107,6 +4107,264 @@ $\therefore \drawUnitLine{FB} = \drawUnitLine{FM,MG}$; и никакая дру�
 \qed
 \stopProposition
 
+\startProposition[title={Предложение VIII. Теорема},reference=prop:III.VIII]
+\problemNP{П}{редложение}{разделено на три части.}
+
+\startsubproposition[title={I.}]
+\defineNewPicture[1/4]{
+pair M, D, A, E, F;
+numeric r;
+r := 7/4u;
+M := (0, 0);
+D := M shifted (dir(90)*3/2r);
+A := (dir(-90)*r) shifted M;
+E := (dir(-140)*r) shifted M;
+F := (dir(-170)*r) shifted M;
+draw byAngle(D, M, F, byyellow, 0);
+draw byAngle(F, M, E, black, 0);
+draw byLine(D, E, byred, 0, 0);
+draw byLine(M, A, black, 1, 0);
+draw byLine(M, E, byred, 1, 0);
+draw byLine(M, F, byblue, 1, 0);
+byLineDefine(D, M, black, 0, 0);
+byLineDefine(D, F, byblue, 0, 0);
+draw byNamedLineSeq(0)(DM,DF);
+draw byCircle(M, E, black, 0, 0, 0)(M);
+draw byLabelLineEnd(F, M, 0);
+draw byLabelLineEnd(E, M, 0);
+draw byLabelLineEnd(A, M, 0);
+draw byLabelsOnPolygon(F, D, M, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+Tсли из точки вне круга провести прямые линии \drawProportionalLine{DM,MA}, \drawProportionalLine{DE} и \drawProportionalLine{DF} к окружности, из тех, что падают на вогнутую часть окружности, наибольшей будет та \drawUnitLine{DM,MA}, что проходит через центр, а та, что ближе к ней \drawUnitLine{DE} будет длиннее той, что дальше \drawUnitLine{DF}.
+
+\startCenterAlign
+Проведем \drawUnitLine{MF} и \drawUnitLine{ME} к центру.\\
+Тогда \drawUnitLine{DM,MA} проходящая через центр будет наибольшей,\\
+поскольку, раз $\drawUnitLine{MA} = \drawUnitLine{ME}$, если к обеим добавить \drawUnitLine{DM}, $\drawUnitLine{DM,MA} = \drawUnitLine{DM} + \drawUnitLine{ME}$;\\
+но $> \drawUnitLine{DE}$ \inprop[prop:I.XX]\\
+$\therefore$ \drawUnitLine{DM,MA} больше любой другой линии, проведенной из той же точки к вогнутой части окржности.\\
+Теперь в \drawLine{DM,MF,DF} и \drawLine{DM,ME,DE}, $\drawUnitLine{MF} = \drawUnitLine{ME}$, и \drawUnitLine{DM} общая,\\
+но $\drawAngle{DMF,FME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \inprop[prop:I.XXIV];\\
+Так же можно показать, что $\drawUnitLine{DE} >$ любой другой линии, более далекой от \drawUnitLine{DM,MA}.
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={II.}]
+\defineNewPicture{
+pair M, D, G, H, K;
+numeric r;
+r := 7/4u;
+M := (0, 0);
+D := M shifted (dir(90)*2r);
+G := (dir(90)*r) shifted M;
+H := (dir(130)*r) shifted M;
+K := (dir(110)*r) shifted M;
+draw byLine(G, M, black, 0, 0);
+draw byLine(H, M, byblue, 0, 0);
+draw byLine(D, K, byred, 1, 0);
+draw byLine(K, M, byred, 0, 0);
+byLineDefine(D, G, black, 1, 0);
+byLineDefine(D, H, byblue, 1, 0);
+draw byNamedLineSeq(0)(DG,DH);
+draw byCircle(M, G, black, 0, 0, 0)(M);
+draw byLabelsOnPolygon(K, H, M)(2, -2);
+draw byLabelsOnPolygon(G, K, M)(2, -2);
+draw byLabelsOnPolygon(D, G, K)(2, -2);
+draw byLabelsOnPolygon(H, D, G)(2, 0);
+draw byLabelsOnPolygon(G, M, H)(2, 0);
+}
+\drawCurrentPictureInMargin
+Из линий, падающий на выпуклую часть окружности наименьшей \drawUnitLine{DG} является та, которая при продолжении проходит через центр, а линия, ближняя к наименьшей будет меньше дальней.
+
+\startCenterAlign
+Действительно, поскольку $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DG,GM}$ \inprop[prop:I.XX]\\
+and $\drawUnitLine{KM} = \drawUnitLine{GM}$,\\
+$\therefore \drawUnitLine{DK} > \drawUnitLine{DG}$ \inax[ax:V]
+
+Значит, поскольку $\drawUnitLine{HM} + \drawUnitLine{DH} > \drawUnitLine{KM} + \drawUnitLine{DK}$ \inprop[prop:I.XXI],\\
+и $\drawUnitLine{HM} = \drawUnitLine{KM}$,
+
+$\therefore \drawUnitLine{DK} < \drawUnitLine{DH}$. Так же и для прочих.
+\stopCenterAlign
+\stopsubproposition
+
+\startsubproposition[title={III.}]
+\defineNewPicture{
+pair M, D, B, G, H, N, O;
+numeric r;
+r := 7/4u;
+M := (0, 0);
+D := M shifted (dir(90)*2r);
+G := (dir(90)*r) shifted M;
+B := (dir(90 - 20)*r) shifted M;
+H := (dir(90 + 45)*r) shifted M;
+N := (dir(90 - 45)*r) shifted M;
+O = whatever[D, N] = whatever[M, B];
+draw byAngle(H, D, M, byyellow, 0);
+draw byAngle(M, D, N, byblue, 0);
+draw byLine(B, O, byred, 0, 0);
+draw byLine(O, N, byyellow, 0, 0);
+draw byLine(D, M, black, 0, 0);
+draw byLine(H, M, byblue, 0, 0);
+draw byLine(B, M, black, 1, 0);
+byLineDefine(N, M, byyellow, 1, 0);
+byLineDefine(D, H, byblue, 1, 0);
+byLineDefine(D, O, byred, 1, 0);
+draw byNamedLineSeq(0)(DH,DO,NM);
+draw byCircle(M, H, black, 0, 0, 0)(M);
+draw byLabelsOnPolygon(H, D, O, N)(2, 0);
+draw byLabelsOnPolygon(N, M, H)(2, 0);
+draw byLabelsOnPolygon(G, H, M)(2, -2);
+draw byLabelsOnPolygon(M, B, G)(2, -2);
+draw byLabelsOnPolygon(M, N, B)(2, -2);
+}
+\drawCurrentPictureInMargin
+Кроме того, линии, образующие равные углы с проходящей через центр равны между собой, падают ли они на вогнутую или выпуклую часть окружности, и нельзя провести третьей линии из той же точки той же длины к окружности.
+
+\startCenterAlign
+Действительно, пусть $\drawUnitLine{DO,ON} > \drawUnitLine{DH}$, взяв $\drawAngle{HDM} = \drawAngle{MDN}$;\\
+сделаем $\drawUnitLine{DO} = \drawUnitLine{DH}$, и проведем \drawUnitLine{BM,BO}.
+
+Тогда в \drawLine{DM,DO,BO,BM} и \drawLine{HM,DH,DM} получим $\drawUnitLine{DO} = \drawUnitLine{DH}$\\
+и общую \drawUnitLine{DM}, а также $\drawAngle{MDN} = \drawAngle{HDM}$,
+
+$\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \inprop[prop:I.IV]
+
+Но $\drawUnitLine{HM} = \drawUnitLine{BM}$;
+
+$\therefore \drawUnitLine{BM} = \drawUnitLine{BM,BO}$, что невозможно.
+
+$\therefore \drawUnitLine{DH} \mbox{ не } = \drawUnitLine{DO}$, ни какой либо часть \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \mbox{ не } > \drawUnitLine{DH}$.
+
+Так же и $\drawUnitLine{DH} \mbox{ не } > \drawUnitLine{DO,ON}$, они $\therefore  =$ друг другу.
+\stopCenterAlign
+Так же и любая другая линия, проведенная из той же точки к окружности, должна будет лежать по одну сторону с одной из этих линий и быть ближе или дальше, чем они от линии, проходящей через центр и не может, следовательно, быть равной им.
+
+\qed
+\stopsubproposition
+\stopProposition
+
+\startProposition[title={Предложение IX. Теорема},reference=prop:III.IX]
+\defineNewPicture[1/4]{
+pair D, A, B, C, F, L, H;
+numeric r;
+r := 7/4u;
+D := (0, 0);
+A := (dir(170)*r) shifted D;
+B := (dir(-90)*r) shifted D;
+C := (dir(-45)*r) shifted D;
+L := (dir(45)*r) shifted D;
+H := (dir(45 + 180)*r) shifted D;
+F := 2/4[D, L];
+draw byLine(D, A, byyellow, 1, 0);
+draw byLine(D, B, byyellow, 0, 0);
+draw byLine(D, C, byblue, 0, 0);
+draw byLine(D, F, black, 0, 0);
+draw byLine(F, L, byred, 1, 0);
+draw byLine(D, H, byred, 0, 0);
+draw byCircleR(D, r, byblue, 0, 0, 0)(D);
+draw byLabelLineEnd(A, D, 0);
+draw byLabelLineEnd(B, D, 0);
+draw byLabelLineEnd(C, D, 0);
+draw byLabelLineEnd(H, D, 0);
+draw byLabelLineEnd(L, D, 0);
+draw byLabelsOnPolygon(A, D, F, L)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{внутри круга \drawCircle[middle]{D} взята точка, из которой к окружности может быть проведено больше двух равных прямых линии \drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}, эта точка является центром круга.}
+
+Действительно, если рассматриваемая точка \drawFromCurrentPicture{
+draw byNamedLineSeq(0)(DB,DC);
+draw byLabelsOnPolygon(B, D, C)(2, 0);
+}, в которой встречается больше двух равных прямых линий, не центр, то какая- то другая \drawFromCurrentPicture{
+startTempScale(1/2);
+startGlobalRotation(-lineAngle.DF);
+draw byNamedLineSeq(0)(DF,FL);
+draw byLabelsOnPolygon(D, F, L)(2, 0);
+stopGlobalRotation;
+stopTempScale;
+} должна быть центром, проведем между этими двумя точками \drawUnitLine{DF} и продлим в обе стороны до окружности.
+
+Теперь, поскольку более чем две равных прямых линии проведено к окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawFromCurrentPicture[middle][pointD]{
+draw byNamedLine(DB);
+draw byNamedLineSeq(0)(DH,DC);
+draw byLabelsOnPolygon(H, D, C)(2, 0);
+}, не являющейся центром проямые линии проведены к окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а \drawUnitLine{DC}, которая ближе к \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ расположенной дальше \inprop[prop:III.VIII], ер $\drawUnitLine{DC} = \drawUnitLine{DB}$ (гип.), что невозможно.
+
+То же можно показать для любой другой точки, кроме \pointD, которая, таким образом, должна быть центром круга.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение X. Теорема},reference=prop:III.X]
+\defineNewPicture[1/5]{
+pair P, G, H, B, d, dd;
+pair Pd, Gd, Hd, Bd, Pdd;
+numeric r, t[];
+path cr[], crd[];
+r := 7/4u;
+d := (0, -9/4r);
+P := (0, 0);
+cr1 := ((fullcircle scaled 7/3r xscaled 4/5) rotated 45) shifted P;
+cr2 := ((fullcircle scaled 7/3r xscaled 4/5) rotated -45) shifted P;
+H := (subpath (0, 2) of cr1) intersectionpoint cr2;
+B := (subpath (0, -2) of cr1) intersectionpoint cr2;
+G := (subpath (-2, -4) of cr1) intersectionpoint cr2;
+Pd := P shifted d;
+crd1 := (fullcircle scaled 2r) shifted Pd;
+dd := (0, -3/2r);
+crd2 := crd1 shifted dd;
+Pdd := Pd shifted dd;
+t1 := xpart(crd2 intersectiontimes (subpath (-2, -4) of crd1));
+t2 := xpart(crd2 intersectiontimes (subpath (0, -2) of crd1));
+Bd := point t1 of crd2;
+Hd := point t2 of crd2;
+Gd := point -2 of crd1;
+crd2 := subpath (t1, t2 + 8) of crd2;
+crd2 := crd2 .. (point -2 of crd1) .. cycle;
+draw byLine(P, B, byyellow, 0, 0);
+draw byLine(P, G, black, 0, 0);
+draw byLine(P, H, byblue, 0, 0);
+draw byArbitraryFigure(cr1, byred, 0, 0)(fI);
+draw byArbitraryFigure(cr2, byblue, 0, 0)(fII);
+draw byLine(Pdd, Gd, black, 0, 0);
+byLineDefine(Pdd, Bd, byyellow, 0, 0);
+byLineDefine(Pdd, Hd, byblue, 0, 0);
+draw byNamedLineSeq(0)(PddBd,PddHd);
+draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
+draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
+byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
+byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
+draw byLabelLineEnd(G, P, 0);
+draw byLabelLineEnd(B, P, 0);
+draw byLabelLineEnd(H, P, 0);
+draw byLabelsOnPolygon(G, P, H)(2, 0);
+string pointLabel.Gd, pointLabel.Hd, pointLabel.Bd, pointLabel.Dd, pointLabel.Pdd;
+pointLabel.Gd := "G";
+pointLabel.Hd := "H";
+pointLabel.Bd := "B";
+pointLabel.Dd := "D";
+pointLabel.Pdd := "P";
+draw byLabelLineEnd(Gd, Pdd, 0);
+draw byLabelPoint(Bd, 180, 2);
+draw byLabelPoint(Hd, 0, 2);
+draw byLabelsOnPolygon(Hd, Pdd, Bd)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{К}{руг}{\drawFromCurrentPicture{draw byNamedCircle(PII);} не сечет круга \drawFromCurrentPicture[middle][circlePI]{draw byNamedCircle(PI);} более чем в двух точках.}
+
+Действительно, будь такое возможно, пусть они пересекаются в трех точках, из центра \drawCircle[middle][1/5]{PII} проведем \drawUnitLine{PG}, \drawUnitLine{PB} и \drawUnitLine{PH} к точкам пересечения.
+
+$\therefore \drawUnitLine{PG} = \drawUnitLine{PB} = \drawUnitLine{PH}$ \indef[def:XV], но, поскольку круги пересекаются, у них не один центр \inprop[prop:III.V]:
+
+$\therefore$ рассматриваемая точка не центр \circlePI , и $\therefore$, поскольку \drawUnitLine{PG}, \drawUnitLine{PB} и \drawUnitLine{PH} проведены не из центра, они не равны (\inpropL[prop:III.VII], \inpropN[prop:III.VIII]), но выше было показано, что они равны, что невозможно, круги, стало быть, не пересекаются в трех точках.
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext
