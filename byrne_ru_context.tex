@@ -369,9 +369,8 @@ byLineDefine(F, H, byred, 1, 0);
 draw byNamedLine(EG,FH);
 draw byNamedLineSeq(0)(BC,CA,EA,BE);
 draw byNamedLineSeq(0)(BD,DA,FA,BF);
-string pointLabel.F, pointLabel.E;
-pointLabel.F := "C";
-pointLabel.E := "D";
+byPointLabelDefine(F, "C");
+byPointLabelDefine(E, "D");
 draw byLabelsOnPolygon(F, A, C, D, B, F, noPoint)(2, 0);
 draw byLabelsOnPolygon(A, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, A)(2, 0);
@@ -2368,22 +2367,19 @@ $\therefore \drawAngle{D} = \drawAngle{C} = \mbox{прямому углу}$ \inp
 \startProposition[title={Предложение XLVII. Теорема}, reference=prop:I.XLVII]
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
-%forsuffixes i=A, B, C, D, E, F, G, H, I, J, K, L, M:
-%string pointLabel.i;
-%endfor;
-%pointLabel.A := "α";
-%pointLabel.B := "β";
-%pointLabel.C := "γ";
-%pointLabel.D := "δ";
-%pointLabel.E := "ε";
-%pointLabel.F := "ζ";
-%pointLabel.G := "η";
-%pointLabel.H := "θ";
-%pointLabel.I := "ι";
-%pointLabel.J := "κ";
-%pointLabel.K := "λ";
-%pointLabel.L := "μ";
-%pointLabel.M := "ν";
+%byPointLabelDefine(A, "α");
+%byPointLabelDefine(B, "β");
+%byPointLabelDefine(C, "γ");
+%byPointLabelDefine(D, "δ");
+%byPointLabelDefine(E, "ε");
+%byPointLabelDefine(F, "ζ");
+%byPointLabelDefine(G, "η");
+%byPointLabelDefine(H, "θ");
+%byPointLabelDefine(I, "ι");
+%byPointLabelDefine(J, "κ");
+%byPointLabelDefine(K, "λ");
+%byPointLabelDefine(L, "μ");
+%byPointLabelDefine(M, "ν");
 A := (0, 0);
 B := A shifted (-7/10u, -8/7u);
 C = whatever[A, A shifted ((A-B) rotated 90)] = whatever[B, B shifted dir(0)];
@@ -3430,8 +3426,7 @@ r := abs(B - G);
 H := (D--(E shifted ((E-D)*10))) intersectionpoint ((fullcircle scaled 2r) shifted G);
 forsuffixes i=a,b,c,d,e,f:
 	i := i shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
-	string pointLabel.i;
-	pointLabel.i := "";
+	byPointLabelDefine(i, "");
 endfor;
 draw byPolygon(a,b,c,d,e,f)(byyellow);
 draw byPolygon(B,C,D,E)(byred);
@@ -4342,12 +4337,11 @@ draw byLabelLineEnd(G, P, 0);
 draw byLabelLineEnd(B, P, 0);
 draw byLabelLineEnd(H, P, 0);
 draw byLabelsOnPolygon(G, P, H)(2, 0);
-string pointLabel.Gd, pointLabel.Hd, pointLabel.Bd, pointLabel.Dd, pointLabel.Pdd;
-pointLabel.Gd := "G";
-pointLabel.Hd := "H";
-pointLabel.Bd := "B";
-pointLabel.Dd := "D";
-pointLabel.Pdd := "P";
+byPointLabelDefine(Gd, "G");
+byPointLabelDefine(Hd, "H");
+byPointLabelDefine(Bd, "B");
+byPointLabelDefine(Dd, "D");
+byPointLabelDefine(Pdd, "P");
 draw byLabelLineEnd(Gd, Pdd, 0);
 draw byLabelPoint(Bd, 180, 2);
 draw byLabelPoint(Hd, 0, 2);
@@ -4361,6 +4355,116 @@ draw byLabelsOnPolygon(Hd, Pdd, Bd)(2, 0);
 $\therefore \drawUnitLine{PG} = \drawUnitLine{PB} = \drawUnitLine{PH}$ \indef[def:XV], но, поскольку круги пересекаются, у них не один центр \inprop[prop:III.V]:
 
 $\therefore$ рассматриваемая точка не центр \circlePI , и $\therefore$, поскольку \drawUnitLine{PG}, \drawUnitLine{PB} и \drawUnitLine{PH} проведены не из центра, они не равны (\inpropL[prop:III.VII], \inpropN[prop:III.VIII]), но выше было показано, что они равны, что невозможно, круги, стало быть, не пересекаются в трех точках.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XI. Теорема},reference=prop:III.XI]
+\defineNewPicture[1/2]{
+pair M, N, A, D, F, G, H, K;
+numeric r[];
+path cr[];
+r1 := 9/4u;
+r2 := 2/3r1;
+M := (0, 0);
+N := M shifted (0, +r1-r2);
+cr1 := (fullcircle scaled 2r1) shifted M;
+cr2 := (fullcircle scaled 2r2) shifted N;
+A := (0, r1) shifted M;
+F := 1/2[M,N] shifted (dir(-20)*1/3r2);
+G := 1/2[M,N] shifted (dir(-20 + 180)*1/3r2);
+D := cr2 intersectionpoint (F--10[F, G]);
+H := cr1 intersectionpoint (F--10[F, G]);
+K := cr1 intersectionpoint (F--10[G, F]);
+draw byPolygon(A,F,G)(byyellow);
+draw byLine(A, G, byred, 0, 0);
+draw byLine(A, F, byblue, 1, 0);
+draw byLine(H, D, byyellow, 0, 0);
+draw byLine(D, G, byyellow, 1, 0);
+draw byLine(G, F, black, 0, 0);
+draw byLine(F, K, byblue, 0, 0);
+byPointLabelDefine(M, "F");
+byPointLabelDefine(N, "G");
+draw byCircle(M, A, black, 0, 0, 0)(M);
+draw byCircle(N, A, byblue, 0, 0, -1)(N);
+draw byLabelsOnPolygon(K, F, G, D)(2, 0);
+draw byLabelsOnPolygon(A, D, N)(2, 0); 
+draw byLabelLineEnd(A, G, 0);
+draw byLabelLineEnd(H, F, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{два круга \drawCircle[middle][1/4]{N} и \drawCircle[middle][1/5]{M} касаются между собой изнутри, прямая, соединяющая их центры, при продлении проходит через точку касания.}
+
+\startCenterAlign
+Действительно, если такое возможно, соединим центры с помощью \drawSizedLine{GF} и продлим в обе стороны.\\
+из точки касания проведем \drawSizedLine{AG} к сентру \circleN,\\
+из той же точки касания проведем \drawSizedLine{AF} к центру \circleM.\\
+Поскольку в
+\drawFromCurrentPicture{
+draw byNamedPolygon(AFG);
+draw byNamedLineFull(A, A, 1, 1, 0)(GF);
+}
+$\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \inprop[prop:I.XX],\\
+и $\drawSizedLine{AF} = \drawSizedLine{HD,DG,GF}$, как радиусы\circleM,\\
+но $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HD,DG,GF}$;\\
+вычтем \drawSizedLine{GF} общую обеим,\\
+и $\drawSizedLine{AG} > \drawSizedLine{HD,DG}$;\\
+но $\drawSizedLine{AG} = \drawSizedLine{DG}$, как радиусы \circleN,\\
+и $\therefore \drawSizedLine{DG} > \drawSizedLine{HD,DG}$ часть больше целого, что невозможно.
+
+\stopCenterAlign
+
+Центры, следовательно, расположены так, что линия, соединяющая их не может проходить через какую-либо точку, кроме точки касания.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XII. Теорема},reference=prop:III.XII]
+\defineNewPicture[1/4]{
+pair M, N, A, C, D, F, G;
+numeric r[];
+path cr[];
+r1 := 3/2u;
+r2 := 2u;
+M := (0, 0);
+N := (0, -r1-r2);
+cr1 := (fullcircle scaled 2r1) shifted M;
+cr2 := (fullcircle scaled 2r2) shifted N;
+A := M shifted (0, -r1);
+F := M shifted (dir(185)*1/2r1);
+G := N shifted (dir(175)*1/2r2);
+C := cr1 intersectionpoint (F--G);
+D := cr2 intersectionpoint (F--G);
+byLineDefine(F, C, byred, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(D, G, byblue, 0, 0);
+byLineDefine(A, F, byyellow, 1, 0);
+byLineDefine(A, G, byyellow, 0, 0);
+draw byNamedLineSeq(0)(FC,CD,DG,AG,AF);
+draw byCircle(M, A, byblue, 0, 0, -1/2)(M);
+draw byCircle(N, A, byred, 0, 0, -1/2)(N);
+byPointLabelDefine(M, "F");
+byPointLabelDefine(N, "G");
+draw byLabelsOnPolygon(C, F, A)(2, 0);
+draw byLabelsOnPolygon(A, G, D)(2, 0);
+draw byLabelsOnPolygon(A, C, F)(2, 0);
+draw byLabelsOnPolygon(G, D, D)(2, 0);
+draw byLabelPoint(A, angle(F-A)-45, 2);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{два круга \drawCircle{M} и \drawCircle{N} касаются друг друг извне, прямая \drawUnitLine{FC,CD,DG} соединяющая их центры проходит через точку касания.}
+
+Действительно, если такое возможно, соединим центры с помощью \drawUnitLine{FC,CD,DG}, не проходящей через точку касания, из точки касания проведем \drawUnitLine{AF} и \drawUnitLine{AG} к центрам.
+
+\startCenterAlign
+Поскольку $\drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \inprop[prop:I.XX]\\
+и $\drawUnitLine{FC} = \drawUnitLine{AF}$ \inprop[prop:I.XV],\\
+и $\drawUnitLine{DG} = \drawUnitLine{AG}$ \inprop[prop:I.XV],
+
+$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, часть больше целого, что невозможно.
+\stopCenterAlign
+
+Центры, следовательно, расположены так, что линия, соединяющая их не может проходить через какую-либо точку, кроме точки касания.
 
 \qed
 \stopProposition

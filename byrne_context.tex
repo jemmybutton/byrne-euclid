@@ -1475,9 +1475,8 @@ byLineDefine(F, H, byred, 1, 0);
 draw byNamedLine(EG,FH);
 draw byNamedLineSeq(0)(BC,CA,EA,BE);
 draw byNamedLineSeq(0)(BD,DA,FA,BF);
-string pointLabel.F, pointLabel.E;
-pointLabel.F := "C";
-pointLabel.E := "D";
+byPointLabelDefine(F, "C");
+byPointLabelDefine(E, "D");
 draw byLabelsOnPolygon(F, A, C, D, B, F, noPoint)(2, 0);
 draw byLabelsOnPolygon(A, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, A)(2, 0);
@@ -3478,22 +3477,19 @@ And $\therefore \polygonABDC$ is a square. \indef[def:XXVII]
 \startProposition[title={Prop XLVII. Theor.}, reference=prop:I.XLVII]
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
-%forsuffixes i=A, B, C, D, E, F, G, H, I, J, K, L, M:
-%string pointLabel.i;
-%endfor;
-%pointLabel.A := "α";
-%pointLabel.B := "β";
-%pointLabel.C := "γ";
-%pointLabel.D := "δ";
-%pointLabel.E := "ε";
-%pointLabel.F := "ζ";
-%pointLabel.G := "η";
-%pointLabel.H := "θ";
-%pointLabel.I := "ι";
-%pointLabel.J := "κ";
-%pointLabel.K := "λ";
-%pointLabel.L := "μ";
-%pointLabel.M := "ν";
+%byPointLabelDefine(A, "α");
+%byPointLabelDefine(B, "β");
+%byPointLabelDefine(C, "γ");
+%byPointLabelDefine(D, "δ");
+%byPointLabelDefine(E, "ε");
+%byPointLabelDefine(F, "ζ");
+%byPointLabelDefine(G, "η");
+%byPointLabelDefine(H, "θ");
+%byPointLabelDefine(I, "ι");
+%byPointLabelDefine(J, "κ");
+%byPointLabelDefine(K, "λ");
+%byPointLabelDefine(L, "μ");
+%byPointLabelDefine(M, "ν");
 A := (0, 0);
 B := A shifted (-7/10u, -8/7u);
 C = whatever[A, A shifted ((A-B) rotated 90)] = whatever[B, B shifted dir(0)];
@@ -4554,8 +4550,7 @@ r := abs(B - G);
 H := (D--(E shifted ((E-D)*10))) intersectionpoint ((fullcircle scaled 2r) shifted G);
 forsuffixes i=a,b,c,d,e,f:
 	i := i shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
-	string pointLabel.i;
-	pointLabel.i := "";
+	byPointLabelDefine(i, "");
 endfor;
 draw byPolygon(a,b,c,d,e,f)(byyellow);
 draw byPolygon(B,C,D,E)(byred);
@@ -5412,12 +5407,11 @@ draw byLabelLineEnd(G, P, 0);
 draw byLabelLineEnd(B, P, 0);
 draw byLabelLineEnd(H, P, 0);
 draw byLabelsOnPolygon(G, P, H)(2, 0);
-string pointLabel.Gd, pointLabel.Hd, pointLabel.Bd, pointLabel.Dd, pointLabel.Pdd;
-pointLabel.Gd := "G";
-pointLabel.Hd := "H";
-pointLabel.Bd := "B";
-pointLabel.Dd := "D";
-pointLabel.Pdd := "P";
+byPointLabelDefine(Gd, "G");
+byPointLabelDefine(Hd, "H");
+byPointLabelDefine(Bd, "B");
+byPointLabelDefine(Dd, "D");
+byPointLabelDefine(Pdd, "P");
 draw byLabelLineEnd(Gd, Pdd, 0);
 draw byLabelPoint(Bd, 180, 2);
 draw byLabelPoint(Hd, 0, 2);
@@ -5463,6 +5457,10 @@ byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
 draw byCircle(M, A, black, 0, 0, 0)(M);
 draw byCircle(N, A, byblue, 0, 0, -1)(N);
+draw byLabelsOnPolygon(K, F, G, D)(2, 0);
+draw byLabelsOnPolygon(A, D, N)(2, 0); 
+draw byLabelLineEnd(A, G, 0);
+draw byLabelLineEnd(H, F, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles \drawCircle[middle][1/4]{N} and \drawCircle[middle][1/5]{M} touch one another internally, the right line joining their centres, being produced, shall pass through a point of contact.}
@@ -5472,19 +5470,19 @@ For, if it be possible, let \drawSizedLine{GF} join their centres, and produce i
 from a point of contact draw \drawSizedLine{AG} to the centre of \circleN,\\
 and from the same point of contact draw \drawSizedLine{AF} to the centre of \circleM.
 
-Because
+Because in
 \drawFromCurrentPicture{
 draw byNamedPolygon(AFG);
 draw byNamedLineFull(A, A, 1, 1, 0)(GF);
 };
 $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \inprop[prop:I.XX],\\
-and $\drawSizedLine{AF} = \drawSizedLine{HD,DG,GF}$ as they are radii of \circleN,\\
+and $\drawSizedLine{AF} = \drawSizedLine{HD,DG,GF}$ as they are radii of \circleM,\\
 but $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HD,DG,GF}$;\\
-take away \drawSizedLine{GF} which is common.\\
+take away \drawSizedLine{GF} which is common,\\
 and $\drawSizedLine{AG} > \drawSizedLine{HD,DG}$;\\
-but $\drawSizedLine{AG} = \drawSizedLine{HD}$,\\
-because they are radii of \circleM,\\
-and $\therefore \drawSizedLine{HD} > \drawSizedLine{HD,DG}$ a part greater than the whole, which is absurd.
+but $\drawSizedLine{AG} = \drawSizedLine{DG}$,\\
+because they are radii of \circleN,\\
+and $\therefore \drawSizedLine{DG} > \drawSizedLine{HD,DG}$ a part greater than the whole, which is absurd.
 \stopCenterAlign
 
 The centres are not therefore so placed, that a line joining them can pass through any point but a point of contact.
@@ -5516,6 +5514,13 @@ byLineDefine(A, G, byyellow, 0, 0);
 draw byNamedLineSeq(0)(FC,CD,DG,AG,AF);
 draw byCircle(M, A, byblue, 0, 0, -1/2)(M);
 draw byCircle(N, A, byred, 0, 0, -1/2)(N);
+byPointLabelDefine(M, "F");
+byPointLabelDefine(N, "G");
+draw byLabelsOnPolygon(C, F, A)(2, 0);
+draw byLabelsOnPolygon(A, G, D)(2, 0);
+draw byLabelsOnPolygon(A, C, F)(2, 0);
+draw byLabelsOnPolygon(G, D, D)(2, 0);
+draw byLabelPoint(A, angle(F-A)-45, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circle \drawCircle{M} and \drawCircle{N} touch one another externally, the straight line \drawUnitLine{FC,CD,DG} joining their centres, passes through the point of contact.}
