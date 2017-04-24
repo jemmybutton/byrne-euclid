@@ -98,9 +98,8 @@ draw byCircle(D, E, byred, 0, 0, 1/2)(A);
 draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
 draw byLabelsOnPolygon(E, D, A, F)(2, -1);
 draw byLabelsOnPolygon(E, B, C)(2, -1);
-draw byLabelLineEnd(C, B, 0);
-draw byLabelLineEnd(E, B, 1);
-draw byLabelLineEnd(F, A, 1);
+draw byLabelsOnCircle(C)(B);
+draw byLabelsOnCircle(E, F)(A);
 }
 \drawCurrentPictureInMargin
 \problemNP{О}{т}{данной точки \drawFromCurrentPicture{
@@ -1046,8 +1045,8 @@ draw byCircle(B, E, byred, 0, 0, 0)(B);
 draw byLabelsOnPolygon(D, A, C)(2, 0);
 draw byLabelsOnPolygon(E, B, A)(2, 0);
 draw byLabelsOnPolygon(A, C, B)(2, 0);
-draw byLabelLineEnd(D, A, 0);
-draw byLabelLineEnd(E, B, 0);
+draw byLabelsOnCircle(D)(A);
+draw byLabelsOnCircle(E)(B);
 draw byLabelLine(L', L'', L''');
 }
 \drawCurrentPictureInMargin
@@ -3713,11 +3712,10 @@ byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(B, G, black, 1, 0);
 draw byNamedLineSeq(0)(AG,BG);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
-draw byLabelsOnPolygon(A, G, B)(0, 0);
+draw byLabelsOnPolygon(A, G, B)(2, 0);
 draw byLabelsOnPolygon(E, D, A)(2, 0);
 draw byLabelsOnPolygon(E, F, C)(2, -4);
-draw byLabelLineEnd(E, C, 0);
-draw byLabelLineEnd(C, E, 0);
+draw byLabelsOnCircle(A, B, C, E)(F);
 }
 \drawCurrentPictureInMargin
 \problemNP{Н}{айти}{центр данного круга \drawCircle[middle][1/4]{F}.}
@@ -3809,9 +3807,8 @@ byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(A, E, 0);
-draw byLabelLineEnd(B, E, 0);
-draw byLabelsOnPolygon(D, F, A)(2, 0);
+draw byLabelsOnCircle(A, B)(E);
+draw byLabelsOnPolygon(D, F, A)(2, -2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -3856,10 +3853,7 @@ draw byLine(E, F, black, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, black, 0, 0);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
-draw byLabelLineEnd(A, F, 0);
-draw byLabelLineEnd(B, F, 0);
-draw byLabelLineEnd(C, F, 0);
-draw byLabelLineEnd(D, F, 0);
+draw byLabelsOnCircle(A, B, C, D)(F);
 draw byLabelLineEnd(F, E, 0);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -3954,8 +3948,7 @@ byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CF,FE,EB);
 draw byCircle(M, C, byred, 0, 0, 0)(M);
 draw byCircle(N, C, black, 0, 0, -1)(N);
-draw byLabelLineEnd(C, F, 0);
-draw byLabelLineEnd(B, F, 0);
+draw byLabelsOnCircle(B, C)(M);
 draw byLabelsOnPolygon(E, F, C)(2, 0);
 draw byLabelPoint(E, angle(B-F)+45, 2);
 }
@@ -3994,11 +3987,7 @@ draw byLine(F, A, black, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
 draw byLine(F, G, byblue, 1, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(A, E, 0);
-draw byLabelLineEnd(B, E, 0);
-draw byLabelLineEnd(C, E, 0);
-draw byLabelLineEnd(D, E, 0);
-draw byLabelLineEnd(G, E, 0);
+draw byLabelsOnCircle(A, B, C, D, G)(E);
 draw byLabelsOnPolygon(D, F, G)(2, 0);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
 }
@@ -4039,10 +4028,7 @@ draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(A, E, 0);
-draw byLabelLineEnd(B, E, 0);
-draw byLabelLineEnd(C, E, 0);
-draw byLabelLineEnd(D, E, 0);
+draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -4078,9 +4064,7 @@ draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, D, black, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(B, E, 0);
-draw byLabelLineEnd(G, E, 0);
-draw byLabelLineEnd(H, E, 0);
+draw byLabelsOnCircle(B, G, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
 }
@@ -4125,9 +4109,7 @@ byLineDefine(D, M, black, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DM,DF);
 draw byCircle(M, E, black, 0, 0, 0)(M);
-draw byLabelLineEnd(F, M, 0);
-draw byLabelLineEnd(E, M, 0);
-draw byLabelLineEnd(A, M, 0);
+draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -4261,11 +4243,7 @@ draw byLine(D, F, black, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
 draw byCircleR(D, r, byblue, 0, 0, 0)(D);
-draw byLabelLineEnd(A, D, 0);
-draw byLabelLineEnd(B, D, 0);
-draw byLabelLineEnd(C, D, 0);
-draw byLabelLineEnd(H, D, 0);
-draw byLabelLineEnd(L, D, 0);
+draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -4333,9 +4311,7 @@ draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
 draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
 byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
 byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
-draw byLabelLineEnd(G, P, 0);
-draw byLabelLineEnd(B, P, 0);
-draw byLabelLineEnd(H, P, 0);
+draw byLabelsOnCircle(G, B, H)(PI);
 draw byLabelsOnPolygon(G, P, H)(2, 0);
 byPointLabelDefine(Gd, "G");
 byPointLabelDefine(Hd, "H");
@@ -4388,9 +4364,8 @@ byPointLabelDefine(N, "G");
 draw byCircle(M, A, black, 0, 0, 0)(M);
 draw byCircle(N, A, byblue, 0, 0, -1)(N);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
-draw byLabelsOnPolygon(A, D, N)(2, 0); 
-draw byLabelLineEnd(A, G, 0);
-draw byLabelLineEnd(H, F, 0);
+draw byLabelsOnPolygon(A, D, N)(2, -1); 
+draw byLabelsOnCircle(A, H)(M);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{два круга \drawCircle[middle][1/4]{N} и \drawCircle[middle][1/5]{M} касаются между собой изнутри, прямая, соединяющая их центры, при продлении проходит через точку касания.}
@@ -4465,6 +4440,203 @@ $\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, ч
 \stopCenterAlign
 
 Центры, следовательно, расположены так, что линия, соединяющая их не может проходить через какую-либо точку, кроме точки касания.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIII. Теорема},reference=prop:III.XIII]
+\problemNP{К}{руг}{не касается круга более чем в одной точке, как внутри, так и снаружи.}
+
+\defineNewPicture{
+pair M, N, F, G, H, B, D;
+numeric r[];
+path cr[];
+r1 := 7/4u;
+r2 := 3/4r1;
+M := (0, 0);
+N := (dir(120)*(r1-r2)) shifted M;
+cr1 := (fullcircle scaled 2r1) shifted M;
+cr2 := (fullcircle scaled 2r2) shifted N;
+t1 := xpart(cr1 intersectiontimes (M--10[M, N]));
+t2 := xpart(cr2 intersectiontimes (M--10[M, N]));
+cr2 := (subpath (t2 + 2/3, t2 - 2/3 + 8) of cr2) .. tension 3/2 .. cycle;
+B := point (t1 - 1/2) of cr1;
+D := point (t1 + 1/2) of cr1;
+G := 3/4[B, 1/2[M, N]];
+H := 5/4[B, 1/2[M, N]];
+draw byLine(D, G, black, 0, 0);
+byLineDefine(D, H, byred, 0, 0);
+byLineDefine(B, G, byblue, 1, 0);
+byLineDefine(G, H, byblue, 0, 0);
+draw byNamedLineSeq(0)(BG,GH,DH);
+draw byCircleR(M, r1, byyellow, 0, 0, 1)(M);
+draw byArbitraryFigure(cr2, byblue, 0, 0)(fI);
+byCircleDefineR(M, r1, byyellow, 0, 0, 0)(M);
+byCircleDefineR(N, r2, byblue, 0, 0, 0)(N);
+byPointLabelDefine(M, "H");
+byPointLabelDefine(N, "G");
+draw byLabelsOnCircle(D, B)(M);
+draw byLabelsOnPolygon(B, G, H, D)(2, 0);
+}
+
+\startsubproposition[title={Случай I.}]
+\drawCurrentPictureInMargin
+Действительно, если это возможно, пусть \drawCircle{M} и \drawCircle{N} касаются друг друга внутри в двух точках, проведем \drawUnitLine{GH} соединяющую их центры, и продлим до одной из точек касания \inprop[prop:III.XI];
+
+\startCenterAlign
+проведем \drawUnitLine{DH} и \drawUnitLine{DG},
+
+Но $\drawUnitLine{BG} = \drawUnitLine{DG}$ \indef[def:XV],\\
+$\therefore$ если добавить к каждой \drawUnitLine{GH},\\
+$\drawUnitLine{GH,BG} = \drawUnitLine{GH} + \drawUnitLine{DG}$;
+
+но $\drawUnitLine{GH,BG} = \drawUnitLine{DH}$ \indef[def:XV],\\
+и $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} = \drawUnitLine{DH}$;
+
+но $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} > \drawUnitLine{DH}$ \inprop[prop:I.XX],\\
+что невозможно.
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\defineNewPicture{
+pair P, Q, A, C;
+numeric r[], t[];
+path cr[];
+r1 := 7/4u;
+P := (0, 0);
+Q := P shifted (1/4r1, 0);
+cr3 := (fullcircle scaled 2r1) shifted P;
+cr4 := (fullcircle scaled 2r1) shifted Q;
+t3 := xpart(cr3 intersectiontimes (subpath (0, 4) of cr4));
+t4 := xpart(cr3 intersectiontimes (subpath (4, 8) of cr4));
+t5 := xpart(cr4 intersectiontimes (subpath (0, 4) of cr3));
+t6 := xpart(cr4 intersectiontimes (subpath (4, 8) of cr3));
+A := point t3 of cr3;
+C := point t4 of cr3;
+draw byLine(A, C, byred, 0, 0);
+draw byMarkLine(3/7, black)(AC);
+draw byMarkLine(4/7, black)(AC);
+draw byArcBE(P, t3, t4, r1, byblue, 0, 0, 0, 0)(PI);
+draw byArcBE(P, t4, t3 + 8, r1, black, 0, 0, 0, 0)(PII);
+draw byArcBE(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0)(QI);
+draw byArcBE(Q, t5, t6, r1, black, 0, 0, 0, 0)(QII);
+}
+
+\startsubproposition[title={Случай II.}]
+\drawCurrentPictureInMargin
+Если точки касания на концах прямой линии, соединяющей центры, такая прямая должна быть рассечена пополам в двух разных точках, соответствующих центрам, поскольку она является диаметром обоих кругов, что невозможно.
+\stopsubproposition
+
+\defineNewPicture{
+pair G, H, A, C;
+numeric r[];
+path cr[];
+r1 := 7/4u;
+r2 := 3/4r1;
+H := (0, 0);
+G := H shifted (0, r1 + r2);
+cr5 := (fullcircle scaled 2r1) shifted H;
+cr6 := (fullcircle scaled 2r2) shifted G;
+A := 1/2[point 2 of cr5, point 6 of cr6];
+C := A shifted (1/3r2, 0);
+cr5 := (subpath (2 + 2/4, 2 - 2/4 + 8) of cr5) .. tension 2 .. cycle;
+cr6 := (subpath (6 + 2/4, 6 - 2/4 + 8) of cr6) .. tension 2 .. cycle;
+byLineDefine(H, A, byred, 0, 0);
+byLineDefine(A, G, byred, 1, 0);
+byLineDefine(C, H, byblue, 1, 0);
+byLineDefine(C, G, black, 0, 0);
+draw byNamedLineSeq(0)(HA,AG,CG,CH);
+draw byArbitraryFigure(cr5, byyellow, 0, 0)(fII);
+draw byArbitraryFigure(cr6, byblue, 0, 0)(fIII);
+byCircleDefineR(H, r1, byyellow, 0, 0, 0)(H);
+byCircleDefineR(G, r2, byblue, 0, 0, 0)(G);
+draw byLabelsOnPolygon(H, G, C)(0, 0);
+draw byLabelPoint(A, angle(G-A)+45, 3);
+}
+\startsubproposition[title={Случай III.}]\drawCurrentPictureInMargin
+Теперь, если такое возможно, пусть круги \drawCircle{H} и \drawCircle{G} касаются друг друга снаружи в двух точках. Проведем \drawUnitLine{HA,AG}, соединяющую центры, и проходящую через одну из точек касания, проведем также \drawUnitLine{CH} и \drawUnitLine{CG}.
+
+\startCenterAlign
+$\drawUnitLine{CH} = \drawUnitLine{HA}$ \indef[def:XV];\\
+и $\drawUnitLine{AG} = \drawUnitLine{CG}$ \indef[def:XV];
+
+$\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HA,AG}$;
+
+но $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HA,AG}$ \inprop[prop:I.XX], что невозможно.
+\stopCenterAlign
+\stopsubproposition
+
+Следовательно, ни в каком случае круги не касаются друг друга в двух точках.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIV. Теорема},reference=prop:III.XIV]
+\defineNewPicture{
+pair A, B, C, D, E, F, G;
+numeric r;
+r := 9/4u;
+E := (0, 0);
+A := (dir(90-20)*r) shifted E;
+B := (dir(90-130)*r) shifted E;
+C := (dir(90+20)*r) shifted E;
+D := (dir(90+130)*r) shifted E;
+F = whatever[A, B] = whatever[E, E shifted ((A-B) rotated 90)];
+G = whatever[C, D] = whatever[E, E shifted ((C-D) rotated 90)];
+draw byAngleWithName(E, F, A, byyellow, 0)(F);
+draw byAngleWithName(E, G, C, black, 1)(G);
+draw byLine(E, A, black, 0, 0);
+draw byLine(E, C, byblue, 0, 0);
+byLineDefine(E, F, black, 1, 0);
+byLineDefine(E, G, byblue, 1, 0);
+draw byNamedLineSeq(0)(EF,EG);
+draw byLine(A, F, byred, 0, 0);
+draw byLine(F, B, byred, 1, 0);
+draw byLine(C, G, byyellow, 0, 0);
+draw byLine(G, D, byyellow, 1, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(F, E, G)(2, 0);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelLineEnd(F, E, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{авные}{прямые
+$\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AF,FB}}\nointerlineskip\hbox{\drawProportionalLine{CG,GD}}}\right)$
+в круге равноотстоят от центра и равноотстоящие от центра прямые равны.}
+
+\startCenterAlign
+Из центра \drawCircle[middle][1/4]{E} проведем \drawProportionalLine{EF} $\perp$ to \drawProportionalLine{AF,FB} и $\drawProportionalLine{EG} \perp \drawProportionalLine{CG,GD}$, соединим \drawProportionalLine{EA} и \drawProportionalLine{EC}.
+
+Тогда $\drawProportionalLine{CG} = \frac{1}{2} \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]\\
+и $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III]
+
+поскольку $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (гип.)\\
+$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
+и $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \indef[def:XV]\\
+$\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$;
+
+но поскольку \drawAngle{F} прямой\\
+$\drawProportionalLine{EA}^2 = \drawProportionalLine{EF}^2 + \drawProportionalLine{AF}^2$ \inprop[prop:I.XLVII]\\
+и $\drawProportionalLine{EC}^2 = \drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2$ по той же причине,\\
+$\therefore \drawProportionalLine{EF}^2 + \drawProportionalLine{AF}^2 = \drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2$
+
+$\therefore \drawProportionalLine{EF}^2 = \drawProportionalLine{EG}^2$
+
+$\therefore \drawProportionalLine{EF} = \drawProportionalLine{EG}$
+\stopCenterAlign
+
+Также, если прямые \drawProportionalLine{AF,FB} и \drawProportionalLine{CG,GD} равноудалены от центра, то еcть перпендикуляры \drawProportionalLine{EF} и \drawProportionalLine{EG} равны, $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$.
+
+\startCenterAlign
+Поскольку, как и в предыдущем случае,\\
+$\drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2 = \drawProportionalLine{AF}^2 + \drawProportionalLine{EF}^2$\\
+но $\drawProportionalLine{EG}^2 = \drawProportionalLine{EF}^2$
+
+$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$, и удвоенные $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$ тоже равны.
+\stopCenterAlign
 
 \qed
 \stopProposition

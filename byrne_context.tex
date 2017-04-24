@@ -1,8 +1,6 @@
 \input preamble.tex
 \input preamble_be.tex
 
-%\def\mpPre{textLabels := true;}
-
 % to turn text labels on uncomment next line
 % \def\mpPre{textLabels := true;}
 
@@ -1205,9 +1203,8 @@ draw byCircle(D, E, byred, 0, 0, 1/2)(A);
 draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
 draw byLabelsOnPolygon(E, D, A, F)(2, -1);
 draw byLabelsOnPolygon(E, B, C)(2, -1);
-draw byLabelLineEnd(C, B, 0);
-draw byLabelLineEnd(E, B, 1);
-draw byLabelLineEnd(F, A, 1);
+draw byLabelsOnCircle(C)(B);
+draw byLabelsOnCircle(E, F)(A);
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{a given point (\drawFromCurrentPicture{
@@ -2147,8 +2144,8 @@ draw byCircle(B, E, byred, 0, 0, 0)(B);
 draw byLabelsOnPolygon(D, A, C)(2, 0);
 draw byLabelsOnPolygon(E, B, A)(2, 0);
 draw byLabelsOnPolygon(A, C, B)(2, 0);
-draw byLabelLineEnd(D, A, 0);
-draw byLabelLineEnd(E, B, 0);
+draw byLabelsOnCircle(D)(A);
+draw byLabelsOnCircle(E)(B);
 draw byLabelLine(L', L'', L''');
 }
 \drawCurrentPictureInMargin
@@ -4914,9 +4911,8 @@ byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(A, E, 0);
-draw byLabelLineEnd(B, E, 0);
-draw byLabelsOnPolygon(D, F, A)(2, 0);
+draw byLabelsOnCircle(A, B)(E);
+draw byLabelsOnPolygon(D, F, A)(2, -2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -4962,10 +4958,7 @@ draw byLine(E, F, black, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, black, 0, 0);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
-draw byLabelLineEnd(A, F, 0);
-draw byLabelLineEnd(B, F, 0);
-draw byLabelLineEnd(C, F, 0);
-draw byLabelLineEnd(D, F, 0);
+draw byLabelsOnCircle(A, B, C, D)(F);
 draw byLabelLineEnd(F, E, 0);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -5060,8 +5053,7 @@ byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CF,FE,EB);
 draw byCircle(M, C, byred, 0, 0, 0)(M);
 draw byCircle(N, C, black, 0, 0, -1)(N);
-draw byLabelLineEnd(C, F, 0);
-draw byLabelLineEnd(B, F, 0);
+draw byLabelsOnCircle(B, C)(M);
 draw byLabelsOnPolygon(E, F, C)(2, 0);
 draw byLabelPoint(E, angle(B-F)+45, 2);
 }
@@ -5107,10 +5099,7 @@ draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(A, E, 0);
-draw byLabelLineEnd(B, E, 0);
-draw byLabelLineEnd(C, E, 0);
-draw byLabelLineEnd(D, E, 0);
+draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 label.top("Fig. 1", (0, r + 1/4u));
 d := (0, -2r -u);
@@ -5127,9 +5116,7 @@ draw byLine(A, E, black, 1, 0);
 draw byLine(E, F, black, 0, 0);
 draw byLine(F, N, black, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
-draw byLabelLineEnd(G, E, 0);
-draw byLabelLineEnd(K, E, 0);
-draw byLabelLineEnd(H, E, 0);
+draw byLabelsOnCircle(G, K, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
 label.top("Fig. 2", (0, r));
@@ -5197,9 +5184,7 @@ byLineDefine(D, M, black, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DM,DF);
 draw byCircle(M, E, black, 0, 0, 0)(M);
-draw byLabelLineEnd(F, M, 0);
-draw byLabelLineEnd(E, M, 0);
-draw byLabelLineEnd(A, M, 0);
+draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -5338,11 +5323,7 @@ draw byLine(D, F, black, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
 draw byCircle(D, A, byblue, 0, 0, 0)(D);
-draw byLabelLineEnd(A, D, 0);
-draw byLabelLineEnd(B, D, 0);
-draw byLabelLineEnd(C, D, 0);
-draw byLabelLineEnd(H, D, 0);
-draw byLabelLineEnd(L, D, 0);
+draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -5403,9 +5384,7 @@ draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
 draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
 byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
 byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
-draw byLabelLineEnd(G, P, 0);
-draw byLabelLineEnd(B, P, 0);
-draw byLabelLineEnd(H, P, 0);
+draw byLabelsOnCircle(G, B, H)(PI);
 draw byLabelsOnPolygon(G, P, H)(2, 0);
 byPointLabelDefine(Gd, "G");
 byPointLabelDefine(Hd, "H");
@@ -5458,9 +5437,8 @@ byPointLabelDefine(N, "G");
 draw byCircle(M, A, black, 0, 0, 0)(M);
 draw byCircle(N, A, byblue, 0, 0, -1)(N);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
-draw byLabelsOnPolygon(A, D, N)(2, 0); 
-draw byLabelLineEnd(A, G, 0);
-draw byLabelLineEnd(H, F, 0);
+draw byLabelsOnPolygon(A, D, N)(2, -1); 
+draw byLabelsOnCircle(A, H)(M);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles \drawCircle[middle][1/4]{N} and \drawCircle[middle][1/5]{M} touch one another internally, the right line joining their centres, being produced, shall pass through a point of contact.}
@@ -5569,6 +5547,10 @@ draw byCircleR(M, r1, byyellow, 0, 0, 1)(M);
 draw byArbitraryFigure(cr2, byblue, 0, 0)(fI);
 byCircleDefineR(M, r1, byyellow, 0, 0, 0)(M);
 byCircleDefineR(N, r2, byblue, 0, 0, 0)(N);
+byPointLabelDefine(M, "H");
+byPointLabelDefine(N, "G");
+draw byLabelsOnCircle(D, B)(M);
+draw byLabelsOnPolygon(B, G, H, D)(2, 0);
 }
 
 \startsubproposition[title={Figure I.}]\drawCurrentPictureInMargin
@@ -5621,39 +5603,41 @@ But if the points of contact be the extremities of the right line joining the ce
 \stopsubproposition
 
 \defineNewPicture{
-pair S, T, Ad, Cd;
+pair G, H, A, C;
 numeric r[];
 path cr[];
 r1 := 7/4u;
 r2 := 3/4r1;
-S := (0, 0);
-T := S shifted (0, r1 + r2);
-cr5 := (fullcircle scaled 2r1) shifted S;
-cr6 := (fullcircle scaled 2r2) shifted T;
-Ad := 1/2[point 2 of cr5, point 6 of cr6];
-Cd := Ad shifted (1/3r2, 0);
+H := (0, 0);
+G := H shifted (0, r1 + r2);
+cr5 := (fullcircle scaled 2r1) shifted H;
+cr6 := (fullcircle scaled 2r2) shifted G;
+A := 1/2[point 2 of cr5, point 6 of cr6];
+C := A shifted (1/3r2, 0);
 cr5 := (subpath (2 + 2/4, 2 - 2/4 + 8) of cr5) .. tension 2 .. cycle;
 cr6 := (subpath (6 + 2/4, 6 - 2/4 + 8) of cr6) .. tension 2 .. cycle;
-byLineDefine(S, Ad, byred, 0, 0);
-byLineDefine(Ad, T, byred, 1, 0);
-byLineDefine(Cd, S, byblue, 1, 0);
-byLineDefine(Cd, T, black, 0, 0);
-draw byNamedLineSeq(0)(SAd,AdT,CdT,CdS);
+byLineDefine(H, A, byred, 0, 0);
+byLineDefine(A, G, byred, 1, 0);
+byLineDefine(C, H, byblue, 1, 0);
+byLineDefine(C, G, black, 0, 0);
+draw byNamedLineSeq(0)(HA,AG,CG,CH);
 draw byArbitraryFigure(cr5, byyellow, 0, 0)(fII);
 draw byArbitraryFigure(cr6, byblue, 0, 0)(fIII);
-byCircleDefineR(S, r1, byyellow, 0, 0, 0)(S);
-byCircleDefineR(T, r2, byblue, 0, 0, 0)(T);
+byCircleDefineR(H, r1, byyellow, 0, 0, 0)(H);
+byCircleDefineR(G, r2, byblue, 0, 0, 0)(G);
+draw byLabelsOnPolygon(H, G, C)(0, 0);
+draw byLabelPoint(A, angle(G-A)+45, 3);
 }
 \startsubproposition[title={Figure III.}]\drawCurrentPictureInMargin
-Next, if it be possible, let \drawCircle{S} and \drawCircle{T} touch externally in two points; draw \drawUnitLine{SAd,AdT} joining the centres of the circles, and passing through one of the points of contact, and draw \drawUnitLine{CdS} and \drawUnitLine{CdT}.
+Next, if it be possible, let \drawCircle{H} and \drawCircle{G} touch externally in two points; draw \drawUnitLine{HA,AG} joining the centres of the circles, and passing through one of the points of contact, and draw \drawUnitLine{CH} and \drawUnitLine{CG}.
 
 \startCenterAlign
-$\drawUnitLine{CdS} = \drawUnitLine{SAd}$ \indef[def:XV];\\
-and $\drawUnitLine{AdT} = \drawUnitLine{CdT}$ \indef[def:XV];
+$\drawUnitLine{CH} = \drawUnitLine{HA}$ \indef[def:XV];\\
+and $\drawUnitLine{AG} = \drawUnitLine{CG}$ \indef[def:XV];
 
-$\therefore \drawUnitLine{CdT} + \drawUnitLine{CdS} = \drawUnitLine{SAd,AdT}$;
+$\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HA,AG}$;
 
-but $\drawUnitLine{CdT} + \drawUnitLine{CdS} > \drawUnitLine{SAd,AdT}$ \inprop[prop:I.XX], which is absurd.
+but $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HA,AG}$ \inprop[prop:I.XX], which is absurd.
 \stopCenterAlign
 \stopsubproposition
 
@@ -5686,6 +5670,10 @@ draw byLine(F, B, byred, 1, 0);
 draw byLine(C, G, byyellow, 0, 0);
 draw byLine(G, D, byyellow, 1, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(F, E, G)(2, 0);
+draw byLabelLineEnd(G, E, 0);
+draw byLabelLineEnd(F, E, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{straight lines
@@ -5695,9 +5683,9 @@ inscribed in a circle are equally distant from the centre; and also, straight li
 \startCenterAlign
 From the centre of \drawCircle[middle][1/4]{E} draw \drawProportionalLine{EF} $\perp$ to \drawProportionalLine{AF,FB} and $\drawProportionalLine{EG} \perp \drawProportionalLine{CG,GD}$, join \drawProportionalLine{EA} and \drawProportionalLine{EC}.
 
-Then $\drawProportionalLine{CG} = \mbox{ half } \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]
+Then $\drawProportionalLine{CG} = \mbox{ half } \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]\\
+and $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III]
 
-Then $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III]\\
 since $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (hyp.)\\
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
 and $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \indef[def:XV]\\
