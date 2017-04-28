@@ -5741,12 +5741,14 @@ draw byLine(E, A, black, 0, 0);
 draw byLine(F, G, byred, 1, 0);
 draw byLine(M, N, byblue, 0, 0);
 draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, D, M, N, F, G)(E);
+draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
 The diameter \drawUnitLine{DE,EA} is $>$ any line \drawUnitLine{MN}.
 
-For draw \drawUnitLine{EN} an \drawUnitLine{EM}.
+For draw \drawUnitLine{EN} and \drawUnitLine{EM}.
 
 Then $\drawUnitLine{EM} = \drawUnitLine{EA}$\\
 and $\drawUnitLine{EN} = \drawUnitLine{DE}$,\\
@@ -5773,12 +5775,16 @@ draw $\left\{
 In
 \drawFromCurrentPicture{
 draw byNamedAngle(NEG,GEF,FEM);
+startAutoLabeling;
 draw byNamedLineSeq(0)(MN,EM,EN);
+stopAutoLabeling;
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(GEF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(FG,EF,EG);
+stopAutoLabeling;
 },\\
 $\drawUnitLine{EN} \mbox{ and } \drawUnitLine{EM} = \drawUnitLine{EG} \mbox{ and } \drawUnitLine{EF}$;\\
 but $\drawAngle{NEG,GEF,FEM} > \drawAngle{GEF}$,
@@ -5810,10 +5816,16 @@ draw byLine(E, L, byyellow, 1, 0);
 draw byLine(L, K, byred, 1, 0);
 draw byLine(E, H, byblue, 1, 0);
 draw byLine(F, G, byyellow, 0, 0);
-draw byLine(M, N, black, 0, 0);
+draw byLine(M, N, blue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byLine(D, A, black, 0, 0);
 draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, D, B, C, F, G, M, N)(E);
+draw byLabelLineEnd(K, H, 0);
+draw byLabelLineEnd(H, K, 0);
+draw byLabelPoint(E, angle(E-H)-45, 2);
+draw byLabelPoint(L, angle(E-H)-45, 2);
 }
 \drawCurrentPictureInMargin
 Let the given lines be \drawUnitLine{BC} and \drawUnitLine{FG} which either are at different sides of the centre, or intersect; from the centre draw \drawUnitLine{EL,LK} and $\drawUnitLine{EH} \perp \drawUnitLine{FG} \mbox{ and } \drawUnitLine{BC}$,
@@ -5859,8 +5871,13 @@ draw byLine(A, G, byred, 1, 0);
 draw byLine(G, F, black, 1, 0);
 draw byLine(B, D, byyellow, 1, 0);
 draw byLine(D, A, black, 0, 0);
-draw byLineFull(E, K, byyellow, 0, 0)(B, D, 0, 0, -1);
+draw byLineFull(E, K, byyellow, 0, 0)(E, K, 0, 0, -1);
 draw byCircle(D, A, byblue, 0, 0, 0)(D);
+draw byLabelsOnCircle(B, C)(D);
+draw byLabelsOnPolygon(E, A, K, noPoint)(0, -1);
+draw byLabelsOnPolygon(F, G, A)(2, 0);
+draw byLabelsOnPolygon(C, D, B)(2, 0);
+draw byLabelPoint(H, angle(G-H)+45, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BD,DA} of the circle perpendicular to it falls without the circle\\
@@ -5880,7 +5897,10 @@ therefore \drawUnitLine{AC} drawn $\perp \drawUnitLine{DA}$ does not meet the ci
 \stopsubproposition
 
 \startsubproposition[title={Part II.}]
-Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be drawn from a point \drawLine{AG,HG,DH} between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
+Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be drawn from a point \drawFromCurrentPicture{
+draw byNamedLineSeq(0)(AG,HG,DH);
+draw byLabelsOnPolygon(D, G, A)(2, 0);
+} between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
 
 \startCenterAlign
 Because $\drawAngle{DAG,GAE} = \drawRightAngle$,\\
@@ -5930,6 +5950,10 @@ byLineDefine(B, E, black, 1, 0);
 draw byNamedLineSeq(0)(AD,DE,BE,FB);
 draw byCircleR(E, r1, byred, 0, 0, -1)(EI);
 draw byCircleR(E, r2, byyellow, 0, 0, 0)(EII);
+draw byLabelsOnCircle(A, F)(EII);
+draw byLabelsOnPolygon(F, E, A)(2, 0);
+draw byLabelPoint(D, angle(A-E)+45, 2);
+draw byLabelPoint(B, angle(F-E)-45, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/5]{EI} from a given point, either in or outside of its circumference.}
@@ -5937,12 +5961,14 @@ draw byCircleR(E, r2, byyellow, 0, 0, 0)(EII);
 If a given point be in the circumference, as at \drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
 draw byNamedLineSeq(0)(AB,BE);
+draw byLabelsOnPolygon(E, B, A)(2, 0);
 stopTempScale;
 }, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be required tangent \inprop[prop:III.XVI].
 
 But if the given point\drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
 draw byNamedLineSeq(0)(DE,AD,AB);
+draw byLabelsOnPolygon(E, A, B)(2, 0);
 stopTempScale;
 } be outside of the circumference,
 
@@ -5951,16 +5977,10 @@ draw \drawUnitLine{DE,AD} from it to the centre, cutting \circleEI;\\
 and draw $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
 describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{AD,DE}$,\\ % improvement: These two lines were not originally there, but without them this proof has no sense
 draw \drawUnitLine{BE,FB} to the centre from the point where \drawUnitLine{FD} falls on \circleEII\ circumference,\\
-draw \drawUnitLine{AB} from the point where \drawUnitLine{BE,FB} cuts \circleEI,\\
+draw $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ from the point where it cuts \circleEI,\\
 %
 Then \drawUnitLine{AB} will be the tangent required.\\
-For in
-\drawFromCurrentPicture[bottom]{
-scaleFactor := 1/2;
-draw byNamedLineSeq(0)(FD,FB,BE,DE);
-}
-and \drawLine[bottom]{BE,DE,AD,AB}
-$\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} common,\\
+For in \drawLine[bottom]{FD,FB,BE,DE} and \drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} common,\\
 and $\drawUnitLine{DE} = \drawUnitLine{BE}$,\\
 $\therefore \mbox{ \inprop[prop:I.IV] } \drawAngle{B} = \drawAngle{D} = \drawRightAngle$,\\
 $\therefore \drawUnitLine{FD}$ is a tangent to \circleEI.
@@ -5987,6 +6007,11 @@ byLineDefine(B, G, byred, 1, 0);
 byLineDefine(C, D, byblue, 1, 0);
 byLineDefine(F, C, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,FB,FC,CD);
+draw byLabelsOnCircle(C)(F);
+draw byLabelsOnPolygon(C, F, G)(2, 0);
+draw byLabelPoint(B, angle(G-F)+45, 2);
+draw byLabelPoint(G, angle(D-C)-90, 1);
+draw byLabelPoint(D, angle(D-C)-90, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{f}{a straight line \drawUnitLine{CD} be a tangent to a circle, the straight line \drawUnitLine{FC} drawn from the centre to the point of contact, is perpendicular to it.}

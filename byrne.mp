@@ -1453,9 +1453,11 @@ vardef byLabelsOnCircle(text pointsList)(suffix cn) =
     save d;
     d := lineThickness(circleThin.cn)*(1/2+1/2circleShift.cn);
     image(
-        forsuffixes pN=pointsList:
-            draw byTextLabel(pointLabel)(str pN, pN, angle(pN - circleCenter.cn), textLabelShift + d);
-        endfor;
+        if (textLabels):
+            forsuffixes pN=pointsList:
+                draw byTextLabel(pointLabel)(str pN, pN, angle(pN - circleCenter.cn), textLabelShift + d);
+            endfor;
+        fi;
     )
 enddef;
 

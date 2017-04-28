@@ -4641,6 +4641,312 @@ $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$, и удво�
 \qed
 \stopProposition
 
+\startProposition[title={Предложение XV. Теорема},reference=prop:III.XV]
+\problemNP{В}{круге}{наибольшая прямая — диаметр, а из других более близкая к центру больше более удаленной.}
+
+\startsubproposition[title={Случай I.}]
+\defineNewPicture[1/2]{
+pair A, D, E, F, G, M, N;
+numeric r;
+r := 9/4u;
+E := (0, 0);
+A := (r, 0) shifted E;
+D := (-r, 0) shifted E;
+F := (dir(90-30)*r) shifted E;
+G := (dir(90+30)*r) shifted E;
+M := (dir(90-60)*r) shifted E;
+N := (dir(90+60)*r) shifted E;
+draw byAngle(N, E, G, byred, 0);
+draw byAngle(G, E, F, byyellow, 0);
+draw byAngle(F, E, M, byred, 0);
+draw byLine(E, M, byyellow, 1, 0);
+draw byLine(E, N, byyellow, 0, 0);
+draw byLine(E, F, byblue, 1, 0);
+draw byLine(E, G, black, 1, 0);
+draw byLine(D, E, byred, 0, 0);
+draw byLine(E, A, black, 0, 0);
+draw byLine(F, G, byred, 1, 0);
+draw byLine(M, N, byblue, 0, 0);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, D, M, N, F, G)(E);
+draw byLabelsOnPolygon(A, E, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startCenterAlign
+Диаметр \drawUnitLine{DE,EA} $>$ любой прямой \drawUnitLine{MN}.
+
+Действительно, проведем \drawUnitLine{EN} и \drawUnitLine{EM}.
+
+Тогда $\drawUnitLine{EM} = \drawUnitLine{EA}$\\
+и $\drawUnitLine{EN} = \drawUnitLine{DE}$,\\
+$\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DE,EA}$\\
+но $\drawUnitLine{EN} + \drawUnitLine{EM} > \drawUnitLine{MN}$ \inprop[prop:I.XX]
+
+$\therefore \drawUnitLine{DE,EA} > \drawUnitLine{MN}$.
+\stopCenterAlign
+
+Теперь покажем, что та прямая что ближе больше той, что дальше.
+
+Пусть это будут \drawUnitLine{MN} и \drawUnitLine{FG}, расположенные по одну сторону от центра и не пересекающиеся.
+
+\startCenterAlign
+Проведем \drawUnitLine{EN}, \drawUnitLine{EM}, \drawUnitLine{EG} и \drawUnitLine{EF}.
+
+В
+\drawFromCurrentPicture{
+draw byNamedAngle(NEG,GEF,FEM);
+startAutoLabeling;
+draw byNamedLineSeq(0)(MN,EM,EN);
+stopAutoLabeling;
+}
+и
+\drawFromCurrentPicture{
+draw byNamedAngle(GEF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(FG,EF,EG);
+stopAutoLabeling;
+},\\
+$\drawUnitLine{EN} \mbox{ и } \drawUnitLine{EM} = \drawUnitLine{EG} \mbox{ и } \drawUnitLine{EF}$;\\
+но $\drawAngle{NEG,GEF,FEM} > \drawAngle{GEF}$,
+
+$\therefore \drawUnitLine{MN} > \drawUnitLine{EF}$ \inprop[prop:I.XXIV]
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={Случай II.}]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, M, N, K, L, H;
+numeric r;
+r := 9/4u;
+E := (0, 0);
+A := (r, 0) shifted E;
+D := (-r, 0) shifted E;
+F := (dir(90-30)*r) shifted E;
+G := (dir(90+30)*r) shifted E;
+B := (dir(-90-60)*r) shifted E;
+C := (dir(-90+60)*r) shifted E;
+M := (dir(90-60)*r) shifted E;
+N := (dir(90+60)*r) shifted E;
+H := 1/2[B, C];
+K := 1/2[F, G];
+L := 1/2[M, N];
+draw byLine(E, L, byyellow, 1, 0);
+draw byLine(L, K, byred, 1, 0);
+draw byLine(E, H, byblue, 1, 0);
+draw byLine(F, G, byyellow, 0, 0);
+draw byLine(M, N, blue, 0, 0);
+draw byLine(B, C, byred, 0, 0);
+draw byLine(D, A, black, 0, 0);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, D, B, C, F, G, M, N)(E);
+draw byLabelLineEnd(K, H, 0);
+draw byLabelLineEnd(H, K, 0);
+draw byLabelPoint(E, angle(E-H)-45, 2);
+draw byLabelPoint(L, angle(E-H)-45, 2);
+}
+\drawCurrentPictureInMargin
+Теперь возьмем \drawUnitLine{BC} и \drawUnitLine{FG} расоложенные по разные стороны от центра или пересекающиеся. Проведем из центра \drawUnitLine{EL,LK} и $\drawUnitLine{EH} \perp \drawUnitLine{FG} \mbox{ и } \drawUnitLine{BC}$,
+
+\startCenterAlign
+сделаем $\drawUnitLine{EH} = \drawUnitLine{EL}$,\\
+и проведем $\drawUnitLine{MN} \perp \drawUnitLine{EL,LK}$.
+
+Поскольку \drawUnitLine{BC} и \drawUnitLine{MN} равноудалены от центра, $\drawUnitLine{BC} = \drawUnitLine{MN}$ \inprop[prop:III.XIV];\\
+но $\drawUnitLine{MN} > \drawUnitLine{FG}$ \inprop[prop:III.XV],
+
+$\therefore \drawUnitLine{BC} > \drawUnitLine{FG}$.
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XVI. Теорема},reference=prop:III.XVI]
+\defineNewPicture[1/5]{
+pair A, B, C, D, E, F, G, H, K;
+numeric r;
+r :=2u;
+D := (0, 0);
+A := (0, -r);
+B := (0, r);
+C := (dir(190)*r) shifted D;
+E := (4/3r, -r);
+F := (4/3r, -1/3r);
+G := 11/12[A, F];
+H := (dir(angle(G-D))*r) shifted D;
+K := (-r, -r);
+draw byAngle(C, A, D, byyellow, 0);
+draw byAngle(D, A, G, byblue, 0);
+draw byAngle(G, A, E, byred, 0);
+draw byAngleWithName(D, C, A, black, 0)(C);
+draw byAngleWithName(A, G, D, black, 1)(G);
+draw byLine(A, C, byred, 0, 0);
+draw byLine(D, C, byblue, 0, 0);
+draw byLine(D, H, byblue, 1, 0);
+draw byLine(H, G, black, 1, 0);
+draw byLine(A, G, byred, 1, 0);
+draw byLine(G, F, black, 1, 0);
+draw byLine(B, D, byyellow, 1, 0);
+draw byLine(D, A, black, 0, 0);
+draw byLineFull(E, K, byyellow, 0, 0)(E, K, 0, 0, -1);
+draw byCircle(D, A, byblue, 0, 0, 0)(D);
+draw byLabelsOnCircle(B, C)(D);
+draw byLabelsOnPolygon(E, A, K, noPoint)(0, -1);
+draw byLabelsOnPolygon(F, G, A)(2, 0);
+draw byLabelsOnPolygon(C, D, B)(2, 0);
+draw byLabelPoint(H, angle(G-H)+45, 2);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямая}{\drawUnitLine{EK}, проведенная под прямым углом к диаметру круга \drawUnitLine{BD,DA} проходит вне круга.\\
+И если любая прямая линия \drawUnitLine{AG} проведена из точки по ту же сторону от перпендикуляра к точке касания, она сечет круг.}
+
+\startsubproposition[title={Часть I.}]
+Если это возможно, пусть \drawUnitLine{AC}, пересекающая окружность в еще одном месте будет $\perp \drawUnitLine{DA}$, и проведем \drawUnitLine{DC}.
+
+\startCenterAlign
+Тогда, поскольку $\drawUnitLine{DA} = \drawUnitLine{DC}$,\\
+$\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
+и $\therefore$ оба угла острые \inprop[prop:I.XVII]\\
+но $\drawAngle{CAD} = \drawRightAngle$ (гип.), что невозможно,
+
+следовательно \drawUnitLine{AC} проведенная $\perp \drawUnitLine{DA}$ не пересекает окружность в другом месте.
+\stopCenterAlign
+\stopsubproposition
+
+\startsubproposition[title={Часть II.}]
+Пусть $\drawUnitLine{EK} \perp \drawUnitLine{DA}$ и пусть \drawUnitLine{AG} проведена из точки \drawFromCurrentPicture{
+draw byNamedLineSeq(0)(AG,HG,DH);
+draw byLabelsOnPolygon(D, G, A)(2, 0);
+} между \drawUnitLine{EK} и кругом, и, если возможно, не сечет круг.
+
+\startCenterAlign
+Поскольку $\drawAngle{DAG,GAE} = \drawRightAngle$,\\
+$\therefore \drawAngle{DAG}$ острый угол;\\
+допустим $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, проведенной из центра круга, должна падать на сторону острого угла \drawAngle{DAG}.
+
+$\therefore$ \drawAngle{G}, который должен быть прямым $> \drawAngle{DAG}$,
+
+$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$;
+
+но $\drawUnitLine{DH} = \drawUnitLine{DA}$,
+\stopCenterAlign
+
+и $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, часть больше целого, что невозможно. Следовательно, точка не находится вовне круга и, следовательно, прямая \drawUnitLine{AG} сечет круг.
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XVII. Задача},reference=prop:III.XVII]
+\defineNewPicture{
+pair A, B, D, E, F;
+numeric r[], a;
+path cr[];
+r1 := 6/4u;
+r2 := 9/4u;
+E := (0, 0);
+cr1 := (fullcircle scaled 2r1) shifted E;
+cr2 := (fullcircle scaled 2r2) shifted E;
+A := (dir(50)*r2) shifted E;
+D := (dir(50)*r1) shifted E;
+F := cr2 intersectionpoint (D--D shifted (dir(angle(A-E) - 90)*r2));
+B := cr1 intersectionpoint (E--F);
+a := angle(B-E);
+forsuffixes i=A, B, D, F:
+i := ((i shifted -E) rotated -a) shifted E;
+endfor;
+draw byAngleWithName(A, B, E, byyellow, 0)(B);
+draw byAngleWithName(F, D, E, byyellow, 0)(D);
+draw byAngleWithName(F, E, A, byblue, 0)(E);
+draw byLine(A, B, byblue, 0, 0);
+draw byLine(F, D, byblue, 1, 0);
+byLineDefine(A, D, byred, 0, 0);
+byLineDefine(D, E, byred, 1, 0);
+byLineDefine(F, B, black, 0, 0);
+byLineDefine(B, E, black, 1, 0);
+draw byNamedLineSeq(0)(AD,DE,BE,FB);
+draw byCircleR(E, r1, byred, 0, 0, -1)(EI);
+draw byCircleR(E, r2, byyellow, 0, 0, 0)(EII);
+draw byLabelsOnCircle(A, F)(EII);
+draw byLabelsOnPolygon(F, E, A)(2, 0);
+draw byLabelPoint(D, angle(A-E)+45, 2);
+draw byLabelPoint(B, angle(F-E)-45, 2);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{ровести}{касательную к данному кругу \drawCircle[middle][1/5]{EI} из данной точки.}
+
+Если данная точка расположена на окружности \drawFromCurrentPicture[bottom]{
+draw byNamedLineSeq(0)(AB,BE);
+draw byLabelsOnPolygon(E, B, A)(2, 0);
+}, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и будет искомой касательной \inprop[prop:III.XVI].
+
+Но если точка \drawFromCurrentPicture[bottom]{
+draw byNamedLineSeq(0)(DE,AD,AB);
+draw byLabelsOnPolygon(E, A, B)(2, 0);
+} расположена вовне,
+
+\startCenterAlign
+проведем из нее \drawUnitLine{AD,DE} к центру, секущую \circleEI, 
+и проведем $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
+опишем \drawCircle[middle][1/6]{EII} концентрический с \circleEI\ с радиусом $= \drawUnitLine{AD,DE}$,\\
+проведем \drawUnitLine{BE,FB} к центру из точки, где \drawUnitLine{FD} падает на окружность \circleEII,\\
+проведем $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ из точки, где та сечет \circleEI,\\
+Тогда \drawUnitLine{AB} и будет искомой касательной.\\
+Поскольку в \drawLine[bottom]{FD,FB,BE,DE} и \drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} общий,\\
+и $\drawUnitLine{DE} = \drawUnitLine{BE}$,\\
+$\therefore \mbox{ \inprop[prop:I.IV] } \drawAngle{B} = \drawAngle{D} = \drawRightAngle$,\\
+$\therefore \drawUnitLine{FD}$ касательная к \circleEI.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XVIII. Теорема},reference=prop:III.XVIII]
+\defineNewPicture{
+pair B, C, D, F, G;
+numeric r;
+r := 7/4u;
+F := (0, 0);
+C := (r, 0);
+G := (r, 6/5r);
+D := 6/5[C, G];
+B := (dir(angle(G-F))*r) shifted F;
+draw byCircle(F, C, byyellow, 0, 0, 0)(F);
+draw byAngleWithName(F, C, G, byred, 0)(C);
+draw byAngleWithName(C, G, F, byyellow, 0)(G);
+byLineDefine(F, B, byred, 0, 0);
+byLineDefine(B, G, byred, 1, 0);
+byLineDefine(C, D, byblue, 1, 0);
+byLineDefine(F, C, byblue, 0, 0);
+draw byNamedLineSeq(0)(BG,FB,FC,CD);
+draw byLabelsOnCircle(C)(F);
+draw byLabelsOnPolygon(C, F, G)(2, 0);
+draw byLabelPoint(B, angle(G-F)+45, 2);
+draw byLabelPoint(G, angle(D-C)-90, 1);
+draw byLabelPoint(D, angle(D-C)-90, 1);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая \drawUnitLine{CD} касается круга, прямая \drawUnitLine{FC}, проведенная из центра к точка касания перпендикулярна ей.}
+
+\startCenterAlign
+Действительно, если возможно, пусть \drawUnitLine{FB,BG} будем $\perp \drawUnitLine{CD}$,\\
+тогда, поскольку $\drawAngle{G} = \drawRightAngle$, \drawAngle{C} острый \inprop[prop:I.XVII]
+
+$\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \inprop[prop:I.XIX];
+
+но $\drawUnitLine{FC} = \drawUnitLine{FB}$,\\
+и $\therefore \drawUnitLine{FB} > \drawUnitLine{FB,BG}$, часть больше целого, что невозможно.
+
+$\therefore \drawUnitLine{FB,BG}$ не $\perp \drawUnitLine{CD}$;
+\stopCenterAlign
+
+и так же можно показать, что никакая другая прямая, кроме \drawUnitLine{FC} не перпендикулярна \drawUnitLine{CD}.
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext
