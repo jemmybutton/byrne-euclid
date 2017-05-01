@@ -4928,7 +4928,7 @@ draw byLabelPoint(G, angle(D-C)-90, 1);
 draw byLabelPoint(D, angle(D-C)-90, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая \drawUnitLine{CD} касается круга, прямая \drawUnitLine{FC}, проведенная из центра к точка касания перпендикулярна ей.}
+\problemNP{Е}{сли}{прямая \drawUnitLine{CD} касается круга, прямая \drawUnitLine{FC}, проведенная из центра к точке касания перпендикулярна ей.}
 
 \startCenterAlign
 Действительно, если возможно, пусть \drawUnitLine{FB,BG} будем $\perp \drawUnitLine{CD}$,\\
@@ -4943,6 +4943,280 @@ $\therefore \drawUnitLine{FB,BG}$ не $\perp \drawUnitLine{CD}$;
 \stopCenterAlign
 
 и так же можно показать, что никакая другая прямая, кроме \drawUnitLine{FC} не перпендикулярна \drawUnitLine{CD}.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XIX. Теорема},reference=prop:III.XIX]
+\defineNewPicture{
+pair A, C, E, F, G;
+numeric r;
+r := 7/4u;
+G := (0, 0);
+A := (-r, 0) shifted G;
+C := (r, 0) shifted G;
+E := (r, 6/5r) shifted G;
+F := (-1/7r, 1/2r) shifted G;
+draw byAngle(A, C, F, byblue, 0);
+draw byAngle(F, C, E, byyellow, 0);
+draw byLine(A, C, byyellow, 0, 0);
+draw byLine(C, E, byblue, 0, 0);
+draw byLine(C, F, byred, 1, 0);
+draw byCircleR(G, r, byred, 0, 0, 0)(G);
+draw byLabelsOnCircle(A, C)(G);
+draw byLabelLineEnd(F, C, 0);
+draw byLabelLineEnd(E, C, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая \drawUnitLine{CE} касается круга, прямая  \drawUnitLine{AC}, перпендикулярная ей, проведенная из точки касания, проходит через центр круга.}
+
+Действительно, если центр не находится на \drawUnitLine{AC}, проведем \drawUnitLine{CF} к редполагаемому центру из точки касания.
+
+\startCenterAlign
+Поскольку $\drawUnitLine{CF} \perp \drawUnitLine{CE}$ \inprop[prop:III.XVIII]\\
+$\therefore \drawAngle{FCE} = \drawRightAngle$, прямому углу;\\
+но $\drawAngle{ACF,FCE} = \drawRightAngle$ (гип.),
+
+и $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, часть равна целому, что невозможно.
+\stopCenterAlign
+
+Следовательно, предполагаемая точка не центр, и то же можно показать для любой другой точки, не лежащей на \drawUnitLine{AC}.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XX. Теорема},reference=prop:III.XX]
+\problemNP{У}{гол,}{при центре круга вдвое больше угла при окружности, когда их основание лежит на одной дуге.}\unskip
+
+\defineNewPicture{
+pair A, E, F, C;
+r := 7/4u;
+E := (0, 0);
+A := (dir(80)*r) shifted E;
+F := (dir(80 + 180)*r) shifted E;
+C := (dir(-30)*r) shifted E;
+draw byAngle(C, A, F, byyellow, 0);
+draw byAngle(C, E, F, byblue, 0);
+draw byAngleWithName(E, C, A, byred, 0)(C);
+draw byLine(A, C, black, 0, 1);
+draw byLine(E, C, black, 0, 0);
+draw byLine(E, F, byred, 1, 0);
+draw byLine(E, A, byred, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(F, A, C)(E);
+draw byLabelsOnPolygon(F, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай I.}]
+\startCenterAlign
+Пусть центр круга будет на \drawUnitLine{EF,EA}\\
+стороне \drawAngle{CAF}.
+
+Поскольку $\drawUnitLine{EC} = \drawUnitLine{EA}$,\\
+$\drawAngle{CAF} = \drawAngle{C}$ \inprop[prop:I.V].
+
+Но $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
+или $\drawAngle{CEF} = \mbox{ дважды } \drawAngle{CAF}$ \inprop[prop:I.XXXII].
+\stopCenterAlign
+\stopsubproposition
+
+\defineNewPicture{
+pair A, E, F, C, B;
+r := 7/4u;
+E := (0, 0);
+A := (dir(80)*r) shifted E;
+F := (dir(80 + 180)*r) shifted E;
+B := (dir(185)*r) shifted E;
+C := (dir(-30)*r) shifted E;
+draw byAngle(C, A, F, byyellow, 0);
+draw byAngle(C, E, F, byblue, 0);
+draw byAngleWithName(E, C, A, byyellow, 0)(C);
+draw byAngle(B, A, F, byred, 0);
+draw byAngle(B, E, F, black, 0);
+draw byAngleWithName(E, B, A, byred, 0)(B);
+draw byLine(A, C, black, 0, 1);
+draw byLine(E, C, black, 0, 1);
+draw byLine(A, B, black, 0, 1);
+draw byLine(E, B, black, 0, 1);
+draw byLine(A, F, black, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(F, A, B, C)(E);
+draw byLabelsOnPolygon(B, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай II.}]
+\startCenterAlign
+Пусть центр будет в \drawAngle{BAF,CAF}, углу на окружности;
+
+проведем \drawUnitLine{AF} из угла через центр круга;\\
+тогда $\drawAngle{B} = \drawAngle{BAF}$, и $\drawAngle{C} = \drawAngle{CAF}$, вследствие равенства сторон \inprop[prop:I.V].
+
+Значит $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
+
+Но $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$,\\
+и $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
+$\therefore \drawAngle{BEF,CEF} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
+\stopCenterAlign
+\stopsubproposition
+
+\defineNewPicture{
+pair E, C, F, G, D;
+r := 7/4u;
+E := (0, 0);
+F := (dir(80 + 180)*r) shifted E;
+C := (dir(-30)*r) shifted E;
+D := (dir(30)*r) shifted E;
+G := (dir(30 + 180)*r) shifted E;
+draw byAngle(G, E, F, byblue, 0);
+draw byAngle(F, E, C, byyellow, 0);
+draw byAngle(G, D, F, black, 0);
+draw byAngle(F, D, C, byred, 0);
+draw byLine(D, C, black, 0, 1);
+draw byLine(D, F, black, 0, 1);
+draw byLine(E, C, black, 0, 1);
+draw byLine(E, F, black, 0, 1);
+draw byLine(D, G, byred, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(D, G, C, F)(E);
+draw byLabelsOnPolygon(G, E, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай III.}]
+\startCenterAlign
+Пусть центр будет вовне \drawAngle{FDC}\\
+проведем диаметр \drawUnitLine{DG}.
+
+Поскольку $\drawAngle{GEF,FEC} = \mbox{ дважды } \drawAngle{GDF,FDC}$;\\
+и $\drawAngle{GEF} = \mbox{ дважды } \drawAngle{GDF}$ (случай I.);
+
+$\therefore \drawAngle{FEC} = \mbox{ дважды } \drawAngle{FDC}$.
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXI. Теорема},reference=prop:III.XXI]
+\problemNP{В}{круге}{углы в одной дуге равны между собой.}
+
+\defineNewPicture{
+pair A, B, D, E, F;
+numeric r;
+r := 2u;
+F := (0, 0);
+B := (dir(-90 - 50)*r) shifted F;
+D := (dir(-90 + 50)*r) shifted F;
+A := (dir(90 + 25)*r) shifted F;
+E := (dir(90 - 35)*r) shifted F;
+draw byAngleWithName(B, A, D, byred, 0)(A);
+draw byAngleWithName(B, E, D, byblue, 0)(E);
+draw byAngleWithName(B, F, D, byyellow, 0)(F);
+byLineDefine(B, F, byblue, 0, 0);
+byLineDefine(D, F, byred, 0, 0);
+draw byNamedLineSeq(0)(BF,DF);
+draw byLine(B, D, black, 1, 0);
+draw byLine(B, A, black, 0, 1);
+draw byLine(B, E, black, 0, 1);
+draw byLine(D, A, black, 0, 1);
+draw byLine(D, E, black, 0, 1);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelsOnCircle(B, D, E, A)(F);
+draw byLabelsOnPolygon(B, F, D)(2, 0);
+}\drawCurrentPictureInMargin
+\startsubproposition[title={Случай I.}]
+Пусть дуга будет больше половины окружности, проведем \drawUnitLine{DF} и \drawUnitLine{BF} к центру.
+
+\startCenterAlign
+$\drawAngle{E} = \mbox{ дважды } \drawAngle{A} \mbox{ или дважды } = \drawAngle{E}$ \inprop[prop:III.XX];
+
+$\therefore \drawAngle{A} = \drawAngle{E}$
+\stopCenterAlign
+\stopsubproposition
+
+\defineNewPicture{
+pair A, B, D, E, F, G;
+numeric r;
+path cr;
+r := 2u;
+F := (0, 0);
+cr := (fullcircle scaled 2r) shifted F;
+B := (dir(90 + 85)*r) shifted F;
+D := (dir(90 - 85)*r) shifted F;
+A := (dir(90 + 25)*r) shifted F;
+E := (dir(90 - 35)*r) shifted F;
+G := (dir(-90 + 20)*r) shifted F;
+draw byAngle(B, A, G, byyellow, 0);
+draw byAngle(G, A, D, byred, 0);
+draw byAngle(B, E, G, byblue, 0);
+draw byAngle(G, E, D, black, 0);
+draw byFilledCircleSegment(F, r, xpart(cr intersectiontimes (F -- 2[F, B])), xpart(cr intersectiontimes (F -- 2[F, G])), byblue)(BG);
+draw byFilledCircleSegment(F, r, xpart(cr intersectiontimes (F -- 2[F, G])), 8 + xpart(cr intersectiontimes (F -- 2[F, D])), byyellow)(GD);
+draw byLine(G, A, byblue, 0, 0);
+draw byLine(G, E, byred, 0, 0);
+draw byLine(B, D, black, 1, 0);
+draw byLine(B, A, black, 0, 1);
+draw byLine(B, E, black, 0, 1);
+draw byLine(D, A, black, 0, 1);
+draw byLine(D, E, black, 0, 1);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelsOnCircle(B, D, E, A, G)(F);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай II.}]
+Пусть дуга будет меньше половины окружности, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
+
+\startCenterAlign
+$\drawAngle{BAG} = \drawAngle{BEG}$ и $\drawAngle{GAD} = \drawAngle{GED}$ (случай I.)
+
+$\therefore \drawAngle{BAG,GAD} = \drawAngle{BEG,GED}$.
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXII. Теорема},reference=prop:III.XXII]
+\defineNewPicture{
+pair A, B, C, D, E;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (dir(80)*r) shifted E;
+B := (dir(10)*r) shifted E;
+C := (dir(-100)*r) shifted E;
+D := (dir(150)*r) shifted E;
+draw byAngle(D, A, C, byred, 0);
+draw byAngle(C, A, B, byblue, 0);
+draw byAngle(A, B, D, byyellow, 0);
+draw byAngle(D, B, C, byred, 0);
+draw byAngle(B, C, A, black, 0);
+draw byAngle(A, C, D, byyellow, 0);
+draw byAngle(C, D, B, byblue, 0);
+draw byAngle(B, D, A, black, 0);
+draw byLine(A, B, black, 0, 1);
+draw byLine(B, C, black, 0, 1);
+draw byLine(C, D, black, 0, 1);
+draw byLine(D, A, black, 0, 1);
+draw byLine(A, C, byred, 0, 0);
+draw byLine(B, D, black, 0, 0);
+draw byCircleR(E, r, byred, 0, 0, 1/2)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{П}{ротивоположные}{углы \drawAngle{DAC,CAB} и \drawAngle{BCA,ACD} или \drawAngle{CDB,BDA} и \drawAngle{ABD,DBC} четырехугольника вписанного в круг, вместе равны двум прямым углам.}
+
+\startCenterAlign
+Проведем диагонали \drawUnitLine{AC} и \drawUnitLine{BD},\\
+поскольку углы в одной дуге равны\\
+$\drawAngle{CDB} = \drawAngle{CAB}$,\\
+и $\drawAngle{DAC} = \drawAngle{DBC}$;
+
+добавим к каждому \drawAngle{BCA,ACD}.\\
+$\drawAngle{DAC,CAB} + \drawAngle{BCA,ACD} = \drawAngle{BCA,ACD} + \drawAngle{CDB} + \drawAngle{DBC} = \drawTwoRightAngles$ \inprop[prop:I.XXXII].
+
+Так же можно показать, что\\
+$\drawAngle{CDB,BDA} + \drawAngle{ABD,DBC} = \drawTwoRightAngles$.
+\stopCenterAlign
 
 \qed
 \stopProposition

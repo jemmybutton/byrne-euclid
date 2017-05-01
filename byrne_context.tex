@@ -6049,6 +6049,9 @@ draw byLine(A, C, byyellow, 0, 0);
 draw byLine(C, E, byblue, 0, 0);
 draw byLine(C, F, byred, 1, 0);
 draw byCircleR(G, r, byred, 0, 0, 0)(G);
+draw byLabelsOnCircle(A, C)(G);
+draw byLabelLineEnd(F, C, 0);
+draw byLabelLineEnd(E, C, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawUnitLine{CE} be a tangent to a circle, the straight line \drawUnitLine{AC}, drawn perpendicular to it from point of the contact, passes through the centre of the circle.}
@@ -6086,6 +6089,8 @@ draw byLine(E, C, black, 0, 0);
 draw byLine(E, F, byred, 1, 0);
 draw byLine(E, A, byred, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(F, A, C)(E);
+draw byLabelsOnPolygon(F, E, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
@@ -6097,7 +6102,7 @@ Because $\drawUnitLine{EC} = \drawUnitLine{EA}$,\\
 $\drawAngle{CAF} = \drawAngle{C}$ \inprop[prop:I.V].
 
 But $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
-of $\drawAngle{CEF} = \mbox{ twice } \drawAngle{CAF}$ \inprop[prop:I.XXXII].
+or $\drawAngle{CEF} = \mbox{ twice } \drawAngle{CAF}$ \inprop[prop:I.XXXII].
 \stopCenterAlign
 \stopsubproposition
 
@@ -6121,6 +6126,8 @@ draw byLine(A, B, black, 0, 1);
 draw byLine(E, B, black, 0, 1);
 draw byLine(A, F, black, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(F, A, B, C)(E);
+draw byLabelsOnPolygon(B, E, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -6158,6 +6165,8 @@ draw byLine(E, C, black, 0, 1);
 draw byLine(E, F, black, 0, 1);
 draw byLine(D, G, byred, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(D, G, C, F)(E);
+draw byLabelsOnPolygon(G, E, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure III.}]
@@ -6199,7 +6208,10 @@ draw byLine(B, E, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
 draw byLine(D, E, black, 0, 1);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
-}\drawCurrentPictureInMargin
+draw byLabelsOnCircle(B, D, E, A)(F);
+draw byLabelsOnPolygon(B, F, D)(2, 0);
+}
+\drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
 Let the segment be greater than a semicircle, and draw \drawUnitLine{DF} and \drawUnitLine{BF} to the centre.
 
@@ -6236,7 +6248,9 @@ draw byLine(B, E, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
 draw byLine(D, E, black, 0, 1);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
-}\drawCurrentPictureInMargin
+draw byLabelsOnCircle(B, D, E, A, G)(F);
+}
+\drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
 Let the segment be a semicircle, or less than a semicircle, draw \drawUnitLine{GA} the diameter, also draw \drawUnitLine{GE}.
 
@@ -6246,7 +6260,6 @@ $\drawAngle{BAG} = \drawAngle{BEG}$ and $\drawAngle{GAD} = \drawAngle{GED}$ (cas
 $\therefore \drawAngle{BAG,GAD} = \drawAngle{BEG,GED}$.
 \stopCenterAlign
 \stopsubproposition
-
 
 \qed
 \stopProposition
@@ -6276,6 +6289,7 @@ draw byLine(D, A, black, 0, 1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(B, D, black, 0, 0);
 draw byCircleR(E, r, byred, 0, 0, 1/2)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{opposite angles \drawAngle{DAC,CAB} and \drawAngle{BCA,ACD}, \drawAngle{CDB,BDA} and \drawAngle{ABD,DBC} of any quadrilateral figure inscribed in a circle, are together equal to two right angles.}
