@@ -6337,6 +6337,9 @@ draw byLineFull(B, D, byyellow, 0, 0)(A, D, 1, 0, 0);
 draw byLineFull(A, B, black, 0, 0)(A, B, 0, 0, 1);
 draw byArc(M, A, B, r1, byred, 0, 0, 0, 1)(M);
 draw byArc(N, A, B, r2, byblue, 0, 0, 0, 1)(N);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
+draw byLabelsOnPolygon(B, D, A)(2, 0);
+draw byLabelPoint(C, (angle(C-M)-90+angle(D-A))/2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{U}{pon}{the same straight line, and upon the same side of it, two similar segments of circles cannot be constructed, which do not coincide.}
@@ -6346,11 +6349,13 @@ For if it be possible, let two similar segments\\
 \drawFromCurrentPicture[bottom]{
 draw byNamedLine(AB);
 draw byNamedArcExact(N);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 }
 and
 \drawFromCurrentPicture[bottom]{
 draw byNamedLine(AB);
 draw byNamedArcExact(M);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 }
 be constructed;
 
@@ -6393,6 +6398,8 @@ draw byArc(M, B, A, r, byblue, 0, 0, 1/2, 1)(M);
 draw byFilledCircleSegment (N, r, t1, t2, byyellow)(N);
 draw byLineFull(C, D, byblue, 0, 0)(C, D, 0, 0, -1);
 draw byArc(N, D, C, r, byred, 0, 0, 1/2, 1)(N);
+draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
+draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{imilar}{segments
@@ -6400,20 +6407,28 @@ draw byArc(N, D, C, r, byred, 0, 0, 1/2, 1)(N);
 draw byNamedFilledCircleSegment(M);
 draw byNamedLine(AB);
 draw byNamedArcExact(M);
+draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
 }
 and
 \drawFromCurrentPicture[bottom]{
 draw byNamedFilledCircleSegment(N);
 draw byNamedLine(CD);
 draw byNamedArcExact(N);
+draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
 }
 , of circles upon equal straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) are each equal to the other.}
 
 \startCenterAlign
 For, if
-\drawFromCurrentPicture[bottom]{draw byNamedFilledCircleSegment(N);}
+\drawFromCurrentPicture[bottom]{
+draw byNamedFilledCircleSegment(N);
+draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
+}
 be so applied to
-\drawFromCurrentPicture[bottom]{draw byNamedFilledCircleSegment(M);},\\
+\drawFromCurrentPicture[bottom]{
+draw byNamedFilledCircleSegment(M);
+draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
+},\\
 that \drawUnitLine{CD} may fall on \drawUnitLine{AB},\\
 the extremities of \drawUnitLine{CD} may be on the extremities \drawUnitLine{AB}\\
 and \drawArc{M} at the same side as \drawArc{N};\\
@@ -6421,7 +6436,7 @@ because $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
 \drawUnitLine{CD} must wholly coincide with \drawUnitLine{AB};
 \stopCenterAlign
 
-\noindent and the similar being then upon the same straight line and at the same side of it, must also coincide \inprop[prop:III.XXIII], and therefore equal.
+\noindent and the similar segments being then upon the same straight line and at the same side of it, must also coincide \inprop[prop:III.XXIII], and are therefore equal.
 
 \qed
 \stopProposition

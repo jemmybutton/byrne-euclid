@@ -5097,7 +5097,7 @@ $\therefore \drawAngle{FEC} = \mbox{ дважды } \drawAngle{FDC}$.
 \stopProposition
 
 \startProposition[title={Предложение XXI. Теорема},reference=prop:III.XXI]
-\problemNP{В}{круге}{углы в одной дуге равны между собой.}
+\problemNP{В}{круге}{углы в одном сегменте равны между собой.}
 
 \defineNewPicture{
 pair A, B, D, E, F;
@@ -5124,7 +5124,7 @@ draw byLabelsOnCircle(B, D, E, A)(F);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }\drawCurrentPictureInMargin
 \startsubproposition[title={Случай I.}]
-Пусть дуга будет больше половины окружности, проведем \drawUnitLine{DF} и \drawUnitLine{BF} к центру.
+Пусть сегмент будет больше половины круга, проведем \drawUnitLine{DF} и \drawUnitLine{BF} к центру.
 
 \startCenterAlign
 $\drawAngle{E} = \mbox{ дважды } \drawAngle{A} \mbox{ или дважды } = \drawAngle{E}$ \inprop[prop:III.XX];
@@ -5163,7 +5163,7 @@ draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай II.}]
-Пусть дуга будет меньше половины окружности, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
+Пусть сегмент будет меньше половины круга, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
 
 \startCenterAlign
 $\drawAngle{BAG} = \drawAngle{BEG}$ и $\drawAngle{GAD} = \drawAngle{GED}$ (случай I.)
@@ -5217,6 +5217,135 @@ $\drawAngle{DAC,CAB} + \drawAngle{BCA,ACD} = \drawAngle{BCA,ACD} + \drawAngle{CD
 Так же можно показать, что\\
 $\drawAngle{CDB,BDA} + \drawAngle{ABD,DBC} = \drawTwoRightAngles$.
 \stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIII. Теорема},reference=prop:III.XXIII]
+\defineNewPicture{
+pair A, B, C, D, M, N;
+numeric r[], t[];
+path cr[];
+r1 := 14/6u;
+r2 := 15/6u;
+M := (0, 0);
+N := (0, 1/3r1);
+cr1 := (fullcircle scaled 2r1) shifted M;
+cr2 := (fullcircle scaled 2r2) shifted N;
+t1 := xpart(cr1 intersectiontimes (subpath (-2, 2) of cr2));
+t2 := xpart(cr1 intersectiontimes (subpath (2, 6) of cr2));
+t3 := xpart(cr2 intersectiontimes (subpath (-2, 2) of cr1));
+t4 := xpart(cr2 intersectiontimes (subpath (2, 6) of cr1));
+A := point t1 of cr1;
+B := point t2 of cr1;
+C := point 3/2 of cr1;
+D := cr2 intersectionpoint (1/2[A,C]--2[A,C]);
+draw byAngleWithName(A, C, B, byyellow, 0)(C);
+draw byAngleWithName(A, D, B, byblue, 0)(D);
+draw byLineFull(A, D, byred, 0, 0)(B, D, 1, 0, 0);
+draw byLineFull(B, C, byblue, 0, 0)(A, C, 1, 0, 0);
+draw byLineFull(B, D, byyellow, 0, 0)(A, D, 1, 0, 0);
+draw byLineFull(A, B, black, 0, 0)(A, B, 0, 0, 1);
+draw byArc(M, A, B, r1, byred, 0, 0, 0, 1)(M);
+draw byArc(N, A, B, r2, byblue, 0, 0, 0, 1)(N);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
+draw byLabelsOnPolygon(B, D, A)(2, 0);
+draw byLabelPoint(C, (angle(C-M)-90+angle(D-A))/2, 1);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{а}{одной прямой и по одну ее сторону нельзя построить два подобных и неравных сегмента круга.}
+
+\startCenterAlign
+Действительно, если это возможно, построим два подобных сегмента\\
+\drawFromCurrentPicture[bottom]{
+draw byNamedLine(AB);
+draw byNamedArcExact(N);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
+}
+и
+\drawFromCurrentPicture[bottom]{
+draw byNamedLine(AB);
+draw byNamedArcExact(M);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
+},
+
+проведем прямую \drawUnitLine{AD}, секущую оба,
+
+проведем \drawUnitLine{BC} и \drawUnitLine{BD}.
+
+Поскольку сегменты подобны,\\
+$\drawAngle{C} = \drawAngle{D}$ \inprop[prop:III.X],
+
+но $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:III.XVI], что невозможно.
+
+Следовательно, никакая точка одного сегмента не расположена вовне другого сегмента и значит сегменты совпадают.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIV. Теорема},reference=prop:III.XXIV]
+\defineNewPicture{
+pair A, B, C, D, M, N, d;
+numeric r, t[];
+path cr[];
+r := 5/2u;
+t1 := 2-1;
+t2 := 2+1;
+d := (0, -3/2u);
+M := (0, 0);
+N := M shifted d;
+cr1 := ((subpath (t1, t2) of fullcircle) scaled 2r) shifted M;
+cr2 := ((subpath (t1, t2) of fullcircle) scaled 2r) shifted N;
+A := point length(cr1) of cr1;
+B := point 0 of cr1;
+C := point length(cr2) of cr2;
+D := point 0 of cr2;
+draw byFilledCircleSegment (M, r, t1, t2, byred)(M);
+draw byLineFull(A, B, black, 0, 0)(A, B, 0, 0, -1);
+draw byArc(M, B, A, r, byblue, 0, 0, 1/2, 1)(M);
+draw byFilledCircleSegment (N, r, t1, t2, byyellow)(N);
+draw byLineFull(C, D, byblue, 0, 0)(C, D, 0, 0, -1);
+draw byArc(N, D, C, r, byred, 0, 0, 1/2, 1)(N);
+draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
+draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{одобные}{сегменты
+\drawFromCurrentPicture[bottom]{
+draw byNamedFilledCircleSegment(M);
+draw byNamedLine(AB);
+draw byNamedArcExact(M);
+draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
+}
+и
+\drawFromCurrentPicture[bottom]{
+draw byNamedFilledCircleSegment(N);
+draw byNamedLine(CD);
+draw byNamedArcExact(N);
+draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
+}
+кругов на равных прямых \drawUnitLine{AB} и \drawUnitLine{CD} равны между собой.}
+
+\startCenterAlign
+Поскольку, если
+\drawFromCurrentPicture[bottom]{
+draw byNamedFilledCircleSegment(N);
+draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
+}
+наложить на
+\drawFromCurrentPicture[bottom]{
+draw byNamedFilledCircleSegment(M);
+draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
+},\\
+так, что \drawUnitLine{CD} совпадет с \drawUnitLine{AB},\\
+концы \drawUnitLine{CD} будут на концах \drawUnitLine{AB}\\
+и \drawArc{M} по одну сторону с \drawArc{N};\\
+поскольку $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
+\drawUnitLine{CD} будет полностью совпадать с \drawUnitLine{AB};
+\stopCenterAlign
+
+\noindent равные сегменты на одной прямой и по одну ее сторону также совпадают \inprop[prop:III.XXIII], и, следовательно, равны..
 
 \qed
 \stopProposition
