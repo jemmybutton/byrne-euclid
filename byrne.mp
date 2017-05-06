@@ -1461,6 +1461,18 @@ vardef byLabelsOnCircle(text pointsList)(suffix cn) =
     )
 enddef;
 
+vardef byLabelsOnArc(text pointsList)(suffix an) =
+    save d;
+    d := lineThickness(arcThin.an)*(1/2+1/2arcShift.an);
+    image(
+        if (textLabels):
+            forsuffixes pN=pointsList:
+                draw byTextLabel(pointLabel)(str pN, pN, angle(pN - arcCenter.an), textLabelShift + d);
+            endfor;
+        fi;
+    )
+enddef;
+
 vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
     image(
         if(textLabels):

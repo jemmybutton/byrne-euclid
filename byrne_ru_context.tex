@@ -5345,7 +5345,405 @@ draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
 \drawUnitLine{CD} будет полностью совпадать с \drawUnitLine{AB};
 \stopCenterAlign
 
-\noindent равные сегменты на одной прямой и по одну ее сторону также совпадают \inprop[prop:III.XXIII], и, следовательно, равны..
+\noindent равные сегменты на одной прямой и по одну ее сторону также совпадают \inprop[prop:III.XXIII], и, следовательно, равны.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXV. Задача},reference=prop:III.XXV]
+\defineNewPicture{
+pair A, B, C, D, E, F, O;
+numeric r;
+r := 7/4u;
+O := (0, 0);
+A := (dir(-20)*r) shifted O;
+B := (dir(85)*r) shifted O;
+C := (dir(180)*r) shifted O;
+D := 1/2[A, B];
+E := 1/2[B, C];
+F = whatever[D, D shifted ((A-B) rotated 90)] = whatever[E, E shifted ((B-C) rotated 90)];
+byLineDefine(D, F, byred, 0, 0);
+byLineDefine(E, F, byyellow, 0, 0);
+draw byNamedLineSeq(0)(DF,EF);
+draw byLine(A, B, black, 0, 0);
+draw byLine(B, C, byblue, 0, 0);
+draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
+draw byLabelsOnArc(A, B, C)(O);
+draw byLabelLineEnd(D, F, 0);
+draw byLabelLineEnd(E, F, 0);
+draw byLabelsOnPolygon(D, F, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{К}{данному}{сегменту круга пристроить круг, сегментом которого он является.}
+
+\startCenterAlign
+Из любой точки сегмента проведем \drawUnitLine{BC} и \drawUnitLine{AB},\\
+рассечем обе пополам и из точек рассечения\\
+проведем $\drawUnitLine{EF} \perp \drawUnitLine{BC}$\\
+и $\drawUnitLine{DF} \perp \drawUnitLine{AB}$\\
+где они пересекаются, там и находится центр круга..
+\stopCenterAlign
+
+Поскольку \drawUnitLine{BC} кончающаяся на окружности рассекается перпендикуляром \drawUnitLine{EF}, который проходит через центр \inprop[prop:III.I], так же и \drawUnitLine{DF} проходит через центр, следовательно, их пересечение и есть центр.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXVI. Теорема},reference=prop:III.XXVI]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, d;
+numeric r, t[];
+path cr[];
+r := 7/4u;
+t1 := 5;
+t2 := 7;
+G := (0, 0);
+cr1 := (fullcircle scaled 2r) shifted G;
+A := point 3/2 of cr1;
+B := point t1 of cr1;
+C := point t2 of cr1;
+d := (0, -5/2r);
+H := G shifted d;
+cr2 := (fullcircle scaled 2r) shifted H;
+D := point 5/2 of cr2;
+E := point t1 of cr2;
+F := point t2 of cr2;
+draw byAngleWithName(B, A, C, byred, 0)(A);
+draw byAngleWithName(B, G, C, byyellow, 0)(G);
+draw byFilledCircleSegment (G, r, t1, t2, byyellow)(G);
+draw byLine(B, C, black, 0, 0);
+draw byLine(A, B, black, 0, 1);
+draw byLine(A, C, black, 0, 1);
+byLineDefine(B, G, byblue, 0, 0);
+byLineDefine(C, G, byred, 0, 0);
+draw byNamedLineSeq(0)(BG,CG);
+draw byArc(G, C, B, r, byblue, 0, 0, 0, 0)(G);
+draw byArc(G, B, C, r, black, 0, 0, 0, 0)(Gb);
+byCircleDefineR(G, r, byblue, 0, 0, 0)(G);
+draw byAngleWithName(E, D, F, byblue, 0)(D);
+draw byAngleWithName(E, H, F, black, 0)(H);
+draw byFilledCircleSegment (H, r, t1, t2, byyellow)(H);
+draw byLine(E, F, black, 1, 0);
+draw byLine(D, E, black, 0, 1);
+draw byLine(D, F, black, 0, 1);
+byLineDefine(E, H, byblue, 1, 0);
+byLineDefine(F, H, byred, 1, 0);
+draw byNamedLineSeq(0)(EH,FH);
+draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
+draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
+byCircleDefineR(H, r, byred, 0, 0, 0)(H);
+draw byLabelsOnArc(A, B, C)(G);
+draw byLabelsOnArc(D, E, F)(H);
+draw byLabelsOnPolygon(B, G, C)(2, 0);
+draw byLabelsOnPolygon(E, H, F)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{равных}{кругах \drawCircle[middle][1/4]{G} и \drawCircle[middle][1/4]{H} дуги \drawArc{Gb} и \drawArc{Hb}, на которые опираются равные, что при центре, что при окружности, углы, равны.}
+
+\startCenterAlign
+Поскольку, пусть $\drawAngle{G} = \drawAngle{H}$ при центре,\\
+проведем \drawUnitLine{BC} и \drawUnitLine{EF}.
+
+Тогда, поскольку $\circleG = \circleH$,\\
+у \drawLine[bottom]{BG,CG,BC} и \drawLine[bottom]{EH,FH,EF}\\
+$\drawUnitLine{BG} = \drawUnitLine{CG} = \drawUnitLine{EH} = \drawUnitLine{FH}$,\\
+и $\drawAngle{G} = \drawAngle{H}$,\\
+$\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$ \inprop[prop:I.IV].
+
+Но $\drawAngle{A} = \drawAngle{D}$ \inprop[prop:III.XX];\\
+$\therefore$
+\drawFromCurrentPicture{
+startTempScale(1/4);
+draw byNamedArc(G);
+draw byNamedLine(BC);
+draw byLabelsOnArc(B, C)(G);
+stopTempScale;
+}
+и
+\drawFromCurrentPicture{
+startTempScale(1/4);
+draw byNamedArc(H);
+draw byNamedLine(EF);
+draw byLabelsOnArc(E, F)(H);
+stopTempScale;
+}
+подобны \indef[def:III.XI];\\
+и равны \inprop[prop:III.XXIV]
+\stopCenterAlign
+
+А если равные сегменты вычесть из равных кругов, оставшиеся сегменты будут равны,
+
+\startCenterAlign
+то есть $
+\drawFromCurrentPicture{
+draw byNamedFilledCircleSegment(G);
+draw byNamedArcLabel(Gb);
+}
+=
+\drawFromCurrentPicture{
+draw byNamedFilledCircleSegment(H);
+draw byNamedArcLabel(Hb);
+}
+$ \inax[ax:III];\\
+и $\therefore \drawArc{Gb} = \drawArc{Hb}$.
+\stopCenterAlign
+
+И если равные углы будут при окружности, очевидно, что углы в центре, будучи вдвое больше углов при окружности, также равны, и, следовательно, дуги, на которые они опираются, тоже равны.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXVII. Теорема},reference=prop:III.XXVII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, K, d;
+numeric r, t[];
+path cr[];
+r := 7/4u;
+t1 := 5;
+t2 := 7;
+t3 := 13/2;
+G := (0, 0);
+cr1 := (fullcircle scaled 2r) shifted G;
+A := point 3/2 of cr1;
+B := point t1 of cr1;
+C := point t2 of cr1;
+K := point t3 of cr1;
+d := (0, -5/2r);
+H := G shifted d;
+cr2 := (fullcircle scaled 2r) shifted H;
+D := point 3/2 of cr2;
+E := point t1 of cr2;
+F := point t3 of cr2;
+draw byAngle(B, A, K, byyellow, 0);
+draw byAngle(B, G, K, byyellow, 0);
+draw byAngle(K, A, C, byblue, 0);
+draw byAngle(K, G, C, byblue, 0);
+draw byLine(A, K, black, 0, 1);
+draw byLine(A, B, black, 0, 1);
+draw byLine(A, C, black, 0, 1);
+byLineDefine(G, B, black, 0, 1);
+byLineDefine(G, C, black, 0, 1);
+draw byNamedLineSeq(0)(GB,GC);
+draw byLine(G, K, black, 0, 1);
+draw byArc(G, C, B, r, byred, 0, 0, 0, 0)(G);
+draw byArc(G, B, K, r, black, 0, 0, 0, 0)(GbI);
+draw byArc(G, K, C, r, byred, 1, 0, 0, 0)(GbII);
+byCircleDefineR(G, r, byred, 0, 0, 0)(G);
+draw byAngleWithName(E, D, F, byred, 0)(D);
+draw byAngleWithName(E, H, F, byred, 0)(H);
+draw byLine(D, F, black, 0, 1);
+draw byLine(D, E, black, 0, 1);
+byLineDefine(H, E, black, 0, 1);
+byLineDefine(H, F, black, 0, 1);
+draw byNamedLineSeq(0)(HE,HF);
+draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
+draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
+byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byLabelsOnArc(A, B, C, K)(G);
+draw byLabelsOnArc(D, E, F)(H);
+draw byLabelsOnPolygon(B, G, C)(2, 0);
+draw byLabelsOnPolygon(E, H, F)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{В}{равных}{кругах \drawCircle[middle][1/3]{G} и \drawCircle[middle][1/3]{H}, углы \drawAngle{BAK} и \drawAngle{D}, опирающиеся на равные дуги, равны между собой, будь они при центрах или при окружностях.}
+
+\startCenterAlign
+Поскольку, если такое возможно, пусть один из них\\
+\drawAngle{D} будет больше другого \drawAngle{BAK},\\
+сделаем $\drawAngle{BAK,KAC} = \drawAngle{D}$
+
+$\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \inprop[prop:III.XXVI]
+
+но $\drawArc{GbI} = \drawArc{Hb}$ (гип.)\\
+$\therefore \drawArc{GbI} = \drawArc{GbI,GbII}$ часть равны целому, что невозможно;
+
+$\therefore$ ни один из углов не больше другого,
+
+и $\therefore$ они равны.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXVIII. Теорема},reference=prop:III.XXVIII]
+\defineNewPicture[1/2]{
+pair A, B, D, E, K, L, d;
+numeric r, t[];
+path cr[];
+r := 7/4u;
+t1 := 5;
+t2 := 7;
+K := (0, 0);
+cr1 := (fullcircle scaled 2r) shifted K;
+A := point t1 of cr1;
+B := point t2 of cr1;
+d := (0, -5/2r);
+L := K shifted d;
+cr2 := (fullcircle scaled 2r) shifted L;
+D := point t1 of cr2;
+E := point t2 of cr2;
+draw byAngleWithName(A, K, B, byred, 0)(K);
+draw byLine(A, B, byred, 0, 0);
+byLineDefine(A, K, black, 0, 0);
+byLineDefine(B, K, byblue, 0, 0);
+draw byNamedLineSeq(0)(AK,BK);
+draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
+draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
+byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
+draw byAngleWithName(D, L, E, byyellow, 0)(L);
+draw byLine(D, E, byred, 1, 0);
+byLineDefine(D, L, black, 1, 0);
+byLineDefine(E, L, byblue, 1, 0);
+draw byNamedLineSeq(0)(DL,EL);
+draw byArc(L, E, D, r, black, 0, 0, 0, 0)(L);
+draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
+byCircleDefineR(L, r, black, 0, 0, 0)(L);
+draw byLabelsOnCircle(A, B)(K);
+draw byLabelsOnCircle(D, E)(L);
+draw byLabelsOnPolygon(A, K, B)(2, 0);
+draw byLabelsOnPolygon(D, L, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{равных}{кругах \drawCircle[middle][1/3]{K} и \drawCircle[middle][1/3]{L} равные хорды \drawUnitLine{AB} и \drawUnitLine{DE} отсекают равные дуги.}
+
+\startCenterAlign
+Из центров равных кругов,\\
+проведем \drawUnitLine{AK}, \drawUnitLine{BK} и \drawUnitLine{DL}, \drawUnitLine{EL}.
+
+Поскольку $\circleK = \circleL$\\
+$\drawUnitLine{AK}, \drawUnitLine{BK} = \drawUnitLine{DL}, \drawUnitLine{EL}$,\\
+а также $\drawUnitLine{AB} = \drawUnitLine{DE}$ (гип.)
+
+$\therefore \drawAngle{K} = \drawAngle{L}$
+
+$\therefore \drawArc{Kb} = \drawArc{Lb}$ \inprop[prop:III.XXVI]
+
+и $\therefore \drawArc[bottom][1/3]{K} = \drawArc[bottom][1/3]{L}$ \inax[ax:III]
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIX. Теорема},reference=prop:III.XXIX]
+\defineNewPicture[1/2]{
+pair A, B, D, E, K, L, d;
+numeric r, t[];
+path cr[];
+r := 7/4u;
+t1 := 5;
+t2 := 7;
+K := (0, 0);
+cr1 := (fullcircle scaled 2r) shifted K;
+A := point t1 of cr1;
+B := point t2 of cr1;
+d := (0, -5/2r);
+L := K shifted d;
+cr2 := (fullcircle scaled 2r) shifted L;
+D := point t1 of cr2;
+E := point t2 of cr2;
+draw byAngleWithName(A, K, B, byred, 0)(K);
+draw byLine(A, B, byred, 0, 0);
+byLineDefine(A, K, black, 0, 0);
+byLineDefine(B, K, byblue, 0, 0);
+draw byNamedLineSeq(0)(AK,BK);
+draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
+draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
+byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
+draw byAngleWithName(D, L, E, byyellow, 0)(L);
+draw byLine(D, E, byred, 1, 0);
+byLineDefine(D, L, black, 1, 0);
+byLineDefine(E, L, byblue, 1, 0);
+draw byNamedLineSeq(0)(DL,EL);
+draw byArc(L, E, D, r, black, 0, 0, 0, 0)(L);
+draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
+byCircleDefineR(L, r, black, 0, 0, 0)(L);
+draw byLabelsOnCircle(A, B)(K);
+draw byLabelsOnCircle(D, E)(L);
+draw byLabelsOnPolygon(A, K, B)(2, 0);
+draw byLabelsOnPolygon(D, L, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{равных}{кругах \drawCircle[middle][1/3]{K} и \drawCircle[middle][1/3]{L}, хорды \drawUnitLine{AB} и \drawUnitLine{DE}, стягивающие равные дуги, равны.}
+
+\startCenterAlign
+Если дуги равны половинам окружностей, то предложение очевидно, а если нет, 
+
+пусть \drawUnitLine{AK}, \drawUnitLine{BK} и \drawUnitLine{DL}, \drawUnitLine{EL} проведены из центров;
+
+поскольку $\drawArc{Kb} = \drawArc{Lb}$ (гип.)\\
+и $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII];
+
+но $\drawUnitLine{AK} \mbox{ и } \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ и } \drawUnitLine{EL}$
+
+$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:III.XXVII],
+
+а это и есть хорды, стягивающие равные дуги.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXIX. Задача},reference=prop:III.XXX]
+\defineNewPicture{
+pair A, B, C, D, E;
+numeric r, t[];
+path cr;
+r := 9/4u;
+t1 := -1/2;
+t2 := 4 + 1/2;
+t3 := 2;
+E := (0, 0);
+cr := (fullcircle scaled 2r) shifted E;
+A := point t2 of cr;
+B := point t1 of cr;
+D := point t3 of cr;
+C := 1/2[A, B];
+draw byAngle(A, C, D, byblue, 0);
+draw byAngle(D, C, B, byred, 0);
+draw byLine(D, A, byblue, 0, 0);
+draw byLine(D, C, byyellow, 0, 0);
+draw byLine(D, B, byblue, 1, 0);
+draw byLine(A, C, black, 0, 0);
+draw byLine(C, B, black, 1, 0);
+draw byArc(E, B, D, r, byred, 1, 0, 0, 0)(Er);
+draw byArc(E, D, A, r, byred, 0, 0, 0, 0)(El);
+draw byLabelsOnArc(A, B, D)(Er);
+draw byLabelLineEnd(C, D, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{ассечь}{данную дугу \drawArc[middle][1/5]{El,Er} пополам.}
+
+\startCenterAlign
+Проведем \drawUnitLine{AC,CB};\\
+сделаем $\drawUnitLine{AC} = \drawUnitLine{CB}$,\\
+проведем $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, она и будет рассекать дугу.
+
+Проведем \drawUnitLine{DA} и \drawUnitLine{DB}.
+
+$\drawUnitLine{AC} = \drawUnitLine{CB}$ (постр.)\\
+\drawUnitLine{DC} общая,\\
+и $\drawAngle{ACD} = \drawAngle{DCB}$ (постр.)
+
+$\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
+$
+\drawFromCurrentPicture{
+startGlobalRotation(-arcAngle.El);
+startAutoLabeling;
+draw byNamedArc(El);
+stopAutoLabeling;
+stopGlobalRotation;
+}
+=
+\drawFromCurrentPicture{
+startGlobalRotation(-arcAngle.Er);
+startAutoLabeling;
+draw byNamedArc(Er);
+stopAutoLabeling;
+stopGlobalRotation;
+}
+$ \inprop[prop:III.XXVII],\\
+и значит данная дуга рассечена.
+\stopCenterAlign
 
 \qed
 \stopProposition
