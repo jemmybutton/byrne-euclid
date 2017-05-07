@@ -7206,6 +7206,9 @@ byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
 draw byNamedLineSeq(0)(DB,DC);
 draw byCircleR(F, r, black, 0, 0, 0)(F);
+draw byLabelsOnCircle(A, B)(F);
+draw byLabelsOnPolygon(B, D, F, A)(2, 0);
+draw byLabelPoint(C, angle(C-F) - 45, 2);
 }
 \problemNP{I}{f}{from a point without a circle two straight lines be drawn to it, one of which \drawSizedLine{DB} is a tangent to the circle, and the other \drawSizedLine{FA,CF,DC} cuts it; the rectangle under the whole cutting line \drawSizedLine{FA,CF,DC} and the external segment \drawSizedLine{DC} is equal to the square of the tangent \drawSizedLine{DB}.}\unskip
 \drawCurrentPictureInMargin
@@ -7245,6 +7248,9 @@ byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, E, black, 0, 0);
 draw byNamedLineSeq(0)(DB,DE);
 draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B)(E);
+draw byLabelsOnPolygon(B, D, E, A)(2, 0);
+draw byLabelPoint(C, angle(C-E) + 45, 2);
 }\drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
 \startCenterAlign
@@ -7288,6 +7294,10 @@ byLineDefine(D, B, byred, 0, 0);
 byLineDefine(D, E, byblue, 0, 0);
 draw byNamedLineSeq(0)(BF,DB,DE,EF);
 draw byCircleR(F, r, black, 0, 0, 0)(F);
+draw byLabelsOnCircle(A, B, E)(F);
+draw byLabelsOnPolygon(E, F, B)(2, 0);
+draw byLabelsOnPolygon(B, D, E)(2, 0);
+draw byLabelPoint(C, angle(C-F) + 45, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{from a point outside of a circle two straight lines be drawn, the one \drawSizedLine{CA,DC} cutting the circle, the other \drawSizedLine{DB} meeting it, and if the rectangle contained by the whole cutting line \drawSizedLine{CA,DC} and its external segment \drawSizedLine{DC} be equal to the square of the line meeting the circle, the latter \drawSizedLine{DB} is a tangent to the circle.}
