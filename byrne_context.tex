@@ -7445,7 +7445,7 @@ A circle is said to be \emph{circumscribed about} a rectilinear figure, when the
 \drawPolygon{GHK} is circumscribed.
 \stopDefinitionOnlyNumber
 
-\startDefinitionOnlyNumber[reference=def:IV.VI]
+\startDefinitionOnlyNumber[reference=def:IV.VII]
 \defineNewPicture{
 pair A, B, O;
 numeric r;
@@ -7490,6 +7490,10 @@ draw byLine(A, C, byyellow, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
 draw byCircleR(O, r1, byyellow, 0, 0, 0)(O);
 draw byCircle(C, E, byblue, 0, 0, 0)(C);
+draw byLabelsOnCircle(C, B)(O);
+draw byLabelsOnPolygon(C, A, E)(2, 0);
+draw byLabelsOnPolygon(C, E, A)(2, -1);
+draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{O} to place a straight line, equal to a given straight line (\drawUnitLine{GH}), not greater than the diameter of the circle.}
@@ -7542,8 +7546,11 @@ draw byAngleWithName(D, F, E, byyellow, 0)(F);
 draw byArbitraryFigure(B--A--C, black, 0, 1)(BAC);
 draw byArbitraryFigure(D--E--F--cycle, black, 0, 1)(BAC);
 draw byLine(B, C, byyellow, 0, 0);
-draw byLineFull(G, H, byred, 0, 0)(G, H, 0, 0, 2);
+draw byLine(G, H, byred, 0, 0);
 draw byCircleR(O, r, black, 0, 0, 0)(O);
+draw byLabelsOnCircle(A, B, C)(O);
+draw byLabelsOnPolygon(D, E, F)(0, 0);
+draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{O} to inscribe a triangle equiangular to a given triangle.}
@@ -7564,7 +7571,8 @@ also $\drawAngle{C} = \drawAngle{F}$ for the same reason.
 
 $\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII],
 \stopCenterAlign
-and therefore the triangle inscribed in the circle is equiangular to the given one.
+
+\noindent and therefore the triangle inscribed in the circle is equiangular to the given one.
 
 \qed
 \stopProposition
@@ -7594,21 +7602,25 @@ draw byAngle(B, K, C, byblue, 0);
 draw byAngleWithName(M, L, N, byred, 0)(L);
 draw byAngle(D, F, E, byred, 0);
 draw byAngleWithName(L, N, M, black, 1)(N);
-draw byAngle(F, E, D, black, 1);
-draw byAngleWithName(N, M, L, byred, 1)(M);
-draw byAngleWithName(E, D, F, byred, 1)(D);
+draw byAngle(F, E, D, black, 1); 
+draw byAngleWithName(N, M, L, byred, 1)(M); %
+draw byAngleWithName(E, D, F, byred, 1)(D); % these two angles are three-colored in the original, but that's the only time in the whole book and i see no good reason to implement this.
 draw byAngleWithName(K, A, L, black, 0)(A);
 draw byAngleWithName(L, C, K, black, 0)(C);
 draw byArbitraryFigure(F--D--E, black, 0, 1)(FDE);
 byLineDefine(N, L, byblue, 0, 0);
 byLineDefine(L, M, byyellow, 0, 0);
-byLineDefine(M, N, byred, 1, 0);
+byLineDefine(M, N, byred, 1, 0); 
 draw byLine(G, H, black, 0, 0);
 draw byLine(K, C, byred, 0, 0);
 draw byArbitraryFigure(A--K--B, black, 0, 1)(AKB);
 draw byCircleR(K, r, byred, 0, 0, -1)(K);
 draw byNamedLineSeq(0)(NL,LM,MN);
 byArbitraryFigureDefine(L--A--K--C--cycle, black, 0, 1)(LAKC);
+draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
+draw byLabelsOnPolygon(G, E, F, H, noPoint)(0, 0);
+draw byLabelsOnPolygon(F, D, E)(2, 0);
+draw byLabelsOnPolygon(A, K, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{bout}{a given circle \drawCircle[middle][1/3]{K} to circumscribe a triangle equiangular to a given triangle.}
@@ -7628,6 +7640,7 @@ The four angles of
 startTempAngleScale(2/3);
 draw byNamedAngle(A, C, L, CKA);
 draw byNamedArbitraryFigure(LAKC);
+draw byLabelsOnPolygon(L, A, K, C)(0, 0);
 stopTempAngleScale;
 },
 taken together are equal to four right angles. \inprop[prop:I.XXXII]
@@ -7681,11 +7694,15 @@ draw byNamedLineSeq(0)(AB,BC,CA);
 draw byCircle(D, G, black, 0, 0, -1)(D);
 byLineDefine(B, F, black, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
+draw byLabelsOnPolygon(B, E, A, G, C, F)(0, 0);
+draw byLabelsOnPolygon(E, D, G)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/4);
+startAutoLabeling;
 draw byNamedLineSeq(0)(CA,BC,AB);
+stopAutoLabeling;
 stopTempScale;
 } to inscribe a circle.}
 
@@ -7698,18 +7715,22 @@ In
 \drawFromCurrentPicture{
 startTempScale(3/4);
 draw byNamedAngle(F, DBF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(BD,FD,BF);
+stopAutoLabeling;
 stopTempScale;
 }
 and
 \drawFromCurrentPicture{
 startTempScale(3/4);
 draw byNamedAngle(E, EBD);
+startAutoLabeling;
 draw byNamedLineSeq(0)(BE,ED,BD);
+stopAutoLabeling;
 stopTempScale;
 }\\
 $\drawAngle{DBF} = \drawAngle{EBD}$, $\drawAngle{F} = \drawAngle{E}$ and \drawUnitLine{BD} common,\\
-$\therefore \drawUnitLine{ED} = \drawUnitLine{FD}$ (\inpropL[prop:I.IV], \inpropL[prop:I.XXVI]
+$\therefore \drawUnitLine{ED} = \drawUnitLine{FD}$ (\inpropL[prop:I.IV], \inpropL[prop:I.XXVI]).
 
 In like manner, it may be shown also that $\drawUnitLine{GD} = \drawUnitLine{FD}$,
 
@@ -7751,6 +7772,10 @@ fi;
 draw byLine(C, E, byred, 0, 0);
 draw byLine(E, A, byred, 1, 0);
 draw byCircleR(F, r, black, 0, 0, 0)(F);
+draw byLabelsOnCircle(A, B, C)(F);
+draw byLabelsOnPolygon(B, D, A)(2, 0);
+draw byLabelsOnPolygon(A, E, C)(2, 0);
+draw byLabelsOnPolygon(C, F, B)(2, 0);
 enddef;
 proptmp(100, 170, 10, (0, -8u));
 proptmp(80, 160, -20, (0, -4u));
@@ -7767,12 +7792,16 @@ From the points of bisection draw \drawUnitLine{DF} and \drawUnitLine{EF} $\perp
 In
 \drawFromCurrentPicture{
 draw byNamedAngle(FDB);
+startAutoLabeling;
 draw byNamedLineSeq(0)(DF,BF,DB);
+stopAutoLabeling;
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(ADF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(AF,DF,AD);
+stopAutoLabeling;
 }\\
 $\drawUnitLine{DB} = \drawUnitLine{AD}$ (const.),\\
 \drawUnitLine{DF} common,\\
@@ -7811,7 +7840,9 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DA);
-draw byCircle(E, D, byred, 0, 0, 1)(E);
+draw byCircleR(E, r, byred, 0, 0, 1)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a given circle \drawCircle{E} to inscribe a square.}
@@ -7866,7 +7897,9 @@ byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(KF,HK,GH,FG);
-draw byCircle(E, D, byblue, 0, 0, -1)(E);
+draw byCircleR(E, r, byblue, 0, 0, -1)(E);
+draw byLabelsOnPolygon(H, B, G, A, F, D, K, C)(0, 0);
+draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{bout}{a given circle \drawCircle{E} to circumscribe a square.}
@@ -7922,6 +7955,8 @@ byLineDefine(D, K, byred, 1, 0);
 byLineDefine(K, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AE,ED,DK,KC);
 draw byCircleR(G, r, byyellow, 0, 0, -1)(G);
+draw byLabelsOnPolygon(B, F, A, E, D, K, C, H)(0, 0);
+draw byLabelsOnPolygon(F, G, E)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in a given square.}
@@ -7971,6 +8006,8 @@ draw byLine(E, C, byblue, 1, 0);
 draw byLine(B, E, black, 0, 0);
 draw byLine(E, D, black, 1, 0);
 draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(B, E, A)(2, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe a circle about a given square \drawPolygon{ACD,ABC}.}
@@ -8027,6 +8064,10 @@ draw byLine(A, C, black, 0, 0);
 draw byLine(C, B, black, 1, 0);
 draw byCircleABC(A, C, D, byblue, 0, 0, 0)(F);
 draw byCircle(A, B, byred, 0, 0, 0)(A);
+draw byLabelsOnCircle(B)(A);
+draw byLabelsOnCircle(A)(F);
+draw byLabelPoint(D, angle(D-A)-15, 2);
+draw byLabelsOnPolygon(A, C, D)(2, 0);
 }
 \drawCurrentPicture
 \problemNP{T}{o}{construct an isosceles triangle, in which each of the angles at the base shall be double of the vertical angle.}
@@ -8094,18 +8135,20 @@ byLineDefine(C, D, black, 0, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleABC(A, C, D, byblue, 0, 0, 1)(O);
+draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byLabelsOnCircle(A, B, C, D, E)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{n}{a given circle \drawCircle[middle][1/4]{O} to inscribe an equilateral and equiangular pentagon.}
 
 Construct an isosceles triangle, in which each of the angles at the base shall be double of the angle at the vertex, and inscribe in the given circle a triangle \drawPolygon[bottom]{ACD} equiangular to it \inprop[prop:IV.II];
 
-Bisect \drawAngle{ECA,DCE} and \drawAngle{ADB,BDC} \inprop[prop:I.IX]
-
+\startCenterAlign
+Bisect \drawAngle{ECA,DCE} and \drawAngle{ADB,BDC} \inprop[prop:I.IX],\\
 draw \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} and \drawUnitLine{DE}.
+\stopCenterAlign
 
-Because each of the angles \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} and \drawAngle{ADB} are equal, the arcs upon which they stand are equal \inprop[prop:III.XXVI]; and $\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} and \drawUnitLine{DE} which subtended these arcs are equal \inprop[prop:III.XIX] and $\therefore$ the pentagon is equilateral, it is also equiangular, as each of its angles stand upon equal arcs \inprop[prop:III.XXVII].
+Because each of the angles \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} and \drawAngle{ADB} are equal, the arcs upon which they stand are equal \inprop[prop:III.XXVI]; and $\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} and \drawUnitLine{DE} which subtend these arcs are equal \inprop[prop:III.XIX] and $\therefore$ the pentagon is equilateral, it is also equiangular, as each of its angles stand upon equal arcs \inprop[prop:III.XXVII].
 
 \qed
 \stopProposition
@@ -8446,7 +8489,7 @@ $\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \mbox{ one-thi
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XV. prob.},reference=prop:IV.XV]
+\startProposition[title={Prop. XVI. prob.},reference=prop:IV.XVI]
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, O;
 numeric r;

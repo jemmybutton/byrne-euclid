@@ -6235,5 +6235,824 @@ $\therefore \drawAngle{B} = \drawRightAngle$, прямому углу\\
 
 \stopbook
 
+\startbook[title={Книга 4}]
+
+\startsupersection[title={Определения}]
+
+\startDefinitionOnlyNumber[reference=def:IV.I]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H;
+A := (0, 0);
+B := (1/2u, u);
+C := (2u, 3/2u);
+D := (4/3u, -1/2u);
+E := 1/2[A, B];
+F := 1/2[B, C];
+G := 1/2[C, D];
+H := 1/2[D, A];
+draw byPolygon(E,F,G,H)(byred);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(D, A, black, 0, 0);
+draw byNamedLineSeq(-1)(AB,BC,CD,DA);
+}\drawCurrentPictureInMargin[inside]
+Говорят, что прямолинейная фигуга \emph{вписыватся} в другую прямолинейную фигуру, если каждый из углов вписываемой фигуры касается всех сторон той, в которую она вписывается.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:IV.II]
+Про фигуру говорят, что она \emph{описывается около} фигуры, если каждая сторона описываемой фигуры касается угла той, около которой она описывается.
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+angleScale := 3/4;
+pair A, B, C, D, O;
+numeric r;
+r := 4/5u;
+A := (r, 0);
+B := (0, r);
+C := (-r, 0);
+D := (0, -r);
+O := (0, 0);
+draw byAngleWithName(A, B, C, byred, 0)(B);
+draw byAngleWithName(B, C, D, byred, 0)(C);
+draw byAngleWithName(C, D, A, byred, 0)(D);
+draw byAngleWithName(D, A, B, byred, 0)(A);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(C, D, byred, 0, 0);
+byLineDefine(D, A, byred, 0, 0);
+draw byNamedLineSeq(1)(DA,CD,BC,AB);
+draw byCircleR(O, r, black, 0, 0, 1)(O);
+}\drawCurrentPictureInMargin[inside]
+\startDefinitionOnlyNumber[reference=def:IV.III]
+Про прямолинейную фигуру говорят, что она \emph{вписывается} в круг, когда каждый угол вписываемой фигуры касается окржности.
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+pair A, B, C, D, O;
+numeric r;
+r := 2/3u;
+A := (r, r);
+B := (-r, r);
+C := (-r, -r);
+D := (r, -r);
+O := (0, 0);
+draw byPolygon(A,B,C,D)(byred);
+draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCDo);
+draw byFilledCircleSector(O, r, 0, 8, white)(O);
+}\drawCurrentPictureInMargin[inside]
+\startDefinitionOnlyNumber[reference=def:IV.IV]
+Про фигуру говорят, что она \emph{описывается} около круга, если каждая из ее сторон касается окружности.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:IV.V]
+\defineNewPicture{
+pair A, B, C, D, E, F, O;
+numeric r[];
+r1 := 3/4u;
+A := dir(0)*r1;
+B := dir(60)*r1;
+C := dir(120)*r1;
+D := dir(180)*r1;
+E := dir(240)*r1;
+F := dir(300)*r1;
+r2 := abs(1/2[A, B]);
+O := (0, 0);
+draw byPolygon(A,B,C,D,E,F)(byblue);
+draw byArbitraryFigure(A--B--C--D--E--F--cycle, byblue, 0, 0)(ABCDEFo);
+draw byFilledCircleSector(O, r2, 0, 8, white)(O);
+}\drawCurrentPictureInMargin[inside]
+Про круг говорят, что он \emph{вписывается} в фигуру, когда его окружность касается каждой из сторон фигуры.
+\stopDefinitionOnlyNumber
+
+
+\startDefinitionOnlyNumber[reference=def:IV.VI]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, K, I;
+numeric r;
+A := (0, 0);
+B := (3u, 7/3u);
+C := (7/2u, 0);
+D = whatever[A, B] = whatever[C, C shifted dir(angle(C-A)) shifted dir(angle(C-B))];
+E = whatever[B, C] = whatever[A, A shifted dir(angle(A-B)) shifted dir(angle(A-C))];
+F = whatever[C, A] = whatever[B, B shifted dir(angle(B-C)) shifted dir(angle(B-A))];
+I = whatever[C, D] = whatever[A, E];
+G = whatever[A, B] = whatever[I, I shifted ((A-B) rotated 90)];
+H = whatever[B, C] = whatever[I, I shifted ((B-C) rotated 90)];
+K = whatever[C, A] = whatever[I, I shifted ((C-A) rotated 90)];
+r := abs(D-I);
+draw byPolygon(G,H,K)(byblue);
+draw byCircleR(I, r, black, 0, 0, -1)(I);
+}\drawCurrentPictureInMargin[inside]
+Про круг говорят, что он \emph{описывается} около прямолинейной фигуры, если его окружность проходит через все углы фигуры.
+
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:IV.VII]
+\defineNewPicture{
+pair A, B, O;
+numeric r;
+r := 3/4u;
+O := (0, 0);
+A := dir(0)*r;
+B := dir(100)*r;
+draw byLine(A, B, black, 0, 0);
+draw byCircleR(O, r, byblue, 0, 0, 0)(O);
+}\drawCurrentPictureInMargin[inside]
+Говорят что прямая \emph{вписывается} в круг, когда ее концы находятся на окружности.
+\stopDefinitionOnlyNumber
+
+\vskip 1cm
+
+Четвертая книга посвещена решению задач, преимущественно касающихся вписыванию и~описыванию правильных многоугольников.
+
+Правильным называют такой многоугольник стороны и углы которого равны.
+\stopsupersection
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. I. Задача},reference=prop:IV.I]
+\defineNewPicture{
+pair A, B, C, E, G, H, O;
+numeric r[];
+path cr[];
+r1 := 4/3u;
+r2 := 7/4u;
+O := (0, 0);
+B := (r1, 0) shifted O;
+C := (-r1, 0) shifted O;
+cr1 := (fullcircle scaled 2r1) shifted O;
+cr2 := (fullcircle scaled 2r2) shifted C;
+A := cr1 intersectionpoint (subpath (0, 2) of cr2);
+E := (B--C) intersectionpoint cr2;
+G := (xpart(lrcorner(cr1)), ypart(lrcorner(cr2)));
+H := G shifted (-r2, 0);
+draw byLine(B, E, byred, 0, 0);
+draw byLine(E, C, byred, 1, 0);
+draw byLine(A, C, byyellow, 0, 0);
+draw byLine(G, H, byblue, 0, 0);
+draw byCircleR(O, r1, byyellow, 0, 0, 0)(O);
+draw byCircle(C, E, byblue, 0, 0, 0)(C);
+draw byLabelsOnCircle(C, B)(O);
+draw byLabelsOnPolygon(C, A, E)(2, 0);
+draw byLabelsOnPolygon(C, E, A)(2, -1);
+draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{круг \drawCircle{O} вписать прямую, равную данной \drawUnitLine{GH}, не большей диаметра круга.}
+
+\startCenterAlign
+Проведем диаметр \drawUnitLine{EC,BE} круга \circleO;\\
+и если $\drawUnitLine{EC,BE} = \drawUnitLine{GH}$, задача решена.
+
+Если же \drawUnitLine{EC,BE} не равна \drawUnitLine{GH},\\
+$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (гип.);
+
+сделаем $\drawUnitLine{EC} = \drawUnitLine{GH}$ \inprop[prop:I.III]\\
+взяв \drawUnitLine{EC} за радиус, построим \drawCircle{C}, секущий \circleO, \\
+и проведем \drawUnitLine{AC}, которая и будет искомой прямой.
+
+Поскольку $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], постр.)
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. II. Задача},reference=prop:IV.II]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, O, d;
+numeric r;
+path cr;
+r := 7/4u;
+O := (0, 0);
+cr := (fullcircle scaled 2r) shifted O;
+A := (0, -r) shifted O;
+G := (-r, -r) shifted O;
+H := (r, -r) shifted O;
+D := (0, 0);
+E := (-1/2r, 4/3r);
+F := (3/4r, r);
+d := -1/2[ulcorner(D--E--F), lrcorner(D--E--F)] shifted (0, -2r);
+D := D shifted d;
+E := E shifted d;
+F := F shifted d;
+C := (subpath (-1, 5) of cr) intersectionpoint (A -- A shifted (dir(angleValue(F, E, D))*2r));
+B := (subpath (-1, 5) of cr) intersectionpoint (A -- A shifted (dir(180-angleValue(D, F, E))*2r));
+draw byAngleWithName(C, B, A, black, 0)(B);
+draw byAngleWithName(A, C, B, black, 1)(C);
+draw byAngle(G, A, B, byyellow, 0);
+draw byAngle(B, A, C, byred, 0);
+draw byAngle(C, A, H, byblue, 0);
+draw byAngleWithName(F, E, D, byblue, 0)(E);
+draw byAngleWithName(E, D, F, byred, 0)(D);
+draw byAngleWithName(D, F, E, byyellow, 0)(F);
+draw byArbitraryFigure(B--A--C, black, 0, 1)(BAC);
+draw byArbitraryFigure(D--E--F--cycle, black, 0, 1)(BAC);
+draw byLine(B, C, byyellow, 0, 0);
+draw byLine(G, H, byred, 0, 0);
+draw byCircleR(O, r, black, 0, 0, 0)(O);
+draw byLabelsOnCircle(A, B, C)(O);
+draw byLabelsOnPolygon(D, E, F)(0, 0);
+draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{круг \drawCircle{O} вписать треугольник, равноугольный данному.}
+
+\startCenterAlign
+Проведем касательную \drawUnitLine{GH}, к любой точке круга \inprop[prop:III.XVII];
+
+в точке касания сделаем $\drawAngle{CAH} = \drawAngle{E}$ \inprop[prop:I.XXIII].
+
+Так же сделаем $\drawAngle{GAB} = \drawAngle{F}$,
+
+и проведем \drawUnitLine{BC}.
+
+Поскольку $\drawAngle{CAH} = \drawAngle{E}$ (постр.)\\
+и $\drawAngle{CAH} = \drawAngle{B}$ \inprop[prop:III.XXXII]\\
+$\therefore \drawAngle{B} = \drawAngle{E}$;\\
+также и $\drawAngle{C} = \drawAngle{F}$ по той же причине.
+
+$\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII],
+\stopCenterAlign
+
+\noindent и следовательно вписанный в круг треугольник равноуголен данному.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. III. Задача},reference=prop:IV.III]
+\defineNewPicture[3/5]{
+pair A, B, C, D, E, F, G, H, K, L, M, N, d;
+numeric r;
+r := 5/4u;
+d := (-4/3r, 9/4r);
+D := (0, 0) shifted d;
+E := (1/3r, -r) shifted d;
+F := (-5/6r, -r) shifted d;
+G := 4/3[F, E];
+H := 4/3[E, F];
+K := (0, 0);
+C := (0, -r) shifted K;
+A := (dir(-90-angleValue(D, F, H))*r) shifted K;
+B := (dir(-90+angleValue(G, E, D))*r) shifted K;
+L = whatever[C, C shifted (dir(angle(C-K) + 90))] = whatever[A, A shifted (dir(angle(A-K) + 90))];
+M = whatever[B, B shifted (dir(angle(B-K) + 90))] = whatever[A, L];
+N = whatever[B, M] = whatever[C, L];
+draw byAngle(D, F, H, byyellow, 0);
+draw byAngle(C, K, A, byyellow, 0);
+draw byAngle(G, E, D, byblue, 0);
+draw byAngle(B, K, C, byblue, 0);
+draw byAngleWithName(M, L, N, byred, 0)(L);
+draw byAngle(D, F, E, byred, 0);
+draw byAngleWithName(L, N, M, black, 1)(N);
+draw byAngle(F, E, D, black, 1);
+draw byAngleWithName(N, M, L, byred, 1)(M);
+draw byAngleWithName(E, D, F, byred, 1)(D);
+draw byAngleWithName(K, A, L, black, 0)(A);
+draw byAngleWithName(L, C, K, black, 0)(C);
+draw byArbitraryFigure(F--D--E, black, 0, 1)(FDE);
+byLineDefine(N, L, byblue, 0, 0);
+byLineDefine(L, M, byyellow, 0, 0);
+byLineDefine(M, N, byred, 1, 0); 
+draw byLine(G, H, black, 0, 0);
+draw byLine(K, C, byred, 0, 0);
+draw byArbitraryFigure(A--K--B, black, 0, 1)(AKB);
+draw byCircleR(K, r, byred, 0, 0, -1)(K);
+draw byNamedLineSeq(0)(NL,LM,MN);
+byArbitraryFigureDefine(L--A--K--C--cycle, black, 0, 1)(LAKC);
+draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
+draw byLabelsOnPolygon(G, E, F, H, noPoint)(0, 0);
+draw byLabelsOnPolygon(F, D, E)(2, 0);
+draw byLabelsOnPolygon(A, K, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{коло}{данного круга \drawCircle[middle][1/3]{K} описать треугольник, равноугольный данному.}
+
+\startCenterAlign
+Продлим одну из сторон \drawUnitLine{GH}, данного треугольника в обе стороны.
+
+Из центра данного круга проведем радиус \drawUnitLine{KC}.
+
+Сделаем $\drawAngle{CKA} = \drawAngle{DFH}$ \inprop[prop:I.XXIII]\\
+и $\drawAngle{BKC} = \drawAngle{GED}$.
+
+Через концы радиусов проведем \drawUnitLine{NL}, \drawUnitLine{LM} и \drawUnitLine{MN}, касательные к кругу. \inprop[prop:III.XVII]
+
+Четыре угла
+\drawFromCurrentPicture[bottom]{
+startTempAngleScale(2/3);
+draw byNamedAngle(A, C, L, CKA);
+draw byNamedArbitraryFigure(LAKC);
+draw byLabelsOnPolygon(L, A, K, C)(0, 0);
+stopTempAngleScale;
+},
+взятые вместе равны четырем прямым углам. \inprop[prop:I.XXXII]
+
+но \drawAngle{C} и \drawAngle{A} прямые (постр.)
+
+$\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, двум прямым углам,
+
+но $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \inprop[prop:I.XIII]\\
+и $\drawAngle{CKA} = \drawAngle{DFH}$ (постр.) и $\therefore \drawAngle{L} = \drawAngle{DFE}$.
+
+Таким же образом можно показать, что\\
+$\drawAngle{N} = \drawAngle{FED}$;
+
+$\therefore \drawAngle{M} = \drawAngle{D}$ \inprop[prop:I.XXXII]\\
+и значит, описанный около круга треугольник равноуголен данному.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. IV. Задача},reference=prop:IV.IV]
+\defineNewPicture{
+pair A, B, C, D, E, F, G;
+numeric r;
+A := (0, 0);
+B := (-3/2u, -3u);
+C := (3u, -3u);
+D = whatever[A, A shifted (unitvector(B-A) + unitvector(C-A))] = whatever[B, B shifted (unitvector(A-B) + unitvector(C-B))];
+E = whatever[D, D shifted ((A-B) rotated 90)] = whatever[A, B];
+F = whatever[D, D shifted ((B-C) rotated 90)] = whatever[B, C];
+G = whatever[D, D shifted ((C-A) rotated 90)] = whatever[A, C];
+r := abs(E-D);
+draw byAngleWithName(B, E, D, byred, 0)(E);
+draw byAngleWithName(D, F, B, byred, 0)(F);
+draw byAngle(E, B, D, byblue, 0);
+draw byAngle(D, B, F, byyellow, 0);
+draw byAngle(G, C, D, black, 0);
+draw byAngle(D, C, F, black, 1);
+draw byAngle(E, D, F, black, 1);
+draw byLine(E, D, byyellow, 1, 0);
+draw byLine(G, D, byred, 1, 0);
+draw byLine(F, D, black, 1, 0);
+byLineDefine(C, D, byblue, 0, 0);
+byLineDefine(B, D, byblue, 1, 0);
+draw byNamedLineSeq(0)(CD,BD);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(B, C, black, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(AB,BC,CA);
+draw byCircle(D, G, black, 0, 0, -1)(D);
+byLineDefine(B, F, black, 0, 0);
+byLineDefine(B, E, byyellow, 0, 0);
+draw byLabelsOnPolygon(B, E, A, G, C, F)(0, 0);
+draw byLabelsOnPolygon(E, D, G)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{треугольник \drawFromCurrentPicture[bottom]{
+startTempScale(1/4);
+startAutoLabeling;
+draw byNamedLineSeq(0)(CA,BC,AB);
+stopAutoLabeling;
+stopTempScale;
+} вписать круг.}
+
+Рассечем пополам \drawAngle{EBD,DBF} и \drawAngle{GCD,DCF} \inprop[prop:I.IX] с помощью \drawUnitLine{BD} и \drawUnitLine{CD};
+
+Из точки, где они встречаются, проведем \drawUnitLine{FD}, \drawUnitLine{ED} и \drawUnitLine{GD} соотвтетственно перпендикулярные \drawUnitLine{BC}, \drawUnitLine{AB} и \drawUnitLine{CA}.
+
+\startCenterAlign
+В
+\drawFromCurrentPicture{
+startTempScale(3/4);
+draw byNamedAngle(F, DBF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(BD,FD,BF);
+stopAutoLabeling;
+stopTempScale;
+}
+и
+\drawFromCurrentPicture{
+startTempScale(3/4);
+draw byNamedAngle(E, EBD);
+startAutoLabeling;
+draw byNamedLineSeq(0)(BE,ED,BD);
+stopAutoLabeling;
+stopTempScale;
+}\\
+$\drawAngle{DBF} = \drawAngle{EBD}$, $\drawAngle{F} = \drawAngle{E}$ и \drawUnitLine{BD} общая,\\
+$\therefore \drawUnitLine{ED} = \drawUnitLine{FD}$ (\inpropL[prop:I.IV], \inpropL[prop:I.XXVI]).
+
+Так же можно показать, что $\drawUnitLine{GD} = \drawUnitLine{FD}$,
+
+$\therefore \drawUnitLine{FD} = \drawUnitLine{ED} = \drawUnitLine{GD}$;
+\stopCenterAlign
+
+\noindent так, взяв любую из этих линий за радиус, опишем \drawCircle[middle][1/2]{D} и его окружность будет проходить через концы других двух, а стороны данного треугольника, перпендикулярные к трем радиусам и проходящие через их концы, касаются круга \inprop[prop:III.XVI], который, таким образом, вписан в данный треугольник.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. V. Задача},reference=prop:IV.V]
+\defineNewPicture[1]{
+def proptmp (expr a, b, c, s) =
+pair A, B, C, D, E, F;
+numeric r;
+r := 7/4u;
+F := s;
+A := (dir(a)*r) shifted F;
+B := (dir(b)*r) shifted F;
+C := (dir(c)*r) shifted F;
+D := 1/2[A, B];
+E := 1/2[A, C];
+draw byAngle(A, D, F, byred, 0);
+draw byAngle(F, D, B, black, 0);
+draw byLine(D, F, byyellow, 0, 0);
+draw byLine(E, F, byyellow, 1, 0);
+draw byLine(A, F, black, 1, 0);
+draw byLine(A, D, byblue, 0, 0);
+draw byLine(D, B, byblue, 1, 0);
+if (sind(b)<>-sind(c)):
+byLineDefine(B, F, black, 0, 0);
+byLineDefine(C, F, black, 0, 1);
+draw byNamedLineSeq(0)(BF,CF);
+draw byLine(B, C, byred, 0, 0);
+else:
+draw byLine(B, C, black, 0, 0);
+fi;
+draw byLine(C, E, byred, 0, 0);
+draw byLine(E, A, byred, 1, 0);
+draw byCircleR(F, r, black, 0, 0, 0)(F);
+draw byLabelsOnCircle(A, B, C)(F);
+draw byLabelsOnPolygon(B, D, A)(2, 0);
+draw byLabelsOnPolygon(A, E, C)(2, 0);
+draw byLabelsOnPolygon(C, F, B)(2, 0);
+enddef;
+proptmp(100, 170, 10, (0, -8u));
+proptmp(80, 160, -20, (0, -4u));
+proptmp(100, 200, -30, (0, 0));
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{коло}{данного треугольника описать круг.}
+
+Сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$ и $\drawUnitLine{CE} = \drawUnitLine{EA}$ \inprop[prop:I.X]
+
+Из точек рассечения проведем \drawUnitLine{DF} и \drawUnitLine{EF} $\perp$ \drawUnitLine{AD} и \drawUnitLine{CE} соответственно \inprop[prop:I.XI], и из точки из пересечения проведем \drawUnitLine{BF}, \drawUnitLine{AF} и \drawUnitLine{CF} и опишем круг с любой из них в качестве радиуса, это и будет искомый круг.
+
+\startCenterAlign
+В
+\drawFromCurrentPicture{
+draw byNamedAngle(FDB);
+startAutoLabeling;
+draw byNamedLineSeq(0)(DF,BF,DB);
+stopAutoLabeling;
+}
+и
+\drawFromCurrentPicture{
+draw byNamedAngle(ADF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(AF,DF,AD);
+stopAutoLabeling;
+}\\
+$\drawUnitLine{DB} = \drawUnitLine{AD}$ (постр.),\\
+\drawUnitLine{DF} общая,\\
+$\drawAngle{FDB} = \drawAngle{ADF}$ (постр.),
+
+$\therefore \drawUnitLine{AF} = \drawUnitLine{BF}$ \inprop[prop:I.IV].
+
+Так же можно показать и что $\drawUnitLine{CF} = \drawUnitLine{AF}$.
+\stopCenterAlign
+
+$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$; и, следовательно, круг с центром в точке их пересечения и с любой из них в качестве радиуса опишет данный треугольник.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. VI. Задача},reference=prop:IV.VI]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (0, r);
+B := (-r, 0);
+C := (0, -r);
+D := (r, 0);
+draw byAngleWithName(D, A, B, byyellow, 0)(A);
+draw byAngleWithName(C, D, A, black, 0)(D);
+draw byAngle(A, E, B, byblue, 0);
+draw byAngle(D, E, A, byred, 0);
+draw byLine(B, E, byred, 1, 0);
+draw byLine(D, E, byblue, 1, 0);
+draw byLine(A, E, black, 1, 0);
+draw byLine(C, E, black, 0, 1);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(C, D, byblue, 0, 0);
+byLineDefine(D, A, byred, 0, 0);
+draw byNamedLineSeq(0)(AB,BC,CD,DA);
+draw byCircleR(E, r, byred, 0, 0, 1)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{круг \drawCircle{E} вписать квадрат.}
+
+Проведем два диаметра круга $\perp$ друг другу, и проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} и \drawUnitLine{CD}.
+
+\startCenterAlign
+\drawLine[middle][squareABCD]{DA,CD,BC,AB} квадрат.
+
+Поскольку \drawAngle{A} и \drawAngle{D} каждый в полукруге, оба являются прямыми \inprop[prop:III.XXXI],
+
+$\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII]:
+
+так же и $\drawUnitLine{DA} \parallel \drawUnitLine{BC}$.
+
+И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (постр.),
+
+и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \inprop[prop:I.XV].
+
+$\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \inprop[prop:I.IV].
+\stopCenterAlign
+
+И поскольку смежные углы и стороны параллелограмма \squareABCD\ равны, все его стороны и углы равны \inprop[prop:I.XXXIV]; и $\therefore$ \squareABCD, вписанный в данный круг является квадратом.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. VII. Задача},reference=prop:IV.VII]
+\defineNewPicture[1/5]{
+pair A, B, C, D, E, F, G, H, K;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (0, r);
+B := (-r, 0);
+C := (0, -r);
+D := (r, 0);
+F := (r, r);
+G := (-r, r);
+H := (-r, -r);
+K := (r, -r);
+draw byAngleWithName(F, G, H, byred, 0)(G);
+draw byAngleWithName(G, H, K, byred, 0)(H);
+draw byAngleWithName(H, K, F, byred, 0)(K);
+draw byAngleWithName(K, F, G, byred, 0)(F);
+draw byAngleWithName(B, E, C, black, 0)(E);
+draw byAngleWithName(E, C, H, byyellow, 0)(C);
+draw byLine(A, C, byred, 1, 0);
+draw byLine(B, D, byblue, 1, 0);
+byLineDefine(F, G, black, 0, 0);
+byLineDefine(G, H, byred, 0, 0);
+byLineDefine(H, K, byblue, 0, 0);
+byLineDefine(K, F, byyellow, 0, 0);
+draw byNamedLineSeq(0)(KF,HK,GH,FG);
+draw byCircleR(E, r, byblue, 0, 0, -1)(E);
+draw byLabelsOnPolygon(H, B, G, A, F, D, K, C)(0, 0);
+draw byLabelsOnPolygon(A, E, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{коло}{данного круга \drawCircle{E} описать квадрат.}
+
+Проведем два перпендикулярных друг другу диаметра данного круга и через их концы проведем \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} и \drawUnitLine{KF} касательные к кругу.
+
+\startCenterAlign
+Тогда \drawLine[middle][squareFGHK]{KF,HK,GH,FG} будет квадратом.\\
+$\drawAngle{C} = \drawRightAngle$ прямому углу, \inprop[prop:III.XVIII]\\
+так же и $\drawAngle{E} = \drawRightAngle$ (постр.),\\
+$\therefore \drawUnitLine{HK} \parallel \drawUnitLine{BD}$.\\ 
+Таким же образом можно показать что $\drawUnitLine{FG} \parallel \drawUnitLine{BD}$, а также что $\drawUnitLine{GH} \mbox{ и } \drawUnitLine{KF} \parallel \drawUnitLine{AC}$.\\
+$\therefore$ \squareFGHK\ параллелограмм,\\
+и поскольку $\drawAngle{C} = \drawAngle{G} = \drawAngle{F} = \drawAngle{K} = \drawAngle{H}$, все они прямые \inprop[prop:I.XXXIV].\\
+Также очевидно, что \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} и \drawUnitLine{KF} равны между собой.\\
+$\therefore$ \squareFGHK\ квадрат.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. VIII. Задача},reference=prop:IV.VIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, K;
+numeric r;
+r := 7/4u;
+G := (0, 0);
+A := (-r, r);
+B := (-r,-r);
+C := (r, -r);
+D := (r, r);
+E := (0, r);
+F := (-r, 0);
+H := (0, -r);
+K := (r, 0);
+draw byPolygon(E,D,K,G)(black);
+draw byPolygon(F,G,H,B)(byred);
+draw byPolygon(G,K,C,H)(byblue);
+draw byLine(F, G, byyellow, 0, 0);
+draw byLine(G, K, byyellow, 1, 0);
+draw byLine(G, H, black, 0, 0);
+draw byLine(E, G, black, 1, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(A, E, byblue, 1, 0);
+byLineDefine(E, D, byblue, 0, 0);
+byLineDefine(D, K, byred, 1, 0);
+byLineDefine(K, C, byred, 0, 0);
+draw byNamedLineSeq(0)(AB,AE,ED,DK,KC);
+draw byCircleR(G, r, byyellow, 0, 0, -1)(G);
+draw byLabelsOnPolygon(B, F, A, E, D, K, C, H)(0, 0);
+draw byLabelsOnPolygon(F, G, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{квадрат вписать круг.}
+
+\startCenterAlign
+Сделаем $\drawUnitLine{ED} = \drawUnitLine{AE}$,\\
+и $\drawUnitLine{KC} = \drawUnitLine{DK}$,\\
+проведем $\drawUnitLine{FG,GK} = \drawUnitLine{AE,ED}$,\\
+и $\drawUnitLine{EG,GH} = \drawUnitLine{DK,KC}$\\
+\inprop[prop:I.XXXI]
+
+$\therefore$ \drawPolygon{EDKG} параллелограмм,
+
+и поскольку $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (гип.)\\
+$\drawUnitLine{ED} = \drawUnitLine{DK}$
+
+$\therefore$ \polygonEDKG\ равносторонний \inprop[prop:I.XXXIV]
+
+таким же образом можно показать, что $ \drawPolygon{GKCH} = \drawPolygon{FGHB}$ равносторонние параллелограммы;
+
+$\therefore \drawUnitLine{AE} = \drawUnitLine{GK} = \drawUnitLine{GH} = \drawUnitLine{FG}$.
+\stopCenterAlign
+
+и значит если построить круг с центром в точке схождения этих линий с любой их них в качестве радиуса, он будет вписан в квадрат \inprop[prop:III.XVI].
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. IX. Задача},reference=prop:IV.IX]
+\defineNewPicture{
+pair A, B, C, D, E;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (dir(45+90)*r) shifted E;
+B := (dir(45+180)*r) shifted E;
+C := (dir(45+270)*r) shifted E;
+D := (dir(45+360)*r) shifted E;
+draw byPolygon(A,C,D)(byred);
+draw byPolygon(A,B,C)(byyellow);
+draw byAngle(D, A, E, byyellow, 0);
+draw byAngle(E, A, B, black, 0);
+draw byAngle(A, B, E, byred, 0);
+draw byAngle(E, B, C, byblue, 0);
+draw byLine(A, E, byblue, 0, 0);
+draw byLine(E, C, byblue, 1, 0);
+draw byLine(B, E, black, 0, 0);
+draw byLine(E, D, black, 1, 0);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(B, E, A)(2, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{коло}{данного квадрата \drawPolygon{ACD,ABC} описать круг.}
+
+Проведем пересекающие друг друга диагонали \drawUnitLine{AE,EC} и \drawUnitLine{BE,ED}.
+
+Тогда, поскольку стороны у \drawPolygon{ACD} и \drawPolygon{ABC} равны, а основание \drawUnitLine{AE,EC} общее,
+
+\startCenterAlign
+$\drawAngle{DAE} = \drawAngle{EAB}$ \inprop[prop:I.VIII],\\
+то есть \drawAngle{DAE,EAB} рассечена пополам. \\
+Так же можно показать и что \drawAngle{ABE,EBC} рассечена пополам.
+
+Но $\drawAngle{DAE,EAB} = \drawAngle{ABE,EBC}$,
+
+значит и их половины $\drawAngle{EAB} = \drawAngle{ABE}$.
+
+$\therefore \drawUnitLine{BE} = \drawUnitLine{AE}$ \inprop[prop:I.VI];
+
+Так же можно показать что \\
+$\drawUnitLine{AE} = \drawUnitLine{BE} = \drawUnitLine{EC} = \drawUnitLine{ED}$.
+\stopCenterAlign
+
+И если в точке схождения этих линий с любой из них в качестве радиуса построить круг, он опишет данный квадрат.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. X. Задача},reference=prop:IV.X]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F;
+numeric r[];
+path cr[];
+r1 := 5/2u;
+A := (0, 0);
+cr1 := (fullcircle scaled 2r1) shifted A;
+B := (r1, 0);
+r2 := r1*sqrt(5)/2 - 1/2r1;
+cr2 := (fullcircle scaled 2r2) shifted B;
+C := (r2, 0);
+D := cr1 intersectionpoint (subpath (0, 4) of cr2);
+F = whatever[1/2[A, C], 1/2[A, C] shifted ((A-C) rotated 90)]
+ = whatever[1/2[A, D], 1/2[A, D] shifted ((A-D) rotated 90)];
+r3 := abs(F-A);
+draw byAngleWithName(D, A, B, black, 1)(A);
+draw byAngle(C, D, A, black, 0);
+draw byAngle(B, D, C, byyellow, 0);
+draw byAngleWithName(D, C, B, byblue, 0)(C);
+draw byAngleWithName(C, B, D, byred, 0)(B);
+draw byLine(A, D, byyellow, 0, 0);
+draw byLine(B, D, byblue, 0, 0);
+draw byLine(C, D, byred, 0, 0);
+draw byLine(A, C, black, 0, 0);
+draw byLine(C, B, black, 1, 0);
+draw byCircleABC(A, C, D, byblue, 0, 0, 0)(F);
+draw byCircle(A, B, byred, 0, 0, 0)(A);
+draw byLabelsOnCircle(B)(A);
+draw byLabelsOnCircle(A)(F);
+draw byLabelPoint(D, angle(D-A)-15, 2);
+draw byLabelsOnPolygon(A, C, D)(2, 0);
+}
+\drawCurrentPicture
+\problemNP{П}{остроить}{равнобедренный треугольник, в котором угол при основании вдвое больше угла в вершине.}
+
+\startCenterAlign
+Возьмем любую прямую \drawProportionalLine{AC,CB} \\
+и разделим ее так, что $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \inprop[prop:II.XI]
+
+С \drawProportionalLine{AC,CB} в качестве радиуса опигем \drawCircle[middle][1/5]{A} и впишем в него от конца радиуса $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \inprop[prop:IV.I];\\
+проведем \drawProportionalLine{AD}.
+
+Тогда \drawLine{AD,BD,CB,AC} и есть искомый треугольник.
+
+Действительно, проведем \drawProportionalLine{CD} и опишем \drawCircle[middle][1/3]{F} около \drawLine{AD,CD,AC} \inprop[prop:IV.V]
+
+Поскольку $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
+$\therefore$ \drawProportionalLine{BD} касается \circleF\ \inprop[prop:III.XXXVII]\\
+$\therefore \drawAngle{BDC} = \drawAngle{A}$ \inprop[prop:III.XXXII],\\
+добавим \drawAngle{CDA} к каждому,\\
+$\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$;
+
+но $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ или } \drawAngle{BDC,CDA} = \drawAngle{B}$ \inprop[prop:I.V]:\\
+поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.VI]\\
+следовательно $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \inprop[prop:I.XXXII]\\
+$\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \inprop[prop:I.VI]\\
+$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (постр.)\\
+$\therefore \drawAngle{A} = \drawAngle{CDA}$ \inprop[prop:I.V]
+
+$\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ дважды } \drawAngle{A}$;
+
+и, следовательно, каждый из углов при основании вдвое больше угла в вершине.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XI. Задача},reference=prop:IV.XI]
+\defineNewPicture[1/5]{
+pair A, B, C, D, E, O;
+numeric r;
+r := 9/4u;
+O := (0, 0);
+A := (dir(90+0/5(360))*r) shifted O;
+B := (dir(90+1/5(360))*r) shifted O;
+C := (dir(90+2/5(360))*r) shifted O;
+D := (dir(90+3/5(360))*r) shifted O;
+E := (dir(90+4/5(360))*r) shifted O;
+draw byArbitraryFigure(C--E--B--D, black, 0, 1)(pg);
+draw byPolygon(A,C,D)(byyellow);
+draw byAngleWithName(E, A, B, black, -1)(A);
+draw byAngleWithName(A, B, C, black, -1)(B);
+draw byAngleWithName(B, C, D, black, -1)(C);
+draw byAngleWithName(C, D, E, black, -1)(D);
+draw byAngleWithName(D, E, A, black, -1)(E);
+draw byAngle(C, A, D, black, 0);
+draw byAngle(E, C, A, byyellow, 0);
+draw byAngleWithName(E, C, A, black, -1)(ECAb);
+draw byAngle(D, C, E, byblue, 0);
+draw byAngle(A, D, B, black, 1);
+draw byAngle(B, D, C, byred, 0);
+draw byNamedAngleDummySides(ADB,BDC);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(C, D, black, 0, 0);
+byLineDefine(D, E, byred, 1, 0);
+byLineDefine(E, A, byyellow, 0, 0);
+draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
+draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byLabelsOnCircle(A, B, C, D, E)(O);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{В}{данный}{круг \drawCircle[middle][1/6]{O} вписать равносторонний и равноугольный пятиугольник.}
+
+Построим равносторонний треугольник, в котором каждый из углов при основании вдвое больше угла в вершине, и впишем в данный круг равноугольный ему треугольник \drawPolygon{ACD} \inprop[prop:IV.II];
+
+\startCenterAlign
+Рассечем \drawAngle{ECA,DCE} и \drawAngle{ADB,BDC} пополам \inprop[prop:I.IX].
+
+Проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и \drawUnitLine{DE}.
+\stopCenterAlign
+
+Поскольку углы \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} и \drawAngle{ADB} равны между собой, дуги, на которых они стоят, тоже равны \inprop[prop:III.XXVI], и $\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и \drawUnitLine{DE} стягивающие эти дуги также равны между собой \inprop[prop:III.XIX] и $\therefore$ пятиугольник является равносторонним, а также равноугольным, поскольку все его углы стоят на равных дугах \inprop[prop:III.XXVII].
+
+\qed
+\stopProposition
+
+\stopbook
+
 \stoptext
 %\closeout \lettrineslist
