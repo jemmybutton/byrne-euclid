@@ -980,10 +980,9 @@ enddef;
 vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
 path angleArc.angleName;
 color angleColor.angleName, angleOptionalColor.angleName[];
-numeric angleDirection.angleName;
+numeric angleDirection.angleName, angleStandalone.angleName;
 pair angleCenter.angleName;
 string angleAName.angleName, angleBName.angleName, angleCName.angleName;
-boolean angleStandalone.angleName;
     save p, q;
     path p;
     picture q;
@@ -998,7 +997,7 @@ boolean angleStandalone.angleName;
     angleAName.angleName := str a;
     angleBName.angleName := str b;
     angleCName.angleName := str c;
-    angleStandalone.angleName := false;
+    angleStandalone.angleName := 0;
 enddef;
 
 vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
@@ -1076,19 +1075,23 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
     save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName;
     string centerName, pointName[];
     pair ac, p[];
-    boolean uniqueCenter, angleCheck;
+    boolean uniqueCenter, angleCheck, doNotLabelCenter;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash;
     path compoundAnglePath, compoundAngleArc;
     color lineCol;
     picture outputImage;
     centerName := "";
     uniqueCenter := true;
+    doNotLabelCenter := false;
     forsuffixes aN=anglesList:
         ac := angleCenter.aN;
         if (centerName == ""):
             centerName := angleBName.aN;
         elseif (centerName <> angleBName.aN):
             uniqueCenter := false;
+        fi;
+        if (angleStandalone.aN > 1):
+            doNotLabelCenter := true;
         fi;
     endfor;
     outputImage := image(
@@ -1120,13 +1123,13 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             angleType[angleNum] := 0;
                         fi;
                         if (j == 1):
-                            if (angleStandalone.aN):
+                            if (angleStandalone.aN > 0):
                                 pointName[angleNum] := "";
                             else:
                                 pointName[angleNum] := angleAName.aN;
                             fi;
                         elseif (j == 2):
-                            if (angleStandalone.aN):
+                            if (angleStandalone.aN > 0):
                                 pointName[angleNum] := "";
                             else:
                                 pointName[angleNum] := angleCName.aN;
@@ -1194,7 +1197,9 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
             for i=1,2:
                 draw byTextLabel(pointLabel)(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
             endfor;
-            draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
+            if not doNotLabelCenter:
+                draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
+            fi;
         fi;
     )
 enddef;
@@ -1450,24 +1455,26 @@ vardef byLabelCircle(expr l, cn) =
 enddef;
 
 vardef byLabelsOnCircle(text pointsList)(suffix cn) =
-    save d;
-    d := lineThickness(circleThin.cn)*(1/2+1/2circleShift.cn);
+    save d, cn, t, s, c;
+    string cn;
+    numeric t, s;
+    pair c;
+    if string circleCenterName.cn:
+        t := circleThin.cn;
+        s := circleShift.cn;
+        c := circleCenter.cn;
+    elseif string arcCenterName.cn:
+        t := arcThin.cn;
+        s := arcShift.cn;
+        c := arcCenter.cn;
+    else:
+        errmessage("There is no circle or arc named " & str cn);
+    fi;
+    d := lineThickness(t)*(1/2+1/2s);
     image(
         if (textLabels):
             forsuffixes pN=pointsList:
-                draw byTextLabel(pointLabel)(str pN, pN, angle(pN - circleCenter.cn), textLabelShift + d);
-            endfor;
-        fi;
-    )
-enddef;
-
-vardef byLabelsOnArc(text pointsList)(suffix an) =
-    save d;
-    d := lineThickness(arcThin.an)*(1/2+1/2arcShift.an);
-    image(
-        if (textLabels):
-            forsuffixes pN=pointsList:
-                draw byTextLabel(pointLabel)(str pN, pN, angle(pN - arcCenter.an), textLabelShift + d);
+                draw byTextLabel(pointLabel)(str pN, pN, angle(pN - c), textLabelShift + d);
             endfor;
         fi;
     )

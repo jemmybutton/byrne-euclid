@@ -3192,7 +3192,7 @@ draw byPolygon(C,F,E)(byblue);
 draw byPolygon(E,C,G)(black);
 draw byAngleWithName(B, E, D, byblue, 0)(E);
 draw byAngleWithName(H, I, J, byyellow, 0)(I);
-angleStandalone.I := true;
+angleStandalone.I := 1;
 draw byLine(A, D, byred, 1, 0);
 draw byLine(B, E, byred, 0, 0);
 draw byLine(C, E, byyellow, 0, 0);
@@ -3302,7 +3302,7 @@ draw byAngleWithName(A, F, E, byblue, 0)(F);
 draw byAngleWithName(F, E, I, byred, 0)(E);
 draw byAngleWithName(E, I, D, black, 0)(I);
 draw byAngleWithName(M, N, O, byyellow, 0)(N);
-angleStandalone.N := true;
+angleStandalone.N := 1;
 draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, black, 0, 1);
 byLineDefine(A, F, byred, 1, 0);
@@ -3391,7 +3391,7 @@ draw byAngleWithName(G, I, H, byyellow, 0)(I);
 draw byAngleWithName(J, K, I, black, 0)(K);
 draw byAngleWithName(L, M, K, byblue, 0)(M);
 draw byAngleWithName(N, O, P, byred, 0)(O);
-angleStandalone.O := true;
+angleStandalone.O := 1;
 draw byLine(G, I, byred, 0, 0);
 draw byLine(J, K, byblue, 0, 0);
 draw byLabelsOnPolygon(A, B, C, D, E)(0, 0);
@@ -6459,7 +6459,7 @@ draw byNamedLineSeq(0)(DF,EF);
 draw byLine(A, B, black, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
-draw byLabelsOnArc(A, B, C)(O);
+draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelLineEnd(D, F, 0);
 draw byLabelLineEnd(E, F, 0);
 draw byLabelsOnPolygon(D, F, E)(2, 0);
@@ -6523,8 +6523,8 @@ draw byNamedLineSeq(0)(EH,FH);
 draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
 draw byArc(H, E, F, r, black, 0, 0, 0, 0)(Hb);
 byCircleDefineR(H, r, byred, 0, 0, 0)(H);
-draw byLabelsOnArc(A, B, C)(G);
-draw byLabelsOnArc(D, E, F)(H);
+draw byLabelsOnCircle(A, B, C)(G);
+draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
@@ -6548,7 +6548,7 @@ $\therefore$
 startTempScale(1/5);
 draw byNamedArc(G);
 draw byNamedLine(BC);
-draw byLabelsOnArc(B, C)(G);
+draw byLabelsOnCircle(B, C)(G);
 stopTempScale;
 }
 and
@@ -6556,7 +6556,7 @@ and
 startTempScale(1/5);
 draw byNamedArc(H);
 draw byNamedLine(EF);
-draw byLabelsOnArc(E, F)(H);
+draw byLabelsOnCircle(E, F)(H);
 stopTempScale;
 }
 are similar \indef[def:III.XI];\\
@@ -6631,8 +6631,8 @@ draw byNamedLineSeq(0)(HE,HF);
 draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
 draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
 byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
-draw byLabelsOnArc(A, B, C, K)(G);
-draw byLabelsOnArc(D, E, F)(H);
+draw byLabelsOnCircle(A, B, C, K)(G);
+draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
@@ -6799,7 +6799,7 @@ draw byLine(A, C, black, 0, 0);
 draw byLine(C, B, black, 1, 0);
 draw byArc(E, B, D, r, byred, 1, 0, 0, 0)(Er);
 draw byArc(E, D, A, r, byred, 0, 0, 0, 0)(El);
-draw byLabelsOnArc(A, B, D)(Er);
+draw byLabelsOnCircle(A, B, D)(Er);
 draw byLabelLineEnd(C, D, 0);
 }
 \drawCurrentPictureInMargin
@@ -6861,6 +6861,8 @@ draw byLine(A, C, black, 0, 1);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, C, black, 0, 0);
 draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C)(E);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure I.}]
@@ -6890,6 +6892,7 @@ draw byLine(B, D, black, 0, 1);
 draw byLine(A, C, byblue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -6920,6 +6923,7 @@ draw byLine(B, C, byblue, 0, 0);
 draw byLine(C, D, black, 0, 1);
 draw byLine(D, A, black, 0, 1);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure III.}]
@@ -6962,9 +6966,11 @@ draw byLine(D, B, byred, 0, 0);
 draw byLineFull(E, F, byblue, 0, 0)(E, F, 0, 0, 1);
 draw byLine(A, B, black, 0, 0);
 draw byCircleR(O, r, byred, 0, 0, 0)(O);
+draw byLabelsOnCircle(A, B, C, D)(O);
+draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line \drawUnitLine{EF} be a tangent to a circle, and from the point of contact a right line \drawUnitLine{DB} be drawn cutting the circle, the angle \drawAngle{FBD} made by this line with the tangent is equal to the angle \drawAngle{A} in the alterate segment of the circle.}
+\problemNP{I}{f}{a straight line \drawUnitLine{EF} be a tangent to a circle, and from the point of contact a right line \drawUnitLine{DB} be drawn cutting the circle, the angle \drawAngle{FBD} made by this line with the tangent is equal to the angle \drawAngle{A} in the alternate segment of the circle.}
 
 If the chord should pass through the centre, it is evident the angles are equal, for each of them is a right angle. (\inpropL[prop:III.XVI], \inpropL[prop:III.XIX])
 
@@ -7009,6 +7015,12 @@ draw byCircle(G, B, byblue, 0, 0, 0)(G);
 byAngleDefineWithName(E, A, K, black, 1)(givenRight);
 byAngleDefineWithName(B, A, K, black, 1)(givenObtuse);
 byAngleDefineWithName(D, A, B, black, 1)(givenAcute);
+angleStandalone.givenRight := 2;
+angleStandalone.givenObtuse := 2;
+angleStandalone.givenAcute := 2;
+draw byLabelsOnCircle(A, B)(G);
+draw byLabelsOnPolygon(A, G, E)(2, 0);
+draw byLabelsOnPolygon(K, D, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{n}{a given straight line \drawUnitLine{AB} to describe a segment of a circle that shall contain an angle equal to a given angle \drawAngle{givenRight}, \drawAngle{givenObtuse}, \drawAngle{givenAcute}.}
@@ -7051,6 +7063,8 @@ draw byLine(A, B, black, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
 draw byCircleR(O, r, byblue, 0, 0, 0)(O);
 byAngleDefineWithName(F, B, A, byred, 0)(givenAngle);
+draw byLabelsOnCircle(A)(O);
+draw byLabelsOnPolygon(E, B, F, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{cut off from a given circle \drawCircle{O} a segment which shall contain an angle equal to a given angle \drawAngle{givenAngle}.}
@@ -7060,7 +7074,10 @@ Draw \drawUnitLine{EF} \inprop[prop:III.XVII], a tangent to the circle at any po
 
 at the point of contact make $\drawAngle{B} = \drawAngle{givenAngle}$ the given angle;
 
-and \drawFromCurrentPicture[middle][segmentO]{draw byNamedFilledCircleSegment(O);} contains an angle $=$ the given angle.
+and \drawFromCurrentPicture[middle][segmentO]{
+draw byNamedFilledCircleSegment(O);
+draw byLabelsOnCircle(A, B)(O);
+} contains an angle $=$ the given angle.
 
 Because \drawUnitLine{EF} is a tangent,\\
 and \drawUnitLine{AB} cuts it,\\
@@ -7087,6 +7104,8 @@ draw byLine(E, C, black, 1, 0);
 draw byLine(D, E, byblue, 0, 0);
 draw byLine(E, B, byblue, 1, 0);
 draw byCircleR(E, r, byyellow, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
 \problemNP{I}{f}{two chords
 $\left\{\vcenter{
@@ -7116,6 +7135,9 @@ draw byLine(A, E, black, 0, 0);
 draw byLine(E, H, byred, 1, 0);
 draw byLine(H, C, black, 1, 0);
 draw byCircleR(E, r, byred, 0, 0, 0)(E);
+draw byLabelsOnCircle(B, D, C, A)(E);
+draw byLabelsOnPolygon(D, H, C)(2, 0);
+draw byLabelsOnPolygon(B, E, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure II.}]
@@ -7147,6 +7169,8 @@ draw byLine(E, D, byblue, 1, 0);
 draw byLine(A, E, black, 0, 0);
 draw byLine(E, C, black, 1, 0);
 draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelsOnCircle(B, D, K, L, A, C)(F);
+draw byLabelsOnPolygon(B, E, K)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Figure III.}]

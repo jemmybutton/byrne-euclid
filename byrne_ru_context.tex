@@ -2089,7 +2089,7 @@ draw byPolygon(C,F,E)(byblue);
 draw byPolygon(E,C,G)(black);
 draw byAngleWithName(B, E, D, byblue, 0)(E);
 draw byAngleWithName(H, I, J, byyellow, 0)(I);
-angleStandalone.I := true;
+angleStandalone.I := 1;
 draw byLine(A, D, byred, 1, 0);
 draw byLine(B, E, byred, 0, 0);
 draw byLine(C, E, byyellow, 0, 0);
@@ -2102,7 +2102,7 @@ draw byNamedAngleSidesFull(I)();
 stopAutoLabeling;
 }
 \drawCurrentPicture
-\problemNP[2]{П}{остроить}{параллелограмм, равный данному треугольника
+\problemNP[2]{П}{остроить}{параллелограмм, равный данному треугольнику
 \drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} и с данным углом \drawAngle{I}.}
 
 \startCenterAlign
@@ -2195,7 +2195,7 @@ draw byAngleWithName(A, F, E, byblue, 0)(F);
 draw byAngleWithName(F, E, I, byred, 0)(E);
 draw byAngleWithName(E, I, D, black, 0)(I);
 draw byAngleWithName(M, N, O, byyellow, 0)(N);
-angleStandalone.N := true;
+angleStandalone.N := 1;
 draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, black, 0, 1);
 byLineDefine(A, F, byred, 1, 0);
@@ -2286,7 +2286,7 @@ draw byAngleWithName(G, I, H, byyellow, 0)(I);
 draw byAngleWithName(J, K, I, black, 0)(K);
 draw byAngleWithName(L, M, K, byblue, 0)(M);
 draw byAngleWithName(N, O, P, byred, 0)(O);
-angleStandalone.O := true;
+angleStandalone.O := 1;
 draw byLine(G, I, byred, 0, 0);
 draw byLine(J, K, byblue, 0, 0);
 draw byLabelsOnPolygon(A, B, C, D, E)(0, 0);
@@ -2542,12 +2542,12 @@ draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{О}{ всяком}{прямоугольнике или прямоугольном параллелограмме говорят, что он заключается между любыми двумя своими смежными сторонами.}
 
-Таким образом, про прямоугольный параллелограмм про \drawPolygon{ABDC} можно сказать, что он заключен между сторонами \drawUnitLine{AB} и \drawUnitLine{AC}, что можно записать короче в виде $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
+Таким образом, про прямоугольный параллелограмм \drawPolygon{ABDC} можно сказать, что он заключен между сторонами \drawUnitLine{AB} и \drawUnitLine{AC}, что можно записать короче в виде $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
 
-Если смежные стороны равны, т. е. $\drawUnitLine{AB} = \drawUnitLine{AC}$, то $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$, что обозначает прямоугольник, заключенный между \drawUnitLine{AB} и \drawUnitLine{AC}, является квадратом\\
-и равен $\left\{\eqalign{
-\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2\cr
-\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2}\right.$
+Если смежные стороны равны, т. е. $\drawUnitLine{AB} = \drawUnitLine{AC}$, то $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$, обозначает прямоугольник, заключенный между \drawUnitLine{AB} и \drawUnitLine{AC}, являющийся квадратом\\
+и равный $\left\{\eqalign{
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2\cr
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2}\right.$
 
 \stopDefinition
 
@@ -2576,7 +2576,7 @@ draw byLabelsOnPolygon(C, F, D, H, B, E, A, G)(0,0);
 draw byLabelsOnPolygon(G, I, F)(2,0);
 }
 \drawCurrentPictureInMargin
-\problemNP{В}{о}{ всяком параллелограмме, фигура образованная  одним из параллелограммов на на его диаметре вместе с двумя дополнениями, называется гномоном.}
+\problemNP{В}{о}{ всяком параллелограмме фигура, образованная  одним из параллелограммов на на его диаметре вместе с двумя дополнениями, называется гномоном.}
 
 Так, \drawPolygon{AEIG,EBHI,GIFC} и \drawPolygon{EBHI,GIFC,IHDF} являются гномонами.
 \stopDefinition
@@ -2618,16 +2618,16 @@ draw byLabelsOnPolygon(B, D, E, C, H, L, K, G)(0, 0);
 draw byLabelLine(A);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{рямоугольник}{заключенный между двумя прямыми линиями, одна из которых рассечена на сколько угодно отрезков, равен сумме прямоугольников,заключенных между нерассеченной прямой и каждым из этих отрезков.\\
+\problemNP{П}{рямоугольник,}{заключенный между двумя прямыми линиями, одна из которых рассечена на сколько угодно отрезков, равен сумме прямоугольников, заключенных между нерассеченной прямой и каждым из этих отрезков.\\
 $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalign{
 &\drawProportionalLine{A} \cdot \drawProportionalLine{GK}\cr
 +&\drawProportionalLine{A} \cdot \drawProportionalLine{KL}\cr
 +&\drawProportionalLine{A} \cdot \drawProportionalLine{LH}}\right.$}
 
 \startCenterAlign
-Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{A}$ (\inpropL[prop:I.II], \inpropL[prop:I.III]); complete the parallelograms, that is to say,
+Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ и } = \drawProportionalLine{A}$ (\inpropL[prop:I.II], \inpropL[prop:I.III]); достроим параллелограммы, то есть
 
-Draw $\left\{\eqalign{
+проведем $\left\{\eqalign{
 \drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \cr
 \vcenter{
 \nointerlineskip\hbox{\drawProportionalLine{KD}}
@@ -2672,7 +2672,7 @@ draw byNamedLineSeq(0)(AD,AC,CB,BE);
 draw byLabelsOnPolygon(A, C, B, E, F, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая линия как-либо рассечена \drawProportionalLine{AC,CB}, квадат всей линии равен сумме прямоугольников, заключенных между целой линией и каждой из ее частей.\\
+\problemNP{Е}{сли}{прямая линия как-либо рассечена \drawProportionalLine{AC,CB}, квадрат всей линии равен сумме прямоугольников, заключенных между целой линией и каждой из ее частей.\\
 $\drawProportionalLine{AC,CB}^2 = \left\{\eqalign{
 & \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC} \cr
 + & \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}
@@ -2721,7 +2721,7 @@ draw byNamedLineSeq(0)(CD,noLine,DF,DE,EB,BC);
 draw byLabelsOnPolygon(B, C, A, F, D, E)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая линия как-либо рассечена \drawProportionalLine{DE,DF}, то прямоугольник, заключенный между всей прямой и ее частью равен квадрату этой части, вместе с прямоугольником, заключенным между частями.\\
+\problemNP{Е}{сли}{прямая линия как-либо рассечена \drawProportionalLine{DE,DF}, то прямоугольник, заключенный между всей прямой и ее частью, равен квадрату этой части, вместе с прямоугольником, заключенным между частями.\\
 $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, или \\
 $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.}
 
@@ -2935,7 +2935,7 @@ draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(0, 0);
 draw byLabelsOnPolygon(L, H, D)(2, -1);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и продленной частью, вместе с квадратом половины исходной линии, равен квадрату линии составленной из половины исходной линии и продленной части.\\
+\problemNP{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и продленной частью, вместе с квадратом половины исходной линии, равен квадрату линии, составленной из половины исходной линии и продленной части.\\
 $\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
 }
 
@@ -3150,10 +3150,10 @@ $\drawAngle{B} = \drawAngle{DFB}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngl
 $\therefore \drawAngle{AEC,CEB} = \drawRightAngle$.
 
 $\drawAngle{B} = \drawAngle{CEB} = \drawAngle{EFG} = \drawAngle{DFB}$ (\inpropL[prop:I.V], \inpropL[prop:I.XXIX]).\\
-Значит $\drawProportionalLine{FD} = \drawProportionalLine{DB}$, $\drawProportionalLine{GE} = \drawProportionalLine{GF} = \drawProportionalLine{CD}$ (\inpropL[prop:I.VI], \inpropL[prop:I.XXXIV])
+Значит, $\drawProportionalLine{FD} = \drawProportionalLine{DB}$, $\drawProportionalLine{GE} = \drawProportionalLine{GF} = \drawProportionalLine{CD}$ (\inpropL[prop:I.VI], \inpropL[prop:I.XXXIV])
 
 $\drawProportionalLine{AF}^2 = \left\{\eqalign{
-&\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{FD}^2 \mbox{, or } + \drawProportionalLine{DB}^2 \cr
+&\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{FD}^2 \mbox{, или } + \drawProportionalLine{DB}^2 \cr
 &= \left\{\eqalign{
 &= \drawProportionalLine{AE}^2 + \drawProportionalLine{EH,HF}^2 \cr
 &= 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2
@@ -3201,7 +3201,7 @@ draw byLabelsOnPolygon(A, E, F, D, G)(0, 0);
 draw byLabelsOnPolygon(G, B, C, A)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая линия \drawProportionalLine{AC,CB} рассечена пополам и продлена до любой точки \drawProportionalLine{AC,CB,BD}, квадрат всей линии вместе с квадратом продленной части равны дважды квадрату половины исходной линии вместе к квадратом половины вместе с продленной частью.\\
+\problemNP{Е}{сли}{прямая линия \drawProportionalLine{AC,CB} рассечена пополам и продлена до любой точки \drawProportionalLine{AC,CB,BD}, квадрат всей линии вместе с квадратом продленной части равны дважды квадрату половины исходной линии вместе с квадратом половины вместе с продленной частью.\\
 $\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
 }
 
@@ -3281,7 +3281,7 @@ $\drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportiona
 на \drawProportionalLine{AF} опишем \drawPolygon{AHGF} \inprop[prop:I.XLVI],\\
 Продлим \drawProportionalLine{KG} \inpost[post:II].
 
-Тогда, \inprop[prop:II.VI] $\drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EA,AF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AH,HB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AH,HB}^2$, или,\\
+Тогда \inprop[prop:II.VI] $\drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EA,AF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AH,HB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AH,HB}^2$, или\\
 $\drawPolygon{AHKC,AHGF} = \drawPolygon{AHKC,HBDK} \therefore \drawPolygon{AHGF} = \drawPolygon{HBDK}$
 
 $\therefore \drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
@@ -3292,7 +3292,7 @@ $\therefore \drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \draw
 \stopProposition
 
 \startProposition[title={Предложение XII. Теорема},reference=prop:II.XII]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D;
 numeric w, h;
 w := 7/2u;
@@ -3310,7 +3310,7 @@ draw byNamedLineSeq(0)(DB,AD,CA,BC);
 draw byLabelsOnPolygon(C, B, D, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{В}{о}{всяком тупоугольном треугольнике, квадрат на стороне, стягивающей тупой угол, больше суммы квадратов на сторонах, содержащих тупой угол на дважды прямоугольник, заключенный между какой-либо из этих сторон и продолжением этой стороны от тупого угла до перпендикуляра, падающего от противоположного острого угла.\\
+\problemNP{В}{о}{всяком тупоугольном треугольнике квадрат на стороне, стягивающей тупой угол, больше суммы квадратов на сторонах, содержащих тупой угол, на дважды прямоугольник, заключенный между какой-либо из этих сторон и продолжением этой стороны от тупого угла до перпендикуляра, падающего от противоположного острого угла.\\
 $\drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$
 }
 
@@ -3326,7 +3326,7 @@ $= 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProp
 }\right\}$ или\\
 $+ \drawProportionalLine{BA}^2$ \inprop[prop:I.XLVII].
 
-$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$: значит $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$
+$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$: значит, $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$
 \stopCenterAlign
 
 \qed
@@ -3365,7 +3365,7 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 draw byLabelsOnPolygon(F, E, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{В}{о}{всяком треугольнике, квадрат стороны, стягивающей острый угол меньше суммы квадратов сторон, содержащих этот угол, на дважды прямоугольник, заключенный между любой из этих сторон и отрезком, отсекаемым перпендикуляром из противоположного угла от этого отрезка или от продленного отрезка.\\
+\problemNP{В}{о}{всяком треугольнике квадрат стороны, стягивающей острый угол, меньше суммы квадратов сторон, содержащих этот угол, на дважды прямоугольник, заключенный между любой из этих сторон и отрезком, отсекаемым перпендикуляром из противоположного угла от этого отрезка или от продленного отрезка.\\
 Первый случай.\\
 $\drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ на $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$.\\
 Второй случай.\\
@@ -3375,7 +3375,7 @@ $\drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLi
 \startCenterAlign
 Предположим, перпендикуляр падает внутри треугольника, тогда  \inprop[prop:II.VII]\\
 $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2$,\\
-к каждой добавим $\drawProportionalLine{AD}^2$ тогда,\\
+к каждой добавим $\drawProportionalLine{AD}^2$, тогда\\
 $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 + \drawProportionalLine{AD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 + \drawProportionalLine{AD}^2$\\
 $\therefore$ \inprop[prop:I.XLVII]\\
 $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{CA}^2$,\\
@@ -3383,7 +3383,7 @@ $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2 = 2 \cdot \drawPro
 
 Теперь предположим, что перпендикуляр падает вовне треугольника, тогда \inprop[prop:II.VII]\\
 $\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2$,\\
-к каждой добавим $\drawProportionalLine{HE}^2$ тогда\\
+к каждой добавим $\drawProportionalLine{HE}^2$, тогда\\
 $\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 + \drawProportionalLine{HE}^2= 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2 + \drawProportionalLine{HE}^2$\\
 $\therefore$ \inprop[prop:I.XLVII]\\
 $\drawProportionalLine{EF} + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG}^2 + \drawProportionalLine{EG}^2$,\\
@@ -3463,7 +3463,7 @@ draw byNamedArc(G);
 stopAutoLabeling;
 stopTempScale;
 }
-\inpost[post:III],\\
+\inpost[post:III]\\
 и продлим до нее \drawSizedLine{ED}: проведем \drawSizedLine{HG}.
 
 $\drawSizedLine{HF}^2 \mbox{ или } \drawSizedLine{HG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$ \inprop[prop:II.V],\\
@@ -5368,7 +5368,7 @@ draw byNamedLineSeq(0)(DF,EF);
 draw byLine(A, B, black, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
-draw byLabelsOnArc(A, B, C)(O);
+draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelLineEnd(D, F, 0);
 draw byLabelLineEnd(E, F, 0);
 draw byLabelsOnPolygon(D, F, E)(2, 0);
@@ -5432,8 +5432,8 @@ draw byNamedLineSeq(0)(EH,FH);
 draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
 draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
 byCircleDefineR(H, r, byred, 0, 0, 0)(H);
-draw byLabelsOnArc(A, B, C)(G);
-draw byLabelsOnArc(D, E, F)(H);
+draw byLabelsOnCircle(A, B, C)(G);
+draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
@@ -5456,7 +5456,7 @@ $\therefore$
 startTempScale(1/4);
 draw byNamedArc(G);
 draw byNamedLine(BC);
-draw byLabelsOnArc(B, C)(G);
+draw byLabelsOnCircle(B, C)(G);
 stopTempScale;
 }
 и
@@ -5464,7 +5464,7 @@ stopTempScale;
 startTempScale(1/4);
 draw byNamedArc(H);
 draw byNamedLine(EF);
-draw byLabelsOnArc(E, F)(H);
+draw byLabelsOnCircle(E, F)(H);
 stopTempScale;
 }
 подобны \indef[def:III.XI];\\
@@ -5539,8 +5539,8 @@ draw byNamedLineSeq(0)(HE,HF);
 draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
 draw byArc(H, E, F, r, black, 1, 0, 0, 0)(Hb);
 byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
-draw byLabelsOnArc(A, B, C, K)(G);
-draw byLabelsOnArc(D, E, F)(H);
+draw byLabelsOnCircle(A, B, C, K)(G);
+draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
@@ -5683,7 +5683,7 @@ $\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:III.XXVII],
 \qed
 \stopProposition
 
-\startProposition[title={Предложение XXIX. Задача},reference=prop:III.XXX]
+\startProposition[title={Предложение XXX. Задача},reference=prop:III.XXX]
 \defineNewPicture{
 pair A, B, C, D, E;
 numeric r, t[];
@@ -5707,7 +5707,7 @@ draw byLine(A, C, black, 0, 0);
 draw byLine(C, B, black, 1, 0);
 draw byArc(E, B, D, r, byred, 1, 0, 0, 0)(Er);
 draw byArc(E, D, A, r, byred, 0, 0, 0, 0)(El);
-draw byLabelsOnArc(A, B, D)(Er);
+draw byLabelsOnCircle(A, B, D)(Er);
 draw byLabelLineEnd(C, D, 0);
 }
 \drawCurrentPictureInMargin
@@ -5744,6 +5744,353 @@ stopGlobalRotation;
 $ \inprop[prop:III.XXVII],\\
 и значит данная дуга рассечена.
 \stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXI. Теорема},reference=prop:III.XXXI]
+\problemNP{В}{круге}{угол заключенный в полукруге прямой, в сегменте больше полукруга острый, в сегменте меньше полукруга тупой.}
+
+\defineNewPicture{
+pair A, B, C, E;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (dir(110)*r) shifted E;
+B := (dir(180)*r) shifted E;
+C := (dir(0)*r) shifted E;
+draw byAngleWithName(A, B, C, byred, 0)(B);
+draw byAngleWithName(B, C, A, byblue, 0)(C);
+draw byAngle(E, A, B, byyellow, 0);
+draw byAngle(C, A, E, black, 0);
+draw byLine(A, E, byred, 0, 0);
+draw byLine(A, B, black, 0, 1);
+draw byLine(A, C, black, 0, 1);
+draw byLine(B, E, byblue, 0, 0);
+draw byLine(E, C, black, 0, 0);
+draw byCircleR(E, r, black, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C)(E);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай I.}]
+\startCenterAlign
+Угол \drawAngle{EAB,CAE} в полукруге прямой.
+
+Проведем \drawUnitLine{AE} и \drawUnitLine{BE,EC}\\
+$\drawAngle{B}=\drawAngle{EAB}$ и $\drawAngle{C} = \drawAngle{CAE}$ \inprop[prop:I.V]\\
+$\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ половина } \drawTwoRightAngles= \drawRightAngle$ \inprop[prop:I.XXXII]
+\stopCenterAlign
+\stopsubproposition
+
+\defineNewPicture{
+pair A, B, C, E, D;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (dir(110)*r) shifted E;
+B := (dir(180 + 30)*r) shifted E;
+C := (dir(0 + 30)*r) shifted E;
+D := (dir(0 - 30)*r) shifted E;
+draw byAngle(B, A, D, byblue, 0);
+draw byAngle(D, A, C, byred, 0);
+draw byLine(A, D, black, 0, 1);
+draw byLine(A, B, black, 0, 1);
+draw byLine(B, D, black, 0, 1);
+draw byLine(A, C, byblue, 0, 0);
+draw byLine(B, C, byred, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай II.}]
+\startCenterAlign
+Угол \drawAngle{BAD} в сегменте больше полукруга острый.
+
+Проведем диаметр \drawUnitLine{BC} и \drawUnitLine{AC}\\
+$\therefore \drawAngle{BAD,DAC} = \mbox{ прямому углу}$\\
+$\therefore$ \drawAngle{BAD} острый.
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\defineNewPicture{
+pair A, B, C, E, D;
+numeric r;
+r := 7/4u;
+E := (0, 0);
+A := (dir(140)*r) shifted E;
+B := (dir(-110)*r) shifted E;
+C := (dir(5)*r) shifted E;
+D := (dir(80)*r) shifted E;
+draw byAngleWithName(A, D, C, byred, 0)(D);
+draw byAngleWithName(C, B, A, byyellow, 0)(B);
+draw byLine(A, B, byred, 0, 0);
+draw byLine(B, C, byblue, 0, 0);
+draw byLine(C, D, black, 0, 1);
+draw byLine(D, A, black, 0, 1);
+draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай III.}]
+\startCenterAlign
+Угол \drawAngle{D} в сегменте меньше полукруга тупой.
+
+Возьмем на противоположной стороне окружности любую точку, к которой проведем \drawUnitLine{BC} и \drawUnitLine{AB}.\\
+Поскольку $\drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \inprop[prop:III.XXII]\\
+но $\drawAngle{B} < \drawRightAngle$ (случай II.),\\
+$\therefore$ \drawAngle{D} тупой.
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXII. Теорема},reference=prop:III.XXXII]
+\defineNewPicture{
+pair A, B, C, D, E, F, O;
+numeric r;
+r := 9/4u;
+O := (0, 0);
+A := (0, r) shifted O;
+B := (0, -r) shifted O;
+C := (dir(-20)*r) shifted O;
+D := (dir(30)*r) shifted O;
+E := (-r, -r) shifted O;
+F := (r, -r) shifted O;
+draw byAngle(A, B, E, black, 1);
+draw byAngle(D, B, A, byblue, 0);
+draw byAngle(F, B, D, byyellow, 0);
+draw byAngleWithName(B, A, D, byyellow, 0)(A);
+draw byAngle(A, D, B, black, 0);
+draw byAngle(C, D, B, black, 1);
+draw byAngleWithName(D, C, B, byred, 0)(C);
+draw byLine(A, D, black, 0, 1);
+draw byLine(D, C, black, 0, 1);
+draw byLine(C, B, black, 0, 1);
+draw byLine(D, B, byred, 0, 0);
+draw byLineFull(E, F, byblue, 0, 0)(E, F, 0, 0, 1);
+draw byLine(A, B, black, 0, 0);
+draw byCircleR(O, r, byred, 0, 0, 0)(O);
+draw byLabelsOnCircle(A, B, C, D)(O);
+draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{прямая \drawUnitLine{EF} касается круга, и из точки касания проведена прямая \drawUnitLine{DB}, секущая круг, угол \drawAngle{FBD} между этой прямой и касательной равен углу \drawAngle{A} в накрестлежащем сегменте круга.}
+
+Если хорда проходит через центр, то очевидно, что углы равны, поскольку и тот и тот прямые. (\inpropL[prop:III.XVI], \inpropL[prop:III.XIX])
+
+Если же нет, проведем $\drawUnitLine{AB} \perp \drawUnitLine{EF}$ из точки касания, которая будет проходить через центр \inprop[prop:III.XIX]
+
+\startCenterAlign
+$\therefore \drawAngle{ADB} = \drawAngle{ABE} $ \inprop[prop:III.XXXI]
+
+$\drawAngle{A} + \drawAngle{DBA} = \drawAngle{ABE}= \drawAngle{DBA,FBD}$ \inprop[prop:I.XXXII]
+
+$\therefore \drawAngle{A} = \drawAngle{FBD}$ (акс.).
+
+Теперь $\drawAngle{ABE,DBA,FBD} = \drawTwoRightAngles = \drawAngle{A} + \drawAngle{C}$ \inprop[prop:III.XXII]
+
+$\therefore \drawAngle{ABE,DBA} = \drawAngle{C}$, (акс.), который и будет углом в накрестлежащем сегменте.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXIII. Задача},reference=prop:III.XXXIII]
+\defineNewPicture{
+pair A, B, D, E, G, K;
+numeric r;
+r := 7/4u;
+G := (0, 0);
+A := (0, -r) shifted G;
+B := (dir(10)*r) shifted G;
+E := (0, r) shifted G;
+D := (r, -r) shifted G;
+K := (-r, -r) shifted G;
+draw byAngle(E, A, K, black, 1);
+draw byAngle(B, A, E, byred, 0);
+draw byAngle(D, A, B, byyellow, 0);
+draw byAngleWithName(G, B, A, byred, 0)(B);
+draw byLine(A, B, black, 0, 0);
+draw byLine(G, B, byyellow, 0, 0);
+draw byLine(A, G, byblue, 0, 0);
+draw byLine(G, E, byblue, 1, 0);
+draw byLineFull(K, D, byred, 0, 0)(K, D, 0, 0, 1);
+draw byCircle(G, B, byblue, 0, 0, 0)(G);
+byAngleDefineWithName(E, A, K, black, 1)(givenRight);
+byAngleDefineWithName(B, A, K, black, 1)(givenObtuse);
+byAngleDefineWithName(D, A, B, black, 1)(givenAcute);
+angleStandalone.givenRight := 2;
+angleStandalone.givenObtuse := 2;
+angleStandalone.givenAcute := 2;
+draw byLabelsOnCircle(A, B)(G);
+draw byLabelsOnPolygon(A, G, E)(2, 0);
+draw byLabelsOnPolygon(K, D, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{а}{данной прямой \drawUnitLine{AB} описать сегмент круга, вмещающий угол, равный данному \drawAngle{givenRight}, \drawAngle{givenObtuse}, \drawAngle{givenAcute}.}
+
+Если данный угол прямой, то рассечем отрезок и опишем на нем полукруг, который, очевидно, будет содержать прямой угол \inprop[prop:III.XXXI].
+
+Если же данный угол острый или тупой, сделаем с данной прямой на одном из ее концов,
+
+\startCenterAlign
+$\drawAngle{DAB} = \drawAngle{givenAcute}$,
+
+проведем $\drawUnitLine{AG} \perp \drawUnitLine{KD}$\\
+и сделаем $\drawAngle{B} = \drawAngle{BAE}$,
+
+опишем \drawCircle[middle][1/5]{G} с \drawUnitLine{AG} или \drawUnitLine{GB} в качестве радиуса, ведь они равны.
+
+\drawUnitLine{KD} касается \circleG\ \inprop[prop:III.XVI]
+
+$\therefore$ \drawUnitLine{AB} делит круг на два сегмента, вмещающие углы равные \drawAngle{EAK,BAE} и \drawAngle{DAB}, соответственно равные \drawAngle{givenObtuse} и \drawAngle{givenAcute} \inprop[prop:III.XXXII]
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXIV. Задача},reference=prop:III.XXXIV]
+\defineNewPicture{
+pair A, B, F, E, O;
+numeric r;
+path cr;
+r := 7/4u;
+O := (0, 0);
+cr := (fullcircle scaled 2r) shifted O;
+A := point 1 of cr;
+B := point -2 of cr;
+E := (r, -r) shifted O;
+F := (-r, -r) shifted O;
+draw byFilledCircleSegment(O, r, -2, 1, byyellow)(O);
+draw byAngleWithName(F, B, A, byblue, 0)(B);
+draw byLine(A, B, black, 0, 0);
+draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
+draw byCircleR(O, r, byblue, 0, 0, 0)(O);
+byAngleDefineWithName(F, B, A, byred, 0)(givenAngle);
+angleStandalone.givenAngle := 2;
+draw byLabelsOnCircle(A)(O);
+draw byLabelsOnPolygon(E, B, F, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{т}{данного круга \drawCircle{O} отсечь сегмент, вмещабщий данный прямолинейный угол \drawAngle{givenAngle}.}
+
+\startCenterAlign
+Проведем \drawUnitLine{EF} \inprop[prop:III.XVII], касательную к кругу в любой точке;
+
+в точке касания сделаем $\drawAngle{B} = \drawAngle{givenAngle}$, данному углу;
+
+тогда \drawFromCurrentPicture[middle][segmentO]{
+draw byNamedFilledCircleSegment(O);
+draw byLabelsOnCircle(A, B)(O);
+} содержит угол $=$ данному углу.
+
+Поскольку \drawUnitLine{EF} касательная,\\
+и \drawUnitLine{AB} сечет ее,\\
+угол в $\segmentO\ = \drawAngle{B}$ \inprop[prop:III.XXXII],
+
+но $\drawAngle{B} = \drawAngle{givenAngle}$ (постр.)
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предложение XXXV. Теорема},reference=prop:III.XXXV]
+\defineNewPicture{
+pair A, B, C, D, E;
+numeric r;
+r := 3/2u;
+E := (0, 0);
+A := (dir(50)*r) shifted E;
+B := (dir(100)*r) shifted E;
+C := (dir(50 + 180)*r) shifted E;
+D := (dir(100 + 180)*r) shifted E;
+draw byLine(A, E, black, 0, 0);
+draw byLine(E, C, black, 1, 0);
+draw byLine(D, E, byblue, 0, 0);
+draw byLine(E, B, byblue, 1, 0);
+draw byCircleR(E, r, byyellow, 0, 0, 0)(E);
+draw byLabelsOnCircle(A, B, C, D)(E);
+draw byLabelsOnPolygon(C, E, B)(2, 0);
+}
+\problemNP{Е}{сли}{в круге две хорды
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{AE,EC}}
+\nointerlineskip\hbox{\drawSizedLine{DE,EB}}}\right\}$
+секут друг друга, прямоугольник, заключенный между частями одного равен прямоугольнику, заключенному между частями другого.}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай I.}]
+Если данные прямые проходят через центр, они секут друг друга посередине, следовательно прямоугольники заключенные между их частями являются квадратами, и значит, равны.
+\stopsubproposition
+
+\defineNewPicture{
+pair A, B, C, D, E, H;
+numeric r;
+r := 3/2u;
+E := (0, 0);
+A := (dir(30)*r) shifted E;
+B := (dir(170)*r) shifted E;
+C := (dir(30 + 180)*r) shifted E;
+D := (dir(-50)*r) shifted E;
+H = whatever[A, C] = whatever[B, D];
+draw byLine(D, E, byred, 0, 0);
+draw byLine(E, B, byyellow, 0, 0);
+draw byLine(B, H, byblue, 0, 0);
+draw byLine(H, D, byblue, 1, 0);
+draw byLine(A, E, black, 0, 0);
+draw byLine(E, H, byred, 1, 0);
+draw byLine(H, C, black, 1, 0);
+draw byCircleR(E, r, byred, 0, 0, 0)(E);
+draw byLabelsOnCircle(B, D, C, A)(E);
+draw byLabelsOnPolygon(D, H, C)(2, 0);
+draw byLabelsOnPolygon(B, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай II.}]
+\startCenterAlign
+Пусть \drawSizedLine{HC,EH,AE} проходит через центр, а \drawSizedLine{BH,HD} нет, проведем \drawSizedLine{EB} и \drawSizedLine{DE}.\\
+Тогда $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EB}^2 - \drawSizedLine{EH}^2$ \inprop[prop:II.VI], or $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{HC,EH}^2 - \drawSizedLine{EH}^2$.\\
+$\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EH,AE} \times \drawSizedLine{AE}$ \inprop[prop:II.V].
+\stopCenterAlign
+\stopsubproposition
+
+\defineNewPicture{
+pair A, B, C, D, E, F, K, L;
+numeric r;
+path cr;
+r := 3/2u;
+F := (0, 0);
+cr := (fullcircle scaled 2r) shifted F;
+A := (dir(00)*r) shifted F;
+B := (dir(170)*r) shifted F;
+C := (dir(-150)*r) shifted F;
+D := (dir(-50)*r) shifted F;
+E = whatever[A, C] = whatever[B, D];
+K := cr intersectionpoint (F -- 10[E, F]);
+L := cr intersectionpoint (F -- 10[F, E]);
+draw byLine(K, E, byred, 1, 0);
+draw byLine(E, L, byred, 0, 0);
+draw byLine(B, E, byblue, 0, 0);
+draw byLine(E, D, byblue, 1, 0);
+draw byLine(A, E, black, 0, 0);
+draw byLine(E, C, black, 1, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byLabelsOnCircle(B, D, K, L, A, C)(F);
+draw byLabelsOnPolygon(B, E, K)(2, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Случай III.}]
+Пусть ни одна из прямых не проходит через центр, проведем через точку их пересечения диаметр \drawSizedLine{KE,EL},
+
+\startCenterAlign
+и $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{BE} \times \drawSizedLine{ED}$ (случай II.),\\
+а также $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{AE} \times \drawSizedLine{EC}$ (случай II.);\\
+$\therefore \drawSizedLine{BE} \times \drawSizedLine{ED} = \drawSizedLine{AE} \times \drawSizedLine{EC}$.
+\stopCenterAlign
+\stopsubproposition
 
 \qed
 \stopProposition
