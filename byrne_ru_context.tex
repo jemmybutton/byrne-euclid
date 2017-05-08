@@ -7453,6 +7453,450 @@ $\therefore$ дуга стягиваемая $\drawUnitLine{CF} = \dfrac{1}{15}$
 
 \qed
 \stopProposition
+\stopbook
+
+\startbook[title={Книга V}]\unskip
+
+\startsupersection[title={Определения}]\unskip
+
+\startDefinitionOnlyNumber[reference=def:V.I]
+Меньшая величина называется аликвотой большей, если меньшая измеряет большую, то есть вмещается в нее целое чило раз.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:V.II]
+Большая величина называется кратной меньшей, если большая измеряется меньшей, то есть содержит в себе меньшую целое число раз.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:V.III]
+Отношением называют зависимость однородных величин по количеству.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:V.IV]
+Про две величины говорят, что они имеют отношение между собой, когда они однородны и меньшая из них может, взятая кратно, превзойти другую.
+\stopDefinitionOnlyNumber
+
+\startalignment[middle]
+\emph{Прочие определения будут даны по ходу изложения там, где в них возникнет необходимость.}
+\stopalignment
+\stopsupersection
+
+\startsupersection[title={Аксиомы}]\unskip
+
+\startAxiomOnlyNumber[reference=ax:V.I]
+Равнократные или равных величин равны между собой.
+
+\startalignment[middle]
+$\eqalign{
+\mbox{Если } A &= B \mbox{, то}\cr
+\mbox{дважды } A &= \mbox{дважды } B \mbox{,}\cr
+\mbox{то есть, }2A &= 2B \mbox{;}\cr
+3A &= 3B \mbox{;}\cr
+4A &= 4B \mbox{;}\cr
+\mbox{и т. д. } & \mbox{и т. д.}\cr
+\mbox{и } \frac{1}{2} A &= \frac{1}{2} B \mbox{;}\cr
+\frac{1}{3} A &= \frac{1}{3} B \mbox{;}\cr
+\frac{1}{4} A &= \frac{1}{4} B \mbox{;}\cr
+\mbox{\&c. } & \mbox{ \&c.}\cr
+}$
+\stopalignment
+\stopAxiomOnlyNumber
+
+\startAxiomOnlyNumber[reference=ax:V.II]
+Кратное большей величины больше такого же кратного меньшей.
+
+\startalignment[middle]
+$\eqalign{
+\mbox{Пусть } A &> B \mbox{,} \cr
+\mbox{Тогда } 2A &> 2B \mbox{;}\cr
+3A&> 3B \mbox{;} \cr
+4A &> 4B \mbox{;}\cr
+\mbox{и т. д. } &\mbox{и т. д. } \cr
+}$
+\stopalignment
+\stopAxiomOnlyNumber
+
+\pagebreak
+
+\startAxiomOnlyNumber[reference=ax:V.III]
+Величина, кратное которой больше такого же кратного другой величины, сама больше другой величины.
+
+\startalignment[middle]
+$\eqalign{
+\mbox{Пусть } 2A &> 2B \mbox{,}\cr
+\mbox{тогда } A &> B \mbox{;}\cr
+\mbox{или пусть } 3A &> 3B \mbox{,}\cr
+\mbox{тогда } A &> B \mbox{;}\cr
+\mbox{или пусть } mA &> mB  \mbox{,}\cr
+\mbox{тогда } A &> B \mbox{.}\cr
+}$
+\stopalignment
+\stopAxiomOnlyNumber
+\stopsupersection
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. I. Теорема}, reference=prop:V.I]
+\defineNewPicture{
+byMagnitudeSymbolDefine("semicircleUp", byred, 1)(ab);
+byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(cd);
+byMagnitudeSymbolDefine("sectorDown", byblue, 1)(ef);
+byMagnitudeDefine(A, 0, false)(5)(ab);
+byMagnitudeDefine(B, 0, false)(1)(ab);
+byMagnitudeDefine(C, 0, false)(5)(cd);
+byMagnitudeDefine(D, 0, false)(1)(cd);
+byMagnitudeDefine(E, 0, false)(5)(ef);
+byMagnitudeDefine(F, 0, false)(1)(ef);
+}
+\problemNP{Е}{сли}{будет несколько величин равнократных каждая каждой такому же количеству других величин, то сколько раз одна из первых будет кратна одной из вторых, столько же раз все первые будут кратны всем вторым.}
+
+\startCenterAlign
+Пусть \drawMagnitude{A} будет столько же раз кратна \drawMagnitude{B},
+сколько и \drawMagnitude{C} кратна \drawMagnitude{D},\\
+сколько и \drawMagnitude{E} кратна \drawMagnitude{F}.\\
+
+Тогда очевидно, что
+
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{A}}
+\nointerlineskip\hbox{\drawMagnitude{C}}
+\nointerlineskip\hbox{\drawMagnitude{E}}
+}$
+столько же раз кратна
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{B}}
+\nointerlineskip\hbox{\drawMagnitude{D}}
+\nointerlineskip\hbox{\drawMagnitude{F}}
+}$
+
+сколько и \drawMagnitude{A} кратна \drawMagnitude{B};
+
+так как в
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{A}}
+\nointerlineskip\hbox{\drawMagnitude{C}}
+\nointerlineskip\hbox{\drawMagnitude{E}}
+}
+=
+\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{B}}
+\nointerlineskip\hbox{\drawMagnitude{D}}
+\nointerlineskip\hbox{\drawMagnitude{F}}
+}$ столько же величин,\\ 
+сколько в $\drawMagnitude{A} = \drawMagnitude{B}$.
+\stopCenterAlign
+
+То же верно для любого числа величин, что было показано для трех.
+
+$\therefore$ Если будет несколько величин… и т. д.
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. II. Теорема}, reference=prop:V.II]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byyellow, 0)(ab);
+byMagnitudeSymbolDefine("sectorUp", byyellow, 1)(cd);
+byMagnitudeSymbolDefine("circle", byblue, 0)(e);
+byMagnitudeSymbolDefine("sectorUp", black, 1)(f);
+byMagnitudeDefine(A, 0, false)(3)(ab);
+byMagnitudeDefine(B, 0, false)(1)(ab);
+byMagnitudeDefine(C, 0, false)(3)(cd);
+byMagnitudeDefine(D, 0, false)(1)(cd);
+byMagnitudeDefine(E, 0, false)(4)(e);
+byMagnitudeDefine(F, 0, false)(4)(f);
+}
+\problemNP{Е}{сли}{первая величина столько же раз кратна второй, сколько третья четвертой, а пятая столько же раз кратна второй, сколько шестая четвертой, то первая вместе с пятой будут столько же раз кратны третьей, сколько третья вместе с шестой — четвертой.}
+
+Пусть первая величина \drawMagnitude{A} будет столько же раз кратна второй \drawMagnitude{B}, сколько третья \drawMagnitude{C} четвертой \drawMagnitude{D}. 
+
+И пусть пятая \drawMagnitude{E} будет столько же раз кратна второй \drawMagnitude{B}, сколько шестая \drawMagnitude{F} четвертой \drawMagnitude{D}.
+
+Тогда очевидно что первая и пятая вместе
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{A}}
+\nointerlineskip\hbox{\drawMagnitude{E}}
+}$,
+столько же раз кратны второй \drawMagnitude{B}, сколько третья и шестая вместе
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{C}}
+\nointerlineskip\hbox{\drawMagnitude{F}}
+}$,
+кратны четвертой \drawMagnitude{D}, поскольку в
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{A}}
+\nointerlineskip\hbox{\drawMagnitude{E}}
+} = \drawMagnitude{B}$
+столько же величин, сколько в
+$\vcenter{
+\nointerlineskip\hbox{\drawMagnitude{C}}
+\nointerlineskip\hbox{\drawMagnitude{F}}
+} =\drawMagnitude{D}$.
+
+$\therefore$ Если первая величина… и т. д.
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. III. Теорема}, reference=prop:V.III]
+\defineNewPicture{
+byMagnitudeSymbolDefine("square", byyellow, 0)(a);
+byMagnitudeSymbolDefine("square", byred, 0)(be);
+byMagnitudeSymbolDefine("rhombus", black, 0)(c);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(df);
+byMagnitudeDefine(A, 0, false)(1, 2, 1)(a);
+byMagnitudeDefine(B, 0, false)(1)(be);
+byMagnitudeDefine(C, 0, false)(2, 2)(c);
+byMagnitudeDefine(D, 0, false)(1)(df);
+byMagnitudeDefine(E, 0, false)(4, 4, 4, 4)(be);
+byMagnitudeDefine(F, 0, false)(4, 4, 4, 4)(df);
+}
+\problemNP{Е}{сли}{первая величина имеет такое же отношение ко второй, какое третья имеет к четвертой, то и равнократные к первой и третьей к равнократным второй и четвертой, взятые в соответствующем порядке будут иметь то же отношение.}
+
+\startCenterAlign
+Пусть у \drawMagnitude{A} будет то же отношение к \drawMagnitude{B}, \\
+что и у \drawMagnitude{C} к \drawMagnitude{D}.
+
+Возьмем\\ 
+\drawMagnitude{E} столько же раз кратную \drawMagnitude{A},\\
+сколько \drawMagnitude{F} кратную \drawMagnitude{C}.
+
+Тогда очевидно, что\\
+\drawMagnitude{E} столько же раз кратна \drawMagnitude{B},\\
+сколько \drawMagnitude{F} кратна \drawMagnitude{D};\\
+$\because$ \drawMagnitude{E} содержит \drawMagnitude{A} содержит \drawMagnitude{B} \\
+столько же раз, сколько \\
+\drawMagnitude{F} содержит \drawMagnitude{C} содержит \drawMagnitude{D}.\\
+
+Те же соображения применимы во всех случаях.
+
+$\therefore$ Если первая величина… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение V.}, reference=def:V.V]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byred, 0)(a);
+byMagnitudeSymbolDefine("square", byyellow, 0)(b);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(c);
+byMagnitudeSymbolDefine("wedgeDown", black, 0)(d);
+byMagnitudeDefine(A, 0, false)(1)(a);
+byMagnitudeDefine(B, 0, false)(1)(b);
+byMagnitudeDefine(C, 0, false)(1)(c);
+byMagnitudeDefine(D, 0, false)(1)(d);
+byMagnitudeDefine(Am, 1, false)(2, 3, 4, 5, 6)(a);
+byMagnitudeDefine(Bm, 1, false)(2, 3, 4, 5, 6)(b);
+byMagnitudeDefine(Cm, 1, false)(2, 3, 4, 5, 6)(c);
+byMagnitudeDefine(Dm, 1, false)(2, 3, 4, 5, 6)(d);
+}
+
+Четыре величины, \drawMagnitude{A}, \drawMagnitude{B}, \drawMagnitude{C}, \drawMagnitude{D}, называются пропорциональными, если любые равнократные первой и третьей, а также любые равнократные второй и четвертой в виде
+
+\sepSpace
+
+\vbox{\hfill\hbox{
+\vbox{\hbox{первой}\hbox{\drawMagnitude{Am}}\hbox{и т. д.}}
+\vbox{\hbox{третьей}\hbox{\drawMagnitude{Cm}}\hbox{и т. д.}}
+}\hfill\ }
+
+\sepSpace
+
+\vbox{\hfill\hbox{
+\vbox{\hbox{второй}\hbox{\drawMagnitude{Bm}}\hbox{и т. д.}}
+\vbox{\hbox{четвертой}\hbox{\drawMagnitude{Dm}}\hbox{и т. д.}}
+}\hfill\ }
+
+\sepSpace
+
+Тогда, взяв любую пару равнократных первой и третьей и любую пару равнократных второй и четвертой,
+
+\startCenterAlign
+если
+$\left\{\vcenter{
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][1]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][2]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][3]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][4]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][5]{Bm}$}
+}\right.$
+
+$\vcenter{\hbox{то}}\left\{\vcenter{
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][1]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][2]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][3]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][4]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][5]{Dm}$}
+}\right.$
+\stopCenterAlign
+
+Другими словами, если дважды первая величина больше, равна или меньше дважды второй, то дважды третья будет больше равна или меньше дважды четвертой. Или, если дважды первая будет больше равна или меньше трижды второй, дважды третья будет больше, равна или меньше трижды четвертой и так далее, как обозначено выше.
+
+\startCenterAlign
+Если
+$\left\{\vcenter{
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Am} >, = \mbox{или} < \drawMagnitude[middle][1]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Am} >, = \mbox{или} < \drawMagnitude[middle][2]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Am} >, = \mbox{или} < \drawMagnitude[middle][3]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Am} >, = \mbox{или} < \drawMagnitude[middle][4]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Am} >, = \mbox{или} < \drawMagnitude[middle][5]{Bm}$}
+}\right.$
+
+$\vcenter{\hbox{то}}\left\{\vcenter{
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Cm} >, = \mbox{или} < \drawMagnitude[middle][1]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Cm} >, = \mbox{или} < \drawMagnitude[middle][2]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Cm} >, = \mbox{или} < \drawMagnitude[middle][3]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Cm} >, = \mbox{или} < \drawMagnitude[middle][4]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][2]{Cm} >, = \mbox{или} < \drawMagnitude[middle][5]{Dm}$}
+}\right.$
+\stopCenterAlign
+
+Или же если трижды первая больше, равна или меньше дважды второй, то трижды третья больше, равна или меньше дважды четвертой. Или если трижды первая больше, равна или меньше трижды второй трижды второй, то трижды третья будет больше, равна или меньше трижды четвертой. Или если трижды первая  больше, равна или меньше четырежды второй, то трижды третья будет больше, равна или меньше четырежды четвертой и так далее. Также
+
+\startCenterAlign
+Если
+$\left\{\vcenter{
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Am} >, = \mbox{или} < \drawMagnitude[middle][1]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Am} >, = \mbox{или} < \drawMagnitude[middle][2]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Am} >, = \mbox{или} < \drawMagnitude[middle][3]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Am} >, = \mbox{или} < \drawMagnitude[middle][4]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Am} >, = \mbox{или} < \drawMagnitude[middle][5]{Bm}$}
+}\right.$
+
+$\vcenter{\hbox{то}}\left\{\vcenter{
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Cm} >, = \mbox{или} < \drawMagnitude[middle][1]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Cm} >, = \mbox{или} < \drawMagnitude[middle][2]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Cm} >, = \mbox{или} < \drawMagnitude[middle][3]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Cm} >, = \mbox{или} < \drawMagnitude[middle][4]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][3]{Cm} >, = \mbox{или} < \drawMagnitude[middle][5]{Dm}$}
+}\right.$
+\stopCenterAlign
+
+И так далее, для любых равнократных четырех величин взятых таким образом.
+
+Евклид излагает это определение следующим образом:
+
+
+Говорят, что величины находятся в том же отношении: первая ко второй и третья к четвёртой, если рав нократные первой и третьей одновременно больше, или одновременно равны, или одновременно меньше равнократных второй и четвёртой каждая каждой при какой бы то ни было кратности, если взять их в соответственном порядке. % прямо из Мордухай-Болтовского
+
+В дальнейшем будем выражать это определение в общем виде так:
+
+\startCenterAlign
+$\eqalign{
+\mbox{Если }M \drawMagnitude{A} &>, = \mbox{ или } < m \drawMagnitude{B} \mbox{,}\cr
+\mbox{когда }M \drawMagnitude{C} &>, = \mbox{или } < m \drawMagnitude{D} \mbox{,}\cr
+}$
+\stopCenterAlign
+
+То мы заключаем, что первая величина \drawMagnitude{A}, так же относится ко второй \drawMagnitude{B}, как третья \drawMagnitude{C} к четвертой \drawMagnitude{D}. Что будет далее записываться так:
+
+\startCenterAlign
+$\eqalign{
+\drawMagnitude{A} : \drawMagnitude{B} & :: \drawMagnitude{C} : \drawMagnitude{D} \mbox{;} \cr
+\mbox{или так: } \drawMagnitude{A} : \drawMagnitude{B} &= \drawMagnitude{C} : \drawMagnitude{D} \mbox{;} \cr
+\mbox{или так: } \dfrac{\drawMagnitude{A}}{\drawMagnitude{B}} &= \dfrac{\drawMagnitude{C}}{\drawMagnitude{D}} \mbox{:} \cr
+}$
+
+и читается как, \\
+\quotation{\drawMagnitude{A} относится к \drawMagnitude{B}, как \drawMagnitude{C} к \drawMagnitude{D}.}
+
+И если $\drawMagnitude{A} : \drawMagnitude{B} :: \drawMagnitude{C} : \drawMagnitude{D}$ мы можем заключить, что \\
+если $M \drawMagnitude{A} >, = \mbox{ или } < m \drawMagnitude{B}$, \\
+то $M \drawMagnitude{C} >, = \mbox{ или } < m \drawMagnitude{D}$.
+\stopCenterAlign
+
+То есть, если первая относится ко второй, как третья к четвертой, то если $M$ раз первая больше, равна или меньше $m$ раз второй, то $M$ раз третья будет больше, равна или меньше $m$ раз четвертой, где $M$ и $m$ не представляют каких либо конкретных величин, но любую пару величин, также как обозначения, наподобие \drawMagnitude{A}, \drawMagnitude{D}, \drawMagnitude{B}, и т. п. не более чем представления геометрических величин. 
+
+Учащийся должен крепко понять это определение, прежде чем двигаться далее.
+\stopDefinition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. IV. Теорема}, reference=prop:V.IV]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byyellow, 0)(I);
+byMagnitudeSymbolDefine("square", black, 0)(II);
+byMagnitudeSymbolDefine("rhombus", byred, 0)(III);
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(IV);
+}
+\problemNP{Е}{сли}{первая величина имеет такое же отношение ко второй, какое третья имеет к четвертой, то и равнократные первой и третьей будут иметь то же отношение к равнократным второй и четвертой.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+тогда $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$,\\
+всякое равнократное $3\drawMagnitude{I}$ и $3\drawMagnitude{III}$ будет равнократным \drawMagnitude{I} и \drawMagnitude{III},\\
+и всякое равнократное $2\drawMagnitude{II}$ и $2\drawMagnitude{IV}$ будет равнократным \drawMagnitude{II} и \drawMagnitude{IV} \inprop[prop:V.III]
+
+То есть, $M$ раз $3\drawMagnitude{I}$ и $M$ раз $3\drawMagnitude{III}$\\
+равнократны \drawMagnitude{I} и \drawMagnitude{III},\\
+и $m$ раз $2\drawMagnitude{II}$ и $m$ раз $2\drawMagnitude{IV}$\\ 
+равнократны $2\drawMagnitude{II}$ и $2\drawMagnitude{IV}$.
+
+Но $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (гип.)\\
+$\therefore$ если $M 3\drawMagnitude{I} <, =, \mbox{ или } > m 2 \drawMagnitude{II}$,\\
+то $M 3\drawMagnitude{III} <, =, \mbox{ или } > m 2 \drawMagnitude{IV}$ \indef[def:V.V]\\ 
+и значит $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$ \indef[def:V.V]
+\stopCenterAlign
+
+Те же соображения работают для любых равнократных первой и третьей величин и любых равнократных второй и четвертой.
+
+$\therefore$ Если первая величина… и т.  д.
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. V. Теорема}, reference=prop:V.V]
+\defineNewPicture{
+byMagnitudeSymbolDefine("sectorDown", byblue, 1)(a);
+byMagnitudeSymbolDefine("semicircleDown", byyellow, 1)(b);
+byMagnitudeSymbolDefine("miniTriangleUp", black, 0)(c);
+byMagnitudeSymbolDefine("miniSquare", byred, 0)(d);
+byMagnitudeDefine(I, 0, false)(1, 2, 1)(a, a, b);
+byMagnitudeDefine(II, 0, false)(1, 1)(c, d);
+}
+\problemNP{Е}{сли}{одна величина столько же раз кратна другой, сколько и величина отнимаемая от первой кратна к величине отнимаемой от второй, то остаток будет столько же раз кратен остатку, как целое целому.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} = M' \drawMagnitude{II}$\\
+и $\drawMagnitude[middle][3]{I} = M' \drawMagnitude[middle][2]{II}$,
+
+$\therefore \drawMagnitude{I} - \drawMagnitude[middle][3]{I} = M' \drawMagnitude{II} - M' \drawMagnitude[middle][2]{II}$,
+
+$\therefore \drawMagnitude[middle][-3]{I} = M' (\drawMagnitude{II} - \drawMagnitude[middle][2]{II})$,\\
+и $\therefore \drawMagnitude[middle][-3]{I} = M' \drawMagnitude[middle][-2]{II}$.
+
+$\therefore$ Если одна величина… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. VI. Теорема}, reference=prop:V.VI]
+\defineNewPicture{
+byMagnitudeSymbolDefine("sectorDown", byyellow, 1)(a);
+byMagnitudeSymbolDefine("miniSquare", byred, 0)(b);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(c);
+byMagnitudeSymbolDefine("miniTriangleUp", byblue, 0)(d);
+byMagnitudeDefine(I, 0, false)(1, 2, 1)(a);
+byMagnitudeDefine(II, 0, false)(1)(b);
+byMagnitudeDefine(III, 0, false)(2)(c);
+byMagnitudeDefine(IV, 0, false)(1)(d);
+}
+\problemNP{Е}{сли}{две величины равнократны двум другим, и если равнократные последним отняты от первых двух, то остатки будут либо равны вторым, либо будут им равнократны.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} = M'\drawMagnitude{II}$; и $\drawMagnitude{III} = M'\drawMagnitude{IV}$
+
+тогда $\drawMagnitude{I} - m'\drawMagnitude{II} = M'\drawMagnitude{II} - m'\drawMagnitude{II} = (M' - m') \drawMagnitude{II}$\\
+и $\drawMagnitude{III} - m'\drawMagnitude{IV} = M'\drawMagnitude{IV} - m'\drawMagnitude{IV} = (M' - m') \drawMagnitude{IV}$.
+
+Значит, $(M' - m') \drawMagnitude{II}$ и $(M' - m') \drawMagnitude{IV}$ равнократны \drawMagnitude{II} и \drawMagnitude{IV} и равны \drawMagnitude{II} и \drawMagnitude{IV}, когда $M' - m' = 1$.
+
+$\therefore$ Если две величины… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
 
 \stopbook
 
