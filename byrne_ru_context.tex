@@ -7052,6 +7052,408 @@ draw byLabelsOnCircle(A, B, C, D, E)(O);
 \qed
 \stopProposition
 
+\startProposition[title={Предл. XII. Задача},reference=prop:IV.XII]
+\defineNewPicture{
+pair B, C, D, G, H, K, L, M, F;
+numeric r[];
+r1 := 5/2u;
+F := (0, 0);
+G := (dir(90+0/5(360))*r1) shifted F;
+H := (dir(90+1/5(360))*r1) shifted F;
+K := (dir(90+2/5(360))*r1) shifted F;
+L := (dir(90+3/5(360))*r1) shifted F;
+M := (dir(90+4/5(360))*r1) shifted F;
+B := 1/2[H, K];
+C := 1/2[K, L];
+D := 1/2[L, M];
+r2 := abs(F-B);
+draw byAngle(B, F, K, byred, 0);
+draw byAngle(K, F, C, byyellow, 0);
+draw byAngle(C, F, L, byblue, 0);
+draw byAngle(L, F, D, byred, 0);
+draw byAngle(F, K, B, byyellow, 1);
+draw byAngle(C, K, F, black, 0);
+draw byAngle(F, C, K, byblue, 1);
+draw byAngle(L, C, F, byblue, 1);
+draw byAngle(F, L, C, black, 0);
+draw byAngle(D, L, F, black, 1);
+draw byLine(F, K, byblue, 0, 0);
+draw byLine(F, C, black, 1, 0);
+draw byLine(F, L, black, 0, 0);
+byLineDefine(F, B, byred, 1, 0);
+byLineDefine(F, D, byyellow, 1, 0);
+draw byNamedLineSeq(0)(FB,FD);
+byLineDefine(G, H, black, 0, 0);
+byLineDefine(H, B, byblue, 1, 0);
+byLineDefine(B, K, black, 0, 0);
+byLineDefine(K, C, byred, 0, 0);
+byLineDefine(C, L, byyellow, 0, 0);
+byLineDefine(L, M, black, 0, 0);
+byLineDefine(M, G, black, 0, 0);
+draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
+draw byCircleR(F, r2, byred, 0, 0, -1)(F);
+draw byLabelsOnPolygon(M, D, L, C, K, B, H, G)(2, 0);
+draw byLabelsOnPolygon(B, F, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{коло}{данного круга \drawCircle[middle][1/4]{F} описать равностороний и равноугольный пятиугольник.}
+
+Проведем пять касательных через вершины любого правильного пятиугольника вписанного в круг \circleF\ \inprop[prop:III.XVII].
+
+Эти пять касательных и будут образовывать искомый пятиугольник.
+
+\startCenterAlign
+Проведем
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawProportionalLine{FB}}
+\nointerlineskip\hbox{\drawProportionalLine{FK}}
+\nointerlineskip\hbox{\drawProportionalLine{FC}}
+\nointerlineskip\hbox{\drawProportionalLine{FL}}
+\nointerlineskip\hbox{\drawProportionalLine{FD}}
+}\right.$.\\
+В \drawLine{FB,FK,BK} и \drawLine{FK,FC,KC}\\
+$\drawProportionalLine{BK} = \drawProportionalLine{KC}$\\
+$\drawProportionalLine{FC} = \drawProportionalLine{FB}$, и \drawProportionalLine{FK} общая.\\
+$\therefore \drawAngle{FKB} = \drawAngle{CKF}$ и $\therefore \drawAngle{BFK} = \drawAngle{KFC}$ \inprop[prop:I.VIII]\\
+$\therefore \drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$, и $\drawAngle{BFK,KFC} = \mbox{ дважды } \drawAngle{KFC}$.\\
+Таким же образом можно показать, что\\
+$\drawAngle{FLC,DLF} = \mbox{ дважды } \drawAngle{FLC}$, и $\drawAngle{CFL,LFD} = \mbox{ дважды } \drawAngle{CFL}$.\\
+
+Но $\drawAngle{BFK,KFC} = \drawAngle{CFL,LFD}$ \inprop[prop:III.XXVII],\\
+$\therefore$ и их половины $\drawAngle{KFC} = \drawAngle{CFL}$, а также $\drawAngle{FCK} = \drawAngle{LCF}$,\\
+и \drawProportionalLine{FC} общая.
+
+$\therefore \drawAngle{CKF} = \drawAngle{FLC}$ и $\drawProportionalLine{KC} = \drawProportionalLine{CL}$,\\
+$\therefore \drawProportionalLine{KC,CL} = \mbox{ дважды } \drawProportionalLine{KC}$;
+
+Таким же образом можно показать, что $\drawProportionalLine{BK,HB} = \mbox{ дважды } \drawProportionalLine{BK}$,\\
+но $\drawProportionalLine{BK} = \drawProportionalLine{KC}$
+
+$\therefore \drawProportionalLine{BK,HB} = \drawProportionalLine{KC,CL}$;
+\stopCenterAlign
+
+Так же можно показать, что остальные стороны равны и, следовательно, пятиугольник равносторонний, так же он и равноугольный, поскольку
+
+\startCenterAlign
+$\drawAngle{FLC,DLF} = \mbox{ дважды } \drawAngle{FLC}$\\ 
+и $\drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$,\\
+и сделовательно $ \drawAngle{CKF} = \drawAngle{FLC}$,\\
+$\therefore \drawAngle{FLC,DLF} = \drawAngle{FKB,CKF}$.
+\stopCenterAlign
+
+Так же можно показать, что и другие углы описанного пятиугольника равны.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XIII. Задача},reference=prop:IV.XIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, K, L, M;
+numeric r[];
+r1 := 5/2u;
+F := (0, 0);
+A := (dir(90+0/5(360))*r1) shifted F;
+B := (dir(90+1/5(360))*r1) shifted F;
+C := (dir(90+2/5(360))*r1) shifted F;
+D := (dir(90+3/5(360))*r1) shifted F;
+E := (dir(90+4/5(360))*r1) shifted F;
+G := 1/2[A, B];
+H := 1/2[B, C];
+K := 1/2[C, D];
+L := 1/2[D, E];
+M := 1/2[E, A];
+r2 := abs(F-G);
+draw byAngle(G, B, F, byyellow, 0);
+draw byAngle(F, B, H, byyellow, 0);
+draw byAngleWithName(F, H, C, black, 0)(H);
+draw byAngle(H, C, F, byblue, 0);
+draw byAngle(F, C, K, byblue, 0);
+draw byAngleWithName(C, K, F, black, 0)(K);
+draw byAngle(K, D, F, byred, 0);
+draw byAngle(F, D, E, byred, 0);
+draw byAngle(D, E, F, black, 1);
+draw byAngle(F, E, M, black, 1);
+draw byLine(F, G, black, 0, 1);
+draw byLine(F, M, black, 0, 1);
+draw byLine(F, A, black, 0, 1);
+draw byLine(F, H, byblue, 1, 0);
+draw byLine(F, K, byblue, 0, 0);
+draw byLine(F, C, black, 0, 0);
+draw byLine(F, D, byyellow, 1, 0);
+byLineDefine(F, B, byred, 0, 0);
+byLineDefine(F, E, byred, 1, 0);
+draw byNamedLineSeq(0)(FB,FE);
+byLineDefine(A, B, black, 0, 1);
+byLineDefine(B, H, black, 1, 0);
+byLineDefine(H, C, byyellow, 0, 0);
+byLineDefine(C, K, byyellow, 0, 0);
+byLineDefine(K, D, black, 1, 0);
+byLineDefine(D, E, black, 0, 1);
+byLineDefine(E, A, black, 0, 1);
+draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
+draw byCircle(F, H, byyellow, 0, 0, -1)(F);
+draw byLabelsOnPolygon(C, H, B, A, E, D, K)(0, 0);
+draw byLabelsOnPolygon(E, F, D)(2, -2);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{равноугольный и равносторонний пятиугольник вписать круг.}
+
+Пусть
+\drawLine[bottom]{EA,DE,KD,CK,HC,BH,AB}
+будет данным равноугольным и равносторонним пятиугольником, в который требуется вписать круг.
+
+\startCenterAlign
+Сделаем $\drawAngle{HCF} = \drawAngle{FCK}$, и $\drawAngle{FDE} = \drawAngle{KDF}$ \inprop[prop:I.IX]
+
+Проведем \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FB}, \drawUnitLine{FE}, и т. д.
+
+Поскольку $\drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, и \drawUnitLine{FC} общая обоим треугольникам\\
+\drawFromCurrentPicture{
+startTempScale(1/2);
+draw byNamedAngle(FBH,HCF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(FB,FC,HC,BH);
+stopAutoLabeling;
+stopTempScale;
+}
+и
+\drawFromCurrentPicture{
+startTempScale(1/2);
+draw byNamedAngle(FCK,KDF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(FC,FD,KD,CK);
+stopAutoLabeling;
+stopTempScale;
+};
+
+$\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ и $\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV]
+
+И поскольку $\drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ дважды } \drawAngle{KDF}$
+
+$\therefore \mbox{ дважды } \drawAngle{FBH}$, а значит \drawAngle{HCF,FCK} рассечен \drawUnitLine{FB} пополам.
+
+Так же можно показать, что \drawAngle{DEF,FEM} рассекается пополам \drawUnitLine{FE}, и оставшийся угол многоугольника рассекается таким же образом.
+
+Проведем \drawUnitLine{FK}, \drawUnitLine{FH}, и т. д. перпендикулярные к сторонам пятиугольника.
+
+Тогда в треугольниках
+\drawFromCurrentPicture{
+startTempScale(2/3);
+draw byNamedAngle(H,HCF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(FH,FC,HC);
+stopAutoLabeling;
+stopTempScale;
+}
+и
+\drawFromCurrentPicture{
+startTempScale(2/3);
+draw byNamedAngle(FCK,K);
+startAutoLabeling;
+draw byNamedLineSeq(0)(CK,FC,FK);
+stopAutoLabeling;
+stopTempScale;
+}\\
+получим $\drawAngle{HCF} = \drawAngle{FCK}$ (постр.), \drawUnitLine{FC} общая,\\
+and $\drawAngle{H} = \drawAngle{K} = \mbox{ прямому углу }$;
+
+$\therefore \drawUnitLine{FK} = \drawUnitLine{FH}$ \inprop[prop:I.XXVI]
+\stopCenterAlign
+
+Так же можно показать, что пять перпендикуляров к сторонам пятиугольника равны между собой.
+
+Опишем \drawCircle[middle][1/5]{F} с одним из перпендикуляров в качестве радиуса, это и будет искомый вписанный круг. Поскольку, если он не касается сторон пятиугольника, но сечет их, то прямая, проведенная через конец диаметра под прямым углом будет проходить внутри круга, что, как было показано \inprop[prop:III.XVI], невозможно.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XIV. Задача},reference=prop:IV.XIV]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+numeric r;
+r := 9/4u;
+F := (0, 0);
+A := (dir(90+0/5(360))*r) shifted F;
+B := (dir(90+1/5(360))*r) shifted F;
+C := (dir(90+2/5(360))*r) shifted F;
+D := (dir(90+3/5(360))*r) shifted F;
+E := (dir(90+4/5(360))*r) shifted F;
+draw byAngle(C, F, B, byblue, 0);
+draw byAngle(D, F, C, black, 1);
+draw byAngle(B, C, F, black, 0);
+draw byAngle(F, C, D, byyellow, 0);
+draw byAngle(C, D, F, byyellow, 0);
+draw byAngle(F, D, E, byred, 0);
+draw byLine(F, A, byyellow, 1, 0);
+draw byLine(F, C, byred, 1, 0);
+draw byLine(F, D, byblue, 1, 0);
+byLineDefine(F, B, black, 0, 0);
+byLineDefine(F, E, byyellow, 0, 0);
+draw byNamedLineSeq(0)(FB,FE);
+byLineDefine(A, B, black, 0, 1);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(C, D, byred, 0, 0);
+byLineDefine(D, E, black, 1, 0);
+byLineDefine(E, A, black, 0, 1);
+draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
+draw byCircleR(F, r, byred, 0, 0, 1)(F);
+draw byLabelsOnCircle(A, B, C, D, E)(F);
+draw byLabelsOnPolygon(A, F, E)(2, -1);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{коло}{данного равностороннего и равноугольного пятиугольника описать круг.}
+
+\startCenterAlign
+Рассечем пополам \drawAngle{BCF,FCD} и \drawAngle{CDF,FDE} с помощью \drawUnitLine{FC} и \drawUnitLine{FD}, и из точки их пересечения проведем \drawUnitLine{FE}, \drawUnitLine{FA} и \drawUnitLine{FB}.\\
+$\drawAngle{BCF,FCD} = \drawAngle{CDF,FDE}$,\\
+$\drawAngle{FCD} = \drawAngle{CDF}$,\\
+$\therefore \drawUnitLine{FD} = \drawUnitLine{FC}$ \inprop[prop:I.VI].\\
+И поскольку в
+\drawFromCurrentPicture{
+draw byNamedAngle(BCF);
+startAutoLabeling;
+draw byNamedLineSeq(0)(FB,FC,BC);
+stopAutoLabeling;
+}
+и
+\drawFromCurrentPicture{
+draw byNamedAngle(FCD);
+startAutoLabeling;
+draw byNamedLineSeq(0)(FC,FD,CD);
+stopAutoLabeling;
+},\\
+$\drawUnitLine{BC} = \drawUnitLine{CD}$, и \drawUnitLine{FC} общая,\\
+также и $\drawAngle{BCF} = \drawAngle{FCD}$.\\
+$\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ \inprop[prop:I.IV].
+
+Так же можно показать, что\\
+$\drawUnitLine{FA} = \drawUnitLine{FE} = \drawUnitLine{FB}$.\\
+И следовательно $\drawUnitLine{FA} = \drawUnitLine{FB} = \drawUnitLine{FC} = \drawUnitLine{FD} = \drawUnitLine{FE}$.
+\stopCenterAlign
+
+Таким образом, круг с центром в месте пересечения этих пяти линий с любой из них в качестве радиуса будет описывать данный пятиугольник.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XV. Задача},reference=prop:IV.XV]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H;
+numeric r;
+r := 9/4u;
+G := (0, 0);
+A := (dir(90)*r) shifted G;
+B := (dir(150)*r) shifted G;
+C := (dir(210)*r) shifted G;
+D := (dir(270)*r) shifted G;
+E := (dir(330)*r) shifted G;
+F := (dir(30)*r) shifted G;
+H := (dir(270)*r) shifted D;
+draw byAngle(A, G, F, black, -1);
+draw byAngle(B, G, A, black, -1);
+draw byAngle(C, G, B, black, -1);
+draw byAngle(D, G, C, byred, 0);
+draw byAngle(E, G, D, byblue, 0);
+draw byAngle(F, G, E, black, 0);
+draw byLine(D, H, byred, 0, 0);
+draw byLine(A, D, black, 0, 0);
+draw byLine(B, E, byyellow, 0, 0);
+draw byLine(C, F, byblue, 0, 0);
+draw byLine(A, B, black, 0, 0);
+draw byLine(B, C, black, 0, 0);
+draw byLine(C, D, black, 1, 0);
+draw byLine(D, E, byred, 1, 0);
+draw byLine(E, F, byblue, 1, 0);
+draw byLine(F, A, black, 0, 0);
+draw byCircle(D, G, byred, 0, 0, 0)(D);
+draw byCircleR(G, r, byyellow, 0, 0, 0)(G);
+byLineDefine(G, C, lineColor.CF, 0, 0);
+byLineDefine(G, D, lineColor.AD, 0, 0);
+byLineDefine(G, E, lineColor.BE, 0, 0);
+draw byLabelsOnCircle(A, B, F)(G);
+draw byLabelPoint(G, angle(A + F - 2G), 3);
+draw byLabelPoint(D, angle(D-G) + 45, 2);
+draw byLabelsOnPolygon(D, C, G)(2, 0);
+draw byLabelsOnPolygon(G, E, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{круг \drawCircle[middle][1/4]{G} вписать равносторонний и равноугольный шестиугольник.}
+
+На любой точке окружности опишем \drawCircle[middle][1/4]{D} проходящий через центр и проведем диаметры \drawUnitLine{AD}, \drawUnitLine{CF} и \drawUnitLine{BE}; проведем \drawUnitLine{CD}, \drawUnitLine{DE}, \drawUnitLine{EF}, и т. д., так и получим искомый шестиугольник вписанный в круг.
+
+Поскольку \drawUnitLine{GD} проходит через центры кругов
+\drawFromCurrentPicture{
+draw byNamedAngle(DGC);
+startAutoLabeling;
+draw byNamedLineSeq(0)(GC,GD,CD);
+stopAutoLabeling;
+}
+и
+\drawFromCurrentPicture{
+draw byNamedAngle(EGD);
+startAutoLabeling;
+draw byNamedLineSeq(0)(GD,GE,DE);
+stopAutoLabeling;
+}
+равносторонние треугольники, так как $\drawAngle{DGC} = \drawAngle{EGD} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], но $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \inprop[prop:I.XIII];
+
+$\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], и вертикальные углы равны между собой \inprop[prop:I.XV], и стоят на равных дугах \inprop[prop:III.XXVI], которые стагивают равные хорды \inprop[prop:III.XIX]. 
+И поскольку каждый из углов шестиугольника вдвое больше угла равностороннего треугольника, этот шестиугольник также равносторонний.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XVI. Задача},reference=prop:IV.XVI]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, O;
+numeric r;
+r := 9/4u;
+O := (0, 0);
+A := (dir(90 + 0*120)*r) shifted O;
+C := (dir(90 + 1*120)*r) shifted O;
+D := (dir(90 + 2*120)*r) shifted O;
+B := (dir(90 + 1*72)*r) shifted O;
+F := (dir(90 + 2*72)*r) shifted O;
+G := (dir(90 + 3*72)*r) shifted O;
+H := (dir(90 + 4*72)*r) shifted O;
+draw byLine(C, F, black, 1, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, F, byblue, 0, 0);
+byLineDefine(F, G, black, 0, 1);
+byLineDefine(G, H, black, 0, 1);
+byLineDefine(H, A, black, 0, 1);
+byLineDefine(A, C, byyellow, 0, 0);
+byLineDefine(C, D, black, 0, 1);
+byLineDefine(D, A, black, 0, 1);
+draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
+draw byNamedLineSeq(0)(AC,CD,DA);
+draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byLabelsOnCircle(A, B, C, F)(O);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{данный}{круг вписать равносторонний и равноугольный пятнадцатиугольник.}
+
+Пусть \drawUnitLine{AB} и \drawUnitLine{BF} будут сторонами правильного пятиугольника, вписанного в данный круг, а \drawUnitLine{AC} стороной вписанного правильного треугольника.
+
+\startCenterAlign
+\startformula
+\left.\vcenter{\hbox{дуга, стагиваемая} \hbox{\drawUnitLine{AB} и \drawUnitLine{BF}}}\right\} = \dfrac{2}{5} = \dfrac{6}{15} \left\{\vcenter{\hbox{всей} \hbox{окружности}}\right.
+\stopformula
+
+\startformula
+\left.\vcenter{\hbox{дуга, стягиваемая} \hbox{\drawUnitLine{AC}}}\right\} = \dfrac{1}{3} = \dfrac{5}{15} \left\{\vcenter{\hbox{всей} \hbox{окружности}}\right.
+\stopformula
+
+Их разность $ = \dfrac{1}{15}$
+\stopCenterAlign
+
+$\therefore$ дуга стягиваемая $\drawUnitLine{CF} = \dfrac{1}{15}$ всей окружности.
+
+А значит, если прямые, равные \drawUnitLine{CF}, вписать в круг \inprop[prop:IV.I], получим равносторонний и равноугольный пятнадцатиугольник вписанный в круг.
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext

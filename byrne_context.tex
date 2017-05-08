@@ -8193,6 +8193,8 @@ byLineDefine(L, M, black, 0, 0);
 byLineDefine(M, G, black, 0, 0);
 draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
 draw byCircleR(F, r2, byred, 0, 0, -1)(F);
+draw byLabelsOnPolygon(M, D, L, C, K, B, H, G)(2, 0);
+draw byLabelsOnPolygon(B, F, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe an equilateral pentagon about a given circle \drawCircle[middle][1/4]{F}.}
@@ -8253,7 +8255,7 @@ in the same manner it can be demonstrated that the other angles of the descried 
 \stopProposition
 
 \startProposition[title={Prop. XIII. prob.},reference=prop:IV.XIII]
-\defineNewPicture[1/2]{
+\defineNewPicture{
 pair A, B, C, D, E, F, G, H, K, L, M;
 numeric r[];
 r1 := 5/2u;
@@ -8298,16 +8300,14 @@ byLineDefine(D, E, black, 0, 1);
 byLineDefine(E, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
 draw byCircle(F, H, byyellow, 0, 0, -1)(F);
+draw byLabelsOnPolygon(C, H, B, A, E, D, K)(0, 0);
+draw byLabelsOnPolygon(E, F, D)(2, -2);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in a given equiangular and equilateral pentagon.}
 
 Let
-\drawFromCurrentPicture[bottom]{
-startTempScale(1/3);
-draw byNamedLineSeq(0)(EA,DE,KD,CK,HC,BH,AB);
-stopTempScale;
-}
+\drawLine[bottom]{EA,DE,KD,CK,HC,BH,AB}
 be a given equi\-an\-gu\-lar and equilateral pentagon; it is required to inscribe a circle in it.
 
 \startCenterAlign
@@ -8318,13 +8318,21 @@ Draw \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FB}, \drawUnitLine{FE},
 Because $\drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, and \drawUnitLine{FC} common to the two triangles
 
 \drawFromCurrentPicture{
+startTempScale(1/2);
 draw byNamedAngle(FBH,HCF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(FB,FC,HC,BH);
+stopAutoLabeling;
+stopTempScale;
 }
 and
 \drawFromCurrentPicture{
+startTempScale(1/2);
 draw byNamedAngle(FCK,KDF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(FC,FD,KD,CK);
+stopAutoLabeling;
+stopTempScale;
 };
 
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ and $\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV]
@@ -8341,17 +8349,21 @@ Then in the two triangles
 \drawFromCurrentPicture{
 startTempScale(2/3);
 draw byNamedAngle(H,HCF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(FH,FC,HC);
+stopAutoLabeling;
 stopTempScale;
 }
 and
 \drawFromCurrentPicture{
 startTempScale(2/3);
 draw byNamedAngle(FCK,K);
+startAutoLabeling;
 draw byNamedLineSeq(0)(CK,FC,FK);
+stopAutoLabeling;
 stopTempScale;
 }\\
-we have $\drawAngle{HCF} = \drawAngle{FCK}$ (const,), \drawUnitLine{FC} common,\\
+we have $\drawAngle{HCF} = \drawAngle{FCK}$ (const.), \drawUnitLine{FC} common,\\
 and $\drawAngle{H} = \drawAngle{K} = \mbox{ a right angle }$;
 
 $\therefore \drawUnitLine{FK} = \drawUnitLine{FH}$ \inprop[prop:I.XXVI]
@@ -8394,6 +8406,8 @@ byLineDefine(D, E, black, 1, 0);
 byLineDefine(E, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
 draw byCircleR(F, r, byred, 0, 0, 1)(F);
+draw byLabelsOnCircle(A, B, C, D, E)(F);
+draw byLabelsOnPolygon(A, F, E)(2, -1);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe a circle about a given equilateral and equiangular pentagon.}
@@ -8409,12 +8423,16 @@ $\therefore \drawUnitLine{FD} = \drawUnitLine{FC}$ \inprop[prop:I.VI];
 and since in
 \drawFromCurrentPicture{
 draw byNamedAngle(BCF);
+startAutoLabeling;
 draw byNamedLineSeq(0)(FB,FC,BC);
+stopAutoLabeling;
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(FCD);
+startAutoLabeling;
 draw byNamedLineSeq(0)(FC,FD,CD);
+stopAutoLabeling;
 },\\
 $\drawUnitLine{BC} = \drawUnitLine{CD}$, and \drawUnitLine{FC} common,\\
 also $\drawAngle{BCF} = \drawAngle{FCD}$;
@@ -8466,6 +8484,11 @@ draw byCircleR(G, r, byyellow, 0, 0, 0)(G);
 byLineDefine(G, C, lineColor.CF, 0, 0);
 byLineDefine(G, D, lineColor.AD, 0, 0);
 byLineDefine(G, E, lineColor.BE, 0, 0);
+draw byLabelsOnCircle(A, B, F)(G);
+draw byLabelPoint(G, angle(A + F - 2G), 3);
+draw byLabelPoint(D, angle(D-G) + 45, 2);
+draw byLabelsOnPolygon(D, C, G)(2, 0);
+draw byLabelsOnPolygon(G, E, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{T}{o}{inscribe an equilateral and equiangular hexagon in a given circle \drawCircle[middle][1/4]{G}.}
@@ -8475,12 +8498,16 @@ From any point in the circumference of the given circle describe \drawCircle[mid
 Since \drawUnitLine{GD} passes through the centres of the circles
 \drawFromCurrentPicture{
 draw byNamedAngle(DGC);
+startAutoLabeling;
 draw byNamedLineSeq(0)(GC,GD,CD);
+stopAutoLabeling;
 }
 and
 \drawFromCurrentPicture{
 draw byNamedAngle(EGD);
+startAutoLabeling;
 draw byNamedLineSeq(0)(GD,GE,DE);
+stopAutoLabeling;
 }
 are equilateral triangles, hence $\drawAngle{DGC} = \drawAngle{EGD} = \mbox{ one-third of } \drawTwoRightAngles$ \inprop[prop:I.XXXII] but $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \inprop[prop:I.XIII];
 
@@ -8514,6 +8541,7 @@ byLineDefine(D, A, black, 0, 1);
 draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
 draw byNamedLineSeq(0)(AC,CD,DA);
 draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byLabelsOnCircle(A, B, C, F)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in an equilateral and equiangular quindecagon in a given circle.}
