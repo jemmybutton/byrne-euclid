@@ -7898,6 +7898,313 @@ $\therefore$ Если две величины… и т. д.
 
 \vfill\pagebreak
 
+\startPropositionAZ[title={Предл. A. Теорема}, reference=prop:V.A]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byred, 0)(a);
+byMagnitudeSymbolDefine("square", black, 0)(b);
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(c);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(d);
+byMagnitudeDefine(I, 0, false)(1)(a);
+byMagnitudeDefine(II, 0, false)(1)(b);
+byMagnitudeDefine(III, 0, false)(1)(c);
+byMagnitudeDefine(IV, 0, false)(1)(d);
+byMagnitudeDefine(dI, 0, false)(2)(a);
+byMagnitudeDefine(dII, 0, false)(2)(b);
+byMagnitudeDefine(dIII, 0, false)(2)(c);
+byMagnitudeDefine(dIV, 0, false)(2)(d);
+}
+\problemNP{Е}{сли}{первая величина относится ко второй так же, как третья к четвертой, то если первая больше второй, то третья также больше четвертой,
+если равна, равна, а если меньше, то меньше.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$; следовательно \indef[def:V.V], если $\drawMagnitude{dI} > \drawMagnitude{dII}$, то $\drawMagnitude{dIII} > \drawMagnitude{dIV}$;
+
+но если $\drawMagnitude{I} > \drawMagnitude{II}$, то $\drawMagnitude{dI} > \drawMagnitude{dII}$ и $\drawMagnitude{dIII} > \drawMagnitude{dIV}$,\\
+и $\therefore \drawMagnitude{III} > \drawMagnitude{IV}$.
+
+Точно так же, если $\drawMagnitude{I} =, \mbox{ или } < \drawMagnitude{II}$, то  $\drawMagnitude{III} =, \mbox{ или } < \drawMagnitude{IV}$.
+
+$\therefore$ Если первая величина… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\startDefinition[title={Определение XIV},reference=def:V.XIV]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[black]{B}}
+\def\varC{\color[byblue]{C}}
+\def\varD{\color[byyellow]{D}}
+В геометрии используется понятие \quotation{переворачивание}, когда есть четыре пропорциональных величины, утверждается, что вторая к первой относится так же, как четвертая к третьей.
+
+Пусть $\varA : \varB :: \varC : \varD$, тогда, \quotation{перевернув} отношение можно заключить, что $\varB : \varA :: \varD : \varC$
+\stopDefinition
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. B. Теорема}, reference=prop:V.B]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byred, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+}
+\problemNP{Е}{сли}{четыре величины пропорциональны, они будут пропорциональны и если их перевернуть.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+тогда, перевернув, получим $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
+
+Если $M \magnitudeI < m \magnitudeII$, то $M \magnitudeIII < m \magnitudeIV$ \indef[def:V.V].
+
+Пусть $M \magnitudeI < m \magnitudeII$, то есть, $m \magnitudeII > M \magnitudeI$,\\
+$\therefore M \magnitudeIII < m \magnitudeIV$, или, $m \magnitudeIV > M \magnitudeIII$;
+
+$\therefore$ если $m \magnitudeII > M \magnitudeI$, то $m \magnitudeIV > M \magnitudeIII$.
+
+Так же можно показать, что,\\
+если $m \magnitudeII = \mbox{ или } < M \magnitudeI$,\\
+то $m \magnitudeIV =, \mbox{ или } < M \magnitudeIII$;
+
+и, следовательно \indef[def:V.V], мы заключаем,\\
+что $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
+
+$\therefore$ Если четыре величины пропорциональны… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. C. Теорема}, reference=prop:V.C]
+\defineNewPicture{
+byMagnitudeSymbolDefine("square", byblue, 0)(i);
+byMagnitudeDefine(I, 0, false)(2, 2)(i);
+byMagnitudeSymbolDefine("circle", black, 0)(II);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(iii);
+byMagnitudeDefine(III, 0, false)(2, 2)(iii);
+byMagnitudeSymbolDefine("wedgeUp", byred, 0)(IV);
+}
+\problemNP{Е}{сли}{первая величина столько же раз кратна второй, или составляет такую же ее часть, как и третья — четвертой, то первая относится ко второй, как третья к четвертой.}
+
+\startCenterAlign
+Пусть первая величина \drawMagnitude{I} будет столько же раз кратна второй \drawMagnitude{II}, \\
+сколько третья \drawMagnitude{III} четвертой \drawMagnitude{IV}.
+
+Тогда $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
+
+Возьмем $M \magnitudeI$, $m \magnitudeII$, $M \magnitudeIII$, $m \magnitudeIV$.
+
+Поскольку \magnitudeI\ столько же раз кратна \magnitudeII \\
+сколько \magnitudeIII кратна \magnitudeIV\ (гип.),
+
+и $M \magnitudeI$ столько же раз кратна \magnitudeI \\
+столько $M \magnitudeIII$ кратна \magnitudeIII,
+
+$\therefore$ (предл.),\\
+$M \magnitudeI$ столько же раз кратна \magnitudeII \\
+сколько $M \magnitudeIII$ кратна \magnitudeIV.
+
+Следовательно, если $M \magnitudeI$ больше раз кратна \magnitudeII, чем $m \magnitudeII$, \\
+то $M \magnitudeIII$ больше раз кратна \magnitudeIV, чем $m \magnitudeIV$.
+
+То есть, если $M \magnitudeI$ больше $m \magnitudeII$, то $M \magnitudeIII$ больше $m \magnitudeIV$.
+
+Так же можно показать, что если $M \magnitudeI$ равна $m \magnitudeII$, то $M \magnitudeIII$ равна $m \magnitudeIV$.
+
+И, в общем виде, если $M \magnitudeI >, = \mbox{ или } < m \magnitudeII$\\
+то и $M \magnitudeIII >, = \mbox{ или } < m \magnitudeIV$.
+
+$\therefore$ \indef[def:V.V],\\
+$\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
+
+Теперь, пусть \magnitudeII будет такой же частью от \magnitudeI \\
+какая \magnitudeIV\ от \magnitudeIII.
+
+В этом случай так же $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
+
+Поскольку \magnitudeII\ такая же часть от \magnitudeI\ что и \magnitudeIV\ от \magnitudeIII,
+
+следовательно \magnitudeI\ столько же раз кратна \magnitudeII, \\
+сколько \magnitudeIII\ кратна \magnitudeIV.
+
+Следовательно, как и в предыдущем случае, \\
+$\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$;
+
+и $\therefore \magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ \inprop[prop:V.B] \\
+
+$\therefore$ Если первая величина… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. D. Теорема}, reference=prop:V.D]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byyellow, 0)(i);
+byMagnitudeSymbolDefine("square", black, 0)(ii);
+byMagnitudeSymbolDefine("rhombus", byred, 0)(iii);
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(iv);
+byMagnitudeSymbolDefine("semicircleDown", byred, 1)(va);
+byMagnitudeSymbolDefine("semicircleUp", byred, 1)(vb);
+byMagnitudeSymbolDefine("sectorDown", black, 1)(via);
+byMagnitudeSymbolDefine("sectorUp", black, 1)(vib);
+byMagnitudeDefine(I, 0, false)(1, 2)(i);
+byMagnitudeDefine(II, 0, false)(1)(ii);
+byMagnitudeDefine(III, 0, false)(2, 2)(iii);
+byMagnitudeDefine(IV, 0, false)(1)(iv);
+byMagnitudeDefine(V, 0, false)(1, 2)(va, vb);
+byMagnitudeDefine(VI, 0, false)(2, 2)(via, vib);
+}
+\problemNP{Е}{сли}{первая величина относится ко второй так, как третья к четвертой, и если первая кратна второй или составляет ее часть, то и третья к четвертой столько же раз кратна или составляет такую же ее часть.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+и если \magnitudeI\ будет кратна \magnitudeII,\\
+то \magnitudeIII\ будет столько же раз кратна \magnitudeIV.
+
+\unprotect
+\ \hfill\vbox{\halign{\hfil # \hfil & \hfil # \hfil & \hfil # \hfil & \hfil # \hfil\cr
+{\tfxx первая} & {\tfxx вторая} & {\tfxx третья} & {\tfxx четвертая} \cr
+\magnitudeI\ & \magnitudeII\ & \magnitudeIII\ & \magnitudeIV \cr
+&\drawMagnitude{V}\ &\drawMagnitude{VI}\ & \cr
+}}\hfill\
+\protect
+
+Возьмем  $\magnitudeV = \magnitudeI$.
+
+Сколько раз \magnitudeI\ кратна \magnitudeII\\
+возьмем \magnitudeVI\ столько же раз кратную \magnitudeIV, \\
+тогда, поскольку $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\
+и мы взяли равнократные второй и четвертой, \magnitudeI\ и \magnitudeVI,  следовательно \inprop[prop:V.IV]\\
+ $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, но (постр.),\\
+ $\magnitudeI = \magnitudeV \therefore$ \inprop[prop:V.A] $\magnitudeIII = \magnitudeVI$\\
+ и \magnitudeVI\ столько же раз кратна \magnitudeIV\\
+ сколько \magnitudeI\ кратна \magnitudeII.
+
+Теперь, пусть $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$,\\
+а также \magnitudeII\ составляет часть \magnitudeI;\\
+тогда \magnitudeIV\ будет составлять такую же часть \magnitudeIII.
+
+Если перевернуть, получим $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$,\\
+но \magnitudeII\ составляет часть \magnitudeI;\\
+то есть, \magnitudeI\ кратна \magnitudeII;\\
+$\therefore$ как было показано в пердыдущем случае, \magnitudeIII\ столько же раз кратна \magnitudeIV,
+то есть, \magnitudeIV\ составляет такую же часть от \magnitudeIII\\
+какую \magnitudeII\ от \magnitudeI.
+
+$\therefore$ Если первая величина относится ко второй… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. VII. Теорема}, reference=prop:V.VII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byred, 0)(I);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+}
+\problemNP{Р}{авные}{величины имеют одно отношение к какой-либо величине, и эта величина имеет такое же отношение к равным величинам.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} = \drawMagnitude{II}$\\
+и \drawMagnitude{III} будет какой-либо другой величиной.\\
+Тогда $\magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ и $\magnitudeIII : \magnitudeI = \magnitudeIII : \magnitudeII$.
+
+Поскольку $\magnitudeI = \magnitudeII$,\\
+$\therefore M \magnitudeI = M \magnitudeII$;
+
+$\therefore$ Если $M \magnitudeI >, = \mbox{ или } < m \magnitudeIII$,\\
+то $M \magnitudeII >, = \mbox{ или } < m \magnitudeIII$,\\
+и $\therefore \magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ \indef[def:V.V].
+
+Из вышеизложенного очевидно, что\\
+если $m \magnitudeIII >, = \mbox{ или } < M \magnitudeI$,\\
+то $m \magnitudeIII >, = \mbox{ или } < M \magnitudeII$\\
+$\therefore \magnitudeIII : \magnitudeI = \magnitudeIII : \magnitudeII$ \indef[def:V.V].
+
+$\therefore$ Равные величины… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение VII.}, reference=def:V.VII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byred, 0)(i);
+byMagnitudeSymbolDefine("square", byyellow, 0)(ii);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(iii);
+byMagnitudeSymbolDefine("wedgeDown", black, 0)(iv);
+byMagnitudeDefine(I, 0, false)(5)(i);
+byMagnitudeDefine(II, 0, false)(4)(ii);
+byMagnitudeDefine(III, 0, false)(5)(iii);
+byMagnitudeDefine(IV, 0, false)(4)(iv);
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(Ia);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(IIa);
+byMagnitudeSymbolDefine("square", byblue, 0)(IIIa);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IVa);
+}
+
+Когда из равнократных четырех величин (взятых как в пятом определении), кратное первой больше кратного второй, а кратное третьей не больше кратного четвертой, то говорят, что первая имеет большее отношение ко второй, чем третья к четвертой, и наоборот, говорят что третья имеет к четвертой меньшее отношение, чем первая ко второй.
+
+Если из равнократных четырех величин, наподобие тех, что сравнивались в пятом определении, мы найдем, что $\drawMagnitude{I} > \drawMagnitude{II}$, но $\drawMagnitude{III} = \mbox{ или } > \drawMagnitude{IV}$, или же мы найдем, некоторая определенная кратность $M'$ первой и третьей, и другая кратность $m'$ второй и четвертой, такие, что $M'$ раз первая величина $> m'$ раз вторая, но $M'$ раз третья не $> m'$ раз четвертой, т. е. $= \mbox{ или } < m'$ раз четвертой, то про первую говоря, что ее отношение к третьей больше, чем у третьей к четвертой, или что третья к четвертой в таких обстоятельствах имеет меньшее отношение, чем первая ко второй, однако некоторые другие равнократные могут показать, что четыре величины пропорциональны.
+
+В дальнейшем это определение будет иметь следующий вид:
+
+\startCenterAlign
+Если $M' \drawMagnitude{Ia} > m' \drawMagnitude{IIa}$, но $M' \drawMagnitude{IIIa} = \mbox{ or } < m' \drawMagnitude{IVa}$,\\
+то $\magnitudeIa : \magnitudeIIa > \magnitudeIIIa : \magnitudeIVa$.
+\stopCenterAlign
+
+В приведенном выражении $M'$ и $m'$ представляют собой определенные кратности, в отличие от $M$ и $m$ в пятом определении, которые могут быть любыми кратностями. Также нужно иметь в виду, что \magnitudeIa, \magnitudeIIa, \magnitudeIIIa, и подобные обозначения, всего лишь представляют геометрические величины.
+
+Арифметически это можно представить так:
+
+Возьмем четыре числа $\color[byred]{8}$, $\color[black]{7}$, $\color[byblue]{10}$, and $\color[byyellow]{9}$.
+
+\startCenterAlign
+
+\unprotect
+\ \hfill\vbox{
+\offinterlineskip
+\tabskip=0pt
+\halign{\vrule height1.9ex depth0.9ex
+	\hfil \color[byred] { # } \hfil &
+	\hfil \color[black] { # } \hfil &
+	\hfil \color[byblue] { # } \hfil &
+	\hfil \color[byyellow] { # } \hfil \vrule \cr
+	\noalign{\hrule}
+	\color[black]{первое} &
+	\color[black]{второе} &
+	\color[black]{третье} &
+	\color[black]{четвертое} \cr
+	8 	& 7 		& 10 	& 9 \cr
+	\noalign{\hrule}
+	16 	& 14 	& 20 	& 18 \cr
+	24 	& 21 	& 30 	& 27 \cr
+	32 	& 28 	& 40 	& 36 \cr
+	40 	& 35 	& 50 	& 45 \cr
+	48 	& 42 	& 60 	& 54 \cr
+	56 	& 49 	& 70 	& 63 \cr
+	64 	& 56 	& 80 	& 72 \cr
+	72 	& 63 	& 90 	& 81 \cr
+	80 	& 70 	& 100 	& 90 \cr
+	88 	& 77 	& 110 	& 99 \cr
+	96 	& 84 	& 120 	& 108 \cr
+	104 	& 91 	& 130 	& 117 \cr
+	112 	& 98 	& 140 	& 126 \cr
+	\color[black]{ и т. д.} &
+	\color[black]{ и т. д.} &
+	\color[black]{ и т. д.} &
+	\color[black]{ и т. д.} \cr
+	\noalign{\hrule}
+}}\hfill\
+\protect
+\stopCenterAlign
+
+Среди приведенных кратностей мы найдем что $\color[byred]{16} > \color[black]{14}$ и $\color[byblue]{20} > \color[byyellow]{18}$. То есть дважды первое больше дважды второго и дважды третье больше дважды четвертого. И $\color[byred]{16} < \color[black]{21}$ и $\color[byblue]{20} < \color[byyellow]{27}$. То есть дважды первое меньше трижды второго и дважды третье меньше трижды четвертого. И среди тех же кратностей мы найдем что $\color[byred]{72} > \color[black]{56}$ и $\color[byblue]{90} > \color[byyellow]{72}$. То есть 9 раз первое больше 8 раз второго и 9 раз третье больше 8 раз четвертого. Можно выбрать много других равнократных, которые будут показывать, что $\color[byred]{8}$, $\color[black]{7}$, $\color[byblue]{10}$, и $\color[byyellow]{9}$ пропорциональны, тогда как они таковыми не являются, поскольку мы можем найти кратное первого $>$ кратного второго, но столько же раз кратное, сколько первого, третьего не $>$ столько же раз кратного, сколько второго, четвертого. Например, 9 раз первое $>$ 10 раз второго, но 9 раз третье не $>$ 10 раз четвертого, то есть $\color[byred]{72} > \color[black]{70}$, но $\color[byblue]{90} \mbox{ не } > \color[byyellow]{90}$, или 8 раз первое $>$ 9 раз второго, но 8 раз третье не $>$ 9 раз четвертого, то есть $\color[byred]{64} > \color[black]{63}$, но $\color[byblue]{80} \mbox{ не } > \color[byyellow]{81}$. Когда можно найти такие кратные, говорят, что первое $\color[byred]{(8)}$ имеет ко второму $\color[black]{(7)}$ большее отношение, чем третье $\color[byblue]{(10)}$ к четвертому $\color[byyellow]{(9)}$, и наоборот, третье $\color[byblue]{(10)}$ имеет к четвертому $\color[byyellow]{(9)}$ меньшее отношение, чем первое $\color[byred]{(8)}$ ко второму $\color[black]{(7)}$.
+\stopDefinition
+
+\vfill\pagebreak
+
 \stopbook
 
 \stoptext
