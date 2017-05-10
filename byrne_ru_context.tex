@@ -8205,6 +8205,229 @@ byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IVa);
 
 \vfill\pagebreak
 
+\startProposition[title={Предл. VIII. Теорема}, reference=prop:V.VIII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("miniTriangleUp", black, 0)(Ia);
+byMagnitudeSymbolDefine("square", byred, 0)(Ib);
+byMagnitudeDefine(I, 0, false)(1, 1)(Ia, Ib);
+byMagnitudeSymbolDefine("square", byyellow, 0)(II);
+byMagnitudeSymbolDefine("circle", byblue, 0)(III);
+}
+\problemNP{И}{з}{неравных величин к одной и той же величине большая имеет большее отношение, чем меньшая, и эта величина имеет большее отношение к меньшей, чем к большей.}
+
+\startCenterAlign
+Возьмем две неравных величины \drawMagnitude[bottom]{I} и \drawMagnitude{II},\\
+и какую-либо другую \drawMagnitude{III}.
+\stopCenterAlign
+
+Докажем, что \magnitudeI, большая из двух неравных величин, имеет большее отношение к \magnitudeIII, чем меньшая \magnitudeII, то есть, $\magnitudeI : \magnitudeIII > \magnitudeII : \magnitudeIII$.
+
+\startCenterAlign
+Возьмем $M' \magnitudeI$, $m' \magnitudeIII$, $M' \magnitudeII$, $m' \magnitudeIII$;\\
+такие, что $M' \drawMagnitude{Ia}$ и $M' \drawMagnitude{Ib}$ обе $>$ \magnitudeIII;\\
+также возьмем $m' \magnitudeIII$ наименьшее кратное \magnitudeIII,\\
+при котором $m' \magnitudeIII > M' \magnitudeII = M' \magnitudeIb$;
+
+$\therefore M' \magnitudeII \mbox{ не } > m' \magnitudeIII$,\\
+но $M' \magnitudeI > m' \magnitudeIII$,\\
+поскольку $m' \magnitudeIII$, первое кратное, которое $> M' \magnitudeIb$, в то время как $(m' - 1)\magnitudeIII$ или $m' \magnitudeIII - \magnitudeIII$ не $> M' \magnitudeIa$,
+
+$\therefore m' \magnitudeIII - \magnitudeIII + \magnitudeIII$ должна быть $< M' \magnitudeIb + M' \magnitudeIa$;\\
+то есть, $m' \magnitudeIII$ должна быть $< M' \magnitudeI$;
+
+$\therefore M' \magnitudeI > m' \magnitudeIII$, но, как было показано выше, $M' \magnitudeII \mbox{ не } > m' \magnitudeIII$, следовательно \indef[def:V.VII]  \magnitudeI\ имеет к \magnitudeIII\ большее отношение, чем $\magnitudeII : \magnitudeIII$.
+
+Теперь докажем, что у \magnitudeIII\ большее отношение к меньшей величине \magnitudeII, чем к большей \magnitudeI,\\
+или, $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$.
+
+Возьмем $m' \magnitudeIII$, $M' \magnitudeII$, $m' \magnitudeIII$ and $M' \magnitudeI$,\\
+как и в первом случае такие, что\\
+$M' \magnitudeIa$ и $M' \magnitudeIb$ будут обе $> \magnitudeIII$, и $m' \magnitudeIII$ будет наименьшим кратным \magnitudeIII, которое становится больше $M' \magnitudeIb = M' \magnitudeII$.
+
+$\therefore m' \magnitudeIII - \magnitudeIII \mbox{ не } > M' \magnitudeIb$,\\
+и \magnitudeIII\ не $> M' \magnitudeIa$, следовательно\\
+$m' \magnitudeIII - \magnitudeIII + \magnitudeIII  < M' \magnitudeIb + M' \magnitudeIa$;
+
+$\therefore m' \magnitudeIII < M' \magnitudeI$, и $\therefore$ \indef[def:V.VII], \magnitudeIII\ имеет к \magnitudeII\ большее отношение, чем \magnitudeIII\ к \magnitudeI.
+
+$\therefore$ Из неравных величин… и т. д.
+\stopCenterAlign
+
+Инструмент, использованный в этом предложении для нахождения среди кратностей величин, взятых как в пятом определении, таких, при которых певая больше кратной второй, но такая же кратная третьей, как была взята первой, не больше такой же кратной четвертой, какая была взята второй, может быть проиллюстрирована численно так:
+
+Число $\color[black]{9}$ имеет большее отношение к $\color[byblue]{7}$, чем $\color[byyellow]{8}$ к $\color[byblue]{7}$, то есть $\color[black]{9} : \color[byblue]{7} > \color[byyellow]{8} : \color[byblue]{7}$, или $\color[byred]{8} + \color[black]{1} : \color[byblue]{7} > \color[byyellow]{8} : \color[byblue]{7}$.
+
+Кратное $\color[black]{1}$, которое первым становится больше $\color[byblue]{7}$ это $8$ раз, следовательно, мы можем умножить первое и третье на $8$, $9$, $10$ или любое другое число, в данном случае умножим первое и третье на $8$ и получим $\color[byred]{64} + \color[black]{8}$ и $\color[byyellow]{64}$, теперь первое кратное $\color[byblue]{7}$, которое больше $64$ это $10$ раз, теперь, умножая второе и четвертое на $10$ получим $\color[byblue]{70}$ и $\color[byblue]{70}$, теперь, расположив эти кратные получим
+
+\startCenterAlign
+\unprotect
+\ \hfill\vbox{
+\offinterlineskip\lineskip3pt
+\halign{\hfil # \hfil & \hfil # \hfil & \hfil # \hfil & \hfil # \hfil\cr
+{\tfxx 8 раз} & {\tfxx 10 раз} & {\tfxx 8 раз} & {\tfxx 10 раз} \cr
+{\tfxx первое} & {\tfxx второе} & {\tfxx третье} & {\tfxx четвертое} \cr
+$\color[byred]{64} + \color[black]{8}$ & $\color[byblue]{70}$ & $\color[byyellow]{64}$ & $\color[byblue]{70}$ \cr
+}}\hfill\
+\protect
+\stopCenterAlign
+
+Следовательно $\color[byred]{64} + \color[black]{8}$, или $72$ больше чем $\color[byblue]{70}$, но $\color[byyellow]{64}$ не больше чем $\color[byblue]{70}$, $\therefore$ \indef[def:V.VII] $\color[black]{9}$ имеет большее отношение к $\color[byblue]{7}$, чем $\color[byyellow]{8}$ к $\color[byblue]{7}$.
+
+Приведенное выше — всего лишь иллюстрация к дальнейшей демонстрации, так как это свойство можно легко показать как для этих, так и для других чисел следующим образом: поскольку, если предыдущее содержит последующее большее число раз, чем другое предыдущее содержит свое последующее, или  составленная дробь с предыдущим в качестве числителя и последующим в качестве знаменателя больше другой дроби, составленной из другого предыдущего в качестве числителя и его последующего в качестве знаменателя, отношение первого предыдщего к его последующему больше, чем отношение второго предыдущего к его последующему.
+
+Так, отношение числа $9$ к числу $7$ больше отношения числа $8$ к числу $7$, поскольку $\frac{9}{7}$ больше чем $\frac{8}{7}$.
+
+Теперь, $17 : 19$ большее отношение, чем $13 : 15$, поскольку $\frac{17}{19} = \frac{17 \times 15}{19 \times 15} = \frac{255}{185}$, и $\frac{13}{15} = \frac{13 \times 19}{15 \times 19} = \frac{247}{185}$, отсюда очевидно, что $\frac{255}{185}$ больше чем $\frac{247}{185}$, $\therefore \frac{17}{19}$ больше чем $\frac{13}{15}$, и, согласно показанному выше, $17$ имеет к $19$ большее отношение, чем $13$ к $15$.
+
+В общем виде это можно выразить так:
+
+Если $\frac{A}{B}$ больше $\frac{C}{D}$, говорят, что $A$ имеет к $B$ большее отношение, чем $C$ к $D$. Если $\frac{A}{B}$ равно $\frac{C}{D}$, то $A$ имеет к $B$ такое же отношение, как $C$ к $D$. И если $\frac{A}{B}$ меньше чем $\frac{C}{D}$, говорят, что $A$ имеет к $B$ меньшее отношение, чем $C$ к $D$.
+
+Учащийся должен в совершенстве освоить все, до этого предложения, прежде чем двигаться дальше, чтобы хорошо понять последующие предложения этой книги. Так что мы советуем учащемуся медленно перечитать все снова, тщательно осмыслить каждый шаг в процессе, и особо предостерегаем от порочной практики полагаться исключительно на память. Следуя этим указаниям, он найдет части, обычно представляющие значительные трудности, совсем несложными, продолжая изучение этой книги.
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. IX. Теорема}, reference=prop:V.IX]
+\defineNewPicture{
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(I);
+byMagnitudeSymbolDefine("circle", byred, 0)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+}
+\problemNP{В}{еличины,}{имеющие одинаковое отношение к одному и тому же, равны между собой, и те, к которым одно и то же имеет равные отношения, также равны.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{III} :: \drawMagnitude{II} : \drawMagnitude{III}$, тогда $\magnitudeI = \magnitudeII$.
+
+Поскольку, если нет, пусть $\magnitudeI > \magnitudeII$,\\
+тогда $\magnitudeI : \magnitudeIII > \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII],
+что невозможно, поскольку противоречит гипотезе.\\
+$\therefore \magnitudeI \mbox{ не } > \magnitudeII$.
+
+Таким же образом можно показать, что\\
+$\magnitudeII \mbox{ не } > \magnitudeI$,\\
+$\therefore \magnitudeI = \magnitudeII$.
+
+Теперь, пусть $\magnitudeIII : \magnitudeI :: \magnitudeIII : \magnitudeII$,\\
+тогда $\magnitudeI = \magnitudeII$.
+
+Поскольку (перевернув) $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIII$,\\
+следовательно, как и впервом случае, $\magnitudeI = \magnitudeII$.\\
+$\therefore$ Величины, имеющие одинаковое отношение... и т. д.
+\stopCenterAlign
+
+Иначе это можно показать так:
+
+Пусть $\color[byyellow]{A} : \color[byblue]{B} = \color[byyellow]{A} : \color[byred]{C}$, тогда $\color[byblue]{B} = \color[byred]{C}$, поскольку, в виде дробей $\frac{\color[byyellow]{A}}{\color[byblue]{B}} = \frac{\color[byyellow]{A}}{\color[byred]{C}}$, и числитель одного равен числителю другого, следовательно, знаменатели этих дробей равны, то есть $\color[byblue]{B} = \color[byred]{C}$.
+
+Теперь, если $\color[byblue]{B} : \color[byyellow]{A} = \color[byred]{C} : \color[byyellow]{A}$, $\color[byblue]{B} = \color[byred]{C}$. Поскольку $\frac{\color[byblue]{B}}{\color[byyellow]{A}} = \frac{\color[byred]{C}}{\color[byyellow]{A}}$, $\color[byblue]{B} \mbox{ должна быть } = \color[byred]{C}$.
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. X. Теорема}, reference=prop:V.X]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
+byMagnitudeSymbolDefine("circle", byred, 0)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+}
+\problemNP{И}{з}{величин, имеющих отношение к одному и тому же, больше та, которая имеет большее отношение, а та, к которой одно и то же имеет большее отношение, является меньшей из двух.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{III} > \drawMagnitude{II} : \drawMagnitude{III}$, тогда $\magnitudeI > \magnitudeII$.
+
+Поскольку, если нет, пусть $\magnitudeI = \mbox{ или } < \magnitudeII$,\\
+тогда $\magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ \inprop[prop:V.VII]\\
+или $\magnitudeI : \magnitudeIII < \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII] и (перевернув), что противоречит гипотезе.
+
+$\therefore \magnitudeI \mbox{ не } = \mbox{ или } < \magnitudeII$,\\
+и $\therefore \magnitudeI \mbox{ должна быть } >\magnitudeII$.
+
+Теперь, пусть $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$,\\
+тогда $\magnitudeII < \magnitudeI$.
+
+Поскольку, если нет, $\magnitudeII \mbox{ должна быть } > \mbox{ или } = \magnitudeI$,\\
+тогда $\magnitudeIII : \magnitudeII < \magnitudeIII : \magnitudeI$ \inprop[prop:V.VIII] и (перевернув),\\
+или $\magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeI$ \inprop[prop:V.VII], что противоречит гипотезе.
+
+$\therefore \magnitudeII \mbox{ не } > \mbox{ или } = \magnitudeI$,\\
+и $\therefore \magnitudeII \mbox{ должна быть } < \magnitudeI$.
+
+$\therefore$ Из величин, имеющих… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XI. Теорема}, reference=prop:V.XI]
+\defineNewPicture{
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(I);
+byMagnitudeSymbolDefine("square", byblue, 0)(II);
+byMagnitudeSymbolDefine("miniTriangleUp", black, 0)(III);
+byMagnitudeSymbolDefine("miniCircle", black, 0)(IV);
+byMagnitudeSymbolDefine("circle", byred, 0)(V);
+byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(VI);
+}
+\problemNP{О}{тношения,}{тождественные одному и тому же, тождественны и друг другу.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} = \drawMagnitude{V} : \drawMagnitude{VI}$ and $\magnitudeV : \magnitudeVI = \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+тогда $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
+
+Поскольку если $M \magnitudeI >, = \mbox{ или } < m \magnitudeII$,\\
+то $M \magnitudeV >, = \mbox{ или } < m \magnitudeVI$,\\
+и если $M \magnitudeV >, = \mbox{ или } < m \magnitudeVI$,\\
+то $M \magnitudeIII >, = \mbox{ или } < m \magnitudeIV$ \indef[def:V.V];
+
+$\therefore$ if $M \magnitudeI >, = \mbox{ или } < m \magnitudeII$, $M \magnitudeIII >, = \mbox{ или } < m \magnitudeIV$\\
+и $\therefore$ \indef[def:V.V] $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
+
+$\therefore$ Отношения, тождественные между собой… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+ 
+\startProposition[title={Предл. XII. Теорема}, reference=prop:V.XII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("square", byred, 0)(I);
+byMagnitudeSymbolDefine("circle", byred, 0)(II);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(III);
+byMagnitudeSymbolDefine("sectorUp", black, 1)(IV);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(V);
+byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(VI);
+byMagnitudeSymbolDefine("miniCircle", byblue, 0)(VII);
+byMagnitudeSymbolDefine("miniTriangleDown", byblue, 0)(VIII);
+byMagnitudeSymbolDefine("miniTriangleUp", black, 0)(IX);
+byMagnitudeSymbolDefine("miniCircle", black, 0)(X);
+}
+\problemNP{Е}{сли}{несколько величин пропорциональны, то как одна из предыдущих будет относиться к последующей, так и все вместе предыдущие будут относиться ко всем вместе последующим.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} =
+\drawMagnitude{III} : \drawMagnitude{IV} =
+\drawMagnitude{V} : \drawMagnitude{VI} =
+\drawMagnitude{VII} : \drawMagnitude{VIII} =
+\drawMagnitude{IX} : \drawMagnitude{X}$,\\
+тогда $\magnitudeI : \magnitudeII =
+\magnitudeI + \magnitudeIII + \magnitudeV + \magnitudeVII + \magnitudeIX :
+\magnitudeII + \magnitudeIV + \magnitudeVI + \magnitudeVIII + \magnitudeX$.
+
+Поскольку если $M \magnitudeI > m \magnitudeII$, то $M \magnitudeIII > m \magnitudeIV$,\\
+и $M \magnitudeV > m \magnitudeVI$, $M \magnitudeVII > m \magnitudeVIII$,\\
+а также $M \magnitudeIX > m \magnitudeX$ \indef[def:V.V]
+
+Следовательно, если $M \magnitudeI > m \magnitudeII$,\\
+то $M \magnitudeI + M \magnitudeIII + M \magnitudeV + M \magnitudeVII + M \magnitudeIX$, или $M (\magnitudeI + \magnitudeIII + \magnitudeV + \magnitudeVII + \magnitudeIX)$ будет больше, чем $m \magnitudeII + m \magnitudeIV + m \magnitudeVI + m \magnitudeVIII + m \magnitudeX$, или $m (\magnitudeII + \magnitudeIV + \magnitudeVI + \magnitudeVIII + \magnitudeX)$.
+\stopCenterAlign
+
+Так же можно показать, что если $M$ раз одно из предыдущих равно или меньше чем $m$ раз одно из последующих, $M$ раз все предыдущие будут равны или меньше, чем $m$ раз все последующие вместе. Следовательно \indef[def:V.V], как одно из предыдущих к последующему, так и все предыдущие ко всем последующим вместе.
+
+$\therefore$ Если несколько величин… и т. д.
+\stopProposition
+
+\vfill\pagebreak
+
 \stopbook
 
 \stoptext
