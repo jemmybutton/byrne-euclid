@@ -7933,7 +7933,7 @@ $\therefore$ Если первая величина… и т. д.
 \def\varB{\color[black]{B}}
 \def\varC{\color[byblue]{C}}
 \def\varD{\color[byyellow]{D}}
-В геометрии используется понятие \quotation{переворачивание}, когда есть четыре пропорциональных величины, утверждается, что вторая к первой относится так же, как четвертая к третьей.
+В геометрии используется понятие \quotation{перевернутое отношение}, когда есть четыре пропорциональных величины, утверждается, что вторая к первой относится так же, как четвертая к третьей.
 
 Пусть $\varA : \varB :: \varC : \varD$, тогда, \quotation{перевернув} отношение можно заключить, что $\varB : \varA :: \varD : \varC$
 \stopDefinition
@@ -8424,6 +8424,420 @@ byMagnitudeSymbolDefine("miniCircle", black, 0)(X);
 Так же можно показать, что если $M$ раз одно из предыдущих равно или меньше чем $m$ раз одно из последующих, $M$ раз все предыдущие будут равны или меньше, чем $m$ раз все последующие вместе. Следовательно \indef[def:V.V], как одно из предыдущих к последующему, так и все предыдущие ко всем последующим вместе.
 
 $\therefore$ Если несколько величин… и т. д.
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XIII. Теорема}, reference=prop:V.XIII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", byblue, 1)(II);
+byMagnitudeSymbolDefine("square", byred, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine("sectorUp", black, 1)(V);
+byMagnitudeSymbolDefine("circle", black, 0)(VI);
+}
+\problemNP{Е}{сли}{первая величина ко второй имеет такое же отношение, как третья к четвертой, а третья к четвертой имеет большее отношение, чем пятая к шестой, то и первая ко второй будет иметь большее отношение, чем пятая к шестой.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} = \drawMagnitude{III} : \drawMagnitude{IV}$,\\ 
+но $\magnitudeIII : \magnitudeIV > \drawMagnitude{V} : \drawMagnitude{VI}$,\\
+тогда $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$.
+
+Поскольку $\magnitudeIII : \magnitudeIV > \magnitudeV : \magnitudeVI$, есть такие кратные ($M'$ и $m'$) величин \magnitudeIII\ и \magnitudeV, и величин \magnitudeIV\ и \magnitudeVI,\\
+что $M' \magnitudeIII > m' \magnitudeIV$,\\
+но $M' \magnitudeV \mbox{ не } > m' \magnitudeVI$ \indef[def:V.VII].
+
+Возьмем эти кратные и возьмем такие же кратные \magnitudeI\ и \magnitudeII.
+
+$\therefore$ \indef[def:V.V] если $M' \magnitudeI >, =, \mbox{ или } < m' \magnitudeII$;\\
+то $M' \magnitudeIII >, =, \mbox{ и } < m' \magnitudeIV$,\\
+но $M' \magnitudeIII > m' \magnitudeIV$ (постр.);
+
+$\therefore M' \magnitudeI > m' \magnitudeII$,\\
+но $M' \magnitudeV \mbox{ не } > m' \magnitudeVI$ (постр.);\\
+и следовательно\indef[def:V.VII],\\
+$\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$
+
+$\therefore$ Если первая величина ко второй… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XIV. Теорема}, reference=prop:V.XIV]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+}
+\problemNP{Е}{сли}{первая величина имеет ко второй такое же отношение, какое третья к четвертой, то если первая больше третьей, то и вторая будет больше четвертой, а если равна, равна, а если меньше, то меньше.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\ 
+и предположим, что $\magnitudeI > \magnitudeIII$, тогда $\magnitudeII > \magnitudeIV$.\\
+Поскольку $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII], и, согласно гипотезе, $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$;\\
+$\therefore \magnitudeIII : \magnitudeIV > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII],\\
+$\therefore \magnitudeIV < \magnitudeII$ \inprop[prop:V.X], or $\magnitudeII > \magnitudeIV$.
+
+Теперь, пусть $\magnitudeI = \magnitudeIII$, тогда $\magnitudeII = \magnitudeIV$.\\
+Поскольку $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII],\\
+и $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$ (гип.);\\
+$\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI],\\
+и $\therefore \magnitudeII = \magnitudeIV$ \inprop[prop:V.IX].
+
+Теперь же, если $\magnitudeI < \magnitudeIII$, то $\magnitudeII < \magnitudeIV$,\\
+поскольку $\magnitudeIII > \magnitudeI$ и $\magnitudeIII : \magnitudeIV = \magnitudeI : \magnitudeII$;\\
+$\therefore \magnitudeIV > \magnitudeII$, как и в предыдущем случае,\\
+то есть $\magnitudeII < \magnitudeIV$.
+
+$\therefore$ Если первая величина имеет ко второй… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XV. Теорема}, reference=prop:V.XV]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byred, 0)(I);
+byMagnitudeSymbolDefine("square", byyellow, 0)(II);
+}
+\problemNP{В}{еличины}{относятся друг к другу так же, как и их равнократные.}
+
+\startCenterAlign
+Пусть будут две величины \drawMagnitude{I} и \drawMagnitude{II},\\
+тогда $\magnitudeI : \magnitudeII :: M' \magnitudeI : M' \magnitudeII$.
+
+$\eqalign{
+\mbox{Поскольку } \magnitudeI : \magnitudeII &= \magnitudeI : \magnitudeII \cr
+&= \magnitudeI : \magnitudeII \cr
+&= \magnitudeI : \magnitudeII \cr
+}$\\
+$\therefore \magnitudeI : \magnitudeII :: 4 \magnitudeI : 4 \magnitudeII$. \inprop[prop:V.XII].
+
+И, поскольку те же рассуждения применимы в общем, получим:\\
+$\magnitudeI : \magnitudeII :: M' \magnitudeI : M' \magnitudeII$.
+
+$\therefore$ Величины относятся друг к другу… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение XIII},reference=def:V.XIII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byyellow, 0)(I);
+byMagnitudeSymbolDefine("rhombus", black, 0)(II);
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(III);
+byMagnitudeSymbolDefine("square", byblue, 0)(IV);
+}
+Отношение называют переставленным, когда есть четыре пропорциональных величины, и утверждается, что первая относится к третьей так же, как вторая к четвертой, как показано в следующем предложении:
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+тогда \quotation{переставив} отношение можем заключить, что\\
+$\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
+\stopCenterAlign
+
+Здесь важно отметить, что величины \magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV\ должны быть однородными, то есть в таком случае мы должны сравнивать линии с линиями, поверхности с поверхностями, тела с телам и т. п. Так, учащийся должен хорошо усвоить, что линия с поверхностью, поверхность с телом и другие разнородные величины не могут находиться в положении предыдущего и последующего.
+\stopDefinition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XVI. Теорема}, reference=prop:V.XVI]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+}
+\problemNP{Е}{сли}{четыре величины пропорциональны, то они останутся пропорциональными в переставленном порядке.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\ 
+тогда $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
+
+Поскольку $M \magnitudeI : M \magnitudeII :: \magnitudeI : \magnitudeII$ \inprop[prop:V.XV],\\
+и $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (гип. и \inpropL[prop:V.XI]),\\
+а также $m \magnitudeIII : m \magnitudeIV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XV];
+
+$\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$,\\
+в таком случае $M \magnitudeII >, =, \mbox{ или } < m \magnitudeIV$ \inprop[prop:V.XIV];
+
+следовательно \indef[def:V.V],\\
+ $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$
+
+ $\therefore$ Если четыре величины… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение XVI},reference=def:V.XVI]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[black]{B}}
+\def\varC{\color[byblue]{C}}
+\def\varD{\color[byyellow]{D}}
+Выделением отношения называют, когда есть четыре пропорциональных величины, и утверждается, что избыток первой над второй относится ко второй как избыток третьей над четвертой к четвертой.
+
+\startCenterAlign
+Пусть $\varA : \varB :: \varC : \varD$,\\
+\quotation{выделив} заключается\\
+$\varA - \varB : \varB :: \varC - \varD : \varD$.
+\stopCenterAlign
+
+Согласно описанному выше, предполагается, что $\varA$ больше $\varB$ и $\varC$ больше $\varD$, если бы это было не так и $\varB$ была бы больше $\varA$, и $\varD$ больше $\varC$, $\varB$ и $\varD$ можно было бы взять как предыдущие, а $\varA$ и $\varC$ как последующие, \quotation{перевернув} отношение.
+
+\startCenterAlign
+$\varB : \varA :: \varD : \varC$;\\
+тогда \quotation{выделив,} заключим, что\\
+$\varB - \varA : \varA :: \varD - \varC : \varC$
+\stopCenterAlign
+\stopDefinition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XVII. Теорема}, reference=prop:V.XVII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+}
+\problemNP{Е}{сли}{величины пропорциональны присоединенные, то они останутся пропорциональны взятые раздельно, то есть, если две величины взятые вместе относятся к одной из них также, как две другие взятые вместе к одной из тех, оставшаяся величина из первых двух будет иметь такое же отношение к другой такое же отношение, как оставшаяся из вторых к другой из них.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} + \drawMagnitude{II} : \magnitudeII :: \drawMagnitude{III} + \drawMagnitude{IV} : \magnitudeIV$,\\
+тогда $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
+
+Возьмем $\magnitudeI > m \magnitudeII$ к каждой добавим $M \magnitudeII$,\\
+тогда получим $M \magnitudeI + M \magnitudeII > m \magnitudeII + M \magnitudeII$,\\
+или $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$,\\
+но, поскольку $\magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (гип.),\\
+и $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$;\\
+$\therefore M(\magnitudeIII + \magnitudeIV) > (m + M) \magnitudeIV$ \indef[def:V.V];\\
+$\therefore M \magnitudeIII + M \magnitudeIV > m \magnitudeIV + M \magnitudeIV$;\\
+$\therefore M \magnitudeIII > m \magnitudeIV$, вычтя $M \magnitudeIV$ из обеих сторон,\\
+то есть когда $M \magnitudeI > m \magnitudeII$, тогда $M \magnitudeIII > m \magnitudeIV$.
+
+Так же можно доказать, что если $M \magnitudeI = \mbox{ или } < m \magnitudeII$, то $M \magnitudeIII = \mbox{ или } < m \magnitudeIV$;\\
+и $\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ \indef[def:V.V]
+
+$\therefore$ Если величины пропорциональны составленные… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение XV},reference=def:V.XV]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[black]{B}}
+\def\varC{\color[byyellow]{C}}
+\def\varD{\color[byblue]{D}}
+О присоединении говорят, когда есть четыре пропорциональных величины и утверждается, что первая вместе со второй относится ко второй, как третья вместе с четвертой к четвертой.
+
+\startCenterAlign
+Пусть $\varA : \varB :: \varC : \varD$;
+Тогда используя \quotation{присоединение,} заключим, что\\
+$\varA + \varB : \varB :: \varC + \varD: \varD$
+\stopCenterAlign
+
+ \quotation{Перевернув} отношение, можем сделать $\varB$ и $\varD$ первой и третьей, а $\varA$ и $\varC$ кторой и четвертой:
+
+\startCenterAlign
+$\varB : \varA :: \varD : \varC$,
+
+тогда, совершив \quotation{присоединение,} заключим что\\
+$\varB + \varA : \varA :: \varD + \varC : \varC$.
+\stopCenterAlign
+\stopDefinition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XVIII. Теорема}, reference=prop:V.XVIII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine("circle", black, 0)(V);
+}
+\problemNP{Е}{сли}{величины пропорциональны выделенные, то они будут пропорциональны и составленные. То есть, если первая относится ко второй, как третья к четвертой, то первая и вторая вместе будут ко второй, как третья и четвертая вместе к четвертой.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+тогда $\magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \magnitudeIV : \magnitudeIV$;
+
+ведь если нет, то $\magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \drawMagnitude{V} : \magnitudeV$,\\
+полагая, что $\magnitudeV \mbox{ не } = \magnitudeIV$;
+
+$\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeV$ \inprop[prop:V.XVII]\\
+но $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (гип.);
+
+$\therefore \magnitudeIII : \magnitudeV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI];
+
+$\therefore \magnitudeV = \magnitudeIV$ \inprop[prop:V.IX],\\
+что противоречит предположению.
+
+$\therefore \magnitudeV \mbox{ не неравна } \magnitudeIV$;\\
+то есть $\magnitudeV = \magnitudeIV$;
+
+$\therefore \magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \magnitudeIV : \magnitudeIV$.
+
+$\therefore$ Если величины пропорциональны выделенные… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XIX. Теорема}, reference=prop:V.XIX]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byblue, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+}
+\problemNP{Е}{сли}{целая величина относится к целой так же, как вычтенная из первой к вычтенной из второй, то и остаток будет относиться как остатку как целая к целой.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} + \drawMagnitude{II} : \drawMagnitude{III} + \drawMagnitude{IV} :: \magnitudeI : \magnitudeIII$,\\
+тогда $\magnitudeII : \magnitudeIV :: \magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV$,
+
+Поскольку $\magnitudeI + \magnitudeII : \magnitudeI :: \magnitudeIII + \magnitudeIV : \magnitudeIII$ (перестав.),
+
+$\therefore \magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (выдел.),
+
+теперь $\magnitudeII : \magnitudeIV :: \magnitudeI : \magnitudeIII$ (перестав.),
+
+но $\magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV :: \magnitudeI : \magnitudeIII$ (гип.),
+
+следовательно $\magnitudeII : \magnitudeIV :: \magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV$ \inprop[prop:V.XI].
+
+$\therefore$ Если целая величина относится к целой… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\startDefinition[title={Определение XVII},reference=def:V.XVII] %у Мордухай-Болтовского это называется «переворачиванием отношения», при том, что уже есть «перевернутое отношение» и это совсем другое, так что вместо convertendo здесь будет пока «конверсия», чтобы совсем не запутаться.
+О \quotation{конверсии,}  говорят, когда есть четыре пропорциональных величины и утверждается, что первая к избытку первой над второй относится также, как третья к избытку третьей над четвертой. См. следующее предложение.
+\stopDefinition
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. E. Теорема}, reference=prop:V.E]
+\defineNewPicture{
+byMagnitudeSymbolDefine("circle", byblue, 0)(i);
+byMagnitudeSymbolDefine("sectorUp", black, 1)(II);
+byMagnitudeSymbolDefine("square", byred, 0)(iii);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeDefine(I, 0, true)(1, 1)(i, II);
+byMagnitudeDefine(III, 0, true)(1, 1)(iii, IV);
+}
+\problemNP{Е}{сли}{четыре величины пропорциональны, они также пропорциональны если совершить конверсию, то есть первая к избытку над второй относится также как третья к ее избытку над четвертой.}
+
+\startCenterAlign
+Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
+тогда $\magnitudeI : \drawMagnitude{i} :: \magnitudeIII : \drawMagnitude{iii}$,
+
+Поскольку $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$;\\
+следовательно $\magnitudei : \magnitudeII :: \magnitudeiii : \magnitudeIV$ (выдел.),
+
+$\therefore \magnitudeII : \magnitudei :: \magnitudeIV : \magnitudeiii$ (перевер.),
+
+$\therefore \magnitudeI : \magnitudei :: \magnitudeIII : \magnitudeiii$ (конвер.).
+
+$\therefore$ Если четыре величины… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\startDefinition[title={Определение XVIII},reference=def:V.XVIII]
+Говорят, \quotation{По равенству}, когда есть более двух величин и столько же других величин таких, что они пропорциональны, есть брать по две из каждого ряда, и утверждается, что первая к последней из первого ряда величин относится так же, как первая к последней из второго ряда.
+\stopDefinition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение XIX},reference=def:V.XIX]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byred]{B}}
+\def\varC{\color[byyellow]{C}}
+\def\varD{\color[byyellow]{D}}
+\def\varE{\color[byblue]{E}}
+\def\varF{\color[byblue]{F}}
+\def\varL{\color[byred]{L}}
+\def\varM{\color[byred]{M}}
+\def\varN{\color[byyellow]{N}}
+\def\varO{\color[byyellow]{O}}
+\def\varP{\color[byblue]{P}}
+\def\varQ{\color[byblue]{Q}}
+Термин \quotation{по равенству} используется сам по себе, когда первая величина относится ко второй из первого ряда как первая ко второй из второго ряда и когда вторая к третьей из первого относится как вторая к третьей из второго и так далее, и делается утверждение, такое, как упомянуто в предыдущем определении.
+
+\startCenterAlign
+Таким образом, если есть два ряда величин,\\
+$\varA, \varB, \varC, \varD, \varE, \varF$, первый,\\
+и $\varL, \varM, \varN, \varO, \varP, \varQ$, второй,\\
+таких, что $\varA : \varB :: \varL : \varM$, $\varB : \varC :: \varM : \varB$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varO : \varP$, $\varE : \varF :: \varP : \varQ$;\\
+мы используем понятие \quotation{по равенству}, чтобы заключить, что $\varA : \varF :: \varL : \varQ$
+\stopCenterAlign
+\stopDefinition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение XX},reference=def:V.XX]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byred]{B}}
+\def\varC{\color[byblue]{C}}
+\def\varD{\color[byblue]{D}}
+\def\varE{\color[byyellow]{E}}
+\def\varF{\color[byyellow]{F}}
+\def\varL{\color[byyellow]{L}}
+\def\varM{\color[byyellow]{M}}
+\def\varN{\color[byblue]{N}}
+\def\varO{\color[byblue]{O}}
+\def\varP{\color[byred]{P}}
+\def\varQ{\color[byred]{Q}}
+\quotation{По равенству в перемешанной пропорции} говорят, когда первая величина ко второй в первом ряду относится как последняя к предпоследней во втором ряду, вторая к третьей в первом ряду как пред-предпоследняя к предпоследней во втором, третья к четвертой в первом как четвертая с конца к пред-предпоследней во втором и так далее, и утверждается то же, что и в \indefL[def:V.XVIII]. Это иллюстрируется в \inpropL[prop:V.XXIII].
+
+\startCenterAlign
+Так, если есть два ряда величин,\\
+$\varA, \varB, \varC, \varD, \varE, \varF$, первый,\\
+и $\varL, \varM, \varN, \varO, \varP, \varQ$, второй,\\
+таких, что $\varA : \varB :: \varP : \varQ$, $\varB : \varC :: \varO : \varP$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varM : \varN$, $\varE : \varF :: \varL : \varM$;\\
+используя понятие \quotation{по равенству в перемешанной пропорции} мы утверждаем, что $\varA : \varF :: \varL : \varQ$
+\stopCenterAlign
+\stopDefinition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XX. Теорема}, reference=prop:V.XX]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", byred, 1)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
+byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+}
+\problemNP{Е}{сли}{есть три величины и другие три, которые, взятые попарно, будут иметь те же отношения, то если первая больше третьей, то и четвертая будет больше шестой, если равны, то равны, а если меньше, то меньше.}
+
+\startCenterAlign
+Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}, будут первыми тремя величинами,\\
+а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI}, другими тремя,\\
+такими, что $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$, и $\magnitudeII : \magnitudeIII :: \magnitudeV : \magnitudeVI$,
+
+Тогда если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
+то $\magnitudeIV >, =, \mbox{ или } < \magnitudeVI$.
+
+Исходя из гипотезы и переставив получим\\
+$\magnitudeI : \magnitudeIV :: \magnitudeII : \magnitudeV$,\\
+и $\magnitudeII : \magnitudeV :: \magnitudeIII : \magnitudeVI$
+
+$\therefore \magnitudeI : \magnitudeIV :: \magnitudeIII : \magnitudeVI$ \inprop[prop:V.XI].
+
+$\therefore$ если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
+тогда $\magnitudeIV >, =, \mbox{ или } < \magnitudeVI$ \inprop[prop:V.XIV].
+
+$\therefore$ Если есть три величины… и т. д.
+\stopCenterAlign
 \stopProposition
 
 \vfill\pagebreak
