@@ -8639,7 +8639,7 @@ $\therefore$ Если величины пропорциональны соста
 
 \startCenterAlign
 Пусть $\varA : \varB :: \varC : \varD$;
-Тогда используя \quotation{присоединение,} заключим, что\\
+Тогда используя \quotation{присоединение}, заключим, что\\
 $\varA + \varB : \varB :: \varC + \varD: \varD$
 \stopCenterAlign
 
@@ -8648,7 +8648,7 @@ $\varA + \varB : \varB :: \varC + \varD: \varD$
 \startCenterAlign
 $\varB : \varA :: \varD : \varC$,
 
-тогда, совершив \quotation{присоединение,} заключим что\\
+тогда, совершив \quotation{присоединение}, заключим что\\
 $\varB + \varA : \varA :: \varD + \varC : \varC$.
 \stopCenterAlign
 \stopDefinition
@@ -8719,7 +8719,7 @@ $\therefore$ Если целая величина относится к цело
 \stopProposition
 
 \startDefinition[title={Определение XVII},reference=def:V.XVII] %у Мордухай-Болтовского это называется «переворачиванием отношения», при том, что уже есть «перевернутое отношение» и это совсем другое, так что вместо convertendo здесь будет пока «конверсия», чтобы совсем не запутаться.
-О \quotation{конверсии,}  говорят, когда есть четыре пропорциональных величины и утверждается, что первая к избытку первой над второй относится также, как третья к избытку третьей над четвертой. См. следующее предложение.
+О \quotation{конверсии},  говорят, когда есть четыре пропорциональных величины и утверждается, что первая к избытку первой над второй относится также, как третья к избытку третьей над четвертой. См. следующее предложение.
 \stopDefinition
 
 \vfill\pagebreak
@@ -8842,6 +8842,769 @@ $\therefore$ Если есть три величины… и т. д.
 
 \vfill\pagebreak
 
+\startProposition[title={Предл. XXI. Теорема}, reference=prop:V.XXI]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
+byMagnitudeSymbolDefine("wedgeUp", byred, 0)(II);
+byMagnitudeSymbolDefine("square", byblue, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
+byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+}
+\problemNP{Е}{сли}{есть три величины и другие три, с одинаковыми отношениями, если брать по две из каждого ряда, но в противоположном порядке, тогда, если первая величина больше третьей, четвертая будет больше шестой, если равны, то равны, а если меньше, то меньше.}
+
+\startCenterAlign
+Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}, будут первыми тремя величинами,\\
+а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI}, другими тремя,\\
+такими, что $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$,\\
+и $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$.
+
+Тогда, если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
+то $\magnitudeIV >, =, \mbox{ или } < \magnitudeVI$.
+
+Допустим $\magnitudeI > \magnitudeIII$,\\
+тогда, поскольку \magnitudeII\ любая другая величина,\\
+$\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII];\\
+но $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (гип.);\\
+$\therefore \magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII],\\
+и, поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (гип.);\\
+$\therefore \magnitudeIII : \magnitudeII :: \magnitudeV : \magnitudeIV$ (перев.),\\
+и было показано, что $\magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$,
+$\therefore \magnitudeV : \magnitudeVI > \magnitudeV : \magnitudeIV$ \inprop[prop:V.XIII];\\
+$\therefore \magnitudeVI < \magnitudeIV$,\\
+то есть $\magnitudeIV > \magnitudeVI$.
+
+Теперь, пусть $\magnitudeI = \magnitudeIII$; тогда $\magnitudeIV = \magnitudeVI$.\\
+Поскольку $\magnitudeI = \magnitudeIII$,\\
+$\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII];\\
+но $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (гип.),\\
+и $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (гип. и перев.),\\
+$\therefore \magnitudeV : \magnitudeVI = \magnitudeV : \magnitudeIV$ \inprop[prop:V.XI],\\
+$\therefore \magnitudeIV = \magnitudeVI$ \inprop[prop:V.IX].
+
+И теперь, пусть $\magnitudeI < \magnitudeIII$, тогда $\magnitudeIV < \magnitudeVI$;\\
+поскольку $\magnitudeIII > \magnitudeI$,\\
+и было показано, что $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$,\\
+и $\magnitudeII : \magnitudeI = \magnitudeVI : \magnitudeV$;\\
+$\therefore$ как в первом случае $\magnitudeVI > \magnitudeIV$,\\
+то есть $\magnitudeIV < \magnitudeVI$.
+
+$\therefore$  Если есть три величины… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XXII. Теорема}, reference=prop:V.XXII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("rhombus", byblue, 0)(II);
+byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byred, 0)(IV);
+byMagnitudeSymbolDefine("sectorUp", byblue, 1)(V);
+byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(Ia);
+byMagnitudeSymbolDefine("rhombus", black, 0)(IIa);
+byMagnitudeSymbolDefine("square", byyellow, 0)(IIIa);
+byMagnitudeSymbolDefine("rhombus", byred, 0)(IVa);
+byMagnitudeSymbolDefine("sectorUp", byblue, 1)(Va);
+byMagnitudeSymbolDefine("circle", black, 0)(VIa);
+byMagnitudeSymbolDefine("halfsquare", byyellow, 0)(VIIa);
+byMagnitudeSymbolDefine("halfrhombusUp", byred, 0)(VIIIa);
+}
+\problemNP{Е}{сли}{есть любое количество величин и столько же других величин, которые взятые по две из каждого ряда по порядку имеют равные отношения, то первые, первая будут иметь к последней среди первых величин такое же отношение, как первая к последнией среди вторых.\\
+Это обычно обозначается словами \quotation{по равенству}.}
+
+\startCenterAlign
+Пусть будут величины \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
+и столько же других величин \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI},\\
+таких, что\\
+$\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$,\\
+и $\magnitudeII : \magnitudeIII :: \magnitudeV : \magnitudeVI$,\\
+тогда $\magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeVI$.\\
+\stopCenterAlign
+
+Пусть эти величины и их равнократные, предыдущих или последующих в отношениях, расположены так:
+
+\startCenterAlign
+$\magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV, \magnitudeV, \magnitudeVI,$\\
+и\\
+$M \magnitudeI, m \magnitudeII, N \magnitudeIII, M \magnitudeIV, m \magnitudeV, N \magnitudeVI,$\\
+поскольку $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$,\\
+$\therefore M \magnitudeI : m \magnitudeII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV].
+
+По той же причине\\
+$m \magnitudeII : N \magnitudeIII :: m \magnitudeV : N \magnitudeVI$;\\
+и поскольку есть три величины\\
+$M \magnitudeI, m \magnitudeII, N \magnitudeIII$,\\
+и другие три, $M \magnitudeIV, m \magnitudeV, N \magnitudeVI$,\\
+которые взятые по две из каждого ряда имеют равные отношения,
+
+$\therefore$ если $M \magnitudeI >, = \mbox{ или } < N \magnitudeIII$\\
+то $M \magnitudeIV >, = \mbox{ or } < N \magnitudeVI$ \inprop[prop:V.XX],\\
+и $\therefore \magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeVI$ \indef[def:V.V].
+
+Теперь, допустим, есть четыре величины \drawMagnitude{Ia}, \drawMagnitude{IIa}, \drawMagnitude{IIIa}, \drawMagnitude{IVa},\\
+и другие четыре \drawMagnitude{Va}, \drawMagnitude{VIa}, \drawMagnitude{VIIa}, \drawMagnitude{VIIIa},\\
+которые взятые по две из каждого ряда имеют равные отношения\\
+то есть $\magnitudeIa : \magnitudeIIa :: \magnitudeVa : \magnitudeVIa$,\\
+$\magnitudeIIa : \magnitudeIIIa :: \magnitudeVIa : \magnitudeVIIa$,\\
+и $\magnitudeIIIa : \magnitudeIVa :: \magnitudeVIIa : \magnitudeVIIIa$,\\
+тогда $\magnitudeIa : \magnitudeIVa :: \magnitudeVa : \magnitudeVIIIa$;\\
+поскольку $\magnitudeIa, \magnitudeIIa, \magnitudeIIIa$ это три величины,\\
+и $\magnitudeVa, \magnitudeVIa, \magnitudeVIIa$ другие три,\\
+которые взятые по две из каждого ряда имеют равные отношения,\\
+следовательно, как и в предыдущем случае $\magnitudeIa : \magnitudeIIIa :: \magnitudeVa : \magnitudeVIIa$,\\
+но $\magnitudeIIIa : \magnitudeIVa :: \magnitudeVIIa : \magnitudeVIIIa$;\\
+значит опять, как в предыдущем случае $\magnitudeIa : \magnitudeIVa :: \magnitudeVa : \magnitudeVIIIa$,\\
+и так далее, сколько есть величин
+
+$\therefore$ Если есть любое количество величин… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XXIII. Теорема}, reference=prop:V.XXIII]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", byblue, 1)(II);
+byMagnitudeSymbolDefine("square", byred, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine("sectorUp", byblue, 1)(V);
+byMagnitudeSymbolDefine("circle", byred, 0)(VI);
+byMagnitudeSymbolDefine("halfsquare", black, 0)(VII);
+byMagnitudeSymbolDefine("halfrhombusUp", black, 0)(VIII);
+}
+\problemNP{Е}{сли}{есть любое число величин и столько же других, которые взятые по две в противополжном порядке имеют равные отношения, первая к последней из первого ряда будет иметь то же отношение, что и первая к последней из второго.\\
+Это обычно обозначается словами \quotation{по равенству в перемешанной пропорции}.}
+
+\startCenterAlign
+Пусть будут величины \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
+и другие три, \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI},\\
+которые, взятые по две в противоположном порядке имеют равные отношения,
+
+то есть $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$,\\
+и $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$,\\
+тогда $\magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeVI$.
+\stopCenterAlign
+
+Пусть эти величины и их соответствующие равнократные будут расположены так:
+
+\startCenterAlign
+$\magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV, \magnitudeV, \magnitudeVI,$\\
+$M \magnitudeI, M \magnitudeII, m \magnitudeIII, M \magnitudeIV, m \magnitudeV, m \magnitudeVI,$\\
+тогда $\magnitudeI : \magnitudeII :: M \magnitudeI : M \magnitudeII$ \inprop[prop:V.XV];\\
+и по той же причине\\
+$\magnitudeV : \magnitudeVI :: m \magnitudeV : m \magnitudeVI$;\\
+но $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (гип.),\\
+$\therefore M \magnitudeI : M \magnitudeII :: \magnitudeV : \magnitudeVI$ \inprop[prop:V.XI];\\
+и поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (гип.),\\
+$\therefore M \magnitudeII : m \magnitudeIII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV];\\
+тогда, поскольку есть три величины\\
+$M \magnitudeI, M \magnitudeII, m \magnitudeII$,\\
+и другие три $M \magnitudeIV, m \magnitudeV, m \magnitudeVI$,\\
+которые, взятые по две в противоположном порядке имеют равные отношения,\\
+значит, если $M \magnitudeI >, =, \mbox{ или } < m \magnitudeIII$,\\
+то $M \magnitudeIV >, =, \mbox{ или } < m \magnitudeVI$ \inprop[prop:V.XXI],\\
+и $\therefore \magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeIV$ \indef[def:V.V].
+
+Теперь, пусть будет четыре величины,\\
+\magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV,\\
+и другие четыре,\\
+\magnitudeV, \magnitudeVI, \drawMagnitude{VII}, \drawMagnitude{VIII},\\
+которые, взятые по две в противоположном порядке, имеют равные отношения,
+а именно, $\magnitudeI : \magnitudeII :: \magnitudeVII : \magnitudeVIII$,\\
+$\magnitudeII : \magnitudeIII :: \magnitudeVI : \magnitudeVII$,\\
+и $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$,\\
+получим $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$.\\
+Поскольку $\magnitudeI, \magnitudeII, \magnitudeIII$ три величины,\\
+и $\magnitudeVI, \magnitudeVII, \magnitudeVIII$, другие три,\\
+которые взятые по две в противоположном порядке имеют равные отношения,\\
+значит, как в первом случае, $\magnitudeI : \magnitudeIII :: \magnitudeVI : \magnitudeVIII$,\\
+но $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$,\\
+значит, опять как в первом слчае,\\
+$\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$;\\
+и так далее для любого количества величин.
+
+$\therefore$ Если есть любое количество величин… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XXIV. Теорема}, reference=prop:V.XXIV]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(II);
+byMagnitudeSymbolDefine("square", byblue, 0)(III);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
+byMagnitudeSymbolDefine("circle", byblue, 0)(VI);
+}
+\problemNP{Е}{сли}{первая величина ко второй имеет такое же отношение, как третья к четвертой, а пятая ко второй, такое же как шестая к четвертой, то первая и пятая вместе ко второй будут иметь такое же отношение, как третья с шестой вместе к четвертой.}
+
+\startCenterAlign
+\unprotect
+\ \hfill\vbox{
+\offinterlineskip\lineskip3pt
+\halign{\hfil # \hfil & \hfil # \hfil & \hfil # \hfil & \hfil # \hfil\cr
+{\tfxx первая} & {\tfxx вторая} & {\tfxx третья} & {\tfxx четвертая} \cr
+\drawMagnitude{I} & \drawMagnitude{II} & \drawMagnitude{III} & \drawMagnitude{IV} \cr
+{\tfxx пятая} & & {\tfxx шестая} & \cr
+\drawMagnitude{V} & & \drawMagnitude{VI} & \cr
+}}\hfill\
+\protect
+
+Пусть $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$,\\
+и $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$,\\
+то $\magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeIII + \magnitudeVI : \magnitudeIV$.
+
+Поскольку $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (гип.),\\
+и $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (гип. и перев.),
+
+$\therefore \magnitudeV : \magnitudeI :: \magnitudeVI : \magnitudeIII$ \inprop[prop:V.XXII];\\
+и, поскольку величины пропорциональны, они будут пропорциональны и если их присоединить:
+
+$\therefore \magnitudeI + \magnitudeV : \magnitudeV :: \magnitudeVI + \magnitudeIII : \magnitudeVI$ \inprop[prop:V.XVIII],\\
+но $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (гип.),
+
+$\therefore \magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeVI + \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XXII]
+
+$\therefore$ Если первая величина ко второй… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. XXV. Теорема}, reference=prop:V.XXV]
+\defineNewPicture{
+byMagnitudeSymbolDefine("wedgeDown", byred, 0)(Ia);
+byMagnitudeSymbolDefine("semicircleDown", black, 1)(III);
+byMagnitudeSymbolDefine("square", byblue, 0)(IIa);
+byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+}
+\problemNP{Е}{сли}{четыре величины пропорциональны, то наибольшая и наименьшая из них вместе больше других двух.}
+
+\startCenterAlign
+Пусть четыре величины $\drawMagnitude{Ia} + \drawMagnitude{III}, \drawMagnitude{IIa} + \drawMagnitude{IV}, \magnitudeIII, \mbox{ и } \magnitudeIV$, будут пропорциональными\\
+
+$\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,\\
+и пусть $\magnitudeIa + \magnitudeIII$ будет наибольшей из четырех, следовательно, согласно \inpropL[prop:V.A] и \inpropL[prop:V.XIV], \magnitudeIV\ наименьшей.\\
+Тогда $\magnitudeIa + \magnitudeIII + \magnitudeIV > \magnitudeIIa + \magnitudeIV + \magnitudeIII$,\\
+поскольку $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,
+
+$\therefore \magnitudeIa : \magnitudeIIa :: \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV$ \inprop[prop:V.XIX],\\
+но $\magnitudeIa + \magnitudeIII > \magnitudeIIa + \magnitudeIV$ (гип.),
+
+$\therefore \magnitudeIa > \magnitudeIIa$ \inprop[prop:V.A];\\
+к каждой добавим $\magnitudeIII + \magnitudeIV$,\\
+$\therefore \magnitudeIa + \magnitudeIII + \magnitudeIV > \magnitudeIIa + \magnitudeIII + \magnitudeIV$.
+
+$\therefore$ Если четыре величины… и т. д.
+\stopCenterAlign
+\stopProposition
+
+\vfill\pagebreak
+
+\startDefinition[title={Определение X},reference=def:V.X]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byyellow]{B}}
+\def\varC{\color[byblue]{C}}
+\def\vararS{\color[byred]{ar^2}}
+\def\varar{\color[byyellow]{ar}}
+\def\vara{\color[byblue]{a}}
+Когда три величины пропорциональны, говорят, что первая имеет к третьей двойное отношение первой ко второй.
+
+Например, если $\varA$, $\varB$, $\varC$ пропорциональны, то есть $\varA : \varB :: \varB : \varC$, то говорят, что $\varA$, к $\varC$ имеет двойное отношение $\varA : \varB$;
+
+\startCenterAlign
+или $\dfrac{\varA}{\varC} = \mbox{ квадрату } \dfrac{\varA}{\varB}$.
+
+Это яснее видно на таких количествах, как $\vararS$, $\varar$, $\vara$, поскольку $\vararS : \varar :: \varar : \vara$;
+
+и $\dfrac{\vararS}{\vara} = r^2 = \mbox{ квадрату } \dfrac{\vararS}{\varar} = \r$,\\
+или $\vara$, $\varar$, $\vararS$;\\
+поскольку $\dfrac{\vara}{\vararS} = \dfrac{1}{r^2} = \mbox{ квадрату } \dfrac{\vara}{\varar} = \dfrac{1}{r}$.
+\stopCenterAlign
+\stopDefinition
+
+\startDefinition[title={Определение XI},reference=def:V.XI]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byyellow]{B}}
+\def\varC{\color[byblue]{C}}
+\def\varD{\color[black]{D}}
+\def\vararQ{\color[byred]{ar^3}}
+\def\vararS{\color[byyellow]{ar^2}}
+\def\varar{\color[byblue]{ar}}
+\def\vara{\color[black]{a}}
+Когда четыре величины пропорциональны, говорят, что первая к четвертой имеет тройное отношение первой ко второй. Таким же образом можно получить четверное отношение и т. д.
+
+Например, пусть $\varA$, $\varB$, $\varC$, $\varD$, будут пропорциональны, то есть $\varA : \varB :: \varB : \varC :: \varC : \varD$, тогда говорят, что $\varA$ имеет к $\varD$ тройное отношение $\varA$ к $\varB$;
+
+\startCenterAlign
+или $\dfrac{\varA}{\varD} = \mbox{ кубу } \dfrac{\varA}{\varB}$.
+\stopCenterAlign
+
+Это определение лучше понять и прилоджить к более чем четырем пропорциональным величинам так:
+
+\startCenterAlign
+Пусть $\vararQ$, $\vararS$, $\varar$, $\vara$ будут четырьмя пропорциональными величинами, то есть $\vararQ : \vararS :: \vararS : \varar :: \varar : \vara$,\\
+тогда $\dfrac{\vararQ}{\vara} = r^3 = \mbox{ кубу } \dfrac{\vararQ}{\vararS} = r$.
+\stopCenterAlign
+
+Или пусть $ar^5$, $ar^4$, $ar^3$, $ar^2$, $ar$, $a$ будут шестью пропорциональными величинами, то есть
+
+\startCenterAlign
+$ar^5 : ar^4 :: ar^4 : ar^3 :: ar^3 : ar^2 :: ar^2 : ar :: ar : a$,\\
+тогда отношение $\dfrac{ar^5}{a} = r^5 = \mbox{ пятой степени } \dfrac{ar^5}{ar^4} = r$.
+\stopCenterAlign
+
+Или пусть $a$, $ar$, $ar^2$, $ar^3$, $ar^4$, будут пятью пропорциональными величинами $\dfrac{a}{ar^4} = \dfrac{1}{r^4} = \mbox{ четвертой степени } \dfrac{a}{ar} = \dfrac{1}{r}$.
+\stopDefinition
+
+\startDefinitionAZ[title={Определение A},reference=def:V.A]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byred]{B}}
+\def\varC{\color[byred]{C}}
+\def\varD{\color[byred]{D}}
+\def\varE{\color[byblue]{E}}
+\def\varF{\color[byblue]{F}}
+\def\varG{\color[byblue]{G}}
+\def\varH{\color[byblue]{H}}
+\def\varK{\color[byblue]{K}}
+\def\varL{\color[byblue]{L}}
+\def\varM{\color[byyellow]{M}}
+\def\varN{\color[byyellow]{N}}
+Чтобы понять составное отношение:
+
+\figureInMargin{
+\framed[align=middle]{
+$\varA\ \varB\ \varC\ \varD$\\
+$\varE\ \varF\ \varG\ \varH\ \varK\ \varL$\\
+$\varM\ \varN$
+}}
+Когда есть любое количество однородных величин, говорят, что первая имеет к последней составное отношение из отношения первой ко второй, второй к третьей, третьей к четвертой и так далее до последней величины. Например, если $\varA, \varB, \varC, \varD$ будут четырьмя однородными величинами, можно сказать, что первая $\varA$ имеет к последней $\varD$ отношение, составленное из отношений  $\varA$ к $\varB$, $\varB$ к $\varC$, и $\varC$ к $\varD$.
+
+И если $\varA$ к $\varB$ относится так же, как $\varE$ к $\varF$, и $\varB$ к $\varC$ как $\varG$ к $\varH$, и $\varC$ к $\varD$, в то же время, как $\varK$ к  $\varL$, то, по данному определению, можно сказать, что $\varA$ имеет к $\varD$ составное отношение из отношений таких же, как $\varE$ к $\varF$, $\varG$ к $\varH$, и $\varK$ к $\varL$. 
+
+Таким же образом, с теми же предпосылками, если $\varM$ к $\varN$ имеет такое же отношение, как $\varA$ к $\varD$, то для краткости можно сказать, что $\varM$ имеет к $\varN$ составное отношение из отношений $\varE$ к $\varF$, $\varG$ к $\varH$, и $\varK$ к $\varL$.
+
+Это определение может быть легче понять воспользовавшись арифметической или алгебраической иллюстрацией, поскольку, в сущности, отношение, составленное из нескольких отношений, это не более чем отношение, в котором предыдущее представляет собой произведение предыдущих отношений, из которых составлено составное отношение, а последующее — произведение последующих.
+
+\startCenterAlign
+Так, отношение, составленное из отношений\\
+$\color[byred]{2} : \color[byred]{3}$, $\color[byyellow]{4} : \color[byyellow]{7}$, $\color[byblue]{6} : \color[byblue]{11}$, $\color[black]{2} : \color[black]{5}$,\\
+будет отношением $\color[byred]{2} \times \color[byyellow]{4} \times \color[byblue]{6} \times \color[black]{2} : \color[byred]{3} \times \color[byyellow]{7} \times \color[byblue]{11} \times \color[black]{5}$,\\
+или отношением $96 : 1155$ или $32 : 285$.
+\stopCenterAlign
+
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byred]{B}}
+\def\varC{\color[byyellow]{C}}
+\def\varD{\color[byyellow]{D}}
+\def\varE{\color[byblue]{E}}
+\def\varF{\color[byblue]{F}}
+А среди отношений однородных величин $\varA, \varB, \varC, \varD, \varE, \varF$, отношение $\varA : \varF$ это отношение, составленное из отношений
+
+\startCenterAlign
+$\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \varF$;\\
+поскольку $\varA \times \varB \times \varC \times \varD \times \varE : \varB \times \varC \times \varD \times \varE \times \varF$,\\
+или $\dfrac{\varA \times \varB \times \varC \times \varD \times \varE}{\varB \times \varC \times \varD \times \varE \times \varF} = \dfrac{\varA}{\varF}$, или отношение $\varA : \varF$.
+\stopCenterAlign
+\stopDefinitionAZ
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. F. Теорема}, reference=prop:V.F]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byyellow]{B}}
+\def\varC{\color[byyellow]{C}}
+\def\varD{\color[byyellow]{D}}
+\def\varE{\color[byred]{E}}
+\def\varF{\color[byblue]{F}}
+\def\varG{\color[byyellow]{G}}
+\def\varH{\color[byyellow]{H}}
+\def\varK{\color[byyellow]{K}}
+\def\varL{\color[byblue]{L}}
+\problemNP{О}{тношения,}{составленные из  одних и тех же отношений одинаковы.}
+
+\startCenterAlign
+Пусть $\varA : \varB :: \varF : \varG$,\\
+ $\varB : \varC :: \varG : \varH$,\\
+$\varC : \varD :: \varH : \varK$,\\
+и $\varD : \varE :: \varK : \varL$,
+\stopCenterAlign
+\figureInMargin{
+\framed[align=middle]{
+$\varA\ \varB\ \varC\ \varD\ \varE$ \\
+\ $\varF\ \varG\ \varH\ \varK\ \varL$
+}}
+Тогда отношение составленное из $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, или отношение $\varA : \varE$, будет таким же, как составленное из $\varF : \varG$, $\varG : \varH$, $\varH : \varK$, $\varK : \varL$, или отношение$\varF : \varL$.
+
+\startCenterAlign
+Поскольку $\dfrac{\varA}{\varB} = \dfrac{\varF}{\varG}$,\\
+$\dfrac{\varB}{\varC} = \dfrac{\varG}{\varH}$,\\
+$\dfrac{\varC}{\varD} = \dfrac{\varH}{\varK}$,\\
+и $\dfrac{\varD}{\varE} = \dfrac{\varK}{\varL}$;\\
+$\therefore \dfrac{\varA \times \varB \times \varC \times \varD}{\varB \times \varC \times \varD \times \varE} = \dfrac{\varF \times \varG \times \varH \times \varK}{\varG \times \varH \times \varK \times \varL}$,\\
+и $\therefore \dfrac{\varA}{\varE} = \dfrac{\varF}{\varL}$,\\
+или отношение $\varA : \varE$ такое же как $\varF : \varL$.
+\stopCenterAlign
+
+То же можно показать для любого числа отношений расположенных таким образом.
+
+\startCenterAlign
+Теперь, пусть $\varA : \varB :: \varK : \varL$,\\
+ $\varB : \varC :: \varH : \varK$,\\
+$\varC : \varD :: \varG : \varH$,\\
+и $\varD : \varE :: \varF : \varG$,
+\stopCenterAlign
+
+Тогда отношение, составленное из отношений $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, или отношение $\varA : \varE$, будет таким же, как отношение составленное из отношений $\varK : \varL$, $\varH : \varK$, $\varG : \varH$, $\varF : \varG$, или отношение $\varF : \varL$.
+
+\startCenterAlign
+Поскольку $\dfrac{\varA}{\varB} = \dfrac{\varK}{\varL}$,\\
+$\dfrac{\varB}{\varC} = \dfrac{\varH}{\varK}$,\\
+$\dfrac{\varC}{\varD} = \dfrac{\varG}{\varH}$,\\
+и $\dfrac{\varD}{\varE} = \dfrac{\varF}{\varG}$;\\
+$\therefore \dfrac{\varA \times \varB \times \varC \times \varD}{\varB \times \varC \times \varD \times \varE} = \dfrac{\varK \times \varH \times \varG \times \varF}{\varL \times \varK \times \varH \times \varG}$,\\
+и $\therefore \dfrac{\varA}{\varE} = \dfrac{\varF}{\varL}$,\\
+или отношение $\varA : \varE$ такое же как отношение $\varF : \varL$.
+
+$\therefore$ Отношения, составленные… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. G. Теорема}, reference=prop:V.G]
+\def\varA{\color[byblue]{A}}
+\def\varB{\color[byblue]{B}}
+\def\varC{\color[byblue]{C}}
+\def\varD{\color[byblue]{D}}
+\def\varE{\color[byblue]{E}}
+\def\varF{\color[byblue]{F}}
+\def\varG{\color[byblue]{G}}
+\def\varH{\color[byblue]{H}}
+\def\varP{\color[byred]{P}}
+\def\varQ{\color[byred]{Q}}
+\def\varR{\color[byred]{R}}
+\def\varS{\color[byred]{S}}
+\def\varT{\color[byred]{T}}
+\def\varV{\color[byyellow]{V}}
+\def\varW{\color[byyellow]{W}}
+\def\varX{\color[byyellow]{X}}
+\def\varY{\color[byyellow]{Y}}
+\def\varZ{\color[byyellow]{Z}}
+\problemNP{Е}{сли}{несколько отношений такие же, как несколько других отношений, каждое к каждому, то отношение, составленное из отношений, таких же, как первые, каждое к каждому, будет таким же, как отношение, составленное из отношений, таких же как вторые, каждое к каждому.}
+
+\startCenterAlign
+\unprotect
+\vbox{\halign{\vrule height2.2ex depth1ex\ \hskip 5pt\ # & # & # & # & # & # & # & # \hskip 20pt & # & # & # & # & # \hskip 5pt \vrule \cr
+\noalign{\hrule}
+$\varA$ & $\varB$ & $\varC$ & $\varD$ & $\varE$ & $\varF$ & $\varG$ & $\varH$ &
+$\varP$ & $\varQ$ & $\varR$ & $\varS$ & $\varT$ \cr
+$a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ & $h$ &
+$\varV$ & $\varW$ & $\varX$ & $\varY$ & $\varZ$ \cr
+\noalign{\hrule}
+}}
+\protect
+
+\unprotect
+\setbox0\vbox{\halign{ # & # & # \cr
+$\eqalign{
+\mbox{ Если \ } \varA : \varB & :: a : b\cr
+\varC : \varD & :: c : d\cr
+\varE : \varF & :: e : f\cr
+\mbox{ и \ } \varG : \varH & :: g : h\cr
+}$ &
+$\eqalign{
+\mbox{ и \ } \varA : \varB & :: \varP : \varQ\cr
+\varC : \varD & :: \varQ : \varR\cr
+\varE : \varF & :: \varR : \varS\cr
+\varG : \varH & :: \varS : \varT\cr
+}$ &
+$\eqalign{
+\mbox{ и \ } a : b & :: \varV : \varW\cr
+c : d & :: \varW : \varX\cr
+e : f & :: \varX : \varY\cr
+f : h & :: \varY : \varZ\cr
+}$ \cr
+}}
+\protect
+\hskip-\wd0\hskip\textwidth\box0
+
+тогда $\varP : \varT = \varV : \varZ$.
+
+$\eqalign{
+\mbox{ Поскольку } \frac{\varP}{\varQ} = \frac{\varA}{\varB}
+	& = \frac{a}{b} = \frac{\varV}{\varW} \cr
+\frac{\varQ}{\varR} = \frac{\varC}{\varD}
+	& = \frac{c}{d} = \frac{\varW}{\varX} \cr
+\frac{\varR}{\varS} = \frac{\varE}{\varF}
+	& = \frac{e}{f} = \frac{\varX}{\varY} \cr
+\frac{\varS}{\varT} = \frac{\varG}{\varH}
+	& = \frac{g}{h} = \frac{\varY}{\varZ} \cr
+}$
+
+и $\therefore
+\dfrac{\varP \times \varQ \times \varR \times \varS}
+	{\varQ \times \varR \times \varS \times \varT} =
+\dfrac{\varV \times \varW \times \varX \times \varY}
+	{\varW \times \varX \times \varY \times \varZ}$,
+
+и $\therefore \dfrac{\varP}{\varT} = \dfrac{\varV}{\varZ}$,
+или $\varP : \varT = \varV : \varZ$.
+
+$\therefore$ Если несколько отношений… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. H. Теорема}, reference=prop:V.H]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byred]{B}}
+\def\varC{\color[byred]{C}}
+\def\varD{\color[byred]{D}}
+\def\varE{\color[byred]{E}}
+\def\varF{\color[byred]{F}}
+\def\varG{\color[byred]{G}}
+\def\varH{\color[byred]{H}}
+\def\varP{\color[byblue]{P}}
+\def\varQ{\color[byblue]{Q}}
+\def\varR{\color[byblue]{R}}
+\def\varS{\color[byblue]{S}}
+\def\varT{\color[byblue]{T}}
+\def\varX{\color[byblue]{X}}
+\problemNP{Е}{сли}{отношение, составленное из нескольких отношений будет таким же, как составленное из нескольких других отношений, 
+и если одно из первых отношений или отношение, составленное из нескольких из них,  такое же, как одно из вторых или составленное из вторых,
+тогда составное отношение оставшихся из первых, будет таким же, как отношение составленное из оставшихся вторых.}
+\figureInMargin{
+\framed[align=middle]{
+$\varA\ \varB\ \varC\ \varD\ \varE\ \varF\ \varG\ \varH$\\
+$\varP\ \varQ\ \varR\ \varS\ \varT\ \varX$\\
+}}
+Пусть $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \varF$, $\varF : \varG$, $\varG : \varH$, будут первыми отношениями и $\varP : \varQ$, $\varQ : \varR$, $\varR : \varS$, $\varS : \varT$, $\varT : \varX$ вторыми отношениями; также пусть $\varA : \varH$, составленное из первых отношений будет таким же, как $\varP : \varX$, составленное вторых отношений, и пусть отношение $\varA : \varE$, составленное из отношений $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$ будет таким же, как $\varP : \varR$, составленное из отношений $\varP : \varQ$, $\varQ : \varR$.
+
+Тогда отношение, составленное из оставшихся отношений, то есть отношение, составленное из отношений $\varE : \varF$, $\varF : \varG$, $\varG : \varH$, то есть отношение $\varE : \varH$, будет таким же, как отношение $\varR : \varX$, составленное из оставшихся отношений $\varR : \varS$, $\varS : \varT$, $\varT : \varX$.
+
+\startCenterAlign
+Поскольку $\dfrac
+{\varA \times \varB \times \varC \times \varD \times \varE \times \varF \times \varG}
+{\varB \times \varC \times \varD \times \varE \times \varF \times \varG \times \varH} =
+\dfrac
+{\varP \times \varQ \times \varR \times \varS \times \varT}
+{\varQ \times \varR \times \varS \times \varT \times \varX}$,
+
+или $\dfrac
+{\varA \times \varB \times \varC \times \varD}
+{\varB \times \varC \times \varD \times \varE}
+\times
+\dfrac
+{\varE \times \varF \times \varG}
+{\varF \times \varG \times \varH} =
+\dfrac
+{\varP \times \varQ}
+{\varQ \times \varR}
+\times
+\dfrac
+{\varR \times \varS \times \varT}
+{\varS \times \varT \times \varX}$,
+
+и $\dfrac
+{\varA \times \varB \times \varC \times \varD}
+{\varB \times \varC \times \varD \times \varE} =
+\dfrac
+{\varP \times \varQ}
+{\varQ \times \varR}$
+
+$\therefore \dfrac
+{\varE \times \varF \times \varG}
+{\varF \times \varG \times \varH} =
+\dfrac
+{\varR \times \varS \times \varT}
+{\varS \times \varT \times \varX}$,
+
+$\therefore \dfrac{\varE}{\varH} = \dfrac{\varR}{\varX}$,
+
+$\therefore \varE : \varH = \varR : \varX$.
+
+$\therefore$ Если отношение… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
+
+\vfill\pagebreak
+
+\startPropositionAZ[title={Предл. K. Теорема}, reference=prop:V.K]
+\def\varA{\color[byred]{A}}
+\def\varB{\color[byred]{B}}
+\def\varC{\color[byred]{C}}
+\def\varD{\color[byred]{D}}
+\def\varE{\color[byred]{E}}
+\def\varF{\color[byred]{F}}
+\def\varG{\color[byred]{G}}
+\def\varH{\color[byred]{H}}
+\def\varK{\color[byred]{K}}
+\def\varL{\color[byred]{L}}
+\def\varM{\color[byred]{M}}
+\def\varN{\color[byred]{N}}
+\def\varO{\color[byyellow]{O}}
+\def\varP{\color[byyellow]{P}}
+\def\varQ{\color[byyellow]{Q}}
+\def\varR{\color[byyellow]{R}}
+\def\varS{\color[byyellow]{S}}
+\def\varT{\color[byyellow]{T}}
+\def\varV{\color[byyellow]{V}}
+\def\varW{\color[byyellow]{W}}
+\def\varX{\color[byyellow]{X}}
+\def\varY{\color[byyellow]{Y}}
+\def\vara{\color[byblue]{a}}
+\def\varb{\color[byblue]{b}}
+\def\varc{\color[byblue]{c}}
+\def\vard{\color[byblue]{d}}
+\def\vare{\color[byblue]{e}}
+\def\varf{\color[byblue]{f}}
+\def\varg{\color[byblue]{g}}
+\problemNP{Е}{сли}{есть любое количество отношений и любое количество других отношений, такие, что отношение составленное из отношений, таких же, как первые отношение, каждое к каждому, такое же, как отношение, составленное из отношений, таких же, как вторые, каждое к каждому, 
+и если отношение, или отношение, составленное из отношений, таких же, как несколько из первых отношений, каждое к каждому, будут такими же, как одно из вторых, или отношение, составленное из отношений таких же, каждое к каждому, как несколько из вторых, то отношение, составленное отношений, таких же, как оставшиеся первые, каждое к каждому, будет таким же, как отношение, составленное из таких же, как оставшиеся вторые, каждое к каждому.}
+
+\unprotect
+\vbox{\halign{\vrule height2.2ex depth1ex\ \hskip 2pt\
+#&#& #&#& #&#& #&#& #&#& #&# & \hfil#\hfil
+\hskip 2pt \vrule \cr
+\noalign{\hrule}
+& & & & & & & $h$ & $k$ & $m$ & $n$ & $s$ & \cr
+$\varA$ & $\varB$, & $\varC$ & $\varD$, & $\varE$ & $\varF$, & $\varG$ & $\varH$, & $\varK$ & $\varL$, & $\varM$ & $\varN$ & $\vara\ \varb\ \varc\ \vard\ \vare\ \varf\ \varg$ \cr
+$\varO$ & $\varP$, & $\varQ$ & $\varR$, & $\varS$ & $\varT$, & $\varV$ & $\varW$, & $\varX$ & $\varY$ & & & $h\ k\ l\ m\ n\ p$ \cr
+& & $a$ & $b$ & $k$ & $m$ & & $e$ & $f$ & $g$ & & & \cr
+\noalign{\hrule}
+}}
+\protect
+
+Пусть $\varA : \varB$, $\varC : \varD$, $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$, будут первыми отношениями, а $\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, $\varV : \varW$, $\varX : \varY$, вторыми,
+
+\startCenterAlign
+$\eqalign{
+\mbox{и пусть }
+\varA : \varB &= \vara : \varb ,\cr
+\varC : \varD &= \varb : \varc ,\cr
+\varE : \varF &= \varc : \varf ,\cr
+\varG : \varH &= \vard : \vare ,\cr
+\varK : \varL &= \vare : \varf ,\cr
+\varM : \varN &= \varf : \varg .
+}$
+\stopCenterAlign
+
+Тогда, соглавно определению составного отношения, отношение $\vara : \varg$ будет составлено из отношений $\vara : \varb$, $\varb : \varc$, $\varc : \vard$, $\vard : \vare$, $\vare : \varf$, $\varf : \varg$, таких же, как отношения $\varA : \varB$, $\varC : \varD$, $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$, каждое к каждому.
+
+\startCenterAlign
+$\eqalign{
+\mbox{Также, }
+\varO : \varP &= h : k ,\cr
+\varQ : \varR &= k : l ,\cr
+\varS : \varT &= l : m ,\cr
+\varV : \varW &= m : n ,\cr
+\varX : \varY &= n : p ,\cr
+}$
+\stopCenterAlign
+
+Тогда отношение $h : p$ будет составлено из отношений $h : k$, $k : l$, $l : m$, $m : n$, $n : p$, таких же, как $\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, $\varV : \varW$, $\varX : \varY$, каждое к каждому.
+
+\startCenterAlign
+$\therefore$ согласно гипотезе, $\vara : \varg = h : p$.
+\stopCenterAlign
+
+Теперь, пусть отношение, составленное из отношений $\varA : \varB$, $\varC : \varD$, двух первых отношения (или отношения $\vara : \varc$, поскольку $\varA : \varB = \vara : \varb$, и $\varC : \varD = \varb : \varc$), будет таким же, как отношение $a : d$, состаавленное из отношений $a : b$, $b : c$, $c : d$, таких же, как отношения $\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, три из вторых.
+
+И пусть будут отношения $h : s$, составленное из отношений $h : k$, $k : m$, $m : n$, $n : s$, таких же, как оставшиеся из первых, а именно $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$, и отношение $e : g$, составленное из отношения $e : f$ , $f : g$, таких же, как оставшиеся из вторых, а именно $\varV : \varW$, $\varX : \varY$.  Тогда отношение $h : s$  будет таким же, как отношение $e : g$, или $h : s = e : g$.
+
+\startCenterAlign
+Поскольку $\dfrac
+{\varA \times \varC \times \varE \times \varG \times \varK \times \varM}
+{\varB \times \varD \times \varF \times \varH \times \varL \times \varN}
+=
+\dfrac
+{\vara \times \varb \times \varc \times \vard \times \vare \times \varf}
+{\varb \times \varc \times \vard \times \vare \times \varf \times \varg}$,
+
+и $\dfrac
+{\varO \times \varQ \times \varS \times \varV \times \varX}
+{\varP \times \varR \times \varT \times \varW \times \varY}
+=
+\dfrac
+{h \times k \times l \times m \times n}
+{k \times l \times m \times n \times p}$,\\
+составлением отношений.
+
+$\therefore \dfrac
+{\vara \times \varb \times \varc \times \vard \times \vare \times \varf}
+{\varb \times \varc \times \vard \times \vare \times \varf \times \varg}
+=
+\dfrac
+{h \times k \times l \times m \times n}
+{k \times l \times m \times n \times p}$ (гип.),
+
+или $\dfrac{\vara \times \varb}{\varb \times \varc}
+\times
+\dfrac
+{\varc \times \vard \times \vare \times \varf}
+{\vard \times \vare \times \varf \times \varg}
+=
+\dfrac
+{h \times k \times l}
+{k \times l \times m}
+\times
+\dfrac
+{m \times n}
+{n \times p}$,
+
+но $\dfrac{\vara \times \varb}{\varb \times \varc} = \dfrac{\varA \times \varC}{\varB \times \varD}
+=
+\dfrac
+{\varO \times \varQ \times \varS}
+{\varP \times \varR \times \varT}
+=
+\dfrac{a \times b \times c}{b \times c \times d}
+=
+\dfrac{h \times k \times l}{k \times l \times m}$;
+
+$\therefore
+\dfrac
+{\varc \times \vard \times \vare \times \varf}
+{\vard \times \vare \times \varf \times \varg}
+=
+\dfrac
+{m \times n}
+{n \times p}$.
+
+И $\dfrac
+{\varc \times \vard \times \vare \times \varf}
+{\vard \times \vare \times \varf \times \varg}
+= \dfrac
+{h \times k \times l \times m \times n}
+{k \times l \times m \times n \times p}$ (гип.),
+
+и $\dfrac
+{m \times n}
+{n \times p}
+=
+\dfrac
+{e \times f}
+{f \times g}$ (гип.),
+
+$\therefore \dfrac
+{h \times k \times l \times m \times n}
+{k \times l \times m \times n \times p}
+= \dfrac{e f}{f g}$,
+
+$\therefore \dfrac{h}{s} = \dfrac{e}{g}$,\\
+$\therefore h : s = e : g$.
+
+$\therefore$ Если есть любое количество отношений… и т. д.
+\stopCenterAlign
+\stopPropositionAZ
 \stopbook
 
 \stoptext
