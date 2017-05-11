@@ -10838,6 +10838,7 @@ draw byLine(M, B)(black, 0, 0);
 draw byLine(B, C)(byblue, 0, 0);
 draw byLine(C, D)(byred, 0, 0);
 draw byLine(D, Q)(black, 0, 0);
+draw byLabelsOnPolygon(A, Q, D, C, B, M)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{and parallelograms having the same altitude are to one another as their bases.}
@@ -10850,6 +10851,7 @@ The triangles
 \drawFromCurrentPicture[bottom][trianglesAMC]{
 draw byNamedPolygon(AMN,AOH,AGB,ABC);
 draw byNamedLine(MB,BC);
+draw byLabelsOnPolygon(A, C, M)(0, 0);
 }
 thus formed are all equal to one another, since their bases are equal. \inprop[prop:I.XXXVIII]
 
@@ -10859,6 +10861,7 @@ In like manner
 \drawFromCurrentPicture[bottom][trianglesACQ]{
 draw byNamedPolygon(ACD,AKL,APQ);
 draw byNamedLine(CD,DQ);
+draw byLabelsOnPolygon(C, A, Q)(0, 0);
 }
 and its base are respectively equimultiples of \polygonACD\ and the base \drawUnitLine{CD}.
 
@@ -10922,6 +10925,20 @@ byLineDefine(Bc, Dc, byred, 0, 0);
 byLineDefine(Dc, Ec, black, 0, 0);
 byLineDefine(Cc, Ec, byblue, 0, 0);
 draw byNamedLineSeq(0)(BcCc,BcDc,DcEc,CcEc);
+byPointLabelDefine(Ab, "A");
+byPointLabelDefine(Bb, "B");
+byPointLabelDefine(Cb, "C");
+byPointLabelDefine(Db, "D");
+byPointLabelDefine(Eb, "E");
+byPointLabelDefine(Bc, "B");
+byPointLabelDefine(Cc, "C");
+byPointLabelDefine(Dc, "D");
+byPointLabelDefine(Ec, "E");
+byPointLabelDefine(Fc, "F");
+draw byLabelsOnPolygon(A, E, C, B, D)(0, 0);
+draw byLabelsOnPolygon(Ab, Cb, Eb, Db, Bb)(0, 0);
+draw byLabelsOnPolygon(Dc, Ec, Cc, Bc)(0, 0);
+draw byLabelsOnPolygon(Bc, Fc, Dc)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawUnitLine{DE} be drawn parallel to any side \drawUnitLine{BC} of a triangle, it shall cut the other sides, or those sides produced, into proportional segments\\
@@ -10992,6 +11009,7 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, D, black, 0, 0);
 byLineDefine(D, C, black, 1, 0);
 draw byNamedLineSeq(0)(AE,CE,DC,BD,AB);
+draw byLabelsOnPolygon(B, A, E, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{right}{line (\drawUnitLine{AD}) bisecting the angle of a triangle, divides the opposite side into segments (\drawUnitLine{BD}, \drawUnitLine{DC}) proportional to the conterminous sides (\drawUnitLine{AB}, \drawUnitLine{CA}).\\
@@ -11059,6 +11077,7 @@ byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, C, black, 1, 0);
 byLineDefine(B, C, black, 0, 0);
 draw byNamedLineSeq(0)(AF,DF,DE,EC,BC,AB);
+draw byLabelsOnPolygon(B, A, F, D, E, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equiangular triangles
@@ -11073,11 +11092,13 @@ Let the equiangular triangles be so placed that two sides \drawUnitLine{BC}, \dr
 \startCenterAlign
 Draw \drawUnitLine{AF} and \drawUnitLine{DF}.\\
 Then, because $\drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{DF,DE}$ \inprop[prop:I.XXVIII];\\
-and for a like reason $\drawUnitLine{EC} \parallel \drawUnitLine{AB,AF}$,\\
+and for a like reason $\drawUnitLine{CD} \parallel \drawUnitLine{AB,AF}$,\\
 $\therefore$
 \drawFromCurrentPicture[bottom][polygonACDF]{
 startGlobalRotation(-lineAngle.CD);
+startAutoLabeling;
 draw byNamedLineSeq(0)(CA,AF,DF,CD);
+stopAutoLabeling;
 stopGlobalRotation;
 }
 is a parallelogram.

@@ -9467,8 +9467,7 @@ $\therefore$ Если отношение… и т. д.
 \def\vare{\color[byblue]{e}}
 \def\varf{\color[byblue]{f}}
 \def\varg{\color[byblue]{g}}
-\problemNP{Е}{сли}{есть любое количество отношений и любое количество других отношений, такие, что отношение составленное из отношений, таких же, как первые отношение, каждое к каждому, такое же, как отношение, составленное из отношений, таких же, как вторые, каждое к каждому, 
-и если отношение, или отношение, составленное из отношений, таких же, как несколько из первых отношений, каждое к каждому, будут такими же, как одно из вторых, или отношение, составленное из отношений таких же, каждое к каждому, как несколько из вторых, то отношение, составленное отношений, таких же, как оставшиеся первые, каждое к каждому, будет таким же, как отношение, составленное из таких же, как оставшиеся вторые, каждое к каждому.}
+\problemNP{Е}{сли}{есть любое количество отношений и любое количество других отношений, такие, что отношение составленное из отношений, таких же, как первые отношения, каждое к каждому, такое же, как отношение, составленное из отношений, таких же, как вторые, каждое к каждому, и если есть отношение, или отношение, составленное из отношений, таких же, как несколько из первых отношений, каждое к каждому, такое же, как одно из вторых, или отношение, составленное из отношений таких же, каждое к каждому, как несколько из вторых, то отношение, составленное отношений, таких же, как оставшиеся первые, каждое к каждому, будет таким же, как отношение, составленное из таких же, как оставшиеся вторые, каждое к каждому.}
 
 \unprotect
 \vbox{\halign{\vrule height2.2ex depth1ex\ \hskip 2pt\
@@ -9605,6 +9604,414 @@ $\therefore h : s = e : g$.
 $\therefore$ Если есть любое количество отношений… и т. д.
 \stopCenterAlign
 \stopPropositionAZ
+\stopbook
+
+\startbook[title={Книга 6}]\unskip
+
+\startsupersection[title={Определения}]\unskip
+
+\startDefinitionOnlyNumber[reference=def:VI.I]
+\defineNewPicture{
+pair a, b, c, A, B, C, d, e, f, g, D, E ,F ,G;
+a := (0, 0);
+b := (u, 0);
+c := (1/2u, u);
+A := (a scaled 2) shifted (u, -u);
+B := (b scaled 2) shifted (u, -u);
+C := (c scaled 2) shifted (u, -u);
+d := (0, 0);
+e := (2/3u, 0);
+f := (u, 2/3u);
+g := (1/3u, 2/3u);
+D := d scaled 2;
+E := e scaled 2;
+F := f scaled 2;
+G := g scaled 2;
+d := d shifted (0, -5/2u);
+e := e shifted (0, -5/2u);
+f := f shifted (0, -5/2u);
+g := g shifted (0, -5/2u);
+D := D shifted (u, -5/2u);
+E := E shifted (u, -5/2u);
+F := F shifted (u, -5/2u);
+G := G shifted (u, -5/2u);
+draw byPolygon(a,b,c)(byblue);
+draw byPolygon(A,B,C)(byblue);
+draw byPolygon(d,e,f,g)(byred);
+draw byPolygon(D,E,F,G)(byred);
+}\drawCurrentPictureInMargin
+Про прямолинейные фигуры говорят, что они подобны, когда их углы равны в одном порядке и стороны при равных углах пропорциональны.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:VI.II]
+Говорят, что две стороны одной фигуры взаимно пропорциональны двум сторонам другой, когда одна из сторон первой фигуры относится к другой, как одна из сторон второй к другой.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:VI.III]
+Говорится, что прямая делится в крайнем и среднем отношении, если как целая к большему отрезку, так и больший отрезок к меньшему.
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:VI.IV]
+\defineNewPicture{
+pair d[];
+d1 := (0, 0);
+d2 := (5/2u, 0);
+d3 := (5u, 0);
+d4 := (15/2u, 0);
+numeric h;
+h := 6/5u;
+pair A, B, C, H;
+A := (0, 0) shifted d1;
+B := (3/2u, 0) shifted d1;
+C := (3/4u, h) shifted d1;
+H := (xpart(C), 0);
+draw byPolygon (A,B,C)(byyellow);
+draw byLine(C, H)(byyellow, 1, 0);
+pair A, B, C, D, H, G;
+A := (0, 0) shifted d2;
+B := (1/2u, 0) shifted d2;
+C := (3/2u, h) shifted d2;
+D := (u, h) shifted d2;
+H := (xpart(C), 0);
+G := (xpart(D), 0);
+draw byPolygon (A,B,C,D)(byblue);
+byLineDefine(C, H, byblue, 1, 0);
+draw byLine(D, G, byblue, 1, 0);
+byLineDefine(A, H, byblue, 1, 0);
+draw byNamedLineSeq(0)(CH,AH);
+pair A, B, C, D, H;
+A := (0, 0) shifted d3;
+B := (2/3u, 0) shifted d3;
+C := (u, h) shifted d3;
+H := (xpart(C), 0);
+draw byPolygon (A,B,C)(black);
+byLineDefine(C, H, black, 1, 0);
+byLineDefine(A, H, black, 1, 0);
+draw byNamedLineSeq(0)(CH,AH);
+pair A, B, C, D, E, H;
+A := (0, 0) shifted d4;
+B := (1/2u, 0) shifted d4;
+C := (u, 1/2h) shifted d4;
+D := (1/4u, h) shifted d4;
+E := (-1/2u, 1/2h) shifted d4;
+H := (xpart(D), 0);
+draw byPolygon (A,B,C,D,E)(byred);
+draw byLine(D, H)(byred, 1, 0);
+}
+Высотой фигуры называют перпендикуляр,  проведенный от вершины к основанию или его продолжению.
+
+\noindent\ \hfill\reuseMPgraphic{\currentInstance::currentPicture}\hfill\
+\stopDefinitionOnlyNumber
+\stopsupersection
+
+\vfill\pagebreak
+
+\startProposition[title={Предл. I. Теорема},reference=prop:VI.I]
+\defineNewPicture[2/5]{
+pair A, B, C, D, H, G, K, L, M, N, O, P, Q;
+numeric w, h;
+w := 9/2u;
+h := 3u;
+A := (6/11w, h);
+B := (5/11w, 0);
+C := (6/11w, 0);
+D := (7/11w, 0);
+H := (3/11w, 0);
+G := (4/11w, 0);
+K := (8/11w, 0);
+L := (9/11w, 0);
+M := (0/11w, 0);
+N := (1/11w, 0);
+O := (2/11w, 0);
+P := (10/11w, 0);
+Q := (11/11w, 0);
+draw byPolygon(A,M,N)(black);
+draw byPolygon(A,O,H)(black);
+draw byPolygon(A,G,B)(black);
+draw byPolygon(A,B,C)(byred);
+draw byPolygon(A,C,D)(byblue);
+draw byPolygon(A,K,L)(byyellow);
+draw byPolygon(A,P,Q)(byyellow);
+draw byLine(M, B)(black, 0, 0);
+draw byLine(B, C)(byblue, 0, 0);
+draw byLine(C, D)(byred, 0, 0);
+draw byLine(D, Q)(black, 0, 0);
+draw byLabelsOnPolygon(A, Q, D, C, B, M)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Т}{реугольники}{и параллелограммы, имеющие одну и ту же высоту относятся друг к другу как их основания.}
+
+Пусть у треугольников \drawPolygon[bottom]{ABC} и \drawPolygon[bottom]{ACD} общая вершина, а их основания \drawUnitLine{BC} и \drawUnitLine{CD} лежат на одной прямой.
+
+Продлим \drawUnitLine{BC,CD} в обе стороны, возьмем на продолжении со cтороны \drawUnitLine{CD} линии равные ей, а со стороны \drawUnitLine{BC} линии равные ей, и проведем линии от вершины к их концам.
+
+Треугольники
+\drawFromCurrentPicture[bottom][trianglesAMC]{
+draw byNamedPolygon(AMN,AOH,AGB,ABC);
+draw byNamedLine(MB,BC);
+draw byLabelsOnPolygon(A, C, M)(0, 0);
+}
+образованные таким образом равны между собой, поскольку равны их основания \inprop[prop:I.XXXVIII].
+
+$\therefore$ \trianglesAMC\ и его основане соответственно равнократны \polygonABC\ и его основанию \drawUnitLine{BC}.
+
+Таким же образом
+\drawFromCurrentPicture[bottom][trianglesACQ]{
+draw byNamedPolygon(ACD,AKL,APQ);
+draw byNamedLine(CD,DQ);
+draw byLabelsOnPolygon(C, A, Q)(0, 0);
+}
+и его основание соответственно равнократны \polygonACD\ и его основанию \drawUnitLine{CD}.
+
+$\therefore$ если $m$ или $6$ раз \polygonABC\ $>, = \mbox{ или } < n$ или $5$ раз \polygonACD\ то $m$ или $6$ раз \drawUnitLine{BC} $>, = \mbox{ или } < n$ или $5$ раз \drawUnitLine{CD}, $m$ и $n$ обозначают любые кратные, взятые как в \indefL[def:V.V]. Хотя мы показали только, что это свойство проявляется, когда $m = 6$ и $n = 5$, но очевидно, что это свойство работает для любых кратных значений, которые можно придать $m$ и $n$.
+
+\startCenterAlign
+$\therefore \polygonABC\ : \polygonACD\ :: \drawUnitLine{BC} : \drawUnitLine{CD}$ \indef[def:V.V]
+\stopCenterAlign
+
+Параллелограммы с той же высотой вдвое больше треугольников, на тех же основаниях, и пропорциональны им (часть I), и, поскольку они вдвое больше, такие параллелограммы относятся как их основания \inprop[prop:V.XV].
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. II. Теорема},reference=prop:VI.II]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, Ab, Bb, Cb, Db, Eb, Ac, Bc, Cc, Dc, Ec, Fc, d[];
+d1 := (0, 0);
+d2 := (u, -4u);
+d3 := (5/2u, -9/2u);
+A := (0, 0) shifted d1;
+B := (-1/3u, -7/2u) shifted d1;
+C := B shifted (5/2u, 0);
+D := 1/2[A, B];
+E := 1/2[A, C];
+Ab := (0, 0) shifted d2;
+Bb := (-u, -2u) shifted d2;
+Cb := Bb shifted (2u, 0);
+Db := 4/3[Ab, Bb];
+Eb := 4/3[Ab, Cb];
+Ac := (0, 0) shifted d3;
+Bc := (-3u, -5u) shifted d3;
+Cc := Bc shifted (2u, 0);
+Dc := 3/5[Ac, Bc];
+Ec := 3/5[Ac, Cc];
+Fc = whatever[Bc, Ec] = whatever[Cc, Dc];
+draw byLine(D, E, black, 0, 0);
+draw byLine(B, E, byred, 0, 0);
+draw byLine(C, D, byblue, 0, 0);
+byLineDefine(A, D, byred, 1, 0);
+byLineDefine(D, B, byyellow, 0, 0);
+byLineDefine(B, C, black, 1, 0);
+byLineDefine(A, E, byblue, 1, 0);
+byLineDefine(E, C, byyellow, 1, 0);
+draw byNamedLineSeq(0)(AD,DB,BC,EC,AE);
+draw byLine(Bb, Eb, byred, 0, 0);
+draw byLine(Cb, Db, byblue, 0, 0);
+draw byLine(Bb, Cb, black, 1, 0);
+byLineDefine(Ab, Bb, byred, 1, 0);
+byLineDefine(Bb, Db, byyellow, 0, 0);
+byLineDefine(Db, Eb, black, 0, 0);
+byLineDefine(Ab, Cb, byblue, 1, 0);
+byLineDefine(Cb, Eb, byyellow, 1, 0);
+draw byNamedLineSeq(0)(AbBb,BbDb,DbEb,CbEb,AbCb);
+draw byLine(Bc, Fc, byyellow, 0, 0);
+draw byLine(Fc, Ec, byred, 1, 0);
+draw byLine(Cc, Fc, byyellow, 1, 0);
+draw byLine(Fc, Dc, byblue, 1, 0);
+byLineDefine(Bc, Cc, black, 1, 0);
+byLineDefine(Bc, Dc, byred, 0, 0);
+byLineDefine(Dc, Ec, black, 0, 0);
+byLineDefine(Cc, Ec, byblue, 0, 0);
+draw byNamedLineSeq(0)(BcCc,BcDc,DcEc,CcEc);
+byPointLabelDefine(Ab, "A");
+byPointLabelDefine(Bb, "B");
+byPointLabelDefine(Cb, "C");
+byPointLabelDefine(Db, "D");
+byPointLabelDefine(Eb, "E");
+byPointLabelDefine(Bc, "B");
+byPointLabelDefine(Cc, "C");
+byPointLabelDefine(Dc, "D");
+byPointLabelDefine(Ec, "E");
+byPointLabelDefine(Fc, "F");
+draw byLabelsOnPolygon(A, E, C, B, D)(0, 0);
+draw byLabelsOnPolygon(Ab, Cb, Eb, Db, Bb)(0, 0);
+draw byLabelsOnPolygon(Dc, Ec, Cc, Bc)(0, 0);
+draw byLabelsOnPolygon(Bc, Fc, Dc)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{в треугольнике параллельно одной из сторон \drawUnitLine{BC} проведена прямая \drawUnitLine{DE}, то она рассекает две другие стороны на пропорциональные отрезки.\\
+И если прямая \drawUnitLine{DE} делит две стороны треугольника на пропорциональные сегменты, то она параллельна оставшейся стороне \drawUnitLine{BC}.}
+
+\startsubproposition[title={Часть I.}]
+\startCenterAlign
+Пусть $\drawUnitLine{DE} \parallel \drawUnitLine{BC}$,\\
+тогда $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$.
+
+Проведем \drawUnitLine{BE} и \drawUnitLine{CD},\\
+и $\drawLine[middle][triangleBDE]{DE,BE,DB} = \drawLine[middle][triangleCDE]{EC,CD,DE}$ \inprop[prop:I.XXXVII];
+
+$\therefore \triangleBDE\ :
+\drawLine[middle][triangleADE]{AD,AE,DE} :: \triangleCDE\ : \triangleADE$ \inprop[prop:V.VII];\\
+но $\triangleBDE\ : \triangleADE\ :: \drawUnitLine{DB} : \drawUnitLine{AD}$ \inprop[prop:VI.I],\\
+$\therefore \drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ \inprop[prop:V.XI].
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={Часть II.}]
+\startCenterAlign
+Пусть $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$.\\
+тогда $\drawUnitLine{DE} \parallel \drawUnitLine{BC}$.
+
+Оставим то же построение,\\
+$\left.\eqalign{
+\mbox{ поскольку } \drawUnitLine{DB} : \drawUnitLine{AD} &:: \triangleBDE\ : \triangleADE \cr
+\mbox{ и } \drawUnitLine{EC} : \drawUnitLine{AE} &:: \triangleCDE\ : \triangleADE \cr
+}\right\}\mbox{ \inprop[prop:VI.I] }$;\\
+но $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (гип.)\\
+$\therefore \triangleBDE\ : \triangleADE :: \triangleCDE\ : \triangleADE$ \inprop[prop:V.XI]
+$\therefore \triangleBDE\ = \triangleCDE$ \inprop[prop:V.IX],
+
+но они на одном основании \drawUnitLine{BC}, и по одну его сторону\\
+и $\therefore \drawUnitLine{DE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXIX].
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. III. Теорема},reference=prop:VI.III]
+\defineNewPicture{
+pair A, B, C, D, E;
+numeric a;
+a := 80;
+A := (0, 0);
+B := A shifted (dir(220)*3u);
+C = whatever[A, A + dir(220+a)] = whatever[B, B shifted dir(0)];
+D = whatever[A, A + dir(220+1/2a)] = whatever[B, C];
+E = whatever[A, B] = whatever[C, C shifted (A-D)];
+draw byAngle(B, A, D, byyellow, 0);
+draw byAngle(D, A, C, black, 0);
+draw byAngle(C, A, E, black, 1);
+draw byAngleWithName(A, E, C, byblue, 0)(E);
+draw byAngleWithName(E, C, A, byred, 0)(C);
+draw byLine(C, A, byyellow, 0, 0);
+draw byLine(A, D, byblue, 0, 0);
+byLineDefine(A, E, byred, 1, 0);
+byLineDefine(C, E, byblue, 1, 0);
+byLineDefine(A, B, byred, 0, 0);
+byLineDefine(B, D, black, 0, 0);
+byLineDefine(D, C, black, 1, 0);
+draw byNamedLineSeq(0)(AE,CE,DC,BD,AB);
+draw byLabelsOnPolygon(B, A, E, C, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямая}{\drawUnitLine{AD}, рассекающая угол треугольника пополам делит противоположную сторону на части \drawUnitLine{BD} и \drawUnitLine{DC} пропорциональные смежным им сторонам \drawUnitLine{AB} и \drawUnitLine{CA}.\\
+И если прямая \drawUnitLine{AD}, проведенная из любого угла треугольника делит противоположную сторону \drawUnitLine{BD,DC} на части \drawUnitLine{BD} и \drawUnitLine{DC}, проворциональные смежным им сторонам \drawUnitLine{AB} и \drawUnitLine{CA}, то она делит угол пополам.}
+
+\startsubproposition[title={Часть I.}]
+\startCenterAlign
+Проведем $\drawUnitLine{CE} \parallel \drawUnitLine{AD}$, до \drawUnitLine{AE};\\
+тогда, $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX].
+
+$\therefore \drawAngle{DAC} = \drawAngle{E}$; но $\drawAngle{DAC} = \drawAngle{C}$, $\therefore \drawAngle{C} = \drawAngle{E}$,\\
+$\therefore \drawUnitLine{AE} = \drawUnitLine{CA}$ \inprop[prop:I.VI];\\
+и поскольку $\drawUnitLine{AD} \parallel \drawUnitLine{CE}$,\\
+$\drawUnitLine{AE} : \drawUnitLine{AB} :: \drawUnitLine{DC} : \drawUnitLine{BD}$ \inprop[prop:VI.II];
+
+но $\drawUnitLine{AE} = \drawUnitLine{CA}$;\\
+$\therefore \drawUnitLine{CA} : \drawUnitLine{AB} :: \drawUnitLine{DC} : \drawUnitLine{BD}$ \inprop[prop:V.VII].
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={Часть II.}]
+\startCenterAlign
+Оставим то же построение,\\
+и $\drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{BD} : \drawUnitLine{DC}$ \inprop[prop:VI.II];
+
+но $\drawUnitLine{BD} : \drawUnitLine{DC} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ (гип.)\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ \inprop[prop:V.XI].
+
+и $\therefore \drawUnitLine{AE} = \drawUnitLine{CA}$ \inprop[prop:V.IX],\\
+и $\therefore \drawAngle{E} = \drawAngle{C}$ \inprop[prop:I.V],\\
+но поскольку $\drawUnitLine{AD} \parallel \drawUnitLine{CE}$, $\drawAngle{DAC} = \drawAngle{C}$,\\
+и $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX];
+
+$\therefore \drawAngle{C} = \drawAngle{E}$, и $\drawAngle{BAD} = \drawAngle{DAC}$,\\
+и $\therefore$ \drawUnitLine{AD} делит \drawAngle{BAD,DAC} пополам.
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. IV. Теорема},reference=prop:VI.IV]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+B := (0, 0);
+A := (5/4u, u);
+C := (2u, 0);
+D := (A scaled 4/3) shifted (C-B);
+E := (C scaled 4/3) shifted (C-B);
+F = whatever[A, B] = whatever[D, E];
+draw byAngleWithName(A, B, C, byyellow, 0)(B);
+draw byAngle(B, C, A, byblue, 0);
+draw byAngleWithName(C, A, B, black, 1)(A);
+draw byAngle(D, C, E, byred, 0);
+draw byAngleWithName(C, E, D, black, 0)(E);
+draw byAngleWithName(E, D, C, byred, 1)(D);
+draw byLine(C, A, byred, 0, 0);
+draw byLine(C, D, byblue, 1, 0);
+byLineDefine(A, F, byyellow, 1, 0);
+byLineDefine(D, F, byyellow, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(D, E, byred, 1, 0);
+byLineDefine(E, C, black, 1, 0);
+byLineDefine(B, C, black, 0, 0);
+draw byNamedLineSeq(0)(AF,DF,DE,EC,BC,AB);
+draw byLabelsOnPolygon(B, A, F, D, E, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{равноугольных}{треугольниках \drawLine[bottom][triangleABC]{CA,BC,AB} и \drawLine[bottom][triangleCDE]{CD,DE,EC}, стороны при равных углах пропорциональны, а стороны противолежащие равным углам соответственны.} % In the original "sides which are opposite to the equal angles are homologous", what dos it mean?
+
+Пусть два треугольника будут расположены так, что стороны \drawUnitLine{BC} и \drawUnitLine{EC} против равных углов \drawAngle{D} и  \drawAngle{A} будут смежными и на одной прямой и сами треугольники лежат по одну сторону этой прямой, а равные углы, напротив, не будут смежными, т. е. \drawAngle{DCE} напротив \drawAngle{B}, и \drawAngle{BCA} напротив \drawAngle{E}.
+
+\startCenterAlign
+Проведем \drawUnitLine{AF} и \drawUnitLine{DF}.\\
+Тогда, поскольку $\drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{DF,DE}$ \inprop[prop:I.XXVIII];\\
+и по той же причине $\drawUnitLine{CD} \parallel \drawUnitLine{AB,AF}$,\\
+$\therefore$
+\drawFromCurrentPicture{
+startGlobalRotation(-lineAngle.CD);
+startAutoLabeling;
+draw byNamedLineSeq(0)(CA,AF,DF,CD);
+stopAutoLabeling;
+stopGlobalRotation;
+}
+параллелограмм.
+
+Но $\drawUnitLine{BC} : \drawUnitLine{EC} :: \drawUnitLine{DF} : \drawUnitLine{DE}$ \inprop[prop:VI.II],\\
+и поскольку $\drawUnitLine{DF} = \drawUnitLine{CA}$ \inprop[prop:I.XXXIV],\\
+$\drawUnitLine{BC} : \drawUnitLine{EC} :: \drawUnitLine{CA} : \drawUnitLine{DE}$;\\
+и, переставлением, $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EC} : \drawUnitLine{DE}$ \inprop[prop:V.XVI].
+
+Так же можно показать, что\\
+$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{BC} : \drawUnitLine{EC}$,\\
+и переставлением, что\\
+$\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{CD} : \drawUnitLine{EC}$,\\
+но уже было доказано, что\\
+$\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EC} : \drawUnitLine{DE}$\\
+и значит, по равенству\\
+$\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{CD} : \drawUnitLine{DE}$ \inprop[prop:V.XXII],\\
+следовательно, стороны при равных углах пропорциональны, а противолежащие им соответственны.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext
