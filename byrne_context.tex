@@ -11152,6 +11152,8 @@ byLineDefine(G, E, byyellow, 0, 0);
 byLineDefine(D, E, byred, 0, 0);
 byLineDefine(F, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(FG,GE,DE,FD);
+draw byLabelsOnPolygon(B, A, C)(0, 0);
+draw byLabelsOnPolygon(E, D, F, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have their sides proportional
@@ -11167,12 +11169,11 @@ and consequently $\drawAngle{G} = \drawAngle{A}$ \inprop[prop:I.XXXII],\\
 and since the triangles are equiangular,\\
 $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{GE} : \drawUnitLine{EF}$ \inprop[prop:VI.IV];\\
 but $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{DE} : \drawUnitLine{EF}$ (hyp.);\\
-$\therefore \drawUnitLine{DE} : \drawUnitLine{EF} :: \drawUnitLine{GE} : \drawUnitLine{EF}$ \inprop[prop:V.IX].\\
+$\therefore \drawUnitLine{DE} : \drawUnitLine{EF} :: \drawUnitLine{GE} : \drawUnitLine{EF}$,
+and consequently $\drawUnitLine{DE} = \drawUnitLine{GE}$ \inprop[prop:V.IX].
 In like manner it may be shown that\\
 $\drawUnitLine{FD} = \drawUnitLine{FG}$.
-\stopCenterAlign
 
-\startCenterAlign
 Therefore, the two triangles having a common base \drawUnitLine{EF}, and their sides equal, have also equal angles opposite to equal sides, i. e.\\
 $\drawAngle{DEF} = \drawAngle{GEF}$ and $\drawAngle{EFD} = \drawAngle{EFG}$ \inprop[prop:I.VIII].\\
 but $\drawAngle{GEF} = \drawAngle{B}$ (const.) and $\therefore \drawAngle{DEF} = \drawAngle{B}$;\\
@@ -11214,12 +11215,14 @@ byLineDefine(G, D, byyellow, 0, 0);
 byLineDefine(D, E, byred, 0, 0);
 byLineDefine(E, F, black, 0, 0);
 draw byNamedLineSeq(0)(FG,GD,DE,EF);
+draw byLabelsOnPolygon(A, B, C)(0, 0);
+draw byLabelsOnPolygon(D, E, F, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{AB,BC,CA} and \drawLine[bottom][triangleDEF]{DE,EF,FD}) have one angle (\drawAngle{C}) of the one, equal to one angle (\drawAngle{FDE}) of the other, and the sides about the equal angles proportional, the triangles shall be equiangular, and have those angles equal which the homologous sides subtend.}
+\problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{AB,BC,CA} and \drawLine[bottom][triangleDEF]{DE,EF,FD}) have one angle (\drawAngle{C}) of the one, equal to one angle (\drawAngle{EFD}) of the other, and the sides about the equal angles proportional, the triangles shall be equiangular, and have those angles equal which the homologous sides subtend.}
 
 \startCenterAlign
-From the extremities of \drawUnitLine{FD}, on of the sides of \triangleDEF, about \drawAngle{EFD},\\
+From the extremities of \drawUnitLine{FD}, one of the sides of \triangleDEF, about \drawAngle{EFD},\\
 draw \drawUnitLine{GD} and \drawUnitLine{FG},\\
 making $\drawAngle{GFD} = \drawAngle{C}$,\\
 and $\drawAngle{FDG} = \drawAngle{A}$;\\
@@ -11271,6 +11274,8 @@ byLineDefine(D, E, byyellow, 1, 0);
 byLineDefine(E, F, byred, 1, 0);
 byLineDefine(F, D, byblue, 1, 0);
 draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(A, G, C, B)(0, 0);
+draw byLabelsOnPolygon(D, F, E)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{CA,BC,AB} and \drawLine[bottom][triangleDEF]{FD,EF,DE}) have one angle in each equal (\drawAngle{F} equal to \drawAngle{C}), the sides about two other angles ($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$), and each of the remaining angles (\drawAngle{A} and \drawAngle{D}) either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
@@ -11305,7 +11310,7 @@ But if \drawAngle{A} and \drawAngle{D} be assumed to be each not less than a rig
 \defineNewPicture{
 pair A, B, C, D;
 A := (0, 0);
-B := A shifted (dir(-145)*4u);
+B := A shifted (dir(-145)*7/2u);
 C = whatever[B, B shifted (1, 0)] = whatever[A, A shifted dir(-145 - 90)];
 D := (xpart(A), ypart(B));
 draw byPolygon(A,B,D)(byyellow);
@@ -11317,6 +11322,7 @@ draw byAngleWithName(B, D, A, byblue, 0)(D);
 draw byAngle(D, A, B, byred, 0);
 draw byAngle(C, A, D, byyellow, 0);
 draw byLine(A, D, black, 0, 0);
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{a right angled tiangle (\drawPolygon[bottom][triangleABC]{ABD,ADC}), if a perpendicular (\drawUnitLine{AD}) be drawn from the right angle to the opposite side, the triangles (\drawPolygon[bottom][triangleABD]{ABD}, \drawPolygon[bottom][triangleADC]{ADC}) on each side of it are similar to the whole triangle and to each other.}
@@ -11336,20 +11342,27 @@ In like manner it may be proved that \triangleADC\ is similar to \triangleABC; b
 \startProposition[title={Prop. IX. prob.},reference=prop:VI.IX]
 \defineNewPicture{
 pair A, B, C, D, E, F;
+numeric n;
+n := 5;
 A := (0, 0);
 B := (3u, 5u);
-C := B xscaled 0;
-F := 2/5[A, B];
-D := F xscaled 0;
-E := 4/3[A, C];
+D := A shifted (0, u);
+E := ((D-A) scaled n) shifted A;
+F = whatever[A, B] = whatever[D, D shifted (B-E)];
+C := 1/3[D, E];
 draw byLine(D, F, byred, 1, 0);
-byLineDefine(B, C, byred, 0, 0);
+byLineDefine(B, E, byred, 0, 0);
 byLineDefine(A, F, byyellow, 0, 0);
 byLineDefine(A, D, byblue, 0, 0);
 byLineDefine(D, C, byblue, 1, 0);
 byLineDefine(C, E, black, 1, 0);
 byLineDefine(F, B, byyellow, 1, 0);
-draw byNamedLineSeq(0)(noLine,CE,DC,AD,AF,FB,BC);
+byLineDefine(A, E, black, 0, 0);
+draw byNamedLineSeq(0)(BE, FB, AF, AD, DC, CE);
+for i := 2 step 1 until n - 1:
+draw byMarkLine(i/n, black)(AE);
+endfor;
+draw byLabelsOnPolygon(B, F, A, D, C, E)(0, 0); % improvement: drawing in the original seemed to be wrong, fixed here
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{a given straight line (\drawSizedLine{AF,FB}) to cut off any required part.}
@@ -11358,16 +11371,17 @@ draw byNamedLineSeq(0)(noLine,CE,DC,AD,AF,FB,BC);
 From either extremity of the given line draw \drawSizedLine{AD,DC} making any angle with \drawSizedLine{AF,FB};\\
 and produce \drawSizedLine{AD,DC} till the whole produced line \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part.
 
-Draw \drawSizedLine{BC},\\
-and draw $\drawSizedLine{DF} \parallel \drawSizedLine{BC}$.\\
+Draw \drawSizedLine{BE},\\
+and draw $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$.\\
 
 \drawSizedLine{AF} is the required part of \drawSizedLine{AF,FB}.
 
-For since $\drawSizedLine{DF} \parallel \drawSizedLine{BC}$\\
-$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DC}$ \inprop[prop:VI.II], and by composition \inprop[prop:V.XVIII];\\
-$\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC} : \drawSizedLine{AD}$;
+For since $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$\\
+$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DC,CE}$ \inprop[prop:VI.II],\\
+and by composition \inprop[prop:V.XVIII];\\
+$\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$;
 
-but \drawSizedLine{AD,DC} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part (const.);
+but \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part (const.);
 
 $\therefore$ \drawSizedLine{AF} is the required part.
 \stopCenterAlign
@@ -11377,22 +11391,22 @@ $\therefore$ \drawSizedLine{AF} is the required part.
 
 \startProposition[title={Prop. X. prob.},reference=prop:VI.X]
 \defineNewPicture{
-pair Ab, Db, Eb, Cb, A, B, C, D, E, F, G, L, d;
+pair A', D', E', C', A, B, C, D, E, F, G, L, d;
 numeric a[];
-Ab := (0, 0);
-Db := (3/2u, 0);
-Eb := (5/2u, 0);
-Cb := (7/2u, 0);
-draw byLine(Ab, Db, byblue, 0, 1);
-draw byLine(Db, Eb, byred, 0, 1);
-draw byLine(Eb, Cb, byyellow, 0, 1);
+A' := (0, 0);
+D' := (3/2u, 0);
+E' := (5/2u, 0);
+C' := (7/2u, 0);
+draw byLine(A', D', byblue, 0, 1);
+draw byLine(D', E', byred, 0, 1);
+draw byLine(E', C', byyellow, 0, 1);
 d := (0, -7/2u);
 a1 := 40;
 a2 := -70;
-A := (Ab rotated a1) shifted d;
-D := (Db rotated a1) shifted d;
-E := (Eb rotated a1) shifted d;
-C := (Cb rotated a1) shifted d;
+A := (A' rotated a1) shifted d;
+D := (D' rotated a1) shifted d;
+E := (E' rotated a1) shifted d;
+C := (C' rotated a1) shifted d;
 L := 6/5[A, C];
 F = whatever[A, A shifted dir(0)] = whatever[D, D shifted dir(a2)];
 G = whatever[A, A shifted dir(0)] = whatever[E, E shifted dir(a2)];
@@ -11408,14 +11422,17 @@ byLineDefine(A, F, byblue, 0, 0);
 byLineDefine(F, G, byred, 0, 0);
 byLineDefine(G, B, byyellow, 0, 0);
 draw byNamedLineSeq(0)(noLine,CL,EC,DE,AD,AF,FG,GB,CB);
+draw byLabelsOnPolygon(C, B, G, F, A, D, E, C, noPoint)(2, 0);
+draw byLabelsOnPolygon(E, C, noPoint)(2, 0);
+draw byLabelsOnPolygon(A', D', E', C', noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{divide a given straight line (\drawSizedLine{AF,FG,GB}) similarly to a given divided line (\drawSizedLine{AbDb,DbEb,EbCb}).}
+\problemNP{T}{o}{divide a given straight line (\drawSizedLine{AF,FG,GB}) similarly to a given divided line (\drawSizedLine{A'D',D'E',E'C'}).}
 
 \startCenterAlign
 From either extremity of the given line \drawSizedLine{AF,FG,GB} draw \drawSizedLine{AD,DE,EC} making any angle;
 
-take \drawSizedLine{AD}, \drawSizedLine{DE} and \drawSizedLine{EC} equal to \drawSizedLine{AbDb}, \drawSizedLine{DbEb} and \drawSizedLine{EbCb} respectively \inprop[prop:I.II];
+take \drawSizedLine{AD}, \drawSizedLine{DE} and \drawSizedLine{EC} equal to \drawSizedLine{A'D'}, \drawSizedLine{D'E'} and \drawSizedLine{E'C'} respectively \inprop[prop:I.II];
 
 draw \drawSizedLine{CB}, and draw \drawSizedLine{EG} and \drawSizedLine{DF} $\parallel$ to it.
 
@@ -11426,11 +11443,11 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DF}}}\right\}$
 are $\parallel$,\\
 $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{EC} : \drawSizedLine{DE}$ \inprop[prop:VI.II],\\
-or $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{EbCb} : \drawSizedLine{DbEb}$ (const.),\\
+or $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSizedLine{D'E'}$ (const.),\\
 and $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DE} : \drawSizedLine{AD}$ \inprop[prop:VI.II],\\
-$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DbEb} : \drawSizedLine{AbDb}$ (const.),
+$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ (const.),
 
-and $\therefore$ the given line \drawSizedLine{AF,FG,GB} is divided similarly to \drawSizedLine{AbDb,DbEb,EbCb}.
+and $\therefore$ the given line \drawSizedLine{AF,FG,GB} is divided similarly to \drawSizedLine{A'D',D'E',E'C'}.
 \stopCenterAlign
 
 \qed
@@ -11438,7 +11455,7 @@ and $\therefore$ the given line \drawSizedLine{AF,FG,GB} is divided similarly to
 
 \startProposition[title={Prop. XI. prob.},reference=prop:VI.XI]
 \defineNewPicture{
-pair Ab, Cb, A, B, C, D, E, d;
+pair A', C', A, B, C, D, E, d;
 numeric a[], l[];
 a1 := 85;
 a2 := 60;
@@ -11450,8 +11467,8 @@ C := A shifted (dir(a2)*l2);
 D := B shifted (dir(a1)*l2);
 E = whatever[A, C] = whatever[D, D shifted (B-C)];
 d := (2u, 0);
-Ab := A shifted d;
-Cb := Ab shifted (dir(a1)*l2);
+A' := A shifted d;
+C' := A' shifted (dir(a1)*l2);
 draw byLine(B, C, byyellow, 0, 0);
 byLineDefine(D, E, byyellow, 1, 0);
 byLineDefine(A, B, black, 0, 0);
@@ -11459,22 +11476,24 @@ byLineDefine(B, D, byblue, 1, 0);
 byLineDefine(A, C, byred, 1, 0);
 byLineDefine(C, E, byred, 0, 0);
 draw byNamedLineSeq(0)(DE,CE,AC,AB,BD);
-draw byLine(Ab, Cb, byblue, 0, 0);
+draw byLine(A', C', byblue, 0, 0);
+draw byLabelsOnPolygon(E, C, A, B, D)(0, 0);
+draw byLabelsOnPolygon(C', A', noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{find a third proportional to two given straight lines (\drawSizedLine{AbCb} and \drawSizedLine{AB}).}
+\problemNP{T}{o}{find a third proportional to two given straight lines (\drawSizedLine{A'C'} and \drawSizedLine{AB}).}
 
 \startCenterAlign
 At either extremity of the given line \drawSizedLine{AB} draw \drawSizedLine{AC,CE} making an angle;\\
-take $\drawSizedLine{AC} = \drawSizedLine{AbCb}$, and draw \drawSizedLine{BC};\\
-make $\drawSizedLine{BD} = \drawSizedLine{AbCb}$,\\
+take $\drawSizedLine{AC} = \drawSizedLine{A'C'}$, and draw \drawSizedLine{BC};\\
+make $\drawSizedLine{BD} = \drawSizedLine{A'C'}$,\\
 and draw $\drawSizedLine{DE} \parallel \drawSizedLine{BC}$; \inprop[prop:I.XXXI]\\
-\drawSizedLine{CE} is the third proportional to \drawSizedLine{AB} and \drawSizedLine{AbCb}.
+\drawSizedLine{CE} is the third proportional to \drawSizedLine{AB} and \drawSizedLine{A'C'}.
 
 For since $\drawSizedLine{BC} \parallel \drawSizedLine{DE}$,\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{CE}$ \inprop[prop:VI.II];\\
-but $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{AbCb}$ (const.);\\
-$\therefore \drawSizedLine{AB} : \drawSizedLine{AbCb} :: \drawSizedLine{AbCb} : \drawSizedLine{CE}$.
+but $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{A'C'}$ (const.);\\
+$\therefore \drawSizedLine{AB} : \drawSizedLine{A'C'} :: \drawSizedLine{A'C'} : \drawSizedLine{CE}$.
 \stopCenterAlign
 
 \qed
@@ -11491,9 +11510,12 @@ A := (0, 0); Ae := (l1, 0);
 B := (0, 0); Be := (l2, 0);
 C := (0, 0); Ce := (l3, 0);
 a := 45;
-byLineDefine(A, Ae) (byblue, 1, 0);
-byLineDefine(B, Be) (byred, 1, 0);
-byLineDefine(C, Ce) (byyellow, 1, 0);
+byLineDefineWithName(A, Ae, byblue, 1, 0)(A);
+byLineDefineWithName(B, Be, byred, 1, 0)(B);
+byLineDefineWithName(C, Ce, byyellow, 1, 0)(C);
+forsuffixes i=A, B, C:
+lineUseLineLabel.i := true;
+endfor;
 D := (0, 0);
 G := D shifted (dir(a)*l1);
 E := G shifted (dir(a)*l2);
@@ -11506,19 +11528,20 @@ byLineDefine(H, F, black, 0, 0);
 byLineDefine(D, G, byblue, 0, 0);
 byLineDefine(G, E, byred, 0, 0);
 draw byNamedLineSeq(0)(EF,HF,DH,DG,GE);
+draw byLabelsOnPolygon(D, G, E, F, H)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{find a fourth proportional to three given lines
 $\left\{\vcenter{
-\nointerlineskip\hbox{\drawSizedLine{AAe}}
-\nointerlineskip\hbox{\drawSizedLine{BBe}}
-\nointerlineskip\hbox{\drawSizedLine{CCe}}}\right\}$.}
+\nointerlineskip\hbox{\drawSizedLine{A}}
+\nointerlineskip\hbox{\drawSizedLine{B}}
+\nointerlineskip\hbox{\drawSizedLine{C}}}\right\}$.}
 
 \startCenterAlign
 Draw \drawSizedLine{DG,GE} and \drawSizedLine{DH,HF} making any angle;\\
-take $\drawUnitLine{DG} = \drawUnitLine{AAe}$,\\
-take $\drawUnitLine{GE} = \drawUnitLine{BBe}$,\\
-take $\drawUnitLine{DH} = \drawUnitLine{CCe}$,\\
+take $\drawUnitLine{DG} = \drawUnitLine{A}$,\\
+take $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
+take $\drawUnitLine{DH} = \drawUnitLine{C}$,\\
 draw \drawUnitLine{GH},\\
 and $\drawUnitLine{EF} \parallel \drawUnitLine{GH}$ \inprop[prop:I.XXXI];\\
 \drawSizedLine{HF} is the fourth proportional.
@@ -11527,9 +11550,9 @@ On account of the parallels,\\
 $\drawUnitLine{DG} : \drawUnitLine{GE} :: \drawUnitLine{DH} : \drawUnitLine{HF}$ \inprop[prop:VI.II];\\
 but
 $\left\{\vcenter{
-\nointerlineskip\hbox{\drawSizedLine{AAe}}
-\nointerlineskip\hbox{\drawSizedLine{BBe}}
-\nointerlineskip\hbox{\drawSizedLine{CCe}}}\right\}
+\nointerlineskip\hbox{\drawSizedLine{A}}
+\nointerlineskip\hbox{\drawSizedLine{B}}
+\nointerlineskip\hbox{\drawSizedLine{C}}}\right\}
 =
 \left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DG}}
@@ -11537,7 +11560,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DH}}}\right\}$
 (const.);
 
-$\therefore \drawUnitLine{AAe} : \drawUnitLine{BBe} :: \drawUnitLine{CCe} : \drawUnitLine{HF}$ \inprop[prop:V.VII].
+$\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{C} : \drawUnitLine{HF}$ \inprop[prop:V.VII].
 \stopCenterAlign
 
 \qed

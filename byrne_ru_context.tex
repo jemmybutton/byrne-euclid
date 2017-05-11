@@ -10012,6 +10012,445 @@ $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{CD} : \drawUnitLine{DE}$
 \qed
 \stopProposition
 
+\startProposition[title={Предл. V. Теорема},reference=prop:VI.V]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, d;
+B := (0, 0);
+A := (2u, 5/2u);
+C := (3u, 0);
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(A, B, C, byblue, 0)(B);
+draw byAngleWithName(B, C, A, byred, 0)(C);
+byLineDefine(A, B, byred, 1, 0);
+byLineDefine(B, C, black, 1, 0);
+byLineDefine(C, A, byblue, 1, 0);
+draw byNamedLineSeq(0)(AB,BC,CA);
+d := (0, -3u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+G := (A yscaled -1) shifted d;
+draw byAngleWithName(F, D, E, black, 0)(D);
+draw byAngle(D, E, F, byyellow, 0);
+draw byAngle(E, F, D, byred, 1);
+draw byAngleWithName(E, G, F, black, 0)(G);
+draw byAngle(G, E, F, byblue, 0);
+draw byAngle(E, F, G, byred, 0);
+draw byLine(E, F, black, 0, 0);
+byLineDefine(F, G, byyellow, 1, 0);
+byLineDefine(G, E, byyellow, 0, 0);
+byLineDefine(D, E, byred, 0, 0);
+byLineDefine(F, D, byblue, 0, 0);
+draw byNamedLineSeq(0)(FG,GE,DE,FD);
+draw byLabelsOnPolygon(B, A, C)(0, 0);
+draw byLabelsOnPolygon(E, D, F, G)(0, 0);
+angleScale := 4/5;
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{у двух треугольников стороны пропорциональны
+$\drawUnitLine{CA} : \drawUnitLine{BC} :: \drawUnitLine{FD} : \drawUnitLine{EF}$
+и
+$\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$
+то они равноугольны, а равные углы стягиваются соответственными сторонами.
+}
+\startCenterAlign
+Из концов \drawUnitLine{EF}, проведем \drawUnitLine{FG} и \drawUnitLine{GE},\\
+делая $\drawAngle{GEF} = \drawAngle{B}$, $\drawAngle{EFG} = \drawAngle{C}$ \inprop[prop:I.XXIII],\\
+получим $\drawAngle{G} = \drawAngle{A}$ \inprop[prop:I.XXXII],\\
+и поскольку треугольники равноугольные,\\
+$\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{GE} : \drawUnitLine{EF}$ \inprop[prop:VI.IV];\\
+но $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{DE} : \drawUnitLine{EF}$ (гип.);\\
+$\therefore \drawUnitLine{DE} : \drawUnitLine{EF} :: \drawUnitLine{GE} : \drawUnitLine{EF}$, и значит $\drawUnitLine{DE} = \drawUnitLine{GE}$ \inprop[prop:V.IX].\\
+Так же можно показать, что $\drawUnitLine{FD} = \drawUnitLine{FG}$.
+
+$\therefore$ у двух треугольников с общим основанием \drawUnitLine{EF} и равными сторонами,  углы против равных сторон равны, т.~е.
+$\drawAngle{DEF} = \drawAngle{GEF}$ и $\drawAngle{EFD} = \drawAngle{EFG}$ \inprop[prop:I.VIII].\\
+но $\drawAngle{GEF} = \drawAngle{B}$ (постр.) и $\therefore \drawAngle{DEF} = \drawAngle{B}$.\\
+По той же причине $\drawAngle{EFD} = \drawAngle{C}$, и значит $\drawAngle{D} = \drawAngle{A}$ \inprop[prop:I.XXXII], т.~е. треугольники равноугольны и~очевидно, что соответственные стороны располагаются между равными углами.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. VI. Теорема},reference=prop:VI.VI]
+\defineNewPicture[1/6]{
+pair A, B, C, D, E, F, G, d;
+A := (0, 0);
+B := (2u, 5/2u);
+C := (3u, 0);
+draw byAngleWithName(A, B, C, byyellow, 0)(B);
+draw byAngleWithName(B, A, C, byblue, 0)(A);
+draw byAngleWithName(A, C, B, byred, 0)(C);
+byLineDefine(A, B, byred, 1, 0);
+byLineDefine(C, A, black, 1, 0);
+byLineDefine(B, C, byblue, 1, 0);
+draw byNamedLineSeq(0)(AB,BC,CA);
+d := (0, -3u);
+D := A shifted d;
+E := B shifted d;
+F := C shifted d;
+G := (B yscaled -1) shifted d;
+draw byAngle(F, D, E, byblue, 1);
+draw byAngleWithName(D, E, F, byyellow, 1)(E);
+draw byAngle(E, F, D, byred, 1);
+draw byAngle(F, D, G, byblue, 0);
+draw byAngle(G, F, D, byred, 0);
+draw byAngleWithName(D, G, F, black, 0)(G);
+draw byLine(F, D, byblue, 0, 0);
+byLineDefine(F, G, byyellow, 1, 0);
+byLineDefine(G, D, byyellow, 0, 0);
+byLineDefine(D, E, byred, 0, 0);
+byLineDefine(E, F, black, 0, 0);
+draw byNamedLineSeq(0)(FG,GD,DE,EF);
+draw byLabelsOnPolygon(A, B, C)(0, 0);
+draw byLabelsOnPolygon(D, E, F, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{у двух треугольников \drawLine[bottom][triangleABC]{AB,BC,CA} и \drawLine[bottom][triangleDEF]{DE,EF,FD} один угол одного \drawAngle{C} равен одному углу другого \drawAngle{EFD}, и стороны, при равных углах пропорциональны, то треугольники равноугольны, и углы против соответственных сторон у них равны.}
+
+\startCenterAlign
+Из концов \drawUnitLine{FD}, одной из сторон \triangleDEF\ при \drawAngle{EFD}, проведем \drawUnitLine{GD} и \drawUnitLine{FG},\\
+делая $\drawAngle{GFD} = \drawAngle{C}$ и $\drawAngle{FDG} = \drawAngle{A}$;\\
+тогда $\drawAngle{G} = \drawAngle{B}$ \inprop[prop:I.XXXII],\\
+и поскольку два треугольника равноугольны,\\
+$\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{FG} : \drawUnitLine{FD}$ \inprop[prop:VI.IV];\\
+но $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ (гип.)\\
+$\therefore \drawUnitLine{FG} : \drawUnitLine{FD} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ \inprop[prop:V.XI],\\
+и следовательно $\drawUnitLine{FG} = \drawUnitLine{EF}$ \inprop[prop:V.IX];\\
+$\therefore \triangleDEF\ =
+\drawLine[bottom][triangleDGF]{FD,FG,GD}$ во всех отношениях \inprop[prop:I.IV].\\
+но $\drawAngle{GFD} = \drawAngle{A}$ (постр.) и $\therefore \drawAngle{EFD} = \drawAngle{A}$,\\
+и поскольку также $\drawAngle{EFD} = \drawAngle{C}$,\\
+$\drawAngle{E} = \drawAngle{B}$ \inprop[prop:I.XXXII];\\
+и $\therefore$ \triangleABC\ и \triangleDEF\ равноугольны с равными углами против соответственных сторон.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. VII. Теорема},reference=prop:VI.VII]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, d;
+A := (0, 0);
+B := (3u, -1/2u);
+C := (5/2u, 3u);
+G := 1/3[A, C];
+d := (0, -4u);
+D := (A scaled 4/5) shifted d;
+E := (B scaled 4/5) shifted d;
+F := (C scaled 4/5) shifted d;
+draw byAngleWithName(B, C, A, byblue, 0)(C);
+draw byAngleWithName(C, A, B, byred, 0)(A);
+draw byAngle(A, B, G, black, 0);
+draw byAngle(G, B, C, black, 1);
+draw byAngle(C, G, B, byyellow, 0);
+draw byAngle(B, G, A, byred, 0);
+draw byLine(B, G, byblue, 0, 0);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(C, A, black, 0, 0);
+draw byNamedLineSeq(0)(CA,BC,AB);
+draw byAngleWithName(D, E, F, byblue, 1)(E);
+draw byAngleWithName(E, F, D, byyellow, 1)(F);
+draw byAngleWithName(F, D, E, byred, 1)(D);
+draw byAngleWithName(D, E, F, byblue, 1)(E);
+byLineDefine(D, E, byyellow, 1, 0);
+byLineDefine(E, F, byred, 1, 0);
+byLineDefine(F, D, byblue, 1, 0);
+draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(A, G, C, B)(0, 0);
+draw byLabelsOnPolygon(D, F, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{у двух треугольников \drawLine[middle][triangleABC]{CA,BC,AB} и \drawLine[middle][triangleDEF]{FD,EF,DE} один угол одного \drawAngle{F} равен одному другого \drawAngle{C}, а стороны при других пропорциональны $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$, причем оставшиеся углы \drawAngle{A} и \drawAngle{D} либо меньше, либо не меньше прямого угла, то треугольники равноугольны, а углы между пропорциональными сторонами равны.}
+
+\startCenterAlign
+Для начала допустим, что углы \drawAngle{A} и \drawAngle{D} оба меньше прямого угла, тогда, если предположить, что \drawAngle{ABG,GBC} и \drawAngle{E} между пропорциональными сторонами не равны, пусть \drawAngle{ABG,GBC} будет больше и сделаем $\drawAngle{GBC} = \drawAngle{E}$.
+
+Поскольку $\drawAngle{C} = \drawAngle{F}$ (гип.). и $\drawAngle{GBC} = \drawAngle{E}$ (постр.)\\
+$\therefore \drawAngle{CGB} = \drawAngle{D}$ \inprop[prop:I.XXXII];
+
+$\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV],\\
+но $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ (гип.)
+
+$\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{BC} : \drawUnitLine{AB}$;\\
+$\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \inprop[prop:V.IX],\\
+и $\therefore \drawAngle{A} = \drawAngle{BGA}$ \inprop[prop:I.V].
+
+Но \drawAngle{A} меньше прямого угла (гип.)\\
+$\therefore$ \drawAngle{BGA} меньше прямого угла,\\ 
+и $\therefore$ \drawAngle{CGB} должен быть больше прямого угла \inprop[prop:I.XIII], но он, как было показано $= \drawAngle{D}$ и значит меньше прямого угла, что невозможно. $\therefore$ \drawAngle{ABG,GBC} и \drawAngle{E} не неравны.
+
+$\therefore$ они равны, и поскольку $\drawAngle{C} = \drawAngle{F}$ (гип.)\\
+$\therefore \drawAngle{A} = \drawAngle{D}$ \inprop[prop:I.XXXII], и следовательно треугольники равноугольны.
+\stopCenterAlign
+
+А если предположить, что \drawAngle{A} и \drawAngle{D} оба не меньше прямого угла, то можно доказать, как и ранее, что треугольники равноугольны и стороны при равных углах пропорциональны \inprop[prop:VI.IV].
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. VIII. Теорема},reference=prop:VI.VIII]
+\defineNewPicture{
+pair A, B, C, D;
+A := (0, 0);
+B := A shifted (dir(-145)*7/2u);
+C = whatever[B, B shifted (1, 0)] = whatever[A, A shifted dir(-145 - 90)];
+D := (xpart(A), ypart(B));
+draw byPolygon(A,B,D)(byyellow);
+draw byPolygon(A,D,C)(byred);
+draw byAngleWithName(A, B, C, black, 0)(B);
+draw byAngleWithName(B, C, A, byblue, 1)(C);
+draw byNamedAngleDummySides(C);
+draw byAngleWithName(B, D, A, byblue, 0)(D);
+draw byAngle(D, A, B, byred, 0);
+draw byAngle(C, A, D, byyellow, 0);
+draw byLine(A, D, black, 0, 0);
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{из прямого угла в прямоугольном треугольнике \drawPolygon[bottom][triangleABC]{ABD,ADC} проведен к противоположной стороне перпендикуляр \drawUnitLine{AD}, треугольники \drawPolygon[bottom][triangleABD]{ABD} и \drawPolygon[bottom][triangleADC]{ADC}, по сторонам перпендикуляра подобны целому треугольнику и друг другу.}
+
+\startCenterAlign
+Поскольку $\drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:XI], и~\drawAngle{B} общий \triangleABC\ и \triangleABD,\\
+$\drawAngle{C} = \drawAngle{DAB}$ \inprop[prop:I.XXXII];
+
+$\therefore$ \triangleABC\ и \triangleABD\ равноугольны и значит стороны при равных углах пропорциональны \inprop[prop:VI.IV], и, следовательно, подобны \indef[def:VI.I].
+
+Так же можно доказать, что \triangleADC\ подобен \triangleABC, но \triangleABD, как было показано, тоже подобен \triangleABC, $\therefore$ \triangleABD\ и \triangleADC\ подобны и всему треугольнику и друг другу.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. IX. Задача},reference=prop:VI.IX]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+numeric n;
+n := 5;
+A := (0, 0);
+B := (3u, 5u);
+D := A shifted (0, u);
+E := ((D-A) scaled n) shifted A;
+F = whatever[A, B] = whatever[D, D shifted (B-E)];
+C := 1/3[D, E];
+draw byLine(D, F, byred, 1, 0);
+byLineDefine(B, E, byred, 0, 0);
+byLineDefine(A, F, byyellow, 0, 0);
+byLineDefine(A, D, byblue, 0, 0);
+byLineDefine(D, C, byblue, 1, 0);
+byLineDefine(C, E, black, 1, 0);
+byLineDefine(F, B, byyellow, 1, 0);
+byLineDefine(A, E, black, 0, 0);
+draw byNamedLineSeq(0)(BE, FB, AF, AD, DC, CE);
+for i := 2 step 1 until n - 1:
+draw byMarkLine(i/n, black)(AE);
+endfor;
+draw byLabelsOnPolygon(B, F, A, D, C, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{О}{т}{данной прямой \drawSizedLine{AF,FB} отнять требуемую часть.}
+
+\startCenterAlign
+Из любого конца данной прямой проведем \drawSizedLine{AD,DC} под любым углом к \drawSizedLine{AF,FB};\\
+и продлим \drawSizedLine{AD,DC} пока вся продленная линия \drawSizedLine{AD,DC,CE} не будет содержать \drawSizedLine{AD} столько раз, какую часть требуется отнять от \drawSizedLine{AF,FB}.
+
+Проведем \drawSizedLine{BE},\\
+и проведем $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$.\\
+
+\drawSizedLine{AF} и есть требуемая часть \drawSizedLine{AF,FB}.
+
+Поскольку $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$\\
+$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DC,CE}$ \inprop[prop:VI.II]\\
+и присоединив \inprop[prop:V.XVIII],\\
+$\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$,
+
+то есть \drawSizedLine{AD,DC,CE} содержит \drawSizedLine{AD} столько раз, сколько \drawSizedLine{AF,FB} содержит требуемую часть (постр.);
+
+$\therefore$ \drawSizedLine{AF} и есть требуемая часть.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. X. Задача},reference=prop:VI.X]
+\defineNewPicture{
+pair A', D', E', C', A, B, C, D, E, F, G, L, d;
+numeric a[];
+A' := (0, 0);
+D' := (3/2u, 0);
+E' := (5/2u, 0);
+C' := (7/2u, 0);
+draw byLine(A', D', byblue, 0, 1);
+draw byLine(D', E', byred, 0, 1);
+draw byLine(E', C', byyellow, 0, 1);
+d := (0, -7/2u);
+a1 := 40;
+a2 := -70;
+A := (A' rotated a1) shifted d;
+D := (D' rotated a1) shifted d;
+E := (E' rotated a1) shifted d;
+C := (C' rotated a1) shifted d;
+L := 6/5[A, C];
+F = whatever[A, A shifted dir(0)] = whatever[D, D shifted dir(a2)];
+G = whatever[A, A shifted dir(0)] = whatever[E, E shifted dir(a2)];
+B = whatever[A, A shifted dir(0)] = whatever[C, C shifted dir(a2)];
+draw byLine(D, F, black, 0, 0);
+draw byLine(E, G, black, 1, 0);
+byLineDefine(C, B, black, 0, 1);
+byLineDefine(A, D, byblue, 1, 0);
+byLineDefine(D, E, byred, 1, 0);
+byLineDefine(E, C, byyellow, 1, 0);
+byLineDefine(C, L, black, 0, 0);
+byLineDefine(A, F, byblue, 0, 0);
+byLineDefine(F, G, byred, 0, 0);
+byLineDefine(G, B, byyellow, 0, 0);
+draw byNamedLineSeq(0)(noLine,CL,EC,DE,AD,AF,FG,GB,CB);
+draw byLabelsOnPolygon(C, B, G, F, A, D, E, C, noPoint)(2, 0);
+draw byLabelsOnPolygon(E, C, noPoint)(2, 0);
+draw byLabelsOnPolygon(A', D', E', C', noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Д}{анную}{прямую \drawSizedLine{AF,FG,GB}рассечь подобно данной рассеченной \drawSizedLine{A'D',D'E',E'C'}.}
+
+\startCenterAlign
+Из любого конца \drawSizedLine{AF,FG,GB} проведем \drawSizedLine{AD,DE,EC} под любым углом.
+
+Возьмем \drawSizedLine{AD}, \drawSizedLine{DE} и \drawSizedLine{EC} равные \drawSizedLine{A'D'}, \drawSizedLine{D'E'} и \drawSizedLine{E'C'} соответственно \inprop[prop:I.II],
+
+проведем \drawSizedLine{CB}, и проведем \drawSizedLine{EG} и \drawSizedLine{DF} $\parallel$ ей.
+
+Поскольку
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{CB}}
+\nointerlineskip\hbox{\drawSizedLine{EG}}
+\nointerlineskip\hbox{\drawSizedLine{DF}}}\right\}$
+все $\parallel$,\\
+$\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{EC} : \drawSizedLine{DE}$ \inprop[prop:VI.II],\\
+или $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSizedLine{D'E'}$ (постр.),\\
+и $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DE} : \drawSizedLine{AD}$ \inprop[prop:VI.II],\\
+$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ (постр.),
+
+и $\therefore$ данная линия \drawSizedLine{AF,FG,GB} разделена подобно \drawSizedLine{A'D',D'E',E'C'}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XI. Задача},reference=prop:VI.XI]
+\defineNewPicture{
+pair A', C', A, B, C, D, E, d;
+numeric a[], l[];
+a1 := 85;
+a2 := 60;
+l1 := 2u;
+l2 := 5/2u;
+A := (0, 0);
+B := A shifted (dir(a1)*l1);
+C := A shifted (dir(a2)*l2);
+D := B shifted (dir(a1)*l2);
+E = whatever[A, C] = whatever[D, D shifted (B-C)];
+d := (2u, 0);
+A' := A shifted d;
+C' := A' shifted (dir(a1)*l2);
+draw byLine(B, C, byyellow, 0, 0);
+byLineDefine(D, E, byyellow, 1, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(B, D, byblue, 1, 0);
+byLineDefine(A, C, byred, 1, 0);
+byLineDefine(C, E, byred, 0, 0);
+draw byNamedLineSeq(0)(DE,CE,AC,AB,BD);
+draw byLine(A', C', byblue, 0, 0);
+draw byLabelsOnPolygon(E, C, A, B, D)(0, 0);
+draw byLabelsOnPolygon(C', A', noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{айти}{третью пропорциональную для двух данных прямых \drawSizedLine{A'C'} и \drawSizedLine{AB}.}
+
+\startCenterAlign
+От любого конца данной линии \drawSizedLine{AB} проведем \drawSizedLine{AC,CE} под углом.\\
+сделаем $\drawSizedLine{AC} = \drawSizedLine{A'C'}$, и проведем \drawSizedLine{BC};\\
+сделаем $\drawSizedLine{BD} = \drawSizedLine{A'C'}$,\\
+и проведем $\drawSizedLine{DE} \parallel \drawSizedLine{BC}$  \inprop[prop:I.XXXI]\\
+\drawSizedLine{CE} и есть третья пропорциональная к \drawSizedLine{AB} и \drawSizedLine{A'C'}.
+
+Поскольку $\drawSizedLine{BC} \parallel \drawSizedLine{DE}$,\\
+$\therefore \drawSizedLine{AB} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{CE}$ \inprop[prop:VI.II];\\
+но $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{A'C'}$ (постр.);\\
+$\therefore \drawSizedLine{AB} : \drawSizedLine{A'C'} :: \drawSizedLine{A'C'} : \drawSizedLine{CE}$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XII. Задача},reference=prop:VI.XII]
+\defineNewPicture[1/2]{
+pair A, Ae, B, Be, C, Ce, D, E, F, G, H;
+numeric l[], a;
+l1 := 4/3u;
+l2 := 11/6u;
+l3 := 3/2u;
+A := (0, 0); Ae := (l1, 0);
+B := (0, 0); Be := (l2, 0);
+C := (0, 0); Ce := (l3, 0);
+a := 45;
+byLineDefineWithName(A, Ae, byblue, 1, 0)(A);
+byLineDefineWithName(B, Be, byred, 1, 0)(B);
+byLineDefineWithName(C, Ce, byyellow, 1, 0)(C);
+forsuffixes i=A, B, C:
+lineUseLineLabel.i := true;
+endfor;
+D := (0, 0);
+G := D shifted (dir(a)*l1);
+E := G shifted (dir(a)*l2);
+H := D shifted (l3, 0);
+F = whatever[D, H] = whatever[E, E shifted (G-H)];
+draw byLine(G, H, black, 0, 1);
+byLineDefine(E, F, black, 1, 0);
+byLineDefine(D, H, byyellow, 0, 0);
+byLineDefine(H, F, black, 0, 0);
+byLineDefine(D, G, byblue, 0, 0);
+byLineDefine(G, E, byred, 0, 0);
+draw byNamedLineSeq(0)(EF,HF,DH,DG,GE);
+draw byLabelsOnPolygon(D, G, E, F, H)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Д}{ля}{трех данных прямых
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{A}}
+\nointerlineskip\hbox{\drawSizedLine{B}}
+\nointerlineskip\hbox{\drawSizedLine{C}}}\right\}$
+найти четвертую пропорциональную.}
+
+\startCenterAlign
+Проведем \drawSizedLine{DG,GE} и \drawSizedLine{DH,HF} под углом.\\
+Возьмем $\drawUnitLine{DG} = \drawUnitLine{A}$,\\
+возьмем $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
+возьмем $\drawUnitLine{DH} = \drawUnitLine{C}$,\\
+проведем \drawUnitLine{GH},\\
+и $\drawUnitLine{EF} \parallel \drawUnitLine{GH}$ \inprop[prop:I.XXXI],\\
+\drawSizedLine{HF} и есть четвертая пропорциональная.
+
+Ведь, учитывая параллельные,\\
+$\drawUnitLine{DG} : \drawUnitLine{GE} :: \drawUnitLine{DH} : \drawUnitLine{HF}$ \inprop[prop:VI.II];\\
+но
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{A}}
+\nointerlineskip\hbox{\drawSizedLine{B}}
+\nointerlineskip\hbox{\drawSizedLine{C}}}\right\}
+=
+\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{DG}}
+\nointerlineskip\hbox{\drawSizedLine{GE}}
+\nointerlineskip\hbox{\drawSizedLine{DH}}}\right\}$
+(постр.);
+
+$\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{C} : \drawUnitLine{HF}$ \inprop[prop:V.VII].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext
