@@ -11577,8 +11577,10 @@ r := 1/2*(l1 + l2);
 Ab := (0, 0);
 Bb := (l1, 0);
 Cb := (l1 + l2, 0);
-byLineDefine(Ab, Bb, byblue, 1, 0);
-byLineDefine(Bb, Cb, byred, 1, 0);
+byLineDefineWithName(Ab, Bb, byblue, 1, 0)(A);
+byLineDefineWithName(Bb, Cb, byred, 1, 0)(B);
+lineUseLineLabel.A := true;
+lineUseLineLabel.B := true;
 A := (0, 0);
 B := (l1, 0);
 C := (l1 + l2, 0);
@@ -11596,19 +11598,22 @@ byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(C, D, byyellow, 1, 0);
 draw byNamedLineSeq(-1)(AB,BC,CD,AD);
 draw byArc(O, C, A, r, byred, 0, 0, 0, 0)(O);
+draw byLabelsOnPolygon(C, B, A, noPoint)(0, 0);
+draw byLabelsOnCircle(D)(O);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{find a mean proportional between two given straight lines $\left\{\vcenter{
-\nointerlineskip\hbox{\drawSizedLine{AbBb}}
-\nointerlineskip\hbox{\drawSizedLine{BbCb}}}\right\}$.}
+\nointerlineskip\hbox{\drawSizedLine{A}}
+\nointerlineskip\hbox{\drawSizedLine{B}}}\right\}$.}
 
 \startCenterAlign
 Draw any straight line \drawSizedLine{AB,BC},\\
-make $\drawSizedLine{AB} = \drawSizedLine{AbBb}$ and $\drawSizedLine{BC} = \drawSizedLine{BbCb}$;\\
+make $\drawSizedLine{AB} = \drawSizedLine{A}$ and $\drawSizedLine{BC} = \drawSizedLine{B}$;\\
 bisect \drawSizedLine{AB,BC}; and from the point of bisection as a centre, and half line as a radius, describe a semicircle
 \drawFromCurrentPicture[bottom]{
 draw byNamedLineFull(A, C, 0, 0, -1)(AC);
 draw byNamedArc(O);
+draw byLabelsOnPolygon(C, A, noPoint)(0, 0);
 },\\
 draw $\drawSizedLine{BD} \perp \drawSizedLine{AB}$:\\
 \drawSizedLine{BD} is the mean proportional required.
@@ -11618,7 +11623,7 @@ Draw \drawUnitLine{AD} and \drawUnitLine{CD}.
 Since \drawAngle{D} is a right angle \inprop[prop:III.XXXI],\\
 and \drawUnitLine{BD} is $\perp$ from it upon the opposite side,\\
 $\therefore$ \drawUnitLine{BD} is a mean proportional between \drawUnitLine{AB} and \drawUnitLine{BC} \inprop[prop:VI.VIII],\\
-and $\therefore$ between \drawUnitLine{AbBb} and \drawUnitLine{BbCb} (const.).
+and $\therefore$ between \drawUnitLine{A} and \drawUnitLine{B} (const.).
 \stopCenterAlign
 
 \qed
@@ -11647,6 +11652,7 @@ draw byLine(B, G, byred, 0, 0);
 draw byLine(B, F, black, 0, 0);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(B, D, byyellow, 0, 0);
+draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{parallelograms \drawPolygon{BFAD} and \drawPolygon{CEBG}, which have one angle in each equal, have the sides about equal angles reciprocally proportional\\
@@ -11695,7 +11701,8 @@ byLineDefine(D, A, byyellow, 0, 0);
 byLineDefine(B, A, black, 0, 0);
 byLineDefine(A, C, byred, 0, 0);
 byLineDefine(A, E, byblue, 0, 0);
-draw byNamedLineSeq(-1)(noLine,AE,BA,BD,DA,AC);
+draw byNamedLineSeq(0)(noLine,AE,BA,BD,DA,AC);
+draw byLabelsOnPolygon(A, E, D, B, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{triangles, which have one angle in each equal ($\drawAngle{DAE} = \drawAngle{BAC}$), have the sides about equal angles reciprocally proportional\\
@@ -11741,21 +11748,21 @@ $\therefore \drawPolygon{DAE} = \drawPolygon{ABC}$ \inprop[prop:V.IX].
 \defineNewPicture{
 pair A, B, C, D, Eb, Fb, Ee, Fe, E, F, G, H, d[];
 numeric l[], h[];
-l1 := -5/2u;
+l1 := -3u;
 l2 := -2u;
-h1 := -3/2l2;
-h2 := -3/2l1;
+h1 := -3/4l2;
+h2 := -3/4l1;
 A := (0, 0);
 B := (l1, 0);
 G := (0, h1);
 F := (l1, h1);
-d1 := (0, -h2 - 1/4u);
+d1 := (0, -h2 - 1/2u);
 C := (0, 0) shifted d1;
 D := (l2, 0) shifted d1;
 H := (0, h2) shifted d1;
 E := (l2, h2) shifted d1;
-d2 := (0, h1 + 1/2u);
-d3 := (0, h1 + 1/4u);
+d2 := (0, h1 + u);
+d3 := (0, h1 + 1/2u);
 Eb := (0, 0) shifted d2; Ee := (-h2, 0) shifted d2;
 Fb := (0, 0) shifted d3; Fe := (-h1, 0) shifted d3;
 draw byPolygon(A,B,F,G)(byred);
@@ -11766,20 +11773,23 @@ draw byNamedLineSeq(0)(AB,AG);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(C, H, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,CH);
-draw byLine(Eb, Ee, byred, 1, 0);
-draw byLine(Fb, Fe, black, 1, 0);
+draw byLineWithName(Ee, Eb, byred, 1, 0)(E);
+draw byLineWithName(Fe, Fb, black, 1, 0)(F);
+draw byLabelsOnPolygon(F, G, A, B)(0, 0);
+draw byLabelsOnPolygon(E, H, C, D)(0, 0);
+draw byLabelLine(E, F);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EbEe} : \drawUnitLine{FbFe}$) the rectangle ($\drawUnitLine{AB} \times \drawUnitLine{FbFe}$) contained by the extremes, is equal to the rectangle ($\drawUnitLine{CD} \times \drawUnitLine{EbEe}$) contained by the means\\
+\problemNP{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$) the rectangle ($\drawUnitLine{AB} \times \drawUnitLine{F}$) contained by the extremes, is equal to the rectangle ($\drawUnitLine{CD} \times \drawUnitLine{E}$) contained by the means\\
 And if the rectangle contained by the extremes be equal to the rectangle contained by the means, the four straight lines are proportional.}
 
 \startsubproposition[title={Part I.}]
 \startCenterAlign
-From the extremities of \drawUnitLine{AB} and \drawUnitLine{CD} draw \drawUnitLine{AG} and \drawUnitLine{CH} $\perp$ to them and $= \drawUnitLine{FbFe}$ and \drawUnitLine{EbEe} respectively:\\
+From the extremities of \drawUnitLine{AB} and \drawUnitLine{CD} draw \drawUnitLine{AG} and \drawUnitLine{CH} $\perp$ to them and $= \drawUnitLine{F}$ and \drawUnitLine{E} respectively:\\
 complete the parallelograms \drawPolygon{ABFG} and \drawPolygon{CDEH}.
 
 and since,\\
-$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EbEe} : \drawUnitLine{FbFe}$ (hyp.)\\
+$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (hyp.)\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (const.)\\
 $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
 that is, the rectangle contained be the extremes, equal to the rectangle contained be the means.
@@ -11791,13 +11801,13 @@ that is, the rectangle contained be the extremes, equal to the rectangle contain
 \startsubproposition[title={Part II.}]
 \startCenterAlign
 Let the same construction remain;\\
-because $\drawUnitLine{FbFe} = \drawUnitLine{AG}$, $\drawPolygon{ABFG} = \drawPolygon{CDEH}$\\
-and $\drawUnitLine{CH} = \drawUnitLine{EbEe}$.\\
+because $\drawUnitLine{F} = \drawUnitLine{AG}$, $\drawPolygon{ABFG} = \drawPolygon{CDEH}$\\
+and $\drawUnitLine{CH} = \drawUnitLine{E}$.\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV]
 
-But $\drawUnitLine{CH} = \drawUnitLine{EbEe}$,\\
-and $\drawUnitLine{AG} = \drawUnitLine{FbFe}$ (const.)\\
-$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EbEe} : \drawUnitLine{FbFe}$ \inprop[prop:V.VII].
+But $\drawUnitLine{CH} = \drawUnitLine{E}$,\\
+and $\drawUnitLine{AG} = \drawUnitLine{F}$ (const.)\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ \inprop[prop:V.VII].
 \stopCenterAlign
 \stopsubproposition
 
@@ -11814,14 +11824,14 @@ r := 3/4;
 l1 := 3u;
 l2 := r*l1;
 l3 := r*l2;
-d1 := (0, 4/4u); d2 := (0, 3/4u); d3 := (0, 2/4u); d4 := (0, 1/4u);
-Ab := (0, 0) shifted d1; Ae := (-l1, 0) shifted d1;
-Bb := (0, 0) shifted d2; Be := (-l2, 0) shifted d2;
-Cb := (0, 0) shifted d3; Ce := (-l3, 0) shifted d3;
-Db := (0, 0) shifted d4; De := (-l2, 0) shifted d4;
+d1 := (0, 4/2u); d2 := (0, 3/2u); d3 := (0, 2/2u); d4 := (0, 1/2u);
+Ae := (0, 0) shifted d1; Ab := (-l1, 0) shifted d1;
+Be := (0, 0) shifted d2; Bb := (-l2, 0) shifted d2;
+Ce := (0, 0) shifted d3; Cb := (-l3, 0) shifted d3;
+De := (0, 0) shifted d4; Db := (-l2, 0) shifted d4;
 d5 := (0, -l2);
 A := (0, 0) shifted d5; B := (-l2, 0) shifted d5; C := (-l2, l2) shifted d5; D := (0, l2) shifted d5;
-d6 := (0, -l2-l1-1/4u);
+d6 := (0, -l2-l1-1/2u);
 E := (0, 0) shifted d6; F := (-l3, 0) shifted d6; G := (-l3, l1) shifted d6; H := (0, l1) shifted d6;
 draw byPolygon(A,B,C,D)(byred);
 byLineDefine(A, B, byyellow, 0, 0);
@@ -11835,6 +11845,9 @@ draw byLineWithName(Ab, Ae, byred, 0, 0)(A);
 draw byLineWithName(Bb, Be, byblue, 0, 0)(B);
 draw byLineWithName(Cb, Ce, black, 0, 0)(C);
 draw byLineWithName(Db, De, byyellow, 0, 0)(D);
+draw byLabelLine(A, B, C, D);
+draw byLabelPolygon(1)(ABCD);
+draw byLabelPolygon(1)(EFGH);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{three striaght lines be proportional ($\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$) the rectangle under the extremes is equal to the square of the mean.\\
@@ -11894,7 +11907,7 @@ draw byNamedLineSeq(0)(DE,FE,CF,CD);
 pair A, B, H, G, K;
 numeric s;
 s := 5/6;
-d := (0, -3u);
+d := (0, -7/2u);
 A := (C scaled s) shifted d;
 B := (D scaled s) shifted d;
 H := (E scaled s) shifted d;
@@ -11914,6 +11927,8 @@ byLineDefine(A, B, black, 0, 0);
 byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(G, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(noLine,BG,AB,AG,GH);
+draw byLabelsOnPolygon(F, E, L, D, C)(0, 0);
+draw byLabelsOnPolygon(G, H, K, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{n}{a given straight line (\drawUnitLine{AB}) to construct a rectilinear figure similar to a given one (\drawPolygon[middle][polygonCD]{DCF,DFE,DEL}) and similarly placed.}

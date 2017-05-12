@@ -867,8 +867,8 @@ vardef byNamedPolygon(text polygonsList) =
                 fi;
             endfor;
             ) rotated globalRotation;
-        if (textLabels and autoLabelingMode):
-            draw byLabelsOnPolygon(scantokens byMergePolygons(polygonsList))(1, 1);
+        if (autoLabelingMode):
+            draw byLabelPolygon(1)(polygonsList);
         fi;
     )
 enddef;
@@ -1441,6 +1441,14 @@ vardef byLabelLine(text linesList) =
                 draw byTextLabel(pointLabel)(lineEndBName.lN, lineEndB.lN, lineAngle.lN + 90, textLabelShift);
             fi;
         endfor;
+        fi;
+    )
+enddef;
+
+vardef byLabelPolygon(expr d)(text polygonsList) =
+    image(
+        if (textLabels):
+            draw byLabelsOnPolygon(scantokens byMergePolygons(polygonsList))(1, d);
         fi;
     )
 enddef;

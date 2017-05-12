@@ -10451,6 +10451,398 @@ $\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{C} : \drawUnitL
 \qed
 \stopProposition
 
+\startProposition[title={Предл. XIII. Задача},reference=prop:VI.XIII]
+\defineNewPicture{
+pair Ab, Bb, Cb, A, B, C, D, O;
+numeric l[], r;
+path q;
+l1 := 3u;
+l2 := 2u;
+r := 1/2*(l1 + l2);
+Ab := (0, 0);
+Bb := (l1, 0);
+Cb := (l1 + l2, 0);
+byLineDefineWithName(Ab, Bb, byblue, 1, 0)(A);
+byLineDefineWithName(Bb, Cb, byred, 1, 0)(B);
+lineUseLineLabel.A := true;
+lineUseLineLabel.B := true;
+A := (0, 0);
+B := (l1, 0);
+C := (l1 + l2, 0);
+O := 1/2[A, C];
+q := (fullcircle scaled 2r) shifted O;
+D := q intersectionpoint (B--(B shifted (0, r)));
+draw byAngleWithName(A, D, C, byblue, 0)(D);
+byLineDefine(A, C, black, 0, 1);
+byLineStylize(A, C, 0, 0, -1)(AC);
+draw byMarkLine(1/2, byblue)(AC);
+draw byLine(B, D, black, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, byred, 0, 0);
+byLineDefine(A, D, byyellow, 0, 0);
+byLineDefine(C, D, byyellow, 1, 0);
+draw byNamedLineSeq(-1)(AB,BC,CD,AD);
+draw byArc(O, C, A, r, byred, 0, 0, 0, 0)(O);
+draw byLabelsOnPolygon(C, B, A, noPoint)(0, 0);
+draw byLabelsOnCircle(D)(O);
+}
+\drawCurrentPictureInMargin
+\problemNP{Н}{айти}{третью пропорциональную между двумя данными прямыми линиями $\left\{\vcenter{
+\nointerlineskip\hbox{\drawSizedLine{A}}
+\nointerlineskip\hbox{\drawSizedLine{B}}}\right\}$.}
+
+\startCenterAlign
+Проведем любую прямую \drawSizedLine{AB,BC},\\
+сделаем $\drawSizedLine{AB} = \drawSizedLine{A}$ и $\drawSizedLine{BC} = \drawSizedLine{B}$;\\
+рассечем \drawSizedLine{AB,BC} пополам, и взяв середину за центр и половину за радиус опишем полукруг
+\drawFromCurrentPicture[bottom]{
+draw byNamedLineFull(A, C, 0, 0, -1)(AC);
+draw byNamedArc(O);
+draw byLabelsOnPolygon(C, A, noPoint)(0, 0);
+},\\
+проведем $\drawSizedLine{BD} \perp \drawSizedLine{AB}$:\\
+\drawSizedLine{BD} и есть искомая средняя пропорциональная.
+
+Проведем \drawUnitLine{AD} и \drawUnitLine{CD}.
+
+Поскольку \drawAngle{D} прямой угол \inprop[prop:III.XXXI],\\
+и \drawUnitLine{BD} это $\perp$ к нему с противной стороны,\\
+$\therefore$ \drawUnitLine{BD} и есть средняя пропорциональная между \drawUnitLine{AB} и \drawUnitLine{BC} \inprop[prop:VI.VIII],\\
+и $\therefore$ между \drawUnitLine{A} и \drawUnitLine{B} (постр.).
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XIV. Теорема},reference=prop:VI.XIV]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, d[];
+numeric a;
+d1 := (3/2u, 0);
+d2 := (1/2u, -7/4u);
+d3 := 2/3d1;
+d4 := 3/2d2;
+C := (0, 0);
+E := C shifted d1;
+G := C shifted d2;
+B := C shifted (d1 + d2);
+F := B shifted d3;
+D := B shifted d4;
+A := B shifted (d3 + d4);
+H = whatever[A, F] = whatever[C, E];
+draw byPolygon(C,E,B,G)(byyellow);
+draw byPolygon(B,F,A,D)(byblue);
+draw byPolygon(E,H,F,B)(byred);
+draw byLine(B, G, byred, 0, 0);
+draw byLine(B, F, black, 0, 0);
+draw byLine(B, E, byblue, 0, 0);
+draw byLine(B, D, byyellow, 0, 0);
+draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{В}{равных}{и равноугольных параллелограммах \drawPolygon{BFAD} и \drawPolygon{CEBG},  стороны при равных углах взаимно пропорциональны ($\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$). И равноугольные параллелограммы, у которых стороны взаимно пропорциональны, равны.}
+
+\startCenterAlign
+Пусть \drawUnitLine{BG}, \drawUnitLine{BF}, \drawUnitLine{BD} и \drawUnitLine{BE}, будут так расположены, что \drawUnitLine{BG,BF} и \drawUnitLine{BD,BE} составят прямые линии. Что они могут занять такое положение — очевидно (\inpropL[prop:I.XIII], \inpropL[prop:I.XIV], \inpropL[prop:I.XV]).\\
+Достроим \drawPolygon{EHFB}. Поскольку $\drawPolygon{CEBG} = \drawPolygon{BFAD}$,\\
+$\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \inprop[prop:V.VII]\\
+$\therefore \drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$ \inprop[prop:VI.I]
+
+При том же построении:\\
+$\drawUnitLine{BG} : \drawUnitLine{BF} ::
+\left\{\eqalign{
+\drawPolygon{CEBG} &: \drawPolygon{EHFB} \mbox{\inprop[prop:VI.I]}\cr
+\drawUnitLine{BD} &: \drawUnitLine{BE} \mbox{(гип.)}\cr
+\drawPolygon{BFAD} &: \drawPolygon{EHFB} \mbox{\inprop[prop:VI.I]}\cr
+}\right.$\\
+$\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \inprop[prop:V.XI]\\
+и $\therefore \drawPolygon{CEBG} = \drawPolygon{BFAD}$ \inprop[prop:V.IX].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XV. Теорема},reference=prop:VI.XV]
+\defineNewPicture{
+pair A, B, C, D, E;
+D := (0, 0);
+B := (3u, 0);
+A := (5/4u, -3/2u);
+C := A shifted 3/2(A-D);
+E := A shifted 3/2(A-B);
+draw byPolygon(D,A,B)(byblue);
+draw byPolygon(D,A,E)(byred);
+draw byPolygon(A,B,C)(byyellow);
+draw byAngle(D, A, E, byblue, 0);
+draw byAngle(B, A, C, byred, 0);
+byLineDefine(B, D, black, 1, 0);
+byLineDefine(D, A, byyellow, 0, 0);
+byLineDefine(B, A, black, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+byLineDefine(A, E, byblue, 0, 0);
+draw byNamedLineSeq(0)(noLine,AE,BA,BD,DA,AC);
+draw byLabelsOnPolygon(A, E, D, B, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{равных}{треугольниках, имеющих по одному равному углу $\drawAngle{DAE} = \drawAngle{BAC}$, стороны при равных углах взаимно пропорциональны\\
+$\drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$.\\
+И треугольники, имеющие по одному равному углу и взаимно пропорциональные стороны при равных углах, равны.}
+
+\startsubproposition[title={Часть I.}]
+Пусть треугольники будут расположены так, что равные углы \drawAngle{DAE} и \drawAngle{BAC} будут вертикальны, то есть так, что \drawUnitLine{AE} и \drawUnitLine{BA} будут на одной прямой. Таким образом и \drawUnitLine{AC} с \drawUnitLine{DA} будут на одной прямой \inprop[prop:I.XIV].
+
+\startCenterAlign
+Проведем \drawUnitLine{BD}, тогда\\
+$\eqalign{
+\drawUnitLine{DA} : \drawUnitLine{BA}
+&:: \drawPolygon{DAE} : \drawPolygon{DAB} \mbox{\inprop[prop:VI.I]}\cr
+&:: \drawPolygon{ABC} : \drawPolygon{DAB} \mbox{\inprop[prop:V.VII]}\cr
+&:: \drawUnitLine{AC} : \drawUnitLine{DA} \mbox{\inprop[prop:VI.I]}\cr
+}$
+
+$\therefore \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$ \inprop[prop:V.XI].
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={Часть II.}]
+\startCenterAlign
+При том же построении\\
+$\drawPolygon{DAE} : \drawPolygon{DAB} :: \drawUnitLine{DA} : \drawUnitLine{BA}$ \inprop[prop:VI.I]\\
+и $\drawUnitLine{AC} : \drawUnitLine{DA} :: \drawPolygon{ABC} : \drawPolygon{DAB}$ \inprop[prop:VI.I]
+
+но $ \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$, (гип.)
+
+$\therefore \drawPolygon{DAE} : \drawPolygon{DAB} :: \drawPolygon{ABC} : \drawPolygon{DAB}$ \inprop[prop:V.XI];
+
+$\therefore \drawPolygon{DAE} = \drawPolygon{ABC}$ \inprop[prop:V.IX].
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XVI. Теорема},reference=prop:VI.XVI]
+\defineNewPicture{
+pair A, B, C, D, Eb, Fb, Ee, Fe, E, F, G, H, d[];
+numeric l[], h[];
+l1 := -3u;
+l2 := -2u;
+h1 := -3/4l2;
+h2 := -3/4l1;
+A := (0, 0);
+B := (l1, 0);
+G := (0, h1);
+F := (l1, h1);
+d1 := (0, -h2 - 1/2u);
+C := (0, 0) shifted d1;
+D := (l2, 0) shifted d1;
+H := (0, h2) shifted d1;
+E := (l2, h2) shifted d1;
+d2 := (0, h1 + u);
+d3 := (0, h1 + 1/2u);
+Eb := (0, 0) shifted d2; Ee := (-h2, 0) shifted d2;
+Fb := (0, 0) shifted d3; Fe := (-h1, 0) shifted d3;
+draw byPolygon(A,B,F,G)(byred);
+draw byPolygon(C,D,E,H)(byyellow);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(A, G, black, 0, 0);
+draw byNamedLineSeq(0)(AB,AG);
+byLineDefine(C, D, byblue, 0, 0);
+byLineDefine(C, H, byred, 0, 0);
+draw byNamedLineSeq(0)(CD,CH);
+draw byLineWithName(Ee, Eb, byred, 1, 0)(E);
+draw byLineWithName(Fe, Fb, black, 1, 0)(F);
+draw byLabelsOnPolygon(F, G, A, B)(0, 0);
+draw byLabelsOnPolygon(E, H, C, D)(0, 0);
+draw byLabelLine(E, F);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{четыре прямые пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$, прямоугольник $\drawUnitLine{AB} \times \drawUnitLine{F}$, заключенный между крайними равен прямоугольнику $\drawUnitLine{CD} \times \drawUnitLine{E}$, заключенному между средними.\\
+И если прямоугольник заключенный между крайними равен прямоугольнику, заключенному между средними, четыре прямых пропорциональны.}
+
+\startsubproposition[title={Часть I.}]
+\startCenterAlign
+Из концов \drawUnitLine{AB} и \drawUnitLine{CD} проведем \drawUnitLine{AG} и \drawUnitLine{CH} $\perp$ им и $= \drawUnitLine{F}$ и \drawUnitLine{E} соответственно.\\
+Достроим параллелограммы \drawPolygon{ABFG} и \drawPolygon{CDEH}.
+
+И поскольку\\
+$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (гип.)\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (постр.)\\
+$\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
+то есть, прямоугольник, заключенный между крайними равен прямоугольнику, заключенному между средними.
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={Часть II.}]
+\startCenterAlign
+Оставим то же построение.\\
+Поскольку $\drawUnitLine{F} = \drawUnitLine{AG}$, $\drawPolygon{ABFG} = \drawPolygon{CDEH}$\\
+и $\drawUnitLine{CH} = \drawUnitLine{E}$.\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV]
+
+Но $\drawUnitLine{CH} = \drawUnitLine{E}$,\\
+и $\drawUnitLine{AG} = \drawUnitLine{F}$ (постр.)\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ \inprop[prop:V.VII].
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XVII. Теорема},reference=prop:VI.XVII]
+\defineNewPicture{
+pair Ab, Ae, Bb, Be, Cb, Ce, Db, De;
+pair A, B, C, D, E, F, G, H;
+pair d[];
+numeric l[], r;
+r := 3/4;
+l1 := 3u;
+l2 := r*l1;
+l3 := r*l2;
+d1 := (0, 4/2u); d2 := (0, 3/2u); d3 := (0, 2/2u); d4 := (0, 1/2u);
+Ae := (0, 0) shifted d1; Ab := (-l1, 0) shifted d1;
+Be := (0, 0) shifted d2; Bb := (-l2, 0) shifted d2;
+Ce := (0, 0) shifted d3; Cb := (-l3, 0) shifted d3;
+De := (0, 0) shifted d4; Db := (-l2, 0) shifted d4;
+d5 := (0, -l2);
+A := (0, 0) shifted d5; B := (-l2, 0) shifted d5; C := (-l2, l2) shifted d5; D := (0, l2) shifted d5;
+d6 := (0, -l2-l1-1/2u);
+E := (0, 0) shifted d6; F := (-l3, 0) shifted d6; G := (-l3, l1) shifted d6; H := (0, l1) shifted d6;
+draw byPolygon(A,B,C,D)(byred);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(A, D, byblue, 0, 0);
+draw byNamedLineSeq(0)(AB,AD);
+draw byPolygon(E,F,G,H)(byyellow);
+byLineDefine(E, F, black, 0, 0);
+byLineDefine(E, H, byred, 0, 0);
+draw byNamedLineSeq(0)(EF,EH);
+draw byLineWithName(Ab, Ae, byred, 0, 0)(A);
+draw byLineWithName(Bb, Be, byblue, 0, 0)(B);
+draw byLineWithName(Cb, Ce, black, 0, 0)(C);
+draw byLineWithName(Db, De, byyellow, 0, 0)(D);
+draw byLabelLine(A, B, C, D);
+draw byLabelPolygon(1)(ABCD);
+draw byLabelPolygon(1)(EFGH);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{три прямые пропорциональны $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$, прямоугольник заключенный между крайними равен квадрату средней.\\
+И есть прямоугольник заключенный между крайними равен квадрату на средней, то три прямые пропорциональны.}
+
+\startsubproposition[title={Часть I.}]
+\startCenterAlign
+$\eqalign{
+\mbox{ Предположим } \drawUnitLine{D} &= \drawUnitLine{B}, \cr
+\mbox{ и поскольку } \drawUnitLine{A} : \drawUnitLine{B} &:: \drawUnitLine{B} : \drawUnitLine{C}, \cr
+\mbox{ то } \drawUnitLine{A} : \drawUnitLine{B} &:: \drawUnitLine{D} : \drawUnitLine{C}, \cr
+\therefore \drawUnitLine{A} \times \drawUnitLine{C} &= \drawUnitLine{B} \times \drawUnitLine{D} \cr
+}$\\
+\inprop[prop:VI.XVI].
+
+Но $\drawUnitLine{D} = \drawUnitLine{B}$,\\
+$\therefore \drawUnitLine{B} \times \drawUnitLine{D} = \drawUnitLine{B} \times \drawUnitLine{B} \mbox{ или } = \drawUnitLine{B}^2$,\\
+следовательно, если три прямых пропорциональны, прямоугольник, заключенный между крайними равен квадрату средней.
+\stopCenterAlign
+\stopsubproposition
+
+\startsubproposition[title={Часть II.}]
+\startCenterAlign
+Допустим $\drawUnitLine{D} = \drawUnitLine{B}$,\\
+тогда $\drawUnitLine{A} \times \drawUnitLine{C} = \drawUnitLine{D} \times \drawUnitLine{B}$,\\
+$\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{D} : \drawUnitLine{C}$ \inprop[prop:VI.XVI],\\
+и $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$.
+\stopCenterAlign
+\stopsubproposition
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XVII. Задача},reference=prop:VI.XVIII]
+\defineNewPicture{
+pair C, D, E, F, L, d;
+C := (0, 0);
+D := (3/2u, 0);
+E := (u, 3u);
+F := (-u, 2u);
+L := (5/2u, u);
+draw byPolygon(D,C,F)(byyellow);
+draw byPolygon(D,F,E)(byblue);
+draw byPolygon(D,E,L)(byred);
+draw byAngleExtendedWithName(D, F, E, byred, 1)(F)(black);
+draw byAngleExtendedWithName(D, E, L, byyellow, 1)(E)(byred);
+draw byAngleWithName(D, C, F, byred, 1)(C);
+draw byAngle(F, D, C, byblue, 1);
+draw byAngle(E, D, F, black, 1);
+draw byAngle(L, D, E, byyellow, 1);
+draw byLine(D, F, byred, 1, 0);
+byLineDefine(D, E, byyellow, 1, 0);
+byLineDefine(C, D, black, 1, 0);
+byLineDefine(C, F, byblue, 0, 1);
+byLineDefine(F, E, byyellow, 0, 0);
+draw byNamedLineSeq(0)(DE,FE,CF,CD);
+pair A, B, H, G, K;
+numeric s;
+s := 5/6;
+d := (0, -7/2u);
+A := (C scaled s) shifted d;
+B := (D scaled s) shifted d;
+H := (E scaled s) shifted d;
+G := (F scaled s) shifted d;
+K := (L scaled s) shifted d;
+draw byPolygon(B,A,G)(byyellow);
+draw byPolygon(B,G,H)(byblue);
+draw byPolygon(B,H,K)(byred);
+draw byAngleExtendedWithName(B, G, H, black, 1)(G)(byred);
+draw byAngleExtendedWithName(B, H, K, byyellow, 1)(H)(byred);
+draw byAngleWithName(B, A, G, byred, 0)(A);
+draw byAngle(G, B, A, byblue, 0);
+draw byAngle(H, B, G, black, 0);
+draw byAngle(K, B, H, byyellow, 0);
+byLineDefine(B, G, byred, 0, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(A, G, byblue, 0, 0);
+byLineDefine(G, H, byblue, 1, 0);
+draw byNamedLineSeq(0)(noLine,BG,AB,AG,GH);
+draw byLabelsOnPolygon(F, E, L, D, C)(0, 0);
+draw byLabelsOnPolygon(G, H, K, B, A)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Н}{а}{данной прямой \drawUnitLine{AB} построить подобную данной \drawPolygon[middle][polygonCD]{DCF,DFE,DEL} прямолинейную фигуру и так же расположенную.}
+
+\startCenterAlign
+Разобьем фигуру на треугольники прямыми \drawUnitLine{DF} и \drawUnitLine{DE}.
+
+На концах \drawUnitLine{AB}\\
+сделаем $\drawAngle{GBA} = \drawAngle{FDC}$ и $\drawAngle{A} = \drawAngle{C}$;\\
+теперь на концах \drawUnitLine{BG}\\
+сделаем $\drawAngle{G} = \drawAngle{F}$ и $\drawAngle{HBG} = \drawAngle{EDF}$;\\
+и таким же образом\\
+$\drawAngle{KBH} = \drawAngle{LDE}$ и $\drawAngle{H} = \drawAngle{E}$.
+
+Тогда $\polygonCD = \drawPolygon[middle][polygonAB]{BAG,BGH,BHK}$.
+
+Из построения и \inpropL[prop:I.XXXII] очевидно, что фигуры равноугольны, а поскольку треугольники \drawPolygon{DCF} и \drawPolygon{BAG} равноугольны,\\
+то, согласон \inpropL[prop:VI.IV],
+$\drawUnitLine{AB}:\drawUnitLine{AG} :: \drawUnitLine{CD} : \drawUnitLine{CF}$\\
+и $\drawUnitLine{AG}:\drawUnitLine{BG} :: \drawUnitLine{CF} : \drawUnitLine{DF}$
+
+И поскольку \drawPolygon{DFE} и \drawPolygon{BGH} равноугольны,\\
+$\drawUnitLine{BG}:\drawUnitLine{GH} :: \drawUnitLine{DF} : \drawUnitLine{FE}$\\
+$\therefore$ по равенству,\\
+$\drawUnitLine{AG}:\drawUnitLine{GH} :: \drawUnitLine{CF} : \drawUnitLine{FE}$ \inprop[prop:V.XXII]
+
+Тем же способом можно показать, что оставшиеся стороны фигуры пропорциональны.
+
+$\therefore$ \inprop[prop:VI.I]\\
+\polygonAB\ подобна \polygonCD\ и так же расположена и на данной прямой \drawUnitLine{AB}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext
