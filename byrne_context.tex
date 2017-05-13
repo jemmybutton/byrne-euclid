@@ -2146,7 +2146,7 @@ draw byLabelsOnPolygon(E, B, A)(2, 0);
 draw byLabelsOnPolygon(A, C, B)(2, 0);
 draw byLabelsOnCircle(D)(A);
 draw byLabelsOnCircle(E)(B);
-draw byLabelLine(L', L'', L''');
+draw byLabelLine(0)(L', L'', L''');
 }
 \drawCurrentPictureInMargin
 \problemNP{G}{iven}{three right lines $\left\{\vcenter{
@@ -2479,7 +2479,7 @@ byLineDefine(I, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,IC,IA,AB);
 draw byLine(G, H, black, 0, 0);
-draw byLabelLine(AB, CD, GH);
+draw byLabelLine(0)(AB, CD, GH);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{CD} and \drawUnitLine{AB}) makes with them the alternate angles (\drawAngle{CFE} and \drawAngle{FEB}; \drawAngle{EFD} and \drawAngle{AEF}) equal, these two straight lines are parallel.}
@@ -2512,7 +2512,7 @@ draw byAngle(E, F, D, byred, 0);
 draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(G, H, black, 0, 0);
-draw byLabelLine(AB, CD, GH);
+draw byLabelLine(0)(AB, CD, GH);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFE}$ or $\drawAngle{BEG} = \drawAngle{EFD}$), or if it makes two internal angles at the same side (\drawAngle{EFD} and \drawAngle{FEB}, or \drawAngle{CFE} and \drawAngle{AEF}) together equal to two right angles, those two straight lines are parallel.}
@@ -2596,7 +2596,7 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(E, F, byblue, 0, 0);
 draw byLine(J, K, black, 0, 0);
-draw byLabelLine(AB, CD, EF, JK);
+draw byLabelLine(0)(AB, CD, EF, JK);
 draw byLabelsOnPolygon(J, G, A)(2, 0);
 draw byLabelsOnPolygon(J, I, C)(2, 0);
 draw byLabelsOnPolygon(J, H, E)(2, 0);
@@ -2941,7 +2941,7 @@ byLineDefine(C, D, black, 0, 0);
 draw byNamedLineSeq(0)(AC,CD,FD);
 draw byLine(H, I, black, 1, 0);
 draw byLabelsOnPolygon(D, C, A, B, E, F)(0, 0);
-draw byLabelLine(HI);
+draw byLabelLine(0)(HI);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{
@@ -3724,7 +3724,7 @@ byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, C, byyellow, 1, 0);
 draw byNamedLineSeq(0)(GK,KL,LH,HC,EC,DE,BD,GB);
 draw byLabelsOnPolygon(B, D, E, C, H, L, K, G)(0, 0);
-draw byLabelLine(A);
+draw byLabelLine(0)(A);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{T}{he}{rectangle contained by two straight lines, one of which is divided into any number of parts,
@@ -11777,7 +11777,7 @@ draw byLineWithName(Ee, Eb, byred, 1, 0)(E);
 draw byLineWithName(Fe, Fb, black, 1, 0)(F);
 draw byLabelsOnPolygon(F, G, A, B)(0, 0);
 draw byLabelsOnPolygon(E, H, C, D)(0, 0);
-draw byLabelLine(E, F);
+draw byLabelLine(0)(E, F);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$) the rectangle ($\drawUnitLine{AB} \times \drawUnitLine{F}$) contained by the extremes, is equal to the rectangle ($\drawUnitLine{CD} \times \drawUnitLine{E}$) contained by the means\\
@@ -11845,7 +11845,7 @@ draw byLineWithName(Ab, Ae, byred, 0, 0)(A);
 draw byLineWithName(Bb, Be, byblue, 0, 0)(B);
 draw byLineWithName(Cb, Ce, black, 0, 0)(C);
 draw byLineWithName(Db, De, byyellow, 0, 0)(D);
-draw byLabelLine(A, B, C, D);
+draw byLabelLine(0)(A, B, C, D);
 draw byLabelPolygon(1)(ABCD);
 draw byLabelPolygon(1)(EFGH);
 }
@@ -11990,6 +11990,8 @@ draw byAngleWithName(D, E, F, black, 0)(E);
 byLineDefine(D, E, byred, 0, 0);
 byLineDefine(E, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DE,EF);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
+draw byLabelsOnPolygon(C, G, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{imilar}{triangles (\drawPolygon[bottom][triangleDEF]{DEF} and \drawPolygon[bottom][triangleABC]{ABG,AGC}) are to one another in the duplicate ratio of their homologous sides.}
@@ -11999,7 +12001,7 @@ Let \drawAngle{E} and \drawAngle{B} be equal angles, and \drawUnitLine{BG,GC} an
 $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$;\\
 draw \drawUnitLine{AG}.\\
 $\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV];\\
-$\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AG} : \drawUnitLine{DE}$ \inprop[prop:V.XVI],\\
+$\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \inprop[prop:V.XVI],\\
 but $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (const.),\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$\\
 consequently $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$ for they have the sides about equal angles \drawAngle{E} and \drawAngle{B} reciprocally proportional \inprop[prop:V.XV];
@@ -12055,6 +12057,8 @@ byLineDefine(G, H, byred, 0, 1);
 byLineDefine(H, K, byred, 1, 0);
 byLineDefine(K, L, byyellow, 0, 0);
 draw byNamedLineSeq(0)(GL,GH,HK,KL);
+draw byLabelsOnPolygon(A, E, D, C, B)(0, 0);
+draw byLabelsOnPolygon(F, L, K, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{imilar}{polygons may be divided into the same number of similar triangles, each similar pair of which are proportional to the polygons; and the polygons are to each other in the duplicate ratio of their homologous sides.}
@@ -12063,7 +12067,7 @@ Draw \drawUnitLine{BE} and \drawUnitLine{BD}, and \drawUnitLine{GL} and \drawUni
 
 \startCenterAlign
 $\therefore$ \drawPolygon{BCD} and \drawPolygon{GHK} are similar,\\
-and $\drawAngle{BDE} = \drawAngle{GKL}$ \inprop[prop:VI.VI];
+and $\drawAngle{BDC} = \drawAngle{GKH}$ \inprop[prop:VI.VI];
 
 but $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$ because they are angles of similar polygons; therefore the remainders \drawAngle{BDE} and \drawAngle{GKL} are equal;\\
 hence $\drawUnitLine{BD} : \drawUnitLine{CD} :: \drawUnitLine{GK} : \drawUnitLine{HK}$,\\
@@ -12095,7 +12099,7 @@ $\therefore$ \drawPolygon{BEA,BDE,BCD} is to \drawPolygon{GLF,GKL,GHK} in the du
 \stopProposition
 
 \startProposition[title={Prop. XXI. theor.},reference=prop:VI.XXI]
-\defineNewPicture[1/2]{
+\defineNewPicture{
 pair Aa, Ab, Ac, Ba, Bb, Bc, Ca, Cb, Cc, d[];
 numeric s[];
 Aa := (0, 0);
@@ -12114,11 +12118,14 @@ Cc := (Ac scaled s2) shifted d2;
 draw byPolygonWithName(Aa,Ab,Ac)(byred)(A);
 draw byPolygonWithName(Ba,Bb,Bc)(byblue)(B);
 draw byPolygonWithName(Ca,Cb,Cc)(byyellow)(C);
+forsuffixes i=Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc:
+	byPointLabelDefine(i, "");
+endfor;
 }
 \drawCurrentPictureInMargin
 \problemNP{R}{ectilinear}{figures (\drawPolygon[bottom]{A} and \drawPolygon[bottom]{B}) which are similar to the same figure (\drawPolygon[bottom]{C}) are similar also to each other.}
 
-Since \polygonA\ and \polygonC\ are similar, they are equiangular, and have the sides about the equal angles proportional \indef[def:VI.I]; and since figures \polygonB\ and \polygonC\ are also similar, they are equiangular, and have the sides about the equal angles proportional; therefore \polygonA\ and \polygonC\ are also equiangular, and have the sides about the equal angles proportional \inprop[prop:V.XI], and therefore similar.
+Since \polygonA\ and \polygonC\ are similar, they are equiangular, and have the sides about the equal angles proportional \indef[def:VI.I]; and since figures \polygonB\ and \polygonC\ are also similar, they are equiangular, and have the sides about the equal angles proportional; therefore \polygonA\ and \polygonB\ are also equiangular, and have the sides about the equal angles proportional \inprop[prop:V.XI], and therefore similar.
 
 \qed
 \stopProposition
@@ -12161,10 +12168,14 @@ draw byLineWithName(Ob, Oe, black, 1, 0)(O);
 draw byLine(E, F, byred, 0, 0);
 draw byLine(G, H, byyellow, 0, 0);
 draw byLineWithName(Pb, Pe, byred, 1, 0)(P);
+forsuffixes i=Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L:
+	byPointLabelDefine(i, "");
+endfor;
+draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }
 \drawCurrentPicture
-\initialIndentation{8}
-\problem{I}{f}{four straight lines ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$), the similar rectilinear figures similarly described on them are also proportional.\\
+\initialIndentation{9}
+\problem{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$), the similar rectilinear figures similarly described on them are also proportional.\\
 And if four similar rectilinear figures, similarly described on four straight lines, be proportional, the straight lines are also proportional.}
 
 \startsubproposition[title={Part I.}]

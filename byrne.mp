@@ -1430,15 +1430,22 @@ vardef byLabelPoint(suffix p)(expr a, d) =
     )
 enddef;
 
-vardef byLabelLine(text linesList) =
+vardef byLabelLine(expr d)(text linesList) =
+    save a;
+    numeric a;
+    if (d = 0):
+        a := 90;
+    else:
+        a := -90;
+    fi;
     image(
         if (textLabels):
         forsuffixes lN=linesList:
             if (lineUseLineLabel.lN):
-                draw byTextLabel(pointLabel)(lineLabel.lN, 1/2[lineEndA.lN, lineEndB.lN], lineAngle.lN + 90, textLabelShift);
+                draw byTextLabel(pointLabel)(lineLabel.lN, 1/2[lineEndA.lN, lineEndB.lN], lineAngle.lN + a, textLabelShift);
             else:
-                draw byTextLabel(pointLabel)(lineEndAName.lN, lineEndA.lN, lineAngle.lN + 90, textLabelShift);
-                draw byTextLabel(pointLabel)(lineEndBName.lN, lineEndB.lN, lineAngle.lN + 90, textLabelShift);
+                draw byTextLabel(pointLabel)(lineEndAName.lN, lineEndA.lN, lineAngle.lN + a, textLabelShift);
+                draw byTextLabel(pointLabel)(lineEndBName.lN, lineEndB.lN, lineAngle.lN + a, textLabelShift);
             fi;
         endfor;
         fi;

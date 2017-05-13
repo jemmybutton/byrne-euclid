@@ -1047,7 +1047,7 @@ draw byLabelsOnPolygon(E, B, A)(2, 0);
 draw byLabelsOnPolygon(A, C, B)(2, 0);
 draw byLabelsOnCircle(D)(A);
 draw byLabelsOnCircle(E)(B);
-draw byLabelLine(L', L'', L''');
+draw byLabelLine(0)(L', L'', L''');
 }
 \drawCurrentPictureInMargin
 \problemNP{И}{з}{трех прямых линий $\left\{\vcenter{
@@ -1381,7 +1381,7 @@ byLineDefine(I, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,IC,IA,AB);
 draw byLine(G, H, black, 0, 0);
-draw byLabelLine(AB, CD, GH);
+draw byLabelLine(0)(AB, CD, GH);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{прямая \drawUnitLine{GH}, пересекая две другие прямые \drawUnitLine{CD} и \drawUnitLine{AB}, образует накрестлежащие углы \drawAngle{CFE}, \drawAngle{FEB} и \drawAngle{EFD} и \drawAngle{AEF} равные между собой, то две пересекаемые прямые параллельны.}
@@ -1414,7 +1414,7 @@ draw byAngle(E, F, D, byred, 0);
 draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(G, H, black, 0, 0);
-draw byLabelLine(AB, CD, GH);
+draw byLabelLine(0)(AB, CD, GH);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{прямая \drawUnitLine{GH}, падающая на две прямые \drawUnitLine{AB} и \drawUnitLine{CD} образует внешний угол, равный внутреннему противолежащему с той же стороны $\drawAngle{GEA} = \drawAngle{CFE}$ или $\drawAngle{BEG} = \drawAngle{EFD}$, или внутренние углы с одной стороны \drawAngle{EFD} и \drawAngle{FEB} или \drawAngle{CFE} и \drawAngle{AEF} вместе равны двум прямым углам, то прямые параллельны.}
@@ -1461,7 +1461,7 @@ draw byLine(E, J, black, 1, 0);
 draw byLine(A, B, byyellow, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
-draw byLabelLine(AB, CD, GH);
+draw byLabelLine(0)(AB, CD, GH);
 draw byLabelsOnPolygon(A, E, G)(2, 0);
 draw byLabelPoint(I, lineAngle.IE - 90, 1);
 draw byLabelPoint(J, lineAngle.EJ + 90, 1);
@@ -1500,7 +1500,7 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(E, F, byblue, 0, 0);
 draw byLine(J, K, black, 0, 0);
-draw byLabelLine(AB, CD, EF, JK);
+draw byLabelLine(0)(AB, CD, EF, JK);
 draw byLabelsOnPolygon(J, G, A)(2, 0);
 draw byLabelsOnPolygon(J, I, C)(2, 0);
 draw byLabelsOnPolygon(J, H, E)(2, 0);
@@ -1845,7 +1845,7 @@ byLineDefine(C, D, black, 0, 0);
 draw byNamedLineSeq(0)(AC,CD,FD);
 draw byLine(H, I, black, 1, 0);
 draw byLabelsOnPolygon(D, C, A, B, E, F)(0, 0);
-draw byLabelLine(HI);
+draw byLabelLine(0)(HI);
 }
 \drawCurrentPictureInMargin
 \problemNP{Т}{реугольники}{
@@ -2615,7 +2615,7 @@ byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, C, byyellow, 1, 0);
 draw byNamedLineSeq(0)(GK,KL,LH,HC,EC,DE,BD,GB);
 draw byLabelsOnPolygon(B, D, E, C, H, L, K, G)(0, 0);
-draw byLabelLine(A);
+draw byLabelLine(0)(A);
 }
 \drawCurrentPictureInMargin
 \problemNP{П}{рямоугольник,}{заключенный между двумя прямыми линиями, одна из которых рассечена на сколько угодно отрезков, равен сумме прямоугольников, заключенных между нерассеченной прямой и каждым из этих отрезков.\\
@@ -10656,7 +10656,7 @@ draw byLineWithName(Ee, Eb, byred, 1, 0)(E);
 draw byLineWithName(Fe, Fb, black, 1, 0)(F);
 draw byLabelsOnPolygon(F, G, A, B)(0, 0);
 draw byLabelsOnPolygon(E, H, C, D)(0, 0);
-draw byLabelLine(E, F);
+draw byLabelLine(0)(E, F);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{четыре прямые пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$, прямоугольник $\drawUnitLine{AB} \times \drawUnitLine{F}$, заключенный между крайними равен прямоугольнику $\drawUnitLine{CD} \times \drawUnitLine{E}$, заключенному между средними.\\
@@ -10724,7 +10724,7 @@ draw byLineWithName(Ab, Ae, byred, 0, 0)(A);
 draw byLineWithName(Bb, Be, byblue, 0, 0)(B);
 draw byLineWithName(Cb, Ce, black, 0, 0)(C);
 draw byLineWithName(Db, De, byyellow, 0, 0)(D);
-draw byLabelLine(A, B, C, D);
+draw byLabelLine(0)(A, B, C, D);
 draw byLabelPolygon(1)(ABCD);
 draw byLabelPolygon(1)(EFGH);
 }
@@ -10837,8 +10837,257 @@ $\drawUnitLine{AG}:\drawUnitLine{GH} :: \drawUnitLine{CF} : \drawUnitLine{FE}$ \
 Тем же способом можно показать, что оставшиеся стороны фигуры пропорциональны.
 
 $\therefore$ \inprop[prop:VI.I]\\
-\polygonAB\ подобна \polygonCD\ и так же расположена и на данной прямой \drawUnitLine{AB}.
+\polygonAB\ подобна \polygonCD\ и расположена и на данной прямой \drawUnitLine{AB}.
 \stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XIX. Теорема},reference=prop:VI.XIX]
+\defineNewPicture[1/5]{
+pair A, B, C, D, E, F, G, d;
+numeric s;
+A := (5/2u, -3u);
+B := (0, 0);
+C := (-u, ypart(A));
+d := (0, -4u);
+s := 3/4;
+D := (A scaled s) shifted d;
+E := (B scaled s) shifted d;
+F := (C scaled s) shifted d;
+G := B shifted (unitvector(C-B) scaled ((abs(E-F)/abs(B-C))*abs(E-F)));
+draw byPolygon(A,B,G)(byblue);
+draw byPolygon(A,G,C)(byred);
+draw byAngleWithName(A, B, C, byred, 0)(B);
+draw byLine(A, G, byyellow, 1, 0);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(B, G, black, 1, 0);
+byLineDefine(G, C, black, 0, 0);
+draw byNamedLineSeq(0)(AB,BG,GC);
+draw byPolygon(D,E,F)(byyellow);
+draw byAngleWithName(D, E, F, black, 0)(E);
+byLineDefine(D, E, byred, 0, 0);
+byLineDefine(E, F, byblue, 0, 0);
+draw byNamedLineSeq(0)(DE,EF);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
+draw byLabelsOnPolygon(C, G, B, A)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{одобные}{треугольники \drawPolygon[bottom][triangleDEF]{DEF} и \drawPolygon[bottom][triangleABC]{ABG,AGC} находятся друг к другу в двойном отношении соответственных сторон.}
+
+Пусть \drawAngle{E} и \drawAngle{B} будут равными углами, и \drawUnitLine{BG,GC} и \drawUnitLine{EF} соответственными сторонами подобных треугольников \triangleDEF\ и \triangleABC\ и на стороне \drawUnitLine{BG,GC} 
+большего из них возьмем третью пропорциональную \drawUnitLine{BG} такую, что
+
+\startCenterAlign
+$\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$.
+
+Проведем \drawUnitLine{AG}.\\
+$\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV].
+
+$\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \inprop[prop:V.XVI].
+
+Но $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (постр.),\\
+$\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$.
+
+Следовательно $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$, поскольку у них стороны при равных углах \drawAngle{E} и \drawAngle{B} взаимно пропорциональны \inprop[prop:V.XV].\\
+$\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \inprop[prop:V.VII],\\
+но $\triangleABC : \triangleABG :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$ \inprop[prop:VI.I],\\
+$\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$.
+
+То есть, эти треугольники относятся друг к другу в двойном отношении соответственных сторон \drawUnitLine{EF} и \drawUnitLine{BG,GC} \indef[def:V.XI].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XX. Теорема},reference=prop:VI.XX]
+\defineNewPicture{
+pair A, B, C, D, E;
+A := (-2u, 5/2u);
+B := (-1/2u, 0);
+C := (3/2u, ypart(B));
+D := (2u, 3/2u);
+E := (u, ypart(A));
+draw byPolygon(B,E,A)(byblue);
+draw byPolygon(B,D,E)(byred);
+draw byPolygon(B,C,D)(byyellow);
+draw byAngle(B, D, E, byblue, 0);
+draw byAngleWithName(B, C, D, black, 0)(C);
+draw byAngle(B, D, C, byred, 0);
+draw byLine(B, D, black, 1, 0);
+byLineDefine(B, E, black, 0, 0);
+byLineDefine(B, C, byblue, 0, 0);
+byLineDefine(C, D, byblue, 1, 0);
+byLineDefine(D, E, byyellow, 0, 0);
+draw byNamedLineSeq(0)(BE,BC,CD,DE);
+pair F, G, H, K, L, d;
+numeric s;
+s := 3/4;
+d := (0, -3u);
+F := (A scaled s) shifted d;
+G := (B scaled s) shifted d;
+H := (C scaled s) shifted d;
+K := (D scaled s) shifted d;
+L := (E scaled s) shifted d;
+draw byPolygon(G,L,F)(byblue);
+draw byPolygon(G,K,L)(byred);
+draw byPolygon(G,H,K)(byyellow);
+draw byAngle(G, K, L, byblue, 1);
+draw byAngleWithName(G, H, K, black, 1)(H);
+draw byAngle(G, K, H, byred, 1);
+draw byLine(G, K, black, 1, 1);
+byLineDefine(G, L, black, 0, 1);
+byLineDefine(G, H, byred, 0, 1);
+byLineDefine(H, K, byred, 1, 0);
+byLineDefine(K, L, byyellow, 0, 0);
+draw byNamedLineSeq(0)(GL,GH,HK,KL);
+draw byLabelsOnPolygon(A, E, D, C, B)(0, 0);
+draw byLabelsOnPolygon(F, L, K, H, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{одобные}{многоугольники разделяются на равное количество подобных треугольников, каждая пара которых пропорциональна многоугольникам, а многоугольники находятся друг к другу в двойном отношении соответственных сторон.}
+
+Проведя \drawUnitLine{BE}, \drawUnitLine{BD}, \drawUnitLine{GL} и \drawUnitLine{GK}, разделим многоугольники на треугольники. Поскольку многоугольники подобны, $\drawAngle{C} = \drawAngle{H}$, и $\drawUnitLine{BC} : \drawUnitLine{CD} :: \drawUnitLine{GH} : \drawUnitLine{HK}$
+
+\startCenterAlign
+$\therefore$ \drawPolygon{BCD} и \drawPolygon{GHK} подобны и $\drawAngle{BDC} = \drawAngle{GKH}$ \inprop[prop:VI.VI],\\
+но $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$, поскольку они являются углами подобных многоугольников. Следовательно остатки \drawAngle{BDE} и \drawAngle{GKL} равны.
+
+А значит $\drawUnitLine{BD} : \drawUnitLine{CD} :: \drawUnitLine{GK} : \drawUnitLine{HK}$,\\
+учитывая подобие треугольников,\\
+и $\drawUnitLine{CD} : \drawUnitLine{DE} :: \drawUnitLine{HK} : \drawUnitLine{KL}$,\\
+учитывая подобие многоугольников,\\
+$\therefore \drawUnitLine{BD} : \drawUnitLine{DE} :: \drawUnitLine{GK} : \drawUnitLine{KL}$,\\
+по равенству \inprop[prop:V.XXII], и поскольку пропорциональные стороны заключают равные углы, треугольники \drawPolygon{BDE} и \drawPolygon{GKL} подобны \inprop[prop:VI.VI].
+
+Так же можно показать, что и треугольники \drawPolygon{BEA} и \drawPolygon{GLF} подобны.
+
+Но \drawPolygon{BCD} имеет к \drawPolygon{GHK} двойное отношение \drawUnitLine{BD} к \drawUnitLine{GK} \inprop[prop:VI.XIX],\\
+и \drawPolygon{BDE} к \drawPolygon{GKL} точно так же имеет двойное отношение \drawUnitLine{BD} к \drawUnitLine{GK};\\
+$\therefore \drawPolygon{BCD} : \drawPolygon{GHK} :: \drawPolygon{BDE} : \drawPolygon{GKL}$ \inprop[prop:V.XI];
+
+Теперь \drawPolygon{BDE} к \drawPolygon{GKL} имеет двойное отношение \drawUnitLine{BE} к \drawUnitLine{GL}, и \drawPolygon{BEA} к \drawPolygon{GLF} двойное отношение \drawUnitLine{BE} к \drawUnitLine{GL}.\\
+$\eqalign{
+\drawPolygon{BCD} : \drawPolygon{GHK} &:: \drawPolygon{BDE} : \drawPolygon{GKL} \cr
+&:: \drawPolygon{BEA} : \drawPolygon{GLF} \cr
+}$.
+\stopCenterAlign
+
+И поскольку как относится одно из предыдущих к одному из последующих, так и все предыдущие вместе ко всем последующим вместе, подобные треугольники относятся друг к другу как многоугольники целиком \inprop[prop:V.XII].
+
+\startCenterAlign
+Но \drawPolygon{BCD} к \drawPolygon{GHK} имеет двойное отношение \drawUnitLine{BC} к \drawUnitLine{GH};\\
+$\therefore$ \drawPolygon{BEA,BDE,BCD} к \drawPolygon{GLF,GKL,GHK} имеет двойное отношение \drawUnitLine{BC} к \drawUnitLine{GH}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXI. Теорема},reference=prop:VI.XXI]
+\defineNewPicture[1/2]{
+pair Aa, Ab, Ac, Ba, Bb, Bc, Ca, Cb, Cc, d[];
+numeric s[];
+Aa := (0, 0);
+Ab := (0, 3/2u);
+Ac := (-3u, 0);
+s1 := 5/6;
+d1 := (0, -2u);
+Ba := (Aa scaled s1) shifted d1;
+Bb := (Ab scaled s1) shifted d1;
+Bc := (Ac scaled s1) shifted d1;
+s2 := 4/6;
+d2 := d1 shifted (0, -2u * s1) ;
+Ca := (Aa scaled s2) shifted d2;
+Cb := (Ab scaled s2) shifted d2;
+Cc := (Ac scaled s2) shifted d2;
+draw byPolygonWithName(Aa,Ab,Ac)(byred)(A);
+draw byPolygonWithName(Ba,Bb,Bc)(byblue)(B);
+draw byPolygonWithName(Ca,Cb,Cc)(byyellow)(C);
+forsuffixes i=Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc:
+	byPointLabelDefine(i, "");
+endfor;
+}
+\drawCurrentPictureInMargin
+\problemNP{Ф}{игуры}{\drawPolygon[bottom]{A} и \drawPolygon[bottom]{B} подобные одной фигуре \drawPolygon[bottom]{C} подобны друг другу.}
+
+Поскольку \polygonA\ и \polygonC\ подобны, они равноугольны, и стороны при равных углах у них  пропорциональны \indef[def:VI.I]. И поскольку \polygonB\ и \polygonC\ также подобны, и стороны при равных углах у них пропорциональны, \polygonA\ и \polygonB\ тоже равноугольны и у них тоже стороны при равных углах пропорциональны \inprop[prop:V.XI], и значит они тоже подобны.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXII. Теорема},reference=prop:VI.XXII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, Ob, Oe, Pb, Pe;
+pair K, L, Ma, Mb, Mc, Md, Na, Nb, Nc, Nd;
+pair d[];
+numeric s[];
+s1 := 6/5;
+A := (0, 0); B := (3/2u, 0); K := (u, u);
+d1 := (2u, 0);
+C := (A scaled s1) shifted d1;
+D := (B scaled s1) shifted d1;
+L := (K scaled s1) shifted d1;
+d2 := (4u, 0);
+Ob := (A scaled (s1*s1)) shifted d2;
+Oe := (B scaled (s1*s1)) shifted d2;
+E := (0, 0); F := (u, 0); Ma := (3/2u, 2/3u); Mb := (u, 4/3u); Mc := (1/5u, 3/2u); Md := (-1/4u, 5/6u);
+G := (E scaled s1) shifted d1;
+H := (F scaled s1) shifted d1;
+Na := (Ma scaled s1) shifted d1;
+Nb := (Mb scaled s1) shifted d1;
+Nc := (Mc scaled s1) shifted d1;
+Nd := (Md scaled s1) shifted d1;
+Pb := (E scaled (s1*s1)) shifted d2;
+Pe := (F scaled (s1*s1)) shifted d2;
+d3 := (1/4u, -5/2u);
+forsuffixes i=E,F,Ma,Mb,Mc,Md,G,H,Na,Nb,Nc,Nd,Pb,Pe:
+i := i shifted d3;
+endfor;
+draw byPolygonWithName(A,B,K)(byyellow)(AB);
+draw byPolygonWithName(C,D,L)(byred)(CD);
+draw byPolygonWithName(E,F,Ma,Mb,Mc,Md)(byblue)(EF);
+draw byPolygonWithName(G,H,Na,Nb,Nc,Nd)(white)(GH);
+draw byLine(A, B, black, 0, 0);
+draw byLine(C, D, byblue, 0, 0);
+draw byLineWithName(Ob, Oe, black, 1, 0)(O);
+draw byLine(E, F, byred, 0, 0);
+draw byLine(G, H, byyellow, 0, 0);
+draw byLineWithName(Pb, Pe, byred, 1, 0)(P);
+forsuffixes i=Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L:
+	byPointLabelDefine(i, "");
+endfor;
+draw byLabelLine(1)(AB,CD,EF,GH,O,P);
+}
+\drawCurrentPicture
+\initialIndentation{10}
+\problem{Е}{сли}{четыре прямых пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$, подобные прямолинейные фигуры подобным образом расположенные на них также пропорциональны.\\
+И если четыре подобных прямолинейных фигуры подобно расположены на четырех прямых линиях, то и линии пропорциональны.}
+
+\startsubproposition[title={Часть I.}]
+\startCenterAlign
+Возьмем \drawUnitLine{O}, третью пропорциональную к \drawUnitLine{AB} и \drawUnitLine{CD}, и \drawUnitLine{P}, третью пропорциональную к \drawUnitLine{EF} и \drawUnitLine{GH} \inprop[prop:VI.XI].\\
+Поскольку $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (гип.)\\
+$\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ (постр.).\\
+$\therefore$ по равенству,\\
+$\drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$,\\
+но $\drawPolygon{AB} : \drawPolygon{CD} :: \drawUnitLine{AB} : \drawUnitLine{O}$ \inprop[prop:VI.XX],\\
+и $\drawPolygon{EF} : \drawPolygon{GH} :: \drawUnitLine{EF} : \drawUnitLine{P}$.\\
+$\therefore \drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ \inprop[prop:V.XI].
+\stopCenterAlign
+\stopsubproposition
+
+\vfill\pagebreak
+
+\startsubproposition[title={Часть II.}]
+\startCenterAlign
+Оставим то же построение.\\
+$\drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ (гип.),
+
+$\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$ (гип.),
+
+и $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ \inprop[prop:V.XI].
+\stopCenterAlign
+\stopsubproposition
 
 \qed
 \stopProposition
