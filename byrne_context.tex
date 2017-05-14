@@ -12745,6 +12745,11 @@ byLineDefine(B, D, byblue, 1, 0);
 byLineDefine(D, C, byblue, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(-1)(AB,BD,DC,CA);
+forsuffixes i=H, G, L, K, F, E:
+	byPointLabelDefine(i, "");
+endfor;
+draw byLabelsOnPolygon(B, F, E, A, L, K, C, H, G)(0, 0);
+draw byLabelsOnPolygon(A, D, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle (\drawLine[bottom]{CA,DC,BD,AB}), the figure described on the side (\drawProportionalLine{BD,DC}) subtending the right angle is equal to the sum of the figures on the other sides.}
@@ -12755,19 +12760,25 @@ then $\drawProportionalLine{BD,DC} : \drawProportionalLine{CA} :: \drawProportio
 
 $\therefore
 \drawFromCurrentPicture[bottom][figBC]{
-startGlobalRotation(-angle(B-C));
+startGlobalRotation(180-angle(B-C));
+startAutoLabeling;
 draw byNamedPolygon(BC);
+stopAutoLabeling;
 stopGlobalRotation;
 } :
 \drawFromCurrentPicture[bottom][figCA]{
 startGlobalRotation(-angle(C-A));
+startAutoLabeling;
 draw byNamedPolygon(CA);
+stopAutoLabeling;
 stopGlobalRotation;
 } :: \drawProportionalLine{BD,DC} : \drawProportionalLine{DC}$ \inprop[prop:VI.XX].\\
 but $\figBC\ :
 \drawFromCurrentPicture[bottom][figAB]{
 startGlobalRotation(-angle(A-B));
+startAutoLabeling;
 draw byNamedPolygon(AB);
+stopAutoLabeling;
 stopGlobalRotation;
 } :: \drawProportionalLine{BD,DC} : \drawProportionalLine{BD}$ \inprop[prop:VI.XX].
 
@@ -12808,6 +12819,7 @@ byLineDefineWithName(C, A, black, 0, 1)(CAt);
 byLineDefineWithName(D, C, black, 0, 1)(DCt);
 byLineDefineWithName(C, E, black, 0, 1)(CEt);
 byLineDefineWithName(E, D, black, 0, 1)(EDt);
+draw byLabelsOnPolygon(E, C, B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles
@@ -12815,6 +12827,7 @@ byLineDefineWithName(E, D, black, 0, 1)(EDt);
 startTempAngleScale(angleScale*3/5);
 draw byNamedAngle(A, B, BCA);
 draw byNamedLineSeq(0)(CAt,BCt,ABt);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
 stopTempAngleScale;
 }
 and
@@ -12822,6 +12835,7 @@ and
 startTempAngleScale(angleScale*3/5);
 draw byNamedAngle(D, DCE);
 draw byNamedLineSeq(0)(EDt,CEt,DCt);
+draw byLabelsOnPolygon(C, D, E)(0, 0);
 stopTempAngleScale;
 }),
 have two sides proportional ($\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$), and be so placed at an angle that the homologous sides are parallel, the remaining sides (\drawUnitLine{BC} and \drawUnitLine{CE}) form one right line.}
@@ -12900,38 +12914,54 @@ draw byArc(H, E, F, r, byyellow, 1, 0, 0, 0)(EF);
 draw byArc(H, F, M, r, byred, 1, 0, 0, 0)(FM);
 draw byArc(H, M, N, r, byblue, 1, 0, 0, 0)(MN);
 byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byLabelsOnCircle(B, C, K, L)(G);
+draw byLabelsOnCircle(E, F, M, N)(H);
+draw byLabelsOnPolygon(B, G, L)(2, 0);
+draw byLabelsOnPolygon(E, H, N)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equal circles (\drawCircle[middle][1/4]{G}, \drawCircle[middle][1/4]{H}), angles, whether at the centre or circumference, are in the same ratio to one another as the arcs on which they stand ($\drawAngle{BC} : \drawAngle{EF} ::
 \drawFromCurrentPicture[middle][arcBC]{
 startGlobalRotation(180-angle(B-C));
+startAutoLabeling;
 draw byNamedArc(BC);
+stopAutoLabeling;
 stopGlobalRotation;
 } : \drawFromCurrentPicture[middle][arcEF]{
 startGlobalRotation(180-angle(E-F));
+startAutoLabeling;
 draw byNamedArc(EF);
+stopAutoLabeling;
 stopGlobalRotation;
 }$); so also are sectors.}
 
-Take in te circumference of \circleG\ any number of arcs
+Take in the circumference of \circleG\ any number of arcs
 \drawFromCurrentPicture[middle][arcCK]{
 startGlobalRotation(180-angle(C-K));
+startAutoLabeling;
 draw byNamedArc(CK);
+stopAutoLabeling;
 stopGlobalRotation;
 },
 \drawFromCurrentPicture[middle][arcKL]{
 startGlobalRotation(180-angle(K-L));
+startAutoLabeling;
 draw byNamedArc(KL);
+stopAutoLabeling;
 stopGlobalRotation;
 }, \&c. each $= \arcBC$, and also in the circumference of \circleH\ take any number of arcs
 \drawFromCurrentPicture[middle][arcFM]{
 startGlobalRotation(180-angle(F-M));
+startAutoLabeling;
 draw byNamedArc(FM);
+stopAutoLabeling;
 stopGlobalRotation;
 },
 \drawFromCurrentPicture[middle][arcMN]{
 startGlobalRotation(180-angle(M-N));
+startAutoLabeling;
 draw byNamedArc(MN);
+stopAutoLabeling;
 stopGlobalRotation;
 }, \&c. each $= \arcEF$, draw the radii to the extremities of the equal arcs.
 
@@ -12939,7 +12969,7 @@ The since the arcs \arcBC, \arcCK, \arcKL, \&c. are all equal, the angles \drawA
 startGlobalRotation(180-angle(B-L));
 draw byNamedArc(BC,CK,KL);
 stopGlobalRotation;
-} is of \arcBC; and in the same manner \drawAngle{EF,FM,MN} is the same multiple of \drawAngle{EF}, which the arc\drawAngle{BC} which are \drawFromCurrentPicture[middle][arcEN]{
+} is of \arcBC; and in the same manner \drawAngle{EF,FM,MN} is the same multiple of \drawAngle{EF}, which the arc \drawFromCurrentPicture[middle][arcEN]{
 startGlobalRotation(180-angle(E-N));
 draw byNamedArc(EF,FM,MN);
 stopGlobalRotation;
@@ -12984,11 +13014,15 @@ byLineDefine(A, E, black, 0, 0);
 byLineDefine(E, C, black, 1, 0);
 byLineDefine(C, F, byyellow, 1, 0);
 draw byNamedLineSeq(0)(noLine,DC,BD,AB,AE,EC,CF);
+draw byLabelsOnPolygon(C, D, B, A, E)(2, 0);
+draw byLabelsOnPolygon(E, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{the right line (\drawSizedLine{DC}) bisecting an external angle \drawAngle{DCB,FCD} of the triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/2);
+startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
+stopAutoLabeling;
 stopTempScale;
 } meet the opposite side (\drawSizedLine{AB}) produced, that whole produced side (\drawSizedLine{AB,BD}), and its external segment (\drawSizedLine{BD}) will be proportional to the sides (\drawSizedLine{AE,EC} and \drawSizedLine{BC}), which contain the angle adjacent to the external bisected angle.}
 
@@ -13033,6 +13067,8 @@ draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, E, byyellow, 1, 0);
 draw byLine(C, E, byblue, 1, 0);
 draw byCircleABC(A, B, C, byyellow, 0, 0, 1/2)(O);
+draw byLabelsOnCircle(A, B, C, E)(O);
+draw byLabelsOnPolygon(B, D, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{an angle of a triangle be bisected by a straight line, which likewise cuts the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the segments of the base, together with the square of the straight line which bisects the angle.}
@@ -13082,6 +13118,8 @@ draw byLine(B, D, byred, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byyellow, 0, 0);
 draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byLabelsOnCircle(A, B, C, E)(O);
+draw byLabelsOnPolygon(C, D, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{from any angle of a triangle a straight line be drawn perpendicular to the base; the rectangle contained by the sides of the triangle is equal to the rectangle contained by the perpendicular and the diameter of the circle described about the triangle.}
@@ -13134,6 +13172,8 @@ draw byLine(B, C, byblue, 1, 0);
 draw byLine(C, D, black, 0, 0);
 draw byLine(D, A, byyellow, 0, 0);
 draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byLabelsOnCircle(A, B, C, D)(O);
+draw byLabelsOnPolygon(D, E, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{he}{rectangle contained by the diagonals of a quadrilateral figure inscribed in a circle, is equal to both the rectangles contained by its opposite sides.}
@@ -13150,7 +13190,7 @@ $\therefore \drawUnitLine{DA} : \drawUnitLine{ED} :: \drawUnitLine{AC} : \drawUn
 and $\therefore \drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$ \inprop[prop:VI.XVI];\\
 again, because $\drawAngle{EAB} = \drawAngle{DAC}$ (const.),\\
 and $\drawAngle{B} = \drawAngle{ACD}$ \inprop[prop:III.XXI];\\
-$\therefore \drawUnitLine{AB} : \drawUnitLine{BE} : \drawUnitLine{AC} : \drawUnitLine{CD}$ \inprop[prop:VI.IV];\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUnitLine{CD}$ \inprop[prop:VI.IV];\\
 and $\therefore \drawUnitLine{BE} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD}$ \inprop[prop:VI.XVI];\\
 but, from above, $\drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$;\\
 $\therefore \drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$ \inprop[prop:II.I].

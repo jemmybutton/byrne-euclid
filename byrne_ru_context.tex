@@ -11596,6 +11596,487 @@ $\therefore \drawProportionalLine{AE,EB} : \drawProportionalLine{AE} :: \drawPro
 \qed
 \stopProposition
 
+\startProposition[title={Предл. XXXI. Теорема},reference=prop:VI.XXXI]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, K, L;
+numeric a, r, l[];
+a := -125;
+A := (0, 0);
+B := A shifted (dir(a)*2u);
+C = whatever[A, A shifted dir(a+90)] = whatever[B, B shifted dir(0)];
+D = whatever[A, A shifted dir(-90)] = whatever[B, C];
+l1 := abs(A-B);
+l2 := abs(B-C);
+l3 := abs(C-A);
+r := 1/4;
+E := A shifted (dir(a-90)*l1*r);
+F := B shifted (dir(a-90)*l1*r);
+G := B shifted (dir(-90)*l2*r);
+H := C shifted (dir(-90)*l2*r);
+K := C shifted (dir(a + 180)*l3*r);
+L := A shifted (dir(a + 180)*l3*r);
+draw byPolygonWithName(A,B,F,E)(byblue)(AB);
+draw byPolygonWithName(B,C,H,G)(byred)(BC);
+draw byPolygonWithName(C,A,L,K)(byyellow)(CA);
+draw byLine(A, D, black, 0, 0);
+byLineDefine(A, B, byyellow, 0, 0);
+byLineDefine(B, D, byblue, 1, 0);
+byLineDefine(D, C, byblue, 0, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(-1)(AB,BD,DC,CA);
+forsuffixes i=H, G, L, K, F, E:
+	byPointLabelDefine(i, "");
+endfor;
+draw byLabelsOnPolygon(B, F, E, A, L, K, C, H, G)(0, 0);
+draw byLabelsOnPolygon(A, D, C)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{подобные и подобным образом описанные прямолинейные фигуры построены на сторонах прямоугольного треугольника \drawLine[bottom]{CA,DC,BD,AB}, фигура на стороне \drawProportionalLine{BD,DC} против прямого угла равна сумме фигур на двух других сторонах.}
+
+\startCenterAlign
+Из прямого угла проведем перпендикуляр \drawProportionalLine{AD} к \drawProportionalLine{BD,DC};\\
+тогда $\drawProportionalLine{BD,DC} : \drawProportionalLine{CA} :: \drawProportionalLine{CA} : \drawProportionalLine{DC}$ \inprop[prop:VI.VIII].
+
+$\therefore
+\drawFromCurrentPicture[bottom][figBC]{
+startGlobalRotation(180-angle(B-C));
+startAutoLabeling;
+draw byNamedPolygon(BC);
+stopAutoLabeling;
+stopGlobalRotation;
+} :
+\drawFromCurrentPicture[bottom][figCA]{
+startGlobalRotation(-angle(C-A));
+startAutoLabeling;
+draw byNamedPolygon(CA);
+stopAutoLabeling;
+stopGlobalRotation;
+} :: \drawProportionalLine{BD,DC} : \drawProportionalLine{DC}$ \inprop[prop:VI.XX].\\
+но $\figBC\ :
+\drawFromCurrentPicture[bottom][figAB]{
+startGlobalRotation(-angle(A-B));
+startAutoLabeling;
+draw byNamedPolygon(AB);
+stopAutoLabeling;
+stopGlobalRotation;
+} :: \drawProportionalLine{BD,DC} : \drawProportionalLine{BD}$ \inprop[prop:VI.XX].
+
+Значит $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BD,DC} :: \figAB\ + \figCA\ : \figBC$;\\
+но $\drawProportionalLine{DC} + \drawProportionalLine{BD} = \drawProportionalLine{BD,DC}$;\\
+и $\therefore \figAB\ + \figCA\ = \figBC$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXXII. Теорема},reference=prop:VI.XXXII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E;
+numeric s;
+B := (0, 0);
+C := (5/2u, 0);
+A := (u, 2u);
+s := 3/5;
+D := (A scaled s) shifted C;
+E := (C scaled s) shifted C;
+draw byAngleWithName(C, A, B, byyellow, 0)(A);
+draw byAngleWithName(A, B, C, byred, 0)(B);
+draw byAngle(B, C, A, byblue, 0);
+draw byAngleWithName(E, D, C, black, 0)(D);
+draw byAngle(D, C, E, black, 1);
+draw byAngle(A, C, D, byyellow, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(C, E, byyellow, 1, 0);
+byLineDefine(E, D, byred, 1, 0);
+byLineDefine(D, C, byblue, 1, 0);
+byLineDefine(C, A, byred, 0, 0);
+draw byNamedLineSeq(0)(ED,DC,noLine,CA,AB,BC,CE);
+byLineDefineWithName(A, B, black, 0, 1)(ABt);
+byLineDefineWithName(B, C, black, 0, 1)(BCt);
+byLineDefineWithName(C, A, black, 0, 1)(CAt);
+byLineDefineWithName(D, C, black, 0, 1)(DCt);
+byLineDefineWithName(C, E, black, 0, 1)(CEt);
+byLineDefineWithName(E, D, black, 0, 1)(EDt);
+draw byLabelsOnPolygon(E, C, B, A, C, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{у двух треугольников
+\drawFromCurrentPicture[bottom]{
+startTempAngleScale(angleScale*3/5);
+draw byNamedAngle(A, B, BCA);
+draw byNamedLineSeq(0)(CAt,BCt,ABt);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+stopTempAngleScale;
+}
+и~\drawFromCurrentPicture[bottom]{
+startTempAngleScale(angleScale*3/5);
+draw byNamedAngle(D, DCE);
+draw byNamedLineSeq(0)(EDt,CEt,DCt);
+draw byLabelsOnPolygon(C, D, E)(0, 0);
+stopTempAngleScale;
+},
+две стороны пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ и расположены они так, что касаются углом и соответственные стороны параллельны, то оставшиеся стороны \drawUnitLine{BC} и \drawUnitLine{CE} лежат на одной прямой.}
+
+\startCenterAlign
+Поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$,\\
+$\drawAngle{A} = \drawAngle{ACD}$ \inprop[prop:I.XXIX];\\
+и поскольку $\drawUnitLine{CA} \parallel \drawUnitLine{ED}$,\\
+$\drawAngle{ACD} = \drawAngle{D}$ \inprop[prop:I.XXIX];\\
+$\therefore \drawAngle{A} = \drawAngle{D}$;\\
+и поскольку $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (гип.),\\
+треугольники равноугольны \inprop[prop:VI.VI];
+
+$\therefore \drawAngle{B} = \drawAngle{DCE}$;\\
+но $\drawAngle{A} = \drawAngle{ACD}$;
+
+$\therefore \drawAngle{BCA} + \drawAngle{ACD} + \drawAngle{DCE} = \drawAngle{BCA} + \drawAngle{A} + \drawAngle{B} = \drawTwoRightAngles$ \inprop[prop:I.XXXII],\\
+и $\therefore$ \drawUnitLine{BC} и \drawUnitLine{CE} лежат на одной прямой \inprop[prop:I.XIV].
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXXIII. Теорема},reference=prop:VI.XXXIII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, K, L, M, N;
+numeric r, a[], ba, aa, q;
+path c[];
+q := 8/360;
+r := 9/4u;
+aa := 125;
+ba := 205;
+a1 := 30;
+a2 := 35;
+G := (0, 0);
+A := (dir(aa)*r) shifted G;
+B := (dir(ba)*r) shifted G;
+C := (dir(ba + a1)*r) shifted G;
+K := (dir(ba + 2a1)*r) shifted G;
+L := (dir(ba + 3a1)*r) shifted G;
+draw byAngleWithName(B, A, C, byyellow, 0)(A);
+draw byAngleWithName(B, G, C, black, 0)(BC);
+draw byAngleWithName(C, G, K, byred, 0)(CK);
+draw byAngleWithName(K, G, L, byblue, 0)(KL);
+draw byLine(A, B, black, 0, 1);
+draw byLine(A, C, black, 0, 1);
+draw byLine(G, C, black, 0, 1);
+draw byLine(G, K, black, 0, 1);
+byLineDefine(G, B, black, 0, 1);
+byLineDefine(G, L, black, 0, 1);
+draw byNamedLineSeq(0)(GB,GL);
+draw byArc(G, L, B, r, byred, 0, 0, 0, 0)(LB);
+draw byArc(G, B, C, r, black, 0, 0, 0, 0)(BC);
+draw byArc(G, C, K, r, byred, 0, 0, 0, 0)(CK);
+draw byArc(G, K, L, r, byblue, 0, 0, 0, 0)(KL);
+byCircleDefineR(G, r, byred, 0, 0, 0)(G);
+H := (0, -1/2u - 2r);
+D := (dir(aa)*r) shifted H;
+E := (dir(ba)*r) shifted H;
+F := (dir(ba + a2)*r) shifted H;
+M := (dir(ba + 2a2)*r) shifted H;
+N := (dir(ba + 3a2)*r) shifted H;
+draw byAngleWithName(E, D, F, byyellow, 1)(D);
+draw byAngleWithName(E, H, F, black, 1)(EF);
+draw byAngleWithName(F, H, M, byred, 1)(FM);
+draw byAngleWithName(M, H, N, byblue, 1)(MN);
+draw byLine(D, E, black, 0, 1);
+draw byLine(D, F, black, 0, 1);
+draw byLine(H, F, black, 0, 1);
+draw byLine(H, M, black, 0, 1);
+byLineDefine(H, E, black, 0, 1);
+byLineDefine(H, N, black, 0, 1);
+draw byNamedLineSeq(0)(HE,HN);
+draw byArc(H, N, E, r, byblue, 0, 0, 0, 0)(NE);
+draw byArc(H, E, F, r, byyellow, 1, 0, 0, 0)(EF);
+draw byArc(H, F, M, r, byred, 1, 0, 0, 0)(FM);
+draw byArc(H, M, N, r, byblue, 1, 0, 0, 0)(MN);
+byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byLabelsOnCircle(B, C, K, L)(G);
+draw byLabelsOnCircle(E, F, M, N)(H);
+draw byLabelsOnPolygon(B, G, L)(2, 0);
+draw byLabelsOnPolygon(E, H, N)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{В}{равных}{кругах \drawCircle[middle][1/4]{G} и \drawCircle[middle][1/4]{H} углы,что в центре, что на окружности, относятся друг к другу как дуги, на которых они стоят $\drawAngle{BC} : \drawAngle{EF} ::
+\drawFromCurrentPicture[middle][arcBC]{
+startGlobalRotation(180-angle(B-C));
+startAutoLabeling;
+draw byNamedArc(BC);
+stopAutoLabeling;
+stopGlobalRotation;
+} : \drawFromCurrentPicture[middle][arcEF]{
+startGlobalRotation(180-angle(E-F));
+startAutoLabeling;
+draw byNamedArc(EF);
+stopAutoLabeling;
+stopGlobalRotation;
+}$,  как и сектора.}
+
+Возьмем на окружности \circleG\ любое количество дуг
+\drawFromCurrentPicture[middle][arcCK]{
+startGlobalRotation(180-angle(C-K));
+startAutoLabeling;
+draw byNamedArc(CK);
+stopAutoLabeling;
+stopGlobalRotation;
+},
+\drawFromCurrentPicture[middle][arcKL]{
+startGlobalRotation(180-angle(K-L));
+startAutoLabeling;
+draw byNamedArc(KL);
+stopAutoLabeling;
+stopGlobalRotation;
+}, и т. д. каждая $= \arcBC$, и также на окружности \circleH\ возьмем любое количество дуг
+\drawFromCurrentPicture[middle][arcFM]{
+startGlobalRotation(180-angle(F-M));
+startAutoLabeling;
+draw byNamedArc(FM);
+stopAutoLabeling;
+stopGlobalRotation;
+},
+\drawFromCurrentPicture[middle][arcMN]{
+startGlobalRotation(180-angle(M-N));
+startAutoLabeling;
+draw byNamedArc(MN);
+stopAutoLabeling;
+stopGlobalRotation;
+}, и т. д. каждая $= \arcEF$, проведем радиусы к концам равных дуг.
+
+Поскольку дуги \arcBC, \arcCK, \arcKL, и т. д. равны, углы \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, и т. д. также равны \inprop[prop:III.XXXVII]. $\therefore$ \drawAngle{BC,CK,KL} столько же раз кратен \drawAngle{BC}, сколько \drawFromCurrentPicture[middle][arcBL]{
+startGlobalRotation(180-angle(B-L));
+startAutoLabeling;
+draw byNamedArc(BC,CK,KL);
+stopAutoLabeling;
+stopGlobalRotation;
+} кратна \arcBC. Точно так же \drawAngle{EF,FM,MN} столько же раз кратен \drawAngle{EF}, сколько дуга \drawFromCurrentPicture[middle][arcEN]{
+startGlobalRotation(180-angle(E-N));
+startAutoLabeling;
+draw byNamedArc(EF,FM,MN);
+stopAutoLabeling;
+stopGlobalRotation;
+} кратна дуге \arcEF.
+
+
+\startCenterAlign
+Тогда очевидно \inprop[prop:III.XXVII],\\
+что если \drawAngle{BC,CK,KL} (или если $m$ раз \drawAngle{BC}) $>, =, < \drawAngle{EF,FM,MN}$ (или $n$ раз \drawAngle{EF})\\
+то \arcBL (или $m$ раз \arcBC) $>, =, < \arcEN$ (или $n$ раз \arcEF);
+\stopCenterAlign
+
+$\therefore \drawAngle{BC} : \drawAngle{EF} :: \arcBC\ : \arcEF$ \indef[def:V.V], или углы в центре относятся так же, как дуги, на которых они стоят, но углы на окружности вдвое меньше углов в центре \inprop[prop:III.XX] и относятся так же \inprop[prop:V.XV], и следовательно так же, как дуги, на которых они стоят.
+
+Очевидно, что сектора в равных кругах и на равных дугах равны (\inpropL[prop:I.IV], \inpropN[prop:III.XXIV], \inpropN[prop:III.XXVII], и \indefL[def:III.X]). Значит, если выше углы заменить на сектора, получим доказательство второй части, то есть, что в равных кругах сектора относятся друг к другу как дуги, на которых они стоят.
+
+\qed
+\stopProposition
+
+\startPropositionAZ[title={Предл. A. Теорема},reference=prop:VI.A]
+\defineNewPicture{
+pair A, B, C, D, E, F;
+A := (0, 0);
+B := (2u, 0);
+C := (3u, 7/4u);
+F := 4/3[A, C];
+D = whatever[A, B] = whatever[C, C shifted 1/2[unitvector(F-C), unitvector(B-C)]];
+E = whatever[A, C] = whatever[B, B shifted (C-D)];
+draw byAngleWithName(C, E, B, byyellow, 0)(E);
+draw byAngle(E, B, C, byblue, 1);
+draw byAngle(C, B, D, byred, 0);
+draw byAngleWithName(B, D, C, byyellow, 1)(D);
+draw byAngle(B, C, E, black, 1);
+draw byAngle(D, C, B, byblue, 0);
+draw byAngle(F, C, D, black, 0);
+draw byLine(B, E, byred, 0, 0);
+draw byLine(B, C, byyellow, 0, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(B, D, byblue, 1, 0);
+byLineDefine(D, C, byred, 1, 0);
+byLineDefine(A, E, black, 0, 0);
+byLineDefine(E, C, black, 1, 0);
+byLineDefine(C, F, byyellow, 1, 0);
+draw byNamedLineSeq(0)(noLine,DC,BD,AB,AE,EC,CF);
+draw byLabelsOnPolygon(C, D, B, A, E)(2, 0);
+draw byLabelsOnPolygon(E, C, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{прямая линия \drawSizedLine{DC} рассекая пополам внешний угол \drawAngle{DCB,FCD} треугольника \drawFromCurrentPicture[bottom]{
+startTempScale(1/2);
+startAutoLabeling;
+draw byNamedLineSeq(0)(AE,EC,BC,AB);
+stopAutoLabeling;
+stopTempScale;
+} встречается в продолжением стороны треугольника \drawSizedLine{AB}, то вся сторона с продолжением \drawSizedLine{AB,BD} и ее внешняя часть \drawSizedLine{BD} будут пропорциональны сторонам \drawSizedLine{AE,EC} и \drawSizedLine{BC}, между которыми заключен угол, смежный с рассекаемым внешним.}
+
+\startCenterAlign
+Действительно, если провести $\drawSizedLine{BE} \parallel \drawSizedLine{DC}$,\\
+$\eqalign{
+\mbox{то } \drawAngle{DCB} &= \drawAngle{EBC} \mbox{, \inprop[prop:I.XXIX];}\cr
+& = \drawAngle{FCD} \mbox{, (гип.),}\cr
+& = \drawAngle{E} \mbox{, \inprop[prop:I.XXIX];}
+}$\\
+и $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$, \inprop[prop:I.VI],\\
+и $\drawSizedLine{AE,EC} : \drawSizedLine{BC} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \inprop[prop:V.VII];\\
+Но также $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \inprop[prop:VI.II];\\
+и следовательно $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{BC}$ \inprop[prop:V.XI].
+\stopCenterAlign
+
+\qed
+\stopPropositionAZ
+
+\startPropositionAZ[title={Предл. B. Теорема},reference=prop:VI.B]
+\defineNewPicture{
+pair A, B, C, D, E, O;
+numeric r;
+path c;
+r := 7/4u;
+O := (0, 0);
+c := (fullcircle scaled 2r) shifted O;
+A := (dir(75)*r) shifted O;
+B := (dir(180 + 10)*r) shifted O;
+C := (dir(-10)*r) shifted O;
+D = whatever[B, C] = whatever[A, A shifted 1/2[unitvector(B-A), unitvector(C-A)]];
+E := (subpath (0, -4) of c) intersectionpoint (A--4[A, D]);
+draw byAngleWithName(A, B, C, byyellow, 0)(B);
+draw byAngleWithName(A, E, C, black, 0)(E);
+draw byAngle(C, A, E, byblue, 0);
+draw byAngle(E, A, B, byred, 0);
+draw byLine(A, B, byblue, 0, 0);
+draw byLine(B, D, byred, 1, 0);
+draw byLine(D, C, byred, 0, 0);
+draw byLine(C, A, black, 0, 0);
+draw byLine(A, D, byyellow, 0, 0);
+draw byLine(D, E, byyellow, 1, 0);
+draw byLine(C, E, byblue, 1, 0);
+draw byCircleABC(A, B, C, byyellow, 0, 0, 1/2)(O);
+draw byLabelsOnCircle(A, B, C, E)(O);
+draw byLabelsOnPolygon(B, D, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{угол треугольника рассекается пополам прямой линией, которая также сечет его основания, прямоугольник заключенный между сторонами треугольника равен прямоугольнику, заключенному между частями основания, сместе с квадратом прямой, рассекающей угол.}
+
+\startCenterAlign
+Проведем \drawSizedLine{AD}, делая $\drawAngle{CAE} = \drawAngle{EAB}$,\\
+тогда $\drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{BD} \times \drawSizedLine{DC} + \drawSizedLine{AD}^2$.
+
+Около \drawLine[bottom]{CA,DC,BD,AB} опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V],\\
+продлим \drawSizedLine{AD} до окружности и проведем \drawSizedLine{CE}.
+
+Поскольку $\drawAngle{CAE} = \drawAngle{EAB}$ (гип.),\\
+и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI],\\
+$\therefore$ \drawLine[bottom]{AD,BD,AB} и \drawLine[middle]{CA,CE,DE,AD} равноугольны \inprop[prop:I.XXXII];\\
+$\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \inprop[prop:VI.IV];\\
+$\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{AD} \times \drawSizedLine{AD,DE}$ \inprop[prop:VI.XVI]\\
+$= \drawSizedLine{DE} \times \drawSizedLine{AD} + \drawSizedLine{AD}^2$ \inprop[prop:II.III];\\
+но $\drawSizedLine{DE} \times \drawSizedLine{AD} = \drawSizedLine{BD} \times \drawSizedLine{DC}$ \inprop[prop:III.XXXV];\\
+$\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{BD} \times \drawSizedLine{DC} + \drawSizedLine{AD}^2$
+\stopCenterAlign
+
+\qed
+\stopPropositionAZ
+
+\startPropositionAZ[title={Предл. C. Теорема},reference=prop:VI.C]
+\defineNewPicture{
+pair A, B, C, D, E, O;
+numeric r;
+r := 9/4u;
+O := (0, 0);
+A := (dir(60)*r) shifted O;
+B := (dir(180-5)*r) shifted O;
+C := (dir(5)*r) shifted O;
+D = whatever[B, C] = whatever[A, A shifted ((B-C) rotated 90)];
+E := (dir(60 + 180)*r) shifted O;
+draw byAngleWithName(A, B, C, byyellow, 1)(B);
+draw byAngleWithName(A, E, C, byred, 1)(E);
+draw byAngleWithName(B, D, A, byblue, 0)(D);
+draw byAngle(B, C, A, byblue, 1);
+draw byAngle(E, C, B, byyellow, 0);
+draw byAngleWithName(C, A, B, byred, 0)(A);
+draw byLine(A, E, byblue, 0, 0);
+draw byLine(C, E, black, 0, 0);
+draw byLine(A, D, byyellow, 1, 0);
+draw byLine(A, B, byblue, 1, 0);
+draw byLine(B, D, byred, 1, 0);
+draw byLine(D, C, byred, 0, 0);
+draw byLine(C, A, byyellow, 0, 0);
+draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byLabelsOnCircle(A, B, C, E)(O);
+draw byLabelsOnPolygon(C, D, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Е}{сли}{из любого угла треугольника провести прямую перпендикулярную основанию, прямоугольник, заключенный между сторонами треугольника будет равен прямоугольнику, заключенному между перпендикуляром и диаметром круга, описанного около треугольника.}
+
+\startCenterAlign
+Из угла \drawAngle{A} треугольника \drawLine[bottom]{CA,DC,BD,AB}\\
+проведем $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
+тогда $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ диаметр описанного круга.
+
+Опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], проведем диаметр \drawUnitLine{AE}, и проведем \drawUnitLine{CE},\\
+тогда, поскольку $\drawAngle{D} = \drawAngle{BCA,ECB}$ (постр. и \inpropL[prop:III.XXXI]);\\
+и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI];\\
+$\therefore$ \drawLine[bottom]{AD,BD,AB} равноуголен с \drawLine[middle]{CA,CE,AE} \inprop[prop:VI.IV];
+
+$\therefore \drawUnitLine{AB} : \drawUnitLine{AD} :: \drawUnitLine{AE} : \drawUnitLine{CA}$;\\
+и $\therefore \drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times \drawUnitLine{AE}$ \inprop[prop:VI.XVI].
+\stopCenterAlign
+
+\qed
+\stopPropositionAZ
+
+\startPropositionAZ[title={Предл. D. Теорема},reference=prop:VI.D]
+\defineNewPicture[1/5]{
+pair A, B, C, D, E, O;
+numeric r, a[];
+a1 := 110;
+a2 := 190;
+a3 := -50;
+a4 := 15;
+r := 9/4u;
+O := (0, 0);
+A := (dir(a1)*r) shifted O;
+B := (dir(a2)*r) shifted O;
+C := (dir(a3)*r) shifted O;
+D := (dir(a4)*r) shifted O;
+E = whatever[B, D] = whatever[A, A shifted dir((a1-180)-(a3-(a1-180)))];
+draw byAngle(B, C, A, byyellow, 0);
+draw byAngle(A, C, D, byred, 1);
+draw byAngleWithName(B, D, A, byblue, 1)(D);
+draw byAngleWithName(A, B, D, byyellow, 1)(B);
+draw byAngle(E, A, B, byblue, 0);
+draw byAngle(C, A, E, black, 0);
+draw byAngle(D, A, C, byred, 0);
+draw byLine(A, E, byyellow, 1, 0);
+draw byLine(A, C, byblue, 0, 0);
+draw byLine(B, E, byred, 1, 0);
+draw byLine(E, D, byred, 0, 0);
+draw byLine(A, B, black, 1, 0);
+draw byLine(B, C, byblue, 1, 0);
+draw byLine(C, D, black, 0, 0);
+draw byLine(D, A, byyellow, 0, 0);
+draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byLabelsOnCircle(A, B, C, D)(O);
+draw byLabelsOnPolygon(D, E, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{рямоугольник,}{заключенный между диагоналями четырехугольника, заключенного в круг равен прямоугольникам, заключенным между противоположными сторонами вместе взятым.}
+
+\startCenterAlign
+Пусть \drawLine{DA,CD,BC,AB} будет любым четырехугольником, вписанным в \drawCircle[middle][1/5]{O}.\\
+Проведем \drawUnitLine{BE,ED} и \drawUnitLine{AC}, тогда $\drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.\\
+Сделаем $\drawAngle{EAB} = \drawAngle{DAC}$ \inprop[prop:I.XXIII],\\
+$\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$, и $\drawAngle{BCA} = \drawAngle{D}$ \inprop[prop:III.XXI].\\
+$\therefore \drawUnitLine{DA} : \drawUnitLine{ED} :: \drawUnitLine{AC} : \drawUnitLine{BC}$ \inprop[prop:VI.IV],\\
+и $\therefore \drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$ \inprop[prop:VI.XVI].\\
+Теперь, поскольку $\drawAngle{EAB} = \drawAngle{DAC}$ (постр.),\\
+и $\drawAngle{B} = \drawAngle{ACD}$ \inprop[prop:III.XXI],\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUnitLine{CD}$ \inprop[prop:VI.IV],\\
+и $\therefore \drawUnitLine{BE} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD}$ \inprop[prop:VI.XVI],\\
+но, как написано выше, $\drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$;\\
+$\therefore \drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$ \inprop[prop:II.I].
+\stopCenterAlign
+
+\qed
+\stopPropositionAZ
 \stopbook
 
 \stoptext
