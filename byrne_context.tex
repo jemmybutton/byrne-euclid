@@ -12531,6 +12531,8 @@ draw byPolygon(B,C,K,H)(byyellow);
 draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, B, byblue, 0, 0);
+draw byLabelsOnPolygon(E, F, A, D, C, B, H)(0, 0);
+draw byLabelsOnPolygon(H, G, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{f}{all the rectangles contained by the segments of a given straight line, the greatest is the square which is described on half the line.}
@@ -12572,22 +12574,27 @@ draw byArcBE(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0)(a);
 d := (0, 2u);
 G := A shifted d;
 H := C shifted d;
-draw byLine(G, H, byyellow, 1, 0);
+byLineDefineWithName(G, H, byyellow, 1, 0)(G);
+lineUseLineLabel.G := true;
+draw byLabelsOnCircle(F)(a);
+draw byLabelsOnPolygon(E, D, C, B)(2, 0);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
+draw byLabelPoint(E, angle(E-D) + 45, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{divide a given straight line (\drawSizedLine{AE,EC,CB}) so that the rectangle contained by its segments may be equal to a given area, not exceeding the square of half the line.}
 
 \startCenterAlign
-Let the given area be $=\drawSizedLine{GH}^2$.
+Let the given area be $=\drawSizedLine{G}^2$.
 
 Bisect \drawSizedLine{AE,EC,CB}, or make $\drawSizedLine{AE,EC} = \drawSizedLine{CB}$;\\
-and if $\drawSizedLine{AE,EC}^2 = \drawSizedLine{GH}^2$,\\
+and if $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$,\\
 problem is solved.
 
-But if $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{GH}^2$,\\
-then must $\drawSizedLine{AE,EC} > \drawSizedLine{GH}$ (hyp.).
+But if $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
+then must $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ (hyp.).
 
-Draw $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{GH}$;\\
+Draw $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{G}$;\\
 make $\drawSizedLine{DC,CF} = \drawSizedLine{AE,EC} \mbox{ or } \drawSizedLine{CB}$;\\
 with \drawSizedLine{DC,CF} as radius describe a circle cutting the given line; draw \drawSizedLine{DE}.
 
@@ -12599,8 +12606,8 @@ $\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}
 from both take $\drawSizedLine{EC}^2$,\\
 and $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
 
-But $\drawSizedLine{DC} = \drawSizedLine{GH}$ (const.),\\
-and $\therefore$ \drawSizedLine{AE,EC,CB} is so divided that $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{GH}^2$.
+But $\drawSizedLine{DC} = \drawSizedLine{G}$ (const.),\\
+and $\therefore$ \drawSizedLine{AE,EC,CB} is so divided that $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{G}^2$.
 \stopCenterAlign
 
 \qed
@@ -12618,7 +12625,7 @@ C := 1/2[A, B];
 D := (xpart(B), abs(G-H));
 E := C shifted (-abs(C-D), 0);
 F := C shifted (abs(C-D), 0);
-draw byLine(G, H, black, 0, 0);
+draw byLineWithName(H, G, black, 0, 0)(G);
 draw byLineFull(C, D, byred, 0, 0)(B, D, 1, 0, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLineFull(E, A, byyellow, 1, 0)(E, A, 0, 0, -1);
@@ -12626,13 +12633,16 @@ draw byLineFull(A, C, byblue, 0, 0)(A, C, 0, 0, -1);
 draw byLineFull(C, B, byblue, 1, 0)(C, B, 0, 0, -1);
 draw byLineFull(B, F, byyellow, 0, 0)(B, F, 0, 0, -1);
 draw byArcBE(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0)(a);
+draw byLabelsOnCircle(D)(a);
+draw byLabelsOnPolygon(F, B, C, A, noPoint)(0, 0);
+draw byLabelLine(0)(G);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{produce a given straight line (\drawSizedLine{AC,CB}), so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i. e. equal to the square on \drawSizedLine{GH}.}
+\problemNP{T}{o}{produce a given straight line (\drawSizedLine{AC,CB}), so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i. e. equal to the square on \drawSizedLine{G}.}
 
 \startCenterAlign
 Make $\drawSizedLine{AC} = \drawSizedLine{CB}$,\\
-and draw $\drawSizedLine{BD} \perp \drawSizedLine{CB} = \drawSizedLine{GH}$;\\
+and draw $\drawSizedLine{BD} \perp \drawSizedLine{CB} = \drawSizedLine{G}$;\\
 draw \drawSizedLine{CD};\\
 and with the radius \drawSizedLine{CD}, describe a circle meeting \drawSizedLine{AC,CB} produced.
 
@@ -12643,7 +12653,7 @@ But $\drawSizedLine{CD}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$ \inprop
 $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
 from both take $\drawSizedLine{CB}^2$,\\
 and $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$\\
-but $\drawSizedLine{BD} = \drawSizedLine{GH}$,\\
+but $\drawSizedLine{BD} = \drawSizedLine{G}$,\\
 $\therefore \drawSizedLine{BD}^2 = \mbox{ the given area.}$
 \stopCenterAlign
 
@@ -12678,6 +12688,7 @@ byLineDefineWithName(G, D, black, 0, 1)(GDt);
 byLineStylize(A, E, 0, 0, -1)(GDt);
 byLineDefineWithName(D, E, black, 0, 1)(DEt);
 byLineStylize(G, E, 0, 1, -1)(DEt);
+draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{cut a given straight line (\drawProportionalLine{AE,EB}) in extreme and mean ratio.}
@@ -12692,6 +12703,7 @@ meeting $\drawProportionalLine{GD} \parallel \drawProportionalLine{AE,EB}$ \inpr
 Then $\drawFromCurrentPicture[middle][rectangleCFDG]{
 draw byNamedPolygon(ACFE);
 draw byNamedLine(AGt,GDt,DEt);
+draw byLabelsOnPolygon(G, C, F, D)(0, 0);
 }
 = \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, and is $\therefore\ = \squareABHC$;\\
 and if from both these equals be taken the common part \drawPolygon{ACFE},\\

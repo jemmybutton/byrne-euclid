@@ -1399,6 +1399,13 @@ enddef;
 % Text labels
 %
 
+vardef textLabelRender(expr t) =
+    textext("\tf\ss " & t) scaled 2/5
+enddef;
+
+numeric textLabelAvSize;
+textLabelAvSize := abs(ulcorner(textLabelRender("A")) - llcorner(textLabelRender("A")));
+
 vardef byPointLabelDefine(suffix pointName)(expr t) =
 string pointLabel.pointName;
     pointLabel.pointName := t;
@@ -1412,7 +1419,7 @@ vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
         string labelType.scantokens(t);
         labelType.scantokens(t) := t;
     fi;
-    labelItself := textext("\tf\ss " & labelType.scantokens(t)) scaled 2/5;
+    labelItself := textLabelRender(labelType.scantokens(t));
     labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
     if (d > 0):
         bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
@@ -1588,9 +1595,9 @@ vardef byLabelAngleCompensate (expr a, b, c, s) =
     numeric ang, ins;
     ang := angleValue(a, b, c)/2;
     if (sind(ang*2)>0):
-        ins := 1 + sqrt(1/sind(ang));
+        ins := (cosd(ang)/(2*sind(ang)))*textLabelAvSize;
     else:
-        ins := 1;
+        ins := 0;
     fi;
-    (((abs(sind(ang)) + abs(cosd(ang)/abs(sind(ang))))*(lineWidth*(1/2-1/2s)))/2)*ins
+    (((abs(sind(ang)) + abs(cosd(ang)/abs(sind(ang))))*(lineWidth*(1/2-1/2s)))/2) + ins
 enddef;

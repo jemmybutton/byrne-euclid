@@ -11351,7 +11351,7 @@ byLineDefineWithName(E, A, black, 0, 1)(EAt);
 byLineStylize(F, G, 1, 0, 1)(EAt);
 draw byLabelsOnPolygon(A, G, D, C, B, E, K)(0, 0);
 draw byLabelsOnPolygon(K, H, A)(2, 0);
-draw byLabelsOnPolygon(A, F, G)(2, 0);
+draw byLabelsOnPolygon(E, F, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{Е}{сли}{у подобных и подобно расположенных параллелограммов
@@ -11387,6 +11387,210 @@ $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \dra
 и $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \inprop[prop:V.IX], что невозможно.
 
 $\therefore$ \lineAHC\ не является диагональю \parallelogramABCD\ и таким же образом можно показать, что диагональю не является никакая другая прямая, кроме \drawUnitLine{AC}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXVII. Теорема},reference=prop:VI.XXVII]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, K;
+numeric l, s;
+l := 5u;
+s := 1/5;
+A := (0, 0);
+B := (xpart(A), -l);
+C := 1/2[A, B];
+D := s[A, B];
+E := (-1/2l, ypart(C));
+F := (xpart(E), ypart(A));
+G := (-s*l, ypart(D));
+H := (xpart(G), ypart(B));
+K = whatever[C, E] = whatever[G, H];
+draw byPolygon(A,D,G,K,E,F)(byred);
+draw byPolygon(C,D,G,K)(byblue);
+draw byPolygon(B,C,K,H)(byyellow);
+draw byLine(A, D, byyellow, 0, 0);
+draw byLine(D, C, byred, 0, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLabelsOnPolygon(E, F, A, D, C, B, H)(0, 0);
+draw byLabelsOnPolygon(H, G, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{И}{з}{всех прямоугольников, заключенных между частями данной прямой линии, наибольшим является квадрат, описанный на половине линии.}
+
+\startCenterAlign
+Пусть \drawSizedLine{AD,DC,CB} будет данной прямой линией,\\
+\drawSizedLine{AD} и \drawSizedLine{DC,CB} неравными частями,\\
+а \drawSizedLine{AD,DC} и \drawSizedLine{CB} равными частями.
+
+Тогда $\drawPolygon[middle]{ADGKEF,CDGK} > \drawPolygon[middle]{BCKH,CDGK}$.
+\stopCenterAlign
+
+Поскольку, как уже было показано \inprop[prop:II.V], квадрат половины линии равен прямоугольнику, заключенному между неравными частями вместе с квадратом на часте между серединой и точкой неравного рассечения. Квадрат описанный на половине линии превосходит, таким образом, прямоугольник, заключенный между неравными частями линии.
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXVIII. Задача},reference=prop:VI.XXVIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G, H, d;
+path a;
+numeric r;
+A := (0, 0);
+B := (4u, 0);
+C := 1/2[A, B];
+D := C shifted (0, 3/2u);
+r := 2u;
+a := (fullcircle scaled (2r)) shifted D;
+E := a intersectionpoint (A--C);
+F := a intersectionpoint (D--2[D, C]);
+byLineDefine(D, E, byyellow, 0, 0);
+byLineDefine(D, C, byred, 0, 0);
+byLineDefine(C, F, black, 1, 0);
+draw byNamedLineSeq(0)(CF,DC,DE);
+draw byLine(A, E, byred, 1, 0);
+draw byLine(E, C, byblue, 0, 0);
+draw byLine(C, B, byblue, 1, 0);
+draw byArcBE(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0)(a);
+d := (0, 2u);
+G := A shifted d;
+H := C shifted d;
+byLineDefineWithName(G, H, byyellow, 1, 0)(G);
+lineUseLineLabel.G := true;
+draw byLabelsOnCircle(F)(a);
+draw byLabelsOnPolygon(E, D, C, B)(2, 0);
+draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
+draw byLabelPoint(E, angle(E-D) + 45, 2);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{азделить}{данную прямую \drawSizedLine{AE,EC,CB} так, чтобы прямоугольник, заключенный между частями был равен данной площади, не провосходящей квадрат половины данной прямой.}
+
+\startCenterAlign
+Пусть данная площадь будет $=\drawSizedLine{G}^2$.\\
+Рассечем пополам \drawSizedLine{AE,EC,CB}, или сделаем $\drawSizedLine{AE,EC} = \drawSizedLine{CB}$,\\
+и если $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$, то задача решена.
+
+Но если $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
+тогда $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ (гип.).\\
+Проведем $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{G}$,\\
+сделаем $\drawSizedLine{DC,CF} = \drawSizedLine{AE,EC} \mbox{ или } \drawSizedLine{CB}$,\\
+с \drawSizedLine{DC,CF} в качестве радиуса опишем круг, секущий данную прямую, проведем \drawSizedLine{DE}.
+
+Тогда $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{AE,EC}^2$ \inprop[prop:II.V] $= \drawSizedLine{DE}^2$.
+
+Но $\drawSizedLine{DE}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$ \inprop[prop:I.XLVII];
+
+$\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$,\\
+из обеих вычтем $\drawSizedLine{EC}^2$,\\
+и $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
+
+Но $\drawSizedLine{DC} = \drawSizedLine{G}$ (постр.),\\
+и $\therefore$ \drawSizedLine{AE,EC,CB} рассечена так, что $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{G}^2$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXIX. Задача},reference=prop:VI.XXIX]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, d;
+d := (0, -1/2u);
+G := (0, 0) shifted d;
+H := (3/2u, 0) shifted d;
+A := (0, 0);
+B := (2u, ypart(A));
+C := 1/2[A, B];
+D := (xpart(B), abs(G-H));
+E := C shifted (-abs(C-D), 0);
+F := C shifted (abs(C-D), 0);
+draw byLineWithName(H, G, black, 0, 0)(G);
+draw byLineFull(C, D, byred, 0, 0)(B, D, 1, 0, 0);
+draw byLine(B, D, byred, 1, 0);
+draw byLineFull(E, A, byyellow, 1, 0)(E, A, 0, 0, -1);
+draw byLineFull(A, C, byblue, 0, 0)(A, C, 0, 0, -1);
+draw byLineFull(C, B, byblue, 1, 0)(C, B, 0, 0, -1);
+draw byLineFull(B, F, byyellow, 0, 0)(B, F, 0, 0, -1);
+draw byArcBE(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0)(a);
+draw byLabelsOnCircle(D)(a);
+draw byLabelsOnPolygon(F, B, C, A, noPoint)(0, 0);
+draw byLabelLine(0)(G);
+}
+\drawCurrentPictureInMargin
+\problemNP{П}{родлить}{данную прямую \drawSizedLine{AC,CB} так, чтобы прямоугольник, заключенный между прямыми между концами данной линии и точкой, до которой она продлена, был равен данной площади, то есть квадрату на \drawSizedLine{G}.}
+
+\startCenterAlign
+Сделаем $\drawSizedLine{AC} = \drawSizedLine{CB}$,\\
+и проведем $\drawSizedLine{BD} \perp \drawSizedLine{CB} = \drawSizedLine{G}$,\\
+проведем \drawSizedLine{CD},\\
+и с \drawSizedLine{CD} в качестве радиуса, опишем круг, пересекающий продленную \drawSizedLine{AC,CB}.
+
+Тогда $\drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{AC,CB}^2$ \inprop[prop:II.VI] $= \drawSizedLine{CD}^2$.
+
+Но $\drawSizedLine{CD}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$ \inprop[prop:I.XLVII]
+
+$\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
+из обеих вычтем $\drawSizedLine{CB}^2$,\\
+и $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$\\
+но $\drawSizedLine{BD} = \drawSizedLine{G}$,\\
+$\therefore \drawSizedLine{BD}^2 = \mbox{ данной площади.}$
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXX. Задача},reference=prop:VI.XXX]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H;
+numeric w;
+w := 3u;
+A := (0, 0);
+B := (w, 0);
+C := (0, w);
+H := (w, w);
+G := 1/2[A, C] shifted (0, -abs((1/2[A, C]) - B));
+D := G shifted (abs(G-A), 0);
+E = whatever[D, D shifted (0, 1)] = whatever[A, B];
+F = whatever[C, H] = whatever[D, E];
+draw byPolygon(A,C,F,E)(byyellow);
+draw byPolygon(E,F,H,B)(byblue);
+draw byLine(A, E, byred, 0, 0);
+draw byLine(E, B, byred, 1, 0);
+byLineDefine(C, A, byblue, 0, 0);
+byLineDefine(A, G, byblue, 1, 0);
+byLineDefine(G, D, byyellow, 0, 0);
+byLineDefine(D, E, black, 0, 0);
+draw byNamedLineSeq(0)(CA,DE,GD,AG);
+byLineDefineWithName(A, G, black, 0, 1)(AGt);
+byLineStylize(A, D, 1, 0, -1)(AGt);
+byLineDefineWithName(G, D, black, 0, 1)(GDt);
+byLineStylize(A, E, 0, 0, -1)(GDt);
+byLineDefineWithName(D, E, black, 0, 1)(DEt);
+byLineStylize(G, E, 0, 1, -1)(DEt);
+draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{Р}{ассечь}{данную прямую \drawProportionalLine{AE,EB} в крайнем и среднем отношении.}
+
+\startCenterAlign
+На \drawProportionalLine{AE,EB} опишем квадрат \drawPolygon[middle][squareABHC]{ACFE,EFHB} \inprop[prop:I.XLIV];\\
+и продлим \drawProportionalLine{CA}, так, что $\drawProportionalLine{CA,AG} \times \drawProportionalLine{AG} = \drawProportionalLine{AE,EB}^2$ \inprop[prop:VI.XXIX];\\
+возьмем $\drawProportionalLine{AE} = \drawProportionalLine{AG}$,\\
+и проведем $\drawProportionalLine{DE} \parallel \drawProportionalLine{CA,AG}$,\\
+встречающуюся с $\drawProportionalLine{GD} \parallel \drawProportionalLine{AE,EB}$ \inprop[prop:I.XXXI].
+
+Тогда $\drawFromCurrentPicture[middle][rectangleCFDG]{
+draw byNamedPolygon(ACFE);
+draw byNamedLine(AGt,GDt,DEt);
+draw byLabelsOnPolygon(G, C, F, D)(0, 0);
+}
+= \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, и $\therefore\ = \squareABHC$;\\
+и если из обеих частей вычесть общую \drawPolygon{ACFE},\\
+\drawLine{DE,GD,AG,AE}, являющаяся квадратом \drawProportionalLine{AE},\\
+будет $= \drawPolygon{EFHB}$, которая $= \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
+то есть $\drawProportionalLine{AE}^2 = \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
+$\therefore \drawProportionalLine{AE,EB} : \drawProportionalLine{AE} :: \drawProportionalLine{AE} : \drawProportionalLine{EB}$,\\
+и \drawProportionalLine{AE,EB} разделена в крайнем и среднем отношении \indef[def:VI.III].
 \stopCenterAlign
 
 \qed
