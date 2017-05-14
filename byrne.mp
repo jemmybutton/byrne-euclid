@@ -99,7 +99,8 @@ vardef angleValue (expr a, b, c) =
     save v;
     numeric v;
     v := angle(a-b) - angle(c-b);
-    if (sind(v) < 0): v := -v; fi;
+    if (v > 180): v := v - 360; fi;
+    if (v < -180): v := v + 360; fi;
     v
 enddef;
 
@@ -1583,8 +1584,13 @@ vardef byLabelLineEnd (suffix a, b)(expr d) =
 enddef;
 
 vardef byLabelAngleCompensate (expr a, b, c, s) =
-    save ang;
-    numeric ang;
+    save ang, ins;
+    numeric ang, ins;
     ang := angleValue(a, b, c)/2;
-    ((abs(sind(ang)) + abs(cosd(ang)/sind(ang)))*(lineWidth*(1/2-1/2s)))/2
+    if (sind(ang*2)>0):
+        ins := 1 + sqrt(1/sind(ang));
+    else:
+        ins := 1;
+    fi;
+    (((abs(sind(ang)) + abs(cosd(ang)/abs(sind(ang))))*(lineWidth*(1/2-1/2s)))/2)*ins
 enddef;

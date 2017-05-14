@@ -11092,6 +11092,306 @@ $\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUni
 \qed
 \stopProposition
 
+\startProposition[title={Предл. XXIII. Теорема},reference=prop:VI.XXIII]
+\defineNewPicture{
+pair A, B, C, D, E, F, G ,H, d[];
+d1 := (u, 0);
+d2 := d1 scaled -2;
+d3 := (1/2u, 2u);
+d4 := d3 scaled -2/3;
+C := (0, 0);
+G := C shifted d1;
+B := C shifted d2;
+E := C shifted d3;
+D := C shifted d4;
+H := C shifted d1 shifted d4;
+A := C shifted d2 shifted d4;
+F := C shifted d1 shifted d3;
+draw byPolygon(A,B,C,D)(byyellow);
+draw byPolygon(E,F,G,C)(byblue);
+draw byPolygon(C,D,H,G)(byred);
+draw byAngle(B, C, D, byred, 0);
+draw byAngle(D, C, G, byyellow, 0);
+draw byAngle(G, C, E, black, 0);
+draw byLine(D, C, black, 0, 0);
+draw byLine(C, E, byred, 0, 0);
+draw byLine(B, C, byblue, 0, 0);
+draw byLine(C, G, byyellow, 0, 0);
+draw byLabelsOnPolygon(D, A, B, C, E, F, G, H)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Р}{авноугольные}{параллелограммы \drawPolygon[middle]{ABCD} и \drawPolygon[middle]{EFGC} имеют друг к другу составное отношение их сторон.}
+
+Пусть две стороны при равных углах \drawUnitLine{BC} и \drawUnitLine{CG} будут расположены так, что образуют одну прямую.
+
+\startCenterAlign
+Поскольку $\drawAngle{BCD} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
+и $\drawAngle{GCE} = \drawAngle{BCD}$ (гип.),\\
+$\drawAngle{GCE} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
+и $\therefore$ \drawUnitLine{CE} и \drawUnitLine{DC} образуют одну прямую \inprop[prop:I.XIV].
+
+Достроим \drawPolygon[middle]{CDHG}.
+
+Поскольку $\polygonABCD\ : \polygonCDHG\ :: \drawUnitLine{BC} : \drawUnitLine{CG}$ \inprop[prop:VI.I],\\
+и $\polygonCDHG\ : \polygonEFGC\ :: \drawUnitLine{DC} : \drawUnitLine{CE}$ \inprop[prop:VI.I],\\
+\polygonABCD\ имеет к \polygonEFGC\ отношение, составленное из отношений \drawUnitLine{BC} к \drawUnitLine{CG}, и \drawUnitLine{DC} к \drawUnitLine{CE}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXIV. Теорема},reference=prop:VI.XXIV]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, K, d[];
+numeric s;
+d1 := (3u, 0);
+d2 := (u, 3u);
+s := 3/5;
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d1 shifted d2;
+D := A shifted d2;
+G := s[A, D];
+E := s[A, B];
+H := s[B, C];
+K := s[D, C];
+F = whatever[G, H] = whatever[E, K];
+draw byLine(F, H, black, 0, 1);
+draw byLine(E, F, black, 0, 1);
+draw byPolygon(G,F,K,D)(byyellow);
+draw byPolygon(A,G,F)(byblue);
+draw byPolygon(F,C,K)(byred);
+draw byLine(G, F, byred, 0, 0);
+byLineDefine(A, E, black, 0, 1);
+byLineDefine(E, B, black, 0, 1);
+byLineDefine(B, H, black, 0, 1);
+byLineDefine(H, C, black, 0, 1);
+byLineDefine(D, K, byblue, 0, 0);
+byLineDefine(K, C, byblue, 1, 0);
+byLineDefine(D, G, byred, 1, 0);
+byLineDefine(G, A, byyellow, 0, 0);
+draw byNamedLineSeq(0)(GA,DG,DK,KC,HC,BH,EB,AE);
+draw byLabelsOnPolygon(A, G, D, K, C, H, B, E)(0, 0);
+draw byLabelsOnPolygon(H, F, E)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{В}{о}{всяком параллелограмме
+\drawFromCurrentPicture[middle][parallelogramABCD]{
+draw byNamedLine(AE,EB,BH,HC,FH,EF);
+draw byNamedPolygon(GFKD,AGF,FCK);
+draw byLabelsOnPolygon(D, C, B, A)(0, 0);
+}
+параллелограммы 
+\drawFromCurrentPicture[middle][parallelogramFHCK]{
+draw byNamedLine(FH,HC);
+draw byNamedPolygon(FCK);
+draw byLabelsOnPolygon(K, C, H, F)(0, 0);
+}
+и
+\drawFromCurrentPicture[middle][parallelogramAEFG]{
+draw byNamedLine(AE,EF);
+draw byNamedPolygon(AGF);
+draw byLabelsOnPolygon(G, F, E, A)(0, 0);
+}
+на диагонали подобны целому и между собой.}
+
+\startCenterAlign
+Поскольку у \parallelogramABCD\ и \parallelogramAEFG\ есть общий угол, они равноугольны.\\
+Но поскольку $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\
+\drawFromCurrentPicture[bottom]{
+startGlobalRotation(180-angle(A-C));
+startAutoLabeling;
+draw byNamedPolygon(AGF);
+stopAutoLabeling;
+stopGlobalRotation;
+}
+и
+\drawFromCurrentPicture[bottom]{
+startGlobalRotation(180-angle(A-C));
+startAutoLabeling;
+draw byNamedPolygon(GFKD,AGF,FCK);
+stopAutoLabeling;
+stopGlobalRotation;
+}
+подобны \inprop[prop:VI.IV],\\
+$\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{GA,DG} : \drawUnitLine{DK,KC}$,
+а оставшиеся противоположные стороны равны им,\\
+$\therefore$ у \parallelogramAEFG\ и \parallelogramABCD\ стороны при равных углах пропорциональны и значит, они подобны.
+
+Так же можно показать, что параллелограммы \parallelogramABCD\ и \parallelogramFHCK\ подобны.\\
+И так как оба \parallelogramAEFG\ и \parallelogramFHCK\ подобны \parallelogramABCD, они подобны и друг другу.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXV. Задача},reference=prop:VI.XXV]
+\defineNewPicture[1/2]{
+pair d[];
+pair A, B, C;
+A := (5/3u, 2u);
+B := (0, 0);
+C := (9/4u, 0);
+draw byPolygon(A,B,C)(byred);
+pair L, E;
+L := (xpart(B), -1/2ypart(A));
+E := (xpart(C), ypart(L));
+draw byPolygon(B,C,E,L)(byblue);
+draw byAngleWithName(C, B, L, byred, 0)(B);
+pair Da, Db, Dc, Dd, De;
+Da := dir(0) scaled 1/2u;
+Db := dir(72) scaled 2/5u;
+Dc := dir(144) scaled 1/2u;
+Dd := dir(-144) scaled 3/5u;
+De := dir(-72) scaled 1/2u;
+d1 := (3u, 3/2u);
+forsuffixes i=Da,Db,Dc,Dd,De:
+	i := ((i rotated 36) scaled 3/2) shifted d1;
+endfor;
+draw byPolygonWithName(Da,Db,Dc,Dd,De)(byblue)(D);
+pair F, M;
+numeric a, l;
+a := 	((abs(Da-Db)*distanceToLine(Dc, Da--Db))+
+	(abs(Da-Dc)*distanceToLine(Dd, Da--Dc))+
+	(abs(Da-Dd)*distanceToLine(De, Da--Dd)))/2;
+l := a/abs(C-E);
+F := C shifted (l, 0);
+M := E shifted (l, 0);
+draw byPolygon(C,F,M,E)(white);
+draw byAngleWithName(F, C, E, byyellow, 0)(C);
+draw byLine(C, E, byred, 0, 0);
+draw byLine(B, C, byyellow, 0, 0);
+draw byLine(C, F, black, 1, 0);
+pair K, G, H;
+numeric s;
+s := (a/(abs(B-C)*abs(B-L)))**(1/2);
+d2 := (2/3u, -3u);
+K := (A scaled s) shifted d2;
+G := (B scaled s) shifted d2;
+H := (C scaled s) shifted d2;
+draw byPolygon(K,G,H)(byyellow);
+draw byLine(G, H, byblue, 0, 0);
+forsuffixes i=Da, Db, Dc, Dd, De:
+	byPointLabelDefine(i, "");
+endfor;
+draw byLabelsOnPolygon(C, F, M, E, L, B, A)(0, 0);
+draw byLabelsOnPolygon(G, K, H)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{П}{остроить}{прямолинейную фигуру подобную данной \drawPolygon[middle][triangleABC]{ABC} и равную другой данной \drawPolygon[middle][polygonD]{D}.}
+
+\startCenterAlign
+На \drawUnitLine{BC} опишем $\drawPolygon[middle][polygonBCEL]{BCEL} = \triangleABC$,\\
+и на \drawUnitLine{CE} опишем
+$\drawFromCurrentPicture[middle][polygonCFME]{
+startTempAngleScale(angleScale*1/2);
+draw byNamedAngle(C);
+startAutoLabeling;
+draw byNamedPolygon(CFME);
+stopAutoLabeling;
+stopTempAngleScale;
+} = \polygonD$,\\
+с $\drawAngle{B} = \drawAngle{C}$ \inprop[prop:I.XLV],\\
+и тогда \drawUnitLine{BC} и \drawUnitLine{CF} будут лежать на одной опямой (\inpropL[prop:I.XIX], \inpropL[prop:I.XIV]).
+
+Найдем между \drawUnitLine{BC} и \drawUnitLine{CF} среднюю пропорциональную \drawUnitLine{GH} \inprop[prop:VI.XIII],\\
+и на \drawUnitLine{GH} опишем \drawPolygon[middle][triangleKGH]{KGH}, подобный \triangleABC, и подобно расположенный.
+
+Тогда $\triangleKGH\ = \polygonD$.
+
+Поскольку \triangleABC\ и \triangleKGH\ подобны\\
+и $\drawUnitLine{BC} : \drawUnitLine{GH} :: \drawUnitLine{GH} : \drawUnitLine{CF}$ (постр.),\\
+$\triangleABC\ : \triangleKGH\ :: \drawUnitLine{BC} : \drawUnitLine{CF}$ \inprop[prop:VI.XX];
+
+но $\polygonBCEL\ : \polygonCFME\ :: \drawUnitLine{BC} : \drawUnitLine{CF}$ \inprop[prop:VI.I];\\
+$\therefore \triangleABC\ : \triangleKGH\ :: \polygonBCEL\ : \polygonCFME$ \inprop[prop:V.XI];\\
+но $\triangleABC\ = \polygonBCEL$ (постр.),\\
+и $\therefore \triangleKGH\ = \polygonCFME$ \inprop[prop:V.XIV];\\
+и $\polygonCFME\ = \polygonD$ (постр.);\\
+и следовательно, \triangleKGH\ подобный \triangleABC\ вместе с тем $= \polygonD$.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
+\startProposition[title={Предл. XXVI. Теорема},reference=prop:VI.XXVI]
+\defineNewPicture[1/4]{
+pair A, B, C, D, E, F, G, H, K, d[];
+d1 := (3u, 0);
+d2 := (u, 3u);
+A := (0, 0);
+B := A shifted d1;
+C := A shifted d1 shifted d2;
+D := A shifted d2;
+F := 3/4[A, C];
+E = whatever[A, B] = whatever[F, F shifted d2];
+G = whatever[A, D] = whatever[F, F shifted d1];
+H := 2/3[G, F];
+K = whatever[A, B] = whatever[H, H shifted d2];
+draw byPolygon(F,H,K,E)(byred);
+draw byPolygon(G,D,C,B,E,F)(byblue);
+draw byAngleWithName(B, A, D, byyellow, 0)(A);
+draw byLine(K, H, byyellow, 0, 0);
+draw byLine(G, H, byyellow, 1, 0);
+draw byLine(A, C, black, 0, 1);
+byLineDefine(A, G, byred, 0, 0);
+byLineDefine(G, D, byred, 1, 0);
+byLineDefine(A, K, byblue, 0, 0);
+byLineDefine(K, E, byblue, 1, 0);
+byLineDefine(E, B, black, 1, 0);
+draw byNamedLineSeq(0)(GD,AG,AK,KE,EB);
+draw byArbitraryFigure(A..H..C, black, 0, 0)(AHC);
+byLineDefineWithName(K, A, black, 0, 1)(KAt);
+byLineStylize(H, G, 1, 0, 1)(KAt);
+byLineDefineWithName(A, G, black, 0, 1)(AGt);
+byLineStylize(K, H, 0, 0, 1)(AGt);
+byLineDefineWithName(G, H, black, 0, 1)(GHt);
+byLineStylize(A, K, 0, 1, 1)(GHt);
+byLineDefineWithName(E, A, black, 0, 1)(EAt);
+byLineStylize(F, G, 1, 0, 1)(EAt);
+draw byLabelsOnPolygon(A, G, D, C, B, E, K)(0, 0);
+draw byLabelsOnPolygon(K, H, A)(2, 0);
+draw byLabelsOnPolygon(A, F, G)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{Е}{сли}{у подобных и подобно расположенных параллелограммов
+\drawFromCurrentPicture[middle][parallelogramAEFG]{
+draw byNamedPolygon(FHKE);
+draw byNamedLine(KAt,AGt,GHt);
+draw byLabelsOnPolygon(A, G, F, E)(0, 0);
+}
+и
+\drawFromCurrentPicture[middle][parallelogramABCD]{
+draw byNamedPolygon(GDCBEF);
+draw byNamedLine(EAt,AC);
+draw byNamedLineFull(E, F, 0, 1, 1)(AGt);
+draw byLabelsOnPolygon(A, D, C, B)(0, 0);
+}
+есть общий угол, они расположены на одной диагонали.}
+
+\startCenterAlign
+Действительно, если возможно, пусть
+\drawFromCurrentPicture[middle][lineAHC]{
+startGlobalRotation(180-angle(A-C));
+draw byNamedArbitraryFigure(AHC);
+draw byLabelsOnPolygon(A, H, C, noPoint)(0, 0);
+stopGlobalRotation;
+}
+будет диагональю \parallelogramABCD\ и проведем $\drawUnitLine{KH} \parallel \drawUnitLine{AG}$ \inprop[prop:I.XXXI].
+
+Поскольку \drawLine[middle][parallelogramAKHG]{AG,GH,KH,AK} и \parallelogramABCD\ на одной диагонали \lineAHC, и \drawAngle{A} уних общий, они подобны \inprop[prop:VI.XXIV];
+
+$\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
+но $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (hyp.),\\
+$\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \drawSizedLine{AK,KE}$,\\
+и $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \inprop[prop:V.IX], что невозможно.
+
+$\therefore$ \lineAHC\ не является диагональю \parallelogramABCD\ и таким же образом можно показать, что диагональю не является никакая другая прямая, кроме \drawUnitLine{AC}.
+\stopCenterAlign
+
+\qed
+\stopProposition
+
 \stopbook
 
 \stoptext

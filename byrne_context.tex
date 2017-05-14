@@ -12237,6 +12237,7 @@ draw byLine(D, C, black, 0, 0);
 draw byLine(C, E, byred, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byLine(C, G, byyellow, 0, 0);
+draw byLabelsOnPolygon(D, A, B, C, E, F, G, H)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{E}{quiangular}{parallelograms (\drawPolygon[bottom]{ABCD} and \drawPolygon[bottom]{EFGC}) are to one another in a ratio compounded of the ratios of their sides.}
@@ -12290,22 +12291,27 @@ byLineDefine(K, C, byblue, 1, 0);
 byLineDefine(D, G, byred, 1, 0);
 byLineDefine(G, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(GA,DG,DK,KC,HC,BH,EB,AE);
+draw byLabelsOnPolygon(A, G, D, K, C, H, B, E)(0, 0);
+draw byLabelsOnPolygon(H, F, E)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{n}{any parallelogram
 (\drawFromCurrentPicture[bottom][parallelogramABCD]{
 draw byNamedLine(AE,EB,BH,HC,FH,EF);
 draw byNamedPolygon(GFKD,AGF,FCK);
+draw byLabelsOnPolygon(D, C, B, A)(0, 0);
 })
 the parallelograms
 (\drawFromCurrentPicture[bottom][parallelogramFHCK]{
 draw byNamedLine(FH,HC);
 draw byNamedPolygon(FCK);
+draw byLabelsOnPolygon(K, C, H, F)(0, 0);
 }
 and
 \drawFromCurrentPicture[bottom][parallelogramAEFG]{
 draw byNamedLine(AE,EF);
 draw byNamedPolygon(AGF);
+draw byLabelsOnPolygon(G, F, E, A)(0, 0);
 })
 which are about the diagonal are similar to the whole, and to each other.}
 
@@ -12314,13 +12320,17 @@ As \parallelogramABCD\ and \parallelogramAEFG\ have a common angle they are equi
 but because $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\
 \drawFromCurrentPicture[bottom]{
 startGlobalRotation(180-angle(A-C));
+startAutoLabeling;
 draw byNamedPolygon(AGF);
+stopAutoLabeling;
 stopGlobalRotation;
 }
 and
 \drawFromCurrentPicture[bottom]{
 startGlobalRotation(180-angle(A-C));
+startAutoLabeling;
 draw byNamedPolygon(GFKD,AGF,FCK);
+stopAutoLabeling;
 stopGlobalRotation;
 }
 are similar \inprop[prop:VI.IV],\\
@@ -12376,12 +12386,14 @@ draw byLine(C, F, black, 1, 0);
 pair K, G, H;
 numeric s;
 s := (a/(abs(B-C)*abs(B-L)))**(1/2);
-d2 := (4/5u, -3u);
+d2 := (2/3u, -3u);
 K := (A scaled s) shifted d2;
 G := (B scaled s) shifted d2;
 H := (C scaled s) shifted d2;
 draw byPolygon(K,G,H)(byyellow);
 draw byLine(G, H, byblue, 0, 0);
+draw byLabelsOnPolygon(C, F, M, E, L, B, A)(0, 0);
+draw byLabelsOnPolygon(G, K, H)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{T}{o}{describe a rectilinear figure, which shall be similar to a given rectilinear figure (\drawPolygon[bottom][triangleABC]{ABC}), and equal to another (\drawPolygon[middle][polygonD]{D}).}
@@ -12392,7 +12404,9 @@ and upon \drawUnitLine{CE} describe
 $\drawFromCurrentPicture[bottom][polygonCFME]{
 startTempAngleScale(angleScale*1/2);
 draw byNamedAngle(C);
+startAutoLabeling;
 draw byNamedPolygon(CFME);
+stopAutoLabeling;
 stopTempAngleScale;
 } = \polygonD$,\\
 and having $\drawAngle{B} = \drawAngle{C}$ \inprop[prop:I.XLV],\\
@@ -12453,18 +12467,23 @@ byLineDefineWithName(G, H, black, 0, 1)(GHt);
 byLineStylize(A, K, 0, 1, 1)(GHt);
 byLineDefineWithName(E, A, black, 0, 1)(EAt);
 byLineStylize(F, G, 1, 0, 1)(EAt);
+draw byLabelsOnPolygon(A, G, D, C, B, E, K)(0, 0);
+draw byLabelsOnPolygon(K, H, A)(2, 0);
+draw byLabelsOnPolygon(E, F, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP[2]{I}{f}{similar and similarly posited parallelograms
 (\drawFromCurrentPicture[bottom][parallelogramAEFG]{
 draw byNamedPolygon(FHKE);
 draw byNamedLine(KAt,AGt,GHt);
+draw byLabelsOnPolygon(A, G, F, E)(0, 0);
 }
 and
 \drawFromCurrentPicture[bottom][parallelogramABCD]{
 draw byNamedPolygon(GDCBEF);
 draw byNamedLine(EAt,AC);
 draw byNamedLineFull(E, F, 0, 1, 1)(AGt);
+draw byLabelsOnPolygon(A, D, C, B)(0, 0);
 })
 have a common angle, they are about the same diagonal.}
 
@@ -12473,6 +12492,7 @@ For, if possible, let
 \drawFromCurrentPicture[bottom][lineAHC]{
 startGlobalRotation(180-angle(A-C));
 draw byNamedArbitraryFigure(AHC);
+draw byLabelsOnPolygon(A, H, C, noPoint)(0, 0);
 stopGlobalRotation;
 }
 be the diagonal of \parallelogramABCD\ and draw $\drawUnitLine{KH} \parallel \drawUnitLine{AG}$ \inprop[prop:I.XXXI].
