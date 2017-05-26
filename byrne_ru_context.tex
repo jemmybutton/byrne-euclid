@@ -365,6 +365,460 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 
 \vfill\pagebreak
 
+\startsupersection[title={Определения}]
+
+\startDefinitionOnlyNumber[reference=def:I]
+\startalignment[last]
+\emph{Точка} есть то, что не имеет частей
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:II]
+\startalignment[last]
+\emph{Линия} — это длина без ширины.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:III]
+\startalignment[last]
+Концы линии ­— точки.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:IV]
+\startalignment[last]
+Прямая линия есть та, которая равно расположена по отношению к точкам на ней.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:V]
+\startalignment[last]
+Поверхность есть то, что имеет только длину и ширину.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:VI]
+\startalignment[last]
+Концы поверхности — линии.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:VII]
+\startalignment[last]
+Плоская поверхность есть та, которая равно расположена по отношеню к прямым на ней.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:VIII]
+\startalignment[last]
+Плоский угол есть наклонение друг к другу двух линий, в плоскости встречающихся друг с другом, но не расположенных по одной прямой.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := (0, 0);
+	B := (u, u);
+	C := (3/2u, ypart(A));
+		draw byAngleWithName(B, A, C, byyellow, 0)(A);
+		byLineDefine(A, B, byblue, 0, 0);
+		byLineDefine(A, C, byred, 0, 0);
+		draw byNamedLineSeq(0)(AC,AB);
+}
+\startDefinitionOnlyNumber[reference=def:IX]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+Прямолинейный угол есть наклонение друг к другу двух пересекающихся и не совпадающих прямых линий.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C, D;
+	A := (0, 0);
+	B := (4/3u, 0);
+	C := (0, u);
+	D := (-4/3u, 0);
+		draw byAngle(B, A, C, black, 1);
+		draw byAngle(D, A, C, black, 1);
+		draw byLine(D, B, black, 0, 0);
+		draw byLine(A, C, black, 0, 0);
+}
+\startDefinitionOnlyNumber[reference=def:X]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+Когда прямая восстановленная на другой прямой образует равные смежные углы, каждый из этих углов называется \emph{прямым углом}, а каждая из этих прямых называется \emph{перпендикуляром} к другой.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := (0, 0);
+	B := (-u, u);
+	C := (3/2u, ypart(A));
+		draw byAngleWithName(B, A, C, byred, 0)(A);
+		byLineDefine(A, B, byyellow, 0, 0);
+		byLineDefine(A, C, byblue, 0, 0);
+		draw byNamedLineSeq(0)(AC,AB);
+}
+\drawCurrentPictureInMargin[inside]
+\startDefinitionOnlyNumber[reference=def:XI]
+\startalignment[last]
+\emph{Тупым} называется угол больше прямого.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := (0, 0);
+	B := (u, u);
+	C := (3/2u, ypart(A));
+		draw byAngleWithName(B, A, C, byblue, 0)(A);
+		byLineDefine(A, B, byyellow, 0, 0);
+		byLineDefine(A, C, byred, 0, 0);
+		draw byNamedLineSeq(0)(AC,AB);
+}
+\drawCurrentPictureInMargin[inside]
+\startDefinitionOnlyNumber[reference=def:XII]
+\startalignment[last]
+\emph{Острым} называется угол меньше прямого.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XII]
+\startalignment[last]
+\emph{Граница} есть то, что является оконечностью чего-либо.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XII]
+\startalignment[last]
+\emph{Фигура} есть то, что содержится внутри какой-нибудь или каких-нибудь границ.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair O, A, B, C, D, E;
+	numeric r;
+	r := 2/3u;
+	O := (0, 0);
+	A := dir(0) scaled r;
+	B := dir(60) scaled r;
+	C := dir(130) scaled r;
+	D := dir(180) scaled r;
+	E := dir(-60) scaled r;
+		draw byLine(O, B)(black, 0, 0);
+		draw byLine(O, C)(byred, 0, 0);
+		draw byLine(O, E)(byyellow, 0, 0);
+		draw byLine(D, A)(byblue, 0, 0);
+		draw byCircleR(O, r, byred, 0, 0, 0)(O);
+}
+\startDefinitionOnlyNumber[reference=def:XV]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Круг} есть плоская фигура, содержащаяся внутри одной линии, называемой окружностью, в которой есть точка, все прямые падающие на окружность из которой равны.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XVI]
+\startalignment[last]
+Точка в круге, все прямые к окружности из которой равны называется \emph{центром.}
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair O, A, B;
+	numeric r;
+	r := 3/4u;
+	O := (0, 0);
+	A := dir(0) scaled r;
+	B := dir(180) scaled r;
+		draw byLine(A, B)(byyellow, 0, 0);
+		draw byCircleR(O, r, byred, 0, 0, 0)(O);
+}
+\startDefinitionOnlyNumber[reference=def:XVII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Диаметр} круга есть прямая линия, проходящая через центр и ограниченная с обеих сторон окружностью.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair O, A, B;
+	numeric r;
+	r := 3/4u;
+	O := (0, 0);
+	A := dir(0) scaled r;
+	B := dir(180) scaled r;
+		draw byLine(A, B)(byblue, 0, 0);
+		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0)(O);
+		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0)(O);
+}
+\startDefinitionOnlyNumber[reference=def:XVIII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Полукруг} есть фигура, содержащаяся между диаметром и отсекаемой им частью окружность.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair O, A, B;
+	path P;
+	numeric r;
+	r := 3/4u;
+	P := fullcircle scaled 2r;
+	O := (0, 0);
+	A := point 1 of P;
+	B := point 3 of P;
+		draw byLine(A, B)(byred, 0, 0);
+		draw byArc(O, A, B)(r, byblue, 0, 0, 0, 0)(O);
+		draw byArc(O, B, A)(r, byblue, 1, 0, 0, 0)(O);
+}
+\startDefinitionOnlyNumber[reference=def:XIX]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Сегментом круга} называется фигура, содержащаяся между прямой линией и частью окружности, ей отсекаемой.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XX]
+\startalignment[last]
+\emph{Прямолинейной фигурой} называется фигура, содержащаяся между прямыми линиями.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XXI]
+\startalignment[last]
+\emph{Треугольником} называется прямолинейная фигура с тремя сторонами.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C, D;
+	A := (0, 0);
+	B := (u, 1/2u);
+	C := (-1/2u, -4/3u);
+	D := (4/3u, -u);
+		draw byLine(C, B)(byred, 0, 0);
+		draw byLine(A, D)(byblue, 0, 0);
+		byLineDefine(A, B, byyellow, 0, 0);
+		byLineDefine(A, C, byyellow, 0, 0);
+		byLineDefine(B, D, byyellow, 0, 0);
+		byLineDefine(C, D, black, 0, 0);
+		draw byNamedLineSeq(0)(BD,CD,AC,AB);
+}
+\startDefinitionOnlyNumber[reference=def:XXII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Четырехсторонняя фигура} та, у которой четыре стороны. Прямые линии  \drawUnitLine{AD} и \drawUnitLine{CB}, соединяющие вершины противоположных углов четырехсторонней фигуры называются диагоналями.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XXIII]
+\startalignment[last]
+\emph{Многоугольник} есть прямоугольная фигура с более чем четырьмя сторонами.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := dir(-30) scaled 1/2u;
+	B := dir(-150) scaled 1/2u;
+	C := dir(90) scaled 1/2u;
+		byLineDefine(A, B, byblue, 0, 0);
+		byLineDefine(B, C, byred, 0, 0);
+		byLineDefine(C, A, byyellow, 0, 0);
+		draw byNamedLineSeq(0)(AB,BC,CA);
+}
+\startDefinitionOnlyNumber[reference=def:XXIV]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Равносторонним} называется треугольник, все стороны которого равны.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := dir(-60) scaled 1/2u;
+	B := dir(-120) scaled 1/2u;
+	C := dir(90) scaled 1/2u;
+		byLineDefine(A, B, byblue, 0, 0);
+		byLineDefine(B, C, byred, 0, 0);
+		byLineDefine(C, A, byred, 0, 0);
+		draw byNamedLineSeq(0)(AB,BC,CA);
+}
+\startDefinitionOnlyNumber[reference=def:XXV]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+Треугольник у которого равны две стороны называется \emph{равнобедренным.}
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XXVI]
+\startalignment[last]
+\emph{Разносторонним} называется треугольник со всеми неравными сторонами. 
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := (0, 0);
+	B := (-u, 0);
+	C := (0, 3/4u);
+		byLineDefine(A, B, byred, 0, 0);
+		byLineDefine(B, C, byyellow, 0, 0);
+		byLineDefine(C, A, byblue, 0, 0);
+		draw byNamedLineSeq(0)(AB,BC,CA);
+}
+\startDefinitionOnlyNumber[reference=def:XXVII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+Треугольник у которого есть прямой угол называется \emph{прямоугольным}.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := (-1/4u, 0);
+	B := (-u, 0);
+	C := (0, 3/4u);
+		byLineDefine(A, B, byred, 0, 0);
+		byLineDefine(B, C, byblue, 0, 0);
+		byLineDefine(C, A, byyellow, 0, 0);
+		draw byNamedLineSeq(0)(AB,BC,CA);
+}
+\startDefinitionOnlyNumber[reference=def:XXVIII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Тупоугольным} называется треугольник, у которого есть тупой угол.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C;
+	A := (0, 0);
+	B := (-u, 0);
+	C := (-1/4u, 3/4u);
+		byLineDefine(A, B, byblue, 0, 0);
+		byLineDefine(B, C, byyellow, 0, 0);
+		byLineDefine(C, A, byred, 0, 0);
+		draw byNamedLineSeq(0)(AB,BC,CA);
+}
+\startDefinitionOnlyNumber[reference=def:XXIX]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Остроугольным} называется треугольник, все углы которого острые.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C, D;
+	numeric s;
+	s := u;
+	A := (0, 0);
+	B := (s, 0);
+	C := (0, s);
+	D := (s, s);
+		byLineDefine(A, B, byred, 0, 0);
+		byLineDefine(A, C, byblue, 0, 0);
+		byLineDefine(B, D, byyellow, 0, 0);
+		byLineDefine(C, D, black, 0, 0);
+		draw byNamedLineSeq(0)(AB,AC,CD,BD);
+}
+\startDefinitionOnlyNumber[reference=def:XXX]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+Из четырехсторонних фигур, \emph{квадратом} называется та, все стороны которой равны между собой, и все углы прямые.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C, D;
+	numeric s;
+	s := u;
+	A := (0, 0);
+	B := (s, 0);
+	C := A shifted (dir(80) scaled s);
+	D := B shifted (dir(80) scaled s);
+		byLineDefine(A, B, byred, 0, 0);
+		byLineDefine(A, C, byblue, 0, 0);
+		byLineDefine(B, D, byyellow, 0, 0);
+		byLineDefine(C, D, black, 0, 0);
+		draw byNamedLineSeq(0)(AB,AC,CD,BD);
+}
+\startDefinitionOnlyNumber[reference=def:XXXI]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Ромбом} называется четырехсторонняя фигура, все стороны которой равны, но углы не прямые.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A,B,C,D;
+	numeric s;
+	s := u;
+	A := (0, 0);
+	B := (4/3s, 0);
+	C := (0, 3/4s);
+	D := (4/3s, 3/4s);
+		byLineDefine(A, B, byblue, 0, 0);
+		byLineDefine(A, C, byred, 0, 0);
+		byLineDefine(B, D, byred, 0, 0);
+		byLineDefine(C, D, byblue, 0, 0);
+		draw byNamedLineSeq(0)(AB,AC,CD,BD);
+}
+\startDefinitionOnlyNumber[reference=def:XXXII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Прямоугольник} есть четырехугольник, все углы которого прямые, но не все стороны равны.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C, D;
+	numeric s;
+	s := u;
+	A := (0, 0);
+	B := (s, 0);
+	C := (1/4s, 3/4s);
+	D := (s + 1/4s, 3/4s);
+		byLineDefine(A, B, byblue, 0, 0);
+		byLineDefine(A, C, byred, 0, 0);
+		byLineDefine(B, D, byred, 0, 0);
+		byLineDefine(C, D, byblue, 0, 0);
+		draw byNamedLineSeq(0)(AB,AC,CD,BD);
+}
+\startDefinitionOnlyNumber[reference=def:XXXIII]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Параллелограмм} есть фигура, протвоположные стороны которой равны, но ни все стороны равны, ни все углы прямые.
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\startDefinitionOnlyNumber[reference=def:XXXIV]
+\startalignment[last]
+Все прочие прямоугольники называются \emph{неправильными.}
+\stopalignment
+\stopDefinitionOnlyNumber
+
+\defineNewPicture{
+	pair A, B, C, D;
+	numeric s;
+	s := u;
+	A := (0, 0);
+	B := (4/3s, 0);
+	C := (0, 1/2s);
+	D := (4/3s, 1/2s);
+		draw byLine(A, B, byred, 0, 0);
+		draw byLine(C, D, byyellow, 0, 0);
+}
+\startDefinitionOnlyNumber[reference=def:XXXV]
+\drawCurrentPictureInMargin[inside]
+\startalignment[last]
+\emph{Параллельными} называются такие прямые линии, которые находясь в одной плоскости и будучи продолженными в обе стороны неограниченно не встречаются.
+\stopalignment
+\stopDefinitionOnlyNumber
+\stopsupersection
+
 \stopintro
 
 \startbook[title={Книга I}]
