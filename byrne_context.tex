@@ -608,6 +608,7 @@ A triangle is a rectilinear figure included by three sides.
 		byLineDefine(B, D, byyellow, 0, 0);
 		byLineDefine(C, D, black, 0, 0);
 		draw byNamedLineSeq(0)(BD,CD,AC,AB);
+		draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:XXII]
 \drawCurrentPictureInMargin[inside]
@@ -894,8 +895,8 @@ All right angles are equal.
 	B := (4/3s, 0);
 	C := (0, s);
 	D := (4/3s, s);
-	E := (1/3s, 7/6s);
-	F := (xpart(E), -1/6s);
+	E := (1/3s, 8/6s);
+	F := (xpart(E), -2/6s);
 	G = whatever[A, B] = whatever[E, F];
 	H = whatever[C, D] = whatever[E, F];
 		draw byAngleWithName(B, G, E, byred, 0)(G);
@@ -903,6 +904,9 @@ All right angles are equal.
 		draw byLine(A, B, byblue, 0, 0);
 		draw byLine(C, D, byred, 0, 0);
 		draw byLine(E, F, black, 0, 0);
+		draw byLabelLine(0)(AB, CD, EF);
+		draw byLabelsOnPolygon(E, H, D)(2, 0);
+		draw byLabelsOnPolygon(B, G, F)(2, 0);
 }
 \drawCurrentPictureInMargin[inside]
 If two straight lines $\left(\vcenter{\nointerlineskip\hbox{\drawUnitLine{AB}}\nointerlineskip\hbox{\drawUnitLine{CD}}}\right)$ meet a third straight line (\drawUnitLine{EF}) so as to make the two interior angles (\drawAngle{H} and \drawAngle{G}) on the same side less than two straight angles, these two straight lines will meet if they be produced on that side on which the angles are less than two right angles.
@@ -911,7 +915,7 @@ If two straight lines $\left(\vcenter{\nointerlineskip\hbox{\drawUnitLine{AB}}\n
 
 \vfill\pagebreak
 
-\startsupersection[title={Euclidations}]
+\startsupersection[title={Elucidations}]
 
 The twelfth axiom may be expressed in any of the following ways:
 \startitemize[m,joinedup,nowhite]
