@@ -461,8 +461,11 @@ Produces a picture ofmagniture. Returns a piture of that magnitude.
 \stopsection
 
 \startsection[title={Labels}]
-\startsubsection[title={byTextLabel(expr t, p, a, d)}]
+
+\startsubsection[title={byTextLabel (suffix labelType) (expr t, p, a, d)}]
 Draws a text label. Returns a picture of that label.
+{\tt labelType} — of suffix type, label prefix to look for.
+
 
 {\tt t} — of string type, point name.
 
@@ -471,6 +474,32 @@ Draws a text label. Returns a picture of that label.
 {\tt a} — of numeric type, label angle.
 
 {\tt d} — of numeric type, label distance.
+\stopsubsection
+\startsubsection[title={byPointLabelDefine(suffix pointName)(expr t)}]
+Defines text label for a point. Returns nothing.
+{\tt pointName} — of suffix type, point name.
+
+{\tt t} — of string type, text to used as point's label.
+\stopsubsection
+\startsubsection[title={byLabelPoint(suffix p)(expr a, d)}]
+Draws text label for a point. Returns a picture of that label.
+{\tt p} — of suffix type, point name.
+
+{\tt a} — of numeric type, direction in which point is placed (angle in degrees).
+
+{\tt d} — of numeric type, distance at which point is placed (multiplier to {\tt textLabelShift}).
+\stopsubsection
+\startsubsection[title={byLabelLine(expr d)(text linesList)}]
+Draws text labels for lines. Returns a picture of that labels.
+{\tt d} — of numeric type, determines side at which labels are placed (either 0 or anything else).
+
+{\tt linesList} — of text type, comma separated line names.
+\stopsubsection
+\startsubsection[title={byLabelsOnCircle(text pointsList)(suffix cn)}]
+Draws text labels on circle (or arc) circumference. Returns a picture of that labels.
+{\tt pointsList} — of text type, comma separated point names.
+
+{\tt cn} — of suffix type, circle or arc name.
 \stopsubsection
 \startsubsection[title={byLabelsOnPolygon(text pointsList)(expr sty, shft)}]
 Draws text labels on the vertices of the polygon. Returns a picture of that labels.
@@ -481,13 +510,14 @@ Draws text labels on the vertices of the polygon. Returns a picture of that labe
 
 {\tt shft} — of numeric type, labels shift (to compensate for line shift).
 \stopsubsection
-\startsubsection[title={byLabelLineEnd (suffix a, b)}]
+\startsubsection[title={byLabelLineEnd (suffix a, b)(expr d)}]
 Draws text label on on one end of the line.
 
-{\tt a} — of pair type, point to label.
+{\tt a} — of suffix type, point to label.
 
-{\tt b} — of pair type, second point of the line.
+{\tt b} — of suffix type, second point of the line.
 
+{\tt d} — of numeric type, distance at which label is placed (multiplier to {\tt lineWidth}).
 \stopsubsection
 \stopsection
 \stopchapter
