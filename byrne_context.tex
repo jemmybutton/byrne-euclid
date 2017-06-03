@@ -2492,6 +2492,8 @@ byLineDefine(C, D, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,IC,IA,AB);
 draw byLine(G, H, black, 0, 0);
 draw byLabelLine(0)(AB, CD, GH);
+draw byLabelsOnPolygon(G, E, B)(2, 0);
+draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{CD} and \drawUnitLine{AB}) makes with them the alternate angles (\drawAngle{CFE} and \drawAngle{FEB}; \drawAngle{EFD} and \drawAngle{AEF}) equal, these two straight lines are parallel.}
@@ -2525,6 +2527,8 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
 draw byLine(G, H, black, 0, 0);
 draw byLabelLine(0)(AB, CD, GH);
+draw byLabelsOnPolygon(G, E, B)(2, 0);
+draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFE}$ or $\drawAngle{BEG} = \drawAngle{EFD}$), or if it makes two internal angles at the same side (\drawAngle{EFD} and \drawAngle{FEB}, or \drawAngle{CFE} and \drawAngle{AEF}) together equal to two right angles, those two straight lines are parallel.}
@@ -2571,6 +2575,7 @@ draw byLine(A, B, byyellow, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
 draw byLabelsOnPolygon(A, E, G)(2, 0);
+draw byLabelsOnPolygon(H, F, C)(2, 0);
 draw byLabelPoint(I, lineAngle.IE - 90, 1);
 draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 }
@@ -3123,7 +3128,8 @@ draw byNamedLineFull(B, B, 1, 1, 0)(EF);
 
 \startCenterAlign
 If \drawSizedLine{AB} which joins the vertices of triangles be not $\parallel \drawSizedLine{CD,DE,EF}$,\\
-draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI], meeting \drawSizedLine{EH}.\\
+draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI],\\ 
+meeting \drawSizedLine{EH}.\\
 Draw \drawSizedLine{FG}.
 
 Because $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (const.)\\
@@ -7594,7 +7600,7 @@ $\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII],
 pair A, B, C, D, E, F, G, H, K, L, M, N, d;
 numeric r;
 r := 5/4u;
-d := (-4/3r, 9/4r);
+d := (0, 4r);
 D := (0, 0) shifted d;
 E := (1/3r, -r) shifted d;
 F := (-5/6r, -r) shifted d;
@@ -7629,10 +7635,10 @@ draw byArbitraryFigure(A--K--B, black, 0, 1)(AKB);
 draw byCircleR(K, r, byred, 0, 0, -1)(K);
 draw byNamedLineSeq(0)(NL,LM,MN);
 byArbitraryFigureDefine(L--A--K--C--cycle, black, 0, 1)(LAKC);
-draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
+draw byLabelsOnPolygon(C, N, B, M, A, L)(0, 0);
 draw byLabelsOnPolygon(G, E, F, H, noPoint)(0, 0);
 draw byLabelsOnPolygon(F, D, E)(2, 0);
-draw byLabelsOnPolygon(A, K, B)(2, 0);
+draw byLabelsOnPolygon(B, K, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{A}{bout}{a given circle \drawCircle[middle][1/3]{K} to circumscribe a triangle equiangular to a given triangle.}
@@ -7652,7 +7658,7 @@ The four angles of
 startTempAngleScale(2/3);
 draw byNamedAngle(A, C, L, CKA);
 draw byNamedArbitraryFigure(LAKC);
-draw byLabelsOnPolygon(L, A, K, C)(0, 0);
+draw byLabelsOnPolygon(C, K, A, L)(0, 0);
 stopTempAngleScale;
 },
 taken together are equal to four right angles. \inprop[prop:I.XXXII]
@@ -9887,7 +9893,7 @@ Thus, if there be two ranks of magnitudes,\\
 $\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,\\
 and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,\\
 such that $\varA : \varB :: \varL : \varM$, $\varB : \varC :: \varM : \varB$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varO : \varP$, $\varE : \varF :: \varP : \varQ$;\\
-we infer by the term \quotation{ex \ae quali} that $\varA : \varF :: \varL : \varQ$
+we infer by the term \quotation{ex~\ae quali} that $\varA : \varF :: \varL : \varQ$
 \stopCenterAlign
 \stopDefinition
 
