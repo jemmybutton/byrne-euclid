@@ -1406,7 +1406,7 @@ $\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \dr
 Again in \drawLine{BE,CE,BC} and \drawLine{BD,CD,BC}\\
 we have $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ and $\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
 $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ and $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV]\\
-but $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
+but $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \inax[ax:III].
 \stopCenterAlign
 
 \qed
@@ -1776,7 +1776,7 @@ draw byLabelLineEnd(A, D, 0);
 
 \startCenterAlign
 If \drawUnitLine{ED} be $\perp$ to \drawUnitLine{BC} then,\\
-\drawAngle{ADB,EDA} and $\drawAngle{CDE} = \drawTwoRightAngles$ \indef[def:X],
+\drawAngle{ADB,EDA} and $\drawAngle{CDE} = \drawTwoRightAngles$ \indef[def:X], % improvement: def. 7 in the original is likely to be a mistake
 
 but if \drawUnitLine{ED} be not $\perp$ to \drawUnitLine{BC},\\
 draw $\drawUnitLine{AD} \perp \drawUnitLine{BC}$; \inprop[prop:I.XI]\\
@@ -1904,7 +1904,7 @@ stopAutoLabeling;
 Make $\drawUnitLine{BE} = \drawUnitLine{EC}$ \inprop[prop:I.X];\\
 Draw \drawUnitLine{AE} and produce it until $\drawUnitLine{ED} = \drawUnitLine{AE}$;\\
 draw \drawUnitLine{CD}. In \drawLine{BE,AE,AB} and \drawLine{EC,ED,CD};\\
-$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV] and $\drawUnitLine{AE} = \drawUnitLine{ED}$ (const.),\\
+$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ and $\drawUnitLine{AE} = \drawUnitLine{ED}$ (const., \inpropL[prop:I.XV]),\\
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
 $\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
 
@@ -2543,7 +2543,7 @@ $\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB
 
 $\therefore \drawAngle{CFE} = \drawAngle{FEB}$
 
-$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
 
 \qed
@@ -2916,7 +2916,7 @@ $\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ by (\inpropL[prop:I.
 
 $\therefore \drawUnitLine{CD} = \mbox{ and } \parallel \drawUnitLine{EF}$;
 
-$\therefore \drawUnitLine{CE} = \mbox{ and } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXV]
+$\therefore \drawUnitLine{CE} = \mbox{ and } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXIII]
 
 And therefore
 \drawPolygon[bottom][polygonCDFE]{CDI, IDJE, EFJ}
@@ -3354,7 +3354,7 @@ but $\polygonAHEF = \polygonJKL$ (const.)
 
 $\therefore \polygonEGDI = \polygonJKL$;
 
-and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and const.)
+and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and const.) % improvement: proposition 19 in the original seems to be a typo 
 \stopCenterAlign
 
 \qed
@@ -4943,7 +4943,7 @@ In \drawLine[bottom][triangleAEF]{AE,EF,AF} and
 \drawLine[bottom][triangleFEB]{EF,EB,FB}\\
 $\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} common,\\
 and $\drawUnitLine{AF} = \drawUnitLine{FB} \therefore \drawAngle{AFE} = \drawAngle{EFB}$ \inprop[prop:I.VIII]\\
-and $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \inprop[prop:I.X]
+and $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \indef[def:X] % improvement: definition 7 in the original was irrelevant
 
 Again let $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$\\
 Then in \triangleAEF\ and \triangleFEB\\
@@ -5037,8 +5037,8 @@ draw byLabelsOnPolygon(C, F, E)(2, -1);
 Suppose it possible that two intersecting circles have a common centre; from such supposed centre draw \drawUnitLine{CE} to the intersecting point, and \drawUnitLine{EF,FG} meeting the circumferences of the circles.
 
 \startCenterAlign
-Then $\drawUnitLine{CE} = \drawUnitLine{EF}$ \inprop[prop:I.XV]\\
-and $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \inprop[prop:I.XV]
+Then $\drawUnitLine{CE} = \drawUnitLine{EF}$ \indef[def:XV]\\
+and $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \indef[def:XV]
 
 $\therefore \drawUnitLine{EF} = \drawUnitLine{EF,FG}$\\
 a part equal to the whole, which is absurd:
@@ -5081,8 +5081,8 @@ draw byLabelPoint(E, angle(B-F)+45, 2);
 For, if it be possible, let both circles have the same centre; from such a supposed centre draw \drawUnitLine{FE,EB}, and \drawUnitLine{CF} to the point of contact.
 
 \startCenterAlign
-Then $\drawUnitLine{CF} = \drawUnitLine{FE}$ \inprop[prop:I.XV]\\
-and $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \inprop[prop:I.XV]
+Then $\drawUnitLine{CF} = \drawUnitLine{FE}$ \indef[def:XV]\\
+and $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \indef[def:XV]
 
 $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 \stopCenterAlign
@@ -5156,7 +5156,7 @@ Of the others, that (\drawUnitLine{FB}) which is nearer to the line passing thro
 Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
 
 \startsubproposition[title={Figure I.}]
-To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (ax.), and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
+To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:III], and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
 \stopsubproposition
 
 \startsubproposition[title={Figure II.}]
@@ -5525,8 +5525,8 @@ If it be possible, let \drawUnitLine{FC,CD,DG} joining the centres, and not pass
 
 \startCenterAlign
 Because $\drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \inprop[prop:I.XX]\\
-and $\drawUnitLine{FC} = \drawUnitLine{AF}$ \inprop[prop:I.XV],\\
-and $\drawUnitLine{DG} = \drawUnitLine{AG}$ \inprop[prop:I.XV],
+and $\drawUnitLine{FC} = \drawUnitLine{AF}$ \indef[def:XV],\\
+and $\drawUnitLine{DG} = \drawUnitLine{AG}$ \indef[def:XV],
 
 $\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, a part greater than whole, which is absurd.
 \stopCenterAlign
@@ -5993,7 +5993,7 @@ stopTempScale;
 \startCenterAlign
 draw \drawUnitLine{DE,AD} from it to the centre, cutting \circleEI;\\
 and draw $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
-describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{AD,DE}$,\\ % improvement: These two lines were not originally there, but without them this proof has no sense
+describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{AD,DE}$,\\ % improvement: These two lines were not originally there, but without them this proof makes no sense
 draw \drawUnitLine{BE,FB} to the centre from the point where \drawUnitLine{FD} falls on \circleEII\ circumference,\\
 draw $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ from the point where it cuts \circleEI,\\
 %
@@ -6382,9 +6382,9 @@ draw any right line \drawUnitLine{AD} cutting both the segments,
 draw \drawUnitLine{BC} and \drawUnitLine{BD}.
 
 Because the segments are similar,\\
-$\drawAngle{C} = \drawAngle{D}$ \inprop[prop:III.X],
+$\drawAngle{C} = \drawAngle{D}$ \indef[def:III.XI], % improvement: definition 10 in the original seems to be irrelevant
 
-but $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:III.XVI]\\
+but $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:I.XVI]\\
 which is absurd;
 
 therefore no point in either of the segments falls without the other, and therefore the segments coincide.
@@ -6577,7 +6577,7 @@ draw byNamedLine(EF);
 draw byLabelsOnCircle(E, F)(H);
 stopTempScale;
 }
-are similar \indef[def:III.XI];\\
+are similar \indef[def:III.XI];\\ % improvement: definition 10 in the original seems to be irrelevant
 they are also equal \inprop[prop:III.XXIV]
 \stopCenterAlign
 
@@ -6785,7 +6785,7 @@ and $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII];
 
 but $\drawUnitLine{AK} \mbox{ and } \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ and } \drawUnitLine{EL}$
 
-$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:III.XXVII];
+$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:I.IV];
 
 but these are the chords subtending the equal arcs.
 \stopCenterAlign
@@ -6851,7 +6851,7 @@ draw byNamedArc(Er);
 stopAutoLabeling;
 stopGlobalRotation;
 }
-$ \inprop[prop:III.XXVII],\\
+$ \inprop[prop:III.XXVIII],\\
 and therefore the given arc is bisected.
 \stopCenterAlign
 
@@ -6990,7 +6990,7 @@ draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line \drawUnitLine{EF} be a tangent to a circle, and from the point of contact a right line \drawUnitLine{DB} be drawn cutting the circle, the angle \drawAngle{FBD} made by this line with the tangent is equal to the angle \drawAngle{A} in the alternate segment of the circle.}
 
-If the chord should pass through the centre, it is evident the angles are equal, for each of them is a right angle. (\inpropL[prop:III.XVI], \inpropL[prop:III.XIX])
+If the chord should pass through the centre, it is evident the angles are equal, for each of them is a right angle. (\inpropL[prop:III.XVI], \inpropL[prop:III.XXXI])
 
 But if not, draw $\drawUnitLine{AB} \perp \drawUnitLine{EF}$ from the point of contact, it must pass through the centre of the circle, \inprop[prop:III.XIX]
 
@@ -6999,11 +6999,11 @@ $\therefore \drawAngle{ADB} = \drawAngle{ABE} $ \inprop[prop:III.XXXI]
 
 $\drawAngle{A} + \drawAngle{DBA} = \drawAngle{ABE}= \drawAngle{DBA,FBD}$ \inprop[prop:I.XXXII]
 
-$\therefore \drawAngle{A} = \drawAngle{FBD}$ (ax.).
+$\therefore \drawAngle{A} = \drawAngle{FBD}$ \inax[ax:III]. % improvement: it seems to be axiom III here and down there
 
 Again $\drawAngle{ABE,DBA,FBD} = \drawTwoRightAngles = \drawAngle{A} + \drawAngle{C}$ \inprop[prop:III.XXII]
 
-$\therefore \drawAngle{ABE,DBA} = \drawAngle{C}$, (ax.), which is the angle in the alternate segment.
+$\therefore \drawAngle{ABE,DBA} = \drawAngle{C}$, \inax[ax:III], which is the angle in the alternate segment.
 \stopCenterAlign
 
 \qed

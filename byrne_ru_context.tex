@@ -1409,7 +1409,7 @@ $\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \dr
 Так же у \drawLine{BE,CE,BC} и \drawLine{BD,CD,BC}\\
 получим $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ и $\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
 $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV]\\
-но $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
+но $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \inax[ax:III].
 \stopCenterAlign
 
 \qed
@@ -2554,7 +2554,7 @@ $\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB
 
 $\therefore \drawAngle{CFE} = \drawAngle{FEB}$
 
-$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
 
 \qed
@@ -2928,7 +2928,7 @@ $\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (\inpropL[prop:I.XXX
 
 $\therefore \drawUnitLine{CD} = \mbox{ и } \parallel \drawUnitLine{EF}$;
 
-$\therefore \drawUnitLine{CE} = \mbox{ и } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXV]
+$\therefore \drawUnitLine{CE} = \mbox{ и } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXIII]
 
 И следовательно
 \drawPolygon[bottom][polygonCDFE]{CDI, IDJE, EFJ}
@@ -4945,7 +4945,7 @@ draw byLabelsOnPolygon(A, E, C)(2, 0);
 В \drawLine[bottom][triangleAEF]{AE,EF,AF} и \drawLine[bottom][triangleFEB]{EF,EB,FB}\\
 $\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая,\\
 и $\drawUnitLine{AF} = \drawUnitLine{FB}, \therefore \drawAngle{AFE} = \drawAngle{EFB}$ \inprop[prop:I.VIII]\\
-и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \inprop[prop:I.X]
+и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \indef[def:X]
 
 Теперь, пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$\\
 Тогда в  \triangleAEF\ и \triangleFEB\\
@@ -5039,8 +5039,8 @@ draw byLabelsOnPolygon(C, F, E)(2, -1);
 Допустим это возможно, и два пересекающихся круга имеют общий центр. Из предпологаемого центра проведем \drawUnitLine{CE} к точке пересечения и \drawUnitLine{EF,FG} пересекающую окружности.
 
 \startCenterAlign
-Тогда $\drawUnitLine{CE} = \drawUnitLine{EF}$ \inprop[prop:I.XV]\\
-и $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \inprop[prop:I.XV]
+Тогда $\drawUnitLine{CE} = \drawUnitLine{EF}$ \indef[def:XV]\\
+и $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \indef[def:XV]
 
 $\therefore \drawUnitLine{EF} = \drawUnitLine{EF,FG}$\\
 часть равна целому, что невозможно.
@@ -5083,8 +5083,8 @@ draw byLabelPoint(E, angle(B-F)+45, 2);
 Действительно, пусть это возможно, и у кругов будет один центр. Из предпологаемого центра проведем \drawUnitLine{FE,EB} и \drawUnitLine{CF} к точке касания.
 
 \startCenterAlign
-Тогда $\drawUnitLine{CF} = \drawUnitLine{FE}$ \inprop[prop:I.XV]\\
-и $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \inprop[prop:I.XV]
+Тогда $\drawUnitLine{CF} = \drawUnitLine{FE}$ \indef[def:XV]\\
+и $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \indef[def:XV]
 
 $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 \stopCenterAlign
@@ -5158,9 +5158,9 @@ draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Часть I}]
-Из центра круга проведем \drawUnitLine{EB} и \drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \inprop[prop:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX]. Таким же образом можно показать, что \drawUnitLine{EF,AE} больше \drawUnitLine{FC}, или любой другой линии, проведенной из той же точки к окружности. 
+Из центра круга проведем \drawUnitLine{EB} и \drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX]. Таким же образом можно показать, что \drawUnitLine{EF,AE} больше \drawUnitLine{FC}, или любой другой линии, проведенной из той же точки к окружности. 
 
-Теперь, согласно \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ (акс.), и так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к окружности. 
+Теперь, согласно \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:III], и так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к окружности. 
 
 Теперь, в \drawLine[middle][triangleEFB]{FB,EF,EB} и \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, и $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] и так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к окружности и проходящей дальше \drawUnitLine{EF,AE}.
 \stopsubproposition
@@ -5558,8 +5558,8 @@ draw byLabelPoint(A, angle(F-A)-45, 2);
 
 \startCenterAlign
 Поскольку $\drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \inprop[prop:I.XX]\\
-и $\drawUnitLine{FC} = \drawUnitLine{AF}$ \inprop[prop:I.XV],\\
-и $\drawUnitLine{DG} = \drawUnitLine{AG}$ \inprop[prop:I.XV],
+и $\drawUnitLine{FC} = \drawUnitLine{AF}$ \indef[def:XV],\\
+и $\drawUnitLine{DG} = \drawUnitLine{AG}$ \indef[def:XV],
 
 $\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, часть больше целого, что невозможно.
 \stopCenterAlign
@@ -6399,9 +6399,9 @@ draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 проведем \drawUnitLine{BC} и \drawUnitLine{BD}.
 
 Поскольку сегменты подобны,\\
-$\drawAngle{C} = \drawAngle{D}$ \inprop[prop:III.X],
+$\drawAngle{C} = \drawAngle{D}$ \indef[def:III.XI],
 
-но $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:III.XVI], что невозможно.
+но $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:I.XVI], что невозможно.
 
 Следовательно, никакая точка одного сегмента не расположена вовне другого сегмента и значит сегменты совпадают.
 \stopCenterAlign
@@ -6794,7 +6794,7 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 
 но $\drawUnitLine{AK} \mbox{ и } \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ и } \drawUnitLine{EL}$
 
-$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:III.XXVII],
+$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:I.IV],
 
 а это и есть хорды, стягивающие равные дуги.
 \stopCenterAlign
@@ -6860,7 +6860,7 @@ draw byNamedArc(Er);
 stopAutoLabeling;
 stopGlobalRotation;
 }
-$ \inprop[prop:III.XXVII],\\
+$ \inprop[prop:III.XXVIII],\\
 и значит данная дуга рассечена.
 \stopCenterAlign
 
@@ -6999,7 +6999,7 @@ draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{прямая \drawUnitLine{EF} касается круга, и из точки касания проведена прямая \drawUnitLine{DB}, секущая круг, угол \drawAngle{FBD} между этой прямой и касательной равен углу \drawAngle{A} в накрестлежащем сегменте круга.}
 
-Если хорда проходит через центр, то очевидно, что углы равны, поскольку и тот и тот прямые. (\inpropL[prop:III.XVI], \inpropL[prop:III.XIX])
+Если хорда проходит через центр, то очевидно, что углы равны, поскольку и тот и тот прямые. (\inpropL[prop:III.XVI], \inpropL[prop:III.XXXI])
 
 Если же нет, проведем $\drawUnitLine{AB} \perp \drawUnitLine{EF}$ из точки касания, которая будет проходить через центр \inprop[prop:III.XIX]
 
@@ -7008,11 +7008,11 @@ $\therefore \drawAngle{ADB} = \drawAngle{ABE} $ \inprop[prop:III.XXXI]
 
 $\drawAngle{A} + \drawAngle{DBA} = \drawAngle{ABE}= \drawAngle{DBA,FBD}$ \inprop[prop:I.XXXII]
 
-$\therefore \drawAngle{A} = \drawAngle{FBD}$ (акс.).
+$\therefore \drawAngle{A} = \drawAngle{FBD}$ \inax[ax:III].
 
 Теперь $\drawAngle{ABE,DBA,FBD} = \drawTwoRightAngles = \drawAngle{A} + \drawAngle{C}$ \inprop[prop:III.XXII]
 
-$\therefore \drawAngle{ABE,DBA} = \drawAngle{C}$, (акс.), который и будет углом в накрестлежащем сегменте.
+$\therefore \drawAngle{ABE,DBA} = \drawAngle{C}$ \inax[ax:III], который и будет углом в накрестлежащем сегменте.
 \stopCenterAlign
 
 \qed

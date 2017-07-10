@@ -623,7 +623,7 @@ vardef byNamedArcExact(text arcslist) =
         forsuffixes aN=arcslist:
             draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, arcShift.aN, arcEndType.aN);
         endfor;
-        if (textLabels and autoLabelingMode):
+        if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
         fi;
     )
@@ -634,7 +634,7 @@ vardef byNamedArc(text arcslist) =
         forsuffixes aN=arcslist:
             draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, 0, 0);
         endfor;
-        if (textLabels and autoLabelingMode):
+        if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
         fi;
     )
@@ -646,34 +646,36 @@ vardef byNamedArcLabel (text arcslist) =
     numeric i, j;
     boolean allArcsDefined;
     image(
-        i := -1;
-        allArcsDefined := true;
-        forsuffixes aN=arcslist:
-            i := i + 1;
-            pointsListB[i] := arcBName.aN;
-            pointsListE[i] := arcEName.aN;
-            pointsListO[i] := arcCenterName.aN;
-            if (arcBName.aN == "") or (arcEName.aN == ""):
-                allArcsDefined := false;
-            fi;
-        endfor;
-        if allArcsDefined:
-            for j := 0 step 1 until i:
-                if (pointsListB[j] <> pointsListE[cycleval(j-1, i+1)]):
-                    draw byTextLabel(pointLabel)(
-                        pointsListB[j],
-                        scantokens(pointsListB[j]),
-                        angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
-                        textLabelShift);
-                fi;
-                if (pointsListE[j] <> pointsListB[cycleval(j+1, i+1)]):
-                    draw byTextLabel(pointLabel)(
-                        pointsListE[j],
-                        scantokens(pointsListE[j]),
-                        angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
-                        textLabelShift);
+        if (textLabels):
+            i := -1;
+            allArcsDefined := true;
+            forsuffixes aN=arcslist:
+                i := i + 1;
+                pointsListB[i] := arcBName.aN;
+                pointsListE[i] := arcEName.aN;
+                pointsListO[i] := arcCenterName.aN;
+                if (arcBName.aN == "") or (arcEName.aN == ""):
+                    allArcsDefined := false;
                 fi;
             endfor;
+            if allArcsDefined:
+                for j := 0 step 1 until i:
+                    if (pointsListB[j] <> pointsListE[cycleval(j-1, i+1)]):
+                        draw byTextLabel(pointLabel)(
+                            pointsListB[j],
+                            scantokens(pointsListB[j]),
+                            angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
+                            textLabelShift);
+                    fi;
+                    if (pointsListE[j] <> pointsListB[cycleval(j+1, i+1)]):
+                        draw byTextLabel(pointLabel)(
+                            pointsListE[j],
+                            scantokens(pointsListE[j]),
+                            angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
+                            textLabelShift);
+                    fi;
+                endfor;
+            fi;
         fi;
     )
 enddef;
