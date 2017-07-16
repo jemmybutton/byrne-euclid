@@ -7883,7 +7883,7 @@ $\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII
 
 И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (постр.),
 
-и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \inprop[prop:I.XV].
+и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 
 $\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \inprop[prop:I.IV].
 \stopCenterAlign
@@ -8107,7 +8107,7 @@ $\therefore \drawAngle{BDC} = \drawAngle{A}$ \inprop[prop:III.XXXII],\\
 $\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$;
 
 но $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ или } \drawAngle{BDC,CDA} = \drawAngle{B}$ \inprop[prop:I.V]:\\
-поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.VI]\\
+поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.V]\\
 следовательно $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \inprop[prop:I.XXXII]\\
 $\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \inprop[prop:I.VI]\\
 $\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (постр.)\\
@@ -8166,7 +8166,7 @@ draw byLabelsOnCircle(A, B, C, D, E)(O);
 Проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и \drawUnitLine{DE}.
 \stopCenterAlign
 
-Поскольку углы \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} и \drawAngle{ADB} равны между собой, дуги, на которых они стоят, тоже равны \inprop[prop:III.XXVI], и $\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и \drawUnitLine{DE} стягивающие эти дуги также равны между собой \inprop[prop:III.XIX] и $\therefore$ пятиугольник является равносторонним, а также равноугольным, поскольку все его углы стоят на равных дугах \inprop[prop:III.XXVII].
+Поскольку углы \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} и \drawAngle{ADB} равны между собой, дуги, на которых они стоят, тоже равны \inprop[prop:III.XXVI], и $\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и \drawUnitLine{DE} стягивающие эти дуги также равны между собой \inprop[prop:III.XXIX] и $\therefore$ пятиугольник является равносторонним, а также равноугольным, поскольку все его углы стоят на равных дугах \inprop[prop:III.XXVII].
 
 \qed
 \stopProposition
@@ -8231,7 +8231,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawProportionalLine{FD}}
 }\right.$.\\
 В \drawLine{FB,FK,BK} и \drawLine{FK,FC,KC}\\
-$\drawProportionalLine{BK} = \drawProportionalLine{KC}$\\
+$\drawProportionalLine{BK} = \drawProportionalLine{KC}$ \inprop[prop:I.XLVII] \\
 $\drawProportionalLine{FC} = \drawProportionalLine{FB}$, и \drawProportionalLine{FK} общая.\\
 $\therefore \drawAngle{FKB} = \drawAngle{CKF}$ и $\therefore \drawAngle{BFK} = \drawAngle{KFC}$ \inprop[prop:I.VIII]\\
 $\therefore \drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$, и $\drawAngle{BFK,KFC} = \mbox{ дважды } \drawAngle{KFC}$.\\
@@ -8516,7 +8516,7 @@ stopAutoLabeling;
 }
 равносторонние треугольники, так как $\drawAngle{DGC} = \drawAngle{EGD} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], но $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \inprop[prop:I.XIII];
 
-$\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], и вертикальные углы равны между собой \inprop[prop:I.XV], и стоят на равных дугах \inprop[prop:III.XXVI], которые стагивают равные хорды \inprop[prop:III.XIX]. 
+$\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], и вертикальные углы равны между собой \inprop[prop:I.XV], и стоят на равных дугах \inprop[prop:III.XXVI], которые стагивают равные хорды \inprop[prop:III.XXIX]. 
 
 И поскольку каждый из углов шестиугольника вдвое больше угла равностороннего треугольника, этот шестиугольник также равносторонний.
 
@@ -9682,8 +9682,9 @@ byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
 и $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (гип. и \inpropL[prop:V.XI]),\\
 а также $m \magnitudeIII : m \magnitudeIV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XV];
 
-$\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$,\\
-в таком случае $M \magnitudeII >, =, \mbox{ или } < m \magnitudeIV$ \inprop[prop:V.XIV];
+$\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$ \inprop[prop:V.XIV],\\
+и $\therefore$ если $M \magnitudeI >, = \mbox { или } < m \magnitudeIII$,\\
+то $M \magnitudeII >, =, \mbox{ или } < m \magnitudeIV$ \inprop[prop:V.XIV];
 
 следовательно \indef[def:V.V],\\
  $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$
