@@ -231,41 +231,29 @@
 
 \setuppagenumbering[location=]
 
+\newwrite \referencegraph
+\openout \referencegraph = referencegraph.txt\relax
+
+\write\referencegraph{"source","target"}
+
+\def\currentSection{none}
+\def\writereference#1{\ignorespaces\write\referencegraph{"\currentSection","#1"}}
+
 \def\inpropstr{pr.}
-\definereferenceformat
-   [inprop]
-   [left=,right=),text=(\inpropstr~]
-
-\definereferenceformat
-   [inpropL]
-   [left=,right=,text=\inpropstr~]
-
-\definereferenceformat
-   [inpropN]
-   [left=,right=,text=]
+\def\inprop[#1]{\in{(\inpropstr}{)}[#1]\writereference{#1}}
+\def\inpropL[#1]{\in{\inpropstr}{}[#1]\writereference{#1}}
+\def\inpropN[#1]{\in{}{}[#1]\writereference{#1}}
 
 \def\inpoststr{post.}
-\definereferenceformat
-   [inpost]
-   [left=,right=),text=(\inpoststr~]
+\def\inpost[#1]{\in{(\inpoststr}{)}[#1]\writereference{#1}}
 
 \def\indefstr{def.}
-\definereferenceformat
-   [indef]
-   [left=,right=),text=(\indefstr~]
-
-\definereferenceformat
-   [indefL]
-   [left=,right=,text=\indefstr~]
+\def\indef[#1]{\in{(\indefstr}{)}[#1]\writereference{#1}}
+\def\indefL[#1]{\in{\indefstr}{}[#1]\writereference{#1}}
 
 \def\inaxstr{ax.}
-\definereferenceformat
-   [inax]
-   [left=,right=),text=(\inaxstr~]
-
-\definereferenceformat
-   [inaxL]
-   [left=,right=,text=\inaxstr~]
+\def\inax[#1]{\in{(\inaxstr}{)}[#1]\writereference{#1}}
+\def\inaxL[#1]{\in{\inaxstr}{}[#1]\writereference{#1}}
 
 \def\plateName{plate}
 
@@ -332,6 +320,8 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 
 \unprotect
 
+\def\setCurrentSection{\global\edef\currentSection{\currentstructurereference}}
+
 \definehead[silentsection][section]
 \define[2]\noTitle{}
 \setuphead[silentsection][alternative=text,command=\noTitle,distance=0pt,before={},after={},inbetween={}]
@@ -350,14 +340,14 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startproposition[#1][#2]{%
   \incrementcounter[proposition]%
   \startsilentsection[ownnumber={\directconvertedcounter{proposition}\empty},
-    incrementnumber=no,#1][#2]}
+    incrementnumber=no,#1][#2]\setCurrentSection}
     
 \define\startVerboseProposition{\dodoubleempty\startverboseproposition}
 \define\stopVerboseProposition{\stopsectiononlyname}
 \def\startverboseproposition[#1][#2]{%
   \incrementcounter[proposition]%
   \startsectiononlyname[ownnumber={\directconvertedcounter{proposition}\empty},
-    incrementnumber=no,#1][#2]}
+    incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[propositionaz][way=bypart,numberconversion=Characters]
 \define\startPropositionAZ{\dodoubleempty\startpropositionaz}
@@ -365,7 +355,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startpropositionaz[#1][#2]{%
   \incrementcounter[propositionaz]%
   \startsilentsection[ownnumber={\directconvertedcounter{propositionaz}\empty},
-    incrementnumber=no,#1][#2]}
+    incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[definition][way=bypart]
 \define\startDefinition{\dodoubleempty\startdefinition}
@@ -373,7 +363,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startdefinition[#1][#2]{%
   \incrementcounter[definition]%
   \startsectiononlyname[ownnumber={\directconvertedcounter{definition}\empty},
-   incrementnumber=no,#1][#2]}
+   incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[definitionaz][way=bypart,numberconversion=Characters]
 \define\startDefinitionAZ{\dodoubleempty\startdefinitionaz}
@@ -381,14 +371,14 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startdefinitionaz[#1][#2]{%
   \incrementcounter[definitionaz]%
   \startsectiononlyname[ownnumber={\directconvertedcounter{definitionaz}\empty},
-   incrementnumber=no,#1][#2]}
+   incrementnumber=no,#1][#2]\setCurrentSection}
 
 \define\startDefinitionOnlyNumber{\dodoubleempty\startdefinitiononlynumber}
 \define\stopDefinitionOnlyNumber{\stopsectiononlynumber}
 \def\startdefinitiononlynumber[#1][#2]{%
   \incrementcounter[definition]%
   \startsectiononlynumber[ownnumber={\directconvertedcounter{definition}\empty},
-   incrementnumber=no,#1][#2]}
+   incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[axiom][way=bypart,numberconversion=R]
 \define\startAxiomOnlyNumber{\dodoubleempty\startaxiomonlynumber}
@@ -396,7 +386,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startaxiomonlynumber[#1][#2]{%
   \incrementcounter[axiom]%
   \startsectiononlynumber[ownnumber={\directconvertedcounter{axiom}\empty},
-   incrementnumber=no,#1][#2]}
+   incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[postulate][way=bypart,numberconversion=R]
 \define\startPostulateOnlyNumber{\dodoubleempty\startpostulateonlynumber}
@@ -404,7 +394,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startpostulateonlynumber[#1][#2]{%
   \incrementcounter[postulate]%
   \startsectiononlynumber[ownnumber={\directconvertedcounter{postulate}\empty},
-   incrementnumber=no,#1][#2]}
+   incrementnumber=no,#1][#2]\setCurrentSection}
 
 \protect
 
