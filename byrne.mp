@@ -25,6 +25,7 @@ radian := 180/pi;
 lineWidth := 2pt;
 lineWidthThin := 1pt;
 lineWidthHair := 1/2pt;
+pointMarkSize := 4pt;
 u := 1cm;
 scaleFactor := 1;
 angleScale := 1;
@@ -532,6 +533,31 @@ vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
             else:
                 draw byTextLabel(lineLabel)(endNames[0], 1/2[(0, 0), b], 90, textLabelShift);
             fi;
+        fi;
+    )
+enddef;
+
+%
+% Points
+%
+
+vardef byPointMarkDefine(suffix pointName)(expr col, sty) =
+color pointColor.pointName;
+numeric pointStyle.pointName;
+string pointName.pointName;
+    pointColor.pointName := col;
+    pointStyle.pointName := sty;
+enddef;
+
+vardef byPointLabelDefine(suffix pointName)(expr t) =
+string pointLabel.pointName;
+    pointLabel.pointName := t;
+enddef;
+
+vardef byPointMarkRender (suffix pointName) =
+    image(
+        if (pointStyle.pointName == 0):
+            fill ((fullcircle scaled pointMarkSize) shifted (pointName scaled scaleFactor)) withcolor pointColor.pointName;
         fi;
     )
 enddef;
@@ -1407,11 +1433,6 @@ enddef;
 
 numeric textLabelAvSize;
 textLabelAvSize := abs(ulcorner(textLabelRender("A")) - llcorner(textLabelRender("A")));
-
-vardef byPointLabelDefine(suffix pointName)(expr t) =
-string pointLabel.pointName;
-    pointLabel.pointName := t;
-enddef;
 
 vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
     save labelItself, bb;

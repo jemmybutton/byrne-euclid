@@ -45,7 +45,7 @@
 \advance \evenpict by \PcI
 
 \define\drawCurrentPicture{
-	\setbox1\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}
+	\setbox1\vbox{\currentPicture}
 	\newdimen\pictVOffset
 	\pictVOffset=\topmargin
 	\advance\pictVOffset by \pagetotal
@@ -297,9 +297,9 @@
 \def\drawCurrentPictureInMargin{\dosingleempty\drawcurrentpictureinmargin}
 \def\drawcurrentpictureinmargin[#1]{
 	\iffirstargument\ignorespaces
-		\figureInMargin[#1]{\reuseMPgraphic{\currentInstance::currentPicture}}
+		\figureInMargin[#1]{\currentPicture}
 	\else\ignorespaces
-		\figureInMargin{\reuseMPgraphic{\currentInstance::currentPicture}}
+		\figureInMargin{\currentPicture}
 	\fi\ignorespaces
 }
 

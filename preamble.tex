@@ -83,7 +83,6 @@
 \global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter\dfcpl}}}\csname\lastPict\endcsname}}
 
 
-
 % \drawDefinedPicture draws defined and named picture, aligned as needed and,
 % possibly, with margins modified with \offsetPicture (i. e., if we want picture to act as if it's less tall that it actually is,
 % we put some value as its first argument, if we want picture to be less deep, we use second argument, and place picture
@@ -125,6 +124,8 @@
 
 
 % Some convenient shorthand macros for commonly used derivations of definition picture are defined below
+\def\currentPicture{\reuseMPgraphic{\currentInstance::currentPicture}}
+
 \def\drawUnitLine{\dosingleempty\drawunitline}
 \def\drawunitline[#1]#2{{\ignorespaces
 	\iffirstargument\ignorespaces
@@ -214,6 +215,8 @@
 	\else\ignorespaces
 		\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
+	
+\def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byPointMarkRender(#1); draw byTextLabel(pointLabel)(str #1, #1, 90, textLabelShift); stopAutoLabeling;}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
 \def\drawmagnitude[#1][#2]#3{{\ignorespaces
