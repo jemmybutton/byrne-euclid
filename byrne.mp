@@ -20,13 +20,14 @@
 % Here we define some things of general interest
 %
 
+u := 1cm;
 pi := 3.1415926;
 radian := 180/pi;
 lineWidth := 2pt;
 lineWidthThin := 1pt;
 lineWidthHair := 1/2pt;
 pointMarkSize := 4pt;
-u := 1cm;
+pointLinesScale := 1/2u;
 scaleFactor := 1;
 angleScale := 1;
 globalRotation := 0;
@@ -34,11 +35,12 @@ magnitudeScale := 1/3;
 magnitudeGap := 2lineWidth;
 markLength := 5lineWidth;
 
-boolean textLabels, autoLabelingMode;
+boolean textLabels, autoLabelingMode, mainPictureMode;
 
 textLabels := false;
 textLabelShift := lineWidth;
 autoLabelingMode := false;
+mainPictureMode := false;
 
 numeric dpLength[];
 dpLength0 := 2lineWidth;
@@ -164,6 +166,17 @@ def startAutoLabeling =
 enddef;
 
 def stopAutoLabeling =
+    endgroup
+enddef;
+
+def startMainPictureMode =
+    begingroup
+        save mainPictureMode;
+        boolean mainPictureMode;
+        mainPictureMode := true;
+enddef;
+
+def stopMainPictureMode =
     endgroup
 enddef;
 
@@ -298,6 +311,18 @@ vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
 enddef;
 
 vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
+    if (mainPictureMode):
+        if not string pointLinesList.scantokens(lineEndAName.lineName):
+            string pointLinesList.scantokens(lineEndAName.lineName);
+            pointLinesList.scantokens(lineEndAName.lineName) := "";
+        fi;
+        if not string pointLinesList.scantokens(lineEndBName.lineName):
+            string pointLinesList.scantokens(lineEndBName.lineName);
+            pointLinesList.scantokens(lineEndBName.lineName) := "";
+        fi;
+        pointLinesList.scantokens(lineEndAName.lineName) := pointLinesList.scantokens(lineEndAName.lineName) & str lineName & ", ";
+        pointLinesList.scantokens(lineEndBName.lineName) := pointLinesList.scantokens(lineEndBName.lineName) & str lineName & ", " ;
+    fi;
     byLineRender(lineEndA.lineName, lineEndB.lineName, lineColor.lineName, lineDashed.lineName, lineThin.lineName, c, d, ct, dt, s, scaleFactor)
 enddef;
 
@@ -558,6 +583,93 @@ vardef byPointMarkRender (suffix pointName) =
     image(
         if (pointStyle.pointName == 0):
             fill ((fullcircle scaled pointMarkSize) shifted (pointName scaled scaleFactor)) withcolor pointColor.pointName;
+        fi;
+    )
+enddef;
+
+vardef byNamedPointMark (suffix pointName) =
+    image(
+        draw byPointMarkRender(pointName);
+        if (autoLabelingMode and textLabels):
+            draw byTextLabel(pointLabel)(str pointName, pointName, 90, textLabelShift);
+        fi;
+    )
+enddef;
+
+vardef byPointMark(suffix pointName)(expr col, sty) =
+    image(
+        byPointMarkDefine(pointName)(col, sty);
+        draw byNamedPointMark(pointName);
+    )
+enddef;
+
+vardef byNamedPointLines (suffix pointName) =
+string linesList, lineNames[], pointNames[];
+linesList := substring (0, length(pointLinesList.pointName)/2 - 2) of pointLinesList.pointName; % note that "/2". it is needed because picture is generated twice
+pair distantEnd, distantEnds[];
+numeric n, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, maxAngle, maxAngleEndA, maxAngleEndB;
+    image(
+        n := 0;
+        maxDist := 0;
+        maxAngle := 0;
+        forsuffixes i = scantokens(linesList):
+            n := n + 1;
+            lineNames[n] := str i;
+            if (lineEndAName.i == str pointName):
+                distantEnds[n] := lineEndA.i + (unitvector(lineEndB.i - lineEndA.i) scaled pointLinesScale);
+                pointNames[n] := lineEndBName.i;
+            else:
+                distantEnds[n] := lineEndB.i + (unitvector(lineEndA.i - lineEndB.i) scaled pointLinesScale);
+                pointNames[n] := lineEndAName.i;
+            fi;
+        endfor;
+        if (n > 1):
+            for i := 1 step 1 until n:
+                for j := 1 step 1 until n:
+                    distL := abs(distantEnds[i] - distantEnds[j]);
+                    if (distL > maxDist):
+                        maxDist := distL;
+                        maxDistEndA := i;
+                        maxDistEndB := j;
+                    fi;
+                    a1 := angle(distantEnds[i] - pointName);
+                    a2 := angle(distantEnds[j] - pointName);
+                    if (a1 <= 0): a1 := a1 + 360; fi;
+                    if (a2 <= 0): a2 := a2 + 360; fi;
+                    angleL := a2 - a1;
+                    if (maxAngle < angleL):
+                        maxAngle := angleL;
+                        maxAngleEndA := i;
+                        maxAngleEndB := j;
+                    fi;
+                endfor;
+            endfor;
+            for i := 1 step 1 until n:
+                if (n <> maxDistEndA) and (n <> maxDistEndB):
+                    draw byLineRender(pointName, distantEnds[i],
+                        lineColor.scantokens(lineNames[i]), lineDashed.scantokens(lineNames[i]), lineThin.scantokens(lineNames[i]),
+                        pointName, distantEnds[i], 0, 0, 0, scaleFactor);
+                fi;
+            endfor;
+            draw byLineRender(pointName, distantEnds[maxDistEndA],
+                lineColor.scantokens(lineNames[maxDistEndA]),
+                lineDashed.scantokens(lineNames[maxDistEndA]),
+                lineThin.scantokens(lineNames[maxDistEndA]),
+                distantEnds[maxDistEndB], distantEnds[maxDistEndA], 0, 0, 0, scaleFactor);
+            draw byLineRender(pointName, distantEnds[maxDistEndB],
+                lineColor.scantokens(lineNames[maxDistEndB]),
+                lineDashed.scantokens(lineNames[maxDistEndB]),
+                lineThin.scantokens(lineNames[maxDistEndB]),
+                distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 0, scaleFactor);
+            if (textLabels):
+                draw byLabelsOnPolygon(scantokens(pointNames[maxAngleEndA]),pointName,scantokens(pointNames[maxAngleEndB]))(2, 0);
+            fi;
+        else:
+            draw byLineRender(pointName, distantEnds[1],
+                lineColor.scantokens(lineNames[1]),
+                lineDashed.scantokens(lineNames[1]),
+                lineThin.scantokens(lineNames[1]),
+                pointName, distantEnds[1], 0, 0, 0, scaleFactor);
         fi;
     )
 enddef;

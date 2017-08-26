@@ -32,9 +32,11 @@
 	\startreusableMPgraphic{\currentInstance::currentPicture}
 		input byrne;
 		\mpPre
+		startMainPictureMode;
 		scaleFactor := \sfB;
 			#3
 		scaleFactor := \sfA;
+		stopMainPictureMode;
 	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}\global\addToUndefineList{#2}\ignorespaces}
 
 % Every time some simple picture is drawn, new macro is defined
@@ -216,7 +218,9 @@
 		\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 	
-\def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byPointMarkRender(#1); draw byTextLabel(pointLabel)(str #1, #1, 90, textLabelShift); stopAutoLabeling;}}
+\def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointMark(#1); stopAutoLabeling;}}
+
+\def\drawPointL#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointLines(#1); stopAutoLabeling;}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
 \def\drawmagnitude[#1][#2]#3{{\ignorespaces
