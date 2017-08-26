@@ -220,7 +220,7 @@
 	
 \def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointMark(#1); stopAutoLabeling;}}
 
-\def\drawPointL#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointLines(#1); stopAutoLabeling;}}
+\def\drawPointL#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointLines(#1,""); stopAutoLabeling;}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
 \def\drawmagnitude[#1][#2]#3{{\ignorespaces

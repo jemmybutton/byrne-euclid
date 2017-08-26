@@ -1227,8 +1227,7 @@ draw byLabelsOnCircle(E, F)(A);
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{a given point (\drawFromCurrentPicture{
 startGlobalRotation(-lineAngle.DA);
-draw byNamedLineSeq(0)(DA,AF);
-draw byLabelPoint(A, 90, 1);
+draw byNamedPointLines(A,"AB");
 stopGlobalRotation;
 }) to draw a straight line equal to a given straight line (\drawUnitLine{BC}).}
 
@@ -1731,16 +1730,10 @@ draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line (\drawUnitLine[1.2cm]{DB,CD}) from a~given point (\drawFromCurrentPicture[middle][pointA]{
-startTempScale(scaleFactor/2);
-draw byNamedLine(AD);
-draw byNamedLineSeq(0)(AB,CA);
-draw byLabelsOnPolygon(B, A, C)(2, 0);
-stopTempScale;
-}) without.}
+\problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line (\drawUnitLine[1.2cm]{DB,CD}) from a~given point (\drawPointL{A}) without.}
 
 \startCenterAlign
-With the given point \pointA\ as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}. % improvement: the distance mentioned here seems not to be in the original drawing, it should either be drawn, or not be referenced graphically as DB
+With the given point \drawPointL{A} as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}. % improvement: the distance mentioned here seems not to be in the original drawing, it should either be drawn, or not be referenced graphically as DB
 
 Make $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.X],\\
 draw \drawUnitLine{AB}, \drawUnitLine{CA} and \drawUnitLine{AD}.

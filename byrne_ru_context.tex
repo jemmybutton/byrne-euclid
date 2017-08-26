@@ -1218,7 +1218,7 @@ byLineDefine(B, D, byred, 1, 0);
 byLineDefine(D, A, byred, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
-draw byNamedLineSeq(0)(AF,DA,BD,BE);
+draw byNamedLineSeq(0)(BE,BD,DA,AF);
 draw byNamedLineSeq(0)(AB,BC);
 draw byCircle(D, E, byred, 0, 0, 1/2)(A);
 draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
@@ -1230,8 +1230,7 @@ draw byLabelsOnCircle(E, F)(A);
 \drawCurrentPictureInMargin
 \problemNP{О}{т}{данной точки \drawFromCurrentPicture{
 startGlobalRotation(-lineAngle.DA);
-draw byNamedLineSeq(0)(DA,AF);
-draw byLabelPoint(A, 90, 1);
+draw byNamedPointLines(A,"AB");
 stopGlobalRotation;
 } отложить прямую, равную данной прямой \drawUnitLine{BC}.}
 
@@ -1739,16 +1738,10 @@ draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{ровести}{перпендикуляр к данной неограниченной прямой \drawUnitLine{DB,CD} из данной, не находящейся на ней точки \drawFromCurrentPicture[middle][pointA]{
-startTempScale(scaleFactor/2);
-draw byNamedLine(AD);
-draw byNamedLineSeq(0)(AB,CA);
-draw byLabelsOnPolygon(B, A, C)(2, 0);
-stopTempScale;
-}.}
+\problemNP{П}{ровести}{перпендикуляр к данной неограниченной прямой \drawUnitLine{DB,CD} из данной, не находящейся на ней точки \drawPointL{A}.}
 
 \startCenterAlign
-Взяв данную точку \pointA\ в качестве центра по одну сторону прямой, и любое расстояние, позволяющее достигнуть другой стороны, построим \drawArc{O}.
+Взяв данную точку \drawPointL{A} в качестве центра по одну сторону прямой, и любое расстояние, позволяющее достигнуть другой стороны, построим \drawArc{O}.
 
 Возьмем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.X],\\
 проведем \drawUnitLine{AB}, \drawUnitLine{CA} и \drawUnitLine{AD}.

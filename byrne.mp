@@ -603,49 +603,69 @@ vardef byPointMark(suffix pointName)(expr col, sty) =
     )
 enddef;
 
-vardef byNamedPointLines (suffix pointName) =
+vardef byNamedPointLines (suffix pointName)(expr omitLines) =
 string linesList, lineNames[], pointNames[];
 linesList := substring (0, length(pointLinesList.pointName)/2 - 2) of pointLinesList.pointName; % note that "/2". it is needed because picture is generated twice
 pair distantEnd, distantEnds[];
-numeric n, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, maxAngle, maxAngleEndA, maxAngleEndB;
+numeric n, no, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB;
+boolean omitLine[];
     image(
         n := 0;
+        no := 0;
         maxDist := 0;
         maxAngle := 0;
+        minAngle := 360;
         forsuffixes i = scantokens(linesList):
             n := n + 1;
             lineNames[n] := str i;
+            omitLine[n] := false;
+            if (length(omitLines) > 0):
+                forsuffixes j = scantokens(omitLines):
+                    if ((str i) == (str j)):
+                        omitLine[n] := true;
+                        no := no + 1;
+                    fi;
+                endfor;
+            fi;
             if (lineEndAName.i == str pointName):
-                distantEnds[n] := lineEndA.i + (unitvector(lineEndB.i - lineEndA.i) scaled pointLinesScale);
+                distantEnds[n] := lineEndA.i + (unitvector(lineEndB.i - lineEndA.i) scaled (pointLinesScale/scaleFactor));
                 pointNames[n] := lineEndBName.i;
             else:
-                distantEnds[n] := lineEndB.i + (unitvector(lineEndA.i - lineEndB.i) scaled pointLinesScale);
+                distantEnds[n] := lineEndB.i + (unitvector(lineEndA.i - lineEndB.i) scaled (pointLinesScale/scaleFactor));
                 pointNames[n] := lineEndAName.i;
             fi;
         endfor;
-        if (n > 1):
+        if (n - no > 1):
             for i := 1 step 1 until n:
-                for j := 1 step 1 until n:
-                    distL := abs(distantEnds[i] - distantEnds[j]);
-                    if (distL > maxDist):
-                        maxDist := distL;
-                        maxDistEndA := i;
-                        maxDistEndB := j;
+                if (not omitLine[i]):
+                    minAngle := 360;
+                    for j := 1 step 1 until n:
+                        if (not omitLine[j]):
+                            distL := abs(distantEnds[i] - distantEnds[j]);
+                            if (distL > maxDist):
+                                maxDist := distL;
+                                maxDistEndA := i;
+                                maxDistEndB := j;
+                            fi;
+                            a1 := angle(distantEnds[i] - pointName);
+                            a2 := angle(distantEnds[j] - pointName);
+                            angleL := a2 - a1;
+                            if (angleL < 0): angleL := angleL + 360; fi;
+                            if (minAngle > angleL) and (angleL <> 0):
+                                minAngle := angleL;
+                                minAngleEndA := j;
+                            fi;
+                        fi;
+                    endfor;
+                    if (maxAngle <= minAngle):
+                        maxAngle := minAngle;
+                        maxAngleEndA := minAngleEndA;
+                        maxAngleEndB := i;
                     fi;
-                    a1 := angle(distantEnds[i] - pointName);
-                    a2 := angle(distantEnds[j] - pointName);
-                    if (a1 <= 0): a1 := a1 + 360; fi;
-                    if (a2 <= 0): a2 := a2 + 360; fi;
-                    angleL := a2 - a1;
-                    if (maxAngle < angleL):
-                        maxAngle := angleL;
-                        maxAngleEndA := i;
-                        maxAngleEndB := j;
-                    fi;
-                endfor;
+                fi;
             endfor;
             for i := 1 step 1 until n:
-                if (n <> maxDistEndA) and (n <> maxDistEndB):
+                if (i <> maxDistEndA) and (i <> maxDistEndB) and (not omitLine[i]):
                     draw byLineRender(pointName, distantEnds[i],
                         lineColor.scantokens(lineNames[i]), lineDashed.scantokens(lineNames[i]), lineThin.scantokens(lineNames[i]),
                         pointName, distantEnds[i], 0, 0, 0, scaleFactor);
@@ -670,6 +690,9 @@ numeric n, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, maxAngle, maxA
                 lineDashed.scantokens(lineNames[1]),
                 lineThin.scantokens(lineNames[1]),
                 pointName, distantEnds[1], 0, 0, 0, scaleFactor);
+            if (textLabels):
+                draw byLabelLineEnd (pointName, distantEnds[1])(0);
+            fi;
         fi;
     )
 enddef;
