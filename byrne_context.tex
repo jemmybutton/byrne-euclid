@@ -1215,7 +1215,7 @@ byLineDefine(B, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0); % improvement: change style of either BD or DA
 byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
-draw byNamedLineSeq(0)(AF,DA,BD,BE);
+draw byNamedLineSeq(0)(BE,BD,DA,AF);
 draw byNamedLineSeq(0)(AB,BC);
 draw byCircle(D, E, byred, 0, 0, 1/2)(A);
 draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
@@ -2061,7 +2061,7 @@ and $\therefore \drawUnitLine{DA} + \drawUnitLine{BD} > \drawUnitLine{AB}$
 \stopProposition
 
 \startProposition[title={Prop XXI. Theor.}, reference=prop:I.XXI]
-\defineNewPicture{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E;
 A := (0, 0);
 B := A shifted (7/2u, 0);
@@ -2085,18 +2085,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{I}{f}{from any point (\drawFromCurrentPicture{
-startTempScale(1/5);
-draw byNamedLineSeq(0)(AD,BD);
-draw byLabelsOnPolygon(A, D, B)(2, 0);
-stopTempScale;
-}) within a triangle \drawFromCurrentPicture[bottom]{
-startAutoLabeling;
-startTempScale(1/5);
-draw byNamedLineSeq(0)(CA,EC,BE,AB);
-stopTempScale;
-stopAutoLabeling;
-} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the two other sides, but must contain a greater angle.}
+\problemNP[2]{I}{f}{from any point (\drawFromCurrentPicture{draw byNamedPointLines(D)("DE");}) within a triangle \drawLine[bottom]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the two other sides, but must contain a greater angle.}
 
 \startCenterAlign
 Produce \drawSizedLine{AD},\\
@@ -2229,12 +2218,7 @@ draw byLabelsOnPolygon(D, B, A, C, E, noPoint)(0, 0);
 draw byLabelsOnPolygon(noPoint,J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{t}{a given point (\drawFromCurrentPicture{
-startTempScale(scaleFactor/2);
-draw byNamedLineSeq(0)(FG,HF);
-draw byLabelsOnPolygon(G, F, H)(2, 0);
-stopTempScale;
-}) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
+\problemNP{A}{t}{a given point (\drawPointL{F}) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
 
 Draw \drawUnitLine{BC} between any two points in the legs of the given angle.
 
@@ -2654,18 +2638,12 @@ draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{F}{rom}{a given point
-\drawFromCurrentPicture[middle][pointE]{
-draw byNamedLineSeq(0)(AE,EF);
-draw byLabelsOnPolygon(A, E, F)(2, 0);
-}
+\drawFromCurrentPicture[middle][pointE]{draw byNamedPointLines(E)("EB");}
 to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
 
 \startCenterAlign
 Draw \drawUnitLine{EF} from the point \pointE to any point 
-\drawFromCurrentPicture[middle][pointF]{
-draw byNamedLineSeq(0)(FD,EF);
-draw byLabelsOnPolygon(D, F, E)(2, 0);
-}
+\drawFromCurrentPicture[middle][pointF]{draw byNamedPointLines(F)("CF");}
 in \drawUnitLine{CF,FD},
 
 make $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
@@ -2702,10 +2680,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 
 \startCenterAlign
 Through the point 
-\drawFromCurrentPicture{
-draw byNamedLineSeq(0)(AB,CA);
-draw byLabelsOnPolygon(B, A, C)(2, 0);
-}
+\drawFromCurrentPicture{draw byNamedPointLines(A)("AD,AE");}
 draw\\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 

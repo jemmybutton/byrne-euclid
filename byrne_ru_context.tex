@@ -2070,7 +2070,7 @@ $\therefore \drawUnitLine{DA} + \drawUnitLine{CD} > \drawUnitLine{AB}$ \inprop[p
 \stopProposition
 
 \startProposition[title={Предл. XXI. Теорема}, reference=prop:I.XXI]
-\defineNewPicture{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E;
 A := (0, 0);
 B := A shifted (7/2u, 0);
@@ -2094,18 +2094,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{Е}{сли}{из любой точки \drawFromCurrentPicture{
-startTempScale(1/5);
-draw byNamedLineSeq(0)(AD,BD);
-draw byLabelsOnPolygon(A, D, B)(2, 0);
-stopTempScale;
-} внутри треугольника \drawFromCurrentPicture[bottom]{
-startAutoLabeling;
-startTempScale(1/5);
-draw byNamedLineSeq(0)(CA,EC,BE,AB);
-stopTempScale;
-stopAutoLabeling;
-} провести прямые линии к концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника, и будут заключать больший угол.}
+\problemNP[2]{Е}{сли}{из любой точки \drawFromCurrentPicture{draw byNamedPointLines(D)("DE");} внутри треугольника \drawLine[bottom]{CA,EC,BE,AB} провести прямые линии к концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника, и будут заключать больший угол.}
 
 \startCenterAlign
 Продлим \drawSizedLine{AD},\\
@@ -2238,12 +2227,7 @@ draw byLabelsOnPolygon(D, B, A, C, E, noPoint)(0, 0);
 draw byLabelsOnPolygon(noPoint, J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{ри}{данной точке \drawFromCurrentPicture{
-startTempScale(scaleFactor/2);
-draw byNamedLineSeq(0)(FG,HF);
-draw byLabelsOnPolygon(G, F, H)(2, 0);
-stopTempScale;
-} на данной прямой \drawUnitLine{FG,GJ}, построить угол равный данному прямолинейному углу \drawAngle{A}.}
+\problemNP{П}{ри}{данной точке \drawPointL{F} на данной прямой \drawUnitLine{FG,GJ}, построить угол равный данному прямолинейному углу \drawAngle{A}.}
 
 Проведем \drawUnitLine{BC} между любыми двумя точками сторонами данного угла.
 
@@ -2666,18 +2650,12 @@ draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{П}{ровести}{через данную точку 
-\drawFromCurrentPicture[middle][pointE]{
-draw byNamedLineSeq(0)(AE,EF);
-draw byLabelsOnPolygon(A, E, F)(2, 0);
-} 
+\drawFromCurrentPicture[middle][pointE]{draw byNamedPointLines(E)("EB");} 
 прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
 
 \startCenterAlign
 Проведем \drawUnitLine{EF} из точки \pointE к любой точке
-\drawFromCurrentPicture[middle][pointF]{
-draw byNamedLineSeq(0)(FD,EF);
-draw byLabelsOnPolygon(D, F, E)(2, 0);
-}
+\drawFromCurrentPicture[middle][pointF]{draw byNamedPointLines(F)("CF");} 
 на \drawUnitLine{CF,FD},
 
 сделаем $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
@@ -2714,10 +2692,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 
 \startCenterAlign
 Через точку
-\drawFromCurrentPicture{
-draw byNamedLineSeq(0)(AB,CA);
-draw byLabelsOnPolygon(B, A, C)(2, 0);
-}
+\drawFromCurrentPicture{draw byNamedPointLines(A)("AD,AE");}
 проведем \\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 
@@ -6001,10 +5976,7 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \drawCurrentPictureInMargin
 \problemNP{П}{ровести}{касательную к данному кругу \drawCircle[middle][1/5]{EI} из данной точки.}
 
-Если данная точка расположена на окружности \drawFromCurrentPicture[bottom]{
-draw byNamedLineSeq(0)(AB,BE);
-draw byLabelsOnPolygon(E, B, A)(2, 0);
-}, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и будет искомой касательной \inprop[prop:III.XVI].
+Если данная точка \drawFromCurrentPicture{draw byNamedPointLines(B)("FB");} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и будет искомой касательной \inprop[prop:III.XVI].
 
 Но если точка \drawFromCurrentPicture[bottom]{
 draw byNamedLineSeq(0)(DE,AD,AB);
