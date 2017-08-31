@@ -33,7 +33,7 @@ angleScale := 1;
 globalRotation := 0;
 magnitudeScale := 1/3;
 magnitudeGap := 2lineWidth;
-markLength := 5lineWidth;
+markLength := 3lineWidth;
 
 boolean textLabels, autoLabelingMode, mainPictureMode;
 
@@ -657,7 +657,7 @@ boolean omitLine[];
                             fi;
                         fi;
                     endfor;
-                    if (maxAngle <= minAngle):
+                    if (maxAngle <= minAngle + 1):
                         maxAngle := minAngle;
                         maxAngleEndA := minAngleEndA;
                         maxAngleEndB := i;
@@ -1147,10 +1147,15 @@ color angleColor.angleName, angleOptionalColor.angleName[];
 numeric angleDirection.angleName, angleStandalone.angleName;
 pair angleCenter.angleName;
 string angleAName.angleName, angleBName.angleName, angleCName.angleName;
-    save p, q;
+    save p, q, d;
     path p;
     picture q;
-    p := fullcircle rotated (180 + angle(unitvector(1/2[a,c]-b)));
+    pair d;
+    d := unitvector(1/2[unitvector(a-b),unitvector(c-b)]-b);
+    if (abs(d) == 0):
+        d := unitvector((unitvector(a-c) rotated 90)-b);
+    fi;
+    p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
     angleArc.angleName := p;
     angleDirection.angleName := angle(point (arctime arclength(p)/2 of p) of p);
