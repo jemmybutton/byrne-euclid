@@ -607,7 +607,7 @@ vardef byNamedPointLines (suffix pointName)(expr omitLines) =
 string linesList, lineNames[], pointNames[];
 linesList := substring (0, length(pointLinesList.pointName)/2 - 2) of pointLinesList.pointName; % note that "/2". it is needed because picture is generated twice
 pair distantEnd, distantEnds[];
-numeric n, no, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB;
+numeric n, no, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB, safeLine;
 boolean omitLine[];
     image(
         n := 0;
@@ -626,6 +626,9 @@ boolean omitLine[];
                         no := no + 1;
                     fi;
                 endfor;
+            fi;
+            if (not omitLine[n]):
+                safeLine := n;
             fi;
             if (lineEndAName.i == str pointName):
                 distantEnds[n] := lineEndA.i + (unitvector(lineEndB.i - lineEndA.i) scaled (pointLinesScale/scaleFactor));
@@ -685,13 +688,13 @@ boolean omitLine[];
                 draw byLabelsOnPolygon(scantokens(pointNames[maxAngleEndA]),pointName,scantokens(pointNames[maxAngleEndB]))(2, 0);
             fi;
         else:
-            draw byLineRender(pointName, distantEnds[1],
-                lineColor.scantokens(lineNames[1]),
-                lineDashed.scantokens(lineNames[1]),
-                lineThin.scantokens(lineNames[1]),
-                pointName, distantEnds[1], 0, 0, 0, scaleFactor);
+            draw byLineRender(pointName, distantEnds[safeLine],
+                lineColor.scantokens(lineNames[safeLine]),
+                lineDashed.scantokens(lineNames[safeLine]),
+                lineThin.scantokens(lineNames[safeLine]),
+                pointName, distantEnds[safeLine], 0, 0, 0, scaleFactor);
             if (textLabels):
-                draw byLabelLineEnd (pointName, distantEnds[1])(0);
+                draw byLabelLineEnd (pointName, distantEnds[safeLine])(0);
             fi;
         fi;
     )
@@ -1151,9 +1154,9 @@ string angleAName.angleName, angleBName.angleName, angleCName.angleName;
     path p;
     picture q;
     pair d;
-    d := unitvector(1/2[unitvector(a-b),unitvector(c-b)]-b);
+    d := 1/2[unitvector(a-b),unitvector(c-b)];
     if (abs(d) == 0):
-        d := unitvector((unitvector(a-c) rotated 90)-b);
+        d := (unitvector(a-c) rotated 90);
     fi;
     p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;

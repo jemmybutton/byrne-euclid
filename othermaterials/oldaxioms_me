@@ -1,0 +1,438 @@
+\startchapter[title={Основные понятия}]
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C;
+A := (0, 0);
+B := (2u, 0);
+C := 3/5[A, B];
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, C, B)(0, 0);
+}
+\currentPictureInMargin
+Точки \drawPointL{A} и \drawPointL{B} служат \emph{концами отрезка} \drawProportionalLine{AC,CB}, точка \drawPointL{C} \emph{лежит на отрезке} (иначе, \emph{лежит внутри} отрезка).
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, D;
+A := (0, 1/4u);
+B := (3/2u, 1/2u);
+C := A yscaled -1;
+D := B yscaled -1;
+draw byLine(A, B, byred, 0, 0);
+draw byLine(C, D, byblue, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, B)(0, 0);
+draw byLabelsOnPolygon(noPoint, C, D)(0, 0);
+}
+\currentPictureInMargin
+Отрезки \drawProportionalLine{AB} и \drawProportionalLine{CD} равны друг другу (или, отрезок \drawProportionalLine{AB} равен \drawProportionalLine{CD} и наоборот).
+
+В записи: $\drawProportionalLine{AB} = \drawProportionalLine{CD}$.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, D;
+A := (0, 0);
+B := (2u, 0);
+C := 1/4[A, B];
+D := 3/4[A, B];
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, D, byblue, 0, 0);
+draw byLine(D, B, byred, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, C, D, B)(0, 0);
+}
+\currentPictureInMargin
+Отрезок \drawProportionalLine{CD} \emph{содержится в отрезке} \drawProportionalLine{AC,CD,DB} если все его точки являются также точками отрезка \drawProportionalLine{AC,CD,DB}.
+
+В записи: $\drawProportionalLine{CD} \subset \drawProportionalLine{AC,CD,DB}$
+\stopsection
+
+\startsection[]
+Отрезки \drawProportionalLine{AC,CD} и \drawProportionalLine{CD,DB} \emph{образуют отрезок} \drawProportionalLine{AC,CD,DB}, если они содержатся в \drawProportionalLine{AC,CD,DB} и у \drawProportionalLine{AC,CD,DB} нет точек им не принадлежащих.
+
+В записи: $\drawProportionalLine{AC,CD} \cup \drawProportionalLine{CD,DB} = \drawProportionalLine{AC,CD,DB}$
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C;
+A := (0, 0);
+B := (2u, 0);
+C := 3/5[A, B];
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, C, B)(0, 0);
+}
+\currentPictureInMargin
+Отрезок \drawProportionalLine{AC} \emph{отложен вдоль} отрезка \drawProportionalLine{AC,CB} от его конца \drawPointL{A}, если у этих отрезков есть общий конец \drawPointL{A} и один из отрезков содержится в другом. То есть \drawProportionalLine{AC} отложен вдоль \drawProportionalLine{AC,CB} и \drawProportionalLine{AC,CB} отложен вдоль \drawProportionalLine{AC}. Также можно сказать, что такие отрезки налегают один на другой.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E;
+A := (0, 1/2u);
+B := (2u, -1/2u);
+C := (1/4u, -2/3u);
+D := (7/4u, 3/4u);
+E = whatever[A, B] = whatever[C, D];
+draw byLine(A, E, byred, 0, 0);
+draw byLine(B, E, byred, 0, 0);
+draw byLine(C, E, byblue, 0, 0);
+draw byLine(D, E, byblue, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, B)(0, 0);
+draw byLabelsOnPolygon(noPoint, C, D)(0, 0);
+draw byLabelsOnPolygon(A, E, D)(2, 0);
+}
+\currentPictureInMargin
+Два отрезка \drawProportionalLine{AE,BE} и \drawProportionalLine{CE,DE} \emph{пересекаются}, если на них есть единственная общая точка \drawPointL{E}.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, I;
+A := (0, 0);
+B := (u, 0);
+C := 2[B, A];
+D := 2[A, B];
+E := (-1/4u, 1/2u);
+F := (3/4u, 1u);
+G := (7/5u, 3/5u);
+H := (6/5u, -5/6u);
+I = whatever[A, B] = whatever[G, H];
+draw byLine(C, A, black, 1, 0);
+draw byLine(A, B, black, 0, 0);
+draw byLine(B, D, black, 1, 0);
+draw byLine(E, F, byblue, 0, 0);
+draw byLine(G, I, byred, 0, 0);
+draw byLine(H, I, byred, 0, 0);
+draw byLabelsOnPolygon(noPoint, C, A, B, D)(0, 0);
+draw byLabelsOnPolygon(noPoint, E, F)(0, 0);
+draw byLabelsOnPolygon(noPoint, G, H)(0, 0);
+}
+\currentPictureInMargin
+Точки \drawPointL{E} и \drawPointL{F} \emph{лежат с одной стороны} от \drawProportionalLine{AB}, если \drawProportionalLine{EF} не пересекает никакого отрезка содержащего \drawProportionalLine{AB}.
+\stopsection
+
+\startsection[]
+Точки \drawPointL{G} и \drawPointL{H} \emph{лежат с разных сторон} от \drawProportionalLine{AB}, если \drawProportionalLine{GI,HI} пересекает какой-либо отрезок  \drawProportionalLine{CA,AB,BD} содержащий \drawProportionalLine{AB}.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C;
+A := (0, 0);
+B := (3/2u, 0);
+C := (u, 4/3u);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+draw byAngle(B, A, C, byyellow, 0);
+draw byNamedLineSeq(0)(AB, AC);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+}
+\currentPictureInMargin
+Если у двух отрезков \drawProportionalLine{AB} и \drawProportionalLine{AC} есть общий конец \drawPointL{A} и каждый из отрезков лежит целиком с одной стороны от другого, они образуют \emph{настоящий угол} \drawAngle{BAC}.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C;
+A := (0, 0);
+B := (u, 0);
+C := (-u, 0);
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+draw byAngle(B, A, C, black, 1);
+draw byNamedLineSeq(0)(AC, AB);
+draw byLabelsOnPolygon(noPoint, B, A, C)(0, 0);
+}
+\currentPictureInMargin
+Если у двух отрезков \drawProportionalLine{AB} и \drawProportionalLine{AC} есть общий конец \drawPointL{A}, они составляют один отрезок \drawProportionalLine{AC,AB}, и у них нет общих точек, кроме общего конца \drawPointL{A}, то угол называется \emph{развернутым} \drawAngle{BAC}.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, A', B', C', d;
+d := (2u, 0);
+A := (0, 0);
+B := (4/3u, 0);
+C := (2/3u, u);
+A' := A shifted d;
+B' := B shifted d;
+C' := C shifted d;
+byLineDefine(A, B, byblue, 0, 0);
+byLineDefine(A, C, byred, 0, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+draw byAngle(B, A, C, byyellow, 0);
+draw byNamedLineSeq(0)(AB, AC,BC);
+draw byLabelsOnPolygon(C, B, A)(0, 0);
+byLineDefine(A', B', byblue, 1, 0);
+byLineDefine(A', C', byred, 1, 0);
+byLineDefine(B', C', byyellow, 1, 0);
+draw byAngle(B', A', C', byyellow, 1);
+draw byNamedLineSeq(0)(A'B', A'C',B'C');
+draw byLabelsOnPolygon(C', B', A')(0, 0);
+}
+\currentPictureInMargin
+\emph{Поперечиной} угла \drawAngle{BAC} называется отрезок \drawProportionalLine{BC} с концами на сторонах угла. Поперечины \drawProportionalLine{BC} и \drawProportionalLine{B'C'} углов \drawAngle{BAC} и \drawAngle{B'A'C'} \emph{соответственные}, если $\drawProportionalLine{AB} = \drawProportionalLine{A'B'}$ и $\drawProportionalLine{AC} = \drawProportionalLine{A'C'}$.
+\stopsection
+
+\startsection[]
+Углы равны, если у них есть равные соответственные поперечины.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, D;
+A := (0, 0);
+B := (u, 0);
+C := (1/3u, u);
+D := (-u, 0);
+draw byAngle(B, A, C, byyellow, 0);
+draw byAngle(C, A, D, byblue, 0);
+draw byLine(A, C, byred, 0, 0);
+draw byLine(A, B, byblue, 0, 0);
+draw byLine(A, D, black, 0, 0);
+draw byLabelsOnPolygon(noPoint, B, A, D)(0, 0);
+draw byLabelLineEnd(C, A, 0);
+}
+\currentPictureInMargin
+Углы \drawAngle{CAD} и \drawAngle{BAC} называются \emph{смежными}, если у них одна сторона общая \drawProportionalLine{AC}, а две другие \drawProportionalLine{AB} и \drawProportionalLine{AD} образуют развернутый угол \drawAngle{BAC,CAD}.
+\stopsection
+
+\startsection[]
+\defineNewPicture[1/2]{
+pair A, B, C, D;
+A := (0, 0);
+B := (u, 0);
+C := (0, u);
+D := (-u, 0);
+draw byAngle(B, A, C, byyellow, 0);
+draw byAngle(C, A, D, byblue, 0);
+draw byLine(A, C, byred, 0, 0);
+draw byLine(A, B, byblue, 0, 0);
+draw byLine(A, D, black, 0, 0);
+draw byLabelsOnPolygon(noPoint, B, A, D)(0, 0);
+draw byLabelLineEnd(C, A, 0);
+}
+\currentPictureInMargin
+Угол \drawAngle{CAD} равный своему смежному \drawAngle{BAC} называются \emph{прямым} \drawRightAngle.
+\stopsection
+\stopchapter
+
+\startchapter[title={Аксиомы}]
+%Аксиомы связи
+\startsection[title={аксиома существования}]
+Существует хотя бы один отрезок; у каждого отрезка есть два и только два конца; кроме того отрезок содержит другие точки: точки, лежащие на отрезке.
+\stopsection
+
+\startsection[title={аксиома проведения отрезка}]
+Любые две точки можно соединить отрезком и притом только одним.
+\stopsection
+
+\startsection[title={аксиома деления отрезка}]
+\defineNewPicture[1/2]{
+pair A, B, C;
+A := (0, 0);
+B := (2u, 0);
+C := 3/5[A, B];
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, C, B)(0, 0);
+}
+\currentPictureInMargin
+
+Всякая точка, лежащая на отрезке, делит его на два отрезка, т. е. если \drawPointL{C} на \drawProportionalLine{AC,CB}, то отрезки \drawProportionalLine{AC}, \drawProportionalLine{CB} образуют вместе отрезок \drawProportionalLine{AC,CB} и не имеют общих точек кроме \drawPointL{C}.
+\stopsection
+
+\startsection[title={аксиома соединения отрезков}]
+\defineNewPicture[1/2]{
+pair A, B, C, D;
+A := (0, 0);
+B := (7/4u, 0);
+C := 3/5[A, B];
+D := 4/3[A, B];
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLine(B, D, byyellow, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, C, B, D)(0, 0);
+}
+\currentPictureInMargin
+Если точка \drawPointL{C} лежит на отрезке \drawProportionalLine{AC,CB}, а  \drawPointL{B} на \drawProportionalLine{CB,BD}, то отрезки \drawProportionalLine{AC,CB}, \drawProportionalLine{CB,BD} образуют отрезок \drawProportionalLine{AC,CB,BD}.
+\stopsection
+
+%Аксиомы равенства
+\startsection[title={аксиома откладывания отрезка}]
+\defineNewPicture[1/2]{
+pair A, B, C, M, N, d;
+d := (0, -1/2u);
+A := (0, 0);
+B := (2u, 0);
+M := (0, 0) shifted d;
+N := (3/2u, 0) shifted d;
+C = whatever[A, B] = whatever[N, N shifted -d];
+draw byLine(A, C, byred, 1, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLine(M, N, byred, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, C, B)(0, 0);
+draw byLabelsOnPolygon(noPoint, M, N)(0, 0);
+}
+\currentPictureInMargin
+При любых двух отрезках \drawProportionalLine{AC,CB}, \drawProportionalLine{MN} существует и притом единственный отрезок \drawProportionalLine{AC}, равный \drawProportionalLine{MN} и налегающий на \drawProportionalLine{AC,CB}.
+\stopsection
+
+\startsection[title={аксиома сравнения}]
+Два отрезка, равные одному и тому же отрезку, равны друг другу.
+\stopsection
+
+\startsection[title={аксиома сложения}]
+\defineNewPicture[1/2]{
+pair A, B, C, A', B', C', d;
+d := (0, -1/2u);
+A := (0, 0);
+B := (2u, 0);
+C := 2/3[A, B];
+A' := A shifted d;
+B' := B shifted d;
+C' := C shifted d;
+draw byLine(A, C, byred, 0, 0);
+draw byLine(C, B, byblue, 0, 0);
+draw byLine(A', C', byred, 1, 0);
+draw byLine(C', B', byblue, 1, 0);
+draw byLabelsOnPolygon(noPoint, A, C, B)(0, 0);
+draw byLabelsOnPolygon(noPoint, A', C', B')(0, 0);
+}
+\currentPictureInMargin
+Если \drawPointL{C} на \drawProportionalLine{AC,CB}, \drawPointL{C'} на \drawProportionalLine{A'C',C'B'} и $\drawProportionalLine{AC} = \drawProportionalLine{A'C'}$ и $\drawProportionalLine{CB} = \drawProportionalLine{C'B'}$ то $\drawProportionalLine{AC,CB}= \drawProportionalLine{A'C',C'B'}$.
+\stopsection
+
+\startsection[title={аксиома Архимеда}]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, d;
+numeric n;
+d := (0, -1/2u);
+A := (0, 0);
+B := (2u, 0);
+C := A shifted d;
+D := C shifted (11/18u, 0);
+n := floor(xpart(B)/xpart(D)) + 1;
+E := (xpart(D)*n, ypart(A));
+draw byLine(A, B, byblue, 0, 0);
+draw byLine(C, D, byred, 0, 0);
+draw byLine(B, E, byyellow, 0, 0);
+for i := 0 step 1 until n:
+	draw byMarkLine(i*(xpart(D)/xpart(B)), black)(AB);
+endfor;
+draw byLabelsOnPolygon(noPoint, A, B, E)(0, -2);
+draw byLabelsOnPolygon(noPoint, C, D)(0, 0);
+}
+\currentPictureInMargin
+%При любых данных отрезках $a, b = AB$ существует содержащий  $AA_n AA_n$, на котором есть такие точки $A_1,\dots , A_n$, что $AA_1=A_1 A_2=\dots =A_{n-1}A_n=a AA_1=A_1 A_2=\dots =A_{n-1}A_n=a$.
+При любых двух отрезках \drawProportionalLine{AB} и \drawProportionalLine{CD}, можно отложить вдоль \drawProportionalLine{AB} отрезки равные \drawProportionalLine{CD} столько раз, что они покроют \drawProportionalLine{AB}: \drawProportionalLine{AB,BE}.
+\stopsection
+
+%Аксиома неприрывности
+\startsection[title={аксиома неприрывности}]
+\defineNewPicture[1/2]{
+pair A, B, A', B', A'', B'', A''', B''', C;
+A := (-2u, 0);
+B := (2u, 0);
+A' := A scaled 8/10;
+B' := B scaled 8/10;
+A'' := A' scaled 7/10;
+B'' := B' scaled 7/10;
+A''' := A'' scaled 6/10;
+B''' := B'' scaled 6/10;
+C := (0, 0);
+draw byLine(A, A', byblue, 0, 0);
+draw byLine(A', A'', byyellow, 0, 0);
+draw byLine(A'', A''', byblue, 0, 0);
+draw byLine(A''', B''', byyellow, 1, 0);
+draw byLine(B''', B'', byblue, 0, 0);
+draw byLine(B'', B', byyellow, 0, 0);
+draw byLine(B', B, byblue, 0, 0);
+draw byPointMark(C)(byblue, 0);
+draw byLabelsOnPolygon(noPoint, A, A', A'', A''', C, B''', B'', B', B)(0, 0);
+}
+\currentPictureInMargin
+Если имеется бесконечная последовательность вложенных отрезков, т. е. если
+\drawProportionalLine{AA',A'A'',A''A''',A'''B''',B'''B'',B''B',B'B} содержит \drawProportionalLine{A'A'',A''A''',A'''B''',B'''B'',B''B'} содержит \drawProportionalLine{A''A''',A'''B''',B'''B''} \ldots, то существует точка \drawPointM{C}, общая всем этим отрезкам.
+\stopsection
+
+%Полскостные аксиомы
+\startsection[title={аксиома деления плоскости}]
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H;
+A := (0, 0);
+B := (u, 0);
+C := 2[B, A];
+D := 2[A, B];
+E := (-1/4u, 1/2u);
+F := (3/4u, 1u);
+G := (1/5u, -3/5u);
+H := (u, -5/6u);
+draw byLine(C, A, black, 1, 0);
+draw byLine(A, B, black, 0, 0);
+draw byLine(B, D, black, 1, 0);
+startAutoLabeling;
+draw byPointMark(E)(byred, 0);
+draw byPointMark(F)(byred, 0);
+draw byPointMark(G)(byblue, 0);
+draw byPointMark(H)(byblue, 0);
+stopAutoLabeling;
+draw byLabelsOnPolygon(noPoint, C, A, B, D)(0, 0);
+}
+\currentPictureInMargin
+По отношению к каждому данному отрезку \drawProportionalLine{AB} все точки, не лежащие ни на каком отрезке \drawProportionalLine{CA,AB,BD}, содержащем \drawProportionalLine{AB}, делятся на два класса~— в один класс входят точки \drawPointM{E}, \drawPointM{F}, \ldots, лежащие с одной стороны от \drawProportionalLine{AB}, а в другой точки \drawPointM{G}, \drawPointM{H}, \ldots, лежащие с другой стороны от \drawProportionalLine{AB}, причем в каждом классе есть точки.
+\stopsection
+
+\startsection[title={аксиома откладывания угла}]
+От каждого отрезка по данную сторону от него, от данного его конца можно отложить угол, равный данному (настоящему) углу. При этом можно пользоваться любой поперечиной и угол будет всегда один и тот же.
+\stopsection
+
+\startsection[title={аксиома параллельных отрезков}]
+\defineNewPicture[1/2]{
+pair A, B, C, D, d;
+d := (2u, 0);
+A := (0, 0);
+B := (0, -3/2u);
+C := A shifted d;
+D := B shifted d;
+byLineDefine(A, C, byred, 0, 0);
+byLineDefine(B, D, byblue, 0, 0);
+byLineDefine(A, B, black, 0, 0);
+byLineDefine(C, D, byyellow, 0, 0);
+draw byAngle(D, B, A, black, 1);
+draw byAngle(B, A, C, black, 1);
+draw byNamedLineSeq(0)(AB,AC,CD,BD);
+draw byLabelsOnPolygon(B, A, C, D)(0, 0);
+}
+\currentPictureInMargin
+Если отрезки \drawUnitLine{AC}, \drawUnitLine{BD} равны и идут в одну сторону от отрезка \drawUnitLine{AB} под прямым углом $\drawAngle{DBA} = \drawAngle{BAC}$, то $\drawUnitLine{CD} = \drawUnitLine{AB}$.
+
+Отрезки \drawUnitLine{CD} и \drawUnitLine{AB} называются \emph{параллельными}. В записи: $\drawUnitLine{CD} \parallel \drawUnitLine{AB}$.
+\stopsection
+
+% Аксиомы фигуры
+\startsection[title={аксиома фигуры}]
+\defineNewPicture[1/2]{
+pair A, B;
+A := (0, 0);
+B := (2u, 0);
+byLineDefine(B, A, byred, 0, 0);
+draw byLine(A, B, byred, 0, 0);
+draw byLabelsOnPolygon(noPoint, A, B)(0, 0);
+}
+\currentPictureInMargin
+Фигура определяется принадлежащими ей точками, то есть если имеются такие фигуры \drawProportionalLine{AB} и \drawProportionalLine{BA}, что каждая точка, принадлежащая одной из них, принадлежит также и другой, и наоборот, то эти фигуры представляют собой одну и ту же фигуру.
+\stopsection
+
+\startsection[title={аксиома точки}]
+Точка есть фигура; она принадлежит себе и никакие другие точки ей не принадлежат.
+\stopsection
+
+\startsection[title={аксиома геометрического места}]
+Для всякого условия налагаемого на точки и проверяемого (в принципе) для каждой точки — выполняется оно или нет — существует фигура, содержащая все точки с данным условием и никакие другие.
+\stopsection
+\stopchapter

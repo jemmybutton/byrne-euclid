@@ -220,7 +220,18 @@
 	
 \def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointMark(#1); stopAutoLabeling;}}
 
-\def\drawPointL#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointLines(#1,""); stopAutoLabeling;}}
+\def\drawPointL{\dodoubleempty\drawpointl}
+\def\drawpointl[#1][#2]#3{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\global\def\plal{#1}\ignorespaces
+	\else\ignorespaces
+		\global\def\plal{middle}\ignorespaces
+	\fi\ignorespaces
+	\ifsecondargument\ignorespaces
+		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}
+	\else\ignorespaces
+		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;}
+	\fi\ignorespaces}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
 \def\drawmagnitude[#1][#2]#3{{\ignorespaces
