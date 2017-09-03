@@ -2094,7 +2094,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{Е}{сли}{из любой точки \drawFromCurrentPicture{draw byNamedPointLines(D)("DE");} внутри треугольника \drawLine[bottom]{CA,EC,BE,AB} провести прямые линии к концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника, и будут заключать больший угол.}
+\problemNP[2]{Е}{сли}{из любой точки \drawPointL[middle][DE]{D} внутри треугольника \drawLine[bottom]{CA,EC,BE,AB} провести прямые линии к концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника, и будут заключать больший угол.}
 
 \startCenterAlign
 Продлим \drawSizedLine{AD},\\
@@ -2649,14 +2649,10 @@ draw byLine(F, D, byblue, 0, 0);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{ровести}{через данную точку 
-\drawFromCurrentPicture[middle][pointE]{draw byNamedPointLines(E)("EB");} 
-прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
+\problemNP{П}{ровести}{через данную точку \drawPointL[middle][EB]{E} прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
 
 \startCenterAlign
-Проведем \drawUnitLine{EF} из точки \pointE к любой точке
-\drawFromCurrentPicture[middle][pointF]{draw byNamedPointLines(F)("CF");} 
-на \drawUnitLine{CF,FD},
+Проведем \drawUnitLine{EF} из точки \drawPointL[middle][EB]{E}  к любой точке \drawPointL[middle][CF]{F} на \drawUnitLine{CF,FD},
 
 сделаем $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
 
@@ -2691,9 +2687,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 \problemNP[2]{П}{о}{продлении любой стороны треугольника \drawUnitLine{AB}, the внешний угол \drawAngle{DAE,EAC} равен сумме двух внутренних и противолежащих \drawAngle{B} и \drawAngle{C}, а три внутренних угла треугольника вместе равны двум прямым углам.}
 
 \startCenterAlign
-Через точку
-\drawFromCurrentPicture{draw byNamedPointLines(A)("AD,AE");}
-проведем \\
+Через точку \drawPointL[middle][AD,AE]{A} проведем \\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 
 Тогда $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXIX],
@@ -5976,7 +5970,7 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \drawCurrentPictureInMargin
 \problemNP{П}{ровести}{касательную к данному кругу \drawCircle[middle][1/5]{EI} из данной точки.}
 
-Если данная точка \drawFromCurrentPicture{draw byNamedPointLines(B)("FB");} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и будет искомой касательной \inprop[prop:III.XVI].
+Если данная точка \drawPointL[middle][FB]{B} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и будет искомой касательной \inprop[prop:III.XVI].
 
 Но если точка \drawFromCurrentPicture[bottom]{
 draw byNamedLineSeq(0)(DE,AD,AB);

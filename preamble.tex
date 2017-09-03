@@ -228,9 +228,9 @@
 		\global\def\plal{middle}\ignorespaces
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}
+		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}\ignorespaces
 	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;}
+		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}

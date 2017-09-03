@@ -2085,7 +2085,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{I}{f}{from any point (\drawFromCurrentPicture{draw byNamedPointLines(D)("DE");}) within a triangle \drawLine[bottom]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the two other sides, but must contain a greater angle.}
+\problemNP[2]{I}{f}{from any point (\drawPointL[middle][DE]{D}) within a triangle \drawLine[bottom]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the two other sides, but must contain a greater angle.}
 
 \startCenterAlign
 Produce \drawSizedLine{AD},\\
@@ -2637,14 +2637,10 @@ draw byLine(F, D, byblue, 0, 0);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point
-\drawFromCurrentPicture[middle][pointE]{draw byNamedPointLines(E)("EB");}
-to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
+\problemNP{F}{rom}{a given point \drawPointL[middle][EB]{E} to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
 
 \startCenterAlign
-Draw \drawUnitLine{EF} from the point \pointE to any point 
-\drawFromCurrentPicture[middle][pointF]{draw byNamedPointLines(F)("CF");}
-in \drawUnitLine{CF,FD},
+Draw \drawUnitLine{EF} from the point \drawPointL[middle][EB]{E} to any point  \drawPointL[middle][CF]{F} in \drawUnitLine{CF,FD},
 
 make $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
 
@@ -2679,9 +2675,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 \problemNP[2]{I}{f}{any side (\drawUnitLine{AB}) of a triangle by produced, the external angle (\drawAngle{DAE,EAC}) is equal to the sum of two internal and opposite angles (\drawAngle{B} and \drawAngle{C}), and the three internal angles of any triangle taken together are equal to two right angles.}
 
 \startCenterAlign
-Through the point 
-\drawFromCurrentPicture{draw byNamedPointLines(A)("AD,AE");}
-draw\\
+Through the point \drawPointL[middle][AD,AE]{A} draw\\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 
 Then $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXIX],
@@ -5950,12 +5944,7 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/5]{EI} from a given point, either in or outside of its circumference.}
 
-If a given point be in the circumference, as at \drawFromCurrentPicture[bottom]{
-startTempScale(1/3);
-draw byNamedLineSeq(0)(AB,BE);
-draw byLabelsOnPolygon(E, B, A)(2, 0);
-stopTempScale;
-}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be required tangent \inprop[prop:III.XVI].
+If a given point be in the circumference, as at \drawPointL[middle][FB]{B}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be required tangent \inprop[prop:III.XVI].
 
 But if the given point\drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
