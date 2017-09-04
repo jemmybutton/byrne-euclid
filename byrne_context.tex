@@ -1225,7 +1225,7 @@ draw byLabelsOnCircle(C)(B);
 draw byLabelsOnCircle(E, F)(A);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point (\drawFromCurrentPicture{
+\problemNP{F}{rom}{a given point (\drawFromCurrentPicture[middle][pointA]{
 startGlobalRotation(-lineAngle.DA);
 draw byNamedPointLines(A,"AB");
 stopGlobalRotation;
@@ -1265,7 +1265,7 @@ and $\drawUnitLine{BD} = \drawUnitLine{DA}$ (const.),\\
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[post:III],\\
 but \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
 
-$\therefore \drawUnitLine{AF}$ drawn from the given point (\drawUnitLine{DA,AF}), is equal to the given line \drawUnitLine{BC}.
+$\therefore \drawUnitLine{AF}$ drawn from the given point (\pointA), is equal to the given line \drawUnitLine{BC}.
 \stopCenterAlign
 
 \qed
@@ -1669,18 +1669,10 @@ draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point 
-(\drawFromCurrentPicture{
-draw byNamedLineSeq(0)(DB,CD);
-draw byLabelPoint(D, 90, 1);
-}) in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
+\problemNP{F}{rom}{a given point (\drawPointL[middle][AD]{D}) in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
 
 \startCenterAlign
-Take any point 
-(\drawFromCurrentPicture{
-draw byNamedLineSeq(0)(CD,FC);
-draw byLabelPoint(C, 90, 1);
-}) in the given line,\\
+Take any point (\drawPointL[middle][CA]{C}) in the given line,\\
 cut off $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD} and it shall be perpendicular to the given line.
@@ -5315,18 +5307,15 @@ draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
 
-For if it be supposed that the point \drawFromCurrentPicture{
-draw byNamedLineSeq(0)(DB,DC);
-draw byLabelsOnPolygon(B, D, C)(2, 0);
-} in which more than two equal straight lines meet is not the centre, some other point \drawUnitLine{DF,FL} must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
+For if it be supposed that the point \drawPointL[middle][DH,DA,DF]{D} in which more than two equal straight lines meet is not the centre, some other point \drawFromCurrentPicture[middle][pointF]{
+startGlobalRotation(-lineAngle.DF);
+draw byNamedPointLines(F)("");
+stopGlobalRotation;
+} must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
 
-Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawFromCurrentPicture[middle][pointD]{
-draw byNamedLine(DB);
-draw byNamedLineSeq(0)(DH,DC);
-draw byLabelsOnPolygon(H, D, C)(2, 0);
-}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (hyp.) which is absurd.
+Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawPointL[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (hyp.) which is absurd.
 
-The same may be demonstrated of any other point, different from \pointD, which must be the centre of the circle.
+The same may be demonstrated of any other point, different from \drawPointL[middle][DA,DF]{D}, which must be the centre of the circle.
 
 \qed
 \stopProposition

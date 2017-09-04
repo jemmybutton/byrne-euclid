@@ -1228,7 +1228,7 @@ draw byLabelsOnCircle(C)(B);
 draw byLabelsOnCircle(E, F)(A);
 }
 \drawCurrentPictureInMargin
-\problemNP{О}{т}{данной точки \drawFromCurrentPicture{
+\problemNP{О}{т}{данной точки \drawFromCurrentPicture[middle][pointA]{
 startGlobalRotation(-lineAngle.DA);
 draw byNamedPointLines(A,"AB");
 stopGlobalRotation;
@@ -1268,7 +1268,7 @@ draw byLabelLineEnd(E, D, 1);
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[post:III],\\
 но \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
 
-$\therefore \drawUnitLine{AF}$ проведенная из данной точки (\drawUnitLine{DA,AF}) равна данной прямой \drawUnitLine{BC}.
+$\therefore \drawUnitLine{AF}$ проведенная из данной точки (\pointA) равна данной прямой \drawUnitLine{BC}.
 \stopCenterAlign
 
 \qed
@@ -1674,19 +1674,10 @@ draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{И}{з}{данной точки 
-\drawFromCurrentPicture{
-draw byNamedLineSeq(0)(DB,CD);
-draw byLabelPoint(D, 90, 1);
-}
-на данной прямой \drawUnitLine{DB,CD} построить перпендикуляр.}
+\problemNP{И}{з}{данной точки \drawPointL[middle][AD]{D} на данной прямой \drawUnitLine{DB,CD} построить перпендикуляр.}
 
 \startCenterAlign
-Возьмем любую точку 
-\drawFromCurrentPicture{
-draw byNamedLineSeq(0)(CD,FC);
-draw byLabelPoint(C, 90, 1);
-} на данной прямой,\\
+Возьмем любую точку \drawPointL[middle][CA]{C} на данной прямой,\\
 отсечем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD} и она будет перпендикуляром к данной прямой.
@@ -5342,25 +5333,15 @@ draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{внутри круга \drawCircle[middle]{D} взята точка, из которой к окружности может быть проведено больше двух равных прямых линии \drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}, эта точка является центром круга.}
 
-Действительно, если рассматриваемая точка \drawFromCurrentPicture{
-draw byNamedLineSeq(0)(DB,DC);
-draw byLabelsOnPolygon(B, D, C)(2, 0);
-}, в которой встречается больше двух равных прямых линий, не центр, то какая- то другая \drawFromCurrentPicture{
-startTempScale(1/2);
+Действительно, если рассматриваемая точка \drawPointL[middle][DH,DA,DF]{D}, в которой встречается больше двух равных прямых линий, не центр, то какая-то другая \drawFromCurrentPicture[middle][pointF]{
 startGlobalRotation(-lineAngle.DF);
-draw byNamedLineSeq(0)(DF,FL);
-draw byLabelsOnPolygon(D, F, L)(2, 0);
+draw byNamedPointLines(F)("");
 stopGlobalRotation;
-stopTempScale;
 } должна быть центром, проведем между этими двумя точками \drawUnitLine{DF} и продлим в обе стороны до окружности.
 
-Теперь, поскольку более чем две равных прямых линии проведено к окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawFromCurrentPicture[middle][pointD]{
-draw byNamedLine(DB);
-draw byNamedLineSeq(0)(DH,DC);
-draw byLabelsOnPolygon(H, D, C)(2, 0);
-}, не являющейся центром проямые линии проведены к окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а \drawUnitLine{DC}, которая ближе к \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (гип.), что невозможно.
+Теперь, поскольку более чем две равных прямых линии проведено к окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром проямые линии проведены к окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а \drawUnitLine{DC}, которая ближе к \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (гип.), что невозможно.
 
-То же можно показать для любой другой точки, кроме \pointD, которая, таким образом, должна быть центром круга.
+То же можно показать для любой другой точки, кроме \drawPointL[middle][DA,DF]{D}, которая, таким образом, должна быть центром круга.
 
 \qed
 \stopProposition
