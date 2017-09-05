@@ -181,6 +181,50 @@ Produces a horizontal line with colors and proportions of the given lines. Retur
 \stopsubsection
 \stopsection
 
+\startsection[title={Points}]
+\startsubsection[title={byPointLabelDefine(suffix pointName)(expr t)}]
+Defines text label for a point. Returns nothing.
+{\tt pointName} — of suffix type, point name.
+
+{\tt t} — of string type, text to used as point's label.
+\stopsubsection
+\startsubsection[title={byPointMarkDefine(suffix pointName)(expr col, sty)}]
+Defines a new point marker. Returns nothing.
+
+{\tt pointName} — of suffix type, point name to assign marker to.
+
+{\tt col} — of color type, marker color.
+
+{\tt sty} — of numeric type, marker style (currently not in use).
+\stopsubsection
+\startsubsection[title={byPointMarkRender (suffix pointName)}]
+Renders a point marker. Returns a picture of that marker.
+
+{\tt pointName} — of suffix type, point name.
+\stopsubsection
+\startsubsection[title={byNamedPointMark (suffix pointName)}]
+Draws a point marker with label if necessary. Returns a picture of that marker.
+
+{\tt pointName} — of suffix type, point name.
+\stopsubsection
+\startsubsection[title={byPointMark (suffix pointName)(expr col, sty)}]
+Defines a new point marker. Returns a picture of that marker.
+
+{\tt pointName} — of suffix type, point name to assign marker to.
+
+{\tt col} — of color type, marker color.
+
+{\tt sty} — of numeric type, marker style (currently not in use).
+\stopsubsection
+\startsubsection[title={byNamedPointLines (suffix pointName)(expr omitLines)}]
+Draws stubs of the lines, adjacent to a given point. Returns a picture of those lines.
+
+{\tt pointName} — of suffix type, point name to draw lines for.
+
+{\tt omitLines} — of string type, comma separated list of lines, that should be omitted.
+\stopsubsection
+\stopsection
+
 \startsection[title={Arcs and circles}]
 \startsubsection[title={byArcRender(expr o, b, e, r, col, dp, th, s, et)}]
 All functions that make arcs and circles call this one in the end. Returns a picture of an arc with given properties.
@@ -475,12 +519,6 @@ Draws a text label. Returns a picture of that label.
 
 {\tt d} — of numeric type, label distance.
 \stopsubsection
-\startsubsection[title={byPointLabelDefine(suffix pointName)(expr t)}]
-Defines text label for a point. Returns nothing.
-{\tt pointName} — of suffix type, point name.
-
-{\tt t} — of string type, text to used as point's label.
-\stopsubsection
 \startsubsection[title={byLabelPoint(suffix p)(expr a, d)}]
 Draws text label for a point. Returns a picture of that label.
 {\tt p} — of suffix type, point name.
@@ -562,6 +600,20 @@ Draws a horizontal line with corrected proportional length.
 \#1, optional — length, that will be reproduced $1:1$ ({\tt 2cm} by default).
 
 \#2 — comma separated list of line names.
+\stopsubsection
+\startsubsection[title={drawPointL[\#1][\#2]\{\#3\}}]
+Draws the stubs of the lines adjacent to a given point.
+
+\#1, optional — same as {\tt drawFromCurrentPicture}.
+
+\#2, optional — comma separated list of lines to omit.
+
+\#3 — point name.
+\stopsubsection
+\startsubsection[title={drawPointM\{\#1\}}]
+Draws a point marker.
+
+\#1 — point name.
 \stopsubsection
 \startsubsection[title={drawTwoRightAngles}]
 Draws a flat angle.

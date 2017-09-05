@@ -566,17 +566,17 @@ enddef;
 % Points
 %
 
-vardef byPointMarkDefine(suffix pointName)(expr col, sty) =
+vardef byPointLabelDefine (suffix pointName)(expr t) =
+string pointLabel.pointName;
+    pointLabel.pointName := t;
+enddef;
+
+vardef byPointMarkDefine (suffix pointName)(expr col, sty) =
 color pointColor.pointName;
 numeric pointStyle.pointName;
 string pointName.pointName;
     pointColor.pointName := col;
     pointStyle.pointName := sty;
-enddef;
-
-vardef byPointLabelDefine(suffix pointName)(expr t) =
-string pointLabel.pointName;
-    pointLabel.pointName := t;
 enddef;
 
 vardef byPointMarkRender (suffix pointName) =
@@ -596,7 +596,7 @@ vardef byNamedPointMark (suffix pointName) =
     )
 enddef;
 
-vardef byPointMark(suffix pointName)(expr col, sty) =
+vardef byPointMark (suffix pointName)(expr col, sty) =
     image(
         byPointMarkDefine(pointName)(col, sty);
         draw byNamedPointMark(pointName);
