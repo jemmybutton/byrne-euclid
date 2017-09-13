@@ -1277,7 +1277,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                 for j=1,2:
                     angleCheck := true;
                     for i := 1 step 1 until angleNum:
-                            if (abs(angleDir[i] - anglePart[j]) < 1):
+                            if (abs(dir(angleDir[i]) - dir(anglePart[j])) < 1/100):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
                                 if (angleStyle.aN == 0) or (angleOptionalColor.aN[0] <> white):
@@ -1356,6 +1356,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                 fi;
                 compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
             elseif (j <> 0):
+                show(decimal(j));
                 errmessage("There are gaps in the compound angle");
             fi;
         else:
