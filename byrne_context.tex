@@ -85,7 +85,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 
 \vfill\vfill
 
-~\hfill\reuseMPgraphic{\currentInstance::currentPicture}\hfill~
+~\hfill\currentPicture\hfill~
 
 \vfill\vfill\vfill
 
@@ -140,14 +140,15 @@ Than what is by the faithful eye conveyed.
 	B := (0, 0);
 	A := B shifted (dir(-145)*3u);
 	C = whatever[A, A shifted (1,0)] = whatever[B, B shifted dir(-145+90)];
-		draw byAngleWithName(A, B, C, byyellow, 0)(B);
-		draw byAngleWithName(B, C, A, byblue, 0)(C);
-		draw byAngleWithName(C, A, B, byred, 0)(A);
+		byAngleDefineWithName(A, B, C, byyellow, 0)(B);
+		byAngleDefineWithName(B, C, A, byblue, 0)(C);
+		byAngleDefineWithName(C, A, B, byred, 0)(A);
+		draw byNamedAngleResized;
 		byLineDefine(A, B, byblue, 0, 0);
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
 		draw byNamedLineSeq(0)(AB,BC,CA);
-	label.top(\sometxt{B}, B);
+		label.top(\sometxt{B}, B);
 		label.rt(\sometxt{C}, C);
 		label.lft(\sometxt{A}, A);
 }

@@ -1,4 +1,4 @@
-%    byrne-euclid 0.0.5
+%    byrne-euclid 0.0.6
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2017 Sergey Slyusarev
@@ -85,6 +85,25 @@ vardef cycleval (expr v, l) =
         rv := 0;
     fi;
     rv
+enddef;
+
+vardef appendList (suffix listName)(expr valueToAdd) =
+    if not string listName:
+        string listName;
+        listName := valueToAdd;
+    else:
+        save valueExists;
+        boolean valueExists;
+        valueExists := false;
+        forsuffixes i=scantokens(listName):
+            if (str i == valueToAdd):
+                valueExists := true;
+            fi;
+        endfor;
+        if not valueExists:
+            listName := valueToAdd & ", " & listName;
+        fi;
+    fi;
 enddef;
 
 vardef distanceToLine (expr givenPoint, givenLine) =
@@ -312,16 +331,8 @@ enddef;
 
 vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
     if (mainPictureMode):
-        if not string pointLinesList.scantokens(lineEndAName.lineName):
-            string pointLinesList.scantokens(lineEndAName.lineName);
-            pointLinesList.scantokens(lineEndAName.lineName) := "";
-        fi;
-        if not string pointLinesList.scantokens(lineEndBName.lineName):
-            string pointLinesList.scantokens(lineEndBName.lineName);
-            pointLinesList.scantokens(lineEndBName.lineName) := "";
-        fi;
-        pointLinesList.scantokens(lineEndAName.lineName) := pointLinesList.scantokens(lineEndAName.lineName) & str lineName & ", ";
-        pointLinesList.scantokens(lineEndBName.lineName) := pointLinesList.scantokens(lineEndBName.lineName) & str lineName & ", " ;
+        appendList(pointLinesList.scantokens(lineEndAName.lineName), str lineName);
+        appendList(pointLinesList.scantokens(lineEndBName.lineName), str lineName);
     fi;
     byLineRender(lineEndA.lineName, lineEndB.lineName, lineColor.lineName, lineDashed.lineName, lineThin.lineName, c, d, ct, dt, s, scaleFactor)
 enddef;
@@ -605,7 +616,7 @@ enddef;
 
 vardef byNamedPointLines (suffix pointName)(expr omitLines) =
 string linesList, lineNames[], pointNames[];
-linesList := substring (0, length(pointLinesList.pointName)/2 - 2) of pointLinesList.pointName; % note that "/2". it is needed because picture is generated twice
+linesList := pointLinesList.pointName;
 pair distantEnd, distantEnds[];
 numeric n, no, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB, safeLine;
 boolean omitLine[];
@@ -1147,9 +1158,13 @@ enddef;
 vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
 path angleArc.angleName;
 color angleColor.angleName, angleOptionalColor.angleName[];
-numeric angleDirection.angleName, angleStandalone.angleName;
+numeric angleDirection.angleName, angleStandalone.angleName, angleV.angleName;
 pair angleCenter.angleName;
 string angleAName.angleName, angleBName.angleName, angleCName.angleName;
+if mainPictureMode:
+    appendList(pointAnglesList.b, str angleName);
+    appendList(anglePointsList, str b);
+fi;
     save p, q, d;
     path p;
     picture q;
@@ -1161,6 +1176,7 @@ string angleAName.angleName, angleBName.angleName, angleCName.angleName;
     p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
     angleArc.angleName := p;
+    angleV.angleName := 180*arclength(p scaled 2)/pi;
     angleDirection.angleName := angle(point (arctime arclength(p)/2 of p) of p);
     angleColor.angleName := col;
     angleOptionalColor.angleName[0] := white;
@@ -1356,7 +1372,6 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                 fi;
                 compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
             elseif (j <> 0):
-                show(decimal(j));
                 errmessage("There are gaps in the compound angle");
             fi;
         else:
@@ -1386,6 +1401,69 @@ vardef byNamedAngleSides(text anglesList)(text linesList) =
         draw byNamedAngle(anglesList);
         draw byNamedAngleSidesFull(anglesList)(linesList);
         )
+enddef;
+
+vardef byNamedAngleResized =
+    save modAnglesList, modAnglesListNew, anglesToDraw, anglesAdded, angleIsAdded, v, i, j, k;
+    string modAnglesList, modAnglesListNew, anglesToDraw;
+    numeric anglesAdded, v;
+    boolean angleIsAdded;
+    tmpi := 1;
+    image(
+        forsuffixes i=scantokens(anglePointsList):
+            modAnglesList := pointAnglesList.i;
+            forever:
+                anglesToDraw := "";
+                forever:
+                    modAnglesListNew := "";
+                    anglesAdded := 0;
+                    forsuffixes j=scantokens(modAnglesList):
+                        if (length(anglesToDraw) == 0):
+                            anglesToDraw := str j;
+                        else:
+                            forsuffixes k=scantokens(anglesToDraw):
+                                if (angleAName.k == angleAName.j)
+                                    or (angleCName.k == angleAName.j)
+                                    or (angleAName.k == angleCName.j)
+                                    or (angleCName.k == angleCName.j):
+                                    appendList(anglesToDraw, str j);
+                                    anglesAdded := anglesAdded + 1;
+                                fi;
+                            endfor;
+                        fi;
+                    endfor;
+                    forsuffixes j=scantokens(modAnglesList):
+                        angleIsAdded := false;
+                        forsuffixes k=scantokens(anglesToDraw):
+                            if ((str j) == (str k)):
+                                angleIsAdded := true;
+                            fi;
+                        endfor;
+                        if not angleIsAdded:
+                            if (length(modAnglesListNew) == 0):
+                                modAnglesListNew := str j;
+                            else:
+                                modAnglesListNew := str j & ", " & modAnglesListNew;
+                            fi;
+                        fi;
+                    endfor;
+                    modAnglesList := modAnglesListNew;
+                exitif (anglesAdded == 0) or (length(modAnglesList)==0);
+                endfor;
+                v := 0;
+                forsuffixes k=scantokens(anglesToDraw):
+                    v := v + angleV.k;
+                endfor;
+                if (v > 180):
+                    v := 180;
+                fi;
+                startTempAngleScale(1 + 3/4cosd(v)**2);
+                    draw byNamedAngle(scantokens(anglesToDraw));
+                stopTempAngleScale;
+            exitif (length(modAnglesList)==0);
+            endfor;
+        endfor;
+    )
 enddef;
 
 vardef twoRightAngles =

@@ -146,9 +146,10 @@ Quam quae sunt oculis subjecta fidelibus}\\
 	B := (0, 0);
 	A := B shifted (dir(-145)*3u);
 	C = whatever[A, A shifted (1,0)] = whatever[B, B shifted dir(-145+90)];
-		draw byAngleWithName(A, B, C, byyellow, 0)(B);
-		draw byAngleWithName(B, C, A, byblue, 0)(C);
-		draw byAngleWithName(C, A, B, byred, 0)(A);
+		byAngleDefineWithName(A, B, C, byyellow, 0)(B);
+		byAngleDefineWithName(B, C, A, byblue, 0)(C);
+		byAngleDefineWithName(C, A, B, byred, 0)(A);
+		draw byNamedAngleResized;
 		byLineDefine(A, B, byblue, 0, 0);
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);

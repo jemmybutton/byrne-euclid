@@ -26,7 +26,7 @@
 	\else\ignorespaces
 		\global\def\sfB{1}\ignorespaces
 	\fi\ignorespaces
-	\advance \mpInst by 1\ignorespaces
+	\global\advance \mpInst by 1\ignorespaces
 	\global\def\currentInstance{\the\mpInst}\ignorespaces
 	\defineMPinstance[\currentInstance]\ignorespaces
 	\startreusableMPgraphic{\currentInstance::currentPicture}
