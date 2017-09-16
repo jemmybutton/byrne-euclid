@@ -152,7 +152,8 @@
 \def\drawRightAngle{\ignorespaces
 \drawFromCurrentPicture[middle][onerightangle]{draw rightAngle;}}
 
-\def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{startAutoLabeling;draw byNamedAngle(#1);draw byNamedAngleDummySides(#1);stopAutoLabeling;}}
+\def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{startAutoLabeling;draw byNamedAngleWithDummySides(#1);stopAutoLabeling;}}
+
 
 \def\drawPolygon{\dodoubleempty\drawpolygon}
 \def\drawpolygon[#1][#2]#3{{\ignorespaces

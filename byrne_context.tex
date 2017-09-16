@@ -143,7 +143,7 @@ Than what is by the faithful eye conveyed.
 		byAngleDefineWithName(A, B, C, byyellow, 0)(B);
 		byAngleDefineWithName(B, C, A, byblue, 0)(C);
 		byAngleDefineWithName(C, A, B, byred, 0)(A);
-		draw byNamedAngleResized;
+		draw byNamedAngleResized();
 		byLineDefine(A, B, byblue, 0, 0);
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
@@ -1548,16 +1548,14 @@ draw byLabelsOnPolygon(F, E, D)(0, 0);
 (\drawFromCurrentPicture{
 startAutoLabeling;
 startGlobalRotation(-angleDirection.A);
-draw byNamedAngle(A);
-draw byNamedAngleDummySides(A);
+draw byNamedAngleWithDummySides(A);
 stopGlobalRotation;
 stopAutoLabeling;
 } and
 \drawFromCurrentPicture{
 startAutoLabeling;
 startGlobalRotation(-angleDirection.D);
-draw byNamedAngle(D);
-draw byNamedAngleDummySides(D);
+draw byNamedAngleWithDummySides(D);
 stopGlobalRotation;
 stopAutoLabeling;
 }) contained by their equal sides are also equal.}

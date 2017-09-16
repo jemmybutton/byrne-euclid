@@ -87,6 +87,17 @@ vardef cycleval (expr v, l) =
     rv
 enddef;
 
+vardef angleOpticalScale (expr v) =
+    save va;
+    numeric va;
+    if (v > 90):
+        va := 90;
+    else:
+        va := v;
+    fi;
+    ((va/90)**(-1/2))
+enddef;
+
 vardef appendList (suffix listName)(expr valueToAdd) =
     if not string listName:
         string listName;
@@ -101,7 +112,7 @@ vardef appendList (suffix listName)(expr valueToAdd) =
             fi;
         endfor;
         if not valueExists:
-            listName := valueToAdd & ", " & listName;
+            listName := listName & ", " & valueToAdd;
         fi;
     fi;
 enddef;
@@ -1158,7 +1169,7 @@ enddef;
 vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
 path angleArc.angleName;
 color angleColor.angleName, angleOptionalColor.angleName[];
-numeric angleDirection.angleName, angleStandalone.angleName, angleV.angleName;
+numeric angleDirection.angleName, angleStandalone.angleName, angleVal.angleName, angleAVal.angleName, angleCVal.angleName, angleScaleCorrection.angleName;
 pair angleCenter.angleName;
 string angleAName.angleName, angleBName.angleName, angleCName.angleName;
 if mainPictureMode:
@@ -1176,7 +1187,9 @@ fi;
     p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
     angleArc.angleName := p;
-    angleV.angleName := 180*arclength(p scaled 2)/pi;
+    angleVal.angleName := 180*arclength(p scaled 2)/pi;
+    angleAVal.angleName := angle(a-b);
+    angleCVal.angleName := angle(c-b);
     angleDirection.angleName := angle(point (arctime arclength(p)/2 of p) of p);
     angleColor.angleName := col;
     angleOptionalColor.angleName[0] := white;
@@ -1185,6 +1198,7 @@ fi;
     angleAName.angleName := str a;
     angleBName.angleName := str b;
     angleCName.angleName := str c;
+    angleScaleCorrection.angleName := 1;
     angleStandalone.angleName := 0;
 enddef;
 
@@ -1201,7 +1215,7 @@ vardef byAngle(suffix a, b, c)(expr col, sty) =
     byAngleWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))
 enddef;
 
-vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+vardef byAngleDefineExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
     save n;
     numeric n;
     n := 0;
@@ -1210,8 +1224,13 @@ vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(
         angleOptionalColor.angleName[n] := oC;
         n := n + 1;
     endfor;
+enddef;
+
+vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+    byAngleDefineExtendedWithName(a, b, c)(col, sty)(angleName)(optionalColors);
     byNamedAngle(angleName)
 enddef;
+
 
 vardef byAngleExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
     byAngleExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors)
@@ -1223,6 +1242,7 @@ vardef byNamedAngle(text anglesList) =
     path p[];
     image(
         forsuffixes aN=anglesList:
+            angleScaleCorrection.aN := angleScale;
             p1 := angleArc.aN scaled (u*angleScale);
             p2 := angleArc.aN scaled ((u*angleScale) - lineWidth);
             p3 := angleArc.aN scaled ((u*angleScale) - lineWidthThin);
@@ -1260,17 +1280,18 @@ enddef;
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
 vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
-    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName;
+    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse;
     string centerName, pointName[];
     pair ac, p[];
     boolean uniqueCenter, angleCheck, doNotLabelCenter;
-    numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash;
+    numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
     path compoundAnglePath, compoundAngleArc;
     color lineCol;
     picture outputImage;
     centerName := "";
     uniqueCenter := true;
     doNotLabelCenter := false;
+    scaleToUse := -1;
     forsuffixes aN=anglesList:
         ac := angleCenter.aN;
         if (centerName == ""):
@@ -1281,114 +1302,125 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
         if (angleStandalone.aN > 1):
             doNotLabelCenter := true;
         fi;
+        if (angleScaleCorrection.aN <> angleScale)
+        and (angleScaleCorrection.aN > scaleToUse):
+            scaleToUse := angleScaleCorrection.aN;
+        fi;
     endfor;
+    if (scaleToUse < 0):
+        scaleToUse := angleScale;
+    fi;
     outputImage := image(
-        if (uniqueCenter):
-            angleNum := 0;
-            forsuffixes aN=anglesList:
-                anglePart1 := angle(point 0 of angleArc.aN);
-                as1 := sign(ypart((direction 0 of angleArc.aN) rotated -anglePart1));
-                anglePart2 := angle(point 0 of reverse(angleArc.aN));
-                as2 := sign(ypart((direction 0 of reverse(angleArc.aN)) rotated -anglePart2));
-                for j=1,2:
-                    angleCheck := true;
-                    for i := 1 step 1 until angleNum:
-                            if (abs(dir(angleDir[i]) - dir(anglePart[j])) < 1/100):
+        startTempAngleScale(scaleToUse);
+            if (uniqueCenter):
+                angleNum := 0;
+                forsuffixes aN=anglesList:
+                    anglePart1 := angle(point 0 of angleArc.aN);
+                    as1 := sign(ypart((direction 0 of angleArc.aN) rotated -anglePart1));
+                    anglePart2 := angle(point 0 of reverse(angleArc.aN));
+                    as2 := sign(ypart((direction 0 of reverse(angleArc.aN)) rotated -anglePart2));
+                    for j=1,2:
+                        angleCheck := true;
+                        for i := 1 step 1 until angleNum:
+                            if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
                                 if (angleStyle.aN == 0) or (angleOptionalColor.aN[0] <> white):
                                     angleType[i] := 0;
                                 fi;
                             fi;
+                        endfor;
+                        if (angleCheck):
+                            angleNum := angleNum + 1;
+                            angleDir[angleNum] := anglePart[j];
+                            angleSide[angleNum] := as[j];
+                            if (angleStyle.aN <> 0) and (angleOptionalColor.aN[0] == white):
+                                angleType[angleNum] := 1;
+                            else:
+                                angleType[angleNum] := 0;
+                            fi;
+                            if (j == 1):
+                                if (angleStandalone.aN > 0):
+                                    pointName[angleNum] := "";
+                                else:
+                                    pointName[angleNum] := angleAName.aN;
+                                fi;
+                            elseif (j == 2):
+                                if (angleStandalone.aN > 0):
+                                    pointName[angleNum] := "";
+                                else:
+                                    pointName[angleNum] := angleCName.aN;
+                                fi;
+                            fi;
+                            angleCount[angleNum] := 1;
+                        fi;
                     endfor;
-                    if (angleCheck):
-                        angleNum := angleNum + 1;
-                        angleDir[angleNum] := anglePart[j];
-                        angleSide[angleNum] := as[j];
-                        if (angleStyle.aN <> 0) and (angleOptionalColor.aN[0] == white):
-                            angleType[angleNum] := 1;
+                endfor;
+                j := 0;
+                for i := 1 step 1 until angleNum:
+                    if (angleCount[i] == 1):
+                        j := j + 1;
+                        n[j] := i;
+                    fi;
+                    if (angleType[i] <> 0):
+                        p1 := (ac*scaleFactor);
+                        p2 := ((dir(angleDir[i]) scaled (u * angleScale))) shifted (ac*scaleFactor);
+                        lineCol := black;
+                        lineDash := 0;
+                        lineTh := 1;
+                        forsuffixes lN=linesList:
+                            if (lineEndAName.lN == centerName):
+                                if (abs(angle(lineEndB.lN - lineEndA.lN) - angleDir[i]) < 1):
+                                    lineCol := lineColor.lN;
+                                    lineDash := lineDashed.lN;
+                                    lineTh := lineThin.lN;
+                                fi;
+                            elseif (lineEndBName.lN == centerName):
+                                if (abs(angle(lineEndA.lN - lineEndB.lN) - angleDir[i]) < 1):
+                                    lineCol := lineColor.lN;
+                                    lineDash := lineDashed.lN;
+                                    lineTh := lineThin.lN;
+                                fi;
+                            fi;
+                        endfor;
+                        if (angleCount[i] > 1):
+                            draw byLineRender (p1, p2, lineCol, lineDash, lineTh, p1, p2, t, 0, 0, 1);
                         else:
-                            angleType[angleNum] := 0;
+                            draw byLineRender (p1, p2, lineCol, lineDash, lineTh, p1, p2, 0, 0, -angleSide[i], 1);
                         fi;
-                        if (j == 1):
-                            if (angleStandalone.aN > 0):
-                                pointName[angleNum] := "";
-                            else:
-                                pointName[angleNum] := angleAName.aN;
-                            fi;
-                        elseif (j == 2):
-                            if (angleStandalone.aN > 0):
-                                pointName[angleNum] := "";
-                            else:
-                                pointName[angleNum] := angleCName.aN;
-                            fi;
-                        fi;
-                        angleCount[angleNum] := 1;
                     fi;
                 endfor;
-            endfor;
-            j := 0;
-            for i := 1 step 1 until angleNum:
-                if (angleCount[i] == 1):
-                    j := j + 1;
-                    n[j] := i;
-                fi;
-                if (angleType[i] <> 0):
-                    p1 := (ac*scaleFactor);
-                    p2 := ((dir(angleDir[i]) scaled (u * angleScale))) shifted (ac*scaleFactor);
-                    lineCol := black;
-                    lineDash := 0;
-                    lineTh := 1;
-                    forsuffixes lN=linesList:
-                        if (lineEndAName.lN == centerName):
-                            if (abs(angle(lineEndB.lN - lineEndA.lN) - angleDir[i]) < 1):
-                                lineCol := lineColor.lN;
-                                lineDash := lineDashed.lN;
-                                lineTh := lineThin.lN;
-                            fi;
-                        elseif (lineEndBName.lN == centerName):
-                            if (abs(angle(lineEndA.lN - lineEndB.lN) - angleDir[i]) < 1):
-                                lineCol := lineColor.lN;
-                                lineDash := lineDashed.lN;
-                                lineTh := lineThin.lN;
-                            fi;
-                        fi;
-                    endfor;
-                    if (angleCount[i] > 1):
-                        draw byLineRender (p1, p2, lineCol, lineDash, lineTh, p1, p2, t, 0, 0, 1);
+                if (j == 2):
+                    b := (angleDir[n[1]]/360)*8;
+                    e := (angleDir[n[2]]/360)*8;
+                    if (b > e): b := b - 8; fi;
+                    if (angleSide[n[1]] > angleSide[n[2]]):
+                        compoundAngleArc := ((subpath (b, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
                     else:
-                        draw byLineRender (p1, p2, lineCol, lineDash, lineTh, p1, p2, 0, 0, -angleSide[i], 1);
+                        compoundAngleArc := ((subpath (b + 8, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
                     fi;
+                    compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
+                elseif (j <> 0):
+                    errmessage("There are gaps in the compound angle");
                 fi;
-            endfor;
-            if (j == 2):
-                b := (angleDir[n[1]]/360)*8;
-                e := (angleDir[n[2]]/360)*8;
-                if (b > e): b := b - 8; fi;
-                if (angleSide[n[1]] > angleSide[n[2]]):
-                    compoundAngleArc := ((subpath (b, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
-                else:
-                    compoundAngleArc := ((subpath (b + 8, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
-                fi;
-                compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
-            elseif (j <> 0):
-                errmessage("There are gaps in the compound angle");
+            else:
+                errmessage("The angles are not concentric");
             fi;
-        else:
-            errmessage("The angles are not concentric");
-        fi;
+        stopTempAngleScale;
     );
     clip outputImage to compoundAnglePath;
     image(
-        draw outputImage rotated globalRotation;
-        if (textLabels and autoLabelingMode) and (j==2):
-            for i=1,2:
-                draw byTextLabel(pointLabel)(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
-            endfor;
-            if not doNotLabelCenter:
-                draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
+        startTempAngleScale(scaleToUse);
+            draw outputImage rotated globalRotation;
+            if (textLabels and autoLabelingMode) and (j==2):
+                for i=1,2:
+                    draw byTextLabel(pointLabel)(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
+                endfor;
+                if not doNotLabelCenter:
+                    draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
+                fi;
             fi;
-        fi;
+        stopTempAngleScale;
     )
 enddef;
 
@@ -1403,65 +1435,90 @@ vardef byNamedAngleSides(text anglesList)(text linesList) =
         )
 enddef;
 
-vardef byNamedAngleResized =
-    save modAnglesList, modAnglesListNew, anglesToDraw, anglesAdded, angleIsAdded, v, i, j, k;
+vardef byNamedAngleWithDummySides(text anglesList)=
+    image(
+        draw byNamedAngle(anglesList);
+        draw byNamedAngleDummySides(anglesList);
+        )
+enddef;
+
+
+vardef byNamedAngleResized (text anglesToOmit) =
+    save modAnglesList, modAnglesListNew, anglesToDraw, anglesAdded, angleIsAdded, omitThisAngle, sc, v, i, j, k;
     string modAnglesList, modAnglesListNew, anglesToDraw;
-    numeric anglesAdded, v;
-    boolean angleIsAdded;
+    numeric anglesAdded, sc, v;
+    boolean angleIsAdded, omitThisAngle;
     tmpi := 1;
     image(
         forsuffixes i=scantokens(anglePointsList):
             modAnglesList := pointAnglesList.i;
-            forever:
-                anglesToDraw := "";
+            modAnglesListNew := "";
+            forsuffixes j=scantokens(modAnglesList):
+                omitThisAngle := false;
+                forsuffixes k=anglesToOmit:
+                    if (str j == str k):
+                        omitThisAngle := true;
+                    fi;
+                endfor;
+                if (not omitThisAngle):
+                    if (length(modAnglesListNew) == 0):
+                        modAnglesListNew := str j;
+                    else:
+                        modAnglesListNew := str j & ", " & modAnglesListNew;
+                    fi;
+                fi;
+            endfor;
+            modAnglesList := modAnglesListNew;
+            if (length(modAnglesList)>0):
                 forever:
-                    modAnglesListNew := "";
-                    anglesAdded := 0;
-                    forsuffixes j=scantokens(modAnglesList):
-                        if (length(anglesToDraw) == 0):
-                            anglesToDraw := str j;
-                        else:
-                            forsuffixes k=scantokens(anglesToDraw):
-                                if (angleAName.k == angleAName.j)
-                                    or (angleCName.k == angleAName.j)
-                                    or (angleAName.k == angleCName.j)
-                                    or (angleCName.k == angleCName.j):
-                                    appendList(anglesToDraw, str j);
-                                    anglesAdded := anglesAdded + 1;
-                                fi;
-                            endfor;
-                        fi;
-                    endfor;
-                    forsuffixes j=scantokens(modAnglesList):
-                        angleIsAdded := false;
-                        forsuffixes k=scantokens(anglesToDraw):
-                            if ((str j) == (str k)):
-                                angleIsAdded := true;
+                    anglesToDraw := "";
+                    forever:
+                        modAnglesListNew := "";
+                        anglesAdded := 0;
+                        forsuffixes j=scantokens(modAnglesList):
+                            if (length(anglesToDraw) == 0):
+                                anglesToDraw := str j;
+                            else:
+                                forsuffixes k=scantokens(anglesToDraw):
+                                    if ((abs(angleAVal.k - angleAVal.j) mod 360) < 1)
+                                    or ((abs(angleCVal.k - angleAVal.j) mod 360) < 1)
+                                    or ((abs(angleAVal.k - angleCVal.j) mod 360) < 1)
+                                    or ((abs(angleCVal.k - angleCVal.j) mod 360) < 1):
+                                        appendList(anglesToDraw, str j);
+                                        anglesAdded := anglesAdded + 1;
+                                    fi;
+                                endfor;
                             fi;
                         endfor;
-                        if not angleIsAdded:
-                            if (length(modAnglesListNew) == 0):
-                                modAnglesListNew := str j;
-                            else:
-                                modAnglesListNew := str j & ", " & modAnglesListNew;
+                        forsuffixes j=scantokens(modAnglesList):
+                            angleIsAdded := false;
+                            forsuffixes k=scantokens(anglesToDraw):
+                                if ((str j) == (str k)):
+                                    angleIsAdded := true;
+                                fi;
+                            endfor;
+                            if not angleIsAdded:
+                                if (length(modAnglesListNew) == 0):
+                                    modAnglesListNew := str j;
+                                else:
+                                    modAnglesListNew := str j & ", " & modAnglesListNew;
+                                fi;
                             fi;
-                        fi;
+                        endfor;
+                        modAnglesList := modAnglesListNew;
+                    exitif (anglesAdded == 0) or (length(modAnglesList)==0);
                     endfor;
-                    modAnglesList := modAnglesListNew;
-                exitif (anglesAdded == 0) or (length(modAnglesList)==0);
+                    v := 0;
+                    forsuffixes k=scantokens(anglesToDraw):
+                        v := v + angleVal.k;
+                    endfor;
+                    sc := angleOpticalScale(v);
+                    startTempAngleScale(angleScale*sc);
+                        draw byNamedAngle(scantokens(anglesToDraw));
+                    stopTempAngleScale;
+                exitif (length(modAnglesList)==0);
                 endfor;
-                v := 0;
-                forsuffixes k=scantokens(anglesToDraw):
-                    v := v + angleV.k;
-                endfor;
-                if (v > 180):
-                    v := 180;
-                fi;
-                startTempAngleScale(1 + 3/4cosd(v)**2);
-                    draw byNamedAngle(scantokens(anglesToDraw));
-                stopTempAngleScale;
-            exitif (length(modAnglesList)==0);
-            endfor;
+            fi;
         endfor;
     )
 enddef;
@@ -1800,7 +1857,7 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                     pair q[];
                     q4 := unitvector(p1-p0) rotated 90;
                     q5 := unitvector(p2-p1) rotated 90;
-                    if (abs(sind(angle(q4) - angle(q5)))>1/1000):
+                    if ((abs(angle(q4) - angle(q5)) mod 180) > 1):
                         q0 := p0 shifted q4;
                         q1 := p1 shifted q4;
                         q2 := p1 shifted q5;
