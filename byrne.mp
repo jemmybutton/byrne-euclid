@@ -1443,24 +1443,31 @@ vardef byNamedAngleWithDummySides(text anglesList)=
 enddef;
 
 
-vardef byNamedAngleResized (text anglesToOmit) =
-    save modAnglesList, modAnglesListNew, anglesToDraw, anglesAdded, angleIsAdded, omitThisAngle, sc, v, i, j, k;
+vardef byNamedAngleResized (text anglesToUse) =
+    save modAnglesList, modAnglesListNew, anglesToDraw, anglesAdded, angleIsAdded, useThisAngle, sc, v, numOfAngles, i, j, k;
     string modAnglesList, modAnglesListNew, anglesToDraw;
-    numeric anglesAdded, sc, v;
-    boolean angleIsAdded, omitThisAngle;
-    tmpi := 1;
+    numeric anglesAdded, sc, v, numOfAngles;
+    boolean angleIsAdded, useThisAngle;
+    numOfAngles := -1;
+    forsuffixes k=anglesToUse:
+        numOfAngles := numOfAngles + 1;
+    endfor;
     image(
         forsuffixes i=scantokens(anglePointsList):
             modAnglesList := pointAnglesList.i;
             modAnglesListNew := "";
             forsuffixes j=scantokens(modAnglesList):
-                omitThisAngle := false;
-                forsuffixes k=anglesToOmit:
-                    if (str j == str k):
-                        omitThisAngle := true;
-                    fi;
-                endfor;
-                if (not omitThisAngle):
+                if (numOfAngles > 0):
+                    useThisAngle := false;
+                    forsuffixes k=anglesToUse:
+                        if (str j == str k):
+                            useThisAngle := true;
+                        fi;
+                    endfor;
+                else:
+                    useThisAngle := true;
+                fi;
+                if (useThisAngle):
                     if (length(modAnglesListNew) == 0):
                         modAnglesListNew := str j;
                     else:
