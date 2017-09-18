@@ -90,12 +90,12 @@ enddef;
 vardef angleOpticalScale (expr v) =
     save va;
     numeric va;
-    if (v > 90):
-        va := 90;
+    if (v > 60):
+        va := 60;
     else:
         va := v;
     fi;
-    ((va/90)**(-1/2))
+    ((va/60)**(-1/2))
 enddef;
 
 vardef appendList (suffix listName)(expr valueToAdd) =
@@ -1448,9 +1448,11 @@ vardef byNamedAngleResized (text anglesToUse) =
     string modAnglesList, modAnglesListNew, anglesToDraw;
     numeric anglesAdded, sc, v, numOfAngles;
     boolean angleIsAdded, useThisAngle;
-    numOfAngles := -1;
+    numOfAngles := 0;
     forsuffixes k=anglesToUse:
-        numOfAngles := numOfAngles + 1;
+        if (length(str k) > 0):
+            numOfAngles := numOfAngles + 1;
+        fi;
     endfor;
     image(
         forsuffixes i=scantokens(anglePointsList):
@@ -1517,7 +1519,8 @@ vardef byNamedAngleResized (text anglesToUse) =
                     endfor;
                     v := 0;
                     forsuffixes k=scantokens(anglesToDraw):
-                        v := v + angleVal.k;
+                        %v := v + angleVal.k;
+                        if (angleVal.k > v): v := angleVal.k; fi;
                     endfor;
                     sc := angleOpticalScale(v);
                     startTempAngleScale(angleScale*sc);
