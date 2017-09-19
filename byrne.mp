@@ -117,6 +117,38 @@ vardef appendList (suffix listName)(expr valueToAdd) =
     fi;
 enddef;
 
+vardef setAttribute (expr attrType, attrGenus, attrSpecies, attrName, attrValue) =
+    scantokens(attrType) scantokens(attrGenus & attrSpecies).scantokens(attrName);
+    scantokens(attrGenus & attrSpecies).scantokens(attrName) := attrValue;
+enddef;
+
+vardef setAttributeMulti (expr attrType, attrGenus, attrSpecies, attrName, attrValue, n) =
+    scantokens(attrType) scantokens(attrGenus & attrSpecies).scantokens(attrName)[];
+    scantokens(attrGenus & attrSpecies).scantokens(attrName)[n] := attrValue;
+enddef;
+
+vardef getAttribute (expr attrGenus, attrSpecies, attrName) =
+    save finName;
+    string finName;
+    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
+        finName := attrName;
+    else:
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+    fi;
+    scantokens(attrGenus & attrSpecies).scantokens(finName)
+enddef;
+
+vardef getAttributeMulti (expr attrGenus, attrSpecies, attrName, n) =
+    save finName;
+    string finName;
+    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
+        finName := attrName;
+    else:
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+    fi;
+    scantokens(attrGenus & attrSpecies).scantokens(finName)[n]
+enddef;
+
 vardef distanceToLine (expr givenPoint, givenLine) =
     save p;
     pair p[];
@@ -1167,11 +1199,6 @@ enddef;
 %
 
 vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
-path angleArc.angleName;
-color angleColor.angleName, angleOptionalColor.angleName[];
-numeric angleDirection.angleName, angleStandalone.angleName, angleVal.angleName, angleAVal.angleName, angleCVal.angleName, angleScaleCorrection.angleName;
-pair angleCenter.angleName;
-string angleAName.angleName, angleBName.angleName, angleCName.angleName;
 if mainPictureMode:
     appendList(pointAnglesList.b, str angleName);
     appendList(anglePointsList, str b);
@@ -1186,20 +1213,21 @@ fi;
     fi;
     p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
-    angleArc.angleName := p;
-    angleVal.angleName := 180*arclength(p scaled 2)/pi;
-    angleAVal.angleName := angle(a-b);
-    angleCVal.angleName := angle(c-b);
-    angleDirection.angleName := angle(point (arctime arclength(p)/2 of p) of p);
-    angleColor.angleName := col;
-    angleOptionalColor.angleName[0] := white;
-    angleStyle.angleName := sty;
-    angleCenter.angleName := b;
-    angleAName.angleName := str a;
-    angleBName.angleName := str b;
-    angleCName.angleName := str c;
-    angleScaleCorrection.angleName := 1;
-    angleStandalone.angleName := 0;
+    setAttribute("path", "angle", "Arc", str angleName, p);
+    setAttribute("numeric", "angle", "Val", str angleName, 180*arclength(p scaled 2)/pi);
+    setAttribute("numeric", "angle", "AVal", str angleName, angle(a-b));
+    setAttribute("numeric", "angle", "CVal", str angleName, angle(c-b));
+    setAttribute("numeric", "angle", "Direction", str angleName, angle(point (arctime arclength(p)/2 of p) of p));
+    setAttribute("color", "angle", "Color", str angleName, col);
+    setAttributeMulti("color", "angle", "OptionalColor", str angleName, col, 0);
+    setAttribute("numeric", "angle", "Style", str angleName, sty);
+    setAttribute("pair", "angle", "Center", str angleName, b);
+    setAttribute("string", "angle", "AName", str angleName, str a);
+    setAttribute("string", "angle", "BName", str angleName, str b);
+    setAttribute("string", "angle", "CName", str angleName, str c);
+    setAttribute("numeric", "angle", "ScaleCorrection", str angleName, 1);
+    setAttribute("numeric", "angle", "Standalone", str angleName, 0);
+    setAttribute("string", "angle", "Synonym", str angleName, str angleName);
 enddef;
 
 vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
@@ -1221,7 +1249,7 @@ vardef byAngleDefineExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angle
     n := 0;
     byAngleDefineWithName(a, b, c, col, sty)(angleName);
     forsuffixes oC=optionalColors:
-        angleOptionalColor.angleName[n] := oC;
+        setAttributeMulti("color", "angle", "OptionalColor", str angleName, oC, n);
         n := n + 1;
     endfor;
 enddef;
@@ -1230,7 +1258,6 @@ vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(
     byAngleDefineExtendedWithName(a, b, c)(col, sty)(angleName)(optionalColors);
     byNamedAngle(angleName)
 enddef;
-
 
 vardef byAngleExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
     byAngleExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors)
@@ -1242,25 +1269,25 @@ vardef byNamedAngle(text anglesList) =
     path p[];
     image(
         forsuffixes aN=anglesList:
-            angleScaleCorrection.aN := angleScale;
-            p1 := angleArc.aN scaled (u*angleScale);
-            p2 := angleArc.aN scaled ((u*angleScale) - lineWidth);
-            p3 := angleArc.aN scaled ((u*angleScale) - lineWidthThin);
+            setAttribute("numeric", "angle", "ScaleCorrection", str aN, angleScale);
+            p1 := getAttribute("angle", "Arc", str aN) scaled (u*angleScale);
+            p2 := getAttribute("angle", "Arc", str aN) scaled ((u*angleScale) - lineWidth);
+            p3 := getAttribute("angle", "Arc", str aN) scaled ((u*angleScale) - lineWidthThin);
             q := image(
-                if ((angleColor.aN <> white) and (angleColor.aN <> white)):
-                    if (angleStyle.aN = 0):
-                        fill ((0, 0)--p1--cycle) withcolor angleColor.aN;
-                    elseif (angleStyle.aN = 1):
-                        fill ((0, 0)--p1--cycle) withcolor angleOptionalColor.aN[0];
-                        draw p2 withpen pencircle scaled lineWidth withcolor angleColor.aN;
-                    elseif (angleStyle.aN = 2):
-                        draw p2 withpen pencircle scaled lineWidth withcolor angleColor.aN dashed byDashPattern(arclength(p2), 1);
-                    elseif (angleStyle.aN = 3):
+                if ((getAttribute("angle", "Color", str aN) <> white) and (getAttribute("angle", "Color", str aN) <> white)):
+                    if (getAttribute("angle", "Style", str aN) = 0):
+                        fill ((0, 0)--p1--cycle) withcolor getAttribute("angle", "Color", str aN);
+                    elseif (getAttribute("angle", "Style", str aN) = 1):
+                        fill ((0, 0)--p1--cycle) withcolor getAttributeMulti("angle", "OptionalColor", str aN, 0);
+                        draw p2 withpen pencircle scaled lineWidth withcolor getAttribute("angle", "Color", str aN);
+                    elseif (getAttribute("angle", "Style", str aN) = 2):
+                        draw p2 withpen pencircle scaled lineWidth withcolor getAttribute("angle", "Color", str aN) dashed byDashPattern(arclength(p2), 1);
+                    elseif (getAttribute("angle", "Style", str aN) = 3):
                         for i := 1 step -1/floor((u*angleScale)/2mm) until 0:
-                            draw (p3 scaled i) withpen pencircle scaled lineWidthThin withcolor angleColor.aN;
+                            draw (p3 scaled i) withpen pencircle scaled lineWidthThin withcolor getAttribute("angle", "Color", str aN);
                         endfor;
-                    elseif (angleStyle.aN = -1):
-                            draw p3 withpen pencircle scaled lineWidthThin withcolor angleColor.aN;
+                    elseif (getAttribute("angle", "Style", str aN) = -1):
+                            draw p3 withpen pencircle scaled lineWidthThin withcolor getAttribute("angle", "Color", str aN);
                     fi;
                 else:
                     fill ((0, 0)--p1--cycle) withcolor white;
@@ -1268,7 +1295,7 @@ vardef byNamedAngle(text anglesList) =
                 fi;
             );
             clip q to ((0, 0)--p1--cycle);
-            draw (q shifted (angleCenter.aN scaled scaleFactor)) rotated globalRotation;
+            draw (q shifted (getAttribute("angle", "Center", str aN) scaled scaleFactor)) rotated globalRotation;
         endfor;
     )
 enddef;
@@ -1293,18 +1320,18 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
     doNotLabelCenter := false;
     scaleToUse := -1;
     forsuffixes aN=anglesList:
-        ac := angleCenter.aN;
+        ac := getAttribute("angle", "Center", str aN);
         if (centerName == ""):
-            centerName := angleBName.aN;
-        elseif (centerName <> angleBName.aN):
+            centerName := getAttribute("angle", "BName", str aN);
+        elseif (centerName <> getAttribute("angle", "BName", str aN)):
             uniqueCenter := false;
         fi;
-        if (angleStandalone.aN > 1):
+        if (getAttribute("angle", "Standalone", str aN) > 1):
             doNotLabelCenter := true;
         fi;
-        if (angleScaleCorrection.aN <> angleScale)
-        and (angleScaleCorrection.aN > scaleToUse):
-            scaleToUse := angleScaleCorrection.aN;
+        if (getAttribute("angle", "ScaleCorrection", str aN) <> angleScale)
+        and (getAttribute("angle", "ScaleCorrection", str aN) > scaleToUse):
+            scaleToUse := getAttribute("angle", "ScaleCorrection", str aN);
         fi;
     endfor;
     if (scaleToUse < 0):
@@ -1315,17 +1342,17 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
             if (uniqueCenter):
                 angleNum := 0;
                 forsuffixes aN=anglesList:
-                    anglePart1 := angle(point 0 of angleArc.aN);
-                    as1 := sign(ypart((direction 0 of angleArc.aN) rotated -anglePart1));
-                    anglePart2 := angle(point 0 of reverse(angleArc.aN));
-                    as2 := sign(ypart((direction 0 of reverse(angleArc.aN)) rotated -anglePart2));
+                    anglePart1 := angle(point 0 of getAttribute("angle", "Arc", str aN));
+                    as1 := sign(ypart((direction 0 of getAttribute("angle", "Arc", str aN)) rotated -anglePart1));
+                    anglePart2 := angle(point 0 of reverse(getAttribute("angle", "Arc", str aN)));
+                    as2 := sign(ypart((direction 0 of reverse(getAttribute("angle", "Arc", str aN))) rotated -anglePart2));
                     for j=1,2:
                         angleCheck := true;
                         for i := 1 step 1 until angleNum:
                             if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
-                                if (angleStyle.aN == 0) or (angleOptionalColor.aN[0] <> white):
+                                if (getAttribute("angle", "Style", str aN) == 0) or (getAttributeMulti("angle", "OptionalColor", str aN, 0) <> white):
                                     angleType[i] := 0;
                                 fi;
                             fi;
@@ -1334,22 +1361,22 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             angleNum := angleNum + 1;
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
-                            if (angleStyle.aN <> 0) and (angleOptionalColor.aN[0] == white):
+                            if (getAttribute("angle", "Style", str aN) <> 0) and (getAttributeMulti("angle", "OptionalColor", str aN, 0) == white):
                                 angleType[angleNum] := 1;
                             else:
                                 angleType[angleNum] := 0;
                             fi;
                             if (j == 1):
-                                if (angleStandalone.aN > 0):
+                                if (getAttribute("angle", "Standalone", str aN) > 0):
                                     pointName[angleNum] := "";
                                 else:
-                                    pointName[angleNum] := angleAName.aN;
+                                    pointName[angleNum] := getAttribute("angle", "AName", str aN);
                                 fi;
                             elseif (j == 2):
-                                if (angleStandalone.aN > 0):
+                                if (getAttribute("angle", "Standalone", str aN) > 0):
                                     pointName[angleNum] := "";
                                 else:
-                                    pointName[angleNum] := angleCName.aN;
+                                    pointName[angleNum] := getAttribute("angle", "CName", str aN);
                                 fi;
                             fi;
                             angleCount[angleNum] := 1;
@@ -1442,7 +1469,6 @@ vardef byNamedAngleWithDummySides(text anglesList)=
         )
 enddef;
 
-
 vardef byNamedAngleResized (text anglesToUse) =
     save modAnglesList, modAnglesListNew, anglesToDraw, anglesAdded, angleIsAdded, useThisAngle, sc, v, numOfAngles, i, j, k;
     string modAnglesList, modAnglesListNew, anglesToDraw;
@@ -1489,10 +1515,10 @@ vardef byNamedAngleResized (text anglesToUse) =
                                 anglesToDraw := str j;
                             else:
                                 forsuffixes k=scantokens(anglesToDraw):
-                                    if ((abs(angleAVal.k - angleAVal.j) mod 360) < 1)
-                                    or ((abs(angleCVal.k - angleAVal.j) mod 360) < 1)
-                                    or ((abs(angleAVal.k - angleCVal.j) mod 360) < 1)
-                                    or ((abs(angleCVal.k - angleCVal.j) mod 360) < 1):
+                                    if ((abs(getAttribute("angle", "AVal", str k) - getAttribute("angle", "AVal", str j)) mod 360) < 1)
+                                    or ((abs(getAttribute("angle", "CVal", str k) - getAttribute("angle", "AVal", str j)) mod 360) < 1)
+                                    or ((abs(getAttribute("angle", "AVal", str k) - getAttribute("angle", "CVal", str j)) mod 360) < 1)
+                                    or ((abs(getAttribute("angle", "CVal", str k) - getAttribute("angle", "CVal", str j)) mod 360) < 1):
                                         appendList(anglesToDraw, str j);
                                         anglesAdded := anglesAdded + 1;
                                     fi;
@@ -1520,7 +1546,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                     v := 0;
                     forsuffixes k=scantokens(anglesToDraw):
                         %v := v + angleVal.k;
-                        if (angleVal.k > v): v := angleVal.k; fi;
+                        if (getAttribute("angle", "Val", str k) > v): v := getAttribute("angle", "Val", str k); fi;
                     endfor;
                     sc := angleOpticalScale(v);
                     startTempAngleScale(angleScale*sc);
@@ -1531,6 +1557,41 @@ vardef byNamedAngleResized (text anglesToUse) =
             fi;
         endfor;
     )
+enddef;
+
+vardef generateAngleSynonyms =
+    if string anglePointsList:
+        save n, candidateName, originalName;
+        numeric n;
+        string candidateName[], originalName;
+        forsuffixes i=scantokens(anglePointsList):
+            n := 0;
+            forsuffixes j=scantokens(pointAnglesList.i):
+                if (length(str j) > 0):
+                    n := n + 1;
+                    originalName := str j;
+                    candidateName0 := getAttribute("angle", "BName", originalName);
+                    candidateName1 := getAttribute("angle", "AName", originalName)
+                        & getAttribute("angle", "BName", originalName)
+                        & getAttribute("angle", "CName", originalName);
+                    candidateName2 := getAttribute("angle", "CName", originalName)
+                        & getAttribute("angle", "BName", originalName)
+                        & getAttribute("angle", "AName", originalName);
+                    if not string getAttribute("angle", "Synonym", candidateName1):
+                        setAttribute("string", "angle", "Synonym", candidateName1, originalName);
+                    fi;
+                    if not string getAttribute("angle", "Synonym", candidateName2):
+                        setAttribute("string", "angle", "Synonym", candidateName2, originalName);
+                    fi;
+                fi;
+            endfor;
+            if (n == 1):
+                if not string getAttribute("angle", "Synonym", candidateName0):
+                    setAttribute("string", "angle", "Synonym", candidateName0, originalName);
+                fi;
+            fi;
+        endfor;
+    fi;
 enddef;
 
 vardef twoRightAngles =
