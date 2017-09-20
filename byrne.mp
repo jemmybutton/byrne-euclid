@@ -158,7 +158,9 @@ vardef setAttributeMulti (expr attrGenus, attrSpecies, attrName, attrValue, n) =
     else:
         finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
     fi;
-    scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
+    if (typeOf(scantokens(attrGenus & attrSpecies).scantokens(finName)0) <> typeOf(attrValue)):
+        scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
+    fi;
     scantokens(attrGenus & attrSpecies).scantokens(finName)[n] := attrValue;
 enddef;
 
@@ -542,10 +544,8 @@ vardef byNamedLineSeq(expr s)(text linesList) =
 enddef;
 
 vardef byMarkLine(expr pos, col)(suffix lineName) =
-numeric markPosition.lineName;
-color markColor.lineName;
-    markPosition.lineName := pos;
-    markColor.lineName := col;
+    setAttribute("mark", "Position", str lineName, pos);
+    setAttribute("mark", "Color", str lineName, col);
     byNamedMarkLine(lineName)
 enddef;
 
@@ -554,11 +554,11 @@ vardef byNamedMarkLine(suffix lineName) =
     pair q[];
     picture p;
     p := image(
-        q0 := markPosition.lineName[getAttribute("line", "EndA", str lineName), getAttribute("line", "EndB", str lineName)];
+        q0 := getAttribute("mark", "Position", str lineName)[getAttribute("line", "EndA", str lineName), getAttribute("line", "EndB", str lineName)];
         q1 := q0 shifted (dir(getAttribute("line", "Angle", str lineName) + 90) scaled 1/2markLength);
         q2 := q0 shifted (dir(getAttribute("line", "Angle", str lineName) - 90) scaled 1/2markLength);
         q3 := (dir(getAttribute("line", "Angle", str lineName) - 90) scaled (1/2lineWidth*getAttribute("line", "Shift", str lineName)));
-        draw (q1--q2) shifted q3 withpen pencircle scaled lineWidthThin withcolor markColor.lineName;
+        draw (q1--q2) shifted q3 withpen pencircle scaled lineWidthThin withcolor getAttribute("mark", "Color", str lineName);
     );
     p rotated globalRotation
 enddef;
@@ -681,22 +681,18 @@ enddef;
 %
 
 vardef byPointLabelDefine (suffix pointName)(expr t) =
-string pointLabel.pointName;
-    pointLabel.pointName := t;
+    setAttribute("point", "Label", str pointName, t);
 enddef;
 
 vardef byPointMarkDefine (suffix pointName)(expr col, sty) =
-color pointColor.pointName;
-numeric pointStyle.pointName;
-string pointName.pointName;
-    pointColor.pointName := col;
-    pointStyle.pointName := sty;
+    setAttribute("point", "Color", str pointName, col);
+    setAttribute("point", "Style", str pointName, sty);
 enddef;
 
 vardef byPointMarkRender (suffix pointName) =
     image(
-        if (pointStyle.pointName == 0):
-            fill ((fullcircle scaled pointMarkSize) shifted (pointName scaled scaleFactor)) withcolor pointColor.pointName;
+        if (getAttribute("point", "Style", str pointName) == 0):
+            fill ((fullcircle scaled pointMarkSize) shifted (pointName scaled scaleFactor)) withcolor getAttribute("point", "Color", str pointName);
         fi;
     )
 enddef;
@@ -858,23 +854,20 @@ vardef byArcRender(expr o, b, e, r, col, dp, th, s, et) =
 enddef;
 
 vardef byArcDefine (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
-color arcColor.arcName;
-pair arcCenter.arcName;
-numeric arcDiameter.arcName, arcShift.arcName, arcDashed.arcName, arcBegin.arcName, arcEnd.arcName, arcAngle.arcName, arcThin.arcName, arcEndType.arcName;
-string arcCenterName.arcName, arcBName.arcName, arcEName.arcName;
-    arcColor.arcName := col;
-    arcDashed.arcName := dp;
-    arcThin.arcName := th;
-    arcShift.arcName := s;
-    arcDiameter.arcName := 2r;
-    arcCenter.arcName := o;
-    arcCenterName.arcName := str o;
-    arcBName.arcName := "";
-    arcEName.arcName := "";
-    arcBegin.arcName := b;
-    arcEnd.arcName := e;
-    arcEndType.arcName := et;
-    arcAngle.arcName := angle((point b of fullcircle) - (point e of fullcircle));
+    setAttribute("arc", "Color", str arcName, col);
+    setAttribute("arc", "Dashed", str arcName, dp);
+    setAttribute("arc", "Thin", str arcName, th);
+    setAttribute("arc", "Shift", str arcName, s);
+    setAttribute("arc", "Diameter", str arcName, 2r);
+    setAttribute("arc", "Center", str arcName, o);
+    setAttribute("arc", "CenterName", str arcName, str o);
+    setAttribute("arc", "BName", str arcName, "");
+    setAttribute("arc", "EName", str arcName, "");
+    setAttribute("arc", "Begin", str arcName, b);
+    setAttribute("arc", "End", str arcName, e);
+    setAttribute("arc", "EndType", str arcName, et);
+    setAttribute("arc", "Angle", str arcName, angle((point b of fullcircle) - (point e of fullcircle)));
+    setAttribute("arc", "Synonym", str arcName, str arcName);
 enddef;
 
 vardef byArcBE (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
@@ -891,15 +884,15 @@ vardef byArc (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcName) =
         b := b - 8;
     fi;
     byArcDefine(o, b, e, r, col, dp, th, s, et)(arcName);
-    arcBName.arcName := str pb;
-    arcEName.arcName := str pe;
+    setAttribute("arc", "BName", str arcName, str pb);
+    setAttribute("arc", "EName", str arcName, str pe);
     byNamedArcExact(arcName)
 enddef;
 
 vardef byNamedArcExact(text arcslist) =
     image(
         forsuffixes aN=arcslist:
-            draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, arcShift.aN, arcEndType.aN);
+            draw byArcRender(getAttribute("arc", "Center", str aN), getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN), getAttribute("arc", "Diameter", str aN), getAttribute("arc", "Color", str aN), getAttribute("arc", "Dashed", str aN), getAttribute("arc", "Thin", str aN), getAttribute("arc", "Shift", str aN), getAttribute("arc", "EndType", str aN));
         endfor;
         if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
@@ -910,7 +903,7 @@ enddef;
 vardef byNamedArc(text arcslist) =
     image(
         forsuffixes aN=arcslist:
-            draw byArcRender(arcCenter.aN, arcBegin.aN, arcEnd.aN, arcDiameter.aN, arcColor.aN, arcDashed.aN, arcThin.aN, 0, 0);
+            draw byArcRender(getAttribute("arc", "Center", str aN), getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN), getAttribute("arc", "Diameter", str aN), getAttribute("arc", "Color", str aN), getAttribute("arc", "Dashed", str aN), getAttribute("arc", "Thin", str aN), 0, 0);
         endfor;
         if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
@@ -929,10 +922,10 @@ vardef byNamedArcLabel (text arcslist) =
             allArcsDefined := true;
             forsuffixes aN=arcslist:
                 i := i + 1;
-                pointsListB[i] := arcBName.aN;
-                pointsListE[i] := arcEName.aN;
-                pointsListO[i] := arcCenterName.aN;
-                if (arcBName.aN == "") or (arcEName.aN == ""):
+                pointsListB[i] := getAttribute("arc", "BName", str aN);
+                pointsListE[i] := getAttribute("arc", "EName", str aN);
+                pointsListO[i] := getAttribute("arc", "CenterName", str aN);
+                if (getAttribute("arc", "BName", str aN) == "") or (getAttribute("arc", "EName", str aN) == ""):
                     allArcsDefined := false;
                 fi;
             endfor;
@@ -959,25 +952,22 @@ vardef byNamedArcLabel (text arcslist) =
 enddef;
 
 vardef byCircleDefineFree (expr o, r, col, dp, th, s) (suffix circleName) =
-color circleColor.circleName;
-pair circleCenter.circleName;
-numeric circleDiameter.circleName, circleShift.circleName, circleDashed.circleName, circleThin.circleName;
-string circleCenterName.circleName, circleAName.circleName, circleBName.circleName, circleCName.circleName;
-    circleColor.circleName := col;
-    circleDashed.circleName := dp;
-    circleThin.circleName := th;
-    circleShift.circleName := s;
-    circleDiameter.circleName := 2r;
-    circleCenter.circleName := o;
-    circleCenterName.circleName := "";
-    circleAName.circleName := "";
-    circleBName.circleName := "";
-    circleCName.circleName := "";
+    setAttribute("circle", "Color", str circleName, col);
+    setAttribute("circle", "Dashed", str circleName, dp);
+    setAttribute("circle", "Thin", str circleName, th);
+    setAttribute("circle", "Shift", str circleName, s);
+    setAttribute("circle", "Diameter", str circleName, 2r);
+    setAttribute("circle", "Center", str circleName, o);
+    setAttribute("circle", "CenterName", str circleName, "");
+    setAttribute("circle", "AName", str circleName, "");
+    setAttribute("circle", "BName", str circleName, "");
+    setAttribute("circle", "CName", str circleName, "");
+    setAttribute("circle", "Synonym", str circleName, str circleName);
 enddef;
 
 vardef byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
     byCircleDefineFree(o, r, col, dp, th, s)(circleName);
-    circleCenterName.circleName := str o;
+    setAttribute("circle", "CenterName", str circleName, str o);
 enddef;
 
 vardef byCircleR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
@@ -987,7 +977,7 @@ enddef;
 
 vardef byCircle (suffix o, a)(expr col, dp, th, s) (suffix circleName) =
     byCircleDefineR(o, abs(a-o), col, dp, th, s)(circleName);
-    circleAName.circleName := str a;
+    setAttribute("circle", "AName", str circleName, str a);
     byNamedCircle(circleName)
 enddef;
 
@@ -999,31 +989,31 @@ vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
         = whatever[1/2[b, c], 1/2[b, c] shifted ((b-c) rotated 90)];
     r := abs(o - a);
     byCircleDefineFree(o, r, col, dp, th, s)(circleName);
-    circleAName.circleName := str a;
-    circleBName.circleName := str b;
-    circleCName.circleName := str c;
+    setAttribute("circle", "AName", str circleName, str a);
+    setAttribute("circle", "BName", str circleName, str b);
+    setAttribute("circle", "CName", str circleName, str c);
     byNamedCircle(circleName)
 enddef;
 
 vardef byNamedCircle(text circlesList) =
     image(
         forsuffixes cN=circlesList:
-            draw byArcRender (circleCenter.cN, 0, 8, circleDiameter.cN, circleColor.cN, circleDashed.cN, circleThin.cN, circleShift.cN, 0);
+            draw byArcRender (getAttribute("circle", "Center", str cN), 0, 8, getAttribute("circle", "Diameter", str cN), getAttribute("circle", "Color", str cN), getAttribute("circle", "Dashed", str cN), getAttribute("circle", "Thin", str cN), getAttribute("circle", "Shift", str cN), 0);
             if (textLabels and autoLabelingMode):
-                if (circleCenterName.cN <> ""):
+                if (getAttribute("circle", "CenterName", str cN) <> ""):
                     draw byTextLabel(pointLabel)(
-                        circleCenterName.cN,
-                        scantokens(circleCenterName.cN),
+                        getAttribute("circle", "CenterName", str cN),
+                        scantokens(getAttribute("circle", "CenterName", str cN)),
                         0, 0);
                 fi;
-                if (circleAName.cN <> ""):
-                    draw byLabelCircle(circleAName.cN, str cN);
+                if (getAttribute("circle", "AName", str cN) <> ""):
+                    draw byLabelCircle(getAttribute("circle", "AName", str cN), str cN);
                 fi;
-                if (circleBName.cN <> ""):
-                    draw byLabelCircle(circleBName.cN, str cN);
+                if (getAttribute("circle", "BName", str cN) <> ""):
+                    draw byLabelCircle(getAttribute("circle", "BName", str cN), str cN);
                 fi;
-                if (circleCName.cN <> ""):
-                    draw byLabelCircle(circleCName.cN, str cN);
+                if (getAttribute("circle", "CName", str cN) <> ""):
+                    draw byLabelCircle(getAttribute("circle", "CName", str cN), str cN);
                 fi;
             fi;
         endfor;
@@ -1035,13 +1025,11 @@ enddef;
 %
 
 vardef byArbitraryFigureDefine(expr p, col, dp, th)(suffix arbitraryFigureName) =
-color arbitraryFigureColor.arbitraryFigureName;
-path arbitraryFigurePath.arbitraryFigureName;
-numeric arbitraryFigureDashed.arbitraryFigureName, arbitraryFigureThin.arbitraryFigureName;
-    arbitraryFigurePath.arbitraryFigureName := p;
-    arbitraryFigureColor.arbitraryFigureName := col;
-    arbitraryFigureDashed.arbitraryFigureName := dp;
-    arbitraryFigureThin.arbitraryFigureName := th;
+    setAttribute("arbitraryFigure", "Path", str arbitraryFigureName, p);
+    setAttribute("arbitraryFigure", "Color", str arbitraryFigureName, col);
+    setAttribute("arbitraryFigure", "Dashed", str arbitraryFigureName, dp);
+    setAttribute("arbitraryFigure", "Thin", str arbitraryFigureName, th);
+    setAttribute("arbitraryFigure", "Synonym", str arbitraryFigureName, str arbitraryFigureName);
 enddef;
 
 vardef byArbitraryFigure(expr p, col, dp, th)(suffix arbitraryFigureName) =
@@ -1054,8 +1042,8 @@ vardef byNamedArbitraryFigure(text arbitraryFiguresList) =
     path p;
     image(
         forsuffixes pN=arbitraryFiguresList:
-            p := (arbitraryFigurePath.pN scaled scaleFactor);
-            draw p withpen pencircle scaled lineThickness(arbitraryFigureThin.pN) withcolor arbitraryFigureColor.pN if (arbitraryFigureDashed.pN > 0): dashed byDashPattern(arclength(p), arbitraryFigureDashed.pN) fi;
+            p := (getAttribute("arbitraryFigure", "Path", str pN) scaled scaleFactor);
+            draw p withpen pencircle scaled lineThickness(getAttribute("arbitraryFigure", "Thin", str pN)) withcolor getAttribute("arbitraryFigure", "Color", str pN) if (getAttribute("arbitraryFigure", "Dashed", str pN) > 0): dashed byDashPattern(arclength(p), getAttribute("arbitraryFigure", "Dashed", str pN)) fi;
         endfor;
     ) rotated globalRotation
 enddef;
@@ -1065,14 +1053,12 @@ enddef;
 %
 
 vardef byFilledCircleSegment (expr o, r, b, e, col) (suffix filledCircleSegmentName) =
-color filledCircleSegmentColor.filledCircleSegmentName;
-pair filledCircleSegmentCenter.filledCircleSegmentName;
-numeric filledCircleSegmentDiameter.filledCircleSegmentName, filledCircleSegmentBegin.filledCircleSegmentName, filledCircleSegmentEnd.filledCircleSegmentName;
-    filledCircleSegmentColor.filledCircleSegmentName := col;
-    filledCircleSegmentDiameter.filledCircleSegmentName := 2r;
-    filledCircleSegmentBegin.filledCircleSegmentName := b;
-    filledCircleSegmentEnd.filledCircleSegmentName := e;
-    filledCircleSegmentCenter.filledCircleSegmentName := o;
+    setAttribute("filledCircleSegment", "Color", str filledCircleSegmentName, col);
+    setAttribute("filledCircleSegment", "Diameter", str filledCircleSegmentName, 2r);
+    setAttribute("filledCircleSegment", "Begin", str filledCircleSegmentName, b);
+    setAttribute("filledCircleSegment", "End", str filledCircleSegmentName, e);
+    setAttribute("filledCircleSegment", "Center", str filledCircleSegmentName, o);
+    setAttribute("filledCircleSegment", "Synonym", str filledCircleSegmentName, str filledCircleSegmentName);
     byNamedFilledCircleSegment(filledCircleSegmentName)
 enddef;
 
@@ -1081,49 +1067,49 @@ vardef byNamedFilledCircleSegment(text filledCircleSegmentList) =
     path p;
     image(
         forsuffixes csN=filledCircleSegmentList:
-            fill ((subpath (filledCircleSegmentBegin.csN, filledCircleSegmentEnd.csN) of fullcircle)--cycle) scaled (filledCircleSegmentDiameter.csN*scaleFactor) shifted (filledCircleSegmentCenter.csN*scaleFactor) withcolor filledCircleSegmentColor.csN;
+            fill ((subpath (getAttribute("filledCircleSegment", "Begin", str csN), getAttribute("filledCircleSegment", "End", str csN)) of fullcircle)--cycle) scaled (getAttribute("filledCircleSegment", "Diameter", str csN)*scaleFactor) shifted (getAttribute("filledCircleSegment", "Center", str csN)*scaleFactor) withcolor getAttribute("filledCircleSegment", "Color", str csN);
         endfor;
     ) rotated globalRotation
 enddef;
 
 vardef byFilledCircleSector (expr o, r, b, e, col) (suffix filledCircleSectorName) =
-color filledCircleSectorColor.filledCircleSectorName;
-pair filledCircleSectorCenter.filledCircleSectorName;
-numeric filledCircleSectorDiameter.filledCircleSectorName, filledCircleSectorBegin.filledCircleSectorName, filledCircleSectorEnd.filledCircleSectorName;
-    filledCircleSectorColor.filledCircleSectorName := col;
-    filledCircleSectorDiameter.filledCircleSectorName := 2r;
-    filledCircleSectorBegin.filledCircleSectorName := b;
-    filledCircleSectorEnd.filledCircleSectorName := e;
-    filledCircleSectorCenter.filledCircleSectorName := o;
+    setAttribute("filledCircleSector", "Color", str filledCircleSectorName, col);
+    setAttribute("filledCircleSector", "Diameter", str filledCircleSectorName, 2r);
+    setAttribute("filledCircleSector", "Begin", str filledCircleSectorName, b);
+    setAttribute("filledCircleSector", "End", str filledCircleSectorName, e);
+    setAttribute("filledCircleSector", "Center", str filledCircleSectorName, o);
     byNamedFilledCircleSector(filledCircleSectorName)
 enddef;
 
 vardef byNamedFilledCircleSector(text filledCircleSectorList) =
     image(
         forsuffixes csN=filledCircleSectorList:
-            fill ((subpath (filledCircleSectorBegin.csN, filledCircleSectorEnd.csN) of fullcircle)-- (0, 0) -- cycle) scaled (filledCircleSectorDiameter.csN*scaleFactor) shifted (filledCircleSectorCenter.csN*scaleFactor) withcolor filledCircleSectorColor.csN;
+            fill ((subpath (getAttribute("filledCircleSector", "Begin", str csN), getAttribute("filledCircleSector", "End", str csN)) of fullcircle)-- (0, 0) -- cycle) scaled (getAttribute("filledCircleSector", "Diameter", str csN)*scaleFactor) shifted (getAttribute("filledCircleSector", "Center", str csN)*scaleFactor) withcolor getAttribute("filledCircleSector", "Color", str csN);
         endfor;
     ) rotated globalRotation
 enddef;
 
 vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
-color polygonColor.polygonName, polygonPointsList.polygonName;
-path polygonPath.polygonName;
-string polygonPointsList.polygonName;
-    polygonPath.polygonName := forsuffixes pN=pointsList: pN -- endfor cycle;
-    polygonColor.polygonName := col;
-    polygonPointsList.polygonName := "";
+    save pL, p;
+    path p;
+    string pL;
+    pL := "";
+    p := forsuffixes pN=pointsList: pN -- endfor cycle;
     forsuffixes pN=pointsList:
-        if (polygonPointsList.polygonName <> ""):
-            if (turningnumber(polygonPath.polygonName) == 1):
-                polygonPointsList.polygonName := str pN & ", " & polygonPointsList.polygonName;
+        if (pL <> ""):
+            if (turningnumber(p) == 1):
+                pL := str pN & ", " & pL;
             else:
-                polygonPointsList.polygonName := polygonPointsList.polygonName & ", " &  str pN;
+                pL := pL & ", " &  str pN;
             fi;
         else:
-            polygonPointsList.polygonName := str pN;
+            pL := str pN;
         fi;
     endfor;
+    setAttribute("polygon", "Path", str polygonName, p);
+    setAttribute("polygon", "Color", str polygonName, col);
+    setAttribute("polygon", "PointsList", str polygonName, pL);
+    setAttribute("polygon", "Synonym", str polygonName, str polygonName);
     byNamedPolygon(polygonName)
 enddef;
 
@@ -1141,10 +1127,10 @@ vardef byNamedPolygon(text polygonsList) =
     image(
         draw image(
             forsuffixes pN=polygonsList:
-                if (polygonColor.pN <> white):
-                    fill (polygonPath.pN scaled scaleFactor) withcolor polygonColor.pN;
+                if (getAttribute("polygon", "Color", str pN) <> white):
+                    fill (getAttribute("polygon", "Path", str pN) scaled scaleFactor) withcolor getAttribute("polygon", "Color", str pN);
                 else:
-                    draw (polygonPath.pN scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
+                    draw (getAttribute("polygon", "Path", str pN) scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
                 fi;
             endfor;
             ) rotated globalRotation;
@@ -1162,7 +1148,7 @@ vardef byMergePolygons(text polygonsList) =
     n := -1;
     forsuffixes pN=polygonsList:
         n := n + 1;
-        pointsList[n] := polygonPointsList.pN;
+        pointsList[n] := getAttribute("polygon", "PointsList", str pN);
         polygonChecked[n] := false;
     endfor;
     if (n > 0):
@@ -1700,20 +1686,14 @@ byAngleDefineWithName (pointW, pointO, pointN)(black, 1)(rightAngleWN);
 
 % along with 'magnitudesymbol' one symbol long 'magnitude' is also defined at the same time.
 vardef byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) =
-color magnitudeColor.magnitudeSymbolName;
-string magnitudeShape.magnitudeSymbolName;
-numeric magnitudeStyle.magnitudeSymbolName;
-string magnitudeSymbol.magnitudeSymbolName[];
-numeric magnitudeN.magnitudeSymbolName[], magnitudeAlignment.magnitudeSymbolName, magnitudeNumberOfRows.magnitudeSymbolName;
-boolean magnitudeHorizontal.magnitudeSymbolName;
-    magnitudeColor.magnitudeSymbolName := col;
-    magnitudeShape.magnitudeSymbolName := shp;
-    magnitudeStyle.magnitudeSymbolName := sty;
-    magnitudeSymbol.magnitudeSymbolName[1] := str magnitudeSymbolName;
-    magnitudeN.magnitudeSymbolName[1] := 1;
-    magnitudeAlignment.magnitudeSymbolName := 0;
-    magnitudeNumberOfRows.magnitudeSymbolName := 1;
-    magnitudeHorizontal.magnitudeSymbolName := false;
+    setAttribute("magnitude", "Color", str magnitudeSymbolName, col);
+    setAttribute("magnitude", "Shape", str magnitudeSymbolName, shp);
+    setAttribute("magnitude", "Style", str magnitudeSymbolName, sty);
+    setAttributeMulti("magnitude", "Symbol", str magnitudeSymbolName, str magnitudeSymbolName, 1);
+    setAttributeMulti("magnitude", "N", str magnitudeSymbolName, 1, 1);
+    setAttribute("magnitude", "Alignment", str magnitudeSymbolName, 0);
+    setAttribute("magnitude", "NumberOfRows", str magnitudeSymbolName, 1);
+    setAttribute("magnitude", "Horizontal", str magnitudeSymbolName, false);
 enddef;
 
 vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
@@ -1722,35 +1702,35 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
     pair s[];
     picture q;
     p := (0, 0);
-    if (magnitudeShape.magnitudeSymbolName == "circle"):
+    if (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "circle"):
         p := fullcircle scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "semicircleUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "semicircleUp"):
         p := ((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "semicircleDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "semicircleDown"):
         p := (((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "sectorDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "sectorDown"):
         p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "sectorUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "sectorUp"):
         p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale) yscaled -1;
-    elseif (magnitudeShape.magnitudeSymbolName == "wedgeUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "wedgeUp"):
         p := (((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "wedgeDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "wedgeDown"):
         p := ((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "square"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "square"):
         p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "halfsquare"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "halfsquare"):
             p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "rhombus"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "rhombus"):
         p := ((0, 1/2) -- (-1/2, 0) -- (0, -1/2) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "halfrhombusUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "halfrhombusUp"):
         p := ((0, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "miniTriangleUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniTriangleUp"):
         p := ((-1/4, -1/4) -- (1/4, -1/4)  -- (0, 1/4) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "miniTriangleDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniTriangleDown"):
         p := ((-1/4, 1/4) -- (1/4, 1/4)  -- (0, -1/4) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "miniSquare"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniSquare"):
         p := ((-1/4, -1/4) -- (1/4, -1/4) -- (1/4, 1/4) -- (-1/4, 1/4) -- cycle) scaled (u*magnitudeScale);
-    elseif (magnitudeShape.magnitudeSymbolName == "miniCircle"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniCircle"):
         p := fullcircle scaled (u*1/2magnitudeScale);
     fi;
     if (hor):
@@ -1761,10 +1741,10 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
         s2 := (magnitudeGap, 0);
     fi;
     q := image(
-        if (magnitudeStyle.magnitudeSymbolName == 0):
-            fill p withcolor magnitudeColor.magnitudeSymbolName;
+        if (getAttribute("magnitude", "Style", str magnitudeSymbolName) == 0):
+            fill p withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
         else:
-            draw p withpen (pencircle scaled lineWidthThin) withcolor magnitudeColor.magnitudeSymbolName;
+            draw p withpen (pencircle scaled lineWidthThin) withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
         fi;
     );
     image(
@@ -1775,28 +1755,25 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
 enddef;
 
 vardef byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
-string magnitudeSymbol.magnitudeName[];
-numeric magnitudeN.magnitudeName[], magnitudeAlignment.magnitudeName, magnitudeNumberOfRows.magnitudeName;
-boolean magnitudeHorizontal.magnitudeName;
-magnitudeHorizontal.magnitudeName := hor;
-magnitudeAlignment.magnitudeName := al;
+    setAttribute("magnitude", "Horizontal", str magnitudeName, hor);
+    setAttribute("magnitude", "Alignment", str magnitudeName, al);
     save i;
     numeric i;
     i := 0;
     forsuffixes rN=rowsList:
         i := i + 1;
-        magnitudeN.magnitudeName[i] := rN;
+        setAttributeMulti("magnitude", "N", str magnitudeName, rN, i);
     endfor;
-    magnitudeNumberOfRows.magnitudeName := i;
+    setAttribute("magnitude", "NumberOfRows", str magnitudeName, i);
     i := 0;
     forever:
         forsuffixes sN=magnitudeSymbolsList:
             i := i + 1;
-            if (i <= magnitudeNumberOfRows.magnitudeName):
-                magnitudeSymbol.magnitudeName[i] := str sN;
+            if (i <= getAttribute("magnitude", "NumberOfRows", str magnitudeName)):
+                setAttributeMulti("magnitude", "Symbol", str magnitudeName, str sN, i);
             fi;
         endfor;
-    exitif (i >= magnitudeNumberOfRows.magnitudeName);
+    exitif (i >= getAttribute("magnitude", "NumberOfRows", str magnitudeName));
     endfor;
 enddef;
 
@@ -1807,30 +1784,30 @@ vardef byNamedMagnitude (expr excl) (suffix magnitudeName) =
     numeric h;
     h := 0;
     image(
-        for magC := 1 step 1 until magnitudeNumberOfRows.magnitudeName:
+        for magC := 1 step 1 until getAttribute("magnitude", "NumberOfRows", str magnitudeName):
             if (excl == 0) or ((excl < 0) and (magC <> -excl)) or ((excl > 0) and (magC == excl)):
-                p := byNamedMagnitudeSymbol(magnitudeN.magnitudeName[magC], magnitudeHorizontal.magnitudeName)(scantokens(magnitudeSymbol.magnitudeName[magC]));
-                if (magnitudeHorizontal.magnitudeName):
-                    if (magnitudeAlignment.magnitudeName = 0):
+                p := byNamedMagnitudeSymbol(getAttributeMulti("magnitude", "N", str magnitudeName, magC), getAttribute("magnitude", "Horizontal", str magnitudeName))(scantokens(getAttributeMulti("magnitude", "Symbol", str magnitudeName, magC)));
+                if (getAttribute("magnitude", "Horizontal", str magnitudeName)):
+                    if (getAttribute("magnitude", "Alignment", str magnitudeName) = 0):
                         s1 := 1/2[urcorner(p),lrcorner(p)];
-                    elseif (magnitudeAlignment.magnitudeName = 1):
+                    elseif (getAttribute("magnitude", "Alignment", str magnitudeName) = 1):
                         s1 := lrcorner(p);
-                    elseif (magnitudeAlignment.magnitudeName = -1):
+                    elseif (getAttribute("magnitude", "Alignment", str magnitudeName) = -1):
                         s1 := urcorner(p);
                     fi;
                     s2 := (h, 0);
                 else:
-                    if (magnitudeAlignment.magnitudeName = 0):
+                    if (getAttribute("magnitude", "Alignment", str magnitudeName) = 0):
                         s1 := 1/2[ulcorner(p),urcorner(p)];
-                    elseif (magnitudeAlignment.magnitudeName = 1):
+                    elseif (getAttribute("magnitude", "Alignment", str magnitudeName) = 1):
                         s1 := urcorner(p);
-                    elseif (magnitudeAlignment.magnitudeName = -1):
+                    elseif (getAttribute("magnitude", "Alignment", str magnitudeName) = -1):
                         s1 := ulcorner(p);
                     fi;
                     s2 := (0, -h);
                 fi;
                 draw p shifted -s1 shifted s2;
-                if (magnitudeHorizontal.magnitudeName):
+                if (getAttribute("magnitude", "Horizontal", str magnitudeName)):
                     h := h + (abs(ulcorner(p)-urcorner(p))) + magnitudeGap;
                 else:
                     h := h + (abs(ulcorner(p)-llcorner(p))) + magnitudeGap;
@@ -1912,8 +1889,8 @@ vardef byLabelCircle(expr l, cn) =
     save o, d;
     pair o;
     numeric d;
-    o := circleCenter.scantokens(cn);
-    d := lineThickness(circleThin.scantokens(cn))*(1/2-1/2circleShift.scantokens(cn));
+    o := getAttribute("circle", "Center", cn);
+    d := lineThickness(getAttribute("circle", "Thin", cn))*(1/2-1/2getAttribute("circle", "Shift", cn));
     byTextLabel(pointLabel)(l, scantokens(l), angle(o - scantokens(l)), textLabelShift + d)
 enddef;
 
@@ -1922,14 +1899,14 @@ vardef byLabelsOnCircle(text pointsList)(suffix cn) =
     string cn;
     numeric t, s;
     pair c;
-    if string circleCenterName.cn:
-        t := circleThin.cn;
-        s := circleShift.cn;
-        c := circleCenter.cn;
-    elseif string arcCenterName.cn:
-        t := arcThin.cn;
-        s := arcShift.cn;
-        c := arcCenter.cn;
+    if string getAttribute("circle", "CenterName", str cn):
+        t := getAttribute("circle", "Thin", str cn);
+        s := getAttribute("circle", "Shift", str cn);
+        c := getAttribute("circle", "Center", str cn);
+    elseif string getAttribute("arc", "CenterName", str cn):
+        t := getAttribute("arc", "Thin", str cn);
+        s := getAttribute("arc", "Shift", str cn);
+        c := getAttribute("arc", "Center", str cn);
     else:
         errmessage("There is no circle or arc named " & str cn);
     fi;
