@@ -50,19 +50,10 @@ vardef sin primary x = (sind(x*radian)) enddef;
 
 vardef cos primary x = (cosd(x*radian)) enddef;
 
-color byred, byblue, byyellow, lineColor.noLine;
+color byred, byblue, byyellow;
 byred := (.9, .15, .05);
 byblue := (.05, .2, .7);
 byyellow := (.9, .75, .1);
-
-string lineEndAName.noLine, lineEndBName.noLine;
-
-lineColor.noLine := white;
-lineDashed.noLine := 0;
-lineEndAName.noLine := "noLine";
-lineEndBName.noLine := "noLine";
-lineEndA.noLine := inf;
-lineEndB.noLine := inf;
 
 linecap := butt;
 
@@ -85,6 +76,36 @@ vardef cycleval (expr v, l) =
         rv := 0;
     fi;
     rv
+enddef;
+
+vardef typeOf (expr v) =
+    save determinedType;
+    string determinedType;
+    determinedType := "undefined";
+    if (boolean v):
+        determinedType := "boolean";
+    elseif (color v):
+        determinedType := "color";
+    elseif (rgbcolor v):
+        determinedType := "cmykcolor";
+    elseif (cmykcolor v):
+        determinedType := "color";
+    elseif (numeric v):
+        determinedType := "numeric";
+    elseif (pair v):
+        determinedType := "pair";
+    elseif (path v):
+        determinedType := "path";
+    elseif (pen v):
+        determinedType := "pen";
+    elseif (picture v):
+        determinedType := "picture";
+    elseif (string v):
+        determinedType := "string";
+    elseif (transform v):
+        determinedType := "transform";
+    fi;
+    determinedType
 enddef;
 
 vardef angleOpticalScale (expr v) =
@@ -117,15 +138,36 @@ vardef appendList (suffix listName)(expr valueToAdd) =
     fi;
 enddef;
 
-vardef setAttribute (expr attrType, attrGenus, attrSpecies, attrName, attrValue) =
-    scantokens(attrType) scantokens(attrGenus & attrSpecies).scantokens(attrName);
-    scantokens(attrGenus & attrSpecies).scantokens(attrName) := attrValue;
+vardef setAttribute (expr attrGenus, attrSpecies, attrName, attrValue) =
+    save finName;
+    string finName;
+    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
+        finName := attrName;
+    else:
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+    fi;
+    scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName);
+    scantokens(attrGenus & attrSpecies).scantokens(finName) := attrValue;
 enddef;
 
-vardef setAttributeMulti (expr attrType, attrGenus, attrSpecies, attrName, attrValue, n) =
-    scantokens(attrType) scantokens(attrGenus & attrSpecies).scantokens(attrName)[];
-    scantokens(attrGenus & attrSpecies).scantokens(attrName)[n] := attrValue;
+vardef setAttributeMulti (expr attrGenus, attrSpecies, attrName, attrValue, n) =
+    save finName;
+    string finName;
+    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
+        finName := attrName;
+    else:
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+    fi;
+    scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
+    scantokens(attrGenus & attrSpecies).scantokens(finName)[n] := attrValue;
 enddef;
+
+setAttribute("line", "Color", "noLine", white);
+setAttribute("line", "Dashed", "noLine", 0);
+setAttribute("line", "EndAName", "noLine", "noLine");
+setAttribute("line", "EndBName", "noLine", "noLine");
+setAttribute("line", "EndA", "noLine", inf);
+setAttribute("line", "EndB", "noLine", inf);
 
 vardef getAttribute (expr attrGenus, attrSpecies, attrName) =
     save finName;
@@ -319,28 +361,26 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
 enddef;
 
 vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-color lineColor.lineName;
-path line.lineName;
-numeric lineShift.lineName, lineDashed.lineName, lineLength.lineName, lineAngle.lineName, lineEndAType.lineName, lineEndBType.lineName;
-pair lineEndA.lineName, lineEndB.lineName, lineDirA.lineName, lineDirB.lineName;
-string lineEndAName.lineName, lineEndBName.lineName, lineLabel.lineName;
-boolean lineUseLineLabel.lineName;
-    lineAngle.lineName := angle(b-a);
-    lineColor.lineName := col;
-    lineDashed.lineName := dp;
-    lineThin.lineName := th;
-    lineLength.lineName := arclength(a--b);
-    lineEndA.lineName := a;
-    lineEndB.lineName := b;
-    lineShift.lineName := 0;
-    lineDirA.lineName := a;
-    lineDirB.lineName := b;
-    lineEndAType.lineName := 0;
-    lineEndBType.lineName := 0;
-    lineEndAName.lineName := str a;
-    lineEndBName.lineName := str b;
-    lineUseLineLabel.lineName := false;
-    lineLabel.lineName := str lineName;
+if mainPictureMode:
+    appendList(allLinesList, str lineName);
+fi;
+    setAttribute("line", "Angle", str lineName, angle(b-a));
+    setAttribute("line", "Color", str lineName, col);
+    setAttribute("line", "Dashed", str lineName, dp);
+    setAttribute("line", "Thin", str lineName, th);
+    setAttribute("line", "Length", str lineName, arclength(a--b));
+    setAttribute("line", "EndA", str lineName, a);
+    setAttribute("line", "EndB", str lineName, b);
+    setAttribute("line", "Shift", str lineName, 0);
+    setAttribute("line", "DirA", str lineName, a);
+    setAttribute("line", "DirB", str lineName, b);
+    setAttribute("line", "EndAType", str lineName, 0);
+    setAttribute("line", "EndBType", str lineName, 0);
+    setAttribute("line", "EndAName", str lineName, str a);
+    setAttribute("line", "EndBName", str lineName, str b);
+    setAttribute("line", "UseLineLabel", str lineName, false);
+    setAttribute("line", "Label", str lineName, str lineName);
+    setAttribute("line", "Synonym", str lineName, str lineName);
 enddef;
 
 vardef byLineDefine (suffix a, b) (expr col, dp, th) =
@@ -348,11 +388,11 @@ vardef byLineDefine (suffix a, b) (expr col, dp, th) =
 enddef;
 
 vardef byLineStylize (expr c, d, ct, dt, s) (suffix lineName) =
-    lineShift.lineName := s;
-    lineDirA.lineName := c;
-    lineDirB.lineName := d;
-    lineEndAType.lineName := ct;
-    lineEndBType.lineName := dt;
+    setAttribute("line", "Shift", str lineName, s);
+    setAttribute("line", "DirA", str lineName, c);
+    setAttribute("line", "DirB", str lineName, d);
+    setAttribute("line", "EndAType", str lineName, ct);
+    setAttribute("line", "EndBType", str lineName, dt);
 enddef;
 
 vardef byLine (suffix a, b)(expr col, dp, th) =
@@ -368,22 +408,22 @@ enddef;
 
 vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
     byLineDefineWithName (a, b, col, dp, th) (lineName);
-    lineUseLineLabel.lineName := true;
+    setAttribute("line", "UseLineLabel", str lineName, true);
     byNamedLineFull(a, b, 0, 0, 0)(lineName)
 enddef;
 
 vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
     if (mainPictureMode):
-        appendList(pointLinesList.scantokens(lineEndAName.lineName), str lineName);
-        appendList(pointLinesList.scantokens(lineEndBName.lineName), str lineName);
+        appendList(pointLinesList.scantokens(getAttribute("line", "EndAName", str lineName)), str lineName);
+        appendList(pointLinesList.scantokens(getAttribute("line", "EndBName", str lineName)), str lineName);
     fi;
-    byLineRender(lineEndA.lineName, lineEndB.lineName, lineColor.lineName, lineDashed.lineName, lineThin.lineName, c, d, ct, dt, s, scaleFactor)
+    byLineRender(getAttribute("line", "EndA", str lineName), getAttribute("line", "EndB", str lineName), getAttribute("line", "Color", str lineName), getAttribute("line", "Dashed", str lineName), getAttribute("line", "Thin", str lineName), c, d, ct, dt, s, scaleFactor)
 enddef;
 
 vardef byNamedLine(text linesList) =
     image(
         forsuffixes lN=linesList:
-            draw byNamedLineFull(lineDirA.lN, lineDirB.lN, lineEndAType.lN, lineEndBType.lN, lineShift.lN)(lN);
+            draw byNamedLineFull(getAttribute("line", "DirA", str lN), getAttribute("line", "DirB", str lN), getAttribute("line", "EndAType", str lN), getAttribute("line", "EndBType", str lN), getAttribute("line", "Shift", str lN))(lN);
         endfor;
     )
 enddef;
@@ -397,9 +437,9 @@ vardef byNamedLineSeq(expr s)(text linesList) =
         i := -1;
         forsuffixes lN=linesList:
             i := i + 1;
-            lAname[i] := lineEndAName.lN;
-            lBname[i] := lineEndBName.lN;
-            lShift[i] := lineShift.lN;
+            lAname[i] := getAttribute("line", "EndAName", str lN);
+            lBname[i] := getAttribute("line", "EndBName", str lN);
+            lShift[i] := getAttribute("line", "Shift", str lN);
             lName[i] := str lN;
         endfor;
         if (i == 1):
@@ -491,10 +531,10 @@ vardef byNamedLineSeq(expr s)(text linesList) =
             fi;
         else:
             forsuffixes lN=linesList:
-                lineShift.lN := s;
-                draw byNamedLineFull(lineEndA.lN, lineEndB.lN, 0, 0, s)(lN);
+                setAttribute("line", "Shift", str lN, s);
+                draw byNamedLineFull(getAttribute("line", "EndA", str lN), getAttribute("line", "EndB", str lN), 0, 0, s)(lN);
                 if (textLabels and autoLabelingMode):
-                    draw byLabelsOnPolygon(scantokens (lineEndAName.lN & ", " & lineEndBName.lN))(1, s);
+                    draw byLabelsOnPolygon(scantokens (getAttribute("line", "EndAName", str lN) & ", " & getAttribute("line", "EndBName", str lN)))(1, s);
                 fi;
             endfor;
         fi;
@@ -514,10 +554,10 @@ vardef byNamedMarkLine(suffix lineName) =
     pair q[];
     picture p;
     p := image(
-        q0 := markPosition.lineName[lineEndA.lineName, lineEndB.lineName];
-        q1 := q0 shifted (dir(lineAngle.lineName + 90) scaled 1/2markLength);
-        q2 := q0 shifted (dir(lineAngle.lineName - 90) scaled 1/2markLength);
-        q3 := (dir(lineAngle.lineName - 90) scaled (1/2lineWidth*lineShift.lineName));
+        q0 := markPosition.lineName[getAttribute("line", "EndA", str lineName), getAttribute("line", "EndB", str lineName)];
+        q1 := q0 shifted (dir(getAttribute("line", "Angle", str lineName) + 90) scaled 1/2markLength);
+        q2 := q0 shifted (dir(getAttribute("line", "Angle", str lineName) - 90) scaled 1/2markLength);
+        q3 := (dir(getAttribute("line", "Angle", str lineName) - 90) scaled (1/2lineWidth*getAttribute("line", "Shift", str lineName)));
         draw (q1--q2) shifted q3 withpen pencircle scaled lineWidthThin withcolor markColor.lineName;
     );
     p rotated globalRotation
@@ -535,8 +575,8 @@ vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
     lineNotStraight := false;
     lineNotContinuous := false;
     forsuffixes lN=linesList:
-        lineNames[i] := lineEndAName.lN;
-        lineNames[i+1] := lineEndBName.lN;
+        lineNames[i] := getAttribute("line", "EndAName", str lN);
+        lineNames[i+1] := getAttribute("line", "EndBName", str lN);
         if (i > 0):
             if (lineNames[i] <> lineNames[i-2])
                 and (lineNames[i] <> lineNames[i-1])
@@ -546,11 +586,11 @@ vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
             fi;
         fi;
         i := i + 2;
-        angleCheck[i/2] := abs(cosd(lineAngle.lN));
+        angleCheck[i/2] := abs(cosd(getAttribute("line", "Angle", str lN)));
         if (abs(angleCheck[i/2] - angleCheck[1]) > 1/100):
             lineNotStraight := true;
         fi;
-        totalLength := totalLength + lineLength.lN;
+        totalLength := totalLength + getAttribute("line", "Length", str lN);
     endfor;
     if (lineNotStraight):
         errmessage("The line is not straight");
@@ -569,38 +609,38 @@ vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
     image(
         j := 0;
         forsuffixes lN=linesList:
-            correctedLength := (lineLength.lN**pwL)*sc;
+            correctedLength := (getAttribute("line", "Length", str lN)**pwL)*sc;
             currentPosition1 := currentPosition0 + correctedLength;
             a := (currentPosition0, 0);
             b := (currentPosition1, 0);
-            draw byLineRender(a, b, lineColor.lN, lineDashed.lN, lineThin.lN, a, b, 0, 0, 0, scaleFactor);
+            draw byLineRender(a, b, getAttribute("line", "Color", str lN), getAttribute("line", "Dashed", str lN), getAttribute("line", "Thin", str lN), a, b, 0, 0, 0, scaleFactor);
             currentPosition0 := currentPosition1;
             if (i > 2):
                 if (j == 0):
-                    if (lineEndAName.lN == lineNames[2])
-                        or (lineEndAName.lN == lineNames[3]):
-                        endNames[0] := lineEndBName.lN;
-                    elseif (lineEndBName.lN == lineNames[2])
-                        or (lineEndBName.lN == lineNames[3]):
-                        endNames[0] := lineEndAName.lN;
+                    if (getAttribute("line", "EndAName", str lN) == lineNames[2])
+                        or (getAttribute("line", "EndAName", str lN) == lineNames[3]):
+                        endNames[0] := getAttribute("line", "EndBName", str lN);
+                    elseif (getAttribute("line", "EndBName", str lN) == lineNames[2])
+                        or (getAttribute("line", "EndBName", str lN) == lineNames[3]):
+                        endNames[0] := getAttribute("line", "EndAName", str lN);
                     fi;
                 fi;
                 if (j == (i-2)/2):
-                    if (lineEndAName.lN == lineNames[i-3])
-                        or (lineEndAName.lN == lineNames[i-4]):
-                        endNames[1] := lineEndBName.lN;
-                    elseif (lineEndBName.lN == lineNames[i-3])
-                        or (lineEndBName.lN == lineNames[i-4]):
-                        endNames[1] := lineEndAName.lN;
+                    if (getAttribute("line", "EndAName", str lN) == lineNames[i-3])
+                        or (getAttribute("line", "EndAName", str lN) == lineNames[i-4]):
+                        endNames[1] := getAttribute("line", "EndBName", str lN);
+                    elseif (getAttribute("line", "EndBName", str lN) == lineNames[i-3])
+                        or (getAttribute("line", "EndBName", str lN) == lineNames[i-4]):
+                        endNames[1] := getAttribute("line", "EndAName", str lN);
                     fi;
                 fi;
             else:
-                if (lineUseLineLabel.lN):
+                if (getAttribute("line", "UseLineLabel", str lN)):
                     endNames[0] := str lN;
                     endNames[1] := str lN;
                 else:
-                    endNames[0] := lineEndAName.lN;
-                    endNames[1] := lineEndBName.lN;
+                    endNames[0] := getAttribute("line", "EndAName", str lN);
+                    endNames[1] := getAttribute("line", "EndBName", str lN);
                 fi;
             fi;
             j := j + 1;
@@ -614,6 +654,26 @@ vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
             fi;
         fi;
     )
+enddef;
+
+vardef generateLineSynonyms =
+    if string allLinesList:
+        save candidateName, originalName;
+        string candidateName[], originalName;
+        forsuffixes i=scantokens(allLinesList):
+            originalName := str i;
+            candidateName1 := getAttribute("line", "EndAName", originalName)
+                & getAttribute("line", "EndBName", originalName);
+            candidateName2 := getAttribute("line", "EndBName", originalName)
+                & getAttribute("line", "EndAName", originalName);
+            if not string getAttribute("line", "Synonym", candidateName1):
+                setAttribute("line", "Synonym", candidateName1, originalName);
+            fi;
+            if not string getAttribute("line", "Synonym", candidateName2):
+                setAttribute("line", "Synonym", candidateName2, originalName);
+            fi;
+        endfor;
+    fi;
 enddef;
 
 %
@@ -684,12 +744,12 @@ boolean omitLine[];
             if (not omitLine[n]):
                 safeLine := n;
             fi;
-            if (lineEndAName.i == str pointName):
-                distantEnds[n] := lineEndA.i + (unitvector(lineEndB.i - lineEndA.i) scaled (pointLinesScale/scaleFactor));
-                pointNames[n] := lineEndBName.i;
+            if (getAttribute("line", "EndAName", str i) == str pointName):
+                distantEnds[n] := getAttribute("line", "EndA", str i) + (unitvector(getAttribute("line", "EndB", str i) - getAttribute("line", "EndA", str i)) scaled (pointLinesScale/scaleFactor));
+                pointNames[n] := getAttribute("line", "EndBName", str i);
             else:
-                distantEnds[n] := lineEndB.i + (unitvector(lineEndA.i - lineEndB.i) scaled (pointLinesScale/scaleFactor));
-                pointNames[n] := lineEndAName.i;
+                distantEnds[n] := getAttribute("line", "EndB", str i) + (unitvector(getAttribute("line", "EndA", str i) - getAttribute("line", "EndB", str i)) scaled (pointLinesScale/scaleFactor));
+                pointNames[n] := getAttribute("line", "EndAName", str i);
             fi;
         endfor;
         if (n - no > 1):
@@ -724,28 +784,28 @@ boolean omitLine[];
             for i := 1 step 1 until n:
                 if (i <> maxDistEndA) and (i <> maxDistEndB) and (not omitLine[i]):
                     draw byLineRender(pointName, distantEnds[i],
-                        lineColor.scantokens(lineNames[i]), lineDashed.scantokens(lineNames[i]), lineThin.scantokens(lineNames[i]),
+                        getAttribute("line", "Color", lineNames[i]), getAttribute("line", "Dashed", lineNames[i]), getAttribute("line", "Thin", lineNames[i]),
                         pointName, distantEnds[i], 0, 0, 0, scaleFactor);
                 fi;
             endfor;
             draw byLineRender(pointName, distantEnds[maxDistEndA],
-                lineColor.scantokens(lineNames[maxDistEndA]),
-                lineDashed.scantokens(lineNames[maxDistEndA]),
-                lineThin.scantokens(lineNames[maxDistEndA]),
+                getAttribute("line", "Color", lineNames[maxDistEndA]),
+                getAttribute("line", "Dashed", lineNames[maxDistEndA]),
+                getAttribute("line", "Thin", lineNames[maxDistEndA]),
                 distantEnds[maxDistEndB], distantEnds[maxDistEndA], 0, 0, 0, scaleFactor);
             draw byLineRender(pointName, distantEnds[maxDistEndB],
-                lineColor.scantokens(lineNames[maxDistEndB]),
-                lineDashed.scantokens(lineNames[maxDistEndB]),
-                lineThin.scantokens(lineNames[maxDistEndB]),
+                getAttribute("line", "Color", lineNames[maxDistEndB]),
+                getAttribute("line", "Dashed", lineNames[maxDistEndB]),
+                getAttribute("line", "Thin", lineNames[maxDistEndB]),
                 distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 0, scaleFactor);
             if (textLabels):
                 draw byLabelsOnPolygon(scantokens(pointNames[maxAngleEndA]),pointName,scantokens(pointNames[maxAngleEndB]))(2, 0);
             fi;
         else:
             draw byLineRender(pointName, distantEnds[safeLine],
-                lineColor.scantokens(lineNames[safeLine]),
-                lineDashed.scantokens(lineNames[safeLine]),
-                lineThin.scantokens(lineNames[safeLine]),
+                getAttribute("line", "Color", lineNames[safeLine]),
+                getAttribute("line", "Dashed", lineNames[safeLine]),
+                getAttribute("line", "Thin", lineNames[safeLine]),
                 pointName, distantEnds[safeLine], 0, 0, 0, scaleFactor);
             if (textLabels):
                 draw byLabelLineEnd (pointName, distantEnds[safeLine])(0);
@@ -1213,21 +1273,21 @@ fi;
     fi;
     p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
-    setAttribute("path", "angle", "Arc", str angleName, p);
-    setAttribute("numeric", "angle", "Val", str angleName, 180*arclength(p scaled 2)/pi);
-    setAttribute("numeric", "angle", "AVal", str angleName, angle(a-b));
-    setAttribute("numeric", "angle", "CVal", str angleName, angle(c-b));
-    setAttribute("numeric", "angle", "Direction", str angleName, angle(point (arctime arclength(p)/2 of p) of p));
-    setAttribute("color", "angle", "Color", str angleName, col);
-    setAttributeMulti("color", "angle", "OptionalColor", str angleName, col, 0);
-    setAttribute("numeric", "angle", "Style", str angleName, sty);
-    setAttribute("pair", "angle", "Center", str angleName, b);
-    setAttribute("string", "angle", "AName", str angleName, str a);
-    setAttribute("string", "angle", "BName", str angleName, str b);
-    setAttribute("string", "angle", "CName", str angleName, str c);
-    setAttribute("numeric", "angle", "ScaleCorrection", str angleName, 1);
-    setAttribute("numeric", "angle", "Standalone", str angleName, 0);
-    setAttribute("string", "angle", "Synonym", str angleName, str angleName);
+    setAttribute("angle", "Arc", str angleName, p);
+    setAttribute("angle", "Val", str angleName, 180*arclength(p scaled 2)/pi);
+    setAttribute("angle", "AVal", str angleName, angle(a-b));
+    setAttribute("angle", "CVal", str angleName, angle(c-b));
+    setAttribute("angle", "Direction", str angleName, angle(point (arctime arclength(p)/2 of p) of p));
+    setAttribute("angle", "Color", str angleName, col);
+    setAttributeMulti("angle", "OptionalColor", str angleName, white, 0);
+    setAttribute("angle", "Style", str angleName, sty);
+    setAttribute("angle", "Center", str angleName, b);
+    setAttribute("angle", "AName", str angleName, str a);
+    setAttribute("angle", "BName", str angleName, str b);
+    setAttribute("angle", "CName", str angleName, str c);
+    setAttribute("angle", "ScaleCorrection", str angleName, 1);
+    setAttribute("angle", "Standalone", str angleName, 0);
+    setAttribute("angle", "Synonym", str angleName, str angleName);
 enddef;
 
 vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
@@ -1249,9 +1309,13 @@ vardef byAngleDefineExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angle
     n := 0;
     byAngleDefineWithName(a, b, c, col, sty)(angleName);
     forsuffixes oC=optionalColors:
-        setAttributeMulti("color", "angle", "OptionalColor", str angleName, oC, n);
+        setAttributeMulti("angle", "OptionalColor", str angleName, oC, n);
         n := n + 1;
     endfor;
+enddef;
+
+vardef byAngleDefineExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
+    byAngleDefineExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors);
 enddef;
 
 vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
@@ -1269,20 +1333,20 @@ vardef byNamedAngle(text anglesList) =
     path p[];
     image(
         forsuffixes aN=anglesList:
-            setAttribute("numeric", "angle", "ScaleCorrection", str aN, angleScale);
+            setAttribute("angle", "ScaleCorrection", str aN, angleScale);
             p1 := getAttribute("angle", "Arc", str aN) scaled (u*angleScale);
             p2 := getAttribute("angle", "Arc", str aN) scaled ((u*angleScale) - lineWidth);
             p3 := getAttribute("angle", "Arc", str aN) scaled ((u*angleScale) - lineWidthThin);
             q := image(
                 if ((getAttribute("angle", "Color", str aN) <> white) and (getAttribute("angle", "Color", str aN) <> white)):
-                    if (getAttribute("angle", "Style", str aN) = 0):
+                    if (getAttribute("angle", "Style", str aN) == 0):
                         fill ((0, 0)--p1--cycle) withcolor getAttribute("angle", "Color", str aN);
-                    elseif (getAttribute("angle", "Style", str aN) = 1):
+                    elseif (getAttribute("angle", "Style", str aN) == 1):
                         fill ((0, 0)--p1--cycle) withcolor getAttributeMulti("angle", "OptionalColor", str aN, 0);
                         draw p2 withpen pencircle scaled lineWidth withcolor getAttribute("angle", "Color", str aN);
-                    elseif (getAttribute("angle", "Style", str aN) = 2):
+                    elseif (getAttribute("angle", "Style", str aN) == 2):
                         draw p2 withpen pencircle scaled lineWidth withcolor getAttribute("angle", "Color", str aN) dashed byDashPattern(arclength(p2), 1);
-                    elseif (getAttribute("angle", "Style", str aN) = 3):
+                    elseif (getAttribute("angle", "Style", str aN) == 3):
                         for i := 1 step -1/floor((u*angleScale)/2mm) until 0:
                             draw (p3 scaled i) withpen pencircle scaled lineWidthThin withcolor getAttribute("angle", "Color", str aN);
                         endfor;
@@ -1396,17 +1460,17 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                         lineDash := 0;
                         lineTh := 1;
                         forsuffixes lN=linesList:
-                            if (lineEndAName.lN == centerName):
-                                if (abs(angle(lineEndB.lN - lineEndA.lN) - angleDir[i]) < 1):
-                                    lineCol := lineColor.lN;
-                                    lineDash := lineDashed.lN;
-                                    lineTh := lineThin.lN;
+                            if (getAttribute("line", "EndAName", str lN) == centerName):
+                                if (abs(angle(getAttribute("line", "EndB", str lN) - getAttribute("line", "EndA", str lN)) - angleDir[i]) < 1):
+                                    lineCol := getAttribute("line", "Color", str lN);
+                                    lineDash := getAttribute("line", "Dashed", str lN);
+                                    lineTh := getAttribute("line", "Thin", str lN);
                                 fi;
-                            elseif (lineEndBName.lN == centerName):
-                                if (abs(angle(lineEndA.lN - lineEndB.lN) - angleDir[i]) < 1):
-                                    lineCol := lineColor.lN;
-                                    lineDash := lineDashed.lN;
-                                    lineTh := lineThin.lN;
+                            elseif (getAttribute("line", "EndBName", str lN) == centerName):
+                                if (abs(angle(getAttribute("line", "EndA", str lN) - getAttribute("line", "EndB", str lN)) - angleDir[i]) < 1):
+                                    lineCol := getAttribute("line", "Color", str lN);
+                                    lineDash := getAttribute("line", "Dashed", str lN);
+                                    lineTh := getAttribute("line", "Thin", str lN);
                                 fi;
                             fi;
                         endfor;
@@ -1477,6 +1541,9 @@ vardef byNamedAngleResized (text anglesToUse) =
     numOfAngles := 0;
     forsuffixes k=anglesToUse:
         if (length(str k) > 0):
+            if typeOf(getAttribute("angle", "Synonym", str k)) <> "string":
+                errmessage("Angle " & str k & " is missing");
+            fi;
             numOfAngles := numOfAngles + 1;
         fi;
     endfor;
@@ -1578,16 +1645,16 @@ vardef generateAngleSynonyms =
                         & getAttribute("angle", "BName", originalName)
                         & getAttribute("angle", "AName", originalName);
                     if not string getAttribute("angle", "Synonym", candidateName1):
-                        setAttribute("string", "angle", "Synonym", candidateName1, originalName);
+                        setAttribute("angle", "Synonym", candidateName1, originalName);
                     fi;
                     if not string getAttribute("angle", "Synonym", candidateName2):
-                        setAttribute("string", "angle", "Synonym", candidateName2, originalName);
+                        setAttribute("angle", "Synonym", candidateName2, originalName);
                     fi;
                 fi;
             endfor;
             if (n == 1):
                 if not string getAttribute("angle", "Synonym", candidateName0):
-                    setAttribute("string", "angle", "Synonym", candidateName0, originalName);
+                    setAttribute("angle", "Synonym", candidateName0, originalName);
                 fi;
             fi;
         endfor;
@@ -1822,11 +1889,11 @@ vardef byLabelLine(expr d)(text linesList) =
     image(
         if (textLabels):
         forsuffixes lN=linesList:
-            if (lineUseLineLabel.lN):
-                draw byTextLabel(pointLabel)(lineLabel.lN, 1/2[lineEndA.lN, lineEndB.lN], lineAngle.lN + a, textLabelShift);
+            if (getAttribute("line", "UseLineLabel", str lN)):
+                draw byTextLabel(pointLabel)(getAttribute("line", "Label", str lN), 1/2[getAttribute("line", "EndA", str lN), getAttribute("line", "EndB", str lN)], getAttribute("line", "Angle", str lN) + a, textLabelShift);
             else:
-                draw byTextLabel(pointLabel)(lineEndAName.lN, lineEndA.lN, lineAngle.lN + a, textLabelShift);
-                draw byTextLabel(pointLabel)(lineEndBName.lN, lineEndB.lN, lineAngle.lN + a, textLabelShift);
+                draw byTextLabel(pointLabel)(getAttribute("line", "EndAName", str lN), getAttribute("line", "EndA", str lN), getAttribute("line", "Angle", str lN) + a, textLabelShift);
+                draw byTextLabel(pointLabel)(getAttribute("line", "EndBName", str lN), getAttribute("line", "EndB", str lN), getAttribute("line", "Angle", str lN) + a, textLabelShift);
             fi;
         endfor;
         fi;
