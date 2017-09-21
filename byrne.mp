@@ -119,21 +119,30 @@ vardef angleOpticalScale (expr v) =
     ((va/60)**(-1/2))
 enddef;
 
-vardef appendList (suffix listName)(expr valueToAdd) =
-    if not string listName:
+vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates) =
+    if (not string listName) or (unknown listName):
         string listName;
+        listName := "";
+    fi;
+    if length(listName) == 0:
         listName := valueToAdd;
     else:
         save valueExists;
         boolean valueExists;
         valueExists := false;
-        forsuffixes i=scantokens(listName):
-            if (str i == valueToAdd):
-                valueExists := true;
-            fi;
-        endfor;
+        if omitDuplicates:
+            forsuffixes i=scantokens(listName):
+                if (str i == valueToAdd):
+                    valueExists := true;
+                fi;
+            endfor;
+        fi;
         if not valueExists:
-            listName := listName & ", " & valueToAdd;
+            if (whereToAdd == 1):
+                listName := listName & ", " & valueToAdd;
+            else:
+                listName := valueToAdd & ", " & listName;
+            fi;
         fi;
     fi;
 enddef;
@@ -144,7 +153,12 @@ vardef setAttribute (expr attrGenus, attrSpecies, attrName, attrValue) =
     if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
         finName := attrName;
     else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
+        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
+            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
+                finName := attrName;
+            fi;
+        fi;
     fi;
     scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName);
     scantokens(attrGenus & attrSpecies).scantokens(finName) := attrValue;
@@ -156,7 +170,12 @@ vardef setAttributeMulti (expr attrGenus, attrSpecies, attrName, attrValue, n) =
     if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
         finName := attrName;
     else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
+        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
+            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
+                finName := attrName;
+            fi;
+        fi;
     fi;
     if (typeOf(scantokens(attrGenus & attrSpecies).scantokens(finName)0) <> typeOf(attrValue)):
         scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
@@ -164,20 +183,20 @@ vardef setAttributeMulti (expr attrGenus, attrSpecies, attrName, attrValue, n) =
     scantokens(attrGenus & attrSpecies).scantokens(finName)[n] := attrValue;
 enddef;
 
-setAttribute("line", "Color", "noLine", white);
-setAttribute("line", "Dashed", "noLine", 0);
-setAttribute("line", "EndAName", "noLine", "noLine");
-setAttribute("line", "EndBName", "noLine", "noLine");
-setAttribute("line", "EndA", "noLine", inf);
-setAttribute("line", "EndB", "noLine", inf);
-
 vardef getAttribute (expr attrGenus, attrSpecies, attrName) =
     save finName;
     string finName;
     if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
         finName := attrName;
     else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
+        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
+            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
+                if known scantokens(attrGenus & attrSpecies).scantokens(attrName):
+                    finName := attrName;
+                fi;
+            fi;
+        fi;
     fi;
     scantokens(attrGenus & attrSpecies).scantokens(finName)
 enddef;
@@ -188,10 +207,24 @@ vardef getAttributeMulti (expr attrGenus, attrSpecies, attrName, n) =
     if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
         finName := attrName;
     else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName)
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
+        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
+            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
+                if known scantokens(attrGenus & attrSpecies).scantokens(attrName)[n]:
+                    finName := attrName;
+                fi;
+            fi;
+        fi;
     fi;
     scantokens(attrGenus & attrSpecies).scantokens(finName)[n]
 enddef;
+
+setAttribute("line", "Color", "noLine", white);
+setAttribute("line", "Dashed", "noLine", 0);
+setAttribute("line", "EndAName", "noLine", "noLine");
+setAttribute("line", "EndBName", "noLine", "noLine");
+setAttribute("line", "EndA", "noLine", inf);
+setAttribute("line", "EndB", "noLine", inf);
 
 vardef distanceToLine (expr givenPoint, givenLine) =
     save p;
@@ -364,7 +397,7 @@ enddef;
 
 vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
 if mainPictureMode:
-    appendList(allLinesList, str lineName);
+    appendList(allLinesList, str lineName, 1, true);
 fi;
     setAttribute("line", "Angle", str lineName, angle(b-a));
     setAttribute("line", "Color", str lineName, col);
@@ -416,8 +449,8 @@ enddef;
 
 vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
     if (mainPictureMode):
-        appendList(pointLinesList.scantokens(getAttribute("line", "EndAName", str lineName)), str lineName);
-        appendList(pointLinesList.scantokens(getAttribute("line", "EndBName", str lineName)), str lineName);
+        appendList(pointLinesList.scantokens(getAttribute("line", "EndAName", str lineName)), str lineName, 1, true);
+        appendList(pointLinesList.scantokens(getAttribute("line", "EndBName", str lineName)), str lineName, 1, true);
     fi;
     byLineRender(getAttribute("line", "EndA", str lineName), getAttribute("line", "EndB", str lineName), getAttribute("line", "Color", str lineName), getAttribute("line", "Dashed", str lineName), getAttribute("line", "Thin", str lineName), c, d, ct, dt, s, scaleFactor)
 enddef;
@@ -667,10 +700,28 @@ vardef generateLineSynonyms =
             candidateName2 := getAttribute("line", "EndBName", originalName)
                 & getAttribute("line", "EndAName", originalName);
             if not string getAttribute("line", "Synonym", candidateName1):
+                setAttribute("line", "SynonymPartial", candidateName1, true);
                 setAttribute("line", "Synonym", candidateName1, originalName);
+                setAttribute("line", "EndA", candidateName1, getAttribute("line", "EndA", originalName));
+                setAttribute("line", "EndB", candidateName1, getAttribute("line", "EndB", originalName));
+                setAttribute("line", "EndAType", candidateName1, getAttribute("line", "EndAType", originalName));
+                setAttribute("line", "EndBType", candidateName1, getAttribute("line", "EndBType", originalName));
+                setAttribute("line", "EndAName", candidateName1, getAttribute("line", "EndAName", originalName));
+                setAttribute("line", "EndBName", candidateName1, getAttribute("line", "EndBName", originalName));
+                setAttribute("line", "DirA", candidateName1, getAttribute("line", "DirA", originalName));
+                setAttribute("line", "DirB", candidateName1, getAttribute("line", "DirB", originalName));
             fi;
             if not string getAttribute("line", "Synonym", candidateName2):
+                setAttribute("line", "SynonymPartial", candidateName2, true);
                 setAttribute("line", "Synonym", candidateName2, originalName);
+                setAttribute("line", "EndA", candidateName2, getAttribute("line", "EndB", originalName));
+                setAttribute("line", "EndB", candidateName2, getAttribute("line", "EndA", originalName));
+                setAttribute("line", "EndAType", candidateName2, getAttribute("line", "EndBType", originalName));
+                setAttribute("line", "EndBType", candidateName2, getAttribute("line", "EndAType", originalName));
+                setAttribute("line", "EndAName", candidateName2, getAttribute("line", "EndBName", originalName));
+                setAttribute("line", "EndBName", candidateName2, getAttribute("line", "EndAName", originalName));
+                setAttribute("line", "DirA", candidateName2, getAttribute("line", "DirB", originalName));
+                setAttribute("line", "DirB", candidateName2, getAttribute("line", "DirA", originalName));
             fi;
         endfor;
     fi;
@@ -1090,21 +1141,15 @@ vardef byNamedFilledCircleSector(text filledCircleSectorList) =
 enddef;
 
 vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
-    save pL, p;
+    save pL, p, tn;
     path p;
     string pL;
+    numeric tn;
     pL := "";
     p := forsuffixes pN=pointsList: pN -- endfor cycle;
+    tn := turningnumber(p);
     forsuffixes pN=pointsList:
-        if (pL <> ""):
-            if (turningnumber(p) == 1):
-                pL := str pN & ", " & pL;
-            else:
-                pL := pL & ", " &  str pN;
-            fi;
-        else:
-            pL := str pN;
-        fi;
+        appendList(pL, str pN, -tn, false);
     endfor;
     setAttribute("polygon", "Path", str polygonName, p);
     setAttribute("polygon", "Color", str polygonName, col);
@@ -1233,9 +1278,8 @@ vardef polygonCleanup (text pointsList) =
         n := n - m;
         exitif((m == 0) or (iteration > 100));
     endfor;
-    cleanedList := points[0];
-    for i := 1 step 1 until n:
-        cleanedList := cleanedList & ", " & points[i];
+    for i := 0 step 1 until n:
+        appendList(cleanedList, points[i], 1, false);
     endfor;
     cleanedList
 enddef;
@@ -1246,8 +1290,8 @@ enddef;
 
 vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
 if mainPictureMode:
-    appendList(pointAnglesList.b, str angleName);
-    appendList(anglePointsList, str b);
+    appendList(pointAnglesList.b, str angleName, 1, true);
+    appendList(anglePointsList, str b, 1, true);
 fi;
     save p, q, d;
     path p;
@@ -1572,7 +1616,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                                     or ((abs(getAttribute("angle", "CVal", str k) - getAttribute("angle", "AVal", str j)) mod 360) < 1)
                                     or ((abs(getAttribute("angle", "AVal", str k) - getAttribute("angle", "CVal", str j)) mod 360) < 1)
                                     or ((abs(getAttribute("angle", "CVal", str k) - getAttribute("angle", "CVal", str j)) mod 360) < 1):
-                                        appendList(anglesToDraw, str j);
+                                        appendList(anglesToDraw, str j, 1, true);
                                         anglesAdded := anglesAdded + 1;
                                     fi;
                                 endfor;
@@ -1586,11 +1630,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                                 fi;
                             endfor;
                             if not angleIsAdded:
-                                if (length(modAnglesListNew) == 0):
-                                    modAnglesListNew := str j;
-                                else:
-                                    modAnglesListNew := str j & ", " & modAnglesListNew;
-                                fi;
+                                appendList(modAnglesListNew, str j, 1, false);
                             fi;
                         endfor;
                         modAnglesList := modAnglesListNew;
@@ -1631,15 +1671,18 @@ vardef generateAngleSynonyms =
                         & getAttribute("angle", "BName", originalName)
                         & getAttribute("angle", "AName", originalName);
                     if not string getAttribute("angle", "Synonym", candidateName1):
+                        setAttribute("angle", "SynonymPartial", candidateName1, false);
                         setAttribute("angle", "Synonym", candidateName1, originalName);
                     fi;
                     if not string getAttribute("angle", "Synonym", candidateName2):
+                        setAttribute("angle", "SynonymPartial", candidateName2, false);
                         setAttribute("angle", "Synonym", candidateName2, originalName);
                     fi;
                 fi;
             endfor;
             if (n == 1):
                 if not string getAttribute("angle", "Synonym", candidateName0):
+                    setAttribute("angle", "SynonymPartial", candidateName0, false);
                     setAttribute("angle", "Synonym", candidateName0, originalName);
                 fi;
             fi;
