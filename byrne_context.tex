@@ -2252,6 +2252,17 @@ Then $\drawAngle{A} = \drawAngle{F}$ \inprop[prop:I.VIII].
 
 \startProposition[title={Prop XXIV. Theor.}, reference=prop:I.XXIV]
 \defineNewPicture{
+byAngleMacroName[3] := "byAngleMArcs";
+vardef byAngleMArcs (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p;
+    p := angleArc scaled ((u*angleScale) - 2lineWidth);
+    image(
+        for i := 1 step -1/floor((u*angleScale)/2mm) until 0:
+            draw (p scaled i) withpen pencircle scaled lineWidthThin withcolor angleColor;
+        endfor;
+    )
+enddef;
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (u, -5/2u);
@@ -7640,6 +7651,19 @@ $\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII],
 
 \startProposition[title={Prop. III. prob.},reference=prop:IV.III]
 \defineNewPicture[3/5]{
+byAngleMacroName[3] := "byAngleMSectors";
+vardef byAngleMSectors (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p[];
+    p1 := (subpath(0, arctime (1/3arclength(angleArc)) of angleArc) of angleArc) scaled (u*angleScale);
+    p2 := (subpath(arctime (1/3arclength(angleArc)) of angleArc, arctime(2/3arclength(angleArc)) of angleArc) of angleArc) scaled (u*angleScale);
+    p3 := (subpath(arctime (2/3arclength(angleArc)) of angleArc, length(angleArc)) of angleArc) scaled (u*angleScale);
+    image(
+        fill ((0, 0)--p1--cycle) withcolor angleOptionalColors[0];
+        fill ((0, 0)--p2--cycle) withcolor angleColor;
+        fill ((0, 0)--p3--cycle) withcolor angleOptionalColors[1];
+    )
+enddef;
 pair A, B, C, D, E, F, G, H, K, L, M, N, d;
 numeric r;
 r := 5/4u;
@@ -7664,8 +7688,8 @@ byAngleDefine(M, L, N, byred, 0);
 byAngleDefine(D, F, E, byred, 0);
 byAngleDefine(L, N, M, black, 1);
 byAngleDefine(F, E, D, black, 1); 
-byAngleDefine(N, M, L, byred, 1); %
-byAngleDefine(E, D, F, byred, 1); % these two angles are three-colored in the original, but that's the only time in the whole book and i see no good reason to implement this.
+byAngleDefineExtended(N, M, L, black, 3)(byblue, byred); 
+byAngleDefineExtended(E, D, F, black, 3)(byblue, byred); 
 byAngleDefine(K, A, L, black, 0);
 byAngleDefine(L, C, K, black, 0);
 draw byNamedAngleResized();

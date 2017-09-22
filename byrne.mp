@@ -700,16 +700,7 @@ vardef generateLineSynonyms =
             candidateName2 := getAttribute("line", "EndBName", originalName)
                 & getAttribute("line", "EndAName", originalName);
             if not string getAttribute("line", "Synonym", candidateName1):
-                setAttribute("line", "SynonymPartial", candidateName1, true);
                 setAttribute("line", "Synonym", candidateName1, originalName);
-                setAttribute("line", "EndA", candidateName1, getAttribute("line", "EndA", originalName));
-                setAttribute("line", "EndB", candidateName1, getAttribute("line", "EndB", originalName));
-                setAttribute("line", "EndAType", candidateName1, getAttribute("line", "EndAType", originalName));
-                setAttribute("line", "EndBType", candidateName1, getAttribute("line", "EndBType", originalName));
-                setAttribute("line", "EndAName", candidateName1, getAttribute("line", "EndAName", originalName));
-                setAttribute("line", "EndBName", candidateName1, getAttribute("line", "EndBName", originalName));
-                setAttribute("line", "DirA", candidateName1, getAttribute("line", "DirA", originalName));
-                setAttribute("line", "DirB", candidateName1, getAttribute("line", "DirB", originalName));
             fi;
             if not string getAttribute("line", "Synonym", candidateName2):
                 setAttribute("line", "SynonymPartial", candidateName2, true);
@@ -722,6 +713,7 @@ vardef generateLineSynonyms =
                 setAttribute("line", "EndBName", candidateName2, getAttribute("line", "EndAName", originalName));
                 setAttribute("line", "DirA", candidateName2, getAttribute("line", "DirB", originalName));
                 setAttribute("line", "DirB", candidateName2, getAttribute("line", "DirA", originalName));
+                setAttribute("line", "Angle", candidateName2, 180 + getAttribute("line", "Angle", originalName));
             fi;
         endfor;
     fi;
@@ -1360,37 +1352,79 @@ enddef;
 vardef byNamedAngle(text anglesList) =
     save p, q;
     picture q;
-    path p[];
+    path p;
     image(
         forsuffixes aN=anglesList:
             setAttribute("angle", "ScaleCorrection", str aN, angleScale);
-            p1 := getAttribute("angle", "Arc", str aN) scaled (u*angleScale);
-            p2 := getAttribute("angle", "Arc", str aN) scaled ((u*angleScale) - lineWidth);
-            p3 := getAttribute("angle", "Arc", str aN) scaled ((u*angleScale) - lineWidthThin);
+            p := getAttribute("angle", "Arc", str aN);
             q := image(
-                if ((getAttribute("angle", "Color", str aN) <> white) and (getAttribute("angle", "Color", str aN) <> white)):
-                    if (getAttribute("angle", "Style", str aN) == 0):
-                        fill ((0, 0)--p1--cycle) withcolor getAttribute("angle", "Color", str aN);
-                    elseif (getAttribute("angle", "Style", str aN) == 1):
-                        fill ((0, 0)--p1--cycle) withcolor getAttributeMulti("angle", "OptionalColor", str aN, 0);
-                        draw p2 withpen pencircle scaled lineWidth withcolor getAttribute("angle", "Color", str aN);
-                    elseif (getAttribute("angle", "Style", str aN) == 2):
-                        draw p2 withpen pencircle scaled lineWidth withcolor getAttribute("angle", "Color", str aN) dashed byDashPattern(arclength(p2), 1);
-                    elseif (getAttribute("angle", "Style", str aN) == 3):
-                        for i := 1 step -1/floor((u*angleScale)/2mm) until 0:
-                            draw (p3 scaled i) withpen pencircle scaled lineWidthThin withcolor getAttribute("angle", "Color", str aN);
-                        endfor;
-                    elseif (getAttribute("angle", "Style", str aN) = -1):
-                            draw p3 withpen pencircle scaled lineWidthThin withcolor getAttribute("angle", "Color", str aN);
+                if (getAttribute("angle", "Color", str aN) <> white):
+                    if (typeOf(getAttribute("angle", "Style", str aN)) == "numeric"):
+                        draw scantokens(byAngleMacroName[getAttribute("angle", "Style", str aN)]) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
+                    elseif (typeOf(getAttribute("angle", "Style", str aN)) == "string"):
+                        draw scantokens("byAngleM" & getAttribute("angle", "Style", str aN)) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
                     fi;
                 else:
-                    fill ((0, 0)--p1--cycle) withcolor white;
-                    draw ((0, 0)--p3--cycle) withpen pencircle scaled lineWidthThin withcolor black;
+                    draw byAngleMWhite(p, 0, 0);
                 fi;
             );
-            clip q to ((0, 0)--p1--cycle);
             draw (q shifted (getAttribute("angle", "Center", str aN) scaled scaleFactor)) rotated globalRotation;
         endfor;
+    )
+enddef;
+
+string byAngleMacroName[];
+byAngleMacroName[-2] := "byAngleMWhite";
+byAngleMacroName[-1] := "byAngleMThinLine";
+byAngleMacroName[0] := "byAngleMSolid";
+byAngleMacroName[1] := "byAngleMLine";
+byAngleMacroName[2] := "byAngleMDashedLine";
+
+vardef byAngleMWhite (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p;
+    p := angleArc scaled ((u*angleScale) - lineWidthThin);
+    image(
+        fill ((0, 0)--p--cycle) withcolor white;
+        draw p withpen pencircle scaled lineWidthThin withcolor black;
+    )
+enddef;
+
+vardef byAngleMSolid (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p;
+    p := angleArc scaled (u*angleScale);
+    image(
+        fill ((0, 0)--p--cycle) withcolor angleColor;
+    )
+enddef;
+
+vardef byAngleMLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p;
+    p := angleArc scaled ((u*angleScale) - lineWidth);
+    image(
+        fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+        draw p withpen pencircle scaled lineWidth withcolor angleColor;
+    )
+enddef;
+
+vardef byAngleMThinLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p;
+    p := angleArc scaled ((u*angleScale) - lineWidthThin);
+    image(
+        fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+        draw p withpen pencircle scaled lineWidthThin withcolor angleColor;
+    )
+enddef;
+
+vardef byAngleMDashedLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
+    save p;
+    path p;
+    p := angleArc scaled ((u*angleScale) - lineWidth);
+    image(
+        draw p withpen pencircle scaled lineWidth withcolor angleColor dashed byDashPattern(arclength(p), 1);
     )
 enddef;
 
