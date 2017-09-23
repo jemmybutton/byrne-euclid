@@ -7645,7 +7645,7 @@ $\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII],
 pair A, B, C, D, E, F, G, H, K, L, M, N, d;
 numeric r;
 r := 5/4u;
-d := (0, 4r);
+d := (-4/3r, 11/5r);
 D := (0, 0) shifted d;
 E := (1/3r, -r) shifted d;
 F := (-5/6r, -r) shifted d;
@@ -7653,8 +7653,8 @@ G := 4/3[F, E];
 H := 4/3[E, F];
 K := (0, 0);
 C := (0, -r) shifted K;
-A := (dir(-90-angleValue(D, F, H))*r) shifted K;
-B := (dir(-90+angleValue(G, E, D))*r) shifted K;
+A := (dir(-90+angleValue(D, F, H))*r) shifted K;
+B := (dir(-90-angleValue(G, E, D))*r) shifted K;
 L = whatever[C, C shifted (dir(angle(C-K) + 90))] = whatever[A, A shifted (dir(angle(A-K) + 90))];
 M = whatever[B, B shifted (dir(angle(B-K) + 90))] = whatever[A, L];
 N = whatever[B, M] = whatever[C, L];
@@ -7681,10 +7681,10 @@ draw byArbitraryFigure(A--K--B, black, 0, 1)(AKB);
 draw byCircleR(K, r, byred, 0, 0, -1)(K);
 draw byNamedLineSeq(0)(NL,LM,MN);
 byArbitraryFigureDefine(L--A--K--C--cycle, black, 0, 1)(LAKC);
-draw byLabelsOnPolygon(C, N, B, M, A, L)(0, 0);
+draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
 draw byLabelsOnPolygon(G, E, F, H, noPoint)(0, 0);
 draw byLabelsOnPolygon(F, D, E)(2, 0);
-draw byLabelsOnPolygon(B, K, A)(2, 0);
+draw byLabelsOnPolygon(A, K, B)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного круга \drawCircle[middle][1/3]{K} описать треугольник, равноугольный данному.}
@@ -7704,7 +7704,7 @@ draw byLabelsOnPolygon(B, K, A)(2, 0);
 startTempAngleScale(2/3);
 draw byNamedAngle(A, C, L, CKA);
 draw byNamedArbitraryFigure(LAKC);
-draw byLabelsOnPolygon(C, K, A, L)(0, 0);
+draw byLabelsOnPolygon(L, A, K, C)(0, 0);
 stopTempAngleScale;
 },
 взятые вместе равны четырем прямым углам. \inprop[prop:I.XXXII]

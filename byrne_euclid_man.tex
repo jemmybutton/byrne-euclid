@@ -404,7 +404,7 @@ Defines a new angle with a given name. Returns nothing.
 
 {\tt col} — of color type, angle color.
 
-{\tt sty} — of numeric type, angle style, 0 for solid sector, 1 for arc, 2 for dashed arc, 3 for series of thin arcs.
+{\tt sty} — of numeric type, angle style, 0 for solid sector, 1 for arc, 2 for dashed arc.
 
 {\tt angleName} — of suffix type, angle name.
 \stopsubsection
@@ -425,6 +425,23 @@ Defines a new angle with a given name with additional colors. Returns a picture 
 {\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
 
 {\tt a, b, c, col, sty, angleName} — same as {\tt byAngleDefine}.
+\stopsubsection
+\startsubsection[title={byAngleExtended(suffix a, b, c) (expr col, sty) (text optionalColors)}]
+Same as {\tt byAngleExtendedWithName}, but name is assigned automatically (in form of {\tt abc}).
+\stopsubsection
+\startsubsection[title={byAngleDefineExtendedWithName(suffix a, b, c) (expr col, sty) (suffix angleName) (text optionalColors)}]
+Defines a new angle with a given name with additional colors. Returns nothing.
+
+{\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
+
+{\tt a, b, c, col, sty, angleName} — same as {\tt byAngleDefine}.
+\stopsubsection
+\startsubsection[title={byAngleDefineExtended(suffix a, b, c) (expr col, sty) (suffix angleName)}]
+Defines a new angle with a given name with additional colors. Returns nothing.
+
+{\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
+
+{\tt a, b, c, col, sty} — same as {\tt byAngleDefine}.
 \stopsubsection
 \startsubsection[title={byAngleExtended(suffix a, b, c) (expr col, sty) (text optionalColors)}]
 Same as {\tt byAngleExtendedWithName}, but name is assigned automatically (in form of {\tt abc}).
@@ -452,6 +469,11 @@ Produces a picture of side parts of given lines adjacent to given angles. Return
 {\tt anglesList} — of text type, comma separated angle names.
 
 {\tt linesList} — of text type, comma separated line names.
+\stopsubsection
+\startsubsection[title={byNamedAngleResized(text anglesToUse)}]
+Produces already defined angles. Returns a picture of that angles in such a way that the smaller angles are scaled up a little, along with their adjacent angles. If no angles are listed, all the defined angles are produced, and that's the most common use for this function. Using it for separate angles is not recommended.
+
+{\tt anglesToUse} — of text type, comma separated angle names.
 \stopsubsection
 \startsubsection[title={twoRightAngles}]
 Produces a generic picture of a flat angle, like this \drawTwoRightAngles , takes no arguments. Returns a picture of a flat angle.
