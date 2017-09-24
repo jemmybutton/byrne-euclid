@@ -2256,9 +2256,9 @@ byAngleMacroName[3] := "byAngleMArcs";
 vardef byAngleMArcs (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p;
     path p;
-    p := angleArc scaled ((u*angleScale) - 2lineWidth);
+    p := angleArc scaled ((u*angleScale) - lineWidthThin);
     image(
-        for i := 1 step -1/floor((u*angleScale)/2mm) until 0:
+        for i := 1 step -1/floor((u*angleScale)/2mm) until (2mm/(u*angleScale)):
             draw (p scaled i) withpen pencircle scaled lineWidthThin withcolor angleColor;
         endfor;
     )
@@ -12485,6 +12485,7 @@ De := dir(-72) scaled 1/2u;
 d1 := (3u, 3/2u);
 forsuffixes i=Da,Db,Dc,Dd,De:
 	i := ((i rotated 36) scaled 3/2) shifted d1;
+	byPointLabelDefine(i, "");
 endfor;
 draw byPolygonWithName(Da,Db,Dc,Dd,De)(byblue)(D);
 pair F, M;
