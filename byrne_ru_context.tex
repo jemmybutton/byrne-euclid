@@ -1091,8 +1091,8 @@ $A : B :: C : D$, $A : B = C : D$, или $\dfrac{A}{B} = \dfrac{C}{D}$.
 	B := dir(0)*s;
 	C := dir(50)*s;
 	D := dir(90)*s;
-		draw byAngle(B, A, C, white, 0);
-		draw byAngle(B, A, D, white, 0);
+	byAngleDefine(B, A, C, black, 1);
+	byAngleDefine(B, A, D, black, 1);
 	byPointLabelDefine(A, "");
 	byPointLabelDefine(B, "");
 	byPointLabelDefine(C, "");
@@ -1870,11 +1870,11 @@ draw byLabelPoint(D, lineAngle.CD - 90, 1);
 \problemNP[2]{Е}{сли}{две прямых линии \drawUnitLine{AB} и \drawUnitLine{CD} пересекаются, вертикальные углы \drawAngle{BEC} и \drawAngle{AED}, \drawAngle{CEA} и \drawAngle{DEB} будут равны между собой.}
 
 \startCenterAlign
-$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$
+$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII]
 
-$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$
+$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$\inprop[prop:I.XIII]
 
-$\therefore \drawAngle{BEC} = \drawAngle{AED}$.
+$\therefore \drawAngle{BEC} = \drawAngle{AED}$ \inax[ax:II].
 
 Таким же образом можно показать, что\\
 $\drawAngle{CEA} = \drawAngle{DEB}$

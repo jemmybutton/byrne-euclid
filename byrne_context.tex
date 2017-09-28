@@ -1086,8 +1086,8 @@ or A is to B, as C is to D.
 	B := dir(0)*s;
 	C := dir(50)*s;
 	D := dir(90)*s;
-		draw byAngle(B, A, C, white, 0);
-		draw byAngle(B, A, D, white, 0);
+	byAngleDefine(B, A, C, black, 1);
+	byAngleDefine(B, A, D, black, 1);
 	byPointLabelDefine(A, "");
 	byPointLabelDefine(B, "");
 	byPointLabelDefine(C, "");
@@ -1858,11 +1858,11 @@ draw byLabelPoint(D, lineAngle.CD - 90, 1);
 \problemNP{I}{f}{two straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) intersect on another, the vertical angles \drawAngle{BEC} and \drawAngle{AED}, \drawAngle{CEA} and \drawAngle{DEB} are equal.}
 
 \startCenterAlign
-$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$
+$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ % Here and in the next line should be a link to prop I.XIII
 
-$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$
+$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$ %
 
-$\therefore \drawAngle{BEC} = \drawAngle{AED}$.
+$\therefore \drawAngle{BEC} = \drawAngle{AED}$. % And this is according to ax. I
 
 In the same manner it may be shown that\\
 $\drawAngle{CEA} = \drawAngle{DEB}$
