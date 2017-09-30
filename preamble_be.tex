@@ -297,9 +297,9 @@
 \def\drawCurrentPictureInMargin{\dosingleempty\drawcurrentpictureinmargin}
 \def\drawcurrentpictureinmargin[#1]{
 	\iffirstargument\ignorespaces
-		\figureInMargin[#1]{\currentPicture}
+		\figureInMargin[#1]{\currentPicture}\ignorespaces
 	\else\ignorespaces
-		\figureInMargin{\currentPicture}
+		\figureInMargin{\currentPicture}\ignorespaces
 	\fi\ignorespaces
 }
 
