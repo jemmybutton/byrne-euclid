@@ -51,9 +51,9 @@ vardef sin primary x = (sind(x*radian)) enddef;
 vardef cos primary x = (cosd(x*radian)) enddef;
 
 color byred, byblue, byyellow;
-byred := (.9, .15, .05);
-byblue := (.05, .2, .7);
-byyellow := (.9, .75, .1);
+byred := (0.9, .25, .1);
+byblue := (0.15, .4, 0.65);
+byyellow := (1, .75, 0);
 
 linecap := butt;
 
