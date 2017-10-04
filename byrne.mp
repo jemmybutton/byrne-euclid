@@ -220,6 +220,17 @@ vardef getAttributeMulti (expr attrGenus, attrSpecies, attrName, n) =
     scantokens(attrGenus & attrSpecies).scantokens(finName)[n]
 enddef;
 
+vardef attributeExists(expr attrGenus, attrSpecies, attrName) =
+    save rv;
+    boolean rv;
+    if known scantokens(attrGenus & attrSpecies).scantokens(attrName):
+        rv := true;
+    else:
+        rv := false;
+    fi;
+    rv
+enddef;
+
 setAttribute("line", "Color", "noLine", white);
 setAttribute("line", "Dashed", "noLine", 0);
 setAttribute("line", "EndAName", "noLine", "noLine");
@@ -597,7 +608,75 @@ vardef byNamedMarkLine(suffix lineName) =
     p rotated globalRotation
 enddef;
 
+vardef byFindLinePointedThere(expr a, b) =
+    save endA, endB, endAC, endBC, endAA, endBA, chosenLine, lL;
+    string chosenLine;
+    pair endA, endB, endAC, endBC, endAA, endBA;
+    numeric lL;
+    endA := scantokens(a);
+    endB := scantokens(b);
+    forsuffixes lL=scantokens(pointLinesList.scantokens(a)):
+        endAC := getAttribute("line", "EndA", str lL);
+        endBC := getAttribute("line", "EndB", str lL);
+        if (endAC == endA):
+            endAA := endAC;
+            endBA := endBC;
+        elseif (endBC == endA):
+            endAA := endBC;
+            endBA := endAC;
+        fi;
+        if ((abs(angle(endBA - endAA) - angle(endB - endA)) mod 360) < 1):
+            chosenLine := str lL;
+        fi;
+    endfor;
+    chosenLine
+enddef;
+
+vardef byConstructCompoundLine(expr lineName) =
+    save lineStart, lineEnd, newLine, compoundLineString, i;
+    string lineStart, lineEnd, newLine, compoundLineString;
+    numeric i;
+    lineStart := substring (0, 1) of lineName;
+    lineEnd := substring (1, 2) of lineName;
+    i := 0;
+    forever:
+        i := i + 1;
+        newLine := byFindLinePointedThere(lineStart, lineEnd);
+        appendList (compoundLineString, newLine, 1, false);
+        if (getAttribute("line", "EndAName", newLine) == lineStart):
+            lineStart := getAttribute("line", "EndBName", newLine);
+        elseif (getAttribute("line", "EndBName", newLine) == lineStart):
+            lineStart := getAttribute("line", "EndAName", newLine);
+        fi;
+        exitif (i > 10) or
+            (getAttribute("line", "EndAName", newLine) == lineEnd) or
+            (getAttribute("line", "EndBName", newLine) == lineEnd);
+    endfor;
+    compoundLineString
+enddef;
+
+vardef byExpandLine (text linesList) =
+    save i, lineString, compoundLineString, rv;
+    numeric i;
+    string lineString, compoundLineString, rv;
+    i := 0;
+    forsuffixes lN=linesList:
+        i := i + 1;
+        lineString := str lN;
+    endfor;
+    if not attributeExists("line", "Synonym", lineString):
+        rv := byConstructCompoundLine(lineString);
+    else:
+        rv := lineString;
+    fi;
+    rv
+enddef;
+
 vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
+    byNamedCompoundLineRender(cu, pw)(scantokens(byExpandLine(linesList)))
+enddef;
+
+vardef byNamedCompoundLineRender(expr cu, pw)(text linesList) =
     save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, lineNotStraight, lineNotContinuous, globalRotation;
     numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j, angleCheck[];
     globalRotation := 0;
