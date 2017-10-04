@@ -147,6 +147,43 @@
 	\else\ignorespaces
 		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundLine(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
 	\fi\ignorespaces}}
+
+\def\drawUnitRay{\dosingleempty\drawunitray}
+\def\drawunitray[#1]#2{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 0)(#2);stopAutoLabeling;}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2]{startAutoLabeling;draw byNamedCompoundRay(1cm, 0)(#2);stopAutoLabeling;}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawProportionalRay#1{\drawFromCurrentPicture[middle][lineprop#1]{startAutoLabeling;draw byNamedCompoundRay(1cm, 1)(#1);stopAutoLabeling;}}
+
+\def\drawSizedRay{\dosingleempty\drawsizedray}
+\def\drawsizedray[#1]#2{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 2)(#2);stopAutoLabeling;}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundRay(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
+	\fi\ignorespaces}}
+	
+
+\def\drawUnitIndLine{\dosingleempty\drawunitindline}
+\def\drawunitindline[#1]#2{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2#1]{startAutoLabeling;draw byNamedCompoundIndLine(#1, 0)(#2);stopAutoLabeling;}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[middle][uline#2]{startAutoLabeling;draw byNamedCompoundIndLine(1cm, 0)(#2);stopAutoLabeling;}\ignorespaces
+	\fi\ignorespaces}}
+
+\def\drawProportionalIndLine#1{\drawFromCurrentPicture[middle][lineprop#1]{startAutoLabeling;draw byNamedCompoundIndLine(1cm, 1)(#1);stopAutoLabeling;}}
+
+\def\drawSizedIndLine{\dosingleempty\drawsizedindline}
+\def\drawsizedindline[#1]#2{{\ignorespaces
+	\iffirstargument\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2#1]{startAutoLabeling;draw byNamedCompoundIndLine(#1, 2)(#2);stopAutoLabeling;}\ignorespaces
+	\else\ignorespaces
+		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundIndLine(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
+	\fi\ignorespaces}}
 	
 \def\drawTwoRightAngles{\ignorespaces
 \drawFromCurrentPicture[middle][tworightangles]{draw twoRightAngles;}}

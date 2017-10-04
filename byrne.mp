@@ -34,6 +34,7 @@ globalRotation := 0;
 magnitudeScale := 1/3;
 magnitudeGap := 2lineWidth;
 markLength := 3lineWidth;
+rayExtension := 1/3u;
 
 boolean textLabels, autoLabelingMode, mainPictureMode;
 
@@ -237,6 +238,10 @@ setAttribute("line", "EndAName", "noLine", "noLine");
 setAttribute("line", "EndBName", "noLine", "noLine");
 setAttribute("line", "EndA", "noLine", inf);
 setAttribute("line", "EndB", "noLine", inf);
+
+setAttribute("line", "Color", "dummyLine", black);
+setAttribute("line", "Dashed", "dummyLine", 0);
+setAttribute("line", "Thin", "dummyLine", 1);
 
 vardef distanceToLine (expr givenPoint, givenLine) =
     save p;
@@ -614,7 +619,7 @@ vardef byFindLinePointedThere(expr a, b) =
     pair endA, endB, endAC, endBC, endAA, endBA;
     numeric lL;
     endA := scantokens(a);
-    endB := scantokens(b);
+    endB := b;
     forsuffixes lL=scantokens(pointLinesList.scantokens(a)):
         endAC := getAttribute("line", "EndA", str lL);
         endBC := getAttribute("line", "EndB", str lL);
@@ -629,58 +634,88 @@ vardef byFindLinePointedThere(expr a, b) =
             chosenLine := str lL;
         fi;
     endfor;
+    if unknown chosenLine:
+        chosenLine := "";
+    fi;
     chosenLine
 enddef;
 
 vardef byConstructCompoundLine(expr lineName) =
-    save lineStart, lineEnd, newLine, compoundLineString, i;
-    string lineStart, lineEnd, newLine, compoundLineString;
-    numeric i;
-    lineStart := substring (0, 1) of lineName;
-    lineEnd := substring (1, 2) of lineName;
+    save lineStart, lEnd, newLine, lEndA, lEndB, compoundLineString, i, j, cPointA, cPointB;
+    string lineStart, lEnd, newLine, lEndA, lEndB, compoundLineString, cPointA, cPointB;
+    numeric i, j;
+    j := 0;
+    if (length(lineName) == 2):
+        lineStart := substring (0, 1) of lineName;
+        lEnd := substring (1, 2) of lineName;
+    else:
+        for i := 1 step 1 until length(lineName):
+            cPointA := substring (0, i) of lineName;
+            cPointB := substring (i, length(lineName)) of lineName;
+            if known scantokens(cPointA): % for some reason 'and' doesn't work here
+                if known scantokens(cPointB):
+                    j := j + 1;
+                    lineStart := cPointA;
+                    lEnd := cPointB;
+                fi;
+            fi;
+        endfor;
+    fi;
+    if unknown lineStart:
+        errmessage("Can't find points for line: " & lineName);
+    fi;
+    if j > 1:
+        errmessage("Ambiguous line name: " & lineName);
+    fi;
     i := 0;
     forever:
         i := i + 1;
-        newLine := byFindLinePointedThere(lineStart, lineEnd);
+        newLine := byFindLinePointedThere(lineStart, scantokens(lEnd));
         appendList (compoundLineString, newLine, 1, false);
-        if (getAttribute("line", "EndAName", newLine) == lineStart):
-            lineStart := getAttribute("line", "EndBName", newLine);
-        elseif (getAttribute("line", "EndBName", newLine) == lineStart):
-            lineStart := getAttribute("line", "EndAName", newLine);
+        lEndA := getAttribute("line", "EndAName", newLine);
+        lEndB := getAttribute("line", "EndBName", newLine);
+        if (lEndA == lineStart):
+            lineStart := lEndB;
+        elseif (lEndB == lineStart):
+            lineStart := lEndA;
         fi;
-        exitif (i > 10) or
-            (getAttribute("line", "EndAName", newLine) == lineEnd) or
-            (getAttribute("line", "EndBName", newLine) == lineEnd);
+        exitif (i > 10);
+        exitif (lEndA == lEnd);
+        exitif (lEndB == lEnd);
     endfor;
     compoundLineString
 enddef;
 
-vardef byExpandLine (text linesList) =
-    save i, lineString, compoundLineString, rv;
-    numeric i;
-    string lineString, compoundLineString, rv;
-    i := 0;
+vardef byExpandLines (text linesList) =
+    save lineString, compoundLineString;
+    string lineString, compoundLineString;
     forsuffixes lN=linesList:
-        i := i + 1;
-        lineString := str lN;
+        if not attributeExists("line", "Synonym", str lN):
+            appendList(lineString, byConstructCompoundLine(str lN), 1, false);
+        else:
+            appendList(lineString, str lN, 1, false);
+        fi;
     endfor;
-    if not attributeExists("line", "Synonym", lineString):
-        rv := byConstructCompoundLine(lineString);
-    else:
-        rv := lineString;
-    fi;
-    rv
+    lineString
 enddef;
 
 vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
-    byNamedCompoundLineRender(cu, pw)(scantokens(byExpandLine(linesList)))
+    byNamedCompoundLineRender(cu, pw, 0)(scantokens(byExpandLines(linesList)))
 enddef;
 
-vardef byNamedCompoundLineRender(expr cu, pw)(text linesList) =
-    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, lineNotStraight, lineNotContinuous, globalRotation;
+vardef byNamedCompoundRay(expr cu, pw)(text linesList) =
+    byNamedCompoundLineRender(cu, pw, 1)(scantokens(byExpandLines(linesList)))
+enddef;
+
+vardef byNamedCompoundIndLine(expr cu, pw)(text linesList) =
+    byNamedCompoundLineRender(cu, pw, 2)(scantokens(byExpandLines(linesList)))
+enddef;
+
+vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
+    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, lineNotStraight, lineNotContinuous, globalRotation, extensionNames;
     numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j, angleCheck[];
     globalRotation := 0;
-    string lineNames[], endNames[];
+    string lineNames[], endNames[], extensionNames[];
     pair a, b;
     boolean lineNotStraight, lineNotContinuous;
     i := 0;
@@ -758,6 +793,28 @@ vardef byNamedCompoundLineRender(expr cu, pw)(text linesList) =
             fi;
             j := j + 1;
         endfor;
+        extensionNames0 := byFindLinePointedThere(endNames1, 2[scantokens(endNames0), scantokens(endNames1)]);
+        extensionNames1 := byFindLinePointedThere(endNames0, 2[scantokens(endNames1), scantokens(endNames0)]);
+        if extensionNames0 == "":
+            extensionNames0 := "dummyLine";
+        fi;
+        if extensionNames1 == "":
+            extensionNames1 := "dummyLine";
+        fi;
+        if (sty > 0):
+            draw byLineRender(b, b shifted (rayExtension/scaleFactor, 0),
+                getAttribute("line", "Color", extensionNames0),
+                getAttribute("line", "Dashed", extensionNames0),
+                getAttribute("line", "Thin", extensionNames0),
+                b, b shifted (rayExtension/scaleFactor, 0), 0, 0, 0, scaleFactor);
+        fi;
+        if (sty > 1):
+            draw byLineRender((0, 0), (0, 0) shifted (-rayExtension/scaleFactor, 0),
+                getAttribute("line", "Color", extensionNames1),
+                getAttribute("line", "Dashed", extensionNames1),
+                getAttribute("line", "Thin", extensionNames1),
+                (0, 0), (0, 0) shifted (-rayExtension/scaleFactor, 0), 0, 0, 0, scaleFactor);
+        fi;
         if (textLabels and autoLabelingMode):
             if (endNames[0] <> endNames[1]):
                 draw byTextLabel(pointLabel)(endNames[0], (0, 0), 90, textLabelShift);
