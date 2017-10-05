@@ -51,11 +51,12 @@ vardef sin primary x = (sind(x*radian)) enddef;
 
 vardef cos primary x = (cosd(x*radian)) enddef;
 
-color byred, byblue, byyellow, byblack;
+color byred, byblue, byyellow, byblack, bygrey;
 byred := (.85, .3, .1);
 byblue := (.15, .35, .6);
 byyellow := (.95, .7, 0.1);
 byblack := black;
+bygrey := (.8, .8, .8);
 
 linecap := butt;
 
@@ -239,7 +240,7 @@ setAttribute("line", "EndBName", "noLine", "noLine");
 setAttribute("line", "EndA", "noLine", inf);
 setAttribute("line", "EndB", "noLine", inf);
 
-setAttribute("line", "Color", "dummyLine", black);
+setAttribute("line", "Color", "dummyLine", bygrey);
 setAttribute("line", "Dashed", "dummyLine", 0);
 setAttribute("line", "Thin", "dummyLine", 1);
 
@@ -671,6 +672,9 @@ vardef byConstructCompoundLine(expr lineName) =
     forever:
         i := i + 1;
         newLine := byFindLinePointedThere(lineStart, scantokens(lEnd));
+        if (newLine == "");
+            errmessage("There's no line from " & lineStart & " to " & lEnd);
+        fi;
         appendList (compoundLineString, newLine, 1, false);
         lEndA := getAttribute("line", "EndAName", newLine);
         lEndB := getAttribute("line", "EndBName", newLine);
@@ -765,6 +769,7 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
             currentPosition0 := currentPosition1;
             if (i > 2):
                 if (j == 0):
+                    extensionNames3 := str lN;
                     if (getAttribute("line", "EndAName", str lN) == lineNames[2])
                         or (getAttribute("line", "EndAName", str lN) == lineNames[3]):
                         endNames[0] := getAttribute("line", "EndBName", str lN);
@@ -774,6 +779,7 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
                     fi;
                 fi;
                 if (j == (i-2)/2):
+                    extensionNames2 := str lN;
                     if (getAttribute("line", "EndAName", str lN) == lineNames[i-3])
                         or (getAttribute("line", "EndAName", str lN) == lineNames[i-4]):
                         endNames[1] := getAttribute("line", "EndBName", str lN);
@@ -783,12 +789,10 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
                     fi;
                 fi;
             else:
+                endNames[0] := getAttribute("line", "EndAName", str lN);
+                endNames[1] := getAttribute("line", "EndBName", str lN);
                 if (getAttribute("line", "UseLineLabel", str lN)):
-                    endNames[0] := str lN;
-                    endNames[1] := str lN;
-                else:
-                    endNames[0] := getAttribute("line", "EndAName", str lN);
-                    endNames[1] := getAttribute("line", "EndBName", str lN);
+                    endNames[2] := str lN;
                 fi;
             fi;
             j := j + 1;
@@ -797,30 +801,34 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
         extensionNames1 := byFindLinePointedThere(endNames0, 2[scantokens(endNames1), scantokens(endNames0)]);
         if extensionNames0 == "":
             extensionNames0 := "dummyLine";
+        else:
+            extensionNames2 := extensionNames0;
         fi;
         if extensionNames1 == "":
             extensionNames1 := "dummyLine";
+        else:
+            extensionNames3 := extensionNames1;
         fi;
         if (sty > 0):
             draw byLineRender(b, b shifted (rayExtension/scaleFactor, 0),
                 getAttribute("line", "Color", extensionNames0),
                 getAttribute("line", "Dashed", extensionNames0),
-                getAttribute("line", "Thin", extensionNames0),
+                getAttribute("line", "Thin", extensionNames2),
                 b, b shifted (rayExtension/scaleFactor, 0), 0, 0, 0, scaleFactor);
         fi;
         if (sty > 1):
             draw byLineRender((0, 0), (0, 0) shifted (-rayExtension/scaleFactor, 0),
                 getAttribute("line", "Color", extensionNames1),
                 getAttribute("line", "Dashed", extensionNames1),
-                getAttribute("line", "Thin", extensionNames1),
+                getAttribute("line", "Thin", extensionNames3),
                 (0, 0), (0, 0) shifted (-rayExtension/scaleFactor, 0), 0, 0, 0, scaleFactor);
         fi;
         if (textLabels and autoLabelingMode):
-            if (endNames[0] <> endNames[1]):
+            if unknown endNames[2]:
                 draw byTextLabel(pointLabel)(endNames[0], (0, 0), 90, textLabelShift);
                 draw byTextLabel(pointLabel)(endNames[1], b, 90, textLabelShift);
             else:
-                draw byTextLabel(lineLabel)(endNames[0], 1/2[(0, 0), b], 90, textLabelShift);
+                draw byTextLabel(lineLabel)(endNames[2], 1/2[(0, 0), b], 90, textLabelShift);
             fi;
         fi;
     )
