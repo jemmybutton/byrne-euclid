@@ -621,20 +621,22 @@ vardef byFindLinePointedThere(expr a, b) =
     numeric lL;
     endA := scantokens(a);
     endB := b;
-    forsuffixes lL=scantokens(pointLinesList.scantokens(a)):
-        endAC := getAttribute("line", "EndA", str lL);
-        endBC := getAttribute("line", "EndB", str lL);
-        if (endAC == endA):
-            endAA := endAC;
-            endBA := endBC;
-        elseif (endBC == endA):
-            endAA := endBC;
-            endBA := endAC;
-        fi;
-        if ((abs(angle(endBA - endAA) - angle(endB - endA)) mod 360) < 1):
-            chosenLine := str lL;
-        fi;
-    endfor;
+    if known pointLinesList.scantokens(a):
+        forsuffixes lL=scantokens(pointLinesList.scantokens(a)):
+            endAC := getAttribute("line", "EndA", str lL);
+            endBC := getAttribute("line", "EndB", str lL);
+            if (endAC == endA):
+                endAA := endAC;
+                endBA := endBC;
+            elseif (endBC == endA):
+                endAA := endBC;
+                endBA := endAC;
+            fi;
+            if ((abs(angle(endBA - endAA) - angle(endB - endA)) mod 360) < 1):
+                chosenLine := str lL;
+            fi;
+        endfor;
+    fi;
     if unknown chosenLine:
         chosenLine := "";
     fi;
@@ -672,7 +674,7 @@ vardef byConstructCompoundLine(expr lineName) =
     forever:
         i := i + 1;
         newLine := byFindLinePointedThere(lineStart, scantokens(lEnd));
-        if (newLine == "");
+        if (newLine == ""):
             errmessage("There's no line from " & lineStart & " to " & lEnd);
         fi;
         appendList (compoundLineString, newLine, 1, false);
@@ -694,10 +696,10 @@ vardef byExpandLines (text linesList) =
     save lineString, compoundLineString;
     string lineString, compoundLineString;
     forsuffixes lN=linesList:
-        if not attributeExists("line", "Synonym", str lN):
-            appendList(lineString, byConstructCompoundLine(str lN), 1, false);
-        else:
+        if attributeExists("line", "Synonym", str lN):
             appendList(lineString, str lN, 1, false);
+        else:
+            appendList(lineString, byConstructCompoundLine(str lN), 1, false);
         fi;
     endfor;
     lineString
