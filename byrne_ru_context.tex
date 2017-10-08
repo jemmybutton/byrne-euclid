@@ -1197,7 +1197,7 @@ numeric r[], a;
 A := (0, 0);
 B := (-3/5u, -3/5u);
 C := (-2u, -1/3u);
-a := angle(A-B);
+a := angle(B-C);
 forsuffixes i := A, B, C:
 	i := i rotated -a;
 endfor; 
@@ -1232,7 +1232,7 @@ stopGlobalRotation;
 } отложить прямую, равную данной прямой \drawUnitLine{BC}.}
 
 \startCenterAlign
-Проведем \drawUnitLine{AB} \inpost[post:I], построим \drawFromCurrentPicture[bottom]{
+Проведем \drawUnitLine{AB} \inpost[post:I], построим \drawFromCurrentPicture[middle]{
 startAutoLabeling;
 startTempScale(scaleFactor*3);
 draw byNamedLineSeq(0)(AB,BD,DA);
@@ -3978,23 +3978,10 @@ $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportiona
 }\right\}$ \inprop[prop:I.XXXI]\\
 $\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI]\\
 $\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]\\
-$\therefore \mbox{\inax[ax:II] } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture{
-startGlobalRotation(90);
-startAutoLabeling;
-draw byNamedPolygon(DCLH,CLKA);
-stopAutoLabeling;
-stopGlobalRotation;
-} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$\\
+$\therefore \mbox{\inax[ax:II] } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$\\
 но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
 и $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (постр.)\\
-$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawFromCurrentPicture{
-startGlobalRotation(90);
-startAutoLabeling;
-draw byNamedPolygon(DCLH,CLKA,HLEG);
-stopAutoLabeling;
-stopGlobalRotation;
-}$
-
+$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$\\
 $\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$
 \stopCenterAlign
 

@@ -4005,8 +4005,7 @@ $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportiona
 }
 
 \startCenterAlign
-Describe \drawPolygon[bottom][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI],
-
+Describe \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI],\\
 draw \drawProportionalLine{EB}\\
 and $\left\{\eqalign{
 \drawProportionalLine{DH,HG} & \parallel \drawProportionalLine{CL,LE} \cr
@@ -4014,28 +4013,15 @@ and $\left\{\eqalign{
 \drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
 }\right\}$ \inprop[prop:I.XXXI]
 
-$\drawPolygon[bottom]{CLKA} = \drawPolygon[bottom]{DCLH,BDHM}$ \inprop[prop:I.XXXVI]
+$\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI]\\
+$\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]
 
-$\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH}$ \inprop[prop:I.XLIII]
+$\therefore \mbox{\inax[ax:II] } \drawPolygon{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
+but $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
 
-$\therefore \mbox{\inax[ax:II] } \drawPolygon[bottom]{DCLH,BDHM,MHGF} = \drawFromCurrentPicture[bottom]{
-startGlobalRotation(90);
-startAutoLabeling;
-draw byNamedPolygon(DCLH,CLKA);
-stopAutoLabeling;
-stopGlobalRotation;
-} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
-
-but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
 and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (const.)
 
-$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawFromCurrentPicture[bottom]{
-startGlobalRotation(90);
-startAutoLabeling;
-draw byNamedPolygon(DCLH,CLKA,HLEG);
-stopAutoLabeling;
-stopGlobalRotation;
-}$
+$\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$
 
 $\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
 \stopCenterAlign
