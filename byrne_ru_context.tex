@@ -1193,10 +1193,14 @@ $\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[post:I];\\
 \defineNewPicture{
 pair A, B, C, D, E, F;
 path P[];
-numeric r[];
+numeric r[], a;
 A := (0, 0);
 B := (-3/5u, -3/5u);
 C := (-2u, -1/3u);
+a := angle(A-B);
+forsuffixes i := A, B, C:
+	i := i rotated -a;
+endfor; 
 r1 := abs(A-B);
 D := (fullcircle scaled 2r1 shifted A) intersectionpoint (fullcircle scaled 2r1 shifted B);
 r2 := abs(B-C);
@@ -1231,9 +1235,7 @@ stopGlobalRotation;
 Проведем \drawUnitLine{AB} \inpost[post:I], построим \drawFromCurrentPicture[bottom]{
 startAutoLabeling;
 startTempScale(scaleFactor*3);
-startGlobalRotation(180-lineAngle.AB);
 draw byNamedLineSeq(0)(AB,BD,DA);
-stopGlobalRotation;
 stopTempScale;
 stopAutoLabeling;
 } \inprop[prop:I.I],\\
@@ -1546,23 +1548,7 @@ draw byLabelsOnPolygon(C, B, A)(0, 0);
 draw byLabelsOnPolygon(F, E, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{у двух треугольников по две попарно равных стороны ($\drawUnitLine{CA} = \drawUnitLine{FD}$ и $\drawUnitLine{AB} = \drawUnitLine{DE}$), а также равные основания ($\drawUnitLine{BC} = \drawUnitLine{EF}$), то углы
-\drawFromCurrentPicture{
-startAutoLabeling;
-startGlobalRotation(-getAttribute("angle", "Direction", "A"));
-draw byNamedAngle(A);
-draw byNamedAngleDummySides(A);
-stopGlobalRotation;
-stopAutoLabeling;
-} и
-\drawFromCurrentPicture{
-startAutoLabeling;
-startGlobalRotation(-getAttribute("angle", "Direction", "D"));
-draw byNamedAngle(D);
-draw byNamedAngleDummySides(D);
-stopGlobalRotation;
-stopAutoLabeling;
-}, заключенные между равными сторонами, равны.}
+\problemNP{Е}{сли}{у двух треугольников по две попарно равных стороны ($\drawUnitLine{CA} = \drawUnitLine{FD}$ и $\drawUnitLine{AB} = \drawUnitLine{DE}$), а также равные основания ($\drawUnitLine{BC} = \drawUnitLine{EF}$), то углы \drawAngle{A} и \drawAngle{D}, заключенные между равными сторонами, равны.}
 
 Если совместить равные основания \drawUnitLine{BC} и \drawUnitLine{EF} так, чтобы треугольники находились по одну сторону, а их равные стороны \drawUnitLine{AB} и \drawUnitLine{DE}, \drawUnitLine{CA} и \drawUnitLine{FD} были смежными, вершина одного будет совпадать с вершиной другого \inprop[prop:I.VII].
 
