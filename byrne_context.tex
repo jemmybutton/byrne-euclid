@@ -183,7 +183,7 @@ In order to give a better idea of this system, and of advantages gained by its a
 \item $\drawAngle{A} + \drawAngle{C} = \drawAngle{B}$. \\ Or in words, the red angle added to the blue angle, equal the yellow angle.
 \item $\drawAngle{B} > \drawAngle{A} \mbox{ or } > \drawAngle{C}$. \\ The yellow angle is greater than either the red or blue angle.
 \item $\drawAngle{A} \mbox{ or } \drawAngle{C} < \drawAngle{B}$. \\ Either the red or blue angle is less that the yellow angle.
-\item $\drawAngle{B} \mbox{ minus } \drawAngle{C} = \drawAngle{A}$. \\ In other terms, the yellow angle made less be the blue angle equal red angle.
+\item $\drawAngle{B} - \drawAngle{C} = \drawAngle{A}$. \\ In other terms, the yellow angle made less be the blue angle equal red angle. %\mbox{ minus }
 \item $\drawUnitLine{CA}^2 = \drawUnitLine{AB}^2 + \drawUnitLine{BC}^2$. \\ That is, the square of the yellow line is equal to the sum of the squares of the blue and red lines.
 \stopitemize
 
@@ -1597,7 +1597,7 @@ Take $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III]
 draw \drawUnitLine{BC} upon which describe \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD}.
 
-Because $\drawUnitLine{AB} = \drawUnitLine{CA}$ (const.)\\
+$\because \drawUnitLine{AB} = \drawUnitLine{CA}$ (const.)\\ %Because
 and \drawUnitLine{AD} common to the two triangles\\
 and $\drawUnitLine{CD} = \drawUnitLine{DB}$ (const.),
 
@@ -2046,7 +2046,7 @@ Produce \drawUnitLine{DA}, and\\
 make $\drawUnitLine{CD} = \drawUnitLine{BD}$ \inprop[prop:I.III];\\
 draw \drawUnitLine{BC}.
 
-Then because $\drawUnitLine{CD} = \drawUnitLine{BD}$ (const.),\\
+Then $\because \drawUnitLine{CD} = \drawUnitLine{BD}$ (const.),\\ %because
 $\drawAngle{CBD} = \drawAngle{C}$ \inprop[prop:I.V]
 
 $\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \inax[ax:IX]
@@ -2302,7 +2302,7 @@ stopAutoLabeling;
 and $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
 draw \drawUnitLine{CD} and \drawUnitLine{BC}.
 
-Because $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I], hyp., const.)\\
+$\because \drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I], hyp., const.)\\ %because
 $\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V]
 but $\drawAngle{CDB} < \drawAngle{DCA}$,\\
 and $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
@@ -3064,7 +3064,7 @@ If \drawUnitLine{AB}, which joins the vertices of the triangles, be not $\parall
 
 Draw \drawUnitLine{DF}.
 
-Because $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (const.)\\
+$\because \drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (const.)\\ %Because
 $\polygonADC =
 \drawPolygon[bottom][polygonFDC]{BED, ECD, FBD}$ \inprop[prop:I.XXXVII];\\
 but $\polygonADC = \polygonBDC$ (hyp.);
@@ -3126,7 +3126,7 @@ draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI
 meeting \drawSizedLine{EH}.\\
 Draw \drawSizedLine{FG}.
 
-Because $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (const.)\\
+$\because \drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (const.)\\ %Because
 $\polygonACD =
 \drawFromCurrentPicture[bottom][polygonGEF]{
 startAutoLabeling;
@@ -3583,7 +3583,7 @@ draw byLabelsOnPolygon(B,F,C)(1, 1);
 }
 $.
 
-Again, because $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\
+Again, $\because \drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\ %because
 $\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ twice } \polygonBLC$,\\
 and $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ twice } \polygonAFC$;
 
@@ -5311,7 +5311,7 @@ But $\drawUnitLine{HM} = \drawUnitLine{BM}$;
 
 $\therefore \drawUnitLine{BM} = \drawUnitLine{BM,BO}$, which is absurd.
 
-$\therefore \drawUnitLine{DH} \mbox{ is not } = \drawUnitLine{DO}$, nor to any part of \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \mbox{ is not } > \drawUnitLine{DH}$.
+$\therefore \drawUnitLine{DH} \mbox{ is } \neq \drawUnitLine{DO}$, nor to any part of \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \mbox{ is } \ngtr \drawUnitLine{DH}$. % \mbox{ is not } =,  \mbox{ is not } >
 
 Neither is $\drawUnitLine{DH} > \drawUnitLine{DO,ON}$, they are $\therefore =$ to each other.
 \stopCenterAlign
@@ -5520,7 +5520,7 @@ draw byLabelPoint(A, angle(F-A)-45, 2);
 If it be possible, let \drawUnitLine{FC,CD,DG} joining the centres, and not pass through a point of contact; then from a point of contact draw \drawUnitLine{AF} and \drawUnitLine{AG} to the centres.
 
 \startCenterAlign
-Because $\drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \inprop[prop:I.XX]\\
+$\because \drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \inprop[prop:I.XX]\\ %because
 and $\drawUnitLine{FC} = \drawUnitLine{AF}$ \indef[def:XV],\\
 and $\drawUnitLine{DG} = \drawUnitLine{AG}$ \indef[def:XV],
 
@@ -5904,7 +5904,7 @@ And if any straight line \drawUnitLine{AG} by drawn from a point within that per
 If it be possible, let \drawUnitLine{AC}, which meets the circle again, be $\perp \drawUnitLine{DA}$, and draw \drawUnitLine{DC}.
 
 \startCenterAlign
-Then, because $\drawUnitLine{DA} = \drawUnitLine{DC}$,\\
+Then, $\because \drawUnitLine{DA} = \drawUnitLine{DC}$,\\ %because
 $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
 and $\therefore$ each of these angles is acute \inprop[prop:I.XVII]\\
 but $\drawAngle{CAD} = \drawRightAngle$ (hyp.), which is absurd,
@@ -5920,7 +5920,7 @@ draw byLabelsOnPolygon(D, G, A)(2, 0);
 } between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
 
 \startCenterAlign
-Because $\drawAngle{DAG,GAE} = \drawRightAngle$,\\
+$\because \drawAngle{DAG,GAE} = \drawRightAngle$,\\ %Because
 $\therefore \drawAngle{DAG}$ is an acute angle;\\
 suppose $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, drawn from the centre of the circle, it must fall at the side of \drawAngle{DAG} the acute angle.
 
@@ -6032,7 +6032,7 @@ draw byLabelPoint(D, angle(D-C)-90, 1);
 
 \startCenterAlign
 For, if it be possible, let \drawUnitLine{FB,BG} be $\perp \drawUnitLine{CD}$,\\
-then because $\drawAngle{G} = \drawRightAngle$, \drawAngle{C} is acute \inprop[prop:I.XVII]
+then $\because \drawAngle{G} = \drawRightAngle$, \drawAngle{C} is acute \inprop[prop:I.XVII] %because
 
 $\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \inprop[prop:I.XIX];
 
@@ -6074,7 +6074,7 @@ draw byLabelLineEnd(E, C, 0);
 For, if it be possible, let the centre be without \drawUnitLine{AC}, and draw \drawUnitLine{CF} from the supposed centre to the point of contact.
 
 \startCenterAlign
-Because $\drawUnitLine{CF} \perp \drawUnitLine{CE}$ \inprop[prop:III.XVIII]\\
+$\because \drawUnitLine{CF} \perp \drawUnitLine{CE}$ \inprop[prop:III.XVIII]\\ % Because
 $\therefore \drawAngle{FCE} = \drawRightAngle$, a right angle;\\
 but $\drawAngle{ACF,FCE} = \drawRightAngle$ (hyp.),
 
@@ -6114,7 +6114,7 @@ draw byLabelsOnPolygon(F, E, A)(2, 0);
 Let the centre of the circle be on \drawUnitLine{EF,EA}\\
 a side of \drawAngle{CAF}.
 
-Because $\drawUnitLine{EC} = \drawUnitLine{EA}$,\\
+$\because \drawUnitLine{EC} = \drawUnitLine{EA}$,\\ %Because
 $\drawAngle{CAF} = \drawAngle{C}$ \inprop[prop:I.V].
 
 But $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
@@ -6192,7 +6192,7 @@ draw byLabelsOnPolygon(G, E, D)(2, 0);
 Let the centre be without \drawAngle{FDC}\\
 and draw \drawUnitLine{DG}, the diameter.
 
-Because $\drawAngle{GEF,FEC} = \mbox{ twice } \drawAngle{GDF,FDC}$;\\
+$\because \drawAngle{GEF,FEC} = \mbox{ twice } \drawAngle{GDF,FDC}$;\\ %Because
 and $\drawAngle{GEF} = \mbox{ twice } \drawAngle{GDF}$ (case I.);
 
 $\therefore \drawAngle{FEC} = \mbox{ twice } \drawAngle{FDC}$.
@@ -6454,7 +6454,7 @@ draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
 that \drawUnitLine{CD} may fall on \drawUnitLine{AB},\\
 the extremities of \drawUnitLine{CD} may be on the extremities \drawUnitLine{AB}\\
 and \drawArc{M} at the same side as \drawArc{N};\\
-because $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
+$\because \drawUnitLine{CD} = \drawUnitLine{AB}$,\\ %because
 \drawUnitLine{CD} must wholly coincide with \drawUnitLine{AB};
 \stopCenterAlign
 
@@ -6730,7 +6730,7 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 From the centres of the equal circles,\\
 draw \drawUnitLine{AK}, \drawUnitLine{BK} and \drawUnitLine{DL}, \drawUnitLine{EL};
 
-and because $\circleK = \circleL$\\
+and $\because \circleK = \circleL$\\ % because
 $\drawUnitLine{AK}, \drawUnitLine{BK} = \drawUnitLine{DL}, \drawUnitLine{EL}$\\
 also $\drawUnitLine{AB} = \drawUnitLine{DE}$ (hyp.)
 
@@ -6792,7 +6792,7 @@ If the equal arcs be semicircles the proposition is evident. But if not,
 
 let \drawUnitLine{AK}, \drawUnitLine{BK} and \drawUnitLine{DL}, \drawUnitLine{EL} be drawn to the centres;
 
-because $\drawArc{Kb} = \drawArc{Lb}$ (hyp.)\\
+$\because \drawArc{Kb} = \drawArc{Lb}$ (hyp.)\\ % because
 and $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII];
 
 but $\drawUnitLine{AK} \mbox{ and } \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ and } \drawUnitLine{EL}$
@@ -6965,7 +6965,7 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 The angle \drawAngle{D} in a segment less than a semicircle is obtuse.
 
 Take in the opposite circumference any point, to which draw \drawUnitLine{BC} and \drawUnitLine{AB}.\\
-Because $\drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \inprop[prop:III.XXII]\\
+$\because \drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \inprop[prop:III.XXII]\\ % Because
 but $\drawAngle{B} < \drawRightAngle$ (figure II.),\\
 $\therefore$ \drawAngle{D} is obtuse.
 \stopCenterAlign
@@ -7256,9 +7256,9 @@ Let \drawSizedLine{FA,CF,DC} pass through the centre;
 
 draw \drawSizedLine{BF} from the centre to the point of contact;
 
-$\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 \mbox{ minus } \drawSizedLine{BF}^2$ \inprop[prop:I.XLVII],
+$\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{BF}^2$ \inprop[prop:I.XLVII], %\mbox{ minus }
 
-or $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 \mbox{ minus } \drawSizedLine{CF}^2$,
+or $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{CF}^2$, %\mbox{ minus }
 
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{FA,CF,DC} \times \drawSizedLine{DC}$ \inprop[prop:II.VI].
 \stopCenterAlign
@@ -7296,9 +7296,9 @@ If \drawSizedLine{CA,DC} do not pass through the centre,
 
 draw \drawSizedLine{EA} and \drawSizedLine{EC}.
 
-Then $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 \mbox{ minus } \drawSizedLine{EC}^2$ \inprop[prop:II.VI],
+Then $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \inprop[prop:II.VI], %\mbox{ minus }
 
-that is, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 \mbox{ minus } \drawSizedLine{EB}^2$,
+that is, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$, %\mbox{ minus }
 
 $\therefore \drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \inprop[prop:III.XVIII].
 \stopCenterAlign
@@ -7605,7 +7605,7 @@ and in like manner $\drawAngle{GAB} = \drawAngle{F}$,
 
 and draw \drawUnitLine{BC}.
 
-Because $\drawAngle{CAH} = \drawAngle{E}$ (const.)\\
+$\because \drawAngle{CAH} = \drawAngle{E}$ (const.)\\ %Because
 and $\drawAngle{CAH} = \drawAngle{B}$ \inprop[prop:III.XXXII]\\
 $\therefore \drawAngle{B} = \drawAngle{E}$;\\
 also $\drawAngle{C} = \drawAngle{F}$ for the same reason.
@@ -7916,7 +7916,7 @@ $\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII
 
 and in like manner $\drawUnitLine{DA} \parallel \drawUnitLine{BC}$.
 
-And because $\drawAngle{AEB} = \drawAngle{DEA}$ (const.),
+And $\because \drawAngle{AEB} = \drawAngle{DEA}$ (const.), %because
 
 and $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 
@@ -7976,7 +7976,7 @@ $\therefore \drawUnitLine{HK} \parallel \drawUnitLine{BD}$; in the same manner i
 
 $\therefore$ \squareFGHK\ is a parallelogram,
 
-and because $\drawAngle{C} = \drawAngle{G} = \drawAngle{F} = \drawAngle{K} = \drawAngle{H}$ they are all right angles \inprop[prop:I.XXXIV];
+and $\because \drawAngle{C} = \drawAngle{G} = \drawAngle{F} = \drawAngle{K} = \drawAngle{H}$ they are all right angles \inprop[prop:I.XXXIV]; % because
 
 it is also evident that \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} and \drawUnitLine{KF} are equal.
 
@@ -8313,7 +8313,7 @@ and therefore $ \drawAngle{CKF} = \drawAngle{FLC}$,
 $\therefore \drawAngle{FLC,DLF} = \drawAngle{FKB,CKF}$;
 \stopCenterAlign
 
-in the same manner it can be demonstrated that the other angles of the descried pentagon are equal.
+in the same manner it can be demonstrated that the other angles of the described pentagon are equal.
 
 \qed
 \stopProposition
@@ -8380,7 +8380,7 @@ Make $\drawAngle{HCF} = \drawAngle{FCK}$, and $\drawAngle{FDE} = \drawAngle{KDF}
 
 Draw \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FB}, \drawUnitLine{FE}, \&c.
 
-Because $\drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, and \drawUnitLine{FC} common to the two triangles
+$\because \drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, and \drawUnitLine{FC} common to the two triangles %Because
 
 \drawFromCurrentPicture{
 startTempScale(1/2);
@@ -8402,7 +8402,7 @@ stopTempScale;
 
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ and $\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV]
 
-And because $\drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ twice } \drawAngle{KDF}$
+And $\because \drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ twice } \drawAngle{KDF}$ %because
 
 $\therefore \mbox{ twice } \drawAngle{FBH}$, hence \drawAngle{HCF,FCK} is bisected by \drawUnitLine{FB}.
 
@@ -9021,9 +9021,9 @@ byMagnitudeDefine(II, 0, false)(1, 1)(c, d);
 Let $\drawMagnitude{I} = M' \drawMagnitude{II}$\\
 and $\drawMagnitude[middle][3]{I} = M' \drawMagnitude[middle][2]{II}$,
 
-$\therefore \drawMagnitude{I} \mbox{ minus } \drawMagnitude[middle][3]{I} = M' \drawMagnitude{II} \mbox{ minus } M' \drawMagnitude[middle][2]{II}$,
+$\therefore \drawMagnitude{I} - \drawMagnitude[middle][3]{I} = M' \drawMagnitude{II} - M' \drawMagnitude[middle][2]{II}$, % two times \mbox{ minus }
 
-$\therefore \drawMagnitude[middle][-3]{I} = M' (\drawMagnitude{II} \mbox{ minus } \drawMagnitude[middle][2]{II})$,\\
+$\therefore \drawMagnitude[middle][-3]{I} = M' (\drawMagnitude{II} - \drawMagnitude[middle][2]{II})$,\\ %\mbox{ minus }
 and $\therefore \drawMagnitude[middle][-3]{I} = M' \drawMagnitude[middle][-2]{II}$.
 
 $\therefore$ If one magnitude, \&c.
@@ -9048,10 +9048,10 @@ byMagnitudeDefine(IV, 0, false)(1)(d);
 \startCenterAlign
 Let $\drawMagnitude{I} = M'\drawMagnitude{II}$; and $\drawMagnitude{III} = M'\drawMagnitude{IV}$
 
-then $\drawMagnitude{I} \mbox{ minus } m'\drawMagnitude{II} = M'\drawMagnitude{II} \mbox{ minus } m'\drawMagnitude{II} = (M' \mbox{ minus } m') \drawMagnitude{II}$\\
-and $\drawMagnitude{III} \mbox{ minus } m'\drawMagnitude{IV} = M'\drawMagnitude{IV} \mbox{ minus } m'\drawMagnitude{IV} = (M' \mbox{ minus } m') \drawMagnitude{IV}$.
+then $\drawMagnitude{I} - m'\drawMagnitude{II} = M'\drawMagnitude{II} -m'\drawMagnitude{II} = (M' - m') \drawMagnitude{II}$\\ % three times \mbox{ minus }
+and $\drawMagnitude{III} - m'\drawMagnitude{IV} = M'\drawMagnitude{IV} - m'\drawMagnitude{IV} = (M' - m') \drawMagnitude{IV}$. %three times \mbox{ minus }
 
-Hence, $(M' \mbox{ minus } m') \drawMagnitude{II}$ and $(M' \mbox{ minus } m') \drawMagnitude{IV}$ are equimultiples of \drawMagnitude{II} and \drawMagnitude{IV}, and equal to \drawMagnitude{II} and \drawMagnitude{IV}, when $M' \mbox{ minus } m' = 1$.
+Hence, $(M' - m') \drawMagnitude{II}$ and $(M' - m') \drawMagnitude{IV}$ are equimultiples of \drawMagnitude{II} and \drawMagnitude{IV}, and equal to \drawMagnitude{II} and \drawMagnitude{IV}, when $M' - m' = 1$. %three times \mbox{ minus }
 
 $\therefore$ If two magnitudes be equimultiples, \&c.
 \stopCenterAlign
@@ -9234,7 +9234,7 @@ Take $\magnitudeV = \magnitudeI$.
 
 Whatever miltiple \magnitudeI\ is of \magnitudeII\\
 take \magnitudeVI\ the same multiple of \magnitudeIV, \\
-then, because $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\
+then, $\because \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\ %because
 and of the second and fourth, we have taken equimultiples,\\
 \magnitudeI\ and \magnitudeVI\ therefore \inprop[prop:V.IV]\\
  $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, but (const.),\\
@@ -9271,7 +9271,7 @@ byMagnitudeSymbolDefine("square", byyellow, 0)(III);
 Let $\drawMagnitude{I} = \drawMagnitude{II}$ and \drawMagnitude{III} any other magnitude;\\
 then $\magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ and $\magnitudeIII : \magnitudeI = \magnitudeIII : \magnitudeII$.
 
-Because $\magnitudeI = \magnitudeII$,\\
+$\because \magnitudeI = \magnitudeII$,\\ %Because
 $\therefore M \magnitudeI = M \magnitudeII$;
 
 $\therefore$ if $M \magnitudeI >, = \mbox{ or } < m \magnitudeIII$, then\\
@@ -9362,7 +9362,7 @@ Let us take the four numbers $\color[byred]{8}$, $\color[byblack]{7}$, $\color[b
 \protect
 \stopCenterAlign
 
-Among the above multiples we find $\color[byred]{16} > \color[byblack]{14}$ and $\color[byblue]{20} > \color[byyellow]{18}$; that is, twice the first is greater than twice the second, and twice the third is greater than twice the fourth; and $\color[byred]{16} < \color[byblack]{21}$ and $\color[byblue]{20} < \color[byyellow]{27}$; that is, twice the first is less than three times the second, and twice the third is less than three times the fourth; and among the same multiples we can find $\color[byred]{72} > \color[byblack]{56}$ and $\color[byblue]{90} > \color[byyellow]{72}$; that is, 9 times the first is greater than 8 times the second, and 9 times the third is greater than 8 times the fourth. Many other equimultiples might be selected, which would tend to show that the numbers $\color[byred]{8}$, $\color[byblack]{7}$, $\color[byblue]{10}$, and $\color[byyellow]{9}$ were proportionals, but they are not, for we can find multiple of the first $>$ a multiple of the second, but the same multiple of the third that has been taken of the first, not $>$ the same multiple of the fourth which has been taken to the second; for instance, 9 times the first is $>$ 10 times the second, but 9 times the third is not $>$ 10 times the fourth, that is $\color[byred]{72} > \color[byblack]{70}$, but $\color[byblue]{90} \mbox{ not } > \color[byyellow]{90}$, or 8 times the first we find $>$ 9 times the second, but 8 times the third is not greater than 9 times the fourth, that is, $\color[byred]{64} > \color[byblack]{63}$, but $\color[byblue]{80} \mbox{ not } > \color[byyellow]{81}$. When any such multiples as these can be found, the first $\color[byred]{(8)}$ is said to have the second $\color[byblack]{(7)}$ a greater ratio than the third $\color[byblue]{(10)}$ has to the fourth $\color[byyellow]{(9)}$, and on the contrary the third $\color[byblue]{(10)}$ is said to have to the fourth $\color[byyellow]{(9)}$ a less ratio than the first $\color[byred]{(8)}$ has to the second $\color[byblack]{(7)}$.
+Among the above multiples we find $\color[byred]{16} > \color[byblack]{14}$ and $\color[byblue]{20} > \color[byyellow]{18}$; that is, twice the first is greater than twice the second, and twice the third is greater than twice the fourth; and $\color[byred]{16} < \color[byblack]{21}$ and $\color[byblue]{20} < \color[byyellow]{27}$; that is, twice the first is less than three times the second, and twice the third is less than three times the fourth; and among the same multiples we can find $\color[byred]{72} > \color[byblack]{56}$ and $\color[byblue]{90} > \color[byyellow]{72}$; that is, 9 times the first is greater than 8 times the second, and 9 times the third is greater than 8 times the fourth. Many other equimultiples might be selected, which would tend to show that the numbers $\color[byred]{8}$, $\color[byblack]{7}$, $\color[byblue]{10}$, and $\color[byyellow]{9}$ were proportionals, but they are not, for we can find multiple of the first $>$ a multiple of the second, but the same multiple of the third that has been taken of the first, not $>$ the same multiple of the fourth which has been taken to the second; for instance, 9 times the first is $>$ 10 times the second, but 9 times the third is not $>$ 10 times the fourth, that is $\color[byred]{72} > \color[byblack]{70}$, but $\color[byblue]{90} \ngtr \color[byyellow]{90}$, or 8 times the first we find $>$ 9 times the second, but 8 times the third is not greater than 9 times the fourth, that is, $\color[byred]{64} > \color[byblack]{63}$, but $\color[byblue]{80} \mbox{ not } > \color[byyellow]{81}$. When any such multiples as these can be found, the first $\color[byred]{(8)}$ is said to have the second $\color[byblack]{(7)}$ a greater ratio than the third $\color[byblue]{(10)}$ has to the fourth $\color[byyellow]{(9)}$, and on the contrary the third $\color[byblue]{(10)}$ is said to have to the fourth $\color[byyellow]{(9)}$ a less ratio than the first $\color[byred]{(8)}$ has to the second $\color[byblack]{(7)}$.
 \stopDefinition
 
 \vfill\pagebreak
@@ -9390,14 +9390,14 @@ such that $M' \drawMagnitude{Ia}$ and $M' \drawMagnitude{Ib}$ shall be each $>$ 
 also take $m' \magnitudeIII$ the least multiple of \magnitudeIII,\\
 which will make $m' \magnitudeIII > M' \magnitudeII = M' \magnitudeIb$;
 
-$\therefore M' \magnitudeII \mbox{ is not } > m' \magnitudeIII$,\\
+$\therefore M' \magnitudeII \mbox{ is } \ngtr m' \magnitudeIII$,\\ %\mbox{is not} >
 but $M' \magnitudeI \mbox{ is } > m' \magnitudeIII$, for,\\
-as $m' \magnitudeIII$ is the first multiple which first becomes $> M' \magnitudeIb$, than $(m' \mbox{ minus } 1)\magnitudeIII$ or $m' \magnitudeIII \mbox{ minus } \magnitudeIII$ is not $> M' \magnitudeIa$,
+as $m' \magnitudeIII$ is the first multiple which first becomes $> M' \magnitudeIb$, than $(m' - 1)\magnitudeIII$ or $m' \magnitudeIII - \magnitudeIII$ is $\ngtr M' \magnitudeIa$, %two times\mbox{ minus }
 
-$\therefore m' \magnitudeIII \mbox{ minus } \magnitudeIII + \magnitudeIII$ must be $< M' \magnitudeIb + M' \magnitudeIa$;\\
+$\therefore m' \magnitudeIII - \magnitudeIII + \magnitudeIII$ must be $< M' \magnitudeIb + M' \magnitudeIa$;\\ %\mbox{ minus }
 that is, $m' \magnitudeIII$ must be $< M' \magnitudeI$;
 
-$\therefore M' \magnitudeI \mbox{ is } > m' \magnitudeIII$; but it has been shown above that $M' \magnitudeII \mbox{ is not } > m' \magnitudeIII$, therefore, by the seventh definition, \magnitudeI\ has to \magnitudeIII\ a greater ratio than $\magnitudeII : \magnitudeIII$.
+$\therefore M' \magnitudeI \mbox{ is } > m' \magnitudeIII$; but it has been shown above that $M' \magnitudeII \mbox{ is } \ngtr m' \magnitudeIII$, therefore, by the seventh definition, \magnitudeI\ has to \magnitudeIII\ a greater ratio than $\magnitudeII : \magnitudeIII$. % \mbox{ is not } >
 
 Next we shall prove that \magnitudeIII\ has a greater ratio to \magnitudeII, the less, than it has to \magnitudeI, the greater;\\
 or, $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$.
@@ -9406,9 +9406,9 @@ Take $m' \magnitudeIII$, $M' \magnitudeII$, $m' \magnitudeIII$ and $M' \magnitud
 the same as in the first case, such that\\
 $M' \magnitudeIa$ and $M' \magnitudeIb$ will be each $> \magnitudeIII$, and $m' \magnitudeIII$ the least multiple of \magnitudeIII, which first becomes greater than $M' \magnitudeIb = M' \magnitudeII$.
 
-$\therefore m' \magnitudeIII \mbox{ minus } \magnitudeIII \mbox{ is not } > M' \magnitudeIb$,\\
-and \magnitudeIII is not $> M' \magnitudeIa$; consequently\\
-$m' \magnitudeIII \mbox{ minus } \magnitudeIII + \magnitudeIII \mbox{ is } < M' \magnitudeIb + M' \magnitudeIa$;
+$\therefore m' \magnitudeIII - \magnitudeIII \mbox{ is } \ngtr M' \magnitudeIb$,\\ % \mbox{ minus },  \mbox{ is not } >
+and \magnitudeIII is $\ngtr M' \magnitudeIa$; consequently\\ % not $>
+$m' \magnitudeIII - \magnitudeIII + \magnitudeIII \mbox{ is } < M' \magnitudeIb + M' \magnitudeIa$; % \mbox{ minus }
 
 $\therefore m' \magnitudeIII \mbox{ is } < M' \magnitudeI$, and $\therefore$ by the seventh definition, \magnitudeIII\ has to \magnitudeII\ a greater ratio than \magnitudeIII\ has to \magnitudeI.
 
@@ -9465,10 +9465,10 @@ For, if not, let $\magnitudeI > \magnitudeII$, then will\\
 $\magnitudeI : \magnitudeIII > \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII],
 which is absurd according to the hypothesis.
 
-$\therefore \magnitudeI \mbox{ is not } > \magnitudeII$.
+$\therefore \magnitudeI \mbox{ is } \ngtr \magnitudeII$. % \mbox{ is not } >
 
 In the same manner it may be shown, that\\
-$\magnitudeII \mbox{ is not } > \magnitudeI$,
+$\magnitudeII \mbox{ is } \ngtr \magnitudeI$, % \mbox{ is not } >
 
 $\therefore \magnitudeI = \magnitudeII$.
 
@@ -9505,7 +9505,7 @@ For if not, let $\magnitudeI = \mbox{ or } < \magnitudeII$;\\
 then, $\magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ \inprop[prop:V.VII] or\\
 $\magnitudeI : \magnitudeIII < \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII] and (invert.), which is absurd according to the hypothesis.
 
-$\therefore \magnitudeI \mbox{ is not } = \mbox{ or } < \magnitudeII$, and\\
+$\therefore \magnitudeI \mbox{ is } \neq \mbox{ or } < \magnitudeII$, and\\ % \mbox{ is not } =
 $\therefore \magnitudeI \mbox{ must be } >\magnitudeII$.
 
 Again, let $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$,\\
@@ -9515,7 +9515,7 @@ For if not, $\magnitudeII \mbox{ must be } > \mbox{ or } = \magnitudeI$,\\
 Then $\magnitudeIII : \magnitudeII < \magnitudeIII : \magnitudeI$ \inprop[prop:V.VIII] and (invert.);\\
 or $\magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeI$ \inprop[prop:V.VII], which is absurd (hyp.);
 
-$\therefore \magnitudeII \mbox{ is not } > \mbox{ or } = \magnitudeI$,\\
+$\therefore \magnitudeII \mbox{ is } \ngtr \mbox{ or } = \magnitudeI$,\\ %  \mbox{ is not } >
 and $\therefore \magnitudeII \mbox{ must be } < \magnitudeI$.
 
 $\therefore$ That magnitude which has, \&c.
@@ -9608,9 +9608,9 @@ byMagnitudeSymbolDefine("circle", byblack, 0)(VI);
 Let $\drawMagnitude{I} : \drawMagnitude{II} = \drawMagnitude{III} : \drawMagnitude{IV}$, but $\magnitudeIII : \magnitudeIV > \drawMagnitude{V} : \drawMagnitude{VI}$,\\
 then $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$
 
-For, because $\magnitudeIII : \magnitudeIV > \magnitudeV : \magnitudeVI$, there are some multiples ($M'$ and $m'$) of \magnitudeIII\ and \magnitudeV, and of \magnitudeIV\ and \magnitudeVI,\\
+For, $\because \magnitudeIII : \magnitudeIV > \magnitudeV : \magnitudeVI$, there are some multiples ($M'$ and $m'$) of \magnitudeIII\ and \magnitudeV, and of \magnitudeIV\ and \magnitudeVI,\\ %because
 such that $M' \magnitudeIII > m' \magnitudeIV$,\\
-but $M' \magnitudeV \mbox{ not } > m' \magnitudeVI$, by the seventh definition.
+but $M' \magnitudeV \ngtr m' \magnitudeVI$, by the seventh definition. %\mbox{ not } >
 
 Let these multiples be taken, and take the same multiples of \magnitudeI\ and \magnitudeII.
 
@@ -9619,7 +9619,7 @@ then will $M' \magnitudeIII >, =, \mbox{ or } < m' \magnitudeIV$,\\
 but $M' \magnitudeIII > m' \magnitudeIV$ (construction);
 
 $\therefore M' \magnitudeI > m' \magnitudeII$,\\
-but $M' \magnitudeV \mbox{ is not } > m' \magnitudeVI$ (construction);\\
+but $M' \magnitudeV \mbox{ is } \ngtr m' \magnitudeVI$ (construction);\\ %  \mbox{ is not } >
 and therefore by the seventh definition,\\
 $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$
 
@@ -9654,7 +9654,7 @@ $\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop
 and $\therefore \magnitudeII = \magnitudeIV$ \inprop[prop:V.IX].
 
 Thirdly, if $\magnitudeI < \magnitudeIII$, then will $\magnitudeII < \magnitudeIV$;\\
-because $\magnitudeIII > \magnitudeI$ and $\magnitudeIII : \magnitudeIV = \magnitudeI : \magnitudeII$;\\
+$\because \magnitudeIII > \magnitudeI$ and $\magnitudeIII : \magnitudeIV = \magnitudeI : \magnitudeII$;\\ %because
 $\therefore \magnitudeIV > \magnitudeII$, by the first case,\\
 that is, $\magnitudeII < \magnitudeIV$.
 
@@ -9750,7 +9750,7 @@ Dividendo, by definition, when there are four proportionals, and it is inferred,
 \startCenterAlign
 Let $\varA : \varB :: \varC : \varD$;\\
 by \quotation{dividendo} it is inferred\\
-$\varA \mbox{ minus } \varB : \varB :: \varC \mbox{ minus } \varD : \varD$.
+$\varA - \varB : \varB :: \varC - \varD : \varD$. % two times \mbox{ minus }
 \stopCenterAlign
 
 According to the above, $\varA$ is supposed to be greater than $\varB$, and $\varC$ greater than $\varD$; if this be not the case, but to have $\varB$ greater than $\varA$, and $\varD$ greater than $\varC$, $\varB$ and $\varD$ can be made to stand as antecedents, and $\varA$ and $\varC$ as consequents, by \quotation{invertion}
@@ -9758,7 +9758,7 @@ According to the above, $\varA$ is supposed to be greater than $\varB$, and $\va
 \startCenterAlign
 $\varB : \varA :: \varD : \varC$;\\
 then, by \quotation{dividendo,} we infer\\
-$\varB \mbox{ minus } \varA : \varA :: \varD \mbox{ minus } \varC : \varC$
+$\varB - \varA : \varA :: \varD - \varC : \varC$ % two times \mbox{ minus }
 \stopCenterAlign
 \stopDefinition
 
@@ -9780,7 +9780,7 @@ then will $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
 Take $\magnitudeI > m \magnitudeII$ to each add $M \magnitudeII$,\\
 then we have $M \magnitudeI + M \magnitudeII > m \magnitudeII + M \magnitudeII$,\\
 or $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$:\\
-but because $\magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (hyp.),\\
+but $\because \magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (hyp.),\\ %because
 and $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$;\\
 $\therefore M(\magnitudeIII + \magnitudeIV) > (m + M) \magnitudeIV$ \indef[def:V.V];\\
 $\therefore M \magnitudeIII + M \magnitudeIV > m \magnitudeIV + M \magnitudeIV$;\\
@@ -9837,7 +9837,7 @@ Let $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnit
 then $\magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \magnitudeIV : \magnitudeIV$;
 
 for if not, let $\magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \drawMagnitude{V} : \magnitudeV$,\\
-supposing $\magnitudeV \mbox{ not } = \magnitudeIV$;
+supposing $\magnitudeV \neq \magnitudeIV$; %\mbox{ not } =
 
 $\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeV$ \inprop[prop:V.XVII]\\
 but $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (hyp.);
@@ -9906,8 +9906,8 @@ byMagnitudeDefine(III, 0, true)(1, 1)(iii, IV);
 Let $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
 then shall $\magnitudeI : \drawMagnitude{i} :: \magnitudeIII : \drawMagnitude{iii}$.
 
-Because $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$;\\
-therefore $\magnitudei : \magnitudeII :: \magnitudeiii : \magnitudeIV$ (divid.),
+$\because \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$;\\ %Because
+$\therefore \magnitudei : \magnitudeII :: \magnitudeiii : \magnitudeIV$ (divid.), %therefore
 
 $\therefore \magnitudeII : \magnitudei :: \magnitudeIV : \magnitudeiii$ (inver.),
 
@@ -10034,7 +10034,7 @@ then, because \magnitudeII\ is any other magnitude,\\
 $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII];\\
 but $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (hyp.);\\
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII];\\
-and because $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.);\\
+and $\because \magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.);\\ %because
 $\therefore \magnitudeIII : \magnitudeII :: \magnitudeV : \magnitudeIV$ (inv.),\\
 and it was shown that $\magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$,
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeV : \magnitudeIV$ \inprop[prop:V.XIII];\\
@@ -10042,7 +10042,7 @@ $\therefore \magnitudeVI < \magnitudeIV$,\\
 that is $\magnitudeIV > \magnitudeVI$.
 
 Secondly, let $\magnitudeI = \magnitudeIII$; then shall $\magnitudeIV = \magnitudeVI$.\\
-For because $\magnitudeI = \magnitudeIII$,\\
+For $\because \magnitudeI = \magnitudeIII$,\\ %because
 $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII];\\
 but $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (hyp.),\\
 and $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (hyp.\ and inv.),\\
@@ -10097,7 +10097,7 @@ Let these magnitudes, as well as any equimultiples whatever of the antecedents a
 $\magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV, \magnitudeV, \magnitudeVI,$\\
 and\\
 $M \magnitudeI, m \magnitudeII, N \magnitudeIII, M \magnitudeIV, m \magnitudeV, N \magnitudeVI,$\\
-because $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$,\\
+$\because \magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$,\\ %because
 $\therefore M \magnitudeI : m \magnitudeII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV].
 
 For the same reason\\
@@ -10118,7 +10118,7 @@ that is to say, $\magnitudeIa : \magnitudeIIa :: \magnitudeVa : \magnitudeVIa$,\
 $\magnitudeIIa : \magnitudeIIIa :: \magnitudeVIa : \magnitudeVIIa$,\\
 and $\magnitudeIIIa : \magnitudeIVa :: \magnitudeVIIa : \magnitudeVIIIa$,\\
 then shall $\magnitudeIa : \magnitudeIVa :: \magnitudeVa : \magnitudeVIIIa$;\\
-for, because $\magnitudeIa, \magnitudeIIa, \magnitudeIIIa$, are three magnitudes,\\
+for, $\because \magnitudeIa, \magnitudeIIa, \magnitudeIIIa$, are three magnitudes,\\ %because
 and $\magnitudeVa, \magnitudeVIa, \magnitudeVIIa$, other three,\\
 which, taken two and two, have the same ratio;\\
 therefore, by foregoing case $\magnitudeIa : \magnitudeIIIa :: \magnitudeVa : \magnitudeVIIa$,\\
@@ -10166,7 +10166,7 @@ and for the same reason\\
 $\magnitudeV : \magnitudeVI :: m \magnitudeV : m \magnitudeVI$;\\
 but $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (hyp.),\\
 $\therefore M \magnitudeI : M \magnitudeII :: \magnitudeV : \magnitudeVI$ \inprop[prop:V.XI];\\
-and because $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.),\\
+and $\because \magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.),\\ %because
 $\therefore M \magnitudeII : m \magnitudeIII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV];\\
 then, because there are three magnitudes,\\
 $M \magnitudeI, M \magnitudeII, m \magnitudeII$,\\
@@ -10185,7 +10185,7 @@ namely, $\magnitudeI : \magnitudeII :: \magnitudeVII : \magnitudeVIII$,\\
 $\magnitudeII : \magnitudeIII :: \magnitudeVI : \magnitudeVII$,\\
 and $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$,\\
 then shall $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$.\\
-For, because $\magnitudeI, \magnitudeII, \magnitudeIII$ are three magnitudes,\\
+For, $\because \magnitudeI, \magnitudeII, \magnitudeIII$ are three magnitudes,\\ %because
 and $\magnitudeVI, \magnitudeVII, \magnitudeVIII$, other three,\\
 which, taken two and two in a cross order have the same ratio,\\
 therefore, by the first case, $\magnitudeI : \magnitudeIII :: \magnitudeVI : \magnitudeVIII$,\\
@@ -10259,7 +10259,7 @@ Let four magnitudes, $\drawMagnitude{Ia} + \drawMagnitude{III}, \drawMagnitude{I
 $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,\\
 and let $\magnitudeIa + \magnitudeIII$ be the greatest of the four, and consequently by \inpropL[prop:V.A] and \inpropL[prop:V.XIV], \magnitudeIV\ is the least;\\
 then will $\magnitudeIa + \magnitudeIII + \magnitudeIV \mbox{ be } > \magnitudeIIa + \magnitudeIV + \magnitudeIII$;\\
-because $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,
+$\because \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$, %because
 
 $\therefore \magnitudeIa : \magnitudeIIa :: \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV$ \inprop[prop:V.XIX],\\
 but $\magnitudeIa + \magnitudeIII > \magnitudeIIa + \magnitudeIV$ (hyp.),
@@ -11039,7 +11039,7 @@ then $\drawUnitLine{DE} \parallel \drawUnitLine{BC}$.
 
 Let the same construction remain,\\
 $\left.\eqalign{
-\mbox{ because } \drawUnitLine{DB} : \drawUnitLine{AD} &:: \triangleBDE\ : \triangleADE \cr
+\because \drawUnitLine{DB} : \drawUnitLine{AD} &:: \triangleBDE\ : \triangleADE \cr %\mbox{ because }
 \mbox{ and } \drawUnitLine{EC} : \drawUnitLine{AE} &:: \triangleCDE\ : \triangleADE \cr
 }\right\}\mbox{ \inprop[prop:VI.I] }$;\\
 but $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (hyp.)\\
@@ -11091,7 +11091,7 @@ then, $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX].
 
 $\therefore \drawAngle{DAC} = \drawAngle{E}$; but $\drawAngle{DAC} = \drawAngle{C}$, $\therefore \drawAngle{C} = \drawAngle{E}$,\\
 $\therefore \drawUnitLine{AE} = \drawUnitLine{CA}$ \inprop[prop:I.VI];\\
-and because $\drawUnitLine{AD} \parallel \drawUnitLine{CE}$,\\
+and $\because \drawUnitLine{AD} \parallel \drawUnitLine{CE}$,\\ %because
 $\drawUnitLine{AE} : \drawUnitLine{AB} :: \drawUnitLine{DC} : \drawUnitLine{BD}$ \inprop[prop:VI.II];
 
 but $\drawUnitLine{AE} = \drawUnitLine{CA}$;\\
@@ -11161,7 +11161,7 @@ Let the equiangular triangles be so placed that two sides \drawUnitLine{BC}, \dr
 
 \startCenterAlign
 Draw \drawUnitLine{AF} and \drawUnitLine{DF}.\\
-Then, because $\drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{DF,DE}$ \inprop[prop:I.XXVIII];\\
+Then, $\because \drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{DF,DE}$ \inprop[prop:I.XXVIII];\\ %because
 and for a like reason $\drawUnitLine{CD} \parallel \drawUnitLine{AB,AF}$,\\
 $\therefore$
 \drawFromCurrentPicture[bottom][polygonACDF]{
@@ -11358,7 +11358,7 @@ draw byLabelsOnPolygon(D, F, E)(0, 0);
 \startCenterAlign
 First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
 
-Because $\drawAngle{C} = \drawAngle{F}$ (hyp.) and $\drawAngle{GBC} = \drawAngle{E}$ (const.)\\
+$\because \drawAngle{C} = \drawAngle{F}$ (hyp.) and $\drawAngle{GBC} = \drawAngle{E}$ (const.)\\ %Because
 $\therefore \drawAngle{CGB} = \drawAngle{D}$ \inprop[prop:I.XXXII];
 
 $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV],\\
@@ -11404,7 +11404,7 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 \problemNP{I}{n}{a right angled tiangle (\drawPolygon[bottom][triangleABC]{ABD,ADC}), if a perpendicular (\drawUnitLine{AD}) be drawn from the right angle to the opposite side, the triangles (\drawPolygon[bottom][triangleABD]{ABD}, \drawPolygon[bottom][triangleADC]{ADC}) on each side of it are similar to the whole triangle and to each other.}
 
 \startCenterAlign
-Because $\drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:XI], and \drawAngle{B} common to \triangleABC\ and \triangleABD;\\
+$\because \drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:XI], and \drawAngle{B} common to \triangleABC\ and \triangleABD;\\ % Because
 $\drawAngle{C} = \drawAngle{DAB}$ \inprop[prop:I.XXXII];
 
 $\therefore$ \triangleABC\ and \triangleABD\ are equiangular and consequently have their sides about equal angles proportional \inprop[prop:VI.IV], and are therefore similar \indef[def:VI.I].
@@ -11879,7 +11879,7 @@ that is, the rectangle contained be the extremes, equal to the rectangle contain
 \startsubproposition[title={Part II.}]
 \startCenterAlign
 Let the same construction remain;\\
-because $\drawUnitLine{F} = \drawUnitLine{AG}$, $\drawPolygon{ABFG} = \drawPolygon{CDEH}$\\
+$\because \drawUnitLine{F} = \drawUnitLine{AG}$, $\drawPolygon{ABFG} = \drawPolygon{CDEH}$\\ %because
 and $\drawUnitLine{CH} = \drawUnitLine{E}$.\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV]
 
@@ -12402,7 +12402,7 @@ which are about the diagonal are similar to the whole, and to each other.}
 
 \startCenterAlign
 As \parallelogramABCD\ and \parallelogramAEFG\ have a common angle they are equiangular;\\
-but because $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\
+but $\because \drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\ %because
 \drawFromCurrentPicture[bottom]{
 startGlobalRotation(180-angle(A-C));
 startAutoLabeling;
@@ -13225,7 +13225,7 @@ draw $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
 then shall $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ the diameter of the described circle.
 
 Describe \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], draw its diameter \drawUnitLine{AE}, and draw \drawUnitLine{CE};\\
-then because $\drawAngle{D} = \drawAngle{BCA,ECB}$ (const.\ and \inpropL[prop:III.XXXI]);\\
+then $\because \drawAngle{D} = \drawAngle{BCA,ECB}$ (const.\ and \inpropL[prop:III.XXXI]);\\ %because
 and $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI];\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} is equiangular to \drawLine[middle]{CA,CE,AE} \inprop[prop:VI.IV];
 
@@ -13284,7 +13284,7 @@ $\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$; and $\drawAngle{BCA} = \
 
 $\therefore \drawUnitLine{DA} : \drawUnitLine{ED} :: \drawUnitLine{AC} : \drawUnitLine{BC}$ \inprop[prop:VI.IV];\\
 and $\therefore \drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$ \inprop[prop:VI.XVI];\\
-again, because $\drawAngle{EAB} = \drawAngle{DAC}$ (const.),\\
+again, $\because \drawAngle{EAB} = \drawAngle{DAC}$ (const.),\\ %because
 and $\drawAngle{B} = \drawAngle{ACD}$ \inprop[prop:III.XXI];\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUnitLine{CD}$ \inprop[prop:VI.IV];\\
 and $\therefore \drawUnitLine{BE} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD}$ \inprop[prop:VI.XVI];\\
