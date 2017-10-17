@@ -747,7 +747,7 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
         totalLength := totalLength + getAttribute("line", "Length", str lN);
     endfor;
     if (lineNotStraight):
-        errmessage("The line is not straight");
+        message("The line is not straight");
     fi;
     if (lineNotContinuous):
         errmessage("The line is not continuous");
