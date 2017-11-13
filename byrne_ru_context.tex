@@ -2804,6 +2804,7 @@ byAngleDefine(E, B, D, byblue, 0);
 byAngleDefine(A, E, C, byblack, 0);
 byAngleDefine(A, F, D, white, 0);
 draw byNamedAngleResized();
+draw byNamedAngleDummySides(AFD);
 byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(B, D, byred, 0, 0);
 byLineDefine(C, D, byblack, 0, 0);
@@ -2849,7 +2850,7 @@ stopAutoLabeling;
 draw byNamedLine (AC);
 } - \polygonEFD =
 \drawPolygon{ABGC, CDG}$,\\
-и $\drawPolygon{ABGC, CDG} - \polygonABC =
+и $\polygonAFDC - \polygonABC =
 \drawPolygon{EFDG, CDG}$;
 
 $\therefore \drawPolygon{ABGC, CDG} = \drawPolygon{EFDG, CDG}$.
@@ -8138,8 +8139,8 @@ D := (dir(90+3/5(360))*r) shifted O;
 E := (dir(90+4/5(360))*r) shifted O;
 draw byArbitraryFigure(C--E--B--D, byblack, 0, 1)(pg);
 draw byPolygon(A,C,D)(byyellow);
-byAngleDefineWithName(A, B, C, byblack, -1)(B);
-byAngleDefineWithName(D, E, A, byblack, -1)(E);
+byAngleDefineExtended(A, B, C, byblack, -1)(bytransparent);
+byAngleDefineExtended(D, E, A, byblack, -1)(bytransparent);
 byAngleDefineWithName(B, C, A, byblack, -1)(Cl);
 byAngleDefineWithName(A, D, E, byblack, -1)(Dr);
 byAngleDefineWithName(B, A, C, byblack, -1)(Al);

@@ -51,12 +51,13 @@ vardef sin primary x = (sind(x*radian)) enddef;
 
 vardef cos primary x = (cosd(x*radian)) enddef;
 
-color byred, byblue, byyellow, byblack, bygrey;
+color byred, byblue, byyellow, byblack, bygrey, bytransparent;
 byred := (.85, .3, .1);
 byblue := (.15, .35, .6);
 byyellow := (.95, .7, 0.1);
 byblack := black;
 bygrey := (.8, .8, .8);
+bytransparent := 0.99white;
 
 linecap := butt;
 
@@ -1551,7 +1552,9 @@ vardef byAngleMLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
     path p;
     p := angleArc scaled ((u*angleScale) - lineWidth);
     image(
-        fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+        if (angleOptionalColors[0] <> bytransparent):
+            fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+        fi;
         draw p withpen pencircle scaled lineWidth withcolor angleColor;
     )
 enddef;
@@ -1561,7 +1564,9 @@ vardef byAngleMThinLine (expr angleArc, angleColor)(suffix angleOptionalColors) 
     path p;
     p := angleArc scaled ((u*angleScale) - lineWidthThin);
     image(
-        fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+        if (angleOptionalColors[0] <> bytransparent):
+            fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+        fi;
         draw p withpen pencircle scaled lineWidthThin withcolor angleColor;
     )
 enddef;
@@ -1636,7 +1641,10 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             angleNum := angleNum + 1;
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
-                            if (getAttribute("angle", "Style", str aN) <> 0) and (getAttributeMulti("angle", "OptionalColor", str aN, 0) == white):
+                            if ((getAttribute("angle", "Style", str aN) <> 0)
+                                    and (getAttributeMulti("angle", "OptionalColor", str aN, 0) == white))
+                                or ((getAttribute("angle", "Style", str aN) == 0)
+                                    and (getAttribute("angle", "Color", str aN) == white)):
                                 angleType[angleNum] := 1;
                             else:
                                 angleType[angleNum] := 0;
