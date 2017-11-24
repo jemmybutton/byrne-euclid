@@ -240,6 +240,7 @@ setAttribute("line", "EndAName", "noLine", "noLine");
 setAttribute("line", "EndBName", "noLine", "noLine");
 setAttribute("line", "EndA", "noLine", inf);
 setAttribute("line", "EndB", "noLine", inf);
+setAttribute("line", "Synonym", "noLine", "noLine");
 
 setAttribute("line", "Color", "dummyLine", bygrey);
 setAttribute("line", "Dashed", "dummyLine", 0);
@@ -482,14 +483,15 @@ vardef byNamedLine(text linesList) =
     )
 enddef;
 
-vardef byNamedLineSeq(expr s)(text linesList) =
+vardef byNamedLineSeq(expr s)(text linesListRaw) =
     save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, pointNames;
-    string lAname[], lBname[], lName[], c, d, pointNames;
+    string lAname[], lBname[], lName[], c, d, pointNames, linesList;
     numeric i, j, k, l, m, n, prp, lShift[];
+    linesList := byExpandLines(linesListRaw);
     pointNames := "";
     image(
         i := -1;
-        forsuffixes lN=linesList:
+        forsuffixes lN=scantokens(linesList):
             i := i + 1;
             lAname[i] := getAttribute("line", "EndAName", str lN);
             lBname[i] := getAttribute("line", "EndBName", str lN);
@@ -584,7 +586,7 @@ vardef byNamedLineSeq(expr s)(text linesList) =
                 draw byLabelsOnPolygon(scantokens pointNames)(1, s);
             fi;
         else:
-            forsuffixes lN=linesList:
+            forsuffixes lN=scantokens(linesList):
                 setAttribute("line", "Shift", str lN, s);
                 draw byNamedLineFull(getAttribute("line", "EndA", str lN), getAttribute("line", "EndB", str lN), 0, 0, s)(lN);
                 if (textLabels and autoLabelingMode):
