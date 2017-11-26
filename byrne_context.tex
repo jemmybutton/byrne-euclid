@@ -1496,7 +1496,7 @@ draw byLabelsOnPolygon(H, F, A)(2, 0);
 
 When two triangles stand on the same base, and on the same side of it, the vertex of the one shall either fall outside of the other triangle, or within it; or, lastly, on one of its sides.
 
-If it be possible let the two triangles be constructed so that $\left\{\eqalign{\drawUnitLine{CA}&=\drawUnitLine{BC}\cr \drawUnitLine{DA}&=\drawUnitLine{BD}\cr}\right\}$, then draw \drawUnitLine{CD} and,
+If it be possible let the two triangles be constructed so that $\left\{\eqalign{\drawUnitLine{CA}&=\drawUnitLine{DA}\cr \drawUnitLine{BC}&=\drawUnitLine{BD}\cr}\right\}$, then draw \drawUnitLine{CD} and,
 
 \startCenterAlign
 $\drawAngle{C,DCB} = \drawAngle{CDA}$ \inprop[prop:I.V]
@@ -1566,10 +1566,10 @@ Therefore sides \drawUnitLine{AB} and \drawUnitLine{CA}, being coincident with \
 \startProposition[title={Prop IX. Prob.}, reference=prop:I.IX]
 \defineNewPicture{
 pair A, B, C, D, E, F;
-A := (0, 2u);
+A := (0, 5/3u);
 B := (-4/3u, 0);
 C := B xscaled -1;
-D := A yscaled -1;
+D = whatever[B, B shifted ((C-B) rotated -60)] = whatever[C, C shifted ((B-C) rotated 60)];
 E := 5/4[A, B];
 F := 5/4[A, C];
 byAngleDefine(B, A, D, byblue, 0);

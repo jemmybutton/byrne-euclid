@@ -484,7 +484,7 @@ vardef byNamedLine(text linesList) =
 enddef;
 
 vardef byNamedLineSeq(expr s)(text linesListRaw) =
-    save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, pointNames;
+    save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, pointNames, linesList;
     string lAname[], lBname[], lName[], c, d, pointNames, linesList;
     numeric i, j, k, l, m, n, prp, lShift[];
     linesList := byExpandLines(linesListRaw);

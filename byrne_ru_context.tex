@@ -1182,7 +1182,7 @@ draw byLabelLineEnd(B, A, 0);
 
 Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV];\\
 и $\drawUnitLine{AB} = \drawUnitLine{BC}$ \indef[def:XV];\\
-$\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[post:I];\\
+$\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[ax:I];\\
 и значит \triangleABC\ и есть искомый треугольник.
 \stopCenterAlign
 
@@ -1260,10 +1260,10 @@ draw byLabelLineEnd(E, D, 1);
 
 Поскольку $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \indef[def:XV],\\
 и $\drawUnitLine{BD} = \drawUnitLine{DA}$ (постр.),\\
-$\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[post:III],\\
+$\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[ax:III],\\
 но \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
 
-$\therefore \drawUnitLine{AF}$ проведенная из данной точки (\pointA) равна данной прямой \drawUnitLine{BC}.
+$\therefore \drawUnitLine{AF}$ проведенная из данной точки (\pointA) равна данной прямой \drawUnitLine{BC} \inax[ax:I].
 \stopCenterAlign
 
 \qed
@@ -1305,7 +1305,7 @@ draw byNamedCircle(A);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(A, D, 0);
 } \inpost[post:III],\\
-тогда $\drawUnitLine{EF} = \drawUnitLine{AB}$
+тогда $\drawUnitLine{EF} = \drawUnitLine{AB}$.
 
 Поскольку $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
 и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (постр.);
@@ -1348,7 +1348,7 @@ draw byLabelsOnPolygon(B, A, C)(0, -1);
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{два треугольника имеют по две стороны, равные каждая каждой, ($\drawUnitLine{AB} = \drawUnitLine{DE}$ и $\drawUnitLine{CA} = \drawUnitLine{FD}$) и по равному углу ($\drawAngle{A} = \drawAngle{D}$) содержащемуся между равными прямыми, то они будут иметь и основание равное основанию ($\drawUnitLine{BC} = \drawUnitLine{EF}$), и один треугольник будет равен другому, и остальные углы, стягиваемые равными сторонами, будут равны каждый каждому ($\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$).}
 
-Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов \drawAngle{A} или \drawAngle{D}, совпадает с вершиной другого, и \drawUnitLine{AB} совпадает \drawUnitLine{DE}, тогда \drawUnitLine{CA} при наложении совпадет с \drawUnitLine{FD}. Следовательно \drawUnitLine{BC} совпает с \drawUnitLine{EF}, или же две прямые будут содержать пространство, что невозможно \inax[ax:X], следовательно $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$, и поскольку треугольники \drawLine{CA,BC,AB} и \drawLine{FD,EF,DE} совпадают при наложении, они равны во всех отношениях.
+Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов \drawAngle{A} или \drawAngle{D}, совпадает с вершиной другого, и \drawUnitLine{AB} совпадает \drawUnitLine{DE}, тогда \drawUnitLine{CA} при наложении совпадет с \drawUnitLine{FD}. Следовательно \drawUnitLine{BC} совпадает с \drawUnitLine{EF}, или же две прямые будут содержать пространство, что невозможно \inax[ax:X], следовательно $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$, и поскольку треугольники \drawLine{CA,BC,AB} и \drawLine{FD,EF,DE} совпадают при наложении, они равны во всех отношениях.
 
 \qed
 \stopProposition
@@ -1504,7 +1504,7 @@ draw byLabelsOnPolygon(H, F, A)(2, 0);
 
 Если два треугольника построены на одном основании и по одну сторону от него, то вершина одного может находиться вовне другого, внутри или на одной из его сторон.
 
-Если такое возможно, то построим два треугольника таких, что $\left\{\eqalign{\drawUnitLine{CA}&=\drawUnitLine{BC}\cr \drawUnitLine{DA}&=\drawUnitLine{BD}\cr}\right\}$, затем проведем \drawUnitLine{CD}, тогда
+Если такое возможно, то построим два треугольника таких, что $\left\{\eqalign{\drawUnitLine{CA}&=\drawUnitLine{DA}\cr \drawUnitLine{BC}&=\drawUnitLine{BD}\cr}\right\}$, затем проведем \drawUnitLine{CD}, тогда
 
 \startCenterAlign
 $\drawAngle{C,DCB} = \drawAngle{CDA}$ \inprop[prop:I.V]
@@ -1560,10 +1560,10 @@ draw byLabelsOnPolygon(F, E, D)(0, 0);
 \startProposition[title={Предл. IX. Задача}, reference=prop:I.IX]
 \defineNewPicture{
 pair A, B, C, D, E, F;
-A := (0, 2u);
+A := (0, 5/3u);
 B := (-4/3u, 0);
 C := B xscaled -1;
-D := A yscaled -1;
+D = whatever[B, B shifted ((C-B) rotated -60)] = whatever[C, C shifted ((B-C) rotated 60)];
 E := 5/4[A, B];
 F := 5/4[A, C];
 byAngleDefine(B, A, D, byblue, 0);
@@ -1620,7 +1620,7 @@ draw byNamedLineSeq(0)(AB,CA,CD,DB);
 draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Р}{ассечь}{данную ограниченную прямую линию \drawUnitLine{DB,CD}.}
+\problemNP{Р}{ассечь}{данную ограниченную прямую линию \drawUnitLine{DB,CD} пополам.}
 
 \startCenterAlign
 Построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
