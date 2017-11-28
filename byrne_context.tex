@@ -1632,9 +1632,9 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 Construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD}, making $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.IX].
 
-Then $\drawUnitLine{DB} = \drawUnitLine{CD}$ by \inprop[prop:I.IV],
+Then $\drawUnitLine{BD} = \drawUnitLine{DC}$ by \inprop[prop:I.IV],
 
-for~$\drawUnitLine{AB} = \drawUnitLine{CA}$ (const.) $\drawAngle{BAD} = \drawAngle{CAD}$\\
+for~$\drawUnitLine{AB} = \drawUnitLine{AC}$ (const.) $\drawAngle{BAD} = \drawAngle{CAD}$\\
 and \drawUnitLine{AD} common to the two triangles.
 
 Therefore the given line is bisected.
@@ -1799,20 +1799,21 @@ draw byLine(E, D, byyellow, 0, 0);
 draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, byblack, 0, 0);
 draw byLabelsOnPolygon(E, D, B, noPoint)(0, 0);
+draw byLabelsOnPolygon(C, B, noPoint)(4, 0);
 draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two straight lines (\drawUnitLine{BD} and \drawUnitLine{CD}) meeting a third straight line (\drawUnitLine{AD}), at the same point, and at opposite sides of it, make with it adjacent angles (\offsetPicture{0pt}{15pt}{\drawAngle{BDA}} and \drawAngle{CDA}) equal to two right angles; these straight lines lie in one continuous straight line.}
+\problemNP{I}{f}{two straight lines (\drawUnitLine{BD} and \drawUnitLine{DC}) meeting a third straight line (\drawUnitLine{AD}), at the same point, and at opposite sides of it, make with it adjacent angles (\offsetPicture{0pt}{15pt}{\drawAngle{BDA}} and \drawAngle{CDA}) equal to two right angles; these straight lines lie in one continuous straight line.}
 
 \startCenterAlign
-For, if possible let \drawUnitLine{ED}, and not \drawUnitLine{CD}, be the continuation of \drawUnitLine{BD},\\
+For, if possible let \drawUnitLine{ED}, and not \drawUnitLine{DC}, be the continuation of \drawUnitLine{BD},\\
 then $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$
 
 but by the hypothesis $\drawAngle{BDA} + \drawAngle{CDA} = \drawTwoRightAngles$
 
 $\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$, \inax[ax:III]; which is absurd \inax[ax:IX].
 
-$\therefore \drawUnitLine{ED}$, is not the continuation of \drawUnitLine{BD}, and the like may be demonstrated of any other straight line except \drawUnitLine{CD}, $\therefore \drawUnitLine{CD}$ is the continuation of \drawUnitLine{BD}.
+$\therefore \drawUnitLine{ED}$, is not the continuation of \drawUnitLine{BD}, and the like may be demonstrated of any other straight line except \drawUnitLine{DC}, $\therefore \drawUnitLine{DC}$ is the continuation of \drawUnitLine{BD}.
 \stopCenterAlign
 
 \qed
@@ -1902,7 +1903,7 @@ $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ and
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
 $\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
 
-In like manner it can be shown, that if \drawUnitLine{AC,CF} be produced, $\drawAngle{GCA} > \drawAngle{A}$ \\
+In like manner it can be shown, that if \drawUnitLine{BC} be produced, $\drawAngle{GCA} > \drawAngle{A}$ \\
 and therefore \anglesECDpDCF\ which is $= \drawAngle{GCA}$ is $> \drawAngle{A}$.
 \stopCenterAlign
 
@@ -2159,8 +2160,8 @@ the sum of any two greater than the third, to construct a triangle whose sides s
 Assume $\drawSizedLine{AB} = \drawSizedLine{L'}$ \inprop[prop:I.III].
 
 $\left.\eqalign{
-\mbox{Draw } \drawSizedLine{AD} &= \drawSizedLine{L'''}\cr
-\mbox{and } \drawSizedLine{BE} &= \drawSizedLine{L''}
+\mbox{Draw } \drawSizedLine{BE} &= \drawSizedLine{L''}\cr
+\mbox{and } \drawSizedLine{AD} &= \drawSizedLine{L'''}
 }\right\}\mbox{\inprop[prop:I.II].}$
 
 With \drawSizedLine{AD} and \drawSizedLine{BE} as radii, describe
@@ -2290,7 +2291,7 @@ startAutoLabeling;
 draw byNamedAngleSides(FEG)(EF, GE);
 stopAutoLabeling;
 }),
-the side (\drawUnitLine{BD}) which is opposite to the greater angle is greater than the side (\drawUnitLine{FG}) which is opposite to the less angle.
+the side (\drawUnitLine{DB}) which is opposite to the greater angle is greater than the side (\drawUnitLine{FG}) which is opposite to the less angle.
 }
 
 \startCenterAlign
@@ -2307,11 +2308,11 @@ $\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V]
 but $\drawAngle{CDB} < \drawAngle{DCA}$,\\
 and $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
 
-$\therefore \drawUnitLine{BD} > \drawUnitLine{BC}$ \inprop[prop:I.XIX]
+$\therefore \drawUnitLine{DB} > \drawUnitLine{BC}$ \inprop[prop:I.XIX]
 
 but $\drawUnitLine{BC} = \drawUnitLine{FG}$ \inprop[prop:I.IV]
 
-$\therefore \drawUnitLine{BD} > \drawUnitLine{FG}$.
+$\therefore \drawUnitLine{DB} > \drawUnitLine{FG}$.
 \stopCenterAlign
 
 \qed
@@ -2348,12 +2349,12 @@ draw byLabelsOnPolygon(D, E, F)(0, 0);
 $\drawAngle{A} =\mbox{, } > \mbox{ or } < \drawAngle{D}$
 
 \drawAngle{A} is not equal to \drawAngle{D}\\
-for if $\drawAngle{A} = \drawAngle{D}$ then $\drawUnitLine{BC} = \drawUnitLine{EF}$ \inprop[prop:I.IV]\\
+for if $\drawAngle{A} = \drawAngle{D}$ then $\drawUnitLine{CB} = \drawUnitLine{FE}$ \inprop[prop:I.IV]\\
 which is contrary to the hypothesis;
 
 \drawAngle{A} is not less than \drawAngle{D}\\
 for if $\drawAngle{A} < \drawAngle{D}$\\
-then $\drawUnitLine{BC} < \drawUnitLine{EF}$ \inprop[prop:I.XXIV],\\
+then $\drawUnitLine{CB} < \drawUnitLine{FE}$ \inprop[prop:I.XXIV],\\
 which is also contrary to the hypothesis:
 
 $\therefore \drawAngle{A} > \drawAngle{D}$.

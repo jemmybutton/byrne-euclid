@@ -2222,6 +2222,12 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                     if (sty == 2) and ((j == 0) or (j == i)):
                         pointDrawn.scantokens(pointName[j]) := true;
                     fi;
+                    if (sty == 3) and (j == 0):
+                        pointDrawn.scantokens(pointName[j]) := true;
+                    fi;
+                    if (sty == 4) and (j == i):
+                        pointDrawn.scantokens(pointName[j]) := true;
+                    fi;
                     if (q6 <> p1) and (not pointDrawn.scantokens(pointName[j])):
                         sv := byLabelAngleCompensate(p0, p1, p2, shft);
                         draw byTextLabel(pointLabel)(pointName[j], pointLoc[j], angle(q6-p1), textLabelShift+sv);

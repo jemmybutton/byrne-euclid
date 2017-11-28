@@ -857,7 +857,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 \stopAxiomOnlyNumber
 
 \startAxiomOnlyNumber[reference=ax:V]
-Если из неравных величин вычитаются  неравные, остатки будут неравными.
+Если из неравных величин вычитаются  равные, остатки будут неравными.
 \stopAxiomOnlyNumber
 
 \startAxiomOnlyNumber[reference=ax:VI]
@@ -1310,7 +1310,7 @@ draw byLabelLineEnd(A, D, 0);
 Поскольку $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
 и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (постр.);
 
-$\therefore \drawUnitLine{EF} = \drawUnitLine{AB}$ \inax[ax:I];
+$\therefore \drawUnitLine{EF} = \drawUnitLine{AB}$ \inax[ax:I].
 \stopCenterAlign
 
 \qed
@@ -1348,7 +1348,7 @@ draw byLabelsOnPolygon(B, A, C)(0, -1);
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{два треугольника имеют по две стороны, равные каждая каждой, ($\drawUnitLine{AB} = \drawUnitLine{DE}$ и $\drawUnitLine{CA} = \drawUnitLine{FD}$) и по равному углу ($\drawAngle{A} = \drawAngle{D}$) содержащемуся между равными прямыми, то они будут иметь и основание равное основанию ($\drawUnitLine{BC} = \drawUnitLine{EF}$), и один треугольник будет равен другому, и остальные углы, стягиваемые равными сторонами, будут равны каждый каждому ($\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$).}
 
-Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов \drawAngle{A} или \drawAngle{D}, совпадает с вершиной другого, и \drawUnitLine{AB} совпадает \drawUnitLine{DE}, тогда \drawUnitLine{CA} при наложении совпадет с \drawUnitLine{FD}. Следовательно \drawUnitLine{BC} совпадает с \drawUnitLine{EF}, или же две прямые будут содержать пространство, что невозможно \inax[ax:X], следовательно $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$, и поскольку треугольники \drawLine{CA,BC,AB} и \drawLine{FD,EF,DE} совпадают при наложении, они равны во всех отношениях.
+Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов, \drawAngle{A} или \drawAngle{D}, совпадает с вершиной другого, и \drawUnitLine{AB} совпадает с \drawUnitLine{DE}, тогда \drawUnitLine{CA} при наложении совпадет с \drawUnitLine{FD}. Следовательно \drawUnitLine{BC} совпадает с \drawUnitLine{EF}, или же две прямые будут содержать пространство, что невозможно \inax[ax:X], следовательно $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ и $\drawAngle{C} = \drawAngle{F}$, и поскольку треугольники \drawLine{CA,BC,AB} и \drawLine{FD,EF,DE} совпадают при наложении, они равны во всех отношениях.
 
 \qed
 \stopProposition
@@ -1411,7 +1411,7 @@ $\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \dr
 
 Так же у \drawLine{BE,CE,BC} и \drawLine{BD,CD,BC}\\
 получим $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ и $\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
-$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV]\\
+$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и $\drawAngle{DCB} = \drawAngle{CBE}$ \inprop[prop:I.IV],\\
 но $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \inax[ax:III].
 \stopCenterAlign
 
@@ -1448,7 +1448,7 @@ draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 $\drawUnitLine{CA} = \drawUnitLine{BD}$ (постр.),\\
 $\drawAngle{A} = \drawAngle{B}$ (гип.)\\
 и \drawUnitLine{AB} общая обоим,\\
-$\therefore$ эти треугольники равны \inprop[prop:I.IV]\\
+$\therefore$ эти треугольники равны \inprop[prop:I.IV],\\
 часть равна целому, что невозможно;\\
 $\therefore$ ни одна из сторон \drawUnitLine{CA,CD} или \drawUnitLine{BD} не больше другой,\\
 $\therefore$ они равны.
@@ -1586,7 +1586,7 @@ draw byLabelsOnPolygon(D, B, A, C)(0, 0);
 \problemNP{Р}{ассечь}{данный прямолинейный угол \drawAngle{BAD,CAD} пополам.}
 
 \startCenterAlign
-Возьмем $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III]
+Возьмем $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III],
 
 проведем \drawUnitLine{BC}, на которой построим \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD}.
@@ -1624,11 +1624,11 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 
 \startCenterAlign
 Построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
-проведем \drawUnitLine{AD}, делая $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.IX],
+проведем \drawUnitLine{AD}, делая $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.IX].
 
-Тогда $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.IV],
+Тогда $\drawUnitLine{BD} = \drawUnitLine{DC}$ \inprop[prop:I.IV],
 
-поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.)\\
+поскольку $\drawUnitLine{AB} = \drawUnitLine{AC}$ (постр.),\\
 $\drawAngle{BAD} = \drawAngle{CAD}$\\
 и \drawUnitLine{AD} общая обоим треугольникам.
 
@@ -1671,12 +1671,12 @@ draw byLabelsOnPolygon(B, A, C)(2, 0);
 проведем \drawUnitLine{AD} и она будет перпендикуляром к данной прямой.
 
 Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.)\\
-$\drawUnitLine{CD} = \drawUnitLine{DB}$ (пост.)\\
+$\drawUnitLine{CD} = \drawUnitLine{DB}$ (постр.)\\
 и \drawUnitLine{AD} общая обоим треугольникам.
 
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII]
 
-$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X]
+$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X].
 \stopCenterAlign
 
 \qed
@@ -1734,7 +1734,7 @@ draw byLabelLineEnd(C, A, 0);
 
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$,
 
-и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X]
+и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X].
 \stopCenterAlign
 
 \qed
@@ -1767,7 +1767,7 @@ draw byLabelLineEnd(A, D, 0);
 \drawAngle{ADB,EDA} и $\drawAngle{CDE} = \drawTwoRightAngles$ \indef[def:X],
 
 но если \drawUnitLine{ED} будет не $\perp$ к \drawUnitLine{BC},\\
-проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$; \inprop[prop:I.XI]\\
+проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$ \inprop[prop:I.XI];\\
 $\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ (постр.),\\
 $\drawAngle{ADB} = \drawAngle{CDE,EDA} = \drawAngle{EDA} + \drawAngle{CDE}$
 
@@ -1796,21 +1796,22 @@ draw byLine(E, D, byyellow, 0, 0);
 draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, byblack, 0, 0);
 draw byLabelsOnPolygon(E, D, B, noPoint)(0, 0);
+draw byLabelsOnPolygon(C, B, noPoint)(4, 0);
 draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{две прямые \drawUnitLine{BD} и \drawUnitLine{CD} образуют с третьей \drawUnitLine{AD} смежные углы, находясь по разные стороны от нее, и эти углы \drawAngle{BDA} и \drawAngle{CDA} равны двум прямым углам, то эти прямые будут лежать на одной прямой.}
+\problemNP{Е}{сли}{две прямые \drawUnitLine{BD} и \drawUnitLine{DC} образуют с третьей \drawUnitLine{AD} смежные углы, находясь по разные стороны от нее, и эти углы \drawAngle{BDA} и \drawAngle{CDA} равны двум прямым углам, то эти прямые будут лежать на одной прямой.}
 
 \startCenterAlign
-Действительно, пусть \drawUnitLine{ED}, а не \drawUnitLine{CD}, будет продолжением \drawUnitLine{BD},\\
-тогда $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$
+Действительно, пусть \drawUnitLine{ED}, а не \drawUnitLine{DC}, будет продолжением \drawUnitLine{BD},\\
+тогда $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$,
 
 но, согласно гипотезе $\drawAngle{BDA} + \drawAngle{CDA} = \drawTwoRightAngles$
 
 $\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$, \inax[ax:III];\\
 что не имеет смысла \inax[ax:IX].
 
-$\therefore \drawUnitLine{ED}$ не является продолжением \drawUnitLine{BD}, и то же можно показать для любой другой прямой линии, за исключением \drawUnitLine{CD}, $\therefore \drawUnitLine{CD}$ является продолжением \drawUnitLine{BD}.
+$\therefore \drawUnitLine{ED}$ не является продолжением \drawUnitLine{BD}, и то же можно показать для любой другой прямой линии, за исключением \drawUnitLine{DC}, $\therefore \drawUnitLine{DC}$ является продолжением \drawUnitLine{BD}.
 \stopCenterAlign
 
 \qed
@@ -1839,14 +1840,14 @@ draw byLabelPoint(D, lineAngle.CD - 90, 1);
 \problemNP[2]{Е}{сли}{две прямых линии \drawUnitLine{AB} и \drawUnitLine{CD} пересекаются, вертикальные углы \drawAngle{BEC} и \drawAngle{AED}, \drawAngle{CEA} и \drawAngle{DEB} будут равны между собой.}
 
 \startCenterAlign
-$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII]
+$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII],
 
 $\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$\inprop[prop:I.XIII]
 
 $\therefore \drawAngle{BEC} = \drawAngle{AED}$ \inax[ax:II].
 
 Таким же образом можно показать, что\\
-$\drawAngle{CEA} = \drawAngle{DEB}$
+$\drawAngle{CEA} = \drawAngle{DEB}$.
 \stopCenterAlign
 
 \qed
@@ -1900,7 +1901,7 @@ $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \in
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
 $\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
 
-Так же можно показать, что при продлении \drawUnitLine{AC,CF}, $\drawAngle{GCA} > \drawAngle{A}$ \\
+Так же можно показать, что при продлении \drawUnitLine{BC}, $\drawAngle{GCA} > \drawAngle{A}$ \\
 и, следовательно \anglesECDpDCF\ который $= \drawAngle{GCA}$ будет $> \drawAngle{A}$.
 \stopCenterAlign
 
@@ -1931,7 +1932,7 @@ draw byLabelsOnPolygon(D, C, A, B)(0, 0);
 
 \startCenterAlign
 Продлим \drawUnitLine{AC}, тогда\\
-$\drawAngle{ACB} + \drawAngle{BCD} = \drawTwoRightAngles$
+$\drawAngle{ACB} + \drawAngle{BCD} = \drawTwoRightAngles$.
 
 Но $\drawAngle{BCD} > \drawAngle{A}$ \inprop[prop:I.XVI]
 
@@ -1964,10 +1965,10 @@ draw byNamedLineSeq(0)(AC,BC,BD,DA);
 draw byLabelsOnPolygon(A, C, B, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{В}{о}{всяком треугольнике \drawLine{AC,BC,BD,DA}, если одна сторона \drawUnitLine{DA,AC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т. е. $\drawAngle{ABC,DBA} > \drawAngle{D}$}
+\problemNP{В}{о}{всяком треугольнике \drawLine{AC,BC,BD,DA} если одна сторона \drawUnitLine{DA,AC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т. е. $\drawAngle{ABC,DBA} > \drawAngle{D}$}
 
 \startCenterAlign
-Сделаем $\drawUnitLine{AC} = \drawUnitLine{BC}$ \inprop[prop:I.III],\\ проведем \drawUnitLine{AB},
+Сделаем $\drawUnitLine{AC} = \drawUnitLine{BC}$ \inprop[prop:I.III],\\ проведем \drawUnitLine{AB}.
 
 Тогда $\drawAngle{A} = \drawAngle{ABC}$ \inprop[prop:I.V];
 
@@ -1999,16 +2000,16 @@ draw byLabelsOnPolygon(B, A, C)(0, 0);
 \problemNP{В}{о}{всяком треугольнике \drawLine[bottom]{CA,BC,AB} если один угол \drawAngle{A} больше другого \drawAngle{B}, то сторона \drawUnitLine{BC} противолежащая большему углу, больше стороны \drawUnitLine{CA} противолежащей меньшему.}
 
 \startCenterAlign
-Если \drawUnitLine{BC} не больше \drawUnitLine{CA} тогда\\
+Если \drawUnitLine{BC} не больше \drawUnitLine{CA}, тогда\\
 $\drawUnitLine{BC} =$ или $< \drawUnitLine{CA}$.
 
-Если $\drawUnitLine{BC} = \drawUnitLine{CA}$ тогда\\
+Если $\drawUnitLine{BC} = \drawUnitLine{CA}$, тогда\\
 $\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V],\\
 что противоречит гипотезе.
 
 \drawUnitLine{BC} также не меньше \drawUnitLine{CA};\\
 поскольку, если это так, то $\drawAngle{A} < \drawAngle{B}$ \inprop[prop:I.XVIII]\\
-что противоречит гипотезе:
+что противоречит гипотезе.
 
 $\therefore \drawUnitLine{BC} > \drawUnitLine{CA}$.
 \stopCenterAlign
@@ -2051,7 +2052,7 @@ $\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \inax[ax:IX]
 
 $\therefore \drawUnitLine{DA} + \drawUnitLine{CD} > \drawUnitLine{AB}$ \inprop[prop:I.XIX]
 
-и $\therefore \drawUnitLine{DA} + \drawUnitLine{BD} > \drawUnitLine{AB}$
+и $\therefore \drawUnitLine{DA} + \drawUnitLine{BD} > \drawUnitLine{AB}$.
 \stopCenterAlign
 
 \qed
@@ -2089,7 +2090,7 @@ draw byLabelsOnPolygon(A, D, E)(2, 0);
 Продлим \drawSizedLine{AD},\\
 $\drawSizedLine{CA} + \drawSizedLine{EC} > \drawSizedLine{AD,DE}$ \inprop[prop:I.XX],\\
 добавим к каждой \drawSizedLine{BE},\\
-$\drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD,DE} + \drawSizedLine{BE}$ \inax[ax:IV]
+$\drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD,DE} + \drawSizedLine{BE}$ \inax[ax:IV].
 
 Таким же образом можно показать, что\\
 $\drawSizedLine{AD,DE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
@@ -2157,8 +2158,8 @@ draw byLabelLine(0)(L', L'', L''');
 Предположим $\drawSizedLine{AB} = \drawSizedLine{L'}$ \inprop[prop:I.III].
 
 $\left.\eqalign{
-\mbox{Проведем } \drawSizedLine{AD} &= \drawSizedLine{L'''}\cr
-\mbox{и } \drawSizedLine{BE} &= \drawSizedLine{L''}
+\mbox{Проведем } \drawSizedLine{BE} &= \drawSizedLine{L''}\cr
+\mbox{и } \drawSizedLine{AD} &= \drawSizedLine{L'''}
 }\right\}\mbox{\inprop[prop:I.II].}$
 
 Взяв \drawSizedLine{AD} и \drawSizedLine{BE} как радиусы, опишем
@@ -2277,7 +2278,7 @@ startAutoLabeling;
 draw byNamedAngleSides(FEG)(EF, GE);
 stopAutoLabeling;
 },
-то сторона \drawUnitLine{BD} противолежащая большему углу больше стороны, противолежащей меньшему \drawUnitLine{FG}.
+то сторона \drawUnitLine{DB} противолежащая большему углу больше стороны, противолежащей меньшему \drawUnitLine{FG}.
 }
 
 \startCenterAlign
@@ -2290,15 +2291,15 @@ stopAutoLabeling;
 проведем \drawUnitLine{CD} и \drawUnitLine{BC}.
 
 Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I]. гип. постр.)\\
-$\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V]
+$\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V],
 но $\drawAngle{CDB} < \drawAngle{DCA}$,\\
 и $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
 
-$\therefore \drawUnitLine{BD} > \drawUnitLine{BC}$ \inprop[prop:I.XIX]
+$\therefore \drawUnitLine{DB} > \drawUnitLine{BC}$ \inprop[prop:I.XIX]
 
 но $\drawUnitLine{BC} = \drawUnitLine{FG}$ \inprop[prop:I.IV]
 
-$\therefore \drawUnitLine{BD} > \drawUnitLine{FG}$.
+$\therefore \drawUnitLine{DB} > \drawUnitLine{FG}$.
 \stopCenterAlign
 
 \qed
@@ -2334,14 +2335,14 @@ draw byLabelsOnPolygon(D, E, F)(0, 0);
 \startCenterAlign
 $\drawAngle{A} =\mbox{, } > \mbox{ или } < \drawAngle{D}$
 
-\drawAngle{A} не равен \drawAngle{D}\\
-поскольку если $\drawAngle{A} = \drawAngle{D}$ то $\drawUnitLine{BC} = \drawUnitLine{EF}$ \inprop[prop:I.IV]\\
+\drawAngle{A} не равен \drawAngle{D},\\
+поскольку если $\drawAngle{A} = \drawAngle{D}$, то $\drawUnitLine{CB} = \drawUnitLine{FE}$ \inprop[prop:I.IV],\\
 что противоречит гипотезе;
 
-\drawAngle{A} не меньше \drawAngle{D}\\
-поскольку если $\drawAngle{A} < \drawAngle{D}$\\
-то $\drawUnitLine{BC} < \drawUnitLine{EF}$ \inprop[prop:I.XXIV],\\
-что противоречит гипотезе:
+\drawAngle{A} не меньше \drawAngle{D},\\
+поскольку если $\drawAngle{A} < \drawAngle{D}$,\\
+то $\drawUnitLine{CB} < \drawUnitLine{FE}$ \inprop[prop:I.XXIV],\\
+что противоречит гипотезе.
 
 $\therefore \drawAngle{A} > \drawAngle{D}$.
 \stopCenterAlign
