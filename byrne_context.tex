@@ -1846,7 +1846,7 @@ $\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ % Here and in the next
 
 $\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$ %
 
-$\therefore \drawAngle{BEC} = \drawAngle{AED}$. % And this is according to ax. I
+$\therefore \drawAngle{BEC} = \drawAngle{AED}$. % And this is according to \inax[ax:III]
 
 In the same manner it may be shown that\\
 $\drawAngle{CEA} = \drawAngle{DEB}$.
@@ -1888,7 +1888,7 @@ draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
 draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a side of a triangle (\drawLine[bottom]{BE,EC,AC,AB}) is produced, the external angle (\drawFromCurrentPicture[bottom][anglesECDpDCF]{
+\problemNP{I}{f}{a side of a triangle (\drawLine[bottom]{BE,EC,AC,AB}) is produced, the external angle (\drawFromCurrentPicture[middle][anglesECDpDCF]{
 startAutoLabeling;
 draw byNamedAngleSides(ECD,DCF)(CF);
 stopAutoLabeling;
@@ -1901,7 +1901,7 @@ Draw \drawUnitLine{AE} and produce it until $\drawUnitLine{ED} = \drawUnitLine{A
 draw \drawUnitLine{CD}. In \drawLine{BE,AE,AB} and \drawLine{EC,ED,CD};\\
 $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ and $\drawUnitLine{AE} = \drawUnitLine{ED}$ (const., \inpropL[prop:I.XV]),\\
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
-$\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
+$\therefore \anglesECDpDCF\ > \drawAngle{B}$.
 
 In like manner it can be shown, that if \drawUnitLine{BC} be produced, $\drawAngle{GCA} > \drawAngle{A}$ \\
 and therefore \anglesECDpDCF\ which is $= \drawAngle{GCA}$ is $> \drawAngle{A}$.
@@ -1949,35 +1949,40 @@ $\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$,
 \startProposition[title={Prop XVIII. Theor.}, reference=prop:I.XVIII]
 \defineNewPicture[1/4]{
 pair A, B, C, D;
+numeric a;
 A := (0, 0);
-B := A shifted (5/2u, -1/2u);
-C := A shifted (3/2u, 2u);
-D := 2[C, A];
-byAngleDefine(C, A, B, byblue, 0);
-byAngleDefine(A, B, C, byblack, 0);
-byAngleDefine(D, B, A, byred, 0);
-byAngleDefine(B, D, A, byyellow, 0);
+B := A shifted (4u, 2u);
+C := B shifted (-3/2u, 2u);
+D := C shifted (unitvector(A-C) scaled abs(B-C));
+a := angle(B-D);
+forsuffixes i=A, B, C, D:
+i := i rotated -a;
+endfor;
+byAngleDefine(C, D, B, byblue, 0);
+byAngleDefine(D, B, C, byblack, 0);
+byAngleDefine(A, B, D, byred, 0);
+byAngleDefine(B, A, D, byyellow, 0);
 draw byNamedAngleResized();
-draw byLine(A, B, byyellow, 0, 0);
-byLineDefine(A, C, byred, 0, 0);
+draw byLine(D, B, byyellow, 0, 0);
+byLineDefine(D, C, byred, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
-byLineDefine(B, D, byblack, 0, 0);
-byLineDefine(D, A, byred, 1, 0);
-draw byNamedLineSeq(0)(AC,BC,BD,DA);
-draw byLabelsOnPolygon(A, C, B, D)(0, 0);
+byLineDefine(B, A, byblack, 0, 0);
+byLineDefine(A, D, byred, 1, 0);
+draw byNamedLineSeq(0)(DC,BC,BA,AD);
+draw byLabelsOnPolygon(D, C, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{any triangle \drawLine{AC,BC,BD,DA} if one side \drawUnitLine{DA,AC} be greater than another \drawUnitLine[0.5cm]{BC}, the angle opposite to the greater side is greater than the angle opposite to the less. I.\ e.\ $\drawAngle{ABC,DBA} > \drawAngle{D}$.}
+\problemNP{I}{n}{any triangle \drawLine{DC,BC,BA,AD} if one side \drawUnitLine{AD,DC} be greater than another \drawUnitLine[0.5cm]{BC}, the angle opposite to the greater side is greater than the angle opposite to the less. I.\ e.\ $\drawAngle{DBC,ABD} > \drawAngle{A}$.}
 
 \startCenterAlign
-Make $\drawUnitLine{AC} = \drawUnitLine{BC}$ \inprop[prop:I.III], draw \drawUnitLine{AB}.
+Make $\drawUnitLine{DC} = \drawUnitLine{BC}$ \inprop[prop:I.III], draw \drawUnitLine{DB}.
 
-Then will $\drawAngle{A} = \drawAngle{ABC}$ \inprop[prop:I.V];
+Then will $\drawAngle{D} = \drawAngle{DBC}$ \inprop[prop:I.V];
 
-but $\drawAngle{ABC} > \drawAngle{D}$ \inprop[prop:I.XVI]
+but $\drawAngle{D} > \drawAngle{A}$ \inprop[prop:I.XVI]
 
-$\therefore \drawAngle{ABC} > \drawAngle{D}$ and much more\\
-is $\drawAngle{ABC,DBA} > \drawAngle{D}$.
+$\therefore \drawAngle{DBC} > \drawAngle{A}$ and much more\\
+is $\drawAngle{DBC,ABD} > \drawAngle{A}$.
 \stopCenterAlign
 
 \qed
@@ -2215,7 +2220,7 @@ byLineDefine(F, G, byblack, 0, 0);
 byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(noLine,GH,HF,FG,GJ);
-draw byLabelsOnPolygon(D, B, A, C, E, noPoint)(0, 0);
+draw byLabelsOnPolygon(D, B, A, C, E)(2, 0);
 draw byLabelsOnPolygon(noPoint,J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin

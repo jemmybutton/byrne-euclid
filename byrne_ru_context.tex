@@ -1844,7 +1844,7 @@ $\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII],
 
 $\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$\inprop[prop:I.XIII]
 
-$\therefore \drawAngle{BEC} = \drawAngle{AED}$ \inax[ax:II].
+$\therefore \drawAngle{BEC} = \drawAngle{AED}$ \inax[ax:III].
 
 Таким же образом можно показать, что\\
 $\drawAngle{CEA} = \drawAngle{DEB}$.
@@ -1886,7 +1886,7 @@ draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
 draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[bottom]{BE,EC,AC,AB} внешний угол \drawFromCurrentPicture[bottom][anglesECDpDCF]{
+\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[middle]{BE,EC,AC,AB} внешний угол \drawFromCurrentPicture[middle][anglesECDpDCF]{
 startAutoLabeling;
 draw byNamedAngleSides(ECD,DCF)(CF);
 stopAutoLabeling;
@@ -1899,7 +1899,7 @@ stopAutoLabeling;
 проведем \drawUnitLine{CD}. В~\drawLine{BE,AE,AB} и \drawLine{EC,ED,CD};\\
 $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV] и $\drawUnitLine{AE} = \drawUnitLine{ED}$ (постр.),\\
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
-$\therefore \anglesECDpDCF\ > \drawAngle{ECD}$.
+$\therefore \anglesECDpDCF\ > \drawAngle{B}$.
 
 Так же можно показать, что при продлении \drawUnitLine{BC}, $\drawAngle{GCA} > \drawAngle{A}$ \\
 и, следовательно \anglesECDpDCF\ который $= \drawAngle{GCA}$ будет $> \drawAngle{A}$.
@@ -1947,35 +1947,40 @@ $\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$,
 \startProposition[title={Предл. XVIII. Теорема}, reference=prop:I.XVIII]
 \defineNewPicture[1/4]{
 pair A, B, C, D;
+numeric a;
 A := (0, 0);
-B := A shifted (5/2u, -1/2u);
-C := A shifted (3/2u, 2u);
-D := 2[C, A];
-byAngleDefine(C, A, B, byblue, 0);
-byAngleDefine(A, B, C, byblack, 0);
-byAngleDefine(D, B, A, byred, 0);
-byAngleDefine(B, D, A, byyellow, 0);
+B := A shifted (4u, 2u);
+C := B shifted (-3/2u, 2u);
+D := C shifted (unitvector(A-C) scaled abs(B-C));
+a := angle(B-D);
+forsuffixes i=A, B, C, D:
+i := i rotated -a;
+endfor;
+byAngleDefine(C, D, B, byblue, 0);
+byAngleDefine(D, B, C, byblack, 0);
+byAngleDefine(A, B, D, byred, 0);
+byAngleDefine(B, A, D, byyellow, 0);
 draw byNamedAngleResized();
-draw byLine(A, B, byyellow, 0, 0);
-byLineDefine(A, C, byred, 0, 0);
+draw byLine(D, B, byyellow, 0, 0);
+byLineDefine(D, C, byred, 0, 0);
 byLineDefine(B, C, byblue, 0, 0);
-byLineDefine(B, D, byblack, 0, 0);
-byLineDefine(D, A, byred, 1, 0);
-draw byNamedLineSeq(0)(AC,BC,BD,DA);
-draw byLabelsOnPolygon(A, C, B, D)(0, 0);
+byLineDefine(B, A, byblack, 0, 0);
+byLineDefine(A, D, byred, 1, 0);
+draw byNamedLineSeq(0)(DC,BC,BA,AD);
+draw byLabelsOnPolygon(D, C, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{В}{о}{всяком треугольнике \drawLine{AC,BC,BD,DA} если одна сторона \drawUnitLine{DA,AC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т. е. $\drawAngle{ABC,DBA} > \drawAngle{D}$}
+\problemNP{В}{о}{всяком треугольнике \drawLine{DC,BC,BA,AD} если одна сторона \drawUnitLine{AD,DC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т. е. $\drawAngle{DBC,ABD} > \drawAngle{A}$}
 
 \startCenterAlign
-Сделаем $\drawUnitLine{AC} = \drawUnitLine{BC}$ \inprop[prop:I.III],\\ проведем \drawUnitLine{AB}.
+Сделаем $\drawUnitLine{DC} = \drawUnitLine{BC}$ \inprop[prop:I.III],\\ проведем \drawUnitLine{DB}.
 
-Тогда $\drawAngle{A} = \drawAngle{ABC}$ \inprop[prop:I.V];
+Тогда $\drawAngle{D} = \drawAngle{DBC}$ \inprop[prop:I.V];
 
-но $\drawAngle{ABC} > \drawAngle{D}$ \inprop[prop:I.XVI]
+но $\drawAngle{D} > \drawAngle{A}$ \inprop[prop:I.XVI]
 
-$\therefore \drawAngle{ABC} > \drawAngle{D}$\\
-и тем более $\drawAngle{ABC,DBA} > \drawAngle{D}$.
+$\therefore \drawAngle{DBC} > \drawAngle{A}$,\\
+и тем более $\drawAngle{DBC,ABD} > \drawAngle{A}$.
 \stopCenterAlign
 
 \qed
@@ -2213,13 +2218,13 @@ byLineDefine(F, G, byblack, 0, 0);
 byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(noLine,GH,HF,FG,GJ);
-draw byLabelsOnPolygon(D, B, A, C, E, noPoint)(0, 0);
+draw byLabelsOnPolygon(D, B, A, C, E)(2, 0);
 draw byLabelsOnPolygon(noPoint, J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{П}{ри}{данной точке \drawPointL{F} на данной прямой \drawUnitLine{FG,GJ}, построить угол равный данному прямолинейному углу \drawAngle{A}.}
 
-Проведем \drawUnitLine{BC} между любыми двумя точками сторонами данного угла.
+Проведем \drawUnitLine{BC} между любыми двумя точками на сторонах данного угла.
 
 \startCenterAlign
 Построим \drawLine[bottom]{HF,GH,FG} \inprop[prop:I.XXII]\\
@@ -2531,9 +2536,9 @@ $\therefore \drawAngle{CFE} = \drawAngle{FEB} \therefore \drawUnitLine{AB} \para
 
 Во-вторых, если $\drawAngle{CFE} + \drawAngle{AEF} = \drawTwoRightAngles$,\\
 то $\drawAngle{AEF} + \drawAngle{FEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII],\\
-$\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB}$ \inax[ax:III]
+$\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB}$ \inax[ax:I]
 
-$\therefore \drawAngle{CFE} = \drawAngle{FEB}$
+$\therefore \drawAngle{CFE} = \drawAngle{FEB}$ \inax[ax:III]
 
 $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
@@ -2816,11 +2821,11 @@ draw byLabelsOnPolygon(C, A, B, E, F, D)(0, 0);
 \problemNP{П}{араллелограммы}{, находящиеся на одном и том же основании и между одними и теми же параллельными прямыми, равны по площади между собой.}
 
 \startCenterAlign
-Из параллельности прямых следует,\\
+Из параллельности прямых следует, что\\
 $\left.\eqalign{
-\drawAngle{A} &= \drawAngle{B};\cr
-\drawAngle{E} &= \drawAngle{F};\cr
-\mbox{и } \drawUnitLine{AC} &= \drawUnitLine{BD}\cr
+\drawAngle{A} &= \drawAngle{B},\cr
+\drawAngle{E} &= \drawAngle{F}\cr
+\mbox{и } \drawUnitLine{AC} &= \drawUnitLine{BD}.\cr
 }\right\}
 \eqalign{
 &\mbox{\inprop[prop:I.XXIX]}\cr
@@ -2828,8 +2833,7 @@ $\left.\eqalign{
 &\mbox{\inprop[prop:I.XXXIV]}\cr
 }$
 
-Но
-$\drawFromCurrentPicture[middle][polygonABC]{
+$\therefore \drawFromCurrentPicture[middle][polygonABC]{
 startAutoLabeling;
 draw byNamedPolygon (ABGC, BEG);
 stopAutoLabeling;
@@ -2841,10 +2845,9 @@ startAutoLabeling;
 draw byNamedPolygon (EFDG, BEG);
 stopAutoLabeling;
 draw byNamedLine (BD);
-}$ \inprop[prop:I.VIII]
+}$ \inprop[prop:I.XXVI].
 
-$\therefore
-\drawFromCurrentPicture[middle][polygonAFDC]{
+Но $\drawFromCurrentPicture[middle][polygonAFDC]{
 startAutoLabeling;
 draw byNamedPolygon (ABGC, EFDG, BEG, CDG);
 stopAutoLabeling;
@@ -2852,7 +2855,7 @@ draw byNamedLine (AC);
 } - \polygonEFD =
 \drawPolygon{ABGC, CDG}$,\\
 и $\polygonAFDC - \polygonABC =
-\drawPolygon{EFDG, CDG}$;
+\drawPolygon{EFDG, CDG}$.
 
 $\therefore \drawPolygon{ABGC, CDG} = \drawPolygon{EFDG, CDG}$.
 \stopCenterAlign
