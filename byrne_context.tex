@@ -2487,10 +2487,10 @@ F := 2/3[C, D];
 G := 3/2[F, E];
 H := 3/2[E, F];
 I := 1/2[A, C] shifted (-2u, 0);
-byAngleDefine(A, E, F, byyellow, 0);
-byAngleDefine(F, E, B, byred, 0);
-byAngleDefine(C, F, E, byblue, 0);
-byAngleDefine(E, F, D, byyellow, 0);
+byAngleDefine(A, E, H, byyellow, 0);
+byAngleDefine(H, E, B, byred, 0);
+byAngleDefine(C, F, G, byblue, 0);
+byAngleDefine(G, F, D, byyellow, 0);
 draw byNamedAngleResized();
 byLineDefine(I, A, byblue, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
@@ -2503,11 +2503,11 @@ draw byLabelsOnPolygon(G, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{CD} and \drawUnitLine{AB}) makes with them the alternate angles (\drawAngle{CFE} and \drawAngle{FEB}; \drawAngle{EFD} and \drawAngle{AEF}) equal, these two straight lines are parallel.}
+\problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{CD} and \drawUnitLine{AB}) makes with them the alternate angles (\drawAngle{CFG} and \drawAngle{HEB}; \drawAngle{GFD} and \drawAngle{AEH}) equal, these two straight lines are parallel.}
 
 If \drawUnitLine{CD} be not parallel to \drawUnitLine{AB} they shall meet when produced.
 
-If it be possible, let those lines be not parallel, but meet when produced; then the external angle \drawAngle{FEB} is greater than \drawAngle{CFE} \inprop[prop:I.XVI], but they are also equal (hyp.), which is absurd: in the same manner it may be shown that they cannot meet on the other side; $\therefore$ they are parallel.
+If it be possible, let those lines be not parallel, but meet when produced; then the external angle \drawAngle{HEB} is greater than \drawAngle{CFG} \inprop[prop:I.XVI], but they are also equal (hyp.), which is absurd: in the same manner it may be shown that they cannot meet on the other side; $\therefore$ they are parallel.
 
 \qed
 \stopProposition
@@ -2526,10 +2526,10 @@ G := 7/4[F, E];
 H := 4/3[E, F];
 byAngleDefine(G, E, A, byblack, 0);
 byAngleDefine(B, E, G, byyellow, 0);
-byAngleDefine(A, E, F, byred, 0);
-byAngleDefine(F, E, B, byblue, 0);
-byAngleDefine(C, F, E, byblue, 0);
-byAngleDefine(E, F, D, byred, 0);
+byAngleDefine(A, E, H, byred, 0);
+byAngleDefine(H, E, B, byblue, 0);
+byAngleDefine(C, F, G, byblue, 0);
+byAngleDefine(G, F, D, byred, 0);
 draw byNamedAngleResized();
 draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
@@ -2539,17 +2539,17 @@ draw byLabelsOnPolygon(G, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFE}$ or $\drawAngle{BEG} = \drawAngle{EFD}$), or if it makes two internal angles at the same side (\drawAngle{EFD} and \drawAngle{FEB}, or \drawAngle{CFE} and \drawAngle{AEF}) together equal to two right angles, those two straight lines are parallel.}
+\problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFG}$ or $\drawAngle{BEG} = \drawAngle{GFD}$), or if it makes two internal angles at the same side (\drawAngle{GFD} and \drawAngle{HEB}, or \drawAngle{CFG} and \drawAngle{AEH}) together equal to two right angles, those two straight lines are parallel.}
 
 \startCenterAlign
-First, if $\drawAngle{GEA} = \drawAngle{CFE}$, then $\drawAngle{GEA} = \drawAngle{FEB}$ \inprop[prop:I.XV],\\
-$\therefore \drawAngle{CFE} = \drawAngle{FEB} \therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
+First, if $\drawAngle{GEA} = \drawAngle{CFG}$, then $\drawAngle{GEA} = \drawAngle{HEB}$ \inprop[prop:I.XV],\\
+$\therefore \drawAngle{CFG} = \drawAngle{HEB} \therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 
-Secondly, if $\drawAngle{CFE} + \drawAngle{AEF} = \drawTwoRightAngles$,\\
-then $\drawAngle{AEF} + \drawAngle{FEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII],\\
-$\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB}$ \inax[ax:III]
+Secondly, if $\drawAngle{CFG} + \drawAngle{AEH} = \drawTwoRightAngles$,\\
+then $\drawAngle{AEH} + \drawAngle{HEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII],\\
+$\therefore \drawAngle{CFG} + \drawAngle{AEH} = \drawAngle{AEH} + \drawAngle{HEB}$ \inax[ax:III]
 
-$\therefore \drawAngle{CFE} = \drawAngle{FEB}$
+$\therefore \drawAngle{CFG} = \drawAngle{HEB}$
 
 $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
@@ -2573,10 +2573,10 @@ d2 := (3/2u, 1/2u);
 I := E shifted -d2;
 J := E shifted d2;
 byAngleDefine(I, E, A, byblue, 0);
-byAngleDefine(F, E, I, byyellow, 0);
-byAngleDefine(B, E, F, byblack, 0);
+byAngleDefine(H, E, I, byyellow, 0);
+byAngleDefine(B, E, H, byblack, 0);
 byAngleDefine(G, E, B, byred, 0);
-byAngleDefine(E, F, D, byblack, 0);
+byAngleDefine(G, F, D, byblack, 0);
 draw byNamedAngleResized();
 draw byLine(I, E, byblack, 0, 0);
 draw byLine(E, J, byblack, 1, 0);
@@ -2591,11 +2591,11 @@ draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 \drawCurrentPictureInMargin
 \problemNP{A}{ straight}{line (\drawUnitLine{GH}) falling on two parallel straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), makes the alternate angles equal to one another; and also the external equal to the internal and opposite angle on the same side; and the two internal angles on the same side together equal to two right angles.}
 
-For if the alternate angles \drawAngle{IEA,FEI} and \drawAngle{EFD} be not equal, draw \drawUnitLine{IE}, making $\drawAngle{FEI} = \drawAngle{EFD}$ \inprop[prop:I.XXIII].
+For if the alternate angles \drawAngle{IEA,HEI} and \drawAngle{GFD} be not equal, draw \drawUnitLine{IE}, making $\drawAngle{HEI} = \drawAngle{GFD}$ \inprop[prop:I.XXIII].
 
 Therefore $\drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII] and therefore two straight lines which intersect are parallel to the same straight line, which is impossible \inax[ax:XII].
 
-Hence \drawAngle{IEA,FEI} and \drawAngle{EFD} are not unequal, that is, they are equal: $\drawAngle{IEA,FEI} = \drawAngle{GEB}$ \inprop[prop:I.XV]; $\therefore \drawAngle{GEB} = \drawAngle{EFD}$, the external angle equal to the internal and opposite on the same side: if \drawAngle{BEF} be added to both, then $\drawAngle{EFD} + \drawAngle{BEF} = \drawAngle{BEF,GEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]. That is to say, the two internal angles at the same side of the cutting line are equal to two right angles.
+Hence \drawAngle{IEA,HEI} and \drawAngle{GFD} are not unequal, that is, they are equal: $\drawAngle{IEA,HEI} = \drawAngle{GEB}$ \inprop[prop:I.XV]; $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, the external angle equal to the internal and opposite on the same side: if \drawAngle{BEH} be added to both, then $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{BEH,GEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]. That is to say, the two internal angles at the same side of the cutting line are equal to two right angles.
 
 \qed
 \stopProposition
@@ -2815,12 +2815,12 @@ draw byPolygon(A,B,G,C)(byyellow);
 draw byPolygon(E,F,D,G)(byyellow);
 draw byPolygon(B,E,G)(byyellow);
 draw byPolygon(C,D,G)(byblue);
-byAngleDefine(B, A, C, byred, 0);
-byAngleDefine(E, B, D, byblue, 0);
+byAngleDefine(E, A, C, byred, 0);
+byAngleDefine(F, B, D, byblue, 0);
 byAngleDefine(A, E, C, byblack, 0);
-byAngleDefine(A, F, D, white, 0);
+byAngleDefine(B, F, D, white, 0);
 draw byNamedAngleResized();
-draw byNamedAngleDummySides(AFD);
+draw byNamedAngleDummySides(BFD);
 byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(B, D, byred, 0, 0);
 byLineDefine(C, D, byblack, 0, 0);
@@ -2958,8 +2958,8 @@ byLineDefine(F, D, byblue, 1, 0);
 byLineDefine(C, D, byblack, 0, 0);
 draw byNamedLineSeq(0)(AC,CD,FD);
 draw byLine(H, I, byblack, 1, 0);
-draw byLabelsOnPolygon(D, C, A, B, E, F)(0, 0);
-draw byLabelLine(0)(HI);
+draw byLabelsOnPolygon(H, A, B, E, F, I, noPoint)(0, 0);
+draw byLabelsOnPolygon(F, D, C, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{
@@ -3016,8 +3016,8 @@ byLineDefine(F, H, byred, 1, 0);
 byLineDefine(A, F, byblack, 1, 0);
 draw byNamedLineSeq(0)(AC,AF,FH);
 draw byLine(I, J, byblack, 1, 0);
-draw byLabelsOnPolygon(A, B, D, C)(0, 0);
-draw byLabelsOnPolygon(E, F, H, G)(0, 0);
+draw byLabelsOnPolygon(A, B, E, F, noPoint)(0, 0);
+draw byLabelsOnPolygon(H, G, D, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{(\drawPolygon[bottom][polygonBCD]{BCD} and \drawPolygon[bottom][polygonEGH]{EGH}) on equal bases and between the same parallels are equal.}

@@ -2475,10 +2475,10 @@ F := 2/3[C, D];
 G := 3/2[F, E];
 H := 3/2[E, F];
 I := 1/2[A, C] shifted (-2u, 0);
-byAngleDefine(A, E, F, byyellow, 0);
-byAngleDefine(F, E, B, byred, 0);
-byAngleDefine(C, F, E, byblue, 0);
-byAngleDefine(E, F, D, byyellow, 0);
+byAngleDefine(A, E, H, byyellow, 0);
+byAngleDefine(H, E, B, byred, 0);
+byAngleDefine(C, F, G, byblue, 0);
+byAngleDefine(G, F, D, byyellow, 0);
 draw byNamedAngleResized();
 byLineDefine(I, A, byblue, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
@@ -2491,11 +2491,11 @@ draw byLabelsOnPolygon(G, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая \drawUnitLine{GH}, пересекая две другие прямые \drawUnitLine{CD} и \drawUnitLine{AB}, образует накрестлежащие углы \drawAngle{CFE}, \drawAngle{FEB} и \drawAngle{EFD} и \drawAngle{AEF} равные между собой, то две пересекаемые прямые параллельны.}
+\problemNP{Е}{сли}{прямая \drawUnitLine{GH}, пересекая две другие прямые \drawUnitLine{CD} и \drawUnitLine{AB}, образует накрестлежащие углы \drawAngle{CFG}, \drawAngle{HEB} и \drawAngle{GFD} и \drawAngle{AEH} равные между собой, то две пересекаемые прямые параллельны.}
 
 Если \drawUnitLine{CD} не параллельна \drawUnitLine{AB}, то они сойдутся по продолжении.
 
-Если это возможно, пусть они не будут параллельны, но сойдутся, если их продолжить; тогда внешний угол \drawAngle{FEB} будет больше \drawAngle{CFE} \inprop[prop:I.XVI], но они равны (гип.), что невозможно. Таким же образом можно показать, что они не сойдутся с другой стороны; $\therefore$ они параллельны.
+Если это возможно, пусть они не будут параллельны, но сойдутся, если их продолжить; тогда внешний угол \drawAngle{HEB} будет больше \drawAngle{CFG} \inprop[prop:I.XVI], но они равны (гип.), что невозможно. Таким же образом можно показать, что они не сойдутся с другой стороны; $\therefore$ они параллельны.
 
 \qed
 \stopProposition
@@ -2514,10 +2514,10 @@ G := 7/4[F, E];
 H := 4/3[E, F];
 byAngleDefine(G, E, A, byblack, 0);
 byAngleDefine(B, E, G, byyellow, 0);
-byAngleDefine(A, E, F, byred, 0);
-byAngleDefine(F, E, B, byblue, 0);
-byAngleDefine(C, F, E, byblue, 0);
-byAngleDefine(E, F, D, byred, 0);
+byAngleDefine(A, E, H, byred, 0);
+byAngleDefine(H, E, B, byblue, 0);
+byAngleDefine(C, F, G, byblue, 0);
+byAngleDefine(G, F, D, byred, 0);
 draw byNamedAngleResized();
 draw byLine(A, B, byred, 0, 0);
 draw byLine(C, D, byyellow, 0, 0);
@@ -2527,18 +2527,18 @@ draw byLabelsOnPolygon(G, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая \drawUnitLine{GH}, падающая на две прямые \drawUnitLine{AB} и \drawUnitLine{CD} образует внешний угол, равный внутреннему противолежащему с той же стороны $\drawAngle{GEA} = \drawAngle{CFE}$ или $\drawAngle{BEG} = \drawAngle{EFD}$, или внутренние углы с одной стороны \drawAngle{EFD} и \drawAngle{FEB} или \drawAngle{CFE} и \drawAngle{AEF} вместе равны двум прямым углам, то прямые параллельны.}
+\problemNP{Е}{сли}{прямая \drawUnitLine{GH}, падающая на две прямые \drawUnitLine{AB} и \drawUnitLine{CD} образует внешний угол, равный внутреннему противолежащему с той же стороны $\drawAngle{GEA} = \drawAngle{CFG}$ или $\drawAngle{BEG} = \drawAngle{GFD}$, или внутренние углы с одной стороны \drawAngle{GFD} и \drawAngle{HEB} или \drawAngle{CFG} и \drawAngle{AEH} вместе равны двум прямым углам, то прямые параллельны.}
 
 \startCenterAlign
-Во-первых, если $\drawAngle{GEA} = \drawAngle{CFE}$,\\
-то $\drawAngle{GEA} = \drawAngle{FEB}$ \inprop[prop:I.XV],\\
-$\therefore \drawAngle{CFE} = \drawAngle{FEB} \therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
+Во-первых, если $\drawAngle{GEA} = \drawAngle{CFG}$,\\
+то $\drawAngle{GEA} = \drawAngle{HEB}$ \inprop[prop:I.XV],\\
+$\therefore \drawAngle{CFG} = \drawAngle{HEB} \therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 
-Во-вторых, если $\drawAngle{CFE} + \drawAngle{AEF} = \drawTwoRightAngles$,\\
-то $\drawAngle{AEF} + \drawAngle{FEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII],\\
-$\therefore \drawAngle{CFE} + \drawAngle{AEF} = \drawAngle{AEF} + \drawAngle{FEB}$ \inax[ax:I]
+Во-вторых, если $\drawAngle{CFG} + \drawAngle{AEH} = \drawTwoRightAngles$,\\
+то $\drawAngle{AEH} + \drawAngle{HEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII],\\
+$\therefore \drawAngle{CFG} + \drawAngle{AEH} = \drawAngle{AEH} + \drawAngle{HEB}$ \inax[ax:I]
 
-$\therefore \drawAngle{CFE} = \drawAngle{FEB}$ \inax[ax:III]
+$\therefore \drawAngle{CFG} = \drawAngle{HEB}$ \inax[ax:III]
 
 $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
@@ -2562,10 +2562,10 @@ d2 := (3/2u, 1/2u);
 I := E shifted -d2;
 J := E shifted d2;
 byAngleDefine(I, E, A, byblue, 0);
-byAngleDefine(F, E, I, byyellow, 0);
-byAngleDefine(B, E, F, byblack, 0);
+byAngleDefine(H, E, I, byyellow, 0);
+byAngleDefine(B, E, H, byblack, 0);
 byAngleDefine(G, E, B, byred, 0);
-byAngleDefine(E, F, D, byblack, 0);
+byAngleDefine(G, F, D, byblack, 0);
 draw byNamedAngleResized();
 draw byLine(I, E, byblack, 0, 0);
 draw byLine(E, J, byblack, 1, 0);
@@ -2581,11 +2581,11 @@ draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 \drawCurrentPictureInMargin
 \problemNP{П}{рямая}{\drawUnitLine{GH}, падающая на две параллельные прямые \drawUnitLine{AB} и \drawUnitLine{CD}, образует накрестлежащие углы, равные между собой, внешний и противолежащий с той же стороны внутренний углы, равные между собой, а также внутренние односторонние углы, равные двум прямым углам.}
 
-Если накрестлежащие углы \drawAngle{IEA,FEI} и \drawAngle{EFD} не равны, проведем \drawUnitLine{IE}, так, чтобы $\drawAngle{FEI} = \drawAngle{EFD}$ \inprop[prop:I.XXIII].
+Если накрестлежащие углы \drawAngle{IEA,HEI} и \drawAngle{GFD} не равны, проведем \drawUnitLine{IE}, так, чтобы $\drawAngle{HEI} = \drawAngle{GFD}$ \inprop[prop:I.XXIII].
 
 Следовательно $\drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII] и, следовательно, две пересекающихся прямых параллельны одной и той же прямой, что невозможно \inax[ax:XII].
 
-А значит \drawAngle{IEA,FEI} и \drawAngle{EFD} не являются неравными, то есть, они равны $\drawAngle{IEA,FEI} = \drawAngle{GEB}$ \inprop[prop:I.XV]; $\therefore \drawAngle{GEB} = \drawAngle{EFD}$, внешний угол равен внутреннему, противолежащему с той же стороны: если к обоим добавить \drawAngle{BEF}, то $\drawAngle{EFD} + \drawAngle{BEF} = \drawAngle{BEF,GEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]. Другими словами, два внутренних угла по одну сторону пересекающей прямой равны двум прямым углам.
+А значит \drawAngle{IEA,HEI} и \drawAngle{GFD} не являются неравными, то есть, они равны $\drawAngle{IEA,HEI} = \drawAngle{GEB}$ \inprop[prop:I.XV]; $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, внешний угол равен внутреннему, противолежащему с той же стороны: если к обоим добавить \drawAngle{BEH}, то $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{BEH,GEB} = \drawTwoRightAngles$ \inprop[prop:I.XIII]. Другими словами, два внутренних угла по одну сторону пересекающей прямой равны двум прямым углам.
 
 \qed
 \stopProposition
@@ -2803,18 +2803,16 @@ F := D shifted -d3;
 G := (B--D) intersectionpoint (C--E);
 draw byPolygon(A,B,G,C)(byyellow);
 draw byPolygon(E,F,D,G)(byyellow);
-draw byPolygon(B,E,G)(byyellow);
+draw byPolygon(B,E,G)(byred);
 draw byPolygon(C,D,G)(byblue);
-byAngleDefine(B, A, C, byred, 0);
-byAngleDefine(E, B, D, byblue, 0);
+byAngleDefine(E, A, C, byred, 0);
+byAngleDefine(F, B, D, byblue, 0);
 byAngleDefine(A, E, C, byblack, 0);
-byAngleDefine(A, F, D, white, 0);
+byAngleDefine(B, F, D, white, 0);
 draw byNamedAngleResized();
-draw byNamedAngleDummySides(AFD);
-byLineDefine(A, C, byblue, 0, 0);
-byLineDefine(B, D, byred, 0, 0);
-byLineDefine(C, D, byblack, 0, 0);
-draw byNamedLineSeq(0)(AC,CD,BD);
+draw byNamedAngleDummySides(BFD);
+draw byLine(A, C, byblue, 0, 0);
+draw byLine(B, D, byred, 0, 0);
 draw byLabelsOnPolygon(C, A, B, E, F, D)(0, 0);
 }
 \drawCurrentPictureInMargin
@@ -2901,9 +2899,9 @@ draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 
 \startCenterAlign
 Проведем \drawUnitLine{CE} и \drawUnitLine{DF}\\
-$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (\inpropL[prop:I.XXXIV], и гип.);
+$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (\inpropL[prop:I.XXXIV], и гип.),
 
-$\therefore \drawUnitLine{CD} = \mbox{ и } \parallel \drawUnitLine{EF}$;
+$\therefore \drawUnitLine{CD} = \mbox{ и } \parallel \drawUnitLine{EF}$,
 
 $\therefore \drawUnitLine{CE} = \mbox{ и } \parallel \drawUnitLine{DF}$ \inprop[prop:I.XXXIII]
 
@@ -2946,8 +2944,8 @@ byLineDefine(F, D, byblue, 1, 0);
 byLineDefine(C, D, byblack, 0, 0);
 draw byNamedLineSeq(0)(AC,CD,FD);
 draw byLine(H, I, byblack, 1, 0);
-draw byLabelsOnPolygon(D, C, A, B, E, F)(0, 0);
-draw byLabelLine(0)(HI);
+draw byLabelsOnPolygon(H, A, B, E, F, I, noPoint)(0, 0);
+draw byLabelsOnPolygon(F, D, C, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{Т}{реугольники}{
@@ -2963,7 +2961,7 @@ $\left.\eqalign{\mbox{Проведем} \drawUnitLine{AC} &\parallel \drawUnitLi
 \drawPolygon[bottom][polygonABDC]{ABC, BCG, CDG}
 и
 \drawPolygon[bottom][polygonEFDC]{DGE, CDG, EFD}
-являются параллелограммами на одном основании и между одними параллельными прямыми и, следовательно, равными между собой. \inprop[prop:I.XXXV]
+являются параллелограммами на одном основании и~между одними параллельными прямыми и,~следовательно, равными между собой. \inprop[prop:I.XXXV]
 
 $\therefore \left\{\eqalign{\polygonABDC &= \mbox{ дважды } \polygonBCD\cr\polygonEFDC &= \mbox{ дважды } \polygonCDE\cr}\right\}$ \inprop[prop:I.XXXIV]
 
@@ -3003,8 +3001,8 @@ byLineDefine(F, H, byred, 1, 0);
 byLineDefine(A, F, byblack, 1, 0);
 draw byNamedLineSeq(0)(AC,AF,FH);
 draw byLine(I, J, byblack, 1, 0);
-draw byLabelsOnPolygon(A, B, D, C)(0, 0);
-draw byLabelsOnPolygon(E, F, H, G)(0, 0);
+draw byLabelsOnPolygon(A, B, E, F, noPoint)(0, 0);
+draw byLabelsOnPolygon(H, G, D, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{Т}{реугольники}{\drawPolygon[bottom][polygonBCD]{BCD} и \drawPolygon[bottom][polygonEGH]{EGH} на равных основаниях и между теми же параллельными прямыми равны.}
@@ -3135,7 +3133,7 @@ $\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CD,DE,EF}$: и таки
 \qed
 \stopProposition
 
-\startProposition[title={Предл. XL. Теорема}, reference=prop:I.XLI]
+\startProposition[title={Предл. XLI. Теорема}, reference=prop:I.XLI]
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
@@ -3165,7 +3163,7 @@ draw byLabelsOnPolygon(E, D, A, B, C)(0, 0);
 тогда $\drawPolygon[bottom][polygonAED]{AGD,DEG} = \polygonCED$ \inprop[prop:I.XXXVII]\\
 $\polygonABED = \mbox{ дважды } \polygonAED$ \inprop[prop:I.XXXIV]
 
-$\therefore \polygonABED = \mbox{ дважды } \polygonCED$.
+$\therefore \polygonABED = \mbox{ дважды } \polygonCED$ \inax[ax:VI].
 \stopCenterAlign
 
 \qed
@@ -3221,7 +3219,7 @@ $\drawPolygon[bottom][polygonABED]{ABFD,DEF}
 но $\polygonCED =
 \drawPolygon[bottom][polygonDCG]{ECG}$ \inprop[prop:I.XXXVIII]
 
-$\therefore \polygonABED = \polygonCDG$.
+$\therefore \polygonABED = \polygonCDG$ \inax[ax:VI].
 \stopCenterAlign
 
 \qed
@@ -3459,7 +3457,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 stopTempAngleScale;
 }
 $\drawUnitLine{CA} = \drawUnitLine{DC}$ (постр.)\\
-$\drawAngle{C} = \mbox{right angle}$ (постр.)
+$\drawAngle{C} = \drawRightAngle$ (постр.)
 
 $\therefore \drawAngle{D} = \drawAngle{C} = \mbox{прямому углу}$ \inprop[prop:I.XXIX], и оставшиеся стороны и углы должны быть равны, \inprop[prop:I.XXXIV]
 
@@ -3546,34 +3544,40 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 также проведем \drawUnitLine{BF} и \drawUnitLine{AI}.\\
 $\drawAngle{BCI} = \drawAngle{FCA}$,
 
-К каждому добавим \drawAngle{ACB} $\therefore \drawAngle{BCI,ACB} = \drawAngle{FCA,ACB}$,\\
-$\drawUnitLine{BC} = \drawUnitLine{CI}$ и $\drawUnitLine{CA} = \drawUnitLine{CF}$;
+К каждому добавим \drawAngle{ACB},\\
+$\therefore \drawAngle{BCI,ACB} = \drawAngle{FCA,ACB}$.
+
+Вместе с тем, $\drawUnitLine{BC} = \drawUnitLine{CI}$ и $\drawUnitLine{CA} = \drawUnitLine{CF}$,
 
 $\therefore
 \drawFromCurrentPicture[middle][polygonAFC]{
+startTempAngleScale(2/3);
 draw byNamedPolygon(MCI);
-draw byNamedAngle(ACB);
+draw byNamedAngle(ACB,BCI);
 draw byNamedLine(CAb,AMb);
 draw byLabelsOnPolygon(I,A,C)(1, 1);
+stopTempAngleScale;
 }
 =
 \drawFromCurrentPicture[middle][polygonBLC]{
+startTempAngleScale(2/3);
 draw byNamedPolygon(CLF);
-draw byNamedAngle(ACB);
+draw byNamedAngle(ACB,FCA);
 draw byNamedLine(BCb,BLb);
 draw byLabelsOnPolygon(B,F,C)(1, 1);
+stopTempAngleScale;
 }
-$.
+$ \inprop[prop:I.IV].
 
 Теперь, поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\
 $\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ дважды } \polygonBLC$,\\
-и $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ дважды } \polygonAFC$;
+и $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ дважды } \polygonAFC$ \inprop[prop:I.XLI].
 
-$\therefore \polygonACFG = \polygonJMCK$.
+$\therefore \polygonACFG = \polygonJMCK$ \inax[ax:VI].
 
 Так же можно показать, что $\drawPolygon[middle][polygonABED]{ABED} = \drawPolygon[middle][polygonBJKH]{BJKH}$;
 
-а значит $\drawPolygon[middle][polygonABEDpACFG]{ABED,LAGF,CLF} = \drawPolygon[middle][polygonBCIH]{JMIK,MCI,BJKH}$.
+а значит $\drawPolygon[middle][polygonABEDpACFG]{ABED,LAGF,CLF} = \drawPolygon[middle][polygonBCIH]{JMIK,MCI,BJKH}$ \inax[ax:II].
 
 \stopCenterAlign
 
