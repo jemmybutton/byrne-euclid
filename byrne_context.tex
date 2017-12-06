@@ -3044,8 +3044,8 @@ B := A shifted (5/2u, 0);
 C := A shifted (u, -5/2u);
 D := C shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
-F := 5/4[C, B];
-G := 6/4[C, B];
+F := 11/8[C, B];
+G := 13/8[C, B];
 draw byPolygon(A,B,E)(byred);
 draw byPolygon(A,E,C)(byyellow);
 draw byPolygon(B,E,D)(byblack);
@@ -3056,7 +3056,7 @@ byLineDefine(D, F, byyellow, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(C, G, byblack, 1, 0);
-draw byNamedLineSeq(0)(AB,AF,DF,CD,CG);
+draw byNamedLineSeq(4/5)(AB,AF,DF,CD,CG);
 draw byLabelsOnPolygon(F, D, C, A)(2, 0);
 draw byLabelsOnPolygon(A, B, F)(2, 0);
 draw byLabelsOnPolygon(A, F, G, noPoint)(0, 0);
@@ -3439,7 +3439,7 @@ having $\drawAngle{M} = \drawAngle{O}$ \inprop[prop:I.XLIV]
 
 $\therefore \drawPolygon[middle][polygonFLMH]{FGIH,GJKI,JLMK} = \polygonABCDE$
 
-and \polygonFLMH is a parallelogram. (\inpropL[prop:I.XXIX], \inpropL[prop:I.XIV], \inpropL[prop:I.XXX])\\
+and \polygonFLMH is a parallelogram. (\inpropL[prop:I.XXIX], \inpropN[prop:I.XIV], \inpropN[prop:I.XXX])\\
 having $\drawAngle{M} = \drawAngle{O}$.
 \stopCenterAlign
 
@@ -3471,7 +3471,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 \problemNP{U}{pon}{a given straight line (\drawUnitLine{DC}) to construct a square.}
 
 \startCenterAlign
-Draw $\drawUnitLine{CA} \perp \mbox{ and } = \drawUnitLine{DC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])
+Draw $\drawUnitLine{CA} \perp \mbox{ and } = \drawUnitLine{DC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])
 
 Draw $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, and meeting \drawUnitLine{BD} drawn $\parallel \drawUnitLine{CA}$.
 
@@ -3488,7 +3488,7 @@ $\drawAngle{C} = \mbox{right angle}$ (const.)
 
 $\therefore \drawAngle{D} = \drawAngle{C} = \mbox{a right angle}$ \inprop[prop:I.XXIX], and the remaining sides and angles must be equal, \inprop[prop:I.XXXIV]
 
-And $\therefore \polygonABDC$ is a square \indef[def:XXVII].
+And $\therefore \polygonABDC$ is a square \indef[def:XXX]. % improvement: in the original definition 27 was wrongly referenced
 \stopCenterAlign
 
 \qed
@@ -3629,7 +3629,7 @@ draw byLabelsOnPolygon(D, B, C, A)(0, 0);
 \problemNP{I}{f}{the square of one side (\drawUnitLine{BC}) of a triangle is equal to the squares of the other two sides (\drawUnitLine{AB} and \drawUnitLine{AC}), the angle (\drawAngle{DAB}) subtended by that side is a right angle.}
 
 \startCenterAlign
-Draw $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ and $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])\\
+Draw $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ and $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])\\
 and draw \drawUnitLine{BD} also.
 
 Since $\drawUnitLine{AD} = \drawUnitLine{AC}$ (const.)\\

@@ -2899,7 +2899,7 @@ draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 
 \startCenterAlign
 Проведем \drawUnitLine{CE} и \drawUnitLine{DF}\\
-$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (\inpropL[prop:I.XXXIV], и гип.),
+$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (гип. и \inpropL[prop:I.XXXIV]),
 
 $\therefore \drawUnitLine{CD} = \mbox{ и } \parallel \drawUnitLine{EF}$,
 
@@ -3029,8 +3029,8 @@ B := A shifted (5/2u, 0);
 C := A shifted (u, -5/2u);
 D := C shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
-F := 5/4[C, B];
-G := 6/4[C, B];
+F := 11/8[C, B];
+G := 13/8[C, B];
 draw byPolygon(A,B,E)(byred);
 draw byPolygon(A,E,C)(byyellow);
 draw byPolygon(B,E,D)(byblack);
@@ -3041,7 +3041,7 @@ byLineDefine(D, F, byyellow, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(C, G, byblack, 1, 0);
-draw byNamedLineSeq(0)(AB,AF,DF,CD,CG);
+draw byNamedLineSeq(4/5)(AB,AF,DF,CD,CG);
 draw byLabelsOnPolygon(F, D, C, A)(2, 0);
 draw byLabelsOnPolygon(A, B, F)(2, 0);
 draw byLabelsOnPolygon(A, F, G, noPoint)(0, 0);
@@ -3412,7 +3412,7 @@ stopAutoLabeling;
 с $\drawAngle{M} = \drawAngle{O}$ \inprop[prop:I.XLIV]
 
 $\therefore \drawPolygon[middle][polygonFLMH]{FGIH,GJKI,JLMK} = \polygonABCDE$\\
-и \polygonFLMH является параллелограммом. (\inpropL[prop:I.XXIX], \inpropL[prop:I.XIV], \inpropL[prop:I.XXX])\\
+и \polygonFLMH является параллелограммом. (\inpropL[prop:I.XXIX], \inpropN[prop:I.XIV], \inpropN[prop:I.XXX])\\
 с $\drawAngle{M} = \drawAngle{O}$.
 \stopCenterAlign
 
@@ -3444,7 +3444,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 \problemNP{Н}{а}{данной прямой \drawUnitLine{DC} построить квадрат.}
 
 \startCenterAlign
-Проведем $\drawUnitLine{CA} \perp \mbox{ и } = \drawUnitLine{DC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])
+Проведем $\drawUnitLine{CA} \perp \mbox{ и } = \drawUnitLine{DC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])
 
 Проведем $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, и касающуюся \drawUnitLine{BD} проведенную $\parallel \drawUnitLine{CA}$.
 
@@ -3461,7 +3461,7 @@ $\drawAngle{C} = \drawRightAngle$ (постр.)
 
 $\therefore \drawAngle{D} = \drawAngle{C} = \mbox{прямому углу}$ \inprop[prop:I.XXIX], и оставшиеся стороны и углы должны быть равны, \inprop[prop:I.XXXIV]
 
-И $\therefore \polygonABDC$ является квадратом. \indef[def:XXVII]
+И $\therefore \polygonABDC$ является квадратом. \indef[def:XXX]
 \stopCenterAlign
 
 \qed
@@ -3608,7 +3608,7 @@ draw byLabelsOnPolygon(D, B, C, A)(0, 0);
 \problemNP{Е}{сли}{в треугольнике квадрат одной стороны \drawUnitLine{BC} равен сумме квадратов двух других сторон \drawUnitLine{AB} и \drawUnitLine{AC}, то угол \drawAngle{DAB}, заключенный между этими двумя сторонами прямой.}
 
 \startCenterAlign
-Проведем $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ и $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III])\\
+Проведем $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ и $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])\\
 также проведем \drawUnitLine{BD}.
 
 Поскольку $\drawUnitLine{AD} = \drawUnitLine{AC}$ (постр.)\\
