@@ -8,6 +8,8 @@
 \def\indefstr{опр.}
 \def\inaxstr{акс.}
 \def\qedstr{ч. т. д.}
+\def\hypstr{гип.}
+\def\conststr{постр.}
 
 \def\mpPre{textLabels := true;}
 
@@ -1128,10 +1130,10 @@ draw byNamedLineSeq(0)(AD,BD);
 \symb{\inaxstr}
  обозначает \emph{аксиому}.
 
-\symb{гип.}
+\symb{\hypstr}
  обозначает \emph{гипотезу}. Здесь важно отметить, что \emph{гипотеза} — это условие, которое принимается как данное. Так, гипотеза предложения данного во введении в том, что треугольник равнобедренный, или что две его стороны равны.
 
-\symb{постр.}
+\symb{\conststr}
  обозначает \emph{построение}.  \emph{Построения} — это изменения, сделанные в исходном изображении добавлением линий, углов, кругов и т. п. с целью приспособления его к демонстрации или решению задачи. Условия, при которых сделаны эти изменения также бесспорны, как и содержащиеся в гипотезе. Например, если мы делаем угол равным данному углу, то эти два угла равны по построению.
 
 \symb{\qedstr}
@@ -1259,7 +1261,7 @@ draw byLabelLineEnd(E, D, 1);
 тогда искомая прямая это \drawUnitLine{AF}.
 
 Поскольку $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \indef[def:XV],\\
-и $\drawUnitLine{BD} = \drawUnitLine{DA}$ (постр.),\\
+и $\drawUnitLine{BD} = \drawUnitLine{DA}$ (\conststr),\\
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[ax:III],\\
 но \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
 
@@ -1308,7 +1310,7 @@ draw byLabelLineEnd(A, D, 0);
 тогда $\drawUnitLine{EF} = \drawUnitLine{AB}$.
 
 Поскольку $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
-и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (постр.);
+и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (\conststr);
 
 $\therefore \drawUnitLine{EF} = \drawUnitLine{AB}$ \inax[ax:I].
 \stopCenterAlign
@@ -1406,7 +1408,7 @@ stopAutoLabeling;
 }\\
 получим $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ (конст.),\\
 \drawAngle{BAC} общий обоим,\\
-и $\drawUnitLine{AB} = \drawUnitLine{AC}$ (гип.)\\
+и $\drawUnitLine{AB} = \drawUnitLine{AC}$ (\hypstr)\\
 $\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ и $\drawAngle{CEB} = \drawAngle{BDC}$ \inprop[prop:I.IV].
 
 Так же у \drawLine{BE,CE,BC} и \drawLine{BD,CD,BC}\\
@@ -1445,8 +1447,8 @@ draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 
 \startCenterAlign
 Тогда в \drawLine[bottom]{BC,AB,CA} и \triangleABD,\\
-$\drawUnitLine{CA} = \drawUnitLine{BD}$ (постр.),\\
-$\drawAngle{A} = \drawAngle{B}$ (гип.)\\
+$\drawUnitLine{CA} = \drawUnitLine{BD}$ (\conststr),\\
+$\drawAngle{A} = \drawAngle{B}$ (\hypstr)\\
 и \drawUnitLine{AB} общая обоим,\\
 $\therefore$ эти треугольники равны \inprop[prop:I.IV],\\
 часть равна целому, что невозможно;\\
@@ -1591,9 +1593,9 @@ draw byLabelsOnPolygon(D, B, A, C)(0, 0);
 проведем \drawUnitLine{BC}, на которой построим \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD}.
 
-Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.),\\
+Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr),\\
 \drawUnitLine{AD} общая обоим треугольникам\\
-и $\drawUnitLine{CD} = \drawUnitLine{DB}$ (постр.),
+и $\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr),
 
 $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
 \stopCenterAlign
@@ -1628,7 +1630,7 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 
 Тогда $\drawUnitLine{BD} = \drawUnitLine{DC}$ \inprop[prop:I.IV],
 
-поскольку $\drawUnitLine{AB} = \drawUnitLine{AC}$ (постр.),\\
+поскольку $\drawUnitLine{AB} = \drawUnitLine{AC}$ (\conststr),\\
 $\drawAngle{BAD} = \drawAngle{CAD}$\\
 и \drawUnitLine{AD} общая обоим треугольникам.
 
@@ -1670,8 +1672,8 @@ draw byLabelsOnPolygon(B, A, C)(2, 0);
 построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD} и она будет перпендикуляром к данной прямой.
 
-Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (постр.)\\
-$\drawUnitLine{CD} = \drawUnitLine{DB}$ (постр.)\\
+Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr)\\
+$\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr)\\
 и \drawUnitLine{AD} общая обоим треугольникам.
 
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII]
@@ -1728,7 +1730,7 @@ draw byLabelLineEnd(C, A, 0);
 
 Тогда $\drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$.
 
-Поскольку \inprop[prop:I.VIII], раз $\drawUnitLine{DB} = \drawUnitLine{CD}$ (постр.),\\
+Поскольку \inprop[prop:I.VIII], раз $\drawUnitLine{DB} = \drawUnitLine{CD}$ (\conststr),\\
 \drawUnitLine{AD} общая обоим треугольникам,\\
 и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV],
 
@@ -1768,7 +1770,7 @@ draw byLabelLineEnd(A, D, 0);
 
 но если \drawUnitLine{ED} будет не $\perp$ к \drawUnitLine{BC},\\
 проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$ \inprop[prop:I.XI];\\
-$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ (постр.),\\
+$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ (\conststr),\\
 $\drawAngle{ADB} = \drawAngle{CDE,EDA} = \drawAngle{EDA} + \drawAngle{CDE}$
 
 $\therefore \drawAngle{ADB} + \drawAngle{CDE,EDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \inax[ax:II]
@@ -1897,7 +1899,7 @@ stopAutoLabeling;
 Сделаем $\drawUnitLine{BE} = \drawUnitLine{EC}$ \inprop[prop:I.X];\\
 проведем \drawUnitLine{AE} и продлим до $\drawUnitLine{ED} = \drawUnitLine{AE}$;\\
 проведем \drawUnitLine{CD}. В~\drawLine{BE,AE,AB} и \drawLine{EC,ED,CD};\\
-$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV] и $\drawUnitLine{AE} = \drawUnitLine{ED}$ (постр.),\\
+$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV] и $\drawUnitLine{AE} = \drawUnitLine{ED}$ (\conststr),\\
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
 $\therefore \anglesECDpDCF\ > \drawAngle{B}$.
 
@@ -2050,7 +2052,7 @@ draw byLabelsOnPolygon(D, C, B, A)(0, 0);
 и сделаем $\drawUnitLine{CD} = \drawUnitLine{BD}$ \inprop[prop:I.III];\\
 проведем \drawUnitLine{BC}.
 
-Тогда, поскольку $\drawUnitLine{CD} = \drawUnitLine{BD}$ (постр.),\\
+Тогда, поскольку $\drawUnitLine{CD} = \drawUnitLine{BD}$ (\conststr),\\
 $\drawAngle{CBD} = \drawAngle{C}$ \inprop[prop:I.V]
 
 $\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \inax[ax:IX]
@@ -2185,7 +2187,7 @@ $\left.\eqalign{
 \mbox{Поскольку } \drawSizedLine{AB} &= \drawSizedLine{L'} \mbox{,} \cr
 \drawSizedLine{BC} &= \drawSizedLine{BE} = \drawSizedLine{L''} \cr
 \mbox{и } \drawSizedLine{CA} &= \drawSizedLine{AD} = \drawSizedLine{L'''} \cr
-}\right\}\mbox{(постр.)}$
+}\right\}\mbox{(\conststr)}$
 \stopCenterAlign
 
 \qed
@@ -2295,7 +2297,7 @@ stopAutoLabeling;
 и $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
 проведем \drawUnitLine{CD} и \drawUnitLine{BC}.
 
-Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I]. гип. постр.)\\
+Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I]. \hypstr \conststr)\\
 $\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V],
 но $\drawAngle{CDB} < \drawAngle{DCA}$,\\
 и $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
@@ -2402,7 +2404,7 @@ draw byLabelsOnPolygon(D, G, F, E)(0, 0);
 \drawLine[bottom]{GD,EG,DE} получим \\
 $\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
 $\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
-но $\drawAngle{B} = \drawAngle{GED,FEG}$ (гип.)
+но $\drawAngle{B} = \drawAngle{GED,FEG}$ (\hypstr)
 
 и следовательно $\drawAngle{GED} = \drawAngle{GED,FEG}$, что не имеет смысла, а значит ни \drawUnitLine{CA} ни \drawUnitLine{GD,FG} не больше другой, и $\therefore$ они равны;
 
@@ -2451,7 +2453,7 @@ draw byLabelsOnPolygon(D, F, E, G)(0, 0);
 Тогда в \drawLine[bottom]{CA,BC,AB} и \drawLine[bottom]{FD,FG,DG} получим $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ и $\drawAngle{A} = \drawAngle{D}$,
 
 $\therefore \drawAngle{B} = \drawAngle{G}$ \inprop[prop:I.IV]\\
-но $\drawAngle{B} = \drawAngle{E}$ (гип.)
+но $\drawAngle{B} = \drawAngle{E}$ (\hypstr)
 
 $\therefore \drawAngle{G} = \drawAngle{E}$ что не имеет смысла \inprop[prop:I.XVI]
 
@@ -2495,7 +2497,7 @@ draw byLabelsOnPolygon(H, F, C)(2, 0);
 
 Если \drawUnitLine{CD} не параллельна \drawUnitLine{AB}, то они сойдутся по продолжении.
 
-Если это возможно, пусть они не будут параллельны, но сойдутся, если их продолжить; тогда внешний угол \drawAngle{HEB} будет больше \drawAngle{CFG} \inprop[prop:I.XVI], но они равны (гип.), что невозможно. Таким же образом можно показать, что они не сойдутся с другой стороны; $\therefore$ они параллельны.
+Если это возможно, пусть они не будут параллельны, но сойдутся, если их продолжить; тогда внешний угол \drawAngle{HEB} будет больше \drawAngle{CFG} \inprop[prop:I.XVI], но они равны (\hypstr), что невозможно. Таким же образом можно показать, что они не сойдутся с другой стороны; $\therefore$ они параллельны.
 
 \qed
 \stopProposition
@@ -2736,7 +2738,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 \startCenterAlign
 Проведем диагональ \drawUnitLine{AD}.
 
-$\drawUnitLine{AB} = \drawUnitLine{CD}$ (гип.)\\
+$\drawUnitLine{AB} = \drawUnitLine{CD}$ (\hypstr)\\
 $\drawAngle{BAD} = \drawAngle{CDA}$ \inprop[prop:I.XXIX]\\
 и \drawUnitLine{AD} общая обоим треугольникам;
 
@@ -2899,7 +2901,7 @@ draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 
 \startCenterAlign
 Проведем \drawUnitLine{CE} и \drawUnitLine{DF}\\
-$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (гип. и \inpropL[prop:I.XXXIV]),
+$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ (\hypstr и \inpropL[prop:I.XXXIV]),
 
 $\therefore \drawUnitLine{CD} = \mbox{ и } \parallel \drawUnitLine{EF}$,
 
@@ -3055,10 +3057,10 @@ draw byLabelsOnPolygon(A, F, G, noPoint)(0, 0);
 
 Проведем \drawUnitLine{DF}.
 
-Поскольку $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (постр.)\\
+Поскольку $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (\conststr)\\
 $\polygonADC =
 \drawPolygon[bottom][polygonFDC]{BED, ECD, FBD}$ \inprop[prop:I.XXXVII];\\
-но $\polygonADC = \polygonBDC$ (гип.);
+но $\polygonADC = \polygonBDC$ (\hypstr);
 
 $\therefore \polygonBDC = \polygonFDC$, часть равна целому, что не имеет смысла.
 
@@ -3090,7 +3092,7 @@ byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(E, F, byblack, 0, 0);
 byLineDefine(D, E, byblue, 1, 0);
-draw byNamedLineSeq(0)(AB,AG,FG,EF,DE,CD);
+draw byNamedLineSeq(4/5)(AB,AG,FG,EF,DE,CD);
 draw byLabelsOnPolygon(G, F, E, D, C, A)(2, 0);
 draw byLabelsOnPolygon(A, B, G)(2, 0);
 draw byLabelsOnPolygon(A, G, H, noPoint)(0, 0);
@@ -3116,7 +3118,7 @@ draw byNamedLineFull(B, B, 1, 1, 0)(EF);
 проведем \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI], касающуюся \drawSizedLine{EH}.\\
 Проведем \drawSizedLine{FG}.
 
-Поскольку $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (постр.)\\
+Поскольку $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (\conststr)\\
 $\polygonACD =
 \drawFromCurrentPicture[bottom][polygonGEF]{
 startAutoLabeling;
@@ -3329,11 +3331,11 @@ stopAutoLabeling;
 проведем $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ до продолжения  \drawUnitLine{BG} и продлим \drawUnitLine{HE}.
 
 $\polygonAHEF = \drawPolygon[middle][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
-но $\polygonAHEF = \polygonJKL$ (постр.)
+но $\polygonAHEF = \polygonJKL$ (\conststr)
 
 $\therefore \polygonEGDI = \polygonJKL$;
 
-и $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] и постр.)
+и $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] и \conststr)
 \stopCenterAlign
 
 \qed
@@ -3456,8 +3458,8 @@ draw byNamedLineSeq(0)(AB,BD,DC,CA);
 draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 stopTempAngleScale;
 }
-$\drawUnitLine{CA} = \drawUnitLine{DC}$ (постр.)\\
-$\drawAngle{C} = \drawRightAngle$ (постр.)
+$\drawUnitLine{CA} = \drawUnitLine{DC}$ (\conststr)\\
+$\drawAngle{C} = \drawRightAngle$ (\conststr)
 
 $\therefore \drawAngle{D} = \drawAngle{C} = \mbox{прямому углу}$ \inprop[prop:I.XXIX], и оставшиеся стороны и углы должны быть равны, \inprop[prop:I.XXXIV]
 
@@ -3611,13 +3613,13 @@ draw byLabelsOnPolygon(D, B, C, A)(0, 0);
 Проведем $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ и $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])\\
 также проведем \drawUnitLine{BD}.
 
-Поскольку $\drawUnitLine{AD} = \drawUnitLine{AC}$ (постр.)\\
+Поскольку $\drawUnitLine{AD} = \drawUnitLine{AC}$ (\conststr)\\
 $\drawUnitLine{AD}^2 = \drawUnitLine{AC}^2$;
 
 $\therefore \drawUnitLine{AD}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{AC}^2 + \drawUnitLine{AB}^2$
 
 но $\drawUnitLine{AD}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BD}^2$ \inprop[prop:I.XLVII],\\
-и $\drawUnitLine{AC}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BC}^2$ (гип.)
+и $\drawUnitLine{AC}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BC}^2$ (\hypstr)
 
 $\therefore \drawUnitLine{BD}^2 = \drawUnitLine{BC}^2$,
 
@@ -3989,7 +3991,7 @@ $\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI]\\
 $\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]\\
 $\therefore \mbox{\inax[ax:II] } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$\\
 но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
-и $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (постр.)\\
+и $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (\conststr)\\
 $\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$\\
 $\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$
 \stopCenterAlign
@@ -4051,7 +4053,7 @@ $\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProporti
 $\drawPolygon{MHGF} = \drawPolygon{DCLH} = \drawPolygon{CLKA}$ (\inpropL[prop:I.XXXVI], \inpropL[prop:I.XLIII])\\
 $\therefore \drawPolygon{BDHM,DCLH,MHGF} = \drawPolygon{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
 но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
-$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ (постр., \inaxL[ax:II])
+$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:II])
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
 \stopCenterAlign
@@ -4830,10 +4832,10 @@ draw byLabelsOnCircle(A, B, C, E)(F);
 Проведем внутри круга любую прямую \drawUnitLine{AD,DB},\\
 сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$, проведем $\drawUnitLine{EC} \perp \drawUnitLine{AD,DB}$; рассечем пополам \drawUnitLine{EC}, точка рассечения и есть центр.\\
 Действительно, пусть это не так, тогда пусть другая точка будет центром, и проведем от нее \drawUnitLine{AG}, \drawUnitLine{DG} и \drawUnitLine{BG}.\\
-Поскольку в \drawLine{AG,DG,AD} и \drawLine{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (гип. и \indefL[def:XV]),\\
-$\drawUnitLine{AD} = \drawUnitLine{DB}$ (постр.) и \drawUnitLine{DG} общая обоим,\\
+Поскольку в \drawLine{AG,DG,AD} и \drawLine{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (\hypstr и \indefL[def:XV]),\\
+$\drawUnitLine{AD} = \drawUnitLine{DB}$ (\conststr) и \drawUnitLine{DG} общая обоим,\\
 $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], и, сдедовательно, являются прямыми углами;\\
-но $\drawAngle{FDG,GDB} = \drawRightAngle$ (постр.), $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI]\\
+но $\drawAngle{FDG,GDB} = \drawRightAngle$ (\conststr), $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI]\\
 что невозможно;
 \stopCenterAlign
 
@@ -4933,7 +4935,7 @@ $\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая,\\
 Теперь, пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$\\
 Тогда в  \triangleAEF\ и \triangleFEB\\
 $\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V]\\
-$\drawAngle{AFE} = \drawAngle{EFB}$ (гип.)\\
+$\drawAngle{AFE} = \drawAngle{EFB}$ (\hypstr)\\
 и $\drawUnitLine{AE} = \drawUnitLine{EB}$
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{FB}$ \inprop[prop:I.XXVI]
@@ -5368,7 +5370,7 @@ draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } должна быть центром, проведем между этими двумя точками \drawUnitLine{DF} и продлим в обе стороны до окружности.
 
-Теперь, поскольку более чем две равных прямых линии проведено к окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром прямые линии проведены к окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а \drawUnitLine{DC}, которая ближе к \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (гип.), что невозможно.
+Теперь, поскольку более чем две равных прямых линии проведено к окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром прямые линии проведены к окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а \drawUnitLine{DC}, которая ближе к \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr), что невозможно.
 
 То же можно показать для любой другой точки, кроме \drawPointL[middle][DA,DF]{D}, которая, таким образом, должна быть центром круга.
 
@@ -5717,7 +5719,7 @@ $\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AF,FB}}\nointerlines
 Тогда $\drawProportionalLine{CG} = \frac{1}{2} \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]\\
 и $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III]
 
-поскольку $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (гип.)\\
+поскольку $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (\hypstr)\\
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
 и $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \indef[def:XV]\\
 $\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$;
@@ -5915,7 +5917,7 @@ draw byLabelPoint(H, angle(G-H)+45, 2);
 Тогда, поскольку $\drawUnitLine{DA} = \drawUnitLine{DC}$,\\
 $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
 и $\therefore$ оба угла острые \inprop[prop:I.XVII]\\
-но $\drawAngle{CAD} = \drawRightAngle$ (гип.), что невозможно,
+но $\drawAngle{CAD} = \drawRightAngle$ (\hypstr), что невозможно,
 
 следовательно \drawUnitLine{AC} проведенная $\perp \drawUnitLine{DA}$ не пересекает окружность в другом месте.
 \stopCenterAlign
@@ -6081,7 +6083,7 @@ draw byLabelLineEnd(E, C, 0);
 \startCenterAlign
 Поскольку $\drawUnitLine{CF} \perp \drawUnitLine{CE}$ \inprop[prop:III.XVIII]\\
 $\therefore \drawAngle{FCE} = \drawRightAngle$, прямому углу;\\
-но $\drawAngle{ACF,FCE} = \drawRightAngle$ (гип.),
+но $\drawAngle{ACF,FCE} = \drawRightAngle$ (\hypstr),
 
 и $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, часть равна целому, что невозможно.
 \stopCenterAlign
@@ -6665,7 +6667,7 @@ draw byLabelsOnPolygon(E, H, F)(2, 0);
 
 $\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \inprop[prop:III.XXVI]
 
-но $\drawArc{GbI} = \drawArc{Hb}$ (гип.)\\
+но $\drawArc{GbI} = \drawArc{Hb}$ (\hypstr)\\
 $\therefore \drawArc{GbI} = \drawArc{GbI,GbII}$ часть равны целому, что невозможно;
 
 $\therefore$ ни один из углов не больше другого,
@@ -6725,7 +6727,7 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 
 Поскольку $\circleK = \circleL$\\
 $\drawUnitLine{AK}, \drawUnitLine{BK} = \drawUnitLine{DL}, \drawUnitLine{EL}$,\\
-а также $\drawUnitLine{AB} = \drawUnitLine{DE}$ (гип.)
+а также $\drawUnitLine{AB} = \drawUnitLine{DE}$ (\hypstr)
 
 $\therefore \drawAngle{K} = \drawAngle{L}$
 
@@ -6785,7 +6787,7 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 
 пусть \drawUnitLine{AK}, \drawUnitLine{BK} и \drawUnitLine{DL}, \drawUnitLine{EL} проведены из центров;
 
-поскольку $\drawArc{Kb} = \drawArc{Lb}$ (гип.)\\
+поскольку $\drawArc{Kb} = \drawArc{Lb}$ (\hypstr)\\
 и $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII];
 
 но $\drawUnitLine{AK} \mbox{ и } \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ и } \drawUnitLine{EL}$
@@ -6836,9 +6838,9 @@ draw byLabelLineEnd(C, D, 0);
 
 Проведем \drawUnitLine{DA} и \drawUnitLine{DB}.
 
-$\drawUnitLine{AC} = \drawUnitLine{CB}$ (постр.)\\
+$\drawUnitLine{AC} = \drawUnitLine{CB}$ (\conststr)\\
 \drawUnitLine{DC} общая,\\
-и $\drawAngle{ACD} = \drawAngle{DCB}$ (постр.)
+и $\drawAngle{ACD} = \drawAngle{DCB}$ (\conststr)
 
 $\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
 $
@@ -7114,7 +7116,7 @@ draw byLabelsOnCircle(A, B)(O);
 и \drawUnitLine{AB} сечет ее,\\
 угол в $\segmentO\ = \drawAngle{B}$ \inprop[prop:III.XXXII],
 
-но $\drawAngle{B} = \drawAngle{givenAngle}$ (постр.)
+но $\drawAngle{B} = \drawAngle{givenAngle}$ (\conststr)
 \stopCenterAlign
 
 \qed
@@ -7339,7 +7341,7 @@ draw byLabelPoint(C, angle(C-F) + 45, 2);
 Проведем из данной точки касательную к кругу \drawSizedLine{DE},\\
 и проведем из центра \drawSizedLine{DF}, \drawSizedLine{BF}, и \drawSizedLine{EF},\\
 $\drawSizedLine{DE}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \inprop[prop:III.XXXVI]\\
-но $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (гип.),\\
+но $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (\hypstr),\\
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{DE}^2$,\\
 и $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$;
 
@@ -7531,13 +7533,13 @@ draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
 и если $\drawUnitLine{EC,BE} = \drawUnitLine{GH}$, задача решена.
 
 Если же \drawUnitLine{EC,BE} не равна \drawUnitLine{GH},\\
-$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (гип.);
+$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (\hypstr);
 
 сделаем $\drawUnitLine{EC} = \drawUnitLine{GH}$ \inprop[prop:I.III]\\
 взяв \drawUnitLine{EC} за радиус, построим \drawCircle{C}, секущий \circleO, \\
 и проведем \drawUnitLine{AC}, которая и будет искомой прямой.
 
-Поскольку $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], постр.)
+Поскольку $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], \conststr)
 \stopCenterAlign
 
 \qed
@@ -7593,7 +7595,7 @@ draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
 
 и проведем \drawUnitLine{BC}.
 
-Поскольку $\drawAngle{CAH} = \drawAngle{E}$ (постр.)\\
+Поскольку $\drawAngle{CAH} = \drawAngle{E}$ (\conststr)\\
 и $\drawAngle{CAH} = \drawAngle{B}$ \inprop[prop:III.XXXII]\\
 $\therefore \drawAngle{B} = \drawAngle{E}$;\\
 также и $\drawAngle{C} = \drawAngle{F}$ по той же причине.
@@ -7675,12 +7677,12 @@ stopTempAngleScale;
 },
 взятые вместе равны четырем прямым углам. \inprop[prop:I.XXXII]
 
-но \drawAngle{C} и \drawAngle{A} прямые (постр.)
+но \drawAngle{C} и \drawAngle{A} прямые (\conststr)
 
 $\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, двум прямым углам,
 
 но $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \inprop[prop:I.XIII]\\
-и $\drawAngle{CKA} = \drawAngle{DFH}$ (постр.) и $\therefore \drawAngle{L} = \drawAngle{DFE}$.
+и $\drawAngle{CKA} = \drawAngle{DFH}$ (\conststr) и $\therefore \drawAngle{L} = \drawAngle{DFE}$.
 
 Таким же образом можно показать, что\\
 $\drawAngle{N} = \drawAngle{FED}$;
@@ -7835,9 +7837,9 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(AF,DF,AD);
 stopAutoLabeling;
 }\\
-$\drawUnitLine{DB} = \drawUnitLine{AD}$ (постр.),\\
+$\drawUnitLine{DB} = \drawUnitLine{AD}$ (\conststr),\\
 \drawUnitLine{DF} общая,\\
-$\drawAngle{FDB} = \drawAngle{ADF}$ (постр.),
+$\drawAngle{FDB} = \drawAngle{ADF}$ (\conststr),
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{BF}$ \inprop[prop:I.IV].
 
@@ -7891,7 +7893,7 @@ $\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII
 
 так же и $\drawUnitLine{DA} \parallel \drawUnitLine{BC}$.
 
-И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (постр.),
+И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (\conststr),
 
 и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 
@@ -7943,7 +7945,7 @@ draw byLabelsOnPolygon(A, E, D)(2, 0);
 \startCenterAlign
 Тогда \drawLine[middle][squareFGHK]{KF,HK,GH,FG} будет квадратом.\\
 $\drawAngle{C} = \drawRightAngle$ прямому углу, \inprop[prop:III.XVIII]\\
-так же и $\drawAngle{E} = \drawRightAngle$ (постр.),\\
+так же и $\drawAngle{E} = \drawRightAngle$ (\conststr),\\
 $\therefore \drawUnitLine{HK} \parallel \drawUnitLine{BD}$.\\
 Таким же образом можно показать что $\drawUnitLine{FG} \parallel \drawUnitLine{BD}$, а также что $\drawUnitLine{GH} \mbox{ и } \drawUnitLine{KF} \parallel \drawUnitLine{AC}$.\\
 $\therefore$ \squareFGHK\ параллелограмм,\\
@@ -7998,7 +8000,7 @@ draw byLabelsOnPolygon(F, G, E)(2, 0);
 
 $\therefore$ \drawPolygon{EDKG} параллелограмм,
 
-и поскольку $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (гип.)\\
+и поскольку $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (\hypstr)\\
 $\drawUnitLine{ED} = \drawUnitLine{DK}$
 
 $\therefore$ \polygonEDKG\ равносторонний \inprop[prop:I.XXXIV]
@@ -8123,7 +8125,7 @@ $\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$
 поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.V]\\
 следовательно $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \inprop[prop:I.XXXII]\\
 $\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \inprop[prop:I.VI]\\
-$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (постр.)\\
+$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (\conststr)\\
 $\therefore \drawAngle{A} = \drawAngle{CDA}$ \inprop[prop:I.V]
 
 $\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ дважды } \drawAngle{A}$;
@@ -8390,7 +8392,7 @@ draw byNamedLineSeq(0)(CK,FC,FK);
 stopAutoLabeling;
 stopTempScale;
 }\\
-получим $\drawAngle{HCF} = \drawAngle{FCK}$ (постр.), \drawUnitLine{FC} общая,\\
+получим $\drawAngle{HCF} = \drawAngle{FCK}$ (\conststr), \drawUnitLine{FC} общая,\\
 и $\drawAngle{H} = \drawAngle{K} = \mbox{ прямому углу }$;
 
 $\therefore \drawUnitLine{FK} = \drawUnitLine{FH}$ \inprop[prop:I.XXVI]
@@ -8971,7 +8973,7 @@ byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(IV);
 и $m$ раз $2\drawMagnitude{II}$ и $m$ раз $2\drawMagnitude{IV}$\\
 равнократны $2\drawMagnitude{II}$ и $2\drawMagnitude{IV}$.
 
-Но $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (гип.)\\
+Но $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (\hypstr)\\
 $\therefore$ если $M 3\drawMagnitude{I} <, =, \mbox{ или } > m 2 \drawMagnitude{II}$,\\
 то $M 3\drawMagnitude{III} <, =, \mbox{ или } > m 2 \drawMagnitude{IV}$ \indef[def:V.V]\\
 и значит $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$ \indef[def:V.V]
@@ -9132,7 +9134,7 @@ byMagnitudeSymbolDefine("wedgeUp", byred, 0)(IV);
 Возьмем $M \magnitudeI$, $m \magnitudeII$, $M \magnitudeIII$, $m \magnitudeIV$.
 
 Поскольку \magnitudeI\ столько же раз кратна \magnitudeII \\
-сколько \magnitudeIII кратна \magnitudeIV\ (гип.),
+сколько \magnitudeIII кратна \magnitudeIV\ (\hypstr),
 
 и $M \magnitudeI$ столько же раз кратна \magnitudeI \\
 столько $M \magnitudeIII$ кратна \magnitudeIII,
@@ -9213,7 +9215,7 @@ byMagnitudeDefine(VI, 0, false)(2, 2)(via, vib);
 возьмем \magnitudeVI\ столько же раз кратную \magnitudeIV, \\
 тогда, поскольку $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\
 и мы взяли равнократные второй и четвертой, \magnitudeI\ и \magnitudeVI,  следовательно \inprop[prop:V.IV]\\
- $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, но (постр.),\\
+ $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, но (\conststr),\\
  $\magnitudeI = \magnitudeV \therefore$ \inprop[prop:V.A] $\magnitudeIII = \magnitudeVI$\\
  и \magnitudeVI\ столько же раз кратна \magnitudeIV\\
  сколько \magnitudeI\ кратна \magnitudeII.
@@ -9591,10 +9593,10 @@ byMagnitudeSymbolDefine("circle", byblack, 0)(VI);
 
 $\therefore$ \indef[def:V.V] если $M' \magnitudeI >, =, \mbox{ или } < m' \magnitudeII$;\\
 то $M' \magnitudeIII >, =, \mbox{ и } < m' \magnitudeIV$,\\
-но $M' \magnitudeIII > m' \magnitudeIV$ (постр.);
+но $M' \magnitudeIII > m' \magnitudeIV$ (\conststr);
 
 $\therefore M' \magnitudeI > m' \magnitudeII$,\\
-но $M' \magnitudeV \ngtr m' \magnitudeVI$ (постр.);\\
+но $M' \magnitudeV \ngtr m' \magnitudeVI$ (\conststr);\\
 и следовательно\indef[def:V.VII],\\
 $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$
 
@@ -9622,7 +9624,7 @@ $\therefore \magnitudeIV < \magnitudeII$ \inprop[prop:V.X], или $\magnitudeII
 
 Теперь, пусть $\magnitudeI = \magnitudeIII$, тогда $\magnitudeII = \magnitudeIV$.\\
 Поскольку $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII],\\
-и $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$ (гип.);\\
+и $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$ (\hypstr);\\
 $\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI],\\
 и $\therefore \magnitudeII = \magnitudeIV$ \inprop[prop:V.IX].
 
@@ -9698,7 +9700,7 @@ byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
 тогда $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
 
 Поскольку $M \magnitudeI : M \magnitudeII :: \magnitudeI : \magnitudeII$ \inprop[prop:V.XV],\\
-и $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (гип. и \inpropL[prop:V.XI]),\\
+и $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr и \inpropL[prop:V.XI]),\\
 а также $m \magnitudeIII : m \magnitudeIV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XV];
 
 $\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$ \inprop[prop:V.XIV],\\
@@ -9754,7 +9756,7 @@ byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
 Возьмем $\magnitudeI > m \magnitudeII$ к каждой добавим $M \magnitudeII$,\\
 тогда получим $M \magnitudeI + M \magnitudeII > m \magnitudeII + M \magnitudeII$,\\
 или $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$,\\
-но, поскольку $\magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (гип.),\\
+но, поскольку $\magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (\hypstr),\\
 и $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$;\\
 $\therefore M(\magnitudeIII + \magnitudeIV) > (m + M) \magnitudeIV$ \indef[def:V.V];\\
 $\therefore M \magnitudeIII + M \magnitudeIV > m \magnitudeIV + M \magnitudeIV$;\\
@@ -9813,7 +9815,7 @@ byMagnitudeSymbolDefine("circle", byblack, 0)(V);
 полагая, что $\magnitudeV \neq \magnitudeIV$;
 
 $\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeV$ \inprop[prop:V.XVII]\\
-но $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (гип.);
+но $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr);
 
 $\therefore \magnitudeIII : \magnitudeV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI];
 
@@ -9850,7 +9852,7 @@ $\therefore \magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (выд�
 
 теперь $\magnitudeII : \magnitudeIV :: \magnitudeI : \magnitudeIII$ (перестав.),
 
-но $\magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV :: \magnitudeI : \magnitudeIII$ (гип.),
+но $\magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV :: \magnitudeI : \magnitudeIII$ (\hypstr),
 
 следовательно $\magnitudeII : \magnitudeIV :: \magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV$ \inprop[prop:V.XI].
 
@@ -10005,9 +10007,9 @@ byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
 Допустим $\magnitudeI > \magnitudeIII$,\\
 тогда, поскольку \magnitudeII\ любая другая величина,\\
 $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII];\\
-но $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (гип.);\\
+но $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (\hypstr);\\
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII],\\
-и, поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (гип.);\\
+и, поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (\hypstr);\\
 $\therefore \magnitudeIII : \magnitudeII :: \magnitudeV : \magnitudeIV$ (перев.),\\
 и было показано, что $\magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$,
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeV : \magnitudeIV$ \inprop[prop:V.XIII];\\
@@ -10017,8 +10019,8 @@ $\therefore \magnitudeVI < \magnitudeIV$,\\
 Теперь, пусть $\magnitudeI = \magnitudeIII$; тогда $\magnitudeIV = \magnitudeVI$.\\
 Поскольку $\magnitudeI = \magnitudeIII$,\\
 $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII];\\
-но $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (гип.),\\
-и $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (гип. и перев.),\\
+но $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (\hypstr),\\
+и $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (\hypstr и перев.),\\
 $\therefore \magnitudeV : \magnitudeVI = \magnitudeV : \magnitudeIV$ \inprop[prop:V.XI],\\
 $\therefore \magnitudeIV = \magnitudeVI$ \inprop[prop:V.IX].
 
@@ -10137,9 +10139,9 @@ $M \magnitudeI, M \magnitudeII, m \magnitudeIII, M \magnitudeIV, m \magnitudeV, 
 тогда $\magnitudeI : \magnitudeII :: M \magnitudeI : M \magnitudeII$ \inprop[prop:V.XV];\\
 и по той же причине\\
 $\magnitudeV : \magnitudeVI :: m \magnitudeV : m \magnitudeVI$;\\
-но $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (гип.),\\
+но $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (\hypstr),\\
 $\therefore M \magnitudeI : M \magnitudeII :: \magnitudeV : \magnitudeVI$ \inprop[prop:V.XI];\\
-и поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (гип.),\\
+и поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (\hypstr),\\
 $\therefore M \magnitudeII : m \magnitudeIII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV];\\
 тогда, поскольку есть три величины\\
 $M \magnitudeI, M \magnitudeII, m \magnitudeII$,\\
@@ -10200,14 +10202,14 @@ byMagnitudeSymbolDefine("circle", byblue, 0)(VI);
 и $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$,\\
 то $\magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeIII + \magnitudeVI : \magnitudeIV$.
 
-Поскольку $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (гип.),\\
-и $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (гип. и перев.),
+Поскольку $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (\hypstr),\\
+и $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (\hypstr и перев.),
 
 $\therefore \magnitudeV : \magnitudeI :: \magnitudeVI : \magnitudeIII$ \inprop[prop:V.XXII];\\
 и, поскольку величины пропорциональны, они будут пропорциональны и если их присоединить:
 
 $\therefore \magnitudeI + \magnitudeV : \magnitudeV :: \magnitudeVI + \magnitudeIII : \magnitudeVI$ \inprop[prop:V.XVIII],\\
-но $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (гип.),
+но $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (\hypstr),
 
 $\therefore \magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeVI + \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XXII]
 
@@ -10235,7 +10237,7 @@ $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : 
 поскольку $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,
 
 $\therefore \magnitudeIa : \magnitudeIIa :: \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV$ \inprop[prop:V.XIX],\\
-но $\magnitudeIa + \magnitudeIII > \magnitudeIIa + \magnitudeIV$ (гип.),
+но $\magnitudeIa + \magnitudeIII > \magnitudeIIa + \magnitudeIV$ (\hypstr),
 
 $\therefore \magnitudeIa > \magnitudeIIa$ \inprop[prop:V.A];\\
 к каждой добавим $\magnitudeIII + \magnitudeIV$,\\
@@ -10683,7 +10685,7 @@ $\therefore \dfrac
 =
 \dfrac
 {h \times k \times l \times m \times n}
-{k \times l \times m \times n \times p}$ (гип.),
+{k \times l \times m \times n \times p}$ (\hypstr),
 
 или $\dfrac{\vara \times \varb}{\varb \times \varc}
 \times
@@ -10723,7 +10725,7 @@ $\therefore
 {\vard \times \vare \times \varf \times \varg}
 = \dfrac
 {h \times k \times l \times m \times n}
-{k \times l \times m \times n \times p}$ (гип.),
+{k \times l \times m \times n \times p}$ (\hypstr),
 
 и $\dfrac
 {m \times n}
@@ -10731,7 +10733,7 @@ $\therefore
 =
 \dfrac
 {e \times f}
-{f \times g}$ (гип.),
+{f \times g}$ (\hypstr),
 
 $\therefore \dfrac
 {h \times k \times l \times m \times n}
@@ -11009,7 +11011,7 @@ $\left.\eqalign{
 \mbox{ поскольку } \drawUnitLine{DB} : \drawUnitLine{AD} &:: \triangleBDE\ : \triangleADE \cr
 \mbox{ и } \drawUnitLine{EC} : \drawUnitLine{AE} &:: \triangleCDE\ : \triangleADE \cr
 }\right\}\mbox{ \inprop[prop:VI.I] }$;\\
-но $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (гип.)\\
+но $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (\hypstr)\\
 $\therefore \triangleBDE\ : \triangleADE :: \triangleCDE\ : \triangleADE$ \inprop[prop:V.XI]
 $\therefore \triangleBDE\ = \triangleCDE$ \inprop[prop:V.IX],
 
@@ -11073,7 +11075,7 @@ $\therefore \drawUnitLine{CA} : \drawUnitLine{AB} :: \drawUnitLine{DC} : \drawUn
 Оставим то же построение,\\
 и $\drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{BD} : \drawUnitLine{DC}$ \inprop[prop:VI.II];
 
-но $\drawUnitLine{BD} : \drawUnitLine{DC} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ (гип.)\\
+но $\drawUnitLine{BD} : \drawUnitLine{DC} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ (\hypstr)\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ \inprop[prop:V.XI].
 
 и $\therefore \drawUnitLine{AE} = \drawUnitLine{CA}$ \inprop[prop:V.IX],\\
@@ -11203,13 +11205,13 @@ $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$
 получим $\drawAngle{G} = \drawAngle{A}$ \inprop[prop:I.XXXII],\\
 и поскольку треугольники равноугольные,\\
 $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{GE} : \drawUnitLine{EF}$ \inprop[prop:VI.IV];\\
-но $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{DE} : \drawUnitLine{EF}$ (гип.);\\
+но $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{DE} : \drawUnitLine{EF}$ (\hypstr);\\
 $\therefore \drawUnitLine{DE} : \drawUnitLine{EF} :: \drawUnitLine{GE} : \drawUnitLine{EF}$, и значит $\drawUnitLine{DE} = \drawUnitLine{GE}$ \inprop[prop:V.IX].\\
 Так же можно показать, что $\drawUnitLine{FD} = \drawUnitLine{FG}$.
 
 $\therefore$ у двух треугольников с общим основанием \drawUnitLine{EF} и равными сторонами,  углы против равных сторон равны, т.~е.
 $\drawAngle{DEF} = \drawAngle{GEF}$ и $\drawAngle{EFD} = \drawAngle{EFG}$ \inprop[prop:I.VIII].\\
-но $\drawAngle{GEF} = \drawAngle{B}$ (постр.) и $\therefore \drawAngle{DEF} = \drawAngle{B}$.\\
+но $\drawAngle{GEF} = \drawAngle{B}$ (\conststr) и $\therefore \drawAngle{DEF} = \drawAngle{B}$.\\
 По той же причине $\drawAngle{EFD} = \drawAngle{C}$, и значит $\drawAngle{D} = \drawAngle{A}$ \inprop[prop:I.XXXII], т.~е. треугольники равноугольны и~очевидно, что соответственные стороны располагаются между равными углами.
 \stopCenterAlign
 
@@ -11260,12 +11262,12 @@ draw byLabelsOnPolygon(D, E, F, G)(0, 0);
 тогда $\drawAngle{G} = \drawAngle{B}$ \inprop[prop:I.XXXII],\\
 и поскольку два треугольника равноугольны,\\
 $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{FG} : \drawUnitLine{FD}$ \inprop[prop:VI.IV];\\
-но $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ (гип.)\\
+но $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ (\hypstr)\\
 $\therefore \drawUnitLine{FG} : \drawUnitLine{FD} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ \inprop[prop:V.XI],\\
 и следовательно $\drawUnitLine{FG} = \drawUnitLine{EF}$ \inprop[prop:V.IX];\\
 $\therefore \triangleDEF\ =
 \drawLine[bottom][triangleDGF]{FD,FG,GD}$ во всех отношениях \inprop[prop:I.IV].\\
-но $\drawAngle{GFD} = \drawAngle{A}$ (постр.) и $\therefore \drawAngle{EFD} = \drawAngle{A}$,\\
+но $\drawAngle{GFD} = \drawAngle{A}$ (\conststr) и $\therefore \drawAngle{EFD} = \drawAngle{A}$,\\
 и поскольку также $\drawAngle{EFD} = \drawAngle{C}$,\\
 $\drawAngle{E} = \drawAngle{B}$ \inprop[prop:I.XXXII];\\
 и $\therefore$ \triangleABC\ и \triangleDEF\ равноугольны с равными углами против соответственных сторон.
@@ -11314,21 +11316,21 @@ draw byLabelsOnPolygon(D, F, E)(0, 0);
 \startCenterAlign
 Для начала допустим, что углы \drawAngle{A} и \drawAngle{D} оба меньше прямого угла, тогда, если предположить, что \drawAngle{ABG,GBC} и \drawAngle{E} между пропорциональными сторонами не равны, пусть \drawAngle{ABG,GBC} будет больше и сделаем $\drawAngle{GBC} = \drawAngle{E}$.
 
-Поскольку $\drawAngle{C} = \drawAngle{F}$ (гип.). и $\drawAngle{GBC} = \drawAngle{E}$ (постр.)\\
+Поскольку $\drawAngle{C} = \drawAngle{F}$ (\hypstr). и $\drawAngle{GBC} = \drawAngle{E}$ (\conststr)\\
 $\therefore \drawAngle{CGB} = \drawAngle{D}$ \inprop[prop:I.XXXII];
 
 $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV],\\
-но $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ (гип.)
+но $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ (\hypstr)
 
 $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{BC} : \drawUnitLine{AB}$;\\
 $\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \inprop[prop:V.IX],\\
 и $\therefore \drawAngle{A} = \drawAngle{BGA}$ \inprop[prop:I.V].
 
-Но \drawAngle{A} меньше прямого угла (гип.)\\
+Но \drawAngle{A} меньше прямого угла (\hypstr)\\
 $\therefore$ \drawAngle{BGA} меньше прямого угла,\\
 и $\therefore$ \drawAngle{CGB} должен быть больше прямого угла \inprop[prop:I.XIII], но он, как было показано $= \drawAngle{D}$ и значит меньше прямого угла, что невозможно. $\therefore$ \drawAngle{ABG,GBC} и \drawAngle{E} не неравны.
 
-$\therefore$ они равны, и поскольку $\drawAngle{C} = \drawAngle{F}$ (гип.)\\
+$\therefore$ они равны, и поскольку $\drawAngle{C} = \drawAngle{F}$ (\hypstr)\\
 $\therefore \drawAngle{A} = \drawAngle{D}$ \inprop[prop:I.XXXII], и следовательно треугольники равноугольны.
 \stopCenterAlign
 
@@ -11413,7 +11415,7 @@ $\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{
 и присоединив \inprop[prop:V.XVIII],\\
 $\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$,
 
-то есть \drawSizedLine{AD,DC,CE} содержит \drawSizedLine{AD} столько раз, сколько \drawSizedLine{AF,FB} содержит требуемую часть (постр.);
+то есть \drawSizedLine{AD,DC,CE} содержит \drawSizedLine{AD} столько раз, сколько \drawSizedLine{AF,FB} содержит требуемую часть (\conststr);
 
 $\therefore$ \drawSizedLine{AF} и есть требуемая часть.
 \stopCenterAlign
@@ -11475,9 +11477,9 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DF}}}\right\}$
 все $\parallel$,\\
 $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{EC} : \drawSizedLine{DE}$ \inprop[prop:VI.II],\\
-или $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSizedLine{D'E'}$ (постр.),\\
+или $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSizedLine{D'E'}$ (\conststr),\\
 и $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DE} : \drawSizedLine{AD}$ \inprop[prop:VI.II],\\
-$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ (постр.),
+$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ (\conststr),
 
 и $\therefore$ данная линия \drawSizedLine{AF,FG,GB} разделена подобно \drawSizedLine{A'D',D'E',E'C'}.
 \stopCenterAlign
@@ -11524,7 +11526,7 @@ draw byLabelsOnPolygon(C', A', noPoint)(0, 0);
 
 Поскольку $\drawSizedLine{BC} \parallel \drawSizedLine{DE}$,\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{CE}$ \inprop[prop:VI.II];\\
-но $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{A'C'}$ (постр.);\\
+но $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{A'C'}$ (\conststr);\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{A'C'} :: \drawSizedLine{A'C'} : \drawSizedLine{CE}$ \inprop[prop:V.VII].
 \stopCenterAlign
 
@@ -11591,7 +11593,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DG}}
 \nointerlineskip\hbox{\drawSizedLine{GE}}
 \nointerlineskip\hbox{\drawSizedLine{DH}}}\right\}$
-(постр.);
+(\conststr);
 
 $\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{C} : \drawUnitLine{HF}$ \inprop[prop:V.VII].
 \stopCenterAlign
@@ -11657,7 +11659,7 @@ draw byLabelsOnPolygon(C, A, noPoint)(0, 0);
 Поскольку \drawAngle{D} прямой угол \inprop[prop:III.XXXI],\\
 и \drawUnitLine{BD} это $\perp$ к нему с противной стороны,\\
 $\therefore$ \drawUnitLine{BD} и есть средняя пропорциональная между \drawUnitLine{AB} и \drawUnitLine{BC} \inprop[prop:VI.VIII],\\
-и $\therefore$ между \drawUnitLine{A} и \drawUnitLine{B} (постр.).
+и $\therefore$ между \drawUnitLine{A} и \drawUnitLine{B} (\conststr).
 \stopCenterAlign
 
 \qed
@@ -11701,7 +11703,7 @@ $\therefore \drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUn
 $\drawUnitLine{BG} : \drawUnitLine{BF} ::
 \left\{\eqalign{
 \drawPolygon{CEBG} &: \drawPolygon{EHFB} \mbox{\inprop[prop:VI.I]}\cr
-\drawUnitLine{BD} &: \drawUnitLine{BE} \mbox{(гип.)}\cr
+\drawUnitLine{BD} &: \drawUnitLine{BE} \mbox{(\hypstr)}\cr
 \drawPolygon{BFAD} &: \drawPolygon{EHFB} \mbox{\inprop[prop:VI.I]}\cr
 }\right.$\\
 $\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \inprop[prop:V.XI]\\
@@ -11762,7 +11764,7 @@ $\therefore \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUn
 $\drawPolygon{DAE} : \drawPolygon{DAB} :: \drawUnitLine{DA} : \drawUnitLine{BA}$ \inprop[prop:VI.I]\\
 и $\drawUnitLine{AC} : \drawUnitLine{DA} :: \drawPolygon{ABC} : \drawPolygon{DAB}$ \inprop[prop:VI.I]
 
-но $ \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$, (гип.)
+но $ \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$, (\hypstr)
 
 $\therefore \drawPolygon{DAE} : \drawPolygon{DAB} :: \drawPolygon{ABC} : \drawPolygon{DAB}$ \inprop[prop:V.XI];
 
@@ -11818,8 +11820,8 @@ draw byLabelLine(0)(E, F);
 Достроим параллелограммы \drawPolygon{ABFG} и \drawPolygon{CDEH}.
 
 И поскольку\\
-$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (гип.)\\
-$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (постр.)\\
+$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (\hypstr)\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (\conststr)\\
 $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
 то есть, прямоугольник, заключенный между крайними равен прямоугольнику, заключенному между средними.
 \stopCenterAlign
@@ -11835,7 +11837,7 @@ $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV]
 
 Но $\drawUnitLine{CH} = \drawUnitLine{E}$,\\
-и $\drawUnitLine{AG} = \drawUnitLine{F}$ (постр.)\\
+и $\drawUnitLine{AG} = \drawUnitLine{F}$ (\conststr)\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ \inprop[prop:V.VII].
 \stopCenterAlign
 \stopsubproposition
@@ -12040,7 +12042,7 @@ $\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{D
 
 $\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \inprop[prop:V.XVI].
 
-Но $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (постр.),\\
+Но $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (\conststr),\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$.
 
 Следовательно $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$, поскольку у них стороны при равных углах \drawAngle{E} и \drawAngle{B} взаимно пропорциональны \inprop[prop:VI.XV].\\
@@ -12222,8 +12224,8 @@ draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 \startsubproposition[title={Часть I.}]
 \startCenterAlign
 Возьмем \drawUnitLine{O}, третью пропорциональную к \drawUnitLine{AB} и \drawUnitLine{CD}, и \drawUnitLine{P}, третью пропорциональную к \drawUnitLine{EF} и \drawUnitLine{GH} \inprop[prop:VI.XI].\\
-Поскольку $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (гип.)\\
-$\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ (постр.).\\
+Поскольку $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (\hypstr)\\
+$\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ (\conststr).\\
 $\therefore$ по равенству,\\
 $\drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$,\\
 но $\drawPolygon{AB} : \drawPolygon{CD} :: \drawUnitLine{AB} : \drawUnitLine{O}$ \inprop[prop:VI.XX],\\
@@ -12237,9 +12239,9 @@ $\therefore \drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolyg
 \startsubproposition[title={Часть II.}]
 \startCenterAlign
 Оставим то же построение.\\
-$\drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ (гип.),
+$\drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ (\hypstr),
 
-$\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$ (постр.),
+$\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$ (\conststr),
 
 и $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ \inprop[prop:V.XI].
 \stopCenterAlign
@@ -12283,7 +12285,7 @@ draw byLabelsOnPolygon(D, A, B, C, E, F, G, H)(0, 0);
 
 \startCenterAlign
 Поскольку $\drawAngle{BCD} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
-и $\drawAngle{GCE} = \drawAngle{BCD}$ (гип.),\\
+и $\drawAngle{GCE} = \drawAngle{BCD}$ (\hypstr),\\
 $\drawAngle{GCE} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
 и $\therefore$ \drawUnitLine{CE} и \drawUnitLine{DC} образуют одну прямую \inprop[prop:I.XIV].
 
@@ -12457,14 +12459,14 @@ stopTempAngleScale;
 Тогда $\triangleKGH\ = \polygonD$.
 
 Поскольку \triangleABC\ и \triangleKGH\ подобны\\
-и $\drawUnitLine{BC} : \drawUnitLine{GH} :: \drawUnitLine{GH} : \drawUnitLine{CF}$ (постр.),\\
+и $\drawUnitLine{BC} : \drawUnitLine{GH} :: \drawUnitLine{GH} : \drawUnitLine{CF}$ (\conststr),\\
 $\triangleABC\ : \triangleKGH\ :: \drawUnitLine{BC} : \drawUnitLine{CF}$ \inprop[prop:VI.XX];
 
 но $\polygonBCEL\ : \polygonCFME\ :: \drawUnitLine{BC} : \drawUnitLine{CF}$ \inprop[prop:VI.I];\\
 $\therefore \triangleABC\ : \triangleKGH\ :: \polygonBCEL\ : \polygonCFME$ \inprop[prop:V.XI];\\
-но $\triangleABC\ = \polygonBCEL$ (постр.),\\
+но $\triangleABC\ = \polygonBCEL$ (\conststr),\\
 и $\therefore \triangleKGH\ = \polygonCFME$ \inprop[prop:V.XIV];\\
-и $\polygonCFME\ = \polygonD$ (постр.);\\
+и $\polygonCFME\ = \polygonD$ (\conststr);\\
 и следовательно, \triangleKGH\ подобный \triangleABC\ вместе с тем $= \polygonD$.
 \stopCenterAlign
 
@@ -12540,7 +12542,7 @@ stopGlobalRotation;
 Поскольку \drawLine[middle][parallelogramAKHG]{AG,GH,KH,AK} и \parallelogramABCD\ на одной диагонали \lineAHC, и \drawAngle{A} уних общий, они подобны \inprop[prop:VI.XXIV];
 
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
-но $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (гип.),\\
+но $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (\hypstr),\\
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \drawSizedLine{AK,KE}$,\\
 и $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \inprop[prop:V.IX], что невозможно.
 
@@ -12630,7 +12632,7 @@ draw byLabelPoint(E, angle(E-D) + 45, 2);
 и если $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$, то задача решена.
 
 Но если $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
-тогда $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ (гип.).\\
+тогда $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ (\hypstr).\\
 Проведем $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{G}$,\\
 сделаем $\drawSizedLine{DC,CF} = \drawSizedLine{AE,EC} \mbox{ или } \drawSizedLine{CB}$,\\
 с \drawSizedLine{DC,CF} в качестве радиуса опишем круг, секущий данную прямую, проведем \drawSizedLine{DE}.
@@ -12643,7 +12645,7 @@ $\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}
 из обеих вычтем $\drawSizedLine{EC}^2$,\\
 и $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
 
-Но $\drawSizedLine{DC} = \drawSizedLine{G}$ (постр.),\\
+Но $\drawSizedLine{DC} = \drawSizedLine{G}$ (\conststr),\\
 и $\therefore$ \drawSizedLine{AE,EC,CB} рассечена так, что $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{G}^2$.
 \stopCenterAlign
 
@@ -12883,7 +12885,7 @@ $\drawAngle{A} = \drawAngle{ACD}$ \inprop[prop:I.XXIX];\\
 и поскольку $\drawUnitLine{CA} \parallel \drawUnitLine{ED}$,\\
 $\drawAngle{ACD} = \drawAngle{D}$ \inprop[prop:I.XXIX];\\
 $\therefore \drawAngle{A} = \drawAngle{D}$;\\
-и поскольку $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (гип.),\\
+и поскольку $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (\hypstr),\\
 треугольники равноугольны \inprop[prop:VI.VI];
 
 $\therefore \drawAngle{B} = \drawAngle{DCE}$;\\
@@ -13074,7 +13076,7 @@ stopTempScale;
 Действительно, если провести $\drawSizedLine{BE} \parallel \drawSizedLine{DC}$,\\
 $\eqalign{
 \mbox{то } \drawAngle{DCB} &= \drawAngle{EBC} \mbox{, \inprop[prop:I.XXIX];}\cr
-& = \drawAngle{FCD} \mbox{, (гип.),}\cr
+& = \drawAngle{FCD} \mbox{, (\hypstr),}\cr
 & = \drawAngle{E} \mbox{, \inprop[prop:I.XXIX];}
 }$\\
 и $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$, \inprop[prop:I.VI],\\
@@ -13125,7 +13127,7 @@ draw byLabelsOnPolygon(B, D, A)(2, 0);
 Около \drawLine[bottom]{CA,DC,BD,AB} опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V],\\
 продлим \drawSizedLine{AD} до окружности и проведем \drawSizedLine{CE}.
 
-Поскольку $\drawAngle{CAE} = \drawAngle{EAB}$ (гип.),\\
+Поскольку $\drawAngle{CAE} = \drawAngle{EAB}$ (\hypstr),\\
 и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI],\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} и \drawLine[middle]{CA,CE,DE,AD} равноугольны \inprop[prop:I.XXXII];\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \inprop[prop:VI.IV];\\
@@ -13176,7 +13178,7 @@ draw byLabelsOnPolygon(C, D, B)(2, 0);
 тогда $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ диаметр описанного круга.
 
 Опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], проведем диаметр \drawUnitLine{AE}, и проведем \drawUnitLine{CE},\\
-тогда, поскольку $\drawAngle{D} = \drawAngle{BCA,ECB}$ (постр. и \inpropL[prop:III.XXXI]);\\
+тогда, поскольку $\drawAngle{D} = \drawAngle{BCA,ECB}$ (\conststr и \inpropL[prop:III.XXXI]);\\
 и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI];\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} равноуголен с \drawLine[middle]{CA,CE,AE} \inprop[prop:VI.IV];
 
@@ -13232,7 +13234,7 @@ draw byLabelsOnPolygon(D, E, B)(2, 0);
 $\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$, и $\drawAngle{BCA} = \drawAngle{D}$ \inprop[prop:III.XXI].\\
 $\therefore \drawUnitLine{DA} : \drawUnitLine{ED} :: \drawUnitLine{AC} : \drawUnitLine{BC}$ \inprop[prop:VI.IV],\\
 и $\therefore \drawUnitLine[0.75cm]{ED} \times \drawUnitLine[0.75cm]{AC} = \drawUnitLine[0.75cm]{DA} \times \drawUnitLine[0.75cm]{BC}$ \inprop[prop:VI.XVI].\\
-Теперь, поскольку $\drawAngle{EAB} = \drawAngle{DAC}$ (постр.),\\
+Теперь, поскольку $\drawAngle{EAB} = \drawAngle{DAC}$ (\conststr),\\
 и $\drawAngle{B} = \drawAngle{ACD}$ \inprop[prop:III.XXI],\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUnitLine{CD}$ \inprop[prop:VI.IV],\\
 и $\therefore \drawUnitLine[0.75cm]{BE} \times \drawUnitLine[0.75cm]{AC} = \drawUnitLine[0.75cm]{AB} \times \drawUnitLine[0.75cm]{CD}$ \inprop[prop:VI.XVI],\\

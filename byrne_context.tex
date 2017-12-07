@@ -1126,7 +1126,7 @@ In the same manner twice the square of, is expressed by $2 \cdot \drawUnitLine{A
 \symb{hyp.}
  signifies \emph{hypothesis}. It may be necessary here to remark, that \emph{hypothesis} is the condition assumed or taken for granted. Thus, the hypothesis of the proposition given in the Introduction, is that the triangle is isosceles, or that its legs are equal.
 
-\symb{const.}
+\symb{\conststr}
  signifies \emph{construction}. The \emph{construction} is the change made in the original figure, by drawing lines, making angles, describing circles, \&c.\ in order to adapt it to the argument of the demonstration or the solution of the problem. The conditions under which these changes are made, are as indisputable as those contained in the hypothesis. For instance, if we make an angle equal to a given angle, these two angles are equal by construction.
 
 \symb{\qedstr}
@@ -1252,7 +1252,7 @@ produce \drawUnitLine{DA} \inpost[post:II],\\
 then \drawUnitLine{AF} is the line required.
 
 For $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \indef[def:XV],\\
-and $\drawUnitLine{BD} = \drawUnitLine{DA}$ (const.),\\
+and $\drawUnitLine{BD} = \drawUnitLine{DA}$ (\conststr),\\
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[post:III],\\
 but \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
 
@@ -1301,7 +1301,7 @@ draw byLabelLineEnd(A, D, 0);
 then $\drawUnitLine{EF} = \drawUnitLine{AB}$
 
 For $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
-and $\drawUnitLine{EF} = \drawUnitLine{AD}$ (const.);
+and $\drawUnitLine{EF} = \drawUnitLine{AD}$ (\conststr);
 
 $\therefore \drawUnitLine{EF} = \drawUnitLine{AB}$ \inax[ax:I].
 \stopCenterAlign
@@ -1397,9 +1397,9 @@ draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(BD,CD,AC,AB);
 stopAutoLabeling;
 }\\
-we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ (const.),\\
+we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ (\conststr),\\
 \drawAngle{BAC} common to both,\\
-and $\drawUnitLine{AB} = \drawUnitLine{AC}$ (hyp.)\\
+and $\drawUnitLine{AB} = \drawUnitLine{AC}$ (\hypstr)\\
 $\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ and $\drawAngle{CEB} = \drawAngle{BDC}$ \inprop[prop:I.IV].
 
 Again in \drawLine{BE,CE,BC} and \drawLine{BD,CD,BC}\\
@@ -1437,8 +1437,8 @@ For if the sides be not equal, let one of them \drawUnitLine{CA,CD} be greater t
 
 \startCenterAlign
 Then in \drawLine[bottom]{BC,AB,CA} and \triangleABD,\\
-$\drawUnitLine{CA} = \drawUnitLine{BD}$ (const.),\\
-$\drawAngle{A} = \drawAngle{B}$ (hyp.)\\
+$\drawUnitLine{CA} = \drawUnitLine{BD}$ (\conststr),\\
+$\drawAngle{A} = \drawAngle{B}$ (\hypstr)\\
 and \drawUnitLine{AB} common,\\
 $\therefore$ the triangles are equal \inprop[prop:I.IV]\\
 a part equal to the whole, which is absurd;\\
@@ -1597,9 +1597,9 @@ Take $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III]
 draw \drawUnitLine{BC} upon which describe \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD}.
 
-$\because \drawUnitLine{AB} = \drawUnitLine{CA}$ (const.)\\ %Because
+$\because \drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr)\\ %Because
 and \drawUnitLine{AD} common to the two triangles\\
-and $\drawUnitLine{CD} = \drawUnitLine{DB}$ (const.),
+and $\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr),
 
 $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
 \stopCenterAlign
@@ -1634,7 +1634,7 @@ draw \drawUnitLine{AD}, making $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:
 
 Then $\drawUnitLine{BD} = \drawUnitLine{DC}$ by \inprop[prop:I.IV],
 
-for~$\drawUnitLine{AB} = \drawUnitLine{AC}$ (const.) $\drawAngle{BAD} = \drawAngle{CAD}$\\
+for~$\drawUnitLine{AB} = \drawUnitLine{AC}$ (\conststr) $\drawAngle{BAD} = \drawAngle{CAD}$\\
 and \drawUnitLine{AD} common to the two triangles.
 
 Therefore the given line is bisected.
@@ -1675,8 +1675,8 @@ cut off $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD} and it shall be perpendicular to the given line.
 
-For $\drawUnitLine{AB} = \drawUnitLine{CA}$ (const.)\\
-$\drawUnitLine{CD} = \drawUnitLine{DB}$ (const.)\\
+For $\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr)\\
+$\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr)\\
 and \drawUnitLine{AD} common to the two triangles.
 
 Therefore $\drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII]
@@ -1731,7 +1731,7 @@ draw \drawUnitLine{AB}, \drawUnitLine{CA} and \drawUnitLine{AD}.
 
 Then $\drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$.
 
-For \inprop[prop:I.VIII] since $\drawUnitLine{DB} = \drawUnitLine{CD}$ (const.),\\
+For \inprop[prop:I.VIII] since $\drawUnitLine{DB} = \drawUnitLine{CD}$ (\conststr),\\
 \drawUnitLine{AD} common to both,\\
 and $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV],
 
@@ -1771,7 +1771,7 @@ If \drawUnitLine{ED} be $\perp$ to \drawUnitLine{BC} then,\\
 
 but if \drawUnitLine{ED} be not $\perp$ to \drawUnitLine{BC},\\
 draw $\drawUnitLine{AD} \perp \drawUnitLine{BC}$; \inprop[prop:I.XI]\\
-$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ (const.),\\
+$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ (\conststr),\\
 $\drawAngle{ADB} = \drawAngle{CDE,EDA} = \drawAngle{EDA} + \drawAngle{CDE}$
 
 $\therefore \drawAngle{ADB} + \drawAngle{CDE,EDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \inax[ax:II]
@@ -1899,7 +1899,7 @@ stopAutoLabeling;
 Make $\drawUnitLine{BE} = \drawUnitLine{EC}$ \inprop[prop:I.X];\\
 Draw \drawUnitLine{AE} and produce it until $\drawUnitLine{ED} = \drawUnitLine{AE}$;\\
 draw \drawUnitLine{CD}. In \drawLine{BE,AE,AB} and \drawLine{EC,ED,CD};\\
-$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ and $\drawUnitLine{AE} = \drawUnitLine{ED}$ (const., \inpropL[prop:I.XV]),\\
+$\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ and $\drawUnitLine{AE} = \drawUnitLine{ED}$ (\conststr, \inpropL[prop:I.XV]),\\
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
 $\therefore \anglesECDpDCF\ > \drawAngle{B}$.
 
@@ -2052,7 +2052,7 @@ Produce \drawUnitLine{DA}, and\\
 make $\drawUnitLine{CD} = \drawUnitLine{BD}$ \inprop[prop:I.III];\\
 draw \drawUnitLine{BC}.
 
-Then $\because \drawUnitLine{CD} = \drawUnitLine{BD}$ (const.),\\ %because
+Then $\because \drawUnitLine{CD} = \drawUnitLine{BD}$ (\conststr),\\ %because
 $\drawAngle{CBD} = \drawAngle{C}$ \inprop[prop:I.V]
 
 $\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \inax[ax:IX]
@@ -2187,7 +2187,7 @@ $\left.\eqalign{
 \mbox{For } \drawSizedLine{AB} &= \drawSizedLine{L'} \mbox{,} \cr
 \drawSizedLine{BC} &= \drawSizedLine{BE} = \drawSizedLine{L''} \mbox{,} \cr
 \mbox{and } \drawSizedLine{CA} &= \drawSizedLine{AD} = \drawSizedLine{L'''} \mbox{.} \cr
-}\right\}\mbox{(const.)}$
+}\right\}\mbox{(\conststr)}$
 \stopCenterAlign
 
 \qed
@@ -2308,7 +2308,7 @@ stopAutoLabeling;
 and $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
 draw \drawUnitLine{CD} and \drawUnitLine{BC}.
 
-$\because \drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I], hyp., const.)\\ %because
+$\because \drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I], \hypstr, \conststr)\\ %because
 $\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V]
 but $\drawAngle{CDB} < \drawAngle{DCA}$,\\
 and $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
@@ -2415,7 +2415,7 @@ In \drawLine[bottom]{CA,BC,AB} and
 \drawLine[bottom]{GD,EG,DE} we have\\
 $\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
 $\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
-but $\drawAngle{B} = \drawAngle{GED,FEG}$ (hyp.)
+but $\drawAngle{B} = \drawAngle{GED,FEG}$ (\hypstr)
 
 and therefore $\drawAngle{GED} = \drawAngle{GED,FEG}$, which is absurd; hence neither of the sides \drawUnitLine{CA} and \drawUnitLine{GD,FG} is greater than the other; and $\therefore$ they are equal;
 
@@ -2463,7 +2463,7 @@ Again, let $\drawUnitLine{CA} = \drawUnitLine{FD}$, which lie opposite the equal
 Then in \drawLine[bottom]{CA,BC,AB} and \drawLine[bottom]{FD,FG,DG} we have $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ and $\drawAngle{A} = \drawAngle{D}$,
 
 $\therefore \drawAngle{B} = \drawAngle{G}$ \inprop[prop:I.IV]\\
-but $\drawAngle{B} = \drawAngle{E}$ (hyp.)
+but $\drawAngle{B} = \drawAngle{E}$ (\hypstr)
 
 $\therefore \drawAngle{G} = \drawAngle{E}$ which is absurd \inprop[prop:I.XVI].
 
@@ -2507,7 +2507,7 @@ draw byLabelsOnPolygon(H, F, C)(2, 0);
 
 If \drawUnitLine{CD} be not parallel to \drawUnitLine{AB} they shall meet when produced.
 
-If it be possible, let those lines be not parallel, but meet when produced; then the external angle \drawAngle{HEB} is greater than \drawAngle{CFG} \inprop[prop:I.XVI], but they are also equal (hyp.), which is absurd: in the same manner it may be shown that they cannot meet on the other side; $\therefore$ they are parallel.
+If it be possible, let those lines be not parallel, but meet when produced; then the external angle \drawAngle{HEB} is greater than \drawAngle{CFG} \inprop[prop:I.XVI], but they are also equal (\hypstr), which is absurd: in the same manner it may be shown that they cannot meet on the other side; $\therefore$ they are parallel.
 
 \qed
 \stopProposition
@@ -2746,7 +2746,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 \startCenterAlign
 Draw \drawUnitLine{AD} the diagonal.
 
-$\drawUnitLine{AB} = \drawUnitLine{CD}$ (hyp.)\\
+$\drawUnitLine{AB} = \drawUnitLine{CD}$ (\hypstr)\\
 $\drawAngle{BAD} = \drawAngle{CDA}$ \inprop[prop:I.XXIX]\\
 and \drawUnitLine{AD} common to the two triangles;
 
@@ -2913,7 +2913,7 @@ draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 
 \startCenterAlign
 Draw \drawUnitLine{CE} and \drawUnitLine{DF}\\
-$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ by (\inpropL[prop:I.XXXIV], and hyp.);
+$\drawUnitLine{CD} = \drawUnitLine{GH} = \drawUnitLine{EF}$ by (\inpropL[prop:I.XXXIV], and \hypstr);
 
 $\therefore \drawUnitLine{CD} = \mbox{ and } \parallel \drawUnitLine{EF}$;
 
@@ -3071,10 +3071,10 @@ If \drawUnitLine{AB}, which joins the vertices of the triangles, be not $\parall
 
 Draw \drawUnitLine{DF}.
 
-$\because \drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (const.)\\ %Because
+$\because \drawUnitLine{AF} \parallel \drawUnitLine{CD}$ (\conststr)\\ %Because
 $\polygonADC =
 \drawPolygon[bottom][polygonFDC]{BED, ECD, FBD}$ \inprop[prop:I.XXXVII];\\
-but $\polygonADC = \polygonBDC$ (hyp.);
+but $\polygonADC = \polygonBDC$ (\hypstr);
 
 $\therefore \polygonBDC = \polygonFDC$, a part equal to the whole, which is absurd.
 
@@ -3106,7 +3106,7 @@ byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(E, F, byblack, 0, 0);
 byLineDefine(D, E, byblue, 1, 0);
-draw byNamedLineSeq(0)(AB,AG,FG,EF,DE,CD);
+draw byNamedLineSeq(4/5)(AB,AG,FG,EF,DE,CD);
 draw byLabelsOnPolygon(G, F, E, D, C, A)(2, 0);
 draw byLabelsOnPolygon(A, B, G)(2, 0);
 draw byLabelsOnPolygon(A, G, H, noPoint)(0, 0);
@@ -3133,7 +3133,7 @@ draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI
 meeting \drawSizedLine{EH}.\\
 Draw \drawSizedLine{FG}.
 
-$\because \drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (const.)\\ %Because
+$\because \drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ (\conststr)\\ %Because
 $\polygonACD =
 \drawFromCurrentPicture[bottom][polygonGEF]{
 startAutoLabeling;
@@ -3353,11 +3353,11 @@ and having one of its sides \drawUnitLine{FE} conterminous with and in continuat
 Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$ draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued; draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
 
 $\polygonAHEF = \drawPolygon[bottom][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
-but $\polygonAHEF = \polygonJKL$ (const.)
+but $\polygonAHEF = \polygonJKL$ (\conststr)
 
 $\therefore \polygonEGDI = \polygonJKL$;
 
-and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and const.). % improvement: proposition 19 in the original seems to be a typo 
+and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and \conststr). % improvement: proposition 19 in the original seems to be a typo 
 \stopCenterAlign
 
 \qed
@@ -3483,8 +3483,8 @@ draw byNamedLineSeq(0)(AB,BD,DC,CA);
 draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 stopTempAngleScale;
 }
-$\drawUnitLine{CA} = \drawUnitLine{DC}$ (const.)\\
-$\drawAngle{C} = \mbox{right angle}$ (const.)
+$\drawUnitLine{CA} = \drawUnitLine{DC}$ (\conststr)\\
+$\drawAngle{C} = \mbox{right angle}$ (\conststr)
 
 $\therefore \drawAngle{D} = \drawAngle{C} = \mbox{a right angle}$ \inprop[prop:I.XXIX], and the remaining sides and angles must be equal, \inprop[prop:I.XXXIV]
 
@@ -3632,13 +3632,13 @@ draw byLabelsOnPolygon(D, B, C, A)(0, 0);
 Draw $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ and $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])\\
 and draw \drawUnitLine{BD} also.
 
-Since $\drawUnitLine{AD} = \drawUnitLine{AC}$ (const.)\\
+Since $\drawUnitLine{AD} = \drawUnitLine{AC}$ (\conststr)\\
 $\drawUnitLine{AD}^2 = \drawUnitLine{AC}^2$;
 
 $\therefore \drawUnitLine{AD}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{AC}^2 + \drawUnitLine{AB}^2$
 
 but $\drawUnitLine{AD}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BD}^2$ \inprop[prop:I.XLVII],\\
-and $\drawUnitLine{AC}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BC}^2$ (hyp.)
+and $\drawUnitLine{AC}^2 + \drawUnitLine{AB}^2 = \drawUnitLine{BC}^2$ (\hypstr)
 
 $\therefore \drawUnitLine{BD}^2 = \drawUnitLine{BC}^2$,
 
@@ -4026,7 +4026,7 @@ $\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]
 $\therefore \mbox{\inax[ax:II] } \drawPolygon{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
 but $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
 
-and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (const.)
+and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (\conststr)
 
 $\therefore \mbox{\inax[ax:II] } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$
 
@@ -4091,7 +4091,7 @@ $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH} = \drawPolygon[bottom]{
 $\therefore \drawPolygon[bottom]{BDHM,DCLH,MHGF} = \drawPolygon[bottom]{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
 
-$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (const., \inaxL[ax:II])
+$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:II])
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$.
 \stopCenterAlign
@@ -4852,7 +4852,7 @@ Draw within the circle any straight line \drawUnitLine{AD,DB}, make $\drawUnitLi
 
 For, if it be possible, let any other point as the point of concourse of \drawUnitLine{AG}, \drawUnitLine{DG} and \drawUnitLine{BG} be the centre.
 
-Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (hyp.\ and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (const.) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and therefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (const.) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
+Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (\hypstr\ and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (\conststr) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and therefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (\conststr) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
 
 \qed
 \stopProposition
@@ -4949,7 +4949,7 @@ and $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \indef[def:X] % im
 Again let $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$\\
 Then in \triangleAEF\ and \triangleFEB\\
 $\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V]\\
-$\drawAngle{AFE} = \drawAngle{EFB}$ (hyp.)\\
+$\drawAngle{AFE} = \drawAngle{EFB}$ (\hypstr)\\
 and $\drawUnitLine{AE} = \drawUnitLine{EB}$
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{FB}$ \inprop[prop:I.XXVI]
@@ -5359,7 +5359,7 @@ draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
 
-Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawPointL[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (hyp.) which is absurd.
+Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawPointL[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr) which is absurd.
 
 The same may be demonstrated of any other point, different from \drawPointL[middle][DA,DF]{D}, which must be the centre of the circle.
 
@@ -5708,7 +5708,7 @@ From the centre of \drawCircle[middle][1/4]{E} draw \drawProportionalLine{EF} $\
 Then $\drawProportionalLine{CG} = \mbox{ half } \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]\\
 and $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III]
 
-since $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (hyp.)\\
+since $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (\hypstr)\\
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
 and $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \indef[def:XV]\\
 $\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$;
@@ -5914,7 +5914,7 @@ If it be possible, let \drawUnitLine{AC}, which meets the circle again, be $\per
 Then, $\because \drawUnitLine{DA} = \drawUnitLine{DC}$,\\ %because
 $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
 and $\therefore$ each of these angles is acute \inprop[prop:I.XVII]\\
-but $\drawAngle{CAD} = \drawRightAngle$ (hyp.), which is absurd,
+but $\drawAngle{CAD} = \drawRightAngle$ (\hypstr), which is absurd,
 
 therefore \drawUnitLine{AC} drawn $\perp \drawUnitLine{DA}$ does not meet the circle again.
 \stopCenterAlign
@@ -6083,7 +6083,7 @@ For, if it be possible, let the centre be without \drawUnitLine{AC}, and draw \d
 \startCenterAlign
 $\because \drawUnitLine{CF} \perp \drawUnitLine{CE}$ \inprop[prop:III.XVIII]\\ % Because
 $\therefore \drawAngle{FCE} = \drawRightAngle$, a right angle;\\
-but $\drawAngle{ACF,FCE} = \drawRightAngle$ (hyp.),
+but $\drawAngle{ACF,FCE} = \drawRightAngle$ (\hypstr),
 
 and $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, a part equal to the whole, which is absurd.
 \stopCenterAlign
@@ -6679,7 +6679,7 @@ and make $\drawAngle{BAK,KAC} = \drawAngle{D}$
 
 $\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \inprop[prop:III.XXVI]
 
-but $\drawArc{GbI} = \drawArc{Hb}$ (hyp.)\\
+but $\drawArc{GbI} = \drawArc{Hb}$ (\hypstr)\\
 $\therefore \drawArc{GbI} = \drawArc{GbI,GbII}$ a part equal to the whole, which is absurd;
 
 $\therefore$ neither angle is greater than the other,
@@ -6739,7 +6739,7 @@ draw \drawUnitLine{AK}, \drawUnitLine{BK} and \drawUnitLine{DL}, \drawUnitLine{E
 
 and $\because \circleK = \circleL$\\ % because
 $\drawUnitLine{AK}, \drawUnitLine{BK} = \drawUnitLine{DL}, \drawUnitLine{EL}$\\
-also $\drawUnitLine{AB} = \drawUnitLine{DE}$ (hyp.)
+also $\drawUnitLine{AB} = \drawUnitLine{DE}$ (\hypstr)
 
 $\therefore \drawAngle{K} = \drawAngle{L}$
 
@@ -6799,7 +6799,7 @@ If the equal arcs be semicircles the proposition is evident. But if not,
 
 let \drawUnitLine{AK}, \drawUnitLine{BK} and \drawUnitLine{DL}, \drawUnitLine{EL} be drawn to the centres;
 
-$\because \drawArc{Kb} = \drawArc{Lb}$ (hyp.)\\ % because
+$\because \drawArc{Kb} = \drawArc{Lb}$ (\hypstr)\\ % because
 and $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII];
 
 but $\drawUnitLine{AK} \mbox{ and } \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ and } \drawUnitLine{EL}$
@@ -6850,9 +6850,9 @@ draw $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, and it bisects the arc.
 
 Draw \drawUnitLine{DA} and \drawUnitLine{DB}.
 
-$\drawUnitLine{AC} = \drawUnitLine{CB}$ (const.)\\
+$\drawUnitLine{AC} = \drawUnitLine{CB}$ (\conststr)\\
 \drawUnitLine{DC} is common,\\
-and $\drawAngle{ACD} = \drawAngle{DCB}$ (const.)
+and $\drawAngle{ACD} = \drawAngle{DCB}$ (\conststr)
 
 $\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
 $
@@ -7128,7 +7128,7 @@ Because \drawUnitLine{EF} is a tangent,\\
 and \drawUnitLine{AB} cuts it,\\
 the angle in $\segmentO\ = \drawAngle{B}$ \inprop[prop:III.XXXII],
 
-but $\drawAngle{B} = \drawAngle{givenAngle}$ (const.).
+but $\drawAngle{B} = \drawAngle{givenAngle}$ (\conststr).
 \stopCenterAlign
 
 \qed
@@ -7352,7 +7352,7 @@ draw byLabelPoint(C, angle(C-F) + 45, 2);
 Draw from the given point \drawSizedLine{DE}, a tangent to the circle,\\
 and draw from the centre \drawSizedLine{DF}, \drawSizedLine{BF}, and \drawSizedLine{EF},\\
 $\drawSizedLine{DE}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \inprop[prop:III.XXXVI]\\
-but $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (hyp.),\\
+but $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (\hypstr),\\
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{DE}^2$,\\
 and $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$.
 
@@ -7550,13 +7550,13 @@ Draw \drawUnitLine{EC,BE}, the diameter of \circleO;\\
 and if $\drawUnitLine{EC,BE} = \drawUnitLine{GH}$, then the problem is solved.
 
 But if \drawUnitLine{EC,BE} be not equal to \drawUnitLine{GH},\\
-$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (hyp.);
+$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (\hypstr);
 
 make $\drawUnitLine{EC} = \drawUnitLine{GH}$ \inprop[prop:I.III]\\
 with \drawUnitLine{EC} as radius, describe \drawCircle{C}, cutting \circleO, \\
 and draw \drawUnitLine{AC}, which is the line required.
 
-For $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], const.).
+For $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], \conststr).
 \stopCenterAlign
 
 \qed
@@ -7612,7 +7612,7 @@ and in like manner $\drawAngle{GAB} = \drawAngle{F}$,
 
 and draw \drawUnitLine{BC}.
 
-$\because \drawAngle{CAH} = \drawAngle{E}$ (const.)\\ %Because
+$\because \drawAngle{CAH} = \drawAngle{E}$ (\conststr)\\ %Because
 and $\drawAngle{CAH} = \drawAngle{B}$ \inprop[prop:III.XXXII]\\
 $\therefore \drawAngle{B} = \drawAngle{E}$;\\
 also $\drawAngle{C} = \drawAngle{F}$ for the same reason.
@@ -7707,12 +7707,12 @@ stopTempAngleScale;
 },
 taken together are equal to four right angles. \inprop[prop:I.XXXII]
 
-but \drawAngle{C} and \drawAngle{A} are right angles (const.)
+but \drawAngle{C} and \drawAngle{A} are right angles (\conststr)
 
 $\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, two right angles
 
 but $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \inprop[prop:I.XIII]\\
-and $\drawAngle{CKA} = \drawAngle{DFH}$ (const.) and $\therefore \drawAngle{L} = \drawAngle{DFE}$.
+and $\drawAngle{CKA} = \drawAngle{DFH}$ (\conststr) and $\therefore \drawAngle{L} = \drawAngle{DFE}$.
 
 In the same manner it can be demonstrated that\\
 $\drawAngle{N} = \drawAngle{FED}$;
@@ -7867,9 +7867,9 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(AF,DF,AD);
 stopAutoLabeling;
 }\\
-$\drawUnitLine{DB} = \drawUnitLine{AD}$ (const.),\\
+$\drawUnitLine{DB} = \drawUnitLine{AD}$ (\conststr),\\
 \drawUnitLine{DF} common,\\
-$\drawAngle{FDB} = \drawAngle{ADF}$ (const.),
+$\drawAngle{FDB} = \drawAngle{ADF}$ (\conststr),
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{BF}$ \inprop[prop:I.IV].
 
@@ -7923,7 +7923,7 @@ $\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII
 
 and in like manner $\drawUnitLine{DA} \parallel \drawUnitLine{BC}$.
 
-And $\because \drawAngle{AEB} = \drawAngle{DEA}$ (const.), %because
+And $\because \drawAngle{AEB} = \drawAngle{DEA}$ (\conststr), %because
 
 and $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 
@@ -7977,7 +7977,7 @@ and \drawLine[bottom][squareFGHK]{KF,HK,GH,FG} is a square.
 
 $\drawAngle{C} = \drawRightAngle$ a right angle, \inprop[prop:III.XVIII]
 
-also $\drawAngle{E} = \drawRightAngle$ (const.),
+also $\drawAngle{E} = \drawRightAngle$ (\conststr),
 
 $\therefore \drawUnitLine{HK} \parallel \drawUnitLine{BD}$; in the same manner it can be demonstrated that $\drawUnitLine{FG} \parallel \drawUnitLine{BD}$, and also that $\drawUnitLine{GH} \mbox{ and } \drawUnitLine{KF} \parallel \drawUnitLine{AC}$;
 
@@ -8036,7 +8036,7 @@ and $\drawUnitLine{EG,GH} = \drawUnitLine{DK,KC}$\\
 
 $\therefore$ \drawPolygon[bottom]{EDKG} is a parallelogram;
 
-and since $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (hyp.)\\
+and since $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (\hypstr)\\
 $\drawUnitLine{ED} = \drawUnitLine{DK}$
 
 $\therefore$ \polygonEDKG\ is equilateral \inprop[prop:I.XXXIV]
@@ -8161,7 +8161,7 @@ but $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ or } \drawAngle{BDC,CDA} = \drawAn
 since $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.V]\\
 consequently $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \inprop[prop:I.XXXII]\\
 $\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \inprop[prop:I.VI]\\
-$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (const.)\\
+$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (\conststr)\\
 $\therefore \drawAngle{A} = \drawAngle{CDA}$ \inprop[prop:I.V]
 
 $\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ twice } \drawAngle{A}$;
@@ -8435,7 +8435,7 @@ draw byNamedLineSeq(0)(CK,FC,FK);
 stopAutoLabeling;
 stopTempScale;
 }\\
-we have $\drawAngle{HCF} = \drawAngle{FCK}$ (const.), \drawUnitLine{FC} common,\\
+we have $\drawAngle{HCF} = \drawAngle{FCK}$ (\conststr), \drawUnitLine{FC} common,\\
 and $\drawAngle{H} = \drawAngle{K} = \mbox{ a right angle }$;
 
 $\therefore \drawUnitLine{FK} = \drawUnitLine{FH}$ \inprop[prop:I.XXVI]
@@ -9004,7 +9004,7 @@ byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(IV);
 
 Let $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$, then $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$, every equimultiple of $3\drawMagnitude{I}$ and $3\drawMagnitude{III}$ are equimultiples of \drawMagnitude{I} and \drawMagnitude{III}, and every equimultiple of $2\drawMagnitude{II}$ and $2\drawMagnitude{IV}$, are equimultiples of \drawMagnitude{II} and \drawMagnitude{IV} \inprop[prop:V.III]
 
-That is, $M$ times $3\drawMagnitude{I}$ and $M$ times $3\drawMagnitude{III}$ are equimultiples of \drawMagnitude{I} and \drawMagnitude{III}, and $m$ times $2\drawMagnitude{II}$ and $m 2\drawMagnitude{IV}$ are equimultiples of $2\drawMagnitude{II}$ and $2\drawMagnitude{IV}$; but $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (hyp.); $\therefore$ if $M 3\drawMagnitude{I} <, =, \mbox{ or } > m 2 \drawMagnitude{II}$, then $M 3\drawMagnitude{III} <, =, \mbox{ or } > m 2 \drawMagnitude{IV}$ \indef[def:V.V] and therefore $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$ \indef[def:V.V]
+That is, $M$ times $3\drawMagnitude{I}$ and $M$ times $3\drawMagnitude{III}$ are equimultiples of \drawMagnitude{I} and \drawMagnitude{III}, and $m$ times $2\drawMagnitude{II}$ and $m 2\drawMagnitude{IV}$ are equimultiples of $2\drawMagnitude{II}$ and $2\drawMagnitude{IV}$; but $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (\hypstr); $\therefore$ if $M 3\drawMagnitude{I} <, =, \mbox{ or } > m 2 \drawMagnitude{II}$, then $M 3\drawMagnitude{III} <, =, \mbox{ or } > m 2 \drawMagnitude{IV}$ \indef[def:V.V] and therefore $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$ \indef[def:V.V]
 
 The same reasoning holds good if any other equimultiple of the first and third be taken, any other equimultiple of the second and fourth.
 
@@ -9244,7 +9244,7 @@ take \magnitudeVI\ the same multiple of \magnitudeIV, \\
 then, $\because \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\ %because
 and of the second and fourth, we have taken equimultiples,\\
 \magnitudeI\ and \magnitudeVI\ therefore \inprop[prop:V.IV]\\
- $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, but (const.),\\
+ $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, but (\conststr),\\
  $\magnitudeI = \magnitudeV \therefore$ \inprop[prop:V.A] $\magnitudeIII = \magnitudeVI$\\
  and \magnitudeVI\ is the same multiple of \magnitudeIV\\
  that \magnitudeI\ is of \magnitudeII.
@@ -9520,7 +9520,7 @@ then, $\magnitudeII < \magnitudeI$.
 
 For if not, $\magnitudeII \mbox{ must be } > \mbox{ or } = \magnitudeI$,\\
 Then $\magnitudeIII : \magnitudeII < \magnitudeIII : \magnitudeI$ \inprop[prop:V.VIII] and (invert.);\\
-or $\magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeI$ \inprop[prop:V.VII], which is absurd (hyp.);
+or $\magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeI$ \inprop[prop:V.VII], which is absurd (\hypstr);
 
 $\therefore \magnitudeII \mbox{ is } \ngtr \mbox{ or } = \magnitudeI$,\\ %  \mbox{ is not } >
 and $\therefore \magnitudeII \mbox{ must be } < \magnitudeI$.
@@ -9656,7 +9656,7 @@ $\therefore \magnitudeIV < \magnitudeII$ \inprop[prop:V.X], or $\magnitudeII > \
 Secondly, let $\magnitudeI = \magnitudeIII$, then will $\magnitudeII = \magnitudeIV$.
 
 For $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII],\\
-and $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$ (hyp.);\\
+and $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$ (\hypstr);\\
 $\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI],\\
 and $\therefore \magnitudeII = \magnitudeIV$ \inprop[prop:V.IX].
 
@@ -9731,7 +9731,7 @@ byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
 Let $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$, then $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
 
 For $M \magnitudeI : M \magnitudeII :: \magnitudeI : \magnitudeII$ \inprop[prop:V.XV],\\
-and $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (hyp.) and \inprop[prop:V.XI];\\
+and $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr) and \inprop[prop:V.XI];\\
 also $m \magnitudeIII : m \magnitudeIV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XV];
 
 $\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$ \inprop[prop:V.XIV],\\
@@ -9787,7 +9787,7 @@ then will $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
 Take $\magnitudeI > m \magnitudeII$ to each add $M \magnitudeII$,\\
 then we have $M \magnitudeI + M \magnitudeII > m \magnitudeII + M \magnitudeII$,\\
 or $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$:\\
-but $\because \magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (hyp.),\\ %because
+but $\because \magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (\hypstr),\\ %because
 and $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$;\\
 $\therefore M(\magnitudeIII + \magnitudeIV) > (m + M) \magnitudeIV$ \indef[def:V.V];\\
 $\therefore M \magnitudeIII + M \magnitudeIV > m \magnitudeIV + M \magnitudeIV$;\\
@@ -9847,7 +9847,7 @@ for if not, let $\magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \d
 supposing $\magnitudeV \neq \magnitudeIV$; %\mbox{ not } =
 
 $\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeV$ \inprop[prop:V.XVII]\\
-but $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (hyp.);
+but $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr);
 
 $\therefore \magnitudeIII : \magnitudeV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI];
 
@@ -9884,7 +9884,7 @@ $\therefore \magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (divid.)
 
 again $\magnitudeII : \magnitudeIV :: \magnitudeI : \magnitudeIII$ (alter.),
 
-but $\magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV :: \magnitudeI : \magnitudeIII$ (hyp.);
+but $\magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV :: \magnitudeI : \magnitudeIII$ (\hypstr);
 
 therefore $\magnitudeII : \magnitudeIV :: \magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV$ \inprop[prop:V.XI].
 
@@ -10039,9 +10039,9 @@ then will $\magnitudeIV >, =, \mbox{ or } < \magnitudeVI$.
 First, let $\magnitudeI \mbox{ be } > \magnitudeIII$:\\
 then, because \magnitudeII\ is any other magnitude,\\
 $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII];\\
-but $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (hyp.);\\
+but $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (\hypstr);\\
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII];\\
-and $\because \magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.);\\ %because
+and $\because \magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (\hypstr);\\ %because
 $\therefore \magnitudeIII : \magnitudeII :: \magnitudeV : \magnitudeIV$ (inv.),\\
 and it was shown that $\magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$,
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeV : \magnitudeIV$ \inprop[prop:V.XIII];\\
@@ -10051,8 +10051,8 @@ that is $\magnitudeIV > \magnitudeVI$.
 Secondly, let $\magnitudeI = \magnitudeIII$; then shall $\magnitudeIV = \magnitudeVI$.\\
 For $\because \magnitudeI = \magnitudeIII$,\\ %because
 $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII];\\
-but $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (hyp.),\\
-and $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (hyp.\ and inv.),\\
+but $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (\hypstr),\\
+and $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (\hypstr\ and inv.),\\
 $\therefore \magnitudeV : \magnitudeVI = \magnitudeV : \magnitudeIV$ \inprop[prop:V.XI],\\
 $\therefore \magnitudeIV = \magnitudeVI$ \inprop[prop:V.IX].
 
@@ -10171,9 +10171,9 @@ $M \magnitudeI, M \magnitudeII, m \magnitudeIII, M \magnitudeIV, m \magnitudeV, 
 then $\magnitudeI : \magnitudeII :: M \magnitudeI : M \magnitudeII$ \inprop[prop:V.XV];\\
 and for the same reason\\
 $\magnitudeV : \magnitudeVI :: m \magnitudeV : m \magnitudeVI$;\\
-but $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (hyp.),\\
+but $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$ (\hypstr),\\
 $\therefore M \magnitudeI : M \magnitudeII :: \magnitudeV : \magnitudeVI$ \inprop[prop:V.XI];\\
-and $\because \magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (hyp.),\\ %because
+and $\because \magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (\hypstr),\\ %because
 $\therefore M \magnitudeII : m \magnitudeIII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV];\\
 then, because there are three magnitudes,\\
 $M \magnitudeI, M \magnitudeII, m \magnitudeII$,\\
@@ -10234,14 +10234,14 @@ Let $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$,\\
 and $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$,\\
 then $\magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeIII + \magnitudeVI : \magnitudeIV$.
 
-For $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (hyp.),\\
-and $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (hyp.) and (invert.),
+For $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (\hypstr),\\
+and $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (\hypstr) and (invert.),
 
 $\therefore \magnitudeV : \magnitudeI :: \magnitudeVI : \magnitudeIII$ \inprop[prop:V.XXII];\\
 and, because these magnitudes are proportionals, they are proportionals when taken jointly,
 
 $\therefore \magnitudeI + \magnitudeV : \magnitudeV :: \magnitudeVI + \magnitudeIII : \magnitudeVI$ \inprop[prop:V.XVIII],\\
-but $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (hyp.),
+but $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (\hypstr),
 
 $\therefore \magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeVI + \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XXII]
 
@@ -10269,7 +10269,7 @@ then will $\magnitudeIa + \magnitudeIII + \magnitudeIV \mbox{ be } > \magnitudeI
 $\because \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$, %because
 
 $\therefore \magnitudeIa : \magnitudeIIa :: \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV$ \inprop[prop:V.XIX],\\
-but $\magnitudeIa + \magnitudeIII > \magnitudeIIa + \magnitudeIV$ (hyp.),
+but $\magnitudeIa + \magnitudeIII > \magnitudeIIa + \magnitudeIV$ (\hypstr),
 
 $\therefore \magnitudeIa > \magnitudeIIa$ \inprop[prop:V.A];\\
 to each of these add $\magnitudeIII + \magnitudeIV$,\\
@@ -10716,7 +10716,7 @@ $\therefore \dfrac
 =
 \dfrac
 {h \times k \times l \times m \times n}
-{k \times l \times m \times n \times p}$ (hyp.),
+{k \times l \times m \times n \times p}$ (\hypstr),
 
 or $\dfrac{\vara \times \varb}{\varb \times \varc}
 \times
@@ -10756,7 +10756,7 @@ And $\dfrac
 {\vard \times \vare \times \varf \times \varg}
 = \dfrac
 {h \times k \times l \times m \times n}
-{k \times l \times m \times n \times p}$ (hyp.),
+{k \times l \times m \times n \times p}$ (\hypstr),
 
 and $\dfrac
 {m \times n}
@@ -10764,7 +10764,7 @@ and $\dfrac
 =
 \dfrac
 {e \times f}
-{f \times g}$ (hyp.),
+{f \times g}$ (\hypstr),
 
 $\therefore \dfrac
 {h \times k \times l \times m \times n}
@@ -11049,7 +11049,7 @@ $\left.\eqalign{
 \because \drawUnitLine{DB} : \drawUnitLine{AD} &:: \triangleBDE\ : \triangleADE \cr %\mbox{ because }
 \mbox{ and } \drawUnitLine{EC} : \drawUnitLine{AE} &:: \triangleCDE\ : \triangleADE \cr
 }\right\}\mbox{ \inprop[prop:VI.I] }$;\\
-but $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (hyp.)\\
+but $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (\hypstr)\\
 $\therefore \triangleBDE\ : \triangleADE :: \triangleCDE\ : \triangleADE$ \inprop[prop:V.XI]\\
 $\therefore \triangleBDE\ = \triangleCDE$ \inprop[prop:V.IX];
 
@@ -11113,7 +11113,7 @@ $\therefore \drawUnitLine{CA} : \drawUnitLine{AB} :: \drawUnitLine{DC} : \drawUn
 Let the same construction remain,\\
 and $\drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{BD} : \drawUnitLine{DC}$ \inprop[prop:VI.II];
 
-but $\drawUnitLine{BD} : \drawUnitLine{DC} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ (hyp.)\\
+but $\drawUnitLine{BD} : \drawUnitLine{DC} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ (\hypstr)\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{AB} : \drawUnitLine{CA}$ \inprop[prop:V.XI].
 
 and $\therefore \drawUnitLine{AE} = \drawUnitLine{CA}$ \inprop[prop:V.IX],\\
@@ -11247,7 +11247,7 @@ $\drawAngle{GEF} = \drawAngle{B}$, $\drawAngle{EFG} = \drawAngle{C}$ \inprop[pro
 and consequently $\drawAngle{G} = \drawAngle{A}$ \inprop[prop:I.XXXII],\\
 and since the triangles are equiangular,\\
 $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{GE} : \drawUnitLine{EF}$ \inprop[prop:VI.IV];\\
-but $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{DE} : \drawUnitLine{EF}$ (hyp.);\\
+but $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{DE} : \drawUnitLine{EF}$ (\hypstr);\\
 $\therefore \drawUnitLine{DE} : \drawUnitLine{EF} :: \drawUnitLine{GE} : \drawUnitLine{EF}$,
 and consequently $\drawUnitLine{DE} = \drawUnitLine{GE}$ \inprop[prop:V.IX].
 In like manner it may be shown that\\
@@ -11255,7 +11255,7 @@ $\drawUnitLine{FD} = \drawUnitLine{FG}$.
 
 Therefore, the two triangles having a common base \drawUnitLine{EF}, and their sides equal, have also equal angles opposite to equal sides, i.\ e.\\
 $\drawAngle{DEF} = \drawAngle{GEF}$ and $\drawAngle{EFD} = \drawAngle{EFG}$ \inprop[prop:I.VIII].\\
-but $\drawAngle{GEF} = \drawAngle{B}$ (const.) and $\therefore \drawAngle{DEF} = \drawAngle{B}$;\\
+but $\drawAngle{GEF} = \drawAngle{B}$ (\conststr) and $\therefore \drawAngle{DEF} = \drawAngle{B}$;\\
 for the same reason $\drawAngle{EFD} = \drawAngle{C}$,\\
 and consequently $\drawAngle{D} = \drawAngle{A}$ \inprop[prop:I.XXXII];\\
 and therefore the triangles are equiangular, and it is evident that the homologous sides subtended by the equal angles.
@@ -11310,12 +11310,12 @@ and $\drawAngle{FDG} = \drawAngle{A}$;\\
 then $\drawAngle{G} = \drawAngle{B}$ \inprop[prop:I.XXXII],\\
 and two triangles being equiangular,\\
 $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{FG} : \drawUnitLine{FD}$ \inprop[prop:VI.IV];\\
-but $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ (hyp.)\\
+but $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ (\hypstr)\\
 $\therefore \drawUnitLine{FG} : \drawUnitLine{FD} :: \drawUnitLine{EF} : \drawUnitLine{FD}$ \inprop[prop:V.XI],\\
 and consequently $\drawUnitLine{FG} = \drawUnitLine{EF}$ \inprop[prop:V.IX];\\
 $\therefore \triangleDEF\ =
 \drawLine[bottom][triangleDGF]{FD,FG,GD}$ in every respect \inprop[prop:I.IV].\\
-but $\drawAngle{GFD} = \drawAngle{A}$ (const.),\\
+but $\drawAngle{GFD} = \drawAngle{A}$ (\conststr),\\
 and $\therefore \drawAngle{EFD} = \drawAngle{A}$;\\
 and since also $\drawAngle{EFD} = \drawAngle{C}$,\\
 $\drawAngle{E} = \drawAngle{B}$ \inprop[prop:I.XXXII];\\
@@ -11365,21 +11365,21 @@ draw byLabelsOnPolygon(D, F, E)(0, 0);
 \startCenterAlign
 First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
 
-$\because \drawAngle{C} = \drawAngle{F}$ (hyp.) and $\drawAngle{GBC} = \drawAngle{E}$ (const.)\\ %Because
+$\because \drawAngle{C} = \drawAngle{F}$ (\hypstr) and $\drawAngle{GBC} = \drawAngle{E}$ (\conststr)\\ %Because
 $\therefore \drawAngle{CGB} = \drawAngle{D}$ \inprop[prop:I.XXXII];
 
 $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV],\\
-but $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ (hyp.)
+but $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ (\hypstr)
 
 $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{BC} : \drawUnitLine{AB}$;\\
 $\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \inprop[prop:V.IX],\\
 and $\therefore \drawAngle{A} = \drawAngle{BGA}$ \inprop[prop:I.V].
 
-But \drawAngle{A} is less than a right angle (hyp.)\\
+But \drawAngle{A} is less than a right angle (\hypstr)\\
 $\therefore$ \drawAngle{BGA} is less than a right angle;\\ 
 and $\therefore$ \drawAngle{CGB} must be greater than a right angle \inprop[prop:I.XIII], but it has been proven $= \drawAngle{D}$ and therefore less than a right angle, which is absurd. $\therefore$ \drawAngle{ABG,GBC} and \drawAngle{E} are not unequal;
 
-$\therefore$ they are equal, and since $\drawAngle{C} = \drawAngle{F}$ (hyp.)\\
+$\therefore$ they are equal, and since $\drawAngle{C} = \drawAngle{F}$ (\hypstr)\\
 $\therefore \drawAngle{A} = \drawAngle{D}$ \inprop[prop:I.XXXII], and therefore the triangles are equiangular.
 \stopCenterAlign
 
@@ -11464,7 +11464,7 @@ $\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{
 and by composition \inprop[prop:V.XVIII];\\
 $\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$;
 
-but \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part (const.);
+but \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part (\conststr);
 
 $\therefore$ \drawSizedLine{AF} is the required part.
 \stopCenterAlign
@@ -11526,9 +11526,9 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DF}}}\right\}$
 are $\parallel$,\\
 $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{EC} : \drawSizedLine{DE}$ \inprop[prop:VI.II],\\
-or $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSizedLine{D'E'}$ (const.),\\
+or $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSizedLine{D'E'}$ (\conststr),\\
 and $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DE} : \drawSizedLine{AD}$ \inprop[prop:VI.II],\\
-$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ (const.),
+$\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ (\conststr),
 
 and $\therefore$ the given line \drawSizedLine{AF,FG,GB} is divided similarly to \drawSizedLine{A'D',D'E',E'C'}.
 \stopCenterAlign
@@ -11575,7 +11575,7 @@ and draw $\drawSizedLine{DE} \parallel \drawSizedLine{BC}$; \inprop[prop:I.XXXI]
 
 For since $\drawSizedLine{BC} \parallel \drawSizedLine{DE}$,\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{CE}$ \inprop[prop:VI.II];\\
-but $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{A'C'}$ (const.);\\
+but $\drawSizedLine{BD} = \drawSizedLine{AC} = \drawSizedLine{A'C'}$ (\conststr);\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{A'C'} :: \drawSizedLine{A'C'} : \drawSizedLine{CE}$ \inprop[prop:V.VII].
 \stopCenterAlign
 
@@ -11641,7 +11641,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{DG}}
 \nointerlineskip\hbox{\drawSizedLine{GE}}
 \nointerlineskip\hbox{\drawSizedLine{DH}}}\right\}$
-(const.);
+(\conststr);
 
 $\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{C} : \drawUnitLine{HF}$ \inprop[prop:V.VII].
 \stopCenterAlign
@@ -11707,7 +11707,7 @@ Draw \drawUnitLine{AD} and \drawUnitLine{CD}.
 Since \drawAngle{D} is a right angle \inprop[prop:III.XXXI],\\
 and \drawUnitLine{BD} is $\perp$ from it upon the opposite side,\\
 $\therefore$ \drawUnitLine{BD} is a mean proportional between \drawUnitLine{AB} and \drawUnitLine{BC} \inprop[prop:VI.VIII],\\
-and $\therefore$ between \drawUnitLine{A} and \drawUnitLine{B} (const.).
+and $\therefore$ between \drawUnitLine{A} and \drawUnitLine{B} (\conststr).
 \stopCenterAlign
 
 \qed
@@ -11757,7 +11757,7 @@ The same construction remaining:\\
 $\drawUnitLine{BG} : \drawUnitLine{BF} ::
 \left\{\eqalign{
 \drawPolygon{CEBG} &: \drawPolygon{EHFB} \mbox{\inprop[prop:VI.I]}\cr
-\drawUnitLine{BD} &: \drawUnitLine{BE} \mbox{(hyp.)}\cr
+\drawUnitLine{BD} &: \drawUnitLine{BE} \mbox{(\hypstr)}\cr
 \drawPolygon{BFAD} &: \drawPolygon{EHFB} \mbox{\inprop[prop:VI.I]}\cr
 }\right.$\\
 $\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \inprop[prop:V.XI]\\
@@ -11818,7 +11818,7 @@ Let the same construction remain, and\\
 $\drawPolygon{DAE} : \drawPolygon{DAB} :: \drawUnitLine{DA} : \drawUnitLine{BA}$ \inprop[prop:VI.I]\\
 and $\drawUnitLine{AC} : \drawUnitLine{DA} :: \drawPolygon{ABC} : \drawPolygon{DAB}$ \inprop[prop:VI.I]
 
-but $ \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$, (hyp.)
+but $ \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$, (\hypstr)
 
 $\therefore \drawPolygon{DAE} : \drawPolygon{DAB} :: \drawPolygon{ABC} : \drawPolygon{DAB}$ \inprop[prop:V.XI];
 
@@ -11874,8 +11874,8 @@ From the extremities of \drawUnitLine{AB} and \drawUnitLine{CD} draw \drawUnitLi
 complete the parallelograms \drawPolygon{ABFG} and \drawPolygon{CDEH}.
 
 and since,\\
-$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (hyp.)\\
-$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (const.)\\
+$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (\hypstr)\\
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (\conststr)\\
 $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
 that is, the rectangle contained be the extremes, equal to the rectangle contained be the means.
 \stopCenterAlign
@@ -11891,7 +11891,7 @@ and $\drawUnitLine{CH} = \drawUnitLine{E}$.\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV]
 
 But $\drawUnitLine{CH} = \drawUnitLine{E}$,\\
-and $\drawUnitLine{AG} = \drawUnitLine{F}$ (const.)\\
+and $\drawUnitLine{AG} = \drawUnitLine{F}$ (\conststr)\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ \inprop[prop:V.VII].
 \stopCenterAlign
 \stopsubproposition
@@ -12091,7 +12091,7 @@ $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{B
 draw \drawUnitLine{AG}.\\
 $\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV];\\
 $\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \inprop[prop:V.XVI],\\
-but $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (const.),\\
+but $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (\conststr),\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$\\
 consequently $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$ for they have the sides about equal angles \drawAngle{E} and \drawAngle{B} reciprocally proportional \inprop[prop:VI.XV];
 
@@ -12273,8 +12273,8 @@ And if four similar rectilinear figures, similarly described on four straight li
 \startCenterAlign
 Take \drawUnitLine{O} a third proportional to \drawUnitLine{AB} and \drawUnitLine{CD}, and \drawUnitLine{P} a third proportional to \drawUnitLine{EF} and \drawUnitLine{GH} \inprop[prop:VI.XI];
 
-since $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (hyp.)\\
-$\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ (const.)
+since $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (\hypstr)\\
+$\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ (\conststr)
 
 $\therefore$ ex \ae quali,\\
 $\drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$;
@@ -12292,9 +12292,9 @@ $\therefore \drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolyg
 \startCenterAlign
 Let the same construction remain;
 
-$\drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ (hyp.),
+$\drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ (\hypstr),
 
-$\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$ (const.),
+$\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$ (\conststr),
 
 and $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ \inprop[prop:V.XI].
 \stopCenterAlign
@@ -12338,7 +12338,7 @@ Let two of the sides \drawUnitLine{BC} and \drawUnitLine{CG} about the equal ang
 
 \startCenterAlign
 Since $\drawAngle{BCD} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
-and $\drawAngle{GCE} = \drawAngle{BCD}$ (hyp.),\\
+and $\drawAngle{GCE} = \drawAngle{BCD}$ (\hypstr),\\
 $\drawAngle{GCE} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
 and $\therefore$ \drawUnitLine{CE} and \drawUnitLine{DC} form one straight line \inprop[prop:I.XIV];
 
@@ -12513,14 +12513,14 @@ and upon \drawUnitLine{GH} describe \drawPolygon[bottom][triangleKGH]{KGH}, simi
 Then $\triangleKGH\ = \polygonD$.
 
 For since \triangleABC\ and \triangleKGH\ are similar, and\\
-$\drawUnitLine{BC} : \drawUnitLine{GH} :: \drawUnitLine{GH} : \drawUnitLine{CF}$ (const.),\\
+$\drawUnitLine{BC} : \drawUnitLine{GH} :: \drawUnitLine{GH} : \drawUnitLine{CF}$ (\conststr),\\
 $\triangleABC\ : \triangleKGH\ :: \drawUnitLine{BC} : \drawUnitLine{CF}$ \inprop[prop:VI.XX];
 
 but $\polygonBCEL\ : \polygonCFME\ :: \drawUnitLine{BC} : \drawUnitLine{CF}$ \inprop[prop:VI.I];\\
 $\therefore \triangleABC\ : \triangleKGH\ :: \polygonBCEL\ : \polygonCFME$ \inprop[prop:V.XI];\\
-but $\triangleABC\ = \polygonBCEL$ (const.),\\
+but $\triangleABC\ = \polygonBCEL$ (\conststr),\\
 and $\therefore \triangleKGH\ = \polygonCFME$ \inprop[prop:V.XIV];\\
-and $\polygonCFME\ = \polygonD$ (const.);\\
+and $\polygonCFME\ = \polygonD$ (\conststr);\\
 consequently, \triangleKGH\ which is similar to \triangleABC\ is also $= \polygonD$.
 \stopCenterAlign
 
@@ -12596,7 +12596,7 @@ be the diagonal of \parallelogramABCD\ and draw $\drawUnitLine{KH} \parallel \dr
 Since \drawLine[bottom][parallelogramAKHG]{AG,GH,KH,AK} and \parallelogramABCD\ are about the same diagonal \lineAHC, and have \drawAngle{A} common, they are similar \inprop[prop:VI.XXIV];
 
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
-but $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (hyp.),\\
+but $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (\hypstr),\\
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \drawSizedLine{AK,KE}$,\\
 and $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \inprop[prop:V.IX], which is absurd.
 
@@ -12688,7 +12688,7 @@ and if $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$,\\
 problem is solved.
 
 But if $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
-then must $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ (hyp.).
+then must $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ (\hypstr).
 
 Draw $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{G}$;\\
 make $\drawSizedLine{DC,CF} = \drawSizedLine{AE,EC} \mbox{ or } \drawSizedLine{CB}$;\\
@@ -12702,7 +12702,7 @@ $\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}
 from both take $\drawSizedLine{EC}^2$,\\
 and $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
 
-But $\drawSizedLine{DC} = \drawSizedLine{G}$ (const.),\\
+But $\drawSizedLine{DC} = \drawSizedLine{G}$ (\conststr),\\
 and $\therefore$ \drawSizedLine{AE,EC,CB} is so divided that $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{G}^2$.
 \stopCenterAlign
 
@@ -12943,7 +12943,7 @@ $\drawAngle{A} = \drawAngle{ACD}$ \inprop[prop:I.XXIX];\\
 and also since $\drawUnitLine{CA} \parallel \drawUnitLine{ED}$,\\
 $\drawAngle{ACD} = \drawAngle{D}$ \inprop[prop:I.XXIX];\\
 $\therefore \drawAngle{A} = \drawAngle{D}$;\\
-and since $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (hyp.),\\
+and since $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (\hypstr),\\
 the triangles are equiangular \inprop[prop:VI.VI];
 
 $\therefore \drawAngle{B} = \drawAngle{DCE}$;\\
@@ -13130,7 +13130,7 @@ stopTempScale;
 For if \drawSizedLine{BE} be drawn $\parallel \drawSizedLine{DC}$,\\
 $\eqalign{
 \mbox{then } \drawAngle{DCB} &= \drawAngle{EBC} \mbox{, \inprop[prop:I.XXIX];}\cr
-& = \drawAngle{FCD} \mbox{, (hyp.),}\cr
+& = \drawAngle{FCD} \mbox{, (\hypstr),}\cr
 & = \drawAngle{E} \mbox{, \inprop[prop:I.XXIX];}
 }$\\
 and $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$, \inprop[prop:I.VI],\\
@@ -13181,7 +13181,7 @@ then shall $\drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{BD} \t
 About \drawLine[bottom]{CA,DC,BD,AB} describe \drawCircle[middle][1/4]{O} \inprop[prop:IV.V],\\
 produce \drawSizedLine{AD} to meet the circle, and draw \drawSizedLine{CE}.
 
-Since $\drawAngle{CAE} = \drawAngle{EAB}$ (hyp.),\\
+Since $\drawAngle{CAE} = \drawAngle{EAB}$ (\hypstr),\\
 and $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI],\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} and \drawLine[middle]{CA,CE,DE,AD} are equiangular \inprop[prop:I.XXXII];\\
 $\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \inprop[prop:VI.IV];\\
@@ -13232,7 +13232,7 @@ draw $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
 then shall $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ the diameter of the described circle.
 
 Describe \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], draw its diameter \drawUnitLine{AE}, and draw \drawUnitLine{CE};\\
-then $\because \drawAngle{D} = \drawAngle{BCA,ECB}$ (const.\ and \inpropL[prop:III.XXXI]);\\ %because
+then $\because \drawAngle{D} = \drawAngle{BCA,ECB}$ (\conststr\ and \inpropL[prop:III.XXXI]);\\ %because
 and $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI];\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} is equiangular to \drawLine[middle]{CA,CE,AE} \inprop[prop:VI.IV];
 
@@ -13291,7 +13291,7 @@ $\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$; and $\drawAngle{BCA} = \
 
 $\therefore \drawUnitLine{DA} : \drawUnitLine{ED} :: \drawUnitLine{AC} : \drawUnitLine{BC}$ \inprop[prop:VI.IV];\\
 and $\therefore \drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$ \inprop[prop:VI.XVI];\\
-again, $\because \drawAngle{EAB} = \drawAngle{DAC}$ (const.),\\ %because
+again, $\because \drawAngle{EAB} = \drawAngle{DAC}$ (\conststr),\\ %because
 and $\drawAngle{B} = \drawAngle{ACD}$ \inprop[prop:III.XXI];\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUnitLine{CD}$ \inprop[prop:VI.IV];\\
 and $\therefore \drawUnitLine{BE} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD}$ \inprop[prop:VI.XVI];\\
