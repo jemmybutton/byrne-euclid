@@ -265,7 +265,14 @@
 \setuphead[intro][alternative=text,command=\bookTitle, header=empty, footer=none,before={},after={}]
 
 \definehead[book][coupling=part,default=part,incrementnumber=yes,placehead=yes]
-\setuphead[book][alternative=text,command=\bookTitle,conversion=Romannumerals,header=empty,footer=none,before={},after={}]
+\setuphead[book][alternative=text,command=\bookTitle,header=empty,footer=none,before={},after={}]
+
+\definecounter[book][way=bytext,numberconversion=R]
+\define\startBook{\dodoubleempty\startbookalt}
+\define\stopBook{\stopbook}
+\def\startbookalt[#1][#2]{%
+  \incrementcounter[book]%
+  \startbook[ownnumber={\directconvertedcounter{book}\empty},incrementnumber=no,#1][#2]}
 
 \definehead[supersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
 \define[2]\supersectionTitle{\vbox{\ \hfill \tfb #2 \hfill\ }}
