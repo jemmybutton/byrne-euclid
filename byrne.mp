@@ -1435,21 +1435,30 @@ if mainPictureMode:
     appendList(pointAnglesList.b, str angleName, 1, true);
     appendList(anglePointsList, str b, 1, true);
 fi;
-    save p, q, d;
+    save p, q, d, ad, ac;
     path p;
     picture q;
     pair d;
+    numeric ad;
+    boolean ac;
     d := 1/2[unitvector(a-b),unitvector(c-b)];
     if (abs(d) == 0):
         d := (unitvector(a-c) rotated 90);
     fi;
     p := fullcircle rotated (180 + angle(d));
     p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
+    ad := angle(point (arctime arclength(p)/2 of p) of p);
+    if (ypart(unitvector(a-b) rotated -ad)) > 0:
+        ac := true;
+    else:
+        ac := false;
+    fi;
     setAttribute("angle", "Arc", str angleName, p);
+    setAttribute("angle", "ArcClockwise", str angleName, ac);
     setAttribute("angle", "Val", str angleName, 180*arclength(p scaled 2)/pi);
     setAttribute("angle", "AVal", str angleName, angle(a-b));
     setAttribute("angle", "CVal", str angleName, angle(c-b));
-    setAttribute("angle", "Direction", str angleName, angle(point (arctime arclength(p)/2 of p) of p));
+    setAttribute("angle", "Direction", str angleName, ad);
     setAttribute("angle", "Color", str angleName, col);
     setAttributeMulti("angle", "OptionalColor", str angleName, white, 0);
     setAttribute("angle", "Style", str angleName, sty);
@@ -1505,20 +1514,24 @@ vardef byNamedAngle(text anglesList) =
     path p;
     image(
         forsuffixes aN=anglesList:
-            setAttribute("angle", "ScaleCorrection", str aN, angleScale);
-            p := getAttribute("angle", "Arc", str aN);
-            q := image(
-                if (getAttribute("angle", "Color", str aN) <> white):
-                    if (typeOf(getAttribute("angle", "Style", str aN)) == "numeric"):
-                        draw scantokens(byAngleMacroName[getAttribute("angle", "Style", str aN)]) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
-                    elseif (typeOf(getAttribute("angle", "Style", str aN)) == "string"):
-                        draw scantokens("byAngleM" & getAttribute("angle", "Style", str aN)) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
+            if attributeExists("angle", "Synonym", str aN):
+                setAttribute("angle", "ScaleCorrection", str aN, angleScale);
+                p := getAttribute("angle", "Arc", str aN);
+                q := image(
+                    if (getAttribute("angle", "Color", str aN) <> white):
+                        if (typeOf(getAttribute("angle", "Style", str aN)) == "numeric"):
+                            draw scantokens(byAngleMacroName[getAttribute("angle", "Style", str aN)]) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
+                        elseif (typeOf(getAttribute("angle", "Style", str aN)) == "string"):
+                            draw scantokens("byAngleM" & getAttribute("angle", "Style", str aN)) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
+                        fi;
+                    else:
+                        draw byAngleMWhite(p, 0, 0);
                     fi;
-                else:
-                    draw byAngleMWhite(p, 0, 0);
-                fi;
-            );
-            draw (q shifted (getAttribute("angle", "Center", str aN) scaled scaleFactor)) rotated globalRotation;
+                );
+                draw (q shifted (getAttribute("angle", "Center", str aN) scaled scaleFactor)) rotated globalRotation;
+            else:
+                draw byNamedAngle(scantokens(byConstructCoupoundAngle(str aN)));
+            fi;
         endfor;
     )
 enddef;
@@ -1589,8 +1602,8 @@ enddef;
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
 vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
-    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse;
-    string centerName, pointName[];
+    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse, processedAnglesList;
+    string centerName, pointName[], processedAnglesList;
     pair ac, p[];
     boolean uniqueCenter, angleCheck, doNotLabelCenter;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
@@ -1601,7 +1614,15 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
     uniqueCenter := true;
     doNotLabelCenter := false;
     scaleToUse := -1;
+    processedAnglesList := "";
     forsuffixes aN=anglesList:
+        if attributeExists("angle", "Synonym", str aN):
+            appendList(processedAnglesList, str aN, 1, false);
+        else:
+            appendList(processedAnglesList, byConstructCoupoundAngle(str aN), 1, false);
+        fi;
+    endfor;
+    forsuffixes aN=scantokens(processedAnglesList):
         ac := getAttribute("angle", "Center", str aN);
         if (centerName == ""):
             centerName := getAttribute("angle", "BName", str aN);
@@ -1623,7 +1644,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
         startTempAngleScale(scaleToUse);
             if (uniqueCenter):
                 angleNum := 0;
-                forsuffixes aN=anglesList:
+                forsuffixes aN=scantokens(processedAnglesList):
                     anglePart1 := angle(point 0 of getAttribute("angle", "Arc", str aN));
                     as1 := sign(ypart((direction 0 of getAttribute("angle", "Arc", str aN)) rotated -anglePart1));
                     anglePart2 := angle(point 0 of reverse(getAttribute("angle", "Arc", str aN)));
@@ -1850,6 +1871,7 @@ vardef generateAngleSynonyms =
         string candidateName[], originalName;
         forsuffixes i=scantokens(anglePointsList):
             n := 0;
+            pointAnglesList.i := sortPointAnglesList(pointAnglesList.i);
             forsuffixes j=scantokens(pointAnglesList.i):
                 if (length(str j) > 0):
                     n := n + 1;
@@ -1879,6 +1901,115 @@ vardef generateAngleSynonyms =
             fi;
         endfor;
     fi;
+enddef;
+
+vardef sortPointAnglesList (expr anglesListToSort) =
+    save preList, postList, nPre, nPost, isSorted, value, firstValue, lastValue, rv;
+    string preList, postList, rv;
+    boolean isSorted;
+    numeric value, firstValue, lastValue, nPre, nPost;
+    firstValue := -360;
+    lastValue := -360;
+    isSorted := true;
+    preList := "";
+    postList := "";
+    nPre := 0;
+    nPost := 1;
+    forsuffixes i=scantokens(anglesListToSort):
+        value := getAttribute("angle", "Direction", str i);
+        if (firstValue == -360):
+            firstValue := value;
+            appendList(postList, str i, 0, false);
+        else:
+            if (value < firstValue):
+                appendList(preList, str i, 0, false);
+                nPre := nPre + 1;
+            else:
+                appendList(postList, str i, 0, false);
+                nPost := nPost + 1;
+            fi;
+        fi;
+        if (lastValue > value):
+            isSorted := false;
+        fi;
+        lastValue := value;
+    endfor;
+    if (isSorted):
+        rv := anglesListToSort;
+    else:
+        if (nPre > 1):
+            preList := sortPointAnglesList(preList);
+        fi;
+        if (nPre > 0):
+            preList := preList & ", ";
+        fi;
+        if (nPost > 1):
+            postList := sortPointAnglesList(postList);
+        fi;
+        rv := preList & postList;
+    fi;
+    rv
+enddef;
+
+vardef byConstructCoupoundAngle(expr angleName) =
+    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, dirA, dirC;
+    string pointA, pointB, pointC, cPointA, cPointB, cPointC, angleList;
+    boolean isFirst, isLast;
+    pair cwA, cwC, dirA, dirC;
+    angleList := "";
+    numeric n;
+    n := 0;
+    for i := 1 step 1 until (length(angleName) - 2):
+        for j := i + 1 step 1 until (length(angleName) - 1):
+            cPointA := substring (0, i) of angleName;
+            cPointB := substring (i, j) of angleName;
+            cPointC := substring (j, length(angleName)) of angleName;
+            if known scantokens(cPointA):
+                if known scantokens(cPointB):
+                    if known scantokens(cPointC):
+                        n := n + 1;
+                        pointA := cPointA;
+                        pointB := cPointB;
+                        pointC := cPointC;
+                    fi;
+                fi;
+            fi;
+        endfor;
+    endfor;
+    if n == 0:
+        errmessage("Can't find points for angle: " & lineName);
+    fi;
+    if n > 1:
+        errmessage("Ambiguous angle name: " & lineName);
+    fi;
+    dirA := scantokens(pointA) - scantokens(pointB);
+    dirC := scantokens(pointC) - scantokens(pointB);
+    isFirst := false;
+    isLast := false;
+    forsuffixes i=scantokens(pointAnglesList.scantokens(pointB) & ", " & pointAnglesList.scantokens(pointB)):
+        if getAttribute("angle", "ArcClockwise", str i):
+            cwA := scantokens(getAttribute("angle", "CName", str i));
+            cwC := scantokens(getAttribute("angle", "AName", str i));
+        else:
+            cwA := scantokens(getAttribute("angle", "AName", str i));
+            cwC := scantokens(getAttribute("angle", "CName", str i));
+        fi;
+        cwA := cwA - scantokens(getAttribute("angle", "BName", str i));
+        cwC := cwC - scantokens(getAttribute("angle", "BName", str i));
+        if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1):
+            isFirst := true;
+        fi;
+        if isFirst and not isLast:
+            appendList(angleList, str i, 1, true)
+        fi;
+        if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
+            isLast := true;
+        fi;
+    endfor;
+    if (not isFirst) or (not isLast):
+        errmessage("Can't construct angle:" & lineName);
+    fi;
+    angleList
 enddef;
 
 vardef twoRightAngles =
