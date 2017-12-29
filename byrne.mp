@@ -1952,8 +1952,8 @@ vardef sortPointAnglesList (expr anglesListToSort) =
 enddef;
 
 vardef byConstructCoupoundAngle(expr angleName) =
-    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, dirA, dirC;
-    string pointA, pointB, pointC, cPointA, cPointB, cPointC, angleList;
+    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, dirA, dirC, rv;
+    string pointA, pointB, pointC, cPointA, cPointB, cPointC, angleList, rv;
     boolean isFirst, isLast;
     pair cwA, cwC, dirA, dirC;
     angleList := "";
@@ -1976,40 +1976,45 @@ vardef byConstructCoupoundAngle(expr angleName) =
             fi;
         endfor;
     endfor;
-    if n == 0:
-        errmessage("Can't find points for angle: " & lineName);
+    if (known scantokens(angleName)) and (n == 0):
+        rv := pointAnglesList.scantokens(angleName);
+    else:
+        if n == 0:
+            errmessage("Can't find points for angle: " & lineName);
+        fi;
+        if n > 1:
+            errmessage("Ambiguous angle name: " & lineName);
+        fi;
+        dirA := scantokens(pointA) - scantokens(pointB);
+        dirC := scantokens(pointC) - scantokens(pointB);
+        isFirst := false;
+        isLast := false;
+        forsuffixes i=scantokens(pointAnglesList.scantokens(pointB) & ", " & pointAnglesList.scantokens(pointB)):
+            if getAttribute("angle", "ArcClockwise", str i):
+                cwA := scantokens(getAttribute("angle", "CName", str i));
+                cwC := scantokens(getAttribute("angle", "AName", str i));
+            else:
+                cwA := scantokens(getAttribute("angle", "AName", str i));
+                cwC := scantokens(getAttribute("angle", "CName", str i));
+            fi;
+            cwA := cwA - scantokens(getAttribute("angle", "BName", str i));
+            cwC := cwC - scantokens(getAttribute("angle", "BName", str i));
+            if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1):
+                isFirst := true;
+            fi;
+            if isFirst and not isLast:
+                appendList(angleList, str i, 1, true)
+            fi;
+            if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
+                isLast := true;
+            fi;
+        endfor;
+        if (not isFirst) or (not isLast):
+            errmessage("Can't construct angle:" & lineName);
+        fi;
+        rv := angleList;
     fi;
-    if n > 1:
-        errmessage("Ambiguous angle name: " & lineName);
-    fi;
-    dirA := scantokens(pointA) - scantokens(pointB);
-    dirC := scantokens(pointC) - scantokens(pointB);
-    isFirst := false;
-    isLast := false;
-    forsuffixes i=scantokens(pointAnglesList.scantokens(pointB) & ", " & pointAnglesList.scantokens(pointB)):
-        if getAttribute("angle", "ArcClockwise", str i):
-            cwA := scantokens(getAttribute("angle", "CName", str i));
-            cwC := scantokens(getAttribute("angle", "AName", str i));
-        else:
-            cwA := scantokens(getAttribute("angle", "AName", str i));
-            cwC := scantokens(getAttribute("angle", "CName", str i));
-        fi;
-        cwA := cwA - scantokens(getAttribute("angle", "BName", str i));
-        cwC := cwC - scantokens(getAttribute("angle", "BName", str i));
-        if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1):
-            isFirst := true;
-        fi;
-        if isFirst and not isLast:
-            appendList(angleList, str i, 1, true)
-        fi;
-        if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
-            isLast := true;
-        fi;
-    endfor;
-    if (not isFirst) or (not isLast):
-        errmessage("Can't construct angle:" & lineName);
-    fi;
-    angleList
+    rv
 enddef;
 
 vardef twoRightAngles =
