@@ -25,10 +25,11 @@ vardef log(expr x, b) =
 enddef;
 
 % here we define some measures, common to all images
-numeric lS, mD;
-lS := 7/5cm;
-mD := 1/20cm;
+numeric lS, mD, bS, pW;
+lS := 6/5cm;
+mD := 1/25cm;
 bS := 2/3mm;
+pW := 76mm;
 
 % this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
 primarydef p firstIntersectionTimes q =
@@ -272,7 +273,7 @@ forever:
                 o0 := 0;
                 currentLetter := TEX(l);
                 for tp within currentLetter:
-                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 100/2700;
+                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 1/36;
                     cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lS, 1/2lS);
                     draw cL;
                     for item within cL:
@@ -289,7 +290,7 @@ forever:
                 numberOfIterations := 12;
                 minBranchLength := 1/6cm;
             else:
-                p0 := (-80/2mm,-15/2mm)--(-80/2mm, 15/2mm)--(80/2mm, 15/2mm)--(80/2mm, -15/2mm)--cycle;
+                p0 := (-pW/2,-15/2mm)--(-pW/2, 15/2mm)--(pW/2, 15/2mm)--(pW/2, -15/2mm)--cycle;
                 pm0 := p0;
                 p1 := (q0 rotated 15) scaled 18mm;
                 pm1 := subpath (0, ypart(qi)) of p1;
