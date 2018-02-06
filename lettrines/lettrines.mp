@@ -20,16 +20,20 @@ input TEX;
 TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\usepackage{gentium}\begin{document}");
 TEXPOST("\end{document}");
 
+%outputformat := "svg";
+
 vardef log(expr x, b) =
     (mlog(x)/256)/(mlog(2)/256)
 enddef;
 
 % here we define some measures, common to all images
-numeric lS, mD, bS, pW;
+numeric lS, mD, bS, pW, tW, tH;
 lS := 6/5cm;
 mD := 1/25cm;
 bS := 2/3mm;
 pW := 76mm;
+tW := 25mm;
+tH := 25mm;
 
 % this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
 primarydef p firstIntersectionTimes q =
@@ -218,12 +222,30 @@ vardef checkBranch (expr pn, l, o) =
     rv
 enddef;
 
+def makeAdjacentTiles (expr n) =
+    pNO := n;
+    for xs := -1 step 1 until 1:
+        for ys := -1 step 1 until 1:
+            if (xs <> 0) or (ys <> 0):
+                pN := pN + 1;
+                p[pN] := p[n] shifted (xs*tW, ys*tH);
+                pm[pN] := pm[n] shifted (xs*tW, ys*tH);
+                po[pN] := po[n] shifted (xs*tW, ys*tH);
+                pb[pN] := pb[n];
+                o[pN] := o[n];
+                pa[pN] := false;
+            fi;
+        endfor;
+    endfor;
+enddef;
+
 figNum := 0;
 
 picture currentLetter, cL;
 path p[], pm[], pb[], po[], q[], candidateBranch;
-% 'o[]' is for curl's orientation, 'cO' is for current curl orientation, 'p[]' is main for paths, 'pm[]' is for subpath of p[] that can yield 'buds', 'pb[]' is for 'buds', places where branches are, or tried to spring, 'q[]' is for curl templates, 'tp' is for temporary path in cycle, 's' is for scale, 'startFrom' is for cases when we only need boundry as invisible limit
-numeric o[], cO, lC, tt[], ta, ln[], ll, lc, startFrom, symMode, numberOfIterations;
+% 'o[]' is for curl's orientation, 'cO' is for current curl orientation, 'p[]' is main for paths, 'pm[]' is for subpath of p[] that can yield 'buds', 'pb[]' is for 'buds', places where branches are, or tried to spring, 'q[]' is for curl templates, 'tp' is for temporary path in cycle, 's' is for scale
+numeric o[], cO, lC, tt[], ta, ln[], ll, lc, symMode, numberOfIterations, pN, pNO;
+boolean pa[];
 pair qi;
 string shuffledNumbers;
 picture lettrineImage;
@@ -264,13 +286,14 @@ forever:
     outputtemplate := l & decimal(lc) & ".mps";
     beginfig(figNum);
         lettrineImage := image(
-            if l <> "plate":
+            if ((l <> "plate") and (l <> "tile")):
                 pN := 0;
                 p0 := (0,0)--(0, lS)--(lS, lS)--(lS, 0)--cycle;
                 pm0 := p0;
                 po0 := pathOutline(p0, 1/2);
                 pb0 := generateBranchesTemplate(pm0);
                 o0 := 0;
+                pa0 := true;
                 currentLetter := TEX(l);
                 for tp within currentLetter:
                     cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 1/36;
@@ -283,13 +306,13 @@ forever:
                         po[pN] := pathOutline(p[pN], 1/8);
                         pb[pN] := generateBranchesTemplate(pm[pN]);
                         o[pN] := 0;
+                        pa[pN] := true;
                     endfor;
                 endfor;
-                startFrom := 0;
                 symMode := 0;
                 numberOfIterations := 12;
                 minBranchLength := 1/6cm;
-            else:
+            elseif (l = "plate"):
                 p0 := (-pW/2,-15/2mm)--(-pW/2, 15/2mm)--(pW/2, 15/2mm)--(pW/2, -15/2mm)--cycle;
                 pm0 := p0;
                 p1 := (q0 rotated 15) scaled 18mm;
@@ -301,15 +324,36 @@ forever:
                     po[i] := pathOutline(p[i], 1/2);
                     pb[i] := generateBranchesTemplate(pm[i]);
                     o[i] := 0;
+                    pa[i] := true;
                 endfor;
-                startFrom := 1;
+                pa[0] := false;
                 symMode := 1;
+                numberOfIterations := 12;
+                minBranchLength := 1/4cm;
+            elseif (l = "tile"):
+                p0 := (-tW,-tH)--(-tW, tH)--(tW, tH)--(tW, -tH)--cycle;
+                pm0 := p0;
+                p1 := (q0 rotated uniformdeviate(360)) scaled 6mm;
+                pm1 := subpath (0, ypart(qi)) of p1;
+                p2 := (p1 scaled 2) rotated 180;
+                pm2 := (pm1 scaled 2) rotated 180;
+                for i := 0 step 1 until 2:
+                    pN := i;
+                    po[i] := pathOutline(p[i], 1/2);
+                    pb[i] := generateBranchesTemplate(pm[i]);
+                    o[i] := 0;
+                    pa[i] := true;
+                endfor;
+                pa[0] := false;
+                makeAdjacentTiles(1);
+                makeAdjacentTiles(2);
+                symMode := 2;
                 numberOfIterations := 12;
                 minBranchLength := 1/4cm;
             fi;
             for nn := 0 step 1 until numberOfIterations:
                 shuffledNumbers := "";
-                for i := startFrom step 1 until pN:
+                for i := 0 step 1 until pN:
                     if (uniformdeviate(1) > 1/2):
                         shuffledNumbers := shuffledNumbers & "," & decimal(i);
                     else:
@@ -318,7 +362,7 @@ forever:
                 endfor;
                 shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
                 for i=scantokens(shuffledNumbers):
-                    if (xpart(urcorner(pb[i])) >= 0):
+                    if (xpart(urcorner(pb[i])) >= 0) and (pa[i]):
                         candidateBranch := findRightPlace(i, pN);
                         if (arclength(candidateBranch) >= minBranchLength):
                             pN := pN + 1;
@@ -326,6 +370,7 @@ forever:
                             pm[pN] := subpath qi of p[pN];
                             po[pN] := pathOutline(p[pN], 1/2);
                             pb[pN] := generateBranchesTemplate(pm[pN]);
+                            pa[pN] := true;
                             if(symMode = 1):
                                 pN := pN + 1;
                                 p[pN] := p[pN-1] rotated 180;
@@ -333,15 +378,21 @@ forever:
                                 po[pN] := po[pN-1] rotated 180;
                                 pb[pN] := pb[pN-1];
                                 o[pN] := o[pN-1];
+                                pa[pN] := true;
+                            fi;
+                            if(symMode = 2):
+                                makeAdjacentTiles(pN);
                             fi;
                         fi;
                     fi;
                 endfor;
             endfor;
-            for i := startFrom step 1 until pN:
-                draw p[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi;
-                if (not cycle p[i]):
-                    draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (o[i]=1):-90 else:90 fi + angle(direction length(p[i]) of p[i]))) shifted point length(p[i]) of p[i] withpen pencircle scaled 1/5mm;
+            for i := 0 step 1 until pN:
+                if pa[i]:
+                    draw p[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi;
+                    if (not cycle p[i]):
+                        draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (o[i]=1):-90 else:90 fi + angle(direction length(p[i]) of p[i]))) shifted point length(p[i]) of p[i] withpen pencircle scaled 1/5mm;
+                    fi;
                 fi;
             endfor;
         );
