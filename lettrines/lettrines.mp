@@ -69,37 +69,37 @@ vardef pathOutline (expr p, s) =
     outputPath1..(point length(p) of p shifted (unitvector(direction (length(p) - 1/100) of p) scaled mD))..reverse(subpath(1, length(outputPath2)) of outputPath2)--cycle
 enddef;
 
-vardef findRightSize (expr p, q, sty, lni, li, lDir, l, n, i) =
-    save bp, ic, rv, s;
-    path bp;
-    numeric ic, rv, s;
-    s := 1/2[lni, li];
-    if (lni > 0):
+vardef findRightSize (expr givenBranchPath, givenBranchOrigin, sty, minSize, maxSize, lDir, branchNumber, totalBranches, i) =
+    save branchToCheck, branchIntersections, rv, s;
+    path branchToCheck;
+    numeric branchIntersections, rv, s;
+    s := 1/2[minSize, maxSize];
+    if (minSize > 0):
         rv := s;
     else:
         rv := 0;
     fi;
-    bp := (p scaled s) shifted q;
-    ic := checkIfIntersects(bp, l, n);
-    if (i > 0) and (li >= minBranchLength[sty]):
-        if (ic = 0):
-            rv := findRightSize(p, q, sty, s, li, 1, l, n, i - 1);
+    branchToCheck := (givenBranchPath scaled s) shifted givenBranchOrigin;
+    branchIntersections := checkIfIntersects(branchToCheck, branchNumber, totalBranches);
+    if (i > 0) and (maxSize >= minBranchLength[sty]):
+        if (branchIntersections = 0):
+            rv := findRightSize(givenBranchPath, givenBranchOrigin, sty, s, maxSize, 1, branchNumber, totalBranches, i - 1);
         else:
-            rv := findRightSize(p, q, sty, lni, s, -1, l, n, i - 1);
+            rv := findRightSize(givenBranchPath, givenBranchOrigin, sty, minSize, s, -1, branchNumber, totalBranches, i - 1);
         fi;
     else:
-        if (ic <> 0):
+        if (branchIntersections <> 0):
             if (lDir = 1):
-                rv := 1/2[s, li];
+                rv := 1/2[s, maxSize];
             elseif (lDir = -1):
-                rv := 1/2[lni, li];
+                rv := 1/2[minSize, s];
             fi;
         fi;
     fi;
     rv
 enddef;
 
-vardef findRightPlace (expr branchNumber, totalBranches, branchStyleIndex) =
+vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
     save tp, ts, s, t, sOld, i, j, rp, startPoint, endPoint, currentBranchOrientation, currentBranchOrientationRelative;
     path tp, rp;
     numeric ts, ti, s, t, sOld, i, j, startPoint, endPoint, currentBranchOrientation, currentBranchOrientationRelative;
@@ -124,15 +124,16 @@ vardef findRightPlace (expr branchNumber, totalBranches, branchStyleIndex) =
         j := (arctime i of branchMeristem[branchNumber]);
         if (checkBranch (branchNumber, j, currentBranchOrientationRelative) = 0)
             or (checkBranch (branchNumber, j, currentBranchOrientationRelative) > sOld):
-            if cycle branchPath[branchNumber]:
-                ts := abs(ulcorner(branchPath[branchNumber]) - lrcorner(branchPath[branchNumber]));
-            else:
-                ts := 1/2arclength(branchPath[branchNumber]);
-            fi;
             if (checkBranch (branchNumber, j, currentBranchOrientationRelative) > 0):
                 ts := checkBranch (branchNumber, j, currentBranchOrientationRelative);
+            else:
+                if cycle branchPath[branchNumber]:
+                    ts := abs(ulcorner(branchPath[branchNumber]) - lrcorner(branchPath[branchNumber]));
+                else:
+                    ts := 1/2arclength(branchPath[branchNumber]);
+                fi;
             fi;
-            ti := 2 + log(ts/(1/4mm), 2);
+            ti := 2 + log(ts/branchScalePrecision, 2);
             if (currentBranchOrientation = 0):
                 tp := branchTemplate[currentBranchOrientation + 2branchStyleIndex] rotated (angle(direction j of branchMeristem[branchNumber]) - 90);
             else:
@@ -246,22 +247,22 @@ enddef;
 figNum := 0;
 
 picture currentLetter, cL;
-path branchPath[], branchMeristem[], branchBuds[], branchOutline[];
-path branchTemplate[], candidateBranch;
-numeric branchOrientation[], symMode, numberOfIterations, totalBranchesNumber;
+path branchPath[], branchMeristem[], branchBuds[], branchOutline[], branchTemplate[], candidateBranch;
+numeric branchOrientation[], symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
 numeric ln[], ll, lc;
 boolean branchIsActive[];
 pair branchMeristemSpan[];
 string shuffledNumbers;
 picture lettrineImage;
 
+branchScalePrecision := 1/6mm;
 branchTemplate0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 branchTemplate1 := branchTemplate0 yscaled -1;
 branchMeristemSpan0 := (1/2, length(branchTemplate0) - 2);
 % the following templates are identical for now and have no real purpose
-branchTemplate2 := branchTemplate0; %((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/720) endfor) shifted (-1/2, 0);
+branchTemplate2 := ((1/2,0) for a := 60 step 60 until 540: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
 branchTemplate3 := branchTemplate2 yscaled -1;
-branchMeristemSpan1 := branchMeristemSpan0; %(1/2, 3);
+branchMeristemSpan1 := (1/2, length(branchTemplate2) - 2);
 
 string lettrinesFile, l, ls[];
 lettrinesFile := "lettrineslist.txt";
@@ -360,7 +361,7 @@ forever:
                 numberOfIterations := 12;
                 minBranchLength[0] := 1/4cm;
             fi;
-            minBranchLength1 := minBranchLength0;
+            minBranchLength1 := 3/2minBranchLength0;
             for nn := 0 step 1 until numberOfIterations:
                 shuffledNumbers := "";
                 for i := 0 step 1 until totalBranchesNumber:
@@ -378,7 +379,7 @@ forever:
                         else:
                             sty := 1;
                         fi;
-                        candidateBranch := findRightPlace(i, totalBranchesNumber, sty);
+                        candidateBranch := positionBranch(i, totalBranchesNumber, sty);
                         if (arclength(candidateBranch) >= minBranchLength[sty]):
                             totalBranchesNumber := totalBranchesNumber + 1;
                             branchPath[totalBranchesNumber] := candidateBranch;
