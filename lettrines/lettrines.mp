@@ -1,6 +1,6 @@
 %    lettrine-generator 0.0.3
 %    MetaPost lettrines generator
-%    Copyright 2017 Sergey Slyusarev
+%    Copyright 2018 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -321,7 +321,9 @@ forever:
                 endfor;
                 symMode := 0;
                 numberOfIterations := 12;
-                minBranchLength[0] := 1/6cm;
+                minBranchLength[0] := 1/5cm;
+                minimalDistance := 1/30cm;
+                branchDistance := 1/4mm;
             elseif (l = "plate"):
                 branchPath0 := (-plateWidth/2,-plateHeight/2)--(-plateWidth/2, plateHeight/2)--(plateWidth/2, plateHeight/2)--(plateWidth/2, -plateHeight/2)--cycle;
                 branchMeristem0 := branchPath0;
