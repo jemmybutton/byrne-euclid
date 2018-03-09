@@ -101,9 +101,10 @@ vardef findRightSize (expr givenBranchPath, givenBranchOrigin, sty, minSize, max
 enddef;
 
 vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
-    save sproutPath, sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative;
+    save sproutPath, sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative, sideActive;
     path sproutPath, rp;
     numeric sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, startPoint, endPoint, currentBranchOrientationRelative;
+    boolean sideActive[];
     sproutSizeOld := 0;
     rp := (0, 0);
     successfulSproutLocation := -1;
@@ -118,10 +119,13 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
         candidateBranchOrientation := branchOrientation[branchNumber];
         currentBranchOrientationRelative := 1;
     fi;
-    if ((currentBranchOrientationRelative = 0)
-        and (xpart(urcorner(branchBuds[branchNumber])) >= 0))
-        or ((currentBranchOrientationRelative = 1)
-        and (ypart(urcorner(branchBuds[branchNumber])) >= 0)):
+    sideActive[0] := (xpart(urcorner(branchBuds[branchNumber])) >= 0);
+    sideActive[1] := (ypart(urcorner(branchBuds[branchNumber])) >= 0);
+    if (not sideActive[currentBranchOrientationRelative]) and (not cycle branchPath[branchNumber]):
+        currentBranchOrientationRelative := abs(currentBranchOrientationRelative - 1);
+        candidateBranchOrientation := abs(candidateBranchOrientation - 1);
+    fi;
+    if sideActive[currentBranchOrientationRelative]:
         startPoint := 0;
         endPoint := arclength(branchMeristem[branchNumber]);
         for i := startPoint step budDistance until endPoint:
@@ -137,7 +141,7 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
                         sproutMaxSize := 1/2arclength(branchPath[branchNumber]);
                     fi;
                 fi;
-                sproutFittingIterations := 2 + log(sproutMaxSize/branchScalePrecision, 2);
+                sproutFittingIterations := log(sproutMaxSize/branchScalePrecision, 2);
                 if (candidateBranchOrientation = 0):
                     sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(direction j of branchMeristem[branchNumber]) - 90);
                 else:
@@ -145,9 +149,9 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
                 fi;
                 sproutSize := findRightSize(sproutPath, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, sproutMaxSize, 0, branchNumber, totalBranches, sproutFittingIterations);
                 if (arclength(sproutPath scaled sproutSize) <= minBranchLength[branchStyleIndex]):
-                    branchBuds[branchNumber] := addBud (branchNumber, j, -1, currentBranchOrientationRelative);
+                    addBud (branchNumber, j, -1, currentBranchOrientationRelative);
                 else:
-                    branchBuds[branchNumber] := addBud (branchNumber, j, sproutSize, currentBranchOrientationRelative);
+                    addBud (branchNumber, j, sproutSize, currentBranchOrientationRelative);
                 fi;
                 if (sproutSize > sproutSizeOld):
                     rp := sproutPath scaled sproutSize shifted (point j of branchMeristem[branchNumber]);
@@ -157,7 +161,7 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
             fi;
         endfor;
         if (successfulSproutLocation >= 0):
-            branchBuds[branchNumber] := addBud (branchNumber, successfulSproutLocation, -1, currentBranchOrientationRelative);
+            addBud (branchNumber, successfulSproutLocation, -1, currentBranchOrientationRelative);
         fi;
     fi;
     rp
@@ -196,34 +200,42 @@ vardef generateBranchesTemplate (expr p) =
     rv
 enddef;
 
-vardef addBud (expr pn, l, s, o) =
-    save rv, loc, p;
+def addBud (expr pn, l, s, o) =
+    begingroup
+    save rv, loc, p, pnr;
     path rv;
     pair p;
-    numeric loc;
-    loc := round((arclength(subpath(0, l) of branchMeristem[pn]))/budDistance);
-    if (o = 0):
-        p := (s, ypart(point loc of branchBuds[pn]));
+    numeric loc, pnr;
+    if (branchIsCloneOf[pn] >= 0):
+        pnr := branchIsCloneOf[pn];
     else:
-        p := (xpart(point loc of branchBuds[pn]), s);
+        pnr := pn;
     fi;
-    if (loc < length(branchBuds[pn])) and (loc > 0):
-        rv := (subpath (0, loc-1) of branchBuds[pn])
+    loc := round((arclength(subpath(0, l) of branchMeristem[pnr]))/budDistance);
+    if (o = 0):
+        p := (s, ypart(point loc of branchBuds[pnr]));
+    else:
+        p := (xpart(point loc of branchBuds[pnr]), s);
+    fi;
+    if (loc < length(branchBuds[pnr])) and (loc > 0):
+        rv := (subpath (0, loc-1) of branchBuds[pnr])
             -- p
-            -- (subpath (loc+1, length(branchBuds[pn])) of branchBuds[pn]);
+            -- (subpath (loc+1, length(branchBuds[pnr])) of branchBuds[pnr]);
     elseif (loc <= 0):
         rv := p
-            -- (subpath (loc+1, length(branchBuds[pn])) of branchBuds[pn]);
-    elseif (loc >= length(branchBuds[pn])):
-        rv := (subpath (0, loc-1) of branchBuds[pn])
+            -- (subpath (loc+1, length(branchBuds[pnr])) of branchBuds[pnr]);
+    elseif (loc >= length(branchBuds[pnr])):
+        rv := (subpath (0, loc-1) of branchBuds[pnr])
             -- p;
     fi;
-    rv
+    branchBuds[pnr] := rv;
+    branchBuds[pn] := rv;
+    endgroup
 enddef;
 
 vardef checkBud (expr pn, l, o) =
     save rv, loc;
-    numeric loc, rv;
+    numeric rv, loc;
     loc := round((arclength(subpath(0, l) of branchMeristem[pn]))/budDistance);
     if (o = 0):
         rv := xpart(point loc of branchBuds[pn]);
@@ -243,13 +255,14 @@ def makeAdjacentTiles (expr n) =
                 branchOutline[totalBranchesNumber] := branchOutline[n] shifted (xs*tileWidth, ys*tileHeight);
                 branchBuds[totalBranchesNumber] := branchBuds[n];
                 branchOrientation[totalBranchesNumber] := branchOrientation[n];
-                branchIsActive[totalBranchesNumber] := false;
+                branchIsActive[totalBranchesNumber] := 0;
+                branchIsCloneOf[totalBranchesNumber] := n;
             fi;
         endfor;
     endfor;
 enddef;
 
-def addBranch (expr p, o, a, sty) =
+def addBranch (expr p, o, a, sty, cn) =
     totalBranchesNumber := totalBranchesNumber + 1;
     branchPath[totalBranchesNumber] := p;
     if (sty < 0):
@@ -261,20 +274,20 @@ def addBranch (expr p, o, a, sty) =
     branchOutline[totalBranchesNumber] := pathOutline(branchPath[totalBranchesNumber], 1/2);
     branchOrientation[totalBranchesNumber] := o;
     branchIsActive[totalBranchesNumber] := a;
+    branchIsCloneOf[totalBranchesNumber] := cn;
 enddef;
 
 figNum := 0;
 
 picture currentLetter, cL;
 path branchPath[], branchMeristem[], branchBuds[], branchOutline[], branchTemplate[], candidateBranch;
-numeric branchOrientation[], candidateBranchOrientation, symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
+numeric branchOrientation[], branchIsCloneOf[], branchIsActive[], candidateBranchOrientation, symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
 numeric ln[], ll, lc;
-boolean branchIsActive[];
 pair branchMeristemSpan[];
 string shuffledNumbers;
 picture lettrineImage;
 
-branchScalePrecision := 1/6mm;
+branchScalePrecision := 1/8mm;
 branchTemplate0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 branchTemplate1 := branchTemplate0 yscaled -1;
 branchMeristemSpan0 := (1/2, length(branchTemplate0) - 2);
@@ -316,89 +329,88 @@ forever:
         lettrineImage := image(
             totalBranchesNumber := -1;
             if ((l <> "plate") and (l <> "tile")):
-                addBranch (
-                    (0,0)--(0, lettrineSize)--(lettrineSize, lettrineSize)--(lettrineSize, 0)--cycle,
-                    0, true, -1);
+                addBranch (reverse(unitsquare) scaled lettrineSize, 0, 1, -1, -1);
                 currentLetter := TEX(l);
                 for tp within currentLetter:
-                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 1/36;
+                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 1/38;
                     cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lettrineSize, 1/2lettrineSize);
                     draw cL;
                     for item within cL:
-                        addBranch (pathpart item, 0, true, -1);
+                        addBranch (pathpart item, 0, 1, -1, -1);
                     endfor;
                 endfor;
                 symMode := 0;
-                numberOfIterations := 12;
-                minBranchLength[0] := 1/5cm;
-                minimalDistance := 1/30cm;
+                numberOfIterations := 10;
+                minBranchLength[0] := 1/6cm;
+                minimalDistance := 1/25cm;
                 budDistance := 1/4mm;
             elseif (l = "plate"):
                 addBranch (
                     ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight,
-                    0, false, -1);
+                    0, 0, -1, -1);
                 addBranch (
                     (branchTemplate0 rotated 15) scaled 18mm,
-                    0, true, 0);
+                    0, 1, 0, -1);
                 addBranch (
                     branchPath1 rotated 180,
-                    0, true, 0);
+                    0, 1, 0, -1);
                 symMode := 1;
-                numberOfIterations := 12;
+                numberOfIterations := 10;
                 minBranchLength[0] := 1/4cm;
+                minimalDistance := 1/20cm;
             elseif (l = "tile"):
                 addBranch (
                     ((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
-                    0, true, -1);
+                    0, 1, -1, -1);
                 addBranch (
                     (branchTemplate0 rotated uniformdeviate(360)) scaled 6mm,
-                    0, true, 0);
+                    0, 1, 0, -1);
                 addBranch (
                     (branchPath1 scaled 2) rotated 180,
-                    0, true, 0);
+                    0, 2, 0, 1);
                 makeAdjacentTiles(1);
                 makeAdjacentTiles(2);
                 symMode := 2;
-                numberOfIterations := 12;
+                numberOfIterations := 10;
                 minBranchLength[0] := 1/4cm;
+                minimalDistance := 1/20cm;
             fi;
             minBranchLength1 := 3/2minBranchLength0;
             for nn := 0 step 1 until numberOfIterations:
                 shuffledNumbers := "";
                 for i := 0 step 1 until totalBranchesNumber:
-                    if (uniformdeviate(1) > 1/2):
-                        shuffledNumbers := shuffledNumbers & ", " & decimal(i);
-                    else:
-                        shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
+                    if ((xpart(urcorner(branchBuds[i])) >= 0) or (ypart(urcorner(branchBuds[i])) >= 0)) and (branchIsActive[i] = 1):
+                        if (uniformdeviate(1) > 1/2):
+                            shuffledNumbers := shuffledNumbers & ", " & decimal(i);
+                        else:
+                            shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
+                        fi;
                     fi;
                 endfor;
-                shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
+                if (length(shuffledNumbers) > 0):
+                    shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
+                fi;
                 for i=scantokens(shuffledNumbers):
-                    if branchIsActive[i]:
-                        if (uniformdeviate(1) > 1/2):
-                            sty := 0;
-                        else:
-                            sty := 1;
+                    if (uniformdeviate(1) > 1/2):
+                        sty := 0;
+                    else:
+                        sty := 1;
+                    fi;
+                    candidateBranch := positionBranch(i, totalBranchesNumber, sty);
+                    if (arclength(candidateBranch) >= minBranchLength[sty]):
+                        addBranch (candidateBranch, candidateBranchOrientation, 1, sty, -1);
+                        if(symMode = 1):
+                            x := totalBranchesNumber;
+                            addBranch (candidateBranch rotated 180, candidateBranchOrientation, 2, sty, x);
                         fi;
-                        candidateBranch := positionBranch(i, totalBranchesNumber, sty);
-                        if (arclength(candidateBranch) >= minBranchLength[sty]):
-                            addBranch (
-                                candidateBranch,
-                                candidateBranchOrientation, true, sty);
-                            if(symMode = 1):
-                            addBranch (
-                                candidateBranch rotated 180,
-                                candidateBranchOrientation, true, sty);
-                            fi;
-                            if(symMode = 2):
-                                makeAdjacentTiles(totalBranchesNumber);
-                            fi;
+                        if(symMode = 2):
+                            makeAdjacentTiles(totalBranchesNumber);
                         fi;
                     fi;
                 endfor;
             endfor;
             for i := 0 step 1 until totalBranchesNumber:
-                if branchIsActive[i]:
+                if (branchIsActive[i] > 0):
                     draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi;
                     if (not cycle branchPath[i]):
                         draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm;
