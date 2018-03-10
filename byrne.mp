@@ -128,7 +128,7 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
         string listName;
         listName := "";
     fi;
-    if length(listName) == 0:
+    if length(listName) = 0:
         listName := valueToAdd;
     else:
         save valueExists;
@@ -136,13 +136,13 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
         valueExists := false;
         if omitDuplicates:
             forsuffixes i=scantokens(listName):
-                if (str i == valueToAdd):
+                if (str i = valueToAdd):
                     valueExists := true;
                 fi;
             endfor;
         fi;
         if not valueExists:
-            if (whereToAdd == 1):
+            if (whereToAdd = 1):
                 listName := listName & ", " & valueToAdd;
             else:
                 listName := valueToAdd & ", " & listName;
@@ -498,7 +498,7 @@ vardef byNamedLineSeq(expr s)(text linesListRaw) =
             lShift[i] := getAttribute("line", "Shift", str lN);
             lName[i] := str lN;
         endfor;
-        if (i == 1):
+        if (i = 1):
             i := i + 1;
             lAname[i] := "noLine";
             lBname[i] := "noLine";
@@ -510,62 +510,62 @@ vardef byNamedLineSeq(expr s)(text linesListRaw) =
                 l := cycleval (j + 1, i + 1);
                 m := 0;
                 n := 0;
-                if (lAname[k] == "noLine"):
+                if (lAname[k] = "noLine"):
                     k := cycleval (k - 1, i + 1);
                     m := 1;
                 fi;
-                if (lAname[l] == "noLine"):
+                if (lAname[l] = "noLine"):
                     l := cycleval (l + 1, i + 1);
                     n := 1;
                 fi;
                 c := lAname[j];
                 d := lBname[j];
                 prp := 0;
-                if  (((lAname[j] == lAname[k]) or (lAname[j] == lBname[k]))
-                        and (not ((m <> 0) and (lName[k] == lName[l])))) or
-                    (((lBname[j] == lAname[l]) or (lBname[j] == lBname[l]))
-                        and (not ((n <> 0) and (lName[k] == lName[l])))):
-                    if (lAname[j] == lAname[k]):
-                        if (m == 0): c := lBname[k]; fi;
-                    elseif (lAname[j] == lBname[k]):
-                        if (m == 0): c := lAname[k]; fi;
+                if  (((lAname[j] = lAname[k]) or (lAname[j] = lBname[k]))
+                        and (not ((m <> 0) and (lName[k] = lName[l])))) or
+                    (((lBname[j] = lAname[l]) or (lBname[j] = lBname[l]))
+                        and (not ((n <> 0) and (lName[k] = lName[l])))):
+                    if (lAname[j] = lAname[k]):
+                        if (m = 0): c := lBname[k]; fi;
+                    elseif (lAname[j] = lBname[k]):
+                        if (m = 0): c := lAname[k]; fi;
                     else:
                         m := 2;
                     fi;
-                    if (lBname[j] == lAname[l]):
-                        if (n == 0): d := lBname[l]; fi;
-                    elseif (lBname[j] == lBname[l]):
-                        if (n == 0): d := lAname[l]; fi;
+                    if (lBname[j] = lAname[l]):
+                        if (n = 0): d := lBname[l]; fi;
+                    elseif (lBname[j] = lBname[l]):
+                        if (n = 0): d := lAname[l]; fi;
                     else:
                         n := 2;
                     fi;
                     prp := 1;
                 else:
-                    if (lAname[j] == lAname[l]):
-                        if (n == 0): c := lBname[l]; fi;
-                    elseif (lAname[j] == lBname[l]):
-                        if (n == 0): c := lAname[l]; fi;
+                    if (lAname[j] = lAname[l]):
+                        if (n = 0): c := lBname[l]; fi;
+                    elseif (lAname[j] = lBname[l]):
+                        if (n = 0): c := lAname[l]; fi;
                     else:
                         n := 2;
                     fi;
-                    if (lBname[j] == lAname[k]):
-                        if (m == 0): d := lBname[k]; fi;
-                    elseif (lBname[j] == lBname[k]):
-                        if (m == 0): d := lAname[k]; fi;
+                    if (lBname[j] = lAname[k]):
+                        if (m = 0): d := lBname[k]; fi;
+                    elseif (lBname[j] = lBname[k]):
+                        if (m = 0): d := lAname[k]; fi;
                     else:
                         m := 2;
                     fi;
                     prp := -1;
                 fi;
                 if (lName[j] <> "noLine"):
-                    if (prp == 1):
+                    if (prp = 1):
                         pointNames := pointNames & lAname[j] & ", ";
-                        if (n == 2):
+                        if (n = 2):
                             pointNames := pointNames & lBname[j] & ", noPoint, ";
                         fi;
-                    elseif (prp == -1):
+                    elseif (prp = -1):
                         pointNames := pointNames & lBname[j] & ", ";
-                        if (n == 2):
+                        if (n = 2):
                             pointNames := pointNames & lAname[j] & ", noPoint, ";
                         fi;
                     fi;
@@ -575,9 +575,9 @@ vardef byNamedLineSeq(expr s)(text linesListRaw) =
                     prp := -2;
                 fi;
             endfor;
-            if (prp == 1) and (n <> 2):
+            if (prp = 1) and (n <> 2):
                 pointNames := pointNames & lBname[i];
-            elseif (prp == -1) and (n <> 2):
+            elseif (prp = -1) and (n <> 2):
                 pointNames := pointNames & lAname[i];
             else:
                 pointNames := substring (0, length(pointNames)-2) of pointNames;
@@ -628,10 +628,10 @@ vardef byFindLinePointedThere(expr a, b) =
         forsuffixes lL=scantokens(pointLinesList.scantokens(a)):
             endAC := getAttribute("line", "EndA", str lL);
             endBC := getAttribute("line", "EndB", str lL);
-            if (endAC == endA):
+            if (endAC = endA):
                 endAA := endAC;
                 endBA := endBC;
-            elseif (endBC == endA):
+            elseif (endBC = endA):
                 endAA := endBC;
                 endBA := endAC;
             fi;
@@ -651,7 +651,7 @@ vardef byConstructCompoundLine(expr lineName) =
     string lineStart, lEnd, newLine, lEndA, lEndB, compoundLineString, cPointA, cPointB;
     numeric i, j;
     j := 0;
-    if (length(lineName) == 2):
+    if (length(lineName) = 2):
         lineStart := substring (0, 1) of lineName;
         lEnd := substring (1, 2) of lineName;
     else:
@@ -677,20 +677,20 @@ vardef byConstructCompoundLine(expr lineName) =
     forever:
         i := i + 1;
         newLine := byFindLinePointedThere(lineStart, scantokens(lEnd));
-        if (newLine == ""):
+        if (newLine = ""):
             errmessage("There's no line from " & lineStart & " to " & lEnd);
         fi;
         appendList (compoundLineString, newLine, 1, false);
         lEndA := getAttribute("line", "EndAName", newLine);
         lEndB := getAttribute("line", "EndBName", newLine);
-        if (lEndA == lineStart):
+        if (lEndA = lineStart):
             lineStart := lEndB;
-        elseif (lEndB == lineStart):
+        elseif (lEndB = lineStart):
             lineStart := lEndA;
         fi;
         exitif (i > 10);
-        exitif (lEndA == lEnd);
-        exitif (lEndB == lEnd);
+        exitif (lEndA = lEnd);
+        exitif (lEndB = lEnd);
     endfor;
     compoundLineString
 enddef;
@@ -773,23 +773,23 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
             draw byLineRender(a, b, getAttribute("line", "Color", str lN), getAttribute("line", "Dashed", str lN), getAttribute("line", "Thin", str lN), a, b, 0, 0, 0, scaleFactor);
             currentPosition0 := currentPosition1;
             if (i > 2):
-                if (j == 0):
+                if (j = 0):
                     extensionNames3 := str lN;
-                    if (getAttribute("line", "EndAName", str lN) == lineNames[2])
-                        or (getAttribute("line", "EndAName", str lN) == lineNames[3]):
+                    if (getAttribute("line", "EndAName", str lN) = lineNames[2])
+                        or (getAttribute("line", "EndAName", str lN) = lineNames[3]):
                         endNames[0] := getAttribute("line", "EndBName", str lN);
-                    elseif (getAttribute("line", "EndBName", str lN) == lineNames[2])
-                        or (getAttribute("line", "EndBName", str lN) == lineNames[3]):
+                    elseif (getAttribute("line", "EndBName", str lN) = lineNames[2])
+                        or (getAttribute("line", "EndBName", str lN) = lineNames[3]):
                         endNames[0] := getAttribute("line", "EndAName", str lN);
                     fi;
                 fi;
-                if (j == (i-2)/2):
+                if (j = (i-2)/2):
                     extensionNames2 := str lN;
-                    if (getAttribute("line", "EndAName", str lN) == lineNames[i-3])
-                        or (getAttribute("line", "EndAName", str lN) == lineNames[i-4]):
+                    if (getAttribute("line", "EndAName", str lN) = lineNames[i-3])
+                        or (getAttribute("line", "EndAName", str lN) = lineNames[i-4]):
                         endNames[1] := getAttribute("line", "EndBName", str lN);
-                    elseif (getAttribute("line", "EndBName", str lN) == lineNames[i-3])
-                        or (getAttribute("line", "EndBName", str lN) == lineNames[i-4]):
+                    elseif (getAttribute("line", "EndBName", str lN) = lineNames[i-3])
+                        or (getAttribute("line", "EndBName", str lN) = lineNames[i-4]):
                         endNames[1] := getAttribute("line", "EndAName", str lN);
                     fi;
                 fi;
@@ -804,12 +804,12 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
         endfor;
         extensionNames0 := byFindLinePointedThere(endNames1, 2[scantokens(endNames0), scantokens(endNames1)]);
         extensionNames1 := byFindLinePointedThere(endNames0, 2[scantokens(endNames1), scantokens(endNames0)]);
-        if extensionNames0 == "":
+        if extensionNames0 = "":
             extensionNames0 := "dummyLine";
         else:
             extensionNames2 := extensionNames0;
         fi;
-        if extensionNames1 == "":
+        if extensionNames1 = "":
             extensionNames1 := "dummyLine";
         else:
             extensionNames3 := extensionNames1;
@@ -884,7 +884,7 @@ enddef;
 
 vardef byPointMarkRender (suffix pointName) =
     image(
-        if (getAttribute("point", "Style", str pointName) == 0):
+        if (getAttribute("point", "Style", str pointName) = 0):
             fill ((fullcircle scaled pointMarkSize) shifted (pointName scaled scaleFactor)) withcolor getAttribute("point", "Color", str pointName);
         fi;
     )
@@ -924,7 +924,7 @@ boolean omitLine[];
             omitLine[n] := false;
             if (length(omitLines) > 0):
                 forsuffixes j = scantokens(omitLines):
-                    if ((str i) == (str j)):
+                    if ((str i) = (str j)):
                         omitLine[n] := true;
                         no := no + 1;
                     fi;
@@ -933,7 +933,7 @@ boolean omitLine[];
             if (not omitLine[n]):
                 safeLine := n;
             fi;
-            if (getAttribute("line", "EndAName", str i) == str pointName):
+            if (getAttribute("line", "EndAName", str i) = str pointName):
                 distantEnds[n] := getAttribute("line", "EndA", str i) + (unitvector(getAttribute("line", "EndB", str i) - getAttribute("line", "EndA", str i)) scaled (pointLinesScale/scaleFactor));
                 pointNames[n] := getAttribute("line", "EndBName", str i);
             else:
@@ -1118,7 +1118,7 @@ vardef byNamedArcLabel (text arcslist) =
                 pointsListB[i] := getAttribute("arc", "BName", str aN);
                 pointsListE[i] := getAttribute("arc", "EName", str aN);
                 pointsListO[i] := getAttribute("arc", "CenterName", str aN);
-                if (getAttribute("arc", "BName", str aN) == "") or (getAttribute("arc", "EName", str aN) == ""):
+                if (getAttribute("arc", "BName", str aN) = "") or (getAttribute("arc", "EName", str aN) = ""):
                     allArcsDefined := false;
                 fi;
             endfor;
@@ -1362,7 +1362,7 @@ vardef byMergePolygons(text polygonsList) =
                                 forsuffixes k=scantokens(pointsList[j]):
                                     if (beforeJoin):
                                         preList1 := preList1 & ", " & str k;
-                                        if (k == i):
+                                        if (k = i):
                                             beforeJoin := false;
                                             polygonChecked[j] := true;
                                             pointChecked[l] := true;
@@ -1411,14 +1411,14 @@ vardef polygonCleanup (text pointsList) =
         iteration := iteration + 1;
         m := 0;
         for i := 0 step 1 until n:
-            if (points[cycleval(i-2, n + 1)] == points[i]):
+            if (points[cycleval(i-2, n + 1)] = points[i]):
                 m := m + 2;
             else:
                 points[cycleval(i-m, n + 1)] := points[i];
             fi;
         endfor;
         n := n - m;
-        exitif((m == 0) or (iteration > 100));
+        exitif((m = 0) or (iteration > 100));
     endfor;
     for i := 0 step 1 until n:
         appendList(cleanedList, points[i], 1, false);
@@ -1442,7 +1442,7 @@ fi;
     numeric ad;
     boolean ac;
     d := 1/2[unitvector(a-b),unitvector(c-b)];
-    if (abs(d) == 0):
+    if (abs(d) = 0):
         d := (unitvector(a-c) rotated 90);
     fi;
     p := fullcircle rotated (180 + angle(d));
@@ -1519,9 +1519,9 @@ vardef byNamedAngle(text anglesList) =
                 p := getAttribute("angle", "Arc", str aN);
                 q := image(
                     if (getAttribute("angle", "Color", str aN) <> white):
-                        if (typeOf(getAttribute("angle", "Style", str aN)) == "numeric"):
+                        if (typeOf(getAttribute("angle", "Style", str aN)) = "numeric"):
                             draw scantokens(byAngleMacroName[getAttribute("angle", "Style", str aN)]) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
-                        elseif (typeOf(getAttribute("angle", "Style", str aN)) == "string"):
+                        elseif (typeOf(getAttribute("angle", "Style", str aN)) = "string"):
                             draw scantokens("byAngleM" & getAttribute("angle", "Style", str aN)) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
                         fi;
                     else:
@@ -1624,7 +1624,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
     endfor;
     forsuffixes aN=scantokens(processedAnglesList):
         ac := getAttribute("angle", "Center", str aN);
-        if (centerName == ""):
+        if (centerName = ""):
             centerName := getAttribute("angle", "BName", str aN);
         elseif (centerName <> getAttribute("angle", "BName", str aN)):
             uniqueCenter := false;
@@ -1655,7 +1655,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
-                                if (getAttribute("angle", "Style", str aN) == 0) or (getAttributeMulti("angle", "OptionalColor", str aN, 0) <> white):
+                                if (getAttribute("angle", "Style", str aN) = 0) or (getAttributeMulti("angle", "OptionalColor", str aN, 0) <> white):
                                     angleType[i] := 0;
                                 fi;
                             fi;
@@ -1665,20 +1665,20 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
                             if ((getAttribute("angle", "Style", str aN) <> 0)
-                                    and (getAttributeMulti("angle", "OptionalColor", str aN, 0) == white))
-                                or ((getAttribute("angle", "Style", str aN) == 0)
-                                    and (getAttribute("angle", "Color", str aN) == white)):
+                                    and (getAttributeMulti("angle", "OptionalColor", str aN, 0) = white))
+                                or ((getAttribute("angle", "Style", str aN) = 0)
+                                    and (getAttribute("angle", "Color", str aN) = white)):
                                 angleType[angleNum] := 1;
                             else:
                                 angleType[angleNum] := 0;
                             fi;
-                            if (j == 1):
+                            if (j = 1):
                                 if (getAttribute("angle", "Standalone", str aN) > 0):
                                     pointName[angleNum] := "";
                                 else:
                                     pointName[angleNum] := getAttribute("angle", "AName", str aN);
                                 fi;
-                            elseif (j == 2):
+                            elseif (j = 2):
                                 if (getAttribute("angle", "Standalone", str aN) > 0):
                                     pointName[angleNum] := "";
                                 else:
@@ -1691,7 +1691,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                 endfor;
                 j := 0;
                 for i := 1 step 1 until angleNum:
-                    if (angleCount[i] == 1):
+                    if (angleCount[i] = 1):
                         j := j + 1;
                         n[j] := i;
                     fi;
@@ -1702,13 +1702,13 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                         lineDash := 0;
                         lineTh := 1;
                         forsuffixes lN=linesList:
-                            if (getAttribute("line", "EndAName", str lN) == centerName):
+                            if (getAttribute("line", "EndAName", str lN) = centerName):
                                 if (abs(angle(getAttribute("line", "EndB", str lN) - getAttribute("line", "EndA", str lN)) - angleDir[i]) < 1):
                                     lineCol := getAttribute("line", "Color", str lN);
                                     lineDash := getAttribute("line", "Dashed", str lN);
                                     lineTh := getAttribute("line", "Thin", str lN);
                                 fi;
-                            elseif (getAttribute("line", "EndBName", str lN) == centerName):
+                            elseif (getAttribute("line", "EndBName", str lN) = centerName):
                                 if (abs(angle(getAttribute("line", "EndA", str lN) - getAttribute("line", "EndB", str lN)) - angleDir[i]) < 1):
                                     lineCol := getAttribute("line", "Color", str lN);
                                     lineDash := getAttribute("line", "Dashed", str lN);
@@ -1723,7 +1723,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                         fi;
                     fi;
                 endfor;
-                if (j == 2):
+                if (j = 2):
                     b := (angleDir[n[1]]/360)*8;
                     e := (angleDir[n[2]]/360)*8;
                     if (b > e): b := b - 8; fi;
@@ -1745,7 +1745,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
     image(
         startTempAngleScale(scaleToUse);
             draw outputImage rotated globalRotation;
-            if (textLabels and autoLabelingMode) and (j==2):
+            if (textLabels and autoLabelingMode) and (j=2):
                 for i=1,2:
                     draw byTextLabel(pointLabel)(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
                 endfor;
@@ -1797,7 +1797,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                 if (numOfAngles > 0):
                     useThisAngle := false;
                     forsuffixes k=anglesToUse:
-                        if (str j == str k):
+                        if (str j = str k):
                             useThisAngle := true;
                         fi;
                     endfor;
@@ -1805,7 +1805,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                     useThisAngle := true;
                 fi;
                 if (useThisAngle):
-                    if (length(modAnglesListNew) == 0):
+                    if (length(modAnglesListNew) = 0):
                         modAnglesListNew := str j;
                     else:
                         modAnglesListNew := str j & ", " & modAnglesListNew;
@@ -1820,7 +1820,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                         modAnglesListNew := "";
                         anglesAdded := 0;
                         forsuffixes j=scantokens(modAnglesList):
-                            if (length(anglesToDraw) == 0):
+                            if (length(anglesToDraw) = 0):
                                 anglesToDraw := str j;
                             else:
                                 forsuffixes k=scantokens(anglesToDraw):
@@ -1837,7 +1837,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                         forsuffixes j=scantokens(modAnglesList):
                             angleIsAdded := false;
                             forsuffixes k=scantokens(anglesToDraw):
-                                if ((str j) == (str k)):
+                                if ((str j) = (str k)):
                                     angleIsAdded := true;
                                 fi;
                             endfor;
@@ -1846,7 +1846,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                             fi;
                         endfor;
                         modAnglesList := modAnglesListNew;
-                    exitif (anglesAdded == 0) or (length(modAnglesList)==0);
+                    exitif (anglesAdded = 0) or (length(modAnglesList)=0);
                     endfor;
                     v := 0;
                     forsuffixes k=scantokens(anglesToDraw):
@@ -1857,7 +1857,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                     startTempAngleScale(angleScale*sc);
                         draw byNamedAngle(scantokens(anglesToDraw));
                     stopTempAngleScale;
-                exitif (length(modAnglesList)==0);
+                exitif (length(modAnglesList)=0);
                 endfor;
             fi;
         endfor;
@@ -1893,7 +1893,7 @@ vardef generateAngleSynonyms =
                     fi;
                 fi;
             endfor;
-            if (n == 1):
+            if (n = 1):
                 if not string getAttribute("angle", "Synonym", candidateName0):
                     setAttribute("angle", "SynonymPartial", candidateName0, false);
                     setAttribute("angle", "Synonym", candidateName0, originalName);
@@ -1908,26 +1908,24 @@ vardef sortPointAnglesList (expr anglesListToSort) =
     string preList, postList, rv;
     boolean isSorted;
     numeric value, firstValue, lastValue, nPre, nPost;
-    firstValue := -360;
     lastValue := -360;
     isSorted := true;
     preList := "";
     postList := "";
     nPre := 0;
-    nPost := 1;
+    nPost := 0;
     forsuffixes i=scantokens(anglesListToSort):
         value := getAttribute("angle", "Direction", str i);
-        if (firstValue == -360):
+        if (unknown firstValue):
             firstValue := value;
             appendList(postList, str i, 0, false);
+        fi;
+        if (value < firstValue):
+            appendList(preList, str i, 0, false);
+            nPre := nPre + 1;
         else:
-            if (value < firstValue):
-                appendList(preList, str i, 0, false);
-                nPre := nPre + 1;
-            else:
-                appendList(postList, str i, 0, false);
-                nPost := nPost + 1;
-            fi;
+            appendList(postList, str i, 0, false);
+            nPost := nPost + 1;
         fi;
         if (lastValue > value):
             isSorted := false;
@@ -1976,10 +1974,10 @@ vardef byConstructCoupoundAngle(expr angleName) =
             fi;
         endfor;
     endfor;
-    if (known scantokens(angleName)) and (n == 0):
+    if (known scantokens(angleName)) and (n = 0):
         rv := pointAnglesList.scantokens(angleName);
     else:
-        if n == 0:
+        if n = 0:
             errmessage("Can't find points for angle: " & lineName);
         fi;
         if n > 1:
@@ -2072,35 +2070,35 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
     pair s[];
     picture q;
     p := (0, 0);
-    if (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "circle"):
+    if (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "circle"):
         p := fullcircle scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "semicircleUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "semicircleUp"):
         p := ((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "semicircleDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "semicircleDown"):
         p := (((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "sectorDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "sectorDown"):
         p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "sectorUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "sectorUp"):
         p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale) yscaled -1;
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "wedgeUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "wedgeUp"):
         p := (((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "wedgeDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "wedgeDown"):
         p := ((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "square"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "square"):
         p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "halfsquare"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "halfsquare"):
             p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "rhombus"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "rhombus"):
         p := ((0, 1/2) -- (-1/2, 0) -- (0, -1/2) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "halfrhombusUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "halfrhombusUp"):
         p := ((0, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniTriangleUp"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniTriangleUp"):
         p := ((-1/4, -1/4) -- (1/4, -1/4)  -- (0, 1/4) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniTriangleDown"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniTriangleDown"):
         p := ((-1/4, 1/4) -- (1/4, 1/4)  -- (0, -1/4) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniSquare"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniSquare"):
         p := ((-1/4, -1/4) -- (1/4, -1/4) -- (1/4, 1/4) -- (-1/4, 1/4) -- cycle) scaled (u*magnitudeScale);
-    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) == "miniCircle"):
+    elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniCircle"):
         p := fullcircle scaled (u*1/2magnitudeScale);
     fi;
     if (hor):
@@ -2111,7 +2109,7 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
         s2 := (magnitudeGap, 0);
     fi;
     q := image(
-        if (getAttribute("magnitude", "Style", str magnitudeSymbolName) == 0):
+        if (getAttribute("magnitude", "Style", str magnitudeSymbolName) = 0):
             fill p withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
         else:
             draw p withpen (pencircle scaled lineWidthThin) withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
@@ -2155,7 +2153,7 @@ vardef byNamedMagnitude (expr excl) (suffix magnitudeName) =
     h := 0;
     image(
         for magC := 1 step 1 until getAttribute("magnitude", "NumberOfRows", str magnitudeName):
-            if (excl == 0) or ((excl < 0) and (magC <> -excl)) or ((excl > 0) and (magC == excl)):
+            if (excl = 0) or ((excl < 0) and (magC <> -excl)) or ((excl > 0) and (magC = excl)):
                 p := byNamedMagnitudeSymbol(getAttributeMulti("magnitude", "N", str magnitudeName, magC), getAttribute("magnitude", "Horizontal", str magnitudeName))(scantokens(getAttributeMulti("magnitude", "Symbol", str magnitudeName, magC)));
                 if (getAttribute("magnitude", "Horizontal", str magnitudeName)):
                     if (getAttribute("magnitude", "Alignment", str magnitudeName) = 0):
@@ -2307,15 +2305,15 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                     pointLoc[i] := pN;
                 fi;
                 if (i > 0):
-                    if (pointName[i] == pointName[i-1]):
+                    if (pointName[i] = pointName[i-1]):
                         i := i - 1;
                     fi;
                 fi;
             endfor;
-            if (pointName[i] == pointName[0]):
+            if (pointName[i] = pointName[0]):
                 i := i - 1;
             fi;
-            if (i == 1):
+            if (i = 1):
                 i := i + 1;
                 pointName[i] := "noPoint";
             fi;
@@ -2326,11 +2324,11 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                     p1 := pointLoc[j];
                     stump := 0;
                     if (pointName[k] <> "noPoint") or (pointName[l] <> "noPoint"):
-                        if (pointName[k] == "noPoint"):
+                        if (pointName[k] = "noPoint"):
                             p2 := pointLoc[l];
                             p0 := 2[p2, p1];
                             stump := -1;
-                        elseif (pointName[l] == "noPoint"):
+                        elseif (pointName[l] = "noPoint"):
                             p0 := pointLoc[k];
                             p2 := 2[p0, p1];
                             stump := +1;
@@ -2355,13 +2353,13 @@ vardef byLabelsOnPolygon(text pointsList)(expr sty, shft)=
                             q6 := p1;
                         fi;
                     fi;
-                    if (sty == 2) and ((j == 0) or (j == i)):
+                    if (sty = 2) and ((j = 0) or (j = i)):
                         pointDrawn.scantokens(pointName[j]) := true;
                     fi;
-                    if (sty == 3) and (j == 0):
+                    if (sty = 3) and (j = 0):
                         pointDrawn.scantokens(pointName[j]) := true;
                     fi;
-                    if (sty == 4) and (j == i):
+                    if (sty = 4) and (j = i):
                         pointDrawn.scantokens(pointName[j]) := true;
                     fi;
                     if (q6 <> p1) and (not pointDrawn.scantokens(pointName[j])):

@@ -101,8 +101,9 @@ vardef findRightSize (expr givenBranchPath, givenBranchOrigin, sty, minSize, max
 enddef;
 
 vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
-    save sproutPath, sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative, sideActive;
+    save sproutPath, sproutMaxSize, sproutSize, sproutBaseDirection, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative, sideActive;
     path sproutPath, rp;
+    pair sproutBaseDirection;
     numeric sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, startPoint, endPoint, currentBranchOrientationRelative;
     boolean sideActive[];
     sproutSizeOld := 0;
@@ -142,10 +143,14 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
                     fi;
                 fi;
                 sproutFittingIterations := log(sproutMaxSize/branchScalePrecision, 2);
+                sproutBaseDirection := direction j of branchMeristem[branchNumber];
+                if sproutBaseDirection = (0, 0):
+                    sproutBaseDirection := 1/2[direction (j-1/100) of branchMeristem[branchNumber], direction (j+1/100) of branchMeristem[branchNumber]];
+                fi;
                 if (candidateBranchOrientation = 0):
-                    sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(direction j of branchMeristem[branchNumber]) - 90);
+                    sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) - 90);
                 else:
-                    sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(direction j of branchMeristem[branchNumber]) + 90);
+                    sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) + 90);
                 fi;
                 sproutSize := findRightSize(sproutPath, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, sproutMaxSize, 0, branchNumber, totalBranches, sproutFittingIterations);
                 if (arclength(sproutPath scaled sproutSize) <= minBranchLength[branchStyleIndex]):
