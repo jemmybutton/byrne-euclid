@@ -151,7 +151,7 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
     fi;
 enddef;
 
-vardef setAttribute (expr attrGenus, attrSpecies, attrName, attrValue) =
+vardef setAttribute@#(expr attrGenus, attrSpecies, attrName, attrValue) =
     save finName;
     string finName;
     if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
@@ -164,30 +164,15 @@ vardef setAttribute (expr attrGenus, attrSpecies, attrName, attrValue) =
             fi;
         fi;
     fi;
-    scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName);
-    scantokens(attrGenus & attrSpecies).scantokens(finName) := attrValue;
-enddef;
-
-vardef setAttributeMulti (expr attrGenus, attrSpecies, attrName, attrValue, n) =
-    save finName;
-    string finName;
-    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
-        finName := attrName;
-    else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
-        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
-            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
-                finName := attrName;
-            fi;
-        fi;
-    fi;
-    if (typeOf(scantokens(attrGenus & attrSpecies).scantokens(finName)0) <> typeOf(attrValue)):
+    if str @# = "":
+        scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName);
+    elseif (typeOf(scantokens(attrGenus & attrSpecies).scantokens(finName)0) <> typeOf(attrValue)):
         scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
     fi;
-    scantokens(attrGenus & attrSpecies).scantokens(finName)[n] := attrValue;
+    scantokens(attrGenus & attrSpecies).scantokens(finName)@# := attrValue;
 enddef;
 
-vardef getAttribute (expr attrGenus, attrSpecies, attrName) =
+vardef getAttribute@#(expr attrGenus, attrSpecies, attrName) =
     save finName;
     string finName;
     if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
@@ -196,31 +181,13 @@ vardef getAttribute (expr attrGenus, attrSpecies, attrName) =
         finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
         if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
             if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
-                if known scantokens(attrGenus & attrSpecies).scantokens(attrName):
+                if known scantokens(attrGenus & attrSpecies).scantokens(attrName)@#:
                     finName := attrName;
                 fi;
             fi;
         fi;
     fi;
-    scantokens(attrGenus & attrSpecies).scantokens(finName)
-enddef;
-
-vardef getAttributeMulti (expr attrGenus, attrSpecies, attrName, n) =
-    save finName;
-    string finName;
-    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
-        finName := attrName;
-    else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
-        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
-            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
-                if known scantokens(attrGenus & attrSpecies).scantokens(attrName)[n]:
-                    finName := attrName;
-                fi;
-            fi;
-        fi;
-    fi;
-    scantokens(attrGenus & attrSpecies).scantokens(finName)[n]
+    scantokens(attrGenus & attrSpecies).scantokens(finName)@#
 enddef;
 
 vardef attributeExists(expr attrGenus, attrSpecies, attrName) =
@@ -1460,7 +1427,7 @@ fi;
     setAttribute("angle", "CVal", str angleName, angle(c-b));
     setAttribute("angle", "Direction", str angleName, ad);
     setAttribute("angle", "Color", str angleName, col);
-    setAttributeMulti("angle", "OptionalColor", str angleName, white, 0);
+    setAttribute0("angle", "OptionalColor", str angleName, white);
     setAttribute("angle", "Style", str angleName, sty);
     setAttribute("angle", "Center", str angleName, b);
     setAttribute("angle", "AName", str angleName, str a);
@@ -1490,7 +1457,7 @@ vardef byAngleDefineExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angle
     n := 0;
     byAngleDefineWithName(a, b, c, col, sty)(angleName);
     forsuffixes oC=optionalColors:
-        setAttributeMulti("angle", "OptionalColor", str angleName, oC, n);
+        setAttribute[n]("angle", "OptionalColor", str angleName, oC);
         n := n + 1;
     endfor;
 enddef;
@@ -1655,7 +1622,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
-                                if (getAttribute("angle", "Style", str aN) = 0) or (getAttributeMulti("angle", "OptionalColor", str aN, 0) <> white):
+                                if (getAttribute("angle", "Style", str aN) = 0) or (getAttribute0("angle", "OptionalColor", str aN) <> white):
                                     angleType[i] := 0;
                                 fi;
                             fi;
@@ -1665,7 +1632,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
                             if ((getAttribute("angle", "Style", str aN) <> 0)
-                                    and (getAttributeMulti("angle", "OptionalColor", str aN, 0) = white))
+                                    and (getAttribute0("angle", "OptionalColor", str aN) = white))
                                 or ((getAttribute("angle", "Style", str aN) = 0)
                                     and (getAttribute("angle", "Color", str aN) = white)):
                                 angleType[angleNum] := 1;
@@ -2057,8 +2024,8 @@ vardef byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) 
     setAttribute("magnitude", "Color", str magnitudeSymbolName, col);
     setAttribute("magnitude", "Shape", str magnitudeSymbolName, shp);
     setAttribute("magnitude", "Style", str magnitudeSymbolName, sty);
-    setAttributeMulti("magnitude", "Symbol", str magnitudeSymbolName, str magnitudeSymbolName, 1);
-    setAttributeMulti("magnitude", "N", str magnitudeSymbolName, 1, 1);
+    setAttribute1("magnitude", "Symbol", str magnitudeSymbolName, str magnitudeSymbolName);
+    setAttribute1("magnitude", "N", str magnitudeSymbolName, 1);
     setAttribute("magnitude", "Alignment", str magnitudeSymbolName, 0);
     setAttribute("magnitude", "NumberOfRows", str magnitudeSymbolName, 1);
     setAttribute("magnitude", "Horizontal", str magnitudeSymbolName, false);
@@ -2130,7 +2097,7 @@ vardef byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(tex
     i := 0;
     forsuffixes rN=rowsList:
         i := i + 1;
-        setAttributeMulti("magnitude", "N", str magnitudeName, rN, i);
+        setAttribute[i]("magnitude", "N", str magnitudeName, rN);
     endfor;
     setAttribute("magnitude", "NumberOfRows", str magnitudeName, i);
     i := 0;
@@ -2138,7 +2105,7 @@ vardef byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(tex
         forsuffixes sN=magnitudeSymbolsList:
             i := i + 1;
             if (i <= getAttribute("magnitude", "NumberOfRows", str magnitudeName)):
-                setAttributeMulti("magnitude", "Symbol", str magnitudeName, str sN, i);
+                setAttribute[i]("magnitude", "Symbol", str magnitudeName, str sN);
             fi;
         endfor;
     exitif (i >= getAttribute("magnitude", "NumberOfRows", str magnitudeName));
@@ -2154,7 +2121,7 @@ vardef byNamedMagnitude (expr excl) (suffix magnitudeName) =
     image(
         for magC := 1 step 1 until getAttribute("magnitude", "NumberOfRows", str magnitudeName):
             if (excl = 0) or ((excl < 0) and (magC <> -excl)) or ((excl > 0) and (magC = excl)):
-                p := byNamedMagnitudeSymbol(getAttributeMulti("magnitude", "N", str magnitudeName, magC), getAttribute("magnitude", "Horizontal", str magnitudeName))(scantokens(getAttributeMulti("magnitude", "Symbol", str magnitudeName, magC)));
+                p := byNamedMagnitudeSymbol(getAttribute[magC]("magnitude", "N", str magnitudeName), getAttribute("magnitude", "Horizontal", str magnitudeName))(scantokens(getAttribute[magC]("magnitude", "Symbol", str magnitudeName)));
                 if (getAttribute("magnitude", "Horizontal", str magnitudeName)):
                     if (getAttribute("magnitude", "Alignment", str magnitudeName) = 0):
                         s1 := 1/2[urcorner(p),lrcorner(p)];
