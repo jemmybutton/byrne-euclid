@@ -190,7 +190,7 @@ vardef getAttribute@#(expr attrGenus, attrSpecies, attrName) =
     scantokens(attrGenus & attrSpecies).scantokens(finName)@#
 enddef;
 
-vardef attributeExists(expr attrGenus, attrSpecies, attrName) =
+vardef attributeExists (expr attrGenus, attrSpecies, attrName) =
     save rv;
     boolean rv;
     if known scantokens(attrGenus & attrSpecies).scantokens(attrName):
@@ -233,7 +233,7 @@ vardef angleValue (expr a, b, c) =
     v
 enddef;
 
-vardef lineThickness(expr th) =
+vardef lineThickness (expr th) =
     if (th = 0):
         lineWidth
     elseif (th = 1):
@@ -245,7 +245,7 @@ vardef lineThickness(expr th) =
     fi
 enddef;
 
-vardef byDashPattern(expr l, dp) =
+vardef byDashPattern (expr l, dp) =
     save d, n;
     numeric d[], n;
     n := ceiling(l/dpLength[dp]);
@@ -254,7 +254,7 @@ vardef byDashPattern(expr l, dp) =
     dashpattern (on d1 off d2 on d1)
 enddef;
 
-def startTempScale(expr tmpScale) =
+def startTempScale (expr tmpScale) =
     begingroup
         save scaleFactor;
         scaleFactor := tmpScale;
@@ -264,7 +264,7 @@ def stopTempScale =
     endgroup
 enddef;
 
-def startTempAngleScale(expr tmpScale) =
+def startTempAngleScale (expr tmpScale) =
     begingroup
         save angleScale;
         angleScale := tmpScale;
@@ -274,7 +274,7 @@ def stopTempAngleScale =
     endgroup
 enddef;
 
-def startGlobalRotation(expr ang) =
+def startGlobalRotation (expr ang) =
     begingroup
         save globalRotation;
         globalRotation := ang;
@@ -434,7 +434,7 @@ vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
     byNamedLineFull(a, b, 0, 0, 0)(lineName)
 enddef;
 
-vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
+vardef byNamedLineFull (expr c, d, ct, dt, s) (suffix lineName) =
     if (mainPictureMode):
         appendList(pointLinesList.scantokens(getAttribute("line", "EndAName", str lineName)), str lineName, 1, true);
         appendList(pointLinesList.scantokens(getAttribute("line", "EndBName", str lineName)), str lineName, 1, true);
@@ -442,7 +442,7 @@ vardef byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName) =
     byLineRender(getAttribute("line", "EndA", str lineName), getAttribute("line", "EndB", str lineName), getAttribute("line", "Color", str lineName), getAttribute("line", "Dashed", str lineName), getAttribute("line", "Thin", str lineName), c, d, ct, dt, s, scaleFactor)
 enddef;
 
-vardef byNamedLine(text linesList) =
+vardef byNamedLine (text linesList) =
     image(
         forsuffixes lN=linesList:
             draw byNamedLineFull(getAttribute("line", "DirA", str lN), getAttribute("line", "DirB", str lN), getAttribute("line", "EndAType", str lN), getAttribute("line", "EndBType", str lN), getAttribute("line", "Shift", str lN))(lN);
@@ -450,7 +450,7 @@ vardef byNamedLine(text linesList) =
     )
 enddef;
 
-vardef byNamedLineSeq(expr s)(text linesListRaw) =
+vardef byNamedLineSeq (expr s)(text linesListRaw) =
     save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, pointNames, linesList;
     string lAname[], lBname[], lName[], c, d, pointNames, linesList;
     numeric i, j, k, l, m, n, prp, lShift[];
@@ -564,7 +564,7 @@ vardef byNamedLineSeq(expr s)(text linesListRaw) =
     )
 enddef;
 
-vardef byMarkLine(expr pos, col)(suffix lineName) =
+vardef byMarkLine (expr pos, col)(suffix lineName) =
     setAttribute("mark", "Position", str lineName, pos);
     setAttribute("mark", "Color", str lineName, col);
     byNamedMarkLine(lineName)
@@ -584,7 +584,7 @@ vardef byNamedMarkLine(suffix lineName) =
     p rotated globalRotation
 enddef;
 
-vardef byFindLinePointedThere(expr a, b) =
+vardef byFindLinePointedThere (expr a, b) =
     save endA, endB, endAC, endBC, endAA, endBA, chosenLine, lL;
     string chosenLine;
     pair endA, endB, endAC, endBC, endAA, endBA;
@@ -613,7 +613,7 @@ vardef byFindLinePointedThere(expr a, b) =
     chosenLine
 enddef;
 
-vardef byConstructCompoundLine(expr lineName) =
+vardef byConstructCompoundLine (expr lineName) =
     save lineStart, lEnd, newLine, lEndA, lEndB, compoundLineString, i, j, cPointA, cPointB;
     string lineStart, lEnd, newLine, lEndA, lEndB, compoundLineString, cPointA, cPointB;
     numeric i, j;
@@ -675,24 +675,25 @@ vardef byExpandLines (text linesList) =
     lineString
 enddef;
 
-vardef byNamedCompoundLine(expr cu, pw)(text linesList) =
+vardef byNamedCompoundLine (expr cu, pw)(text linesList) =
     byNamedCompoundLineRender(cu, pw, 0)(scantokens(byExpandLines(linesList)))
 enddef;
 
-vardef byNamedCompoundRay(expr cu, pw)(text linesList) =
+vardef byNamedCompoundRay (expr cu, pw)(text linesList) =
     byNamedCompoundLineRender(cu, pw, 1)(scantokens(byExpandLines(linesList)))
 enddef;
 
-vardef byNamedCompoundIndLine(expr cu, pw)(text linesList) =
+vardef byNamedCompoundIndLine (expr cu, pw)(text linesList) =
     byNamedCompoundLineRender(cu, pw, 2)(scantokens(byExpandLines(linesList)))
 enddef;
 
-vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
-    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, lineNotStraight, lineNotContinuous, globalRotation, extensionNames;
+vardef byNamedCompoundLineRender (expr cu, pw, sty)(text linesList) =
+    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, lineNotStraight, lineNotContinuous, globalRotation, extensionNames, textLabelImage;
     numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j, angleCheck[];
     globalRotation := 0;
     string lineNames[], endNames[], extensionNames[];
     pair a, b;
+    picture textLabelImage[];
     boolean lineNotStraight, lineNotContinuous;
     i := 0;
     totalLength := 0;
@@ -797,10 +798,18 @@ vardef byNamedCompoundLineRender(expr cu, pw, sty)(text linesList) =
         fi;
         if (textLabels and autoLabelingMode):
             if unknown endNames[2]:
-                draw byTextLabel(pointLabel)(endNames[0], (0, 0), 90, textLabelShift);
-                draw byTextLabel(pointLabel)(endNames[1], b, 90, textLabelShift);
+                textLabelImage1 := byTextLabel(pointLabel)(endNames[0], (0, 0), 90, textLabelShift);
+                textLabelImage2 := byTextLabel(pointLabel)(endNames[1], b, 90, textLabelShift);
+                draw textLabelImage1;
+                draw textLabelImage2;
+                % these are only needed to make the image symmetrical in order to have
+                % the line with and without labels at the same level in text.
+                draw (textLabelImage1 yscaled -1) withcolor white;
+                draw (textLabelImage2 yscaled -1) withcolor white;
             else:
-                draw byTextLabel(lineLabel)(endNames[2], 1/2[(0, 0), b], 90, textLabelShift);
+                textLabelImage1 := byTextLabel(lineLabel)(endNames[2], 1/2[(0, 0), b], 90, textLabelShift);
+                draw textLabelImage1;
+                draw (textLabelImage1 yscaled -1) withcolor white;
             fi;
         fi;
     )
@@ -974,7 +983,7 @@ enddef;
 % Arcs and circles
 %
 
-vardef byArcRender(expr o, b, e, r, col, dp, th, s, et) =
+vardef byArcRender (expr o, b, e, r, col, dp, th, s, et) =
     save p, q, m, t, currentLineWidth;
     path p[];
     picture q;
@@ -1049,7 +1058,7 @@ vardef byArc (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcName) =
     byNamedArcExact(arcName)
 enddef;
 
-vardef byNamedArcExact(text arcslist) =
+vardef byNamedArcExact (text arcslist) =
     image(
         forsuffixes aN=arcslist:
             draw byArcRender(getAttribute("arc", "Center", str aN), getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN), getAttribute("arc", "Diameter", str aN), getAttribute("arc", "Color", str aN), getAttribute("arc", "Dashed", str aN), getAttribute("arc", "Thin", str aN), getAttribute("arc", "Shift", str aN), getAttribute("arc", "EndType", str aN));
@@ -1060,7 +1069,7 @@ vardef byNamedArcExact(text arcslist) =
     )
 enddef;
 
-vardef byNamedArc(text arcslist) =
+vardef byNamedArc (text arcslist) =
     image(
         forsuffixes aN=arcslist:
             draw byArcRender(getAttribute("arc", "Center", str aN), getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN), getAttribute("arc", "Diameter", str aN), getAttribute("arc", "Color", str aN), getAttribute("arc", "Dashed", str aN), getAttribute("arc", "Thin", str aN), 0, 0);
@@ -1155,7 +1164,7 @@ vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
     byNamedCircle(circleName)
 enddef;
 
-vardef byNamedCircle(text circlesList) =
+vardef byNamedCircle (text circlesList) =
     image(
         forsuffixes cN=circlesList:
             draw byArcRender (getAttribute("circle", "Center", str cN), 0, 8, getAttribute("circle", "Diameter", str cN), getAttribute("circle", "Color", str cN), getAttribute("circle", "Dashed", str cN), getAttribute("circle", "Thin", str cN), getAttribute("circle", "Shift", str cN), 0);
@@ -1184,7 +1193,7 @@ enddef;
 % Arbitraty figures
 %
 
-vardef byArbitraryFigureDefine(expr p, col, dp, th)(suffix arbitraryFigureName) =
+vardef byArbitraryFigureDefine (expr p, col, dp, th)(suffix arbitraryFigureName) =
     setAttribute("arbitraryFigure", "Path", str arbitraryFigureName, p);
     setAttribute("arbitraryFigure", "Color", str arbitraryFigureName, col);
     setAttribute("arbitraryFigure", "Dashed", str arbitraryFigureName, dp);
@@ -1192,12 +1201,12 @@ vardef byArbitraryFigureDefine(expr p, col, dp, th)(suffix arbitraryFigureName) 
     setAttribute("arbitraryFigure", "Synonym", str arbitraryFigureName, str arbitraryFigureName);
 enddef;
 
-vardef byArbitraryFigure(expr p, col, dp, th)(suffix arbitraryFigureName) =
+vardef byArbitraryFigure (expr p, col, dp, th)(suffix arbitraryFigureName) =
     byArbitraryFigureDefine(p, col, dp, th)(arbitraryFigureName);
     byNamedArbitraryFigure(arbitraryFigureName)
 enddef;
 
-vardef byNamedArbitraryFigure(text arbitraryFiguresList) =
+vardef byNamedArbitraryFigure (text arbitraryFiguresList) =
     save p;
     path p;
     image(
@@ -1222,7 +1231,7 @@ vardef byFilledCircleSegment (expr o, r, b, e, col) (suffix filledCircleSegmentN
     byNamedFilledCircleSegment(filledCircleSegmentName)
 enddef;
 
-vardef byNamedFilledCircleSegment(text filledCircleSegmentList) =
+vardef byNamedFilledCircleSegment (text filledCircleSegmentList) =
     save p;
     path p;
     image(
@@ -1241,7 +1250,7 @@ vardef byFilledCircleSector (expr o, r, b, e, col) (suffix filledCircleSectorNam
     byNamedFilledCircleSector(filledCircleSectorName)
 enddef;
 
-vardef byNamedFilledCircleSector(text filledCircleSectorList) =
+vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     image(
         forsuffixes csN=filledCircleSectorList:
             fill ((subpath (getAttribute("filledCircleSector", "Begin", str csN), getAttribute("filledCircleSector", "End", str csN)) of fullcircle)-- (0, 0) -- cycle) scaled (getAttribute("filledCircleSector", "Diameter", str csN)*scaleFactor) shifted (getAttribute("filledCircleSector", "Center", str csN)*scaleFactor) withcolor getAttribute("filledCircleSector", "Color", str csN);
@@ -1249,7 +1258,7 @@ vardef byNamedFilledCircleSector(text filledCircleSectorList) =
     ) rotated globalRotation
 enddef;
 
-vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
+vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
     save pL, p, tn;
     path p;
     string pL;
@@ -1267,7 +1276,7 @@ vardef byPolygonWithName(text pointsList)(expr col)(suffix polygonName)=
     byNamedPolygon(polygonName)
 enddef;
 
-vardef byPolygon(text pointsList)(expr col)=
+vardef byPolygon (text pointsList)(expr col)=
     save polygonName;
     string polygonName;
     polygonName := "";
@@ -1277,7 +1286,7 @@ vardef byPolygon(text pointsList)(expr col)=
     byPolygonWithName(pointsList)(col)(scantokens(polygonName))
 enddef;
 
-vardef byNamedPolygon(text polygonsList) =
+vardef byNamedPolygon (text polygonsList) =
     image(
         draw image(
             forsuffixes pN=polygonsList:
@@ -1294,7 +1303,7 @@ vardef byNamedPolygon(text polygonsList) =
     )
 enddef;
 
-vardef byMergePolygons(text polygonsList) =
+vardef byMergePolygons (text polygonsList) =
     save pointsList, preList, postList, mergedList, points, postPoints, i, j, k, l, m, n, o, iteration, beforeJoin, polygonChecked, pointChecked;
     string pointsList[], preList[], postList[], mergedList, points[], postPoints[];
     numeric l, m, n, o, iteration;
@@ -1397,7 +1406,7 @@ enddef;
 % Angles
 %
 
-vardef byAngleDefineWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
+vardef byAngleDefineWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
 if mainPictureMode:
     appendList(pointAnglesList.b, str angleName, 1, true);
     appendList(anglePointsList, str b, 1, true);
@@ -1438,11 +1447,11 @@ fi;
     setAttribute("angle", "Synonym", str angleName, str angleName);
 enddef;
 
-vardef byAngleDefine(suffix a, b, c)(expr col, sty) =
+vardef byAngleDefine (suffix a, b, c)(expr col, sty) =
     byAngleDefineWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c));
 enddef;
 
-vardef byAngleWithName(suffix a, b, c)(expr col, sty)(suffix angleName) =
+vardef byAngleWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
     byAngleDefineWithName(a, b, c, col, sty)(angleName);
     byNamedAngle(angleName)
 enddef;
@@ -1451,7 +1460,7 @@ vardef byAngle(suffix a, b, c)(expr col, sty) =
     byAngleWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))
 enddef;
 
-vardef byAngleDefineExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+vardef byAngleDefineExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
     save n;
     numeric n;
     n := 0;
@@ -1462,20 +1471,20 @@ vardef byAngleDefineExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angle
     endfor;
 enddef;
 
-vardef byAngleDefineExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
+vardef byAngleDefineExtended (suffix a, b, c)(expr col, sty)(text optionalColors) =
     byAngleDefineExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors);
 enddef;
 
-vardef byAngleExtendedWithName(suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+vardef byAngleExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
     byAngleDefineExtendedWithName(a, b, c)(col, sty)(angleName)(optionalColors);
     byNamedAngle(angleName)
 enddef;
 
-vardef byAngleExtended(suffix a, b, c)(expr col, sty)(text optionalColors) =
+vardef byAngleExtended (suffix a, b, c)(expr col, sty)(text optionalColors) =
     byAngleExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors)
 enddef;
 
-vardef byNamedAngle(text anglesList) =
+vardef byNamedAngle (text anglesList) =
     save p, q;
     picture q;
     path p;
@@ -1568,7 +1577,7 @@ enddef;
 % and counts them; ones that occur twice it draws as is; ones that occur
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
-vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
+vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
     save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse, processedAnglesList;
     string centerName, pointName[], processedAnglesList;
     pair ac, p[];
@@ -1611,6 +1620,7 @@ vardef byNamedAngleSidesFull(text anglesList)(text linesList)=
         startTempAngleScale(scaleToUse);
             if (uniqueCenter):
                 angleNum := 0;
+                show (processedAnglesList);
                 forsuffixes aN=scantokens(processedAnglesList):
                     anglePart1 := angle(point 0 of getAttribute("angle", "Arc", str aN));
                     as1 := sign(ypart((direction 0 of getAttribute("angle", "Arc", str aN)) rotated -anglePart1));
@@ -1885,13 +1895,13 @@ vardef sortPointAnglesList (expr anglesListToSort) =
         value := getAttribute("angle", "Direction", str i);
         if (unknown firstValue):
             firstValue := value;
-            appendList(postList, str i, 0, false);
+            appendList(postList, str i, 0, true);
         fi;
         if (value < firstValue):
-            appendList(preList, str i, 0, false);
+            appendList(preList, str i, 0, true);
             nPre := nPre + 1;
         else:
-            appendList(postList, str i, 0, false);
+            appendList(postList, str i, 0, true);
             nPost := nPost + 1;
         fi;
         if (lastValue > value):
@@ -1916,7 +1926,7 @@ vardef sortPointAnglesList (expr anglesListToSort) =
     rv
 enddef;
 
-vardef byConstructCoupoundAngle(expr angleName) =
+vardef byConstructCoupoundAngle (expr angleName) =
     save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, dirA, dirC, rv;
     string pointA, pointB, pointC, cPointA, cPointB, cPointC, angleList, rv;
     boolean isFirst, isLast;
