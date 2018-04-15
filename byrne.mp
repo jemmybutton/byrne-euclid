@@ -883,69 +883,71 @@ vardef byPointMark (suffix pointName)(expr col, sty) =
 enddef;
 
 vardef byNamedPointLines (suffix pointName)(expr omitLines) =
+save linesList, lineNames, pointNames, distantEnd, distantEnds, n, no, distL, maxDist, maxDistEndA, maxDistEndB, a, angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB, safeLine;
 string linesList, lineNames[], pointNames[];
 linesList := pointLinesList.pointName;
 pair distantEnd, distantEnds[];
 numeric n, no, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB, safeLine;
+picture labelImage, linesImage;
 boolean omitLine[];
-    image(
-        n := 0;
-        no := 0;
-        maxDist := 0;
-        maxAngle := 0;
-        minAngle := 360;
-        forsuffixes i = scantokens(linesList):
-            n := n + 1;
-            lineNames[n] := str i;
-            omitLine[n] := false;
-            if (length(omitLines) > 0):
-                forsuffixes j = scantokens(omitLines):
-                    if ((str i) = (str j)):
-                        omitLine[n] := true;
-                        no := no + 1;
-                    fi;
-                endfor;
-            fi;
-            if (not omitLine[n]):
-                safeLine := n;
-            fi;
-            if (getAttribute("line", "EndAName", str i) = str pointName):
-                distantEnds[n] := getAttribute("line", "EndA", str i) + (unitvector(getAttribute("line", "EndB", str i) - getAttribute("line", "EndA", str i)) scaled (pointLinesScale/scaleFactor));
-                pointNames[n] := getAttribute("line", "EndBName", str i);
-            else:
-                distantEnds[n] := getAttribute("line", "EndB", str i) + (unitvector(getAttribute("line", "EndA", str i) - getAttribute("line", "EndB", str i)) scaled (pointLinesScale/scaleFactor));
-                pointNames[n] := getAttribute("line", "EndAName", str i);
-            fi;
-        endfor;
-        if (n - no > 1):
-            for i := 1 step 1 until n:
-                if (not omitLine[i]):
-                    minAngle := 360;
-                    for j := 1 step 1 until n:
-                        if (not omitLine[j]):
-                            distL := abs(distantEnds[i] - distantEnds[j]);
-                            if (distL > maxDist):
-                                maxDist := distL;
-                                maxDistEndA := i;
-                                maxDistEndB := j;
-                            fi;
-                            a1 := angle(distantEnds[i] - pointName);
-                            a2 := angle(distantEnds[j] - pointName);
-                            angleL := a2 - a1;
-                            if (angleL < 0): angleL := angleL + 360; fi;
-                            if (minAngle > angleL) and (angleL <> 0):
-                                minAngle := angleL;
-                                minAngleEndA := j;
-                            fi;
-                        fi;
-                    endfor;
-                    if (maxAngle <= minAngle + 1):
-                        maxAngle := minAngle;
-                        maxAngleEndA := minAngleEndA;
-                        maxAngleEndB := i;
-                    fi;
+    n := 0;
+    no := 0;
+    maxDist := 0;
+    maxAngle := 0;
+    minAngle := 360;
+    forsuffixes i = scantokens(linesList):
+        n := n + 1;
+        lineNames[n] := str i;
+        omitLine[n] := false;
+        if (length(omitLines) > 0):
+            forsuffixes j = scantokens(omitLines):
+                if ((str i) = (str j)):
+                    omitLine[n] := true;
+                    no := no + 1;
                 fi;
             endfor;
+        fi;
+        if (not omitLine[n]):
+            safeLine := n;
+        fi;
+        if (getAttribute("line", "EndAName", str i) = str pointName):
+            distantEnds[n] := getAttribute("line", "EndA", str i) + (unitvector(getAttribute("line", "EndB", str i) - getAttribute("line", "EndA", str i)) scaled (pointLinesScale/scaleFactor));
+            pointNames[n] := getAttribute("line", "EndBName", str i);
+        else:
+            distantEnds[n] := getAttribute("line", "EndB", str i) + (unitvector(getAttribute("line", "EndA", str i) - getAttribute("line", "EndB", str i)) scaled (pointLinesScale/scaleFactor));
+            pointNames[n] := getAttribute("line", "EndAName", str i);
+        fi;
+    endfor;
+    if (n - no > 1):
+        for i := 1 step 1 until n:
+            if (not omitLine[i]):
+                minAngle := 360;
+                for j := 1 step 1 until n:
+                    if (not omitLine[j]):
+                        distL := abs(distantEnds[i] - distantEnds[j]);
+                        if (distL > maxDist):
+                            maxDist := distL;
+                            maxDistEndA := i;
+                            maxDistEndB := j;
+                        fi;
+                        a1 := angle(distantEnds[i] - pointName);
+                        a2 := angle(distantEnds[j] - pointName);
+                        angleL := a2 - a1;
+                        if (angleL < 0): angleL := angleL + 360; fi;
+                        if (minAngle > angleL) and (angleL <> 0):
+                            minAngle := angleL;
+                            minAngleEndA := j;
+                        fi;
+                    fi;
+                endfor;
+                if (maxAngle <= minAngle + 1):
+                    maxAngle := minAngle;
+                    maxAngleEndA := minAngleEndA;
+                    maxAngleEndB := i;
+                fi;
+            fi;
+        endfor;
+        linesImage := image(
             for i := 1 step 1 until n:
                 if (i <> maxDistEndA) and (i <> maxDistEndB) and (not omitLine[i]):
                     draw byLineRender(pointName, distantEnds[i],
@@ -963,20 +965,33 @@ boolean omitLine[];
                 getAttribute("line", "Dashed", lineNames[maxDistEndB]),
                 getAttribute("line", "Thin", lineNames[maxDistEndB]),
                 distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 0, scaleFactor);
+                );
+        labelImage := image(
             if (textLabels):
                 draw byLabelsOnPolygon(scantokens(pointNames[maxAngleEndA]),pointName,scantokens(pointNames[maxAngleEndB]))(2, 0);
             fi;
-        else:
+            );
+    else:
+        linesImage := image(
             draw byLineRender(pointName, distantEnds[safeLine],
                 getAttribute("line", "Color", lineNames[safeLine]),
                 getAttribute("line", "Dashed", lineNames[safeLine]),
                 getAttribute("line", "Thin", lineNames[safeLine]),
                 pointName, distantEnds[safeLine], 0, 0, 0, scaleFactor);
+            );
+        labelImage := image(
             if (textLabels):
                 draw byLabelLineEnd (pointName, distantEnds[safeLine])(0);
             fi;
-        fi;
-    )
+            );
+    fi;
+    image(
+        draw labelImage;
+        % this thing is intended to make the overall picture symmetrical
+        % when all the lines are horizontal.
+        draw labelImage rotatedabout(pointName scaled scaleFactor, 180) withcolor white;
+        draw linesImage;
+        )
 enddef;
 
 %
