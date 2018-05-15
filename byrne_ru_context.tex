@@ -1026,7 +1026,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
  обозначает слово \emph{равно}. Знак равенства можно читать как \emph{равно}, или \emph{равны}, но род и~число не влияют на геометрическую строгость.
 
 \symb{$\neq$}
- обозначает то же, как если бы было написано \emph{на равно}.
+ обозначает то же, как если бы было написано \emph{не равно}.
 
 \symb{$>$}
  обозначает \emph{больше чем}.
@@ -2271,7 +2271,7 @@ draw byLabelsOnPolygon(D, A, B, C)(0, 0);
 draw byLabelsOnPolygon(G, E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{у двух треугольников по две стороны соответственно равны друг другу ($\drawUnitLine{AB} = \drawUnitLine{EF}$ и~$\drawUnitLine{AD} = \drawUnitLine{GE}$), и~угол заключенный ними в~одном
+\problemNP{Е}{сли}{у двух треугольников по две стороны соответственно равны друг другу ($\drawUnitLine[9mm]{AB} = \drawUnitLine[9mm]{EF}$ и~$\drawUnitLine[9mm]{AD} = \drawUnitLine[9mm]{GE}$), и~угол заключенный ними в~одном
 \drawFromCurrentPicture[bottom]{
 startAutoLabeling;
 draw byNamedAngleSides(BAC,CAD)(AB,CA,AD);
@@ -2295,7 +2295,7 @@ stopAutoLabeling;
 и $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
 проведем \drawUnitLine{CD} и~\drawUnitLine{BC}.
 
-Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I]. \hypstr \conststr)\\
+Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ (\inaxL[ax:I], \hypstr,  \conststr)\\
 $\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \inprop[prop:I.V],
 но $\drawAngle{CDB} < \drawAngle{DCA}$,\\
 и $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
