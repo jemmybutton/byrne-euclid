@@ -17,7 +17,7 @@
 
 input TEX;
 
-TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\usepackage{gentium}\begin{document}");
+TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}"); %\usepackage{tempora}
 TEXPOST("\end{document}");
 
 %outputformat := "svg";
@@ -27,14 +27,15 @@ vardef log(expr x, b) =
 enddef;
 
 % here we define some measures, common to all images
-numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, minimalDistance, budDistance;
-lettrineSize := 6/5cm;
+numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, borderWidth, minimalDistance, budDistance;
+lettrineSize := 3/2cm;
 plateWidth := 76mm;
 plateHeight := 15mm;
 tileWidth := 25mm;
 tileHeight := 25mm;
 minimalDistance := 1/25cm;
 budDistance := 2/3mm;
+borderWidth := 1mm;
 
 % this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
 primarydef p firstIntersectionTimes q =
@@ -334,18 +335,24 @@ forever:
         lettrineImage := image(
             totalBranchesNumber := -1;
             if ((l <> "plate") and (l <> "tile")):
-                addBranch (reverse(unitsquare) scaled lettrineSize, 0, 1, -1, -1);
+                addBranch (reverse(unitsquare) scaled lettrineSize, 0, 0, -1, -1);
+                fill branchPath0 withcolor black;
+                addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), 0, 1, -1, -1);
                 currentLetter := TEX(l);
                 for tp within currentLetter:
-                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled 1/38;
+                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled (1/35);
                     cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lettrineSize, 1/2lettrineSize);
-                    draw cL;
                     for item within cL:
+                        if (colorpart item) = 0:
+                            fill (pathpart item) withcolor white;
+                        else:
+                            fill (pathpart item) withcolor black;
+                        fi;
                         addBranch (pathpart item, 0, 1, -1, -1);
                     endfor;
                 endfor;
                 symMode := 0;
-                numberOfIterations := 10;
+                numberOfIterations := 11;
                 minBranchLength[0] := 1/6cm;
                 minimalDistance := 1/25cm;
                 budDistance := 1/4mm;
@@ -353,15 +360,19 @@ forever:
                 addBranch (
                     ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight,
                     0, 0, -1, -1);
+                fill branchPath0 withcolor black;
+                addBranch (
+                    ((reverse(unitsquare) shifted (-1/2,-1/2)) xscaled (plateWidth - borderWidth)) yscaled (plateHeight - borderWidth),
+                    0, 1, -1, -1);
                 addBranch (
                     (branchTemplate0 rotated 15) scaled 18mm,
                     0, 1, 0, -1);
                 addBranch (
-                    branchPath1 rotated 180,
+                    branchPath2 rotated 180,
                     0, 1, 0, -1);
                 symMode := 1;
                 numberOfIterations := 10;
-                minBranchLength[0] := 1/4cm;
+                minBranchLength[0] := 1/5cm;
                 minimalDistance := 1/20cm;
             elseif (l = "tile"):
                 addBranch (
@@ -416,9 +427,9 @@ forever:
             endfor;
             for i := 0 step 1 until totalBranchesNumber:
                 if (branchIsActive[i] > 0):
-                    draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi;
+                    draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi withcolor white;
                     if (not cycle branchPath[i]):
-                        draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm;
+                        draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm withcolor white;
                     fi;
                 fi;
             endfor;

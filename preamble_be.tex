@@ -1,16 +1,6 @@
-\switchtobodyfont[10pt]
-
-\definefontfeature
- [default]
- [default]
- [protrusion=quality,expansion=quality]
-
-\setupalign[hz,hanging]
-
 \definepapersize[custom]
- [width=145mm, height=200mm]
+ [width=145mm,height=200mm]
 \setuppapersize[custom][custom]
-%\setuppapersize[A5][A5]
 \setuppagenumbering[alternative=doublesided]
 \setuplayout[backspace=12mm,
 	width=76mm,	height=172mm,
@@ -24,15 +14,13 @@
 	header=5mm,
 	headerdistance=8mm,
 	topspace=10mm,
-	footer=0mm]
-	
-\usesymbols[cc]
+	footer=0mm]	
 
 % Figure placement it definitions is messy, below we define all the indentation, figure and lettrine placing stuff.
 \newdimen\LtI
 \newdimen\PcI
 \newdimen\PcH
-\LtI=1.5cm
+\LtI=1.7cm
 \PcI=0.5\textwidth
 \newdimen\oddpict
 \oddpict=\backspace
@@ -58,12 +46,12 @@
 		\advance \oddpict by \makeupwidth
 		\advance \oddpict by -\PcI
 		\definelayer[curpic]
-			[x=\oddpict, y=\pictVOffset, width=\textwidth, height=\textheight]
+			[x=\oddpict,y=\pictVOffset,width=\textwidth,height=\textheight]
 	\else
 		\evenpict=\cutspace
 		\advance \evenpict by \PcI
 		\definelayer[curpic]
-			[x=0cm, y=\pictVOffset, width=\evenpict, height=\textheight]
+			[x=0cm,y=\pictVOffset,width=\evenpict,height=\textheight]
 	\fi
 	\setlayer[curpic][voffset=0.5cm]{\hskip 0.5cm\box1\hskip 0.5cm}
 	\setupbackgrounds[page][background=curpic]
@@ -100,7 +88,7 @@
 	\iffirstargument
 		\def\ltLines{#1}
 	\else\ignorespaces
-		\def\ltLines{3}
+		\def\ltLines{4}
 	\fi
 	\ifinsideII\resetII\fi
 	\global\insideIItrue
@@ -168,21 +156,20 @@
 \doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
 {\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][size=artbox]\ignorespaces}
 {\doifelsefile{lettrines/#1.pdf}
-{\externalfigure[lettrines/#1.pdf][width=1.2cm,height=1.2cm]\ignorespaces}
+{\externalfigure[lettrines/#1.pdf][width=1.5cm,height=1.5cm]\ignorespaces}
 {\ignorespaces
 	\ifx#1\plateName
 		\framed[width=8cm,height=1.5cm,frame=off]{}\ignorespaces
 	\else
-		\framed[width=1.2cm,height=1.2cm]{\tfd #1}\ignorespaces
+		\framed[width=1.5cm,height=1.5cm]{\tfd #1}\ignorespaces
 	\fi}\ignorespaces}}
 
 % This one is used standalone, f. e. in the Introduction
-\def\regularLettrine#1{\placefigure[left,none]{}{\vskip -7pt\hbox{\putLettrine{#1}\hskip-3pt}\vskip -10pt}\noindent}
-
+\def\regularLettrine#1{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-3pt}\vskip -5pt}\noindent}
 
 \def\problem#1#2#3{\ignorespaces
 \vskip -\LtI
-\hskip -\LtI \hskip -\parindent \offset[y=0.72\LtI,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 7pt #2\ \it #3} \vskip \baselineskip
+\hskip -\LtI \hskip -\parindent \offset[y=0.79\LtI,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt #2\ \it #3} \vskip \baselineskip
 }
 
 \newdimen\vPos
@@ -196,7 +183,7 @@
 	\initialIndentation{7}\ignorespaces
 \fi\ignorespaces
 \vskip -\LtI
-\hskip -\LtI \hskip -\parindent \offset[y=0.72\LtI,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 7pt #3\ \it #4}\par\ignorespaces
+\hskip -\LtI \hskip -\parindent \offset[y=0.79\LtI,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
 \advance\vPos by -\pagetotal
 \advance\vPos by 3\baselineskip
 \ifnum\vPos>0
@@ -214,15 +201,6 @@
 
 %ConTeXt specific stuff
 
-\setupbodyfont[gentium]
-\definefontfamily[gentium][ss][TeX Gyre Adventor]
-
-% Fell Type, as suggested here: https://github.com/jemmybutton/byrne-euclid/issues/34
-% currently doesn't work well: missing cyrillic script and some symbols
-%\definefontfamily [mainface] [rm] [imfellenglish]
-%\definefontfamily [mainface] [ss] [imfellenglish]
-%\definefontfamily [mainface] [tt] [imfellenglish]
-%\definefontfamily [mainface] [mm] [imfellenglish]
 
 \setupcolors[state=start]
 \setupinterlinespace[line=3.2ex]
@@ -264,7 +242,7 @@
 \define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\putLettrine{\plateName}}\hfill\hskip0pt\vskip 3\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
 
 \definehead[intro][coupling=part,default=part,incrementnumber=no,placehead=yes]
-\setuphead[intro][alternative=text,command=\bookTitle, header=empty, footer=none,before={},after={}]
+\setuphead[intro][alternative=text,command=\bookTitle,header=empty,footer=none,before={},after={}]
 
 \definehead[book][coupling=part,default=part,incrementnumber=yes,placehead=yes]
 \setuphead[book][alternative=text,command=\bookTitle,header=empty,footer=none,before={},after={}]
@@ -278,7 +256,7 @@
 
 \definehead[supersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
 \define[2]\supersectionTitle{\vbox{\ \hfill \tfb #2 \hfill\ }}
-\setuphead[supersection][alternative=text,command=\supersectionTitle, before={\blank[2\baselineskip]},after={}]
+\setuphead[supersection][alternative=text,command=\supersectionTitle,before={\blank[2\baselineskip]},after={}]
 
 \definehead[silentSupersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
 \define[2]\noTitle{}
@@ -295,6 +273,8 @@
 \setupindenting[yes,medium]
 
 \setupinteraction[state=start,color=black,style=regular]
+
+\setupmargindata[inouter][style=normal] % otherwise text in margins is set in defferent font
 
 \def\figureInMargin{\dosingleempty\figureinmargin}
 \def\figureinmargin[#1]#2{\ignorespaces
@@ -415,4 +395,58 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 
 \definedescription[symblist][location=hanging,headstyle=bold,style=normal,align=left]
 
+% This section is about fonts
+
 \emergencystretch = 3pt
+
+\definefontfeature
+ [default]
+ [default]
+ [protrusion=quality,expansion=quality]
+
+\setupalign[hz,hanging]
+	
+\usesymbols[cc]
+
+% sort of EB Garamond typescript
+
+\definefontfeature
+	[eb-garamond-be-normal]
+	[default]
+	[mode=node,ccmp=yes,calt=yes,
+	liga=yes,dlig=yes,hlig=yes,
+	kern=yes,mark=yes,mkmk=yes,
+	onum=yes,pnum=yes,salt=yes,
+	script=latn]
+\definefontfeature
+	[eb-garamond-be-smallcaps]
+	[eb-garamond-be-normal]
+	[smcp=yes,c2sc=yes]         
+\starttypescriptcollection[ebgaramond-be]
+	\starttypescript [serif] [ebgaramond-be]
+		\loadfontgoodies[ebgaramond]
+		\setups[font:fallback:serif]
+		\definefontsynonym [Serif] [file:ebgaramond-regular] [features=eb-garamond-be-normal]
+		\definefontsynonym [SerifItalic] [file:ebgaramond-italic] [features=eb-garamond-be-normal]
+		\definefontsynonym [SerifBold] [file:ebgaramond-bold] [features=eb-garamond-be-normal] 
+		\definefontsynonym [SerifCaps] [Serif] [features=eb-garamond-be-smallcaps]
+	\stoptypescript
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [digitsnormal] [force=yes]
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [lowercasenormal] [force=yes]
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [uppercasenormal] [force=yes]
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [lowercasenormal] [offset=lowercaseitalic,force=yes]
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [uppercasenormal] [offset=uppercaseitalic,force=yes]	
+	\starttypescript [math] [ebgaramondandlatinmodern] 
+		\definefontsynonym [MathRoman] [latinmodernmath] [features={math,mathextra},fallbacks=ebgaramondmathtext]
+	\stoptypescript	
+	\starttypescript [ebgaramond-be]
+		\definetypeface[ebgaramond-be] [rm] [serif] [ebgaramond] [default] [designsize=auto]
+		\definetypeface[ebgaramond-be] [tt] [mono] [dejavu] [default]
+		\definetypeface[ebgaramond-be] [ss] [sans] [adventor] [default]
+		\definetypeface[ebgaramond-be] [mm] [math] [ebgaramondandlatinmodern] [default]
+	\stoptypescript 
+\stoptypescriptcollection
+	
+\switchtobodyfont[10pt]
+
+\setupbodyfont[ebgaramond-be]
