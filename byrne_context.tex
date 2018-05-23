@@ -136,6 +136,8 @@ All language consists of representative signs, and those signs are the best whic
 
 Such is the expedition of this enticing mode of communicating knowledge, that the Elements of Euclid can be acquired in less that one third of the time usually employed, and the retention by the memory is much more permanent; these facts have been ascertained by numerous experiments made by the inventor, and several others who have adopted his plans. The particulars of which are few and obvious; the letters annexed to points, lines, or other parts of a diagram are in fact but arbitrary names, and represent them in the demonstration; instead of these, the parts being differently coloured, are made to name themselves, for their forms in corresponding colours represent them in the demonstration.
 
+In order to give a better idea of this system, and of advantages gained by its adoption, let us take a right angled triangle, and express some of its properties both by colours and the method generally employed.
+
 \defineNewPicture{
 	pair A, B, C;
 	B := (0, 0);
@@ -153,12 +155,7 @@ Such is the expedition of this enticing mode of communicating knowledge, that th
 		label.rt(\sometxt{C}, C);
 		label.lft(\sometxt{A}, A);
 }
-
 \drawCurrentPictureInMargin
-In order to give a better idea of this system, and of advantages gained by its adoption, let us take a right angled triangle, and express some of its properties both by colours and the method generally employed.
-
-\vskip \baselineskip
-
 \startalignment[middle]
 \emph{Some of the properties of the right angled triangle ABC, expressed by the method generally employed:}
 \stopalignment
@@ -236,8 +233,6 @@ A point is that which has position, but not magnitude; or a point is position on
 		draw byAngle(C, O, A, byyellow, 0);
 }
 Let three colours \drawCurrentPictureInMargin meet and cover a portion of the paper, where they meet is not blue, nor is it yellow, nor is it red, as it occupies no portion of the plane, for if it did, it would belong to the blue, the red, or the yellow part; yet it exists, and has position without magnitude, so that with a little reflection, this junction of three colours on a plane, gives a good idea of a mathematical point.
-
-\vfill\pagebreak
 
 A line is length without breadth. With the assistance of colours, nearly in the same manner as before, an idea of a line may be thus given:—
 
@@ -4498,8 +4493,8 @@ byLineDefine(F, G, byblack, 0, 0);
 byLineDefine(G, H, byblack, 1, 0);
 byLineDefine(H, E, byyellow, 0, 0);
 draw byNamedLineSeq(0)(EF,FG,GH,HE);
-label.top("First", (xpart(1/2[B, C]), ypart(A) + 1/4u));
-label.top("Second", (xpart(1/2[F, H]), ypart(E)));
+label.top(\sometxt{First}, (xpart(1/2[B, C]), ypart(A) + 1/4u));
+label.top(\sometxt{Second}, (xpart(1/2[F, H]), ypart(E)));
 draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 draw byLabelsOnPolygon(F, E, H, G)(0, 0);
 }

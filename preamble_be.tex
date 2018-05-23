@@ -185,7 +185,7 @@
 \vskip -\LtI
 \hskip -\LtI \hskip -\parindent \offset[y=0.79\LtI,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
 \advance\vPos by -\pagetotal
-\advance\vPos by 3\baselineskip
+\advance\vPos by 4\baselineskip
 \ifnum\vPos>0
 \vskip \vPos\ignorespaces
 \fi
@@ -239,7 +239,7 @@
 
 \def\plateName{plate}
 
-\define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\putLettrine{\plateName}}\hfill\hskip0pt\vskip 3\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
+\define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\putLettrine{\plateName}}\hfill\hskip0pt\vskip 5\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
 
 \definehead[intro][coupling=part,default=part,incrementnumber=no,placehead=yes]
 \setuphead[intro][alternative=text,command=\bookTitle,header=empty,footer=none,before={},after={}]
