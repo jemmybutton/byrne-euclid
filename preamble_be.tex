@@ -436,14 +436,14 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [uppercasenormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [lowercasenormal] [offset=lowercaseitalic,force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [uppercasenormal] [offset=uppercaseitalic,force=yes]	
-	\starttypescript [math] [ebgaramondandlatinmodern] 
-		\definefontsynonym [MathRoman] [latinmodernmath] [features={math,mathextra},fallbacks=ebgaramondmathtext]
+	\starttypescript [math] [ebgaramondandbonum] 
+		\definefontsynonym [MathRoman] [texgyrebonummath] [features={math,mathextra},fallbacks=ebgaramondmathtext]
 	\stoptypescript	
 	\starttypescript [ebgaramond-be]
 		\definetypeface[ebgaramond-be] [rm] [serif] [ebgaramond] [default] [designsize=auto]
 		\definetypeface[ebgaramond-be] [tt] [mono] [dejavu] [default]
 		\definetypeface[ebgaramond-be] [ss] [sans] [adventor] [default]
-		\definetypeface[ebgaramond-be] [mm] [math] [ebgaramondandlatinmodern] [default]
+		\definetypeface[ebgaramond-be] [mm] [math] [ebgaramondandbonum] [default]
 	\stoptypescript 
 \stoptypescriptcollection
 	
