@@ -31,8 +31,8 @@ pointLinesScale := 1/2u;
 scaleFactor := 1;
 angleScale := 1;
 globalRotation := 0;
-magnitudeScale := 1/3;
-magnitudeGap := 2lineWidth;
+magnitudeScale := 5/18;
+magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
 rayExtension := 1/3u;
 
@@ -2057,21 +2057,26 @@ vardef byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) 
 enddef;
 
 vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
-    save p, q, i, s;
+    save p, q, i, s, magnitudeSizeCor;
     path p;
     pair s[];
     picture q;
+    numeric magnitudeSizeCor;
     p := (0, 0);
+    magnitudeSizeCor := 1;
     if (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "circle"):
         p := fullcircle scaled (u*magnitudeScale);
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "semicircleUp"):
         p := ((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "semicircleDown"):
         p := (((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "sectorDown"):
         p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale);
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "sectorUp"):
         p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (u*magnitudeScale) yscaled -1;
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "wedgeUp"):
         p := (((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) yscaled -1) scaled (u*magnitudeScale);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "wedgeDown"):
@@ -2079,19 +2084,24 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "square"):
         p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (u*magnitudeScale);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "halfsquare"):
-            p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
+        p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "rhombus"):
         p := ((0, 1/2) -- (-1/2, 0) -- (0, -1/2) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "halfrhombusUp"):
         p := ((0, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (u*magnitudeScale);
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniTriangleUp"):
         p := ((-1/4, -1/4) -- (1/4, -1/4)  -- (0, 1/4) -- cycle) scaled (u*magnitudeScale);
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniTriangleDown"):
         p := ((-1/4, 1/4) -- (1/4, 1/4)  -- (0, -1/4) -- cycle) scaled (u*magnitudeScale);
+        magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniSquare"):
         p := ((-1/4, -1/4) -- (1/4, -1/4) -- (1/4, 1/4) -- (-1/4, 1/4) -- cycle) scaled (u*magnitudeScale);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniCircle"):
         p := fullcircle scaled (u*1/2magnitudeScale);
+        magnitudeSizeCor := 8/7;
     fi;
     if (hor):
         s1 := (0, ypart(urcorner(p)) - ypart(lrcorner(p)));
@@ -2100,11 +2110,11 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
         s1 := (xpart(urcorner(p)) - xpart(ulcorner(p)), 0);
         s2 := (magnitudeGap, 0);
     fi;
+    p := p scaled magnitudeSizeCor;
     q := image(
+        draw p withpen (pencircle scaled lineWidthThin) withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
         if (getAttribute("magnitude", "Style", str magnitudeSymbolName) = 0):
             fill p withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
-        else:
-            draw p withpen (pencircle scaled lineWidthThin) withcolor getAttribute("magnitude", "Color", str magnitudeSymbolName);
         fi;
     );
     image(

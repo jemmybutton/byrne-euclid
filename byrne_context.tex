@@ -3342,15 +3342,15 @@ draw byNamedAngleSidesFull(MNO)();
 stopAutoLabeling;
 }
 \drawCurrentPictureInMargin
-\problemNP[4]{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawPolygon[bottom][polygonJKL]{JKL}), and having an angle equal to a given rectilinear angle (\drawAngle{N}).}
+\problemNP[4]{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawPolygon[middle][polygonJKL]{JKL}), and having an angle equal to a given rectilinear angle (\drawAngle{N}).}
 
 \startCenterAlign
-Make $\drawPolygon[bottom][polygonAHEF]{AHEF} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{N}$ \inprop[prop:I.XLII]\\
+Make $\drawPolygon[middle][polygonAHEF]{AHEF} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{N}$ \inprop[prop:I.XLII]\\
 and having one of its sides \drawUnitLine{FE} conterminous with and in continuation of \drawUnitLine{EG}.
 
 Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$ draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued; draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
 
-$\polygonAHEF = \drawPolygon[bottom][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
+$\polygonAHEF = \drawPolygon[middle][polygonEGDI]{EGDI}$ \inprop[prop:I.XLIII]\\
 but $\polygonAHEF = \polygonJKL$ (\conststr)
 
 $\therefore \polygonEGDI = \polygonJKL$;
@@ -5120,7 +5120,7 @@ draw byLine(F, D, byyellow, 0, 0);
 draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
-label.top("Fig. 1", (0, r + 1/4u));
+label.top(\sometxt{Fig. 1}, (0, r));
 d := (0, -2r -u);
 draw image(
 byAngleDefine(G, F, E, byyellow, 0);
@@ -5139,7 +5139,7 @@ draw byCircleR(E, r, byblue, 0, 0, 0)(E);
 draw byLabelsOnCircle(G, K, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
-label.top("Fig. 2", (0, r));
+label.top(\sometxt{Fig. 2}, (0, r));
 ) shifted d;
 }
 \drawCurrentPictureInMargin
@@ -5349,7 +5349,7 @@ draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
+\problemNP{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
 
 For if it be supposed that the point \drawPointL[middle][DH,DA,DF]{D} in which more than two equal straight lines meet is not the centre, some other point \drawFromCurrentPicture[middle][pointF]{
 startGlobalRotation(-lineAngle.DF);
@@ -5590,13 +5590,11 @@ which is absurd.
 \stopCenterAlign
 \stopsubproposition
 
-\vfill\pagebreak
-
 \defineNewPicture{
 pair P, Q, A, C;
 numeric r[], t[];
 path cr[];
-r1 := 7/4u;
+r1 := u;
 P := (0, 0);
 Q := P shifted (1/4r1, 0);
 cr3 := (fullcircle scaled 2r1) shifted P;
@@ -5615,11 +5613,11 @@ draw byArcBE(P, t4, t3 + 8, r1, byblack, 0, 0, 0, 0)(PII);
 draw byArcBE(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0)(QI);
 draw byArcBE(Q, t5, t6, r1, byblack, 0, 0, 0, 0)(QII);
 }
-
-
 \startsubproposition[title={Figure II.}]\drawCurrentPictureInMargin
 But if the points of contact be the extremities of the right line joining the centres, this straight line must be bisected in two different points for the two centres; because it is the diameter of both circles, which is absurd.
 \stopsubproposition
+
+\vfill\pagebreak
 
 \defineNewPicture{
 pair G, H, A, C;
@@ -5704,20 +5702,16 @@ inscribed in a circle are equally distant from the centre; and also, straight li
 From the centre of \drawCircle[middle][1/4]{E} draw \drawProportionalLine{EF} $\perp$ to \drawProportionalLine{AF,FB} and $\drawProportionalLine{EG} \perp \drawProportionalLine{CG,GD}$, join \drawProportionalLine{EA} and \drawProportionalLine{EC}.
 
 Then $\drawProportionalLine{CG} = \mbox{ half } \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]\\
-and $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III]
-
+and $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III],\\
 since $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (\hypstr)\\
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
 and $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \indef[def:XV]\\
-$\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$;
-
+$\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$;\\
 but since \drawAngle{F} is a right angle\\
 $\drawProportionalLine{EA}^2 = \drawProportionalLine{EF}^2 + \drawProportionalLine{AF}^2$ \inprop[prop:I.XLVII]\\
 and $\drawProportionalLine{EC}^2 = \drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2$ for the same reason,\\
-$\therefore \drawProportionalLine{EF}^2 + \drawProportionalLine{AF}^2 = \drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2$
-
-$\therefore \drawProportionalLine{EF}^2 = \drawProportionalLine{EG}^2$
-
+$\therefore \drawProportionalLine{EF}^2 + \drawProportionalLine{AF}^2 = \drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2$\\
+$\therefore \drawProportionalLine{EF}^2 = \drawProportionalLine{EG}^2$\\
 $\therefore \drawProportionalLine{EF} = \drawProportionalLine{EG}$
 \stopCenterAlign
 
@@ -6213,7 +6207,7 @@ $\therefore \drawAngle{FEC} = \mbox{ twice } \drawAngle{FDC}$.
 \defineNewPicture{
 pair A, B, D, E, F;
 numeric r;
-r := 2u;
+r := 7/4u;
 F := (0, 0);
 B := (dir(-90 - 50)*r) shifted F;
 D := (dir(-90 + 50)*r) shifted F;
@@ -6250,7 +6244,7 @@ $\therefore \drawAngle{A} = \drawAngle{E}$
 pair A, B, D, E, F, G;
 numeric r;
 path cr;
-r := 2u;
+r := 7/4u;
 F := (0, 0);
 cr := (fullcircle scaled 2r) shifted F;
 B := (dir(90 + 85)*r) shifted F;
@@ -6882,7 +6876,7 @@ and therefore the given arc is bisected.
 \defineNewPicture{
 pair A, B, C, E;
 numeric r;
-r := 7/4u;
+r := 3/2u;
 E := (0, 0);
 A := (dir(110)*r) shifted E;
 B := (dir(180)*r) shifted E;
@@ -6915,7 +6909,7 @@ $\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ the half of } \dra
 \defineNewPicture{
 pair A, B, C, E, D;
 numeric r;
-r := 7/4u;
+r := 3/2u;
 E := (0, 0);
 A := (dir(110)*r) shifted E;
 B := (dir(180 + 30)*r) shifted E;
@@ -6938,17 +6932,14 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 The angle \drawAngle{BAD} in a segment greater than a semicircle is acute
 
 Draw \drawUnitLine{BC} the diameter, and \drawUnitLine{AC}\\
-$\therefore \drawAngle{BAD,DAC} = \mbox{ a right angle}$\\
-$\therefore$ \drawAngle{BAD} is acute.
+$\therefore \drawAngle{BAD,DAC} = \mbox{ a right angle}$, $\therefore$ \drawAngle{BAD} is acute.
 \stopCenterAlign
 \stopsubproposition
-
-\vfill\pagebreak
 
 \defineNewPicture{
 pair A, B, C, E, D;
 numeric r;
-r := 7/4u;
+r := 3/2u;
 E := (0, 0);
 A := (dir(140)*r) shifted E;
 B := (dir(-110)*r) shifted E;
@@ -6971,8 +6962,7 @@ The angle \drawAngle{D} in a segment less than a semicircle is obtuse.
 
 Take in the opposite circumference any point, to which draw \drawUnitLine{BC} and \drawUnitLine{AB}.\\
 $\because \drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \inprop[prop:III.XXII]\\ % Because
-but $\drawAngle{B} < \drawRightAngle$ (figure II.),\\
-$\therefore$ \drawAngle{D} is obtuse.
+but $\drawAngle{B} < \drawRightAngle$ (figure II.), $\therefore$ \drawAngle{D} is obtuse.
 \stopCenterAlign
 \stopsubproposition
 
@@ -7136,7 +7126,7 @@ but $\drawAngle{B} = \drawAngle{givenAngle}$ (\conststr).
 \defineNewPicture{
 pair A, B, C, D, E;
 numeric r;
-r := 4/3u;
+r := 5/4u;
 E := (0, 0);
 A := (dir(50)*r) shifted E;
 B := (dir(100)*r) shifted E;
@@ -7163,7 +7153,7 @@ If the given right lines pass through the centre, they are bisected in the point
 \defineNewPicture{
 pair A, B, C, D, E, H;
 numeric r;
-r := 4/3u;
+r := 5/4u;
 E := (0, 0);
 A := (dir(30)*r) shifted E;
 B := (dir(170)*r) shifted E;
@@ -7197,7 +7187,7 @@ $\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EH,AE}
 pair A, B, C, D, E, F, K, L;
 numeric r;
 path cr;
-r := 4/3u;
+r := 5/4u;
 F := (0, 0);
 cr := (fullcircle scaled 2r) shifted F;
 A := (dir(00)*r) shifted F;
@@ -9299,6 +9289,7 @@ $\therefore$ Equal magnitudes, \&c.
 
 \startDefinition[title={Definition VII.}, reference=def:V.VII,ownnumber=7]
 \defineNewPicture{
+magnitudeScale := 2/9;
 byMagnitudeSymbolDefine("circle", byred, 0)(i);
 byMagnitudeSymbolDefine("square", byyellow, 0)(ii);
 byMagnitudeSymbolDefine("rhombus", byblue, 0)(iii);
@@ -9555,7 +9546,7 @@ then $M \magnitudeIII >, = \mbox{ or } < m \magnitudeIV$ \indef[def:V.V];
 $\therefore$ if $M \magnitudeI >, = \mbox{ or } < m \magnitudeII$, $M \magnitudeIII >, = \mbox{ or } < m \magnitudeIV$\\
 and $\therefore$ \indef[def:V.V] $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
 
-$\therefore$ Ratios that are the same \&c.
+$\therefore$ Ratios that are the same \&c.fr
 \stopCenterAlign
 \stopProposition
 
@@ -10487,6 +10478,8 @@ $\varV$ & $\varW$ & $\varX$ & $\varY$ & $\varZ$ \cr
 \noalign{\hrule}
 }}\hfill~
 \protect
+
+\vskip 0.5\baselineskip
 
 \unprotect
 \setbox0\vbox{\halign{ # & # & # \cr

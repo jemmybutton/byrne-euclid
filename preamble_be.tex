@@ -435,6 +435,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [lowercasenormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [uppercasenormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [lowercasenormal] [offset=lowercaseitalic,force=yes]
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [0x00068] [offset=0x0210E,force=yes] % for some reason math h is located here. see https://github.com/contextgarden/context-mirror/blob/1e5d7f41ddede5e6400a2a7762032823d3545df4/tex/context/base/mkiv/math-map.lua#L109 ?
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [uppercasenormal] [offset=uppercaseitalic,force=yes]	
 	\starttypescript [math] [ebgaramondandbonum] 
 		\definefontsynonym [MathRoman] [texgyrebonummath] [features={math,mathextra},fallbacks=ebgaramondmathtext]
