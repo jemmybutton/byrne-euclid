@@ -33,8 +33,6 @@ plateWidth := 76mm;
 plateHeight := 15mm;
 tileWidth := 25mm;
 tileHeight := 25mm;
-minimalDistance := 1/25cm;
-budDistance := 2/3mm;
 borderWidth := 1mm;
 
 % this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
@@ -56,6 +54,7 @@ enddef;
 
 % creates outline for a path, that determines how close two lines can get
 vardef pathOutline (expr p, s) =
+    save outputPath;
     path outputPath[];
     outputPath1 := point 0 of p;
     outputPath2 := point 0 of p;
@@ -153,7 +152,7 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
                 else:
                     sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) + 90);
                 fi;
-                sproutSize := findRightSize(sproutPath, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, sproutMaxSize, 0, branchNumber, totalBranches, sproutFittingIterations);
+                sproutSize := findRightSize(sproutPath, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, 3minBranchLength[branchStyleIndex], 0, branchNumber, totalBranches, sproutFittingIterations);
                 if (arclength(sproutPath scaled sproutSize) <= minBranchLength[branchStyleIndex]):
                     addBud (branchNumber, j, -1, currentBranchOrientationRelative);
                 else:
@@ -335,6 +334,11 @@ forever:
         lettrineImage := image(
             totalBranchesNumber := -1;
             if ((l <> "plate") and (l <> "tile")):
+                symMode := 0;
+                numberOfIterations := 12;
+                minBranchLength[0] := 1/6cm;
+                minimalDistance := 1/25cm;
+                budDistance := 1/4mm;
                 addBranch (reverse(unitsquare) scaled lettrineSize, 0, 0, -1, -1);
                 fill branchPath0 withcolor black;
                 addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), 0, 1, -1, -1);
@@ -351,12 +355,12 @@ forever:
                         addBranch (pathpart item, 0, 1, -1, -1);
                     endfor;
                 endfor;
-                symMode := 0;
-                numberOfIterations := 11;
-                minBranchLength[0] := 1/6cm;
-                minimalDistance := 1/25cm;
-                budDistance := 1/4mm;
             elseif (l = "plate"):
+                symMode := 1;
+                numberOfIterations := 12;
+                minBranchLength[0] := 1/5cm;
+                minimalDistance := 1/20cm;
+                budDistance := 2/3mm;
                 addBranch (
                     ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight,
                     0, 0, -1, -1);
@@ -370,11 +374,14 @@ forever:
                 addBranch (
                     branchPath2 rotated 180,
                     0, 1, 0, -1);
-                symMode := 1;
-                numberOfIterations := 10;
-                minBranchLength[0] := 1/5cm;
-                minimalDistance := 1/20cm;
             elseif (l = "tile"):
+                makeAdjacentTiles(1);
+                makeAdjacentTiles(2);
+                symMode := 2;
+                numberOfIterations := 10;
+                minBranchLength[0] := 1/4cm;
+                minimalDistance := 1/20cm;
+                budDistance := 2/3mm;
                 addBranch (
                     ((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
                     0, 1, -1, -1);
@@ -384,12 +391,6 @@ forever:
                 addBranch (
                     (branchPath1 scaled 2) rotated 180,
                     0, 2, 0, 1);
-                makeAdjacentTiles(1);
-                makeAdjacentTiles(2);
-                symMode := 2;
-                numberOfIterations := 10;
-                minBranchLength[0] := 1/4cm;
-                minimalDistance := 1/20cm;
             fi;
             minBranchLength1 := 3/2minBranchLength0;
             for nn := 0 step 1 until numberOfIterations:
