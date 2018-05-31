@@ -831,8 +831,11 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 \stopDefinitionOnlyNumber
 \stopsupersection
 
+\vfill\pagebreak
+
 \startsupersection[title={Постулаты}]
 
+\marginNote{Этими тремя положениями описываются разрешенные к~использованию инструменты: \emph{линейка} и~\emph{циркуль}. При этом линейка не имеет делений, то есть ее нельзя использовать для измерения расстояний. А~циркуль пригоден только для построения окружностей, и ни для чего больше.}
 \startPostulateOnlyNumber[reference=post:I]
 Будем считать, что прямую линию можно провести от любой точки до любой другой точки.
 \stopPostulateOnlyNumber
@@ -1204,7 +1207,7 @@ draw byLabelLineEnd(B, A, 0);
 Тогда \drawLine[bottom][triangleABC]{AB,CA,BC} равносторонний.
 
 Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV];\\
-и $\drawUnitLine{AB} = \drawUnitLine{BC}$ \indef[def:XV];\\
+и $\drawUnitLine{AB} = \drawUnitLine{BC}$ \indef[def:XV];
 $\therefore \drawUnitLine{CA} = \drawUnitLine{BC}$ \inax[ax:I];\\
 и значит \triangleABC\ и~есть искомый треугольник.
 \stopCenterAlign
@@ -1284,7 +1287,7 @@ draw byLabelLineEnd(E, D, 1);
 Поскольку $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \indef[def:XV],\\
 и $\drawUnitLine{BD} = \drawUnitLine{DA}$ (\conststr),\\
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \inax[ax:III],\\
-но \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
+но \indef[def:XV] $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$.
 
 $\therefore \drawUnitLine{AF}$ проведенная из данной точки (\pointA) равна данной прямой \drawUnitLine{BC} \inax[ax:I].
 \stopCenterAlign
@@ -1331,7 +1334,7 @@ draw byLabelLineEnd(A, D, 0);
 тогда $\drawUnitLine{EF} = \drawUnitLine{AB}$.
 
 Поскольку $\drawUnitLine{AD} = \drawUnitLine{AB}$ \indef[def:XV],\\
-и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (\conststr);
+и $\drawUnitLine{EF} = \drawUnitLine{AD}$ (\conststr).
 
 $\therefore \drawUnitLine{EF} = \drawUnitLine{AB}$ \inax[ax:I].
 \stopCenterAlign
@@ -1472,7 +1475,8 @@ $\drawUnitLine{CA} = \drawUnitLine{BD}$ (\conststr),\\
 $\drawAngle{A} = \drawAngle{B}$ (\hypstr)\\
 и \drawUnitLine{AB} общая обоим,\\
 $\therefore$ эти треугольники равны \inprop[prop:I.IV],\\
-часть равна целому, что невозможно;\\
+часть равна целому, что невозможно.
+
 $\therefore$ ни одна из сторон \drawUnitLine{CA,CD} или \drawUnitLine{BD} не больше другой,\\
 $\therefore$ они равны.
 \stopCenterAlign
@@ -1697,7 +1701,7 @@ draw byLabelsOnPolygon(B, A, C)(2, 0);
 $\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr)\\
 и \drawUnitLine{AD} общая обоим треугольникам.
 
-$\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII]
+$\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII].
 
 $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X].
 \stopCenterAlign
@@ -1753,10 +1757,8 @@ draw byLabelLineEnd(C, A, 0);
 
 Поскольку \inprop[prop:I.VIII], раз $\drawUnitLine{DB} = \drawUnitLine{CD}$ (\conststr),\\
 \drawUnitLine{AD} общая обоим треугольникам,\\
-и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV],
-
-$\therefore \drawAngle{ADB} = \drawAngle{CDA}$,
-
+и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV],\\
+$\therefore \drawAngle{ADB} = \drawAngle{CDA}$,\\
 и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X].
 \stopCenterAlign
 
@@ -1783,7 +1785,7 @@ draw byLabelLineEnd(E, D, 0);
 draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая линия \drawUnitLine{ED} восставленная на другой прямой линии \drawUnitLine{BC} образует с~ней углы, то это будут либо два прямых угла, либо их сумма будет равна двум прямым углам.}
+\problemNP[5]{Е}{сли}{прямая линия \drawUnitLine{ED} восставленная на другой прямой линии \drawUnitLine{BC} образует с~ней углы, то это будут либо два прямых угла, либо их сумма будет равна двум прямым углам.}
 
 \startCenterAlign
 Если \drawUnitLine{ED} $\perp$ к~\drawUnitLine{BC} тогда,\\
