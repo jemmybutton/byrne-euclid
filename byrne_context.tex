@@ -93,14 +93,14 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2018 ed.\,0.5}
+{\tfb 2018 ed.\,0.6}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
+\vskip 0.25\baselineskip
 
 \startnarrower
 \setuplocalinterlinespace[line=2ex]
-
 {\tfxx This rendition of Oliver Byrne's \quotation{The first six books of the Elements of Euclid} is made by Slyusarev Sergey and  is distributed under CC-BY-SA 4.0 license}
 \stopnarrower
 
@@ -6234,7 +6234,7 @@ draw byLabelsOnPolygon(B, F, D)(2, 0);
 Let the segment be greater than a semicircle, and draw \drawUnitLine{DF} and \drawUnitLine{BF} to the centre.
 
 \startCenterAlign
-$\drawAngle{E} = \mbox{ twice } \drawAngle{A} \mbox{ or twice } = \drawAngle{E}$ \inprop[prop:III.XX];
+$\drawAngle{F} = \mbox{ twice } \drawAngle{A} \mbox{ or twice } = \drawAngle{E}$ \inprop[prop:III.XX];
 
 $\therefore \drawAngle{A} = \drawAngle{E}$
 \stopCenterAlign
@@ -6436,8 +6436,7 @@ draw byNamedFilledCircleSegment(N);
 draw byNamedLine(CD);
 draw byNamedArcExact(N);
 draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
-}
-, of circles upon equal straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) are each equal to the other.}
+}, of circles upon equal straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) are each equal to the other.}
 
 \startCenterAlign
 For, if
@@ -8633,9 +8632,9 @@ Hence if straight lines equal to \drawUnitLine{CF} be placed in the circle \inpr
 \stopProposition
 \stopbook
 
-\startbook[title={Book V}]\unskip
+\startbook[title={Book V}]
 
-\startsupersection[title={Definitions}]\unskip
+\startsupersection[title={Definitions}]
 
 \startDefinitionOnlyNumber[reference=def:V.I,ownnumber=1]
 A less magnitude is said to be an aliquot part or submultiple of a greater magnitude, when the less measures the greater; that is, when the less is contained a certain number of times exactly in the greater.
@@ -8653,12 +8652,14 @@ Ratio is the relation which one quantity bears to another of the same kind, with
 Magnitudes are said to have a ratio to one another, when they are of the same kind, and the one which is not the greater can be multiplied so as to exceed the other.
 \stopDefinitionOnlyNumber
 
+\vskip \baselineskip
+
 \startalignment[middle]
 \emph{The other definitions will be given throughout the book where their aid is first required.}
 \stopalignment
 \stopsupersection
 
-\startsupersection[title={Axioms}]\unskip
+\startsupersection[title={Axioms}]
 
 \startAxiomOnlyNumber[reference=ax:V.I]
 Equimultiples or equisubmultiples of the same, or of equal magnitudes, are equal.

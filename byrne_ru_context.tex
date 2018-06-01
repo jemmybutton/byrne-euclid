@@ -104,10 +104,10 @@ byLineStylize (C, C, 1, 0, -1) (BLb);
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
+\vskip 0.25\baselineskip
 
 \startnarrower
 \setuplocalinterlinespace[line=2ex]
-
 {\tfxx Эта редакция и~перевод книги Оливера Бирна \emph{The first six books of the Elements of Euclid} подготовлены Сергеем Слюсаревым и~распространяются под лицензией CC-BY-SA 4.0}
 \stopnarrower
 
@@ -891,6 +891,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 Две прямых линии не содержат пространства.
 \stopAxiomOnlyNumber
 
+\marginNote{Аксиомы XI и~XII, обычно включаются в~качестве IV и~V в~состав постулатов.}
 \startAxiomOnlyNumber[reference=ax:XI]
 Все прямые углы равны между собой.
 \stopAxiomOnlyNumber
@@ -1080,11 +1081,9 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 
 $A : B :: C : D$, $A : B = C : D$, или $\dfrac{A}{B} = \dfrac{C}{D}$.
 
-Это равенство или одинаковость отношений читается:
+Это равенство или одинаковость отношений читается: 
 
-как A к~B, так и~C к~D;
-
-или A к~B, как C к~D.
+\emph{как A к~B, так и~C к~D;} или \emph{A к~B, как C к~D.}
 
 \symb{$\parallel$}
  обозначает \emph{параллельно к}.
@@ -1862,7 +1861,7 @@ draw byLabelPoint(B, lineAngle.AB + 90, 1);
 draw byLabelPoint(D, lineAngle.CD - 90, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{Е}{сли}{две прямых линии \drawUnitLine{AB} и~\drawUnitLine{CD} пересекаются, вертикальные углы \drawAngle{BEC} и~\drawAngle{AED}, \drawAngle{CEA} и~\drawAngle{DEB} будут равны между собой.}
+\problemNP{Е}{сли}{две прямых линии \drawUnitLine{AB} и~\drawUnitLine{CD} пересекаются, вертикальные углы \drawAngle{BEC} и~\drawAngle{AED}, \drawAngle{CEA} и~\drawAngle{DEB} будут равны между собой.}
 
 \startCenterAlign
 $\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII],
@@ -6254,7 +6253,7 @@ draw byLabelsOnPolygon(B, F, D)(2, 0);
 Пусть сегмент будет больше половины круга, проведем \drawUnitLine{DF} и~\drawUnitLine{BF} к~центру.
 
 \startCenterAlign
-$\drawAngle{E} = \mbox{ дважды } \drawAngle{A} \mbox{ или дважды } = \drawAngle{E}$ \inprop[prop:III.XX];
+$\drawAngle{F} = \mbox{ дважды } \drawAngle{A} \mbox{ или дважды } = \drawAngle{E}$ \inprop[prop:III.XX];
 
 $\therefore \drawAngle{A} = \drawAngle{E}$
 \stopCenterAlign
@@ -6291,7 +6290,7 @@ draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай II.}]
-Пусть сегмент будет меньше половины круга, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
+Пусть сегмент будет меньше или равен половине круга, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
 
 \startCenterAlign
 $\drawAngle{BAG} = \drawAngle{BEG}$ и~$\drawAngle{GAD} = \drawAngle{GED}$ (случай I.)
@@ -8616,9 +8615,9 @@ $\therefore$ дуга стягиваемая $\drawUnitLine{CF} = \dfrac{1}{15}$
 \stopProposition
 \stopBook
 
-\startBook[title={Книга V}]\unskip
+\startBook[title={Книга V}]
 
-\startsupersection[title={Определения}]\unskip
+\startsupersection[title={Определения}]
 
 \startDefinitionOnlyNumber[reference=def:V.I,ownnumber=1]
 Меньшая величина называется аликвотой большей, если меньшая измеряет большую, то есть вмещается в~нее целое число раз.
@@ -8636,6 +8635,8 @@ $\therefore$ дуга стягиваемая $\drawUnitLine{CF} = \dfrac{1}{15}$
 Про две величины говорят, что они имеют отношение между собой, когда они однородны и~меньшая из них может, взятая кратно, превзойти другую.
 \stopDefinitionOnlyNumber
 
+\vskip \baselineskip
+
 \startalignment[middle]
 \emph{Прочие определения будут даны по ходу изложения там, где в~них возникнет необходимость.}
 \stopalignment
@@ -8643,7 +8644,7 @@ $\therefore$ дуга стягиваемая $\drawUnitLine{CF} = \dfrac{1}{15}$
 
 \vfill\pagebreak
 
-\startsupersection[title={Аксиомы}]\unskip
+\startsupersection[title={Аксиомы}]
 
 \startAxiomOnlyNumber[reference=ax:V.I]
 Равнократные или равных величин равны между собой.
