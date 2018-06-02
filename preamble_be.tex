@@ -416,7 +416,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 	[eb-garamond-be-normal]
 	[default]
 	[mode=node,ccmp=yes,calt=yes,
-	liga=yes,dlig=no,hlig=no,
+	liga=yes,dlig=yes,hlig=no,
 	kern=yes,mark=yes,mkmk=yes,
 	onum=yes,pnum=yes,salt=yes,
 	script=latn]
@@ -424,6 +424,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 	[eb-garamond-be-smallcaps]
 	[eb-garamond-be-normal]
 	[smcp=yes,c2sc=yes]         
+\definefontfeature [eb-garamond-be-mathdigits] [lnum=yes]
 \starttypescriptcollection[ebgaramond-be]
 	\starttypescript [serif] [ebgaramond-be]
 		\loadfontgoodies[ebgaramond]
@@ -433,7 +434,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 		\definefontsynonym [SerifBold] [file:ebgaramond-bold] [features=eb-garamond-be-normal] 
 		\definefontsynonym [SerifCaps] [Serif] [features=eb-garamond-be-smallcaps]
 	\stoptypescript
-	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [digitsnormal] [force=yes]
+	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf*eb-garamond-be-mathdigits] [digitsnormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [lowercasenormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Regular.otf] [uppercasenormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [file:EBGaramond12-Italic] [lowercasenormal] [offset=lowercaseitalic,force=yes]
