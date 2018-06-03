@@ -4292,7 +4292,7 @@ $\therefore \drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cd
 \stopProposition
 
 \startProposition[title={Предл. X. Теорема},reference=prop:II.X]
-\defineNewPicture[1/4]{
+\defineNewPicture{
 pair A, B, C, D, E, F, G;
 numeric w;
 w := 7/2u;
@@ -4332,26 +4332,38 @@ $\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \draw
 }
 
 \startCenterAlign
-Сделаем $\drawProportionalLine{CE} \perp \mbox{ и~} = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CB}$,\\
-проведем \drawProportionalLine{AE} и~\drawProportionalLine{EB,BG},\\
+Сделаем $\drawProportionalLine{CE} \perp \mbox{ и~} = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CB}$.
+
+Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EB,BG},\\
 и $\left\{\eqalign{
 \drawProportionalLine{FD,DG} & \parallel \drawProportionalLine{CE} \cr
 \drawProportionalLine{EF} & \parallel \drawProportionalLine{CB,BD}
 }\right\}$ \inprop[prop:I.XXXI]\\
-также проведем \drawProportionalLine{AG}.\\
+также проведем \drawProportionalLine{AG}.
+
 $\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
-$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
-$\therefore \drawAngle{CEA,BEC} = \drawRightAngle$.\\
-$\drawAngle{A} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} = \frac{1}{2}\drawRightAngle$ (\inpropL[prop:I.V], \inpropN[prop:I.XXXII], \inpropN[prop:I.XXIX], \inpropN[prop:I.XXXIV]),\\
-и $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropN[prop:I.XXXIV]).\\
+$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]
+
+$\therefore \drawAngle{CEA,BEC} = \drawRightAngle$.
+
+$\drawAngle{BEC} = \drawAngle{G}$, $\drawAngle{FEB} = \drawAngle{CBE}$\inprop[prop:I.XXIX]
+
+$\drawAngle{DBG} = \drawAngle{CBE}$\inprop[prop:I.XV]
+
+$\therefore \drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} = \frac{1}{2}\drawRightAngle$.
+
+
+И $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropN[prop:I.XXXIV]).
+
 Тогда, согласно \inprop[prop:I.XLVII]\\
-$\drawProportionalLine{AG}^2 = \left\{\eqalign{
+$\drawUnitLine{AG}^2 = \left\{\eqalign{
 & \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{DG}^2 \mbox{ или } \drawProportionalLine{BD}^2 \cr
 & \left\{\eqalign{
 & + \drawProportionalLine{AE}^2 = 2 \cdot \drawProportionalLine{AC}^2 \cr
 & + \drawProportionalLine{EB,BG}^2 = 2\cdot \drawProportionalLine{EF}^2
 }\right.
-}\right.$\\
+}\right.$
+
 $\therefore \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
 \stopCenterAlign
 
@@ -4492,19 +4504,24 @@ $\drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cd
 
 \startCenterAlign
 Предположим, перпендикуляр падает внутри треугольника, тогда  \inprop[prop:II.VII]\\
-$\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2$,\\
-к каждой добавим $\drawSizedLine{AD}^2$, тогда\\
-$\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 + \drawSizedLine{AD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2 + \drawSizedLine{AD}^2$\\
+$\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2$.
+
+К каждой добавим $\drawSizedLine{AD}^2$, тогда\\
+$\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 + \drawSizedLine{AD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2 + \drawSizedLine{AD}^2$
+
 $\therefore$ \inprop[prop:I.XLVII]
 $\drawSizedLine{BD,DC}^2 + \drawSizedLine{AB}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{CA}^2$,\\
 и $\therefore \drawSizedLine{CA}^2 < \drawSizedLine{BD,DC}^2 + \drawSizedLine{AB}^2$ на $2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{DC}$
 
 Теперь предположим, что перпендикуляр падает вовне треугольника, тогда \inprop[prop:II.VII]\\
-$\drawSizedLine{FG,GH}^2 + \drawSizedLine{FG}^2 = 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2$,\\
-к каждой добавим $\drawSizedLine{HE}^2$, тогда\\
-$\drawSizedLine{FG,GH}^2 + \drawSizedLine{FG}^2 + \drawSizedLine{HE}^2= 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2 + \drawSizedLine{HE}^2$\\
+$\drawSizedLine{FG,GH}^2 + \drawSizedLine{FG}^2 = 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2$.
+
+К каждой добавим $\drawSizedLine{HE}^2$, тогда\\
+$\drawSizedLine{FG,GH}^2 + \drawSizedLine{FG}^2 + \drawSizedLine{HE}^2= 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2 + \drawSizedLine{HE}^2$
+
 $\therefore$ \inprop[prop:I.XLVII]
-$\drawSizedLine{EF} + \drawSizedLine{FG}^2 = 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG}^2 + \drawSizedLine{EG}^2$,\\
+$\drawSizedLine{EF} + \drawSizedLine{FG}^2 = 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG}^2 + \drawSizedLine{EG}^2$.
+
 $\therefore \drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG}$.
 \stopCenterAlign
 
