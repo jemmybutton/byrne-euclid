@@ -2192,7 +2192,7 @@ enddef;
 %
 
 vardef textLabelRender(expr t) =
-    textext("\tf\ss " & t) scaled 2/5
+    textext("\tf\ss " & t) scaled 1/3
 enddef;
 
 numeric textLabelAvSize;
