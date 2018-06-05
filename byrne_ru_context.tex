@@ -6032,10 +6032,10 @@ draw byLabelPoint(H, angle(G-H)+45, 2);
 \startCenterAlign
 Тогда, поскольку $\drawUnitLine{DA} = \drawUnitLine{DC}$,\\
 $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
-и $\therefore$ оба угла острые \inprop[prop:I.XVII]\\
-но $\drawAngle{CAD} = \drawRightAngle$ (\hypstr), что невозможно,
+и $\therefore$ оба угла острые \inprop[prop:I.XVII],\\
+но $\drawAngle{CAD} = \drawRightAngle$ (\hypstr), что невозможно.
 
-следовательно \drawUnitLine{AC} проведенная $\perp \drawUnitLine{DA}$ не пересекает окружность в~другом месте.
+Следовательно \drawUnitLine{AC} проведенная $\perp \drawUnitLine{DA}$ не пересекает окружность в~другом месте.
 \stopCenterAlign
 \stopsubproposition
 
@@ -6046,18 +6046,18 @@ draw byLabelsOnPolygon(D, G, A)(2, 0);
 } между \drawUnitLine{EK} и~кругом, и, если возможно, не сечет круг.
 
 \startCenterAlign
-Поскольку $\drawAngle{DAG,GAE} = \drawRightAngle$,\\
-$\therefore \drawAngle{DAG}$ острый угол;\\
-допустим $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, проведенной из центра круга, должна падать на сторону острого угла \drawAngle{DAG}.
+$\drawAngle{DAG,GAE} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ острый угол.
 
-$\therefore$ \drawAngle{G}, который должен быть прямым $> \drawAngle{DAG}$,
+Допустим $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, проведенной из центра круга, должна падать на сторону острого угла \drawAngle{DAG}.
 
-$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$;
+$\therefore$ \drawAngle{G}, который должен быть прямым $> \drawAngle{DAG}$.
 
-но $\drawUnitLine{DH} = \drawUnitLine{DA}$,
+$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$.
+
+Но $\drawUnitLine{DH} = \drawUnitLine{DA}$.
 \stopCenterAlign
 
-и $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, часть больше целого, что невозможно. Следовательно, точка не находится вовне круга и, следовательно, прямая \drawUnitLine{AG} сечет круг.
+И $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, часть больше целого, что невозможно. Следовательно, точка не находится вовне круга и, следовательно, прямая \drawUnitLine{AG} сечет круг.
 \stopsubproposition
 
 \qed
@@ -6104,17 +6104,17 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 
 Если данная точка \drawPointL[middle][FB]{B} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и~будет искомой касательной \inprop[prop:III.XVI].
 
+\startCenterAlign
 Но если точка \drawFromCurrentPicture[bottom]{
 draw byNamedLineSeq(0)(DE,AD,AB);
 draw byLabelsOnPolygon(E, A, B)(2, 0);
-} расположена вовне,
-
-\startCenterAlign
-проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,
+} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
 и проведем $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
-опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\ с~радиусом $= \drawUnitLine{AD,DE}$,\\
+опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\\ 
+с~радиусом $= \drawUnitLine{AD,DE}$,\\
 проведем \drawUnitLine{BE,FB} к~центру из точки, где \drawUnitLine{FD} падает на окружность \circleEII,\\
-проведем $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ из точки, где та сечет \circleEI,\\
+проведем $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ из точки, где та сечет \circleEI.
+
 Тогда \drawUnitLine{AB} и~будет искомой касательной.\\
 Поскольку в~\drawLine[bottom]{FD,FB,BE,DE} и~\drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} общий,\\
 и $\drawUnitLine{DE} = \drawUnitLine{BE}$,\\
@@ -6155,17 +6155,17 @@ draw byLabelPoint(D, angle(D-C)-90, 1);
 
 \startCenterAlign
 Действительно, если возможно, пусть \drawUnitLine{FB,BG} будем $\perp \drawUnitLine{CD}$,\\
-тогда, поскольку $\drawAngle{G} = \drawRightAngle$, \drawAngle{C} острый \inprop[prop:I.XVII]
+тогда, поскольку $\drawAngle{G} = \drawRightAngle$, \drawAngle{C} острый \inprop[prop:I.XVII].
 
-$\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \inprop[prop:I.XIX];
+$\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \inprop[prop:I.XIX].
 
-но $\drawUnitLine{FC} = \drawUnitLine{FB}$,\\
+Но $\drawUnitLine{FC} = \drawUnitLine{FB}$,\\
 и $\therefore \drawUnitLine{FB} > \drawUnitLine{FB,BG}$, часть больше целого, что невозможно.
 
-$\therefore \drawUnitLine{FB,BG}$ не $\perp \drawUnitLine{CD}$;
+$\therefore \drawUnitLine{FB,BG}$ не $\perp \drawUnitLine{CD}$.
 \stopCenterAlign
 
-и так же можно показать, что никакая другая прямая, кроме \drawUnitLine{FC} не перпендикулярна \drawUnitLine{CD}.
+И так же можно показать, что никакая другая прямая, кроме \drawUnitLine{FC} не перпендикулярна \drawUnitLine{CD}.
 
 \qed
 \stopProposition
@@ -6198,10 +6198,11 @@ draw byLabelLineEnd(E, C, 0);
 
 \startCenterAlign
 Поскольку $\drawUnitLine{CF} \perp \drawUnitLine{CE}$ \inprop[prop:III.XVIII]\\
-$\therefore \drawAngle{FCE} = \drawRightAngle$, прямому углу;\\
-но $\drawAngle{ACF,FCE} = \drawRightAngle$ (\hypstr),
+$\therefore \drawAngle{FCE} = \drawRightAngle$, прямому углу.
 
-и $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, часть равна целому, что невозможно.
+Но $\drawAngle{ACF,FCE} = \drawRightAngle$ (\hypstr).
+
+И $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, часть равна целому, что невозможно.
 \stopCenterAlign
 
 Следовательно, предполагаемая точка не центр, и~то же можно показать для любой другой точки, не лежащей на \drawUnitLine{AC}.
@@ -6272,15 +6273,17 @@ draw byLabelsOnPolygon(B, E, A)(2, 0);
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай II.}]
 \startCenterAlign
-Пусть центр будет в~\drawAngle{BAF,CAF}, углу на окружности;
+Пусть центр будет в~\drawAngle{BAF,CAF}, углу на окружности.
 
-проведем \drawUnitLine{AF} из угла через центр круга;\\
-тогда $\drawAngle{B} = \drawAngle{BAF}$, и~$\drawAngle{C} = \drawAngle{CAF}$, вследствие равенства сторон \inprop[prop:I.V].
+Проведем \drawUnitLine{AF} из угла через центр круга.
+
+Тогда $\drawAngle{B} = \drawAngle{BAF}$, и~$\drawAngle{C} = \drawAngle{CAF}$, вследствие равенства сторон \inprop[prop:I.V].
 
 Значит $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
 
-Но $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$,\\
-и $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
+Но $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$\\
+и $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$.
+
 $\therefore \drawAngle{BEF,CEF} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
 \stopCenterAlign
 \stopsubproposition
@@ -6310,12 +6313,12 @@ draw byLabelsOnPolygon(G, E, D)(2, 0);
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай III.}]
 \startCenterAlign
-Пусть центр будет вовне \drawAngle{FDC}\\
-проведем диаметр \drawUnitLine{DG}.
+Пусть центр будет вовне \drawAngle{FDC}.
 
-Поскольку $\drawAngle{GEF,FEC} = \mbox{ дважды } \drawAngle{GDF,FDC}$;\\
-и $\drawAngle{GEF} = \mbox{ дважды } \drawAngle{GDF}$ (случай I.);
+Проведем диаметр \drawUnitLine{DG}.
 
+Поскольку $\drawAngle{GEF,FEC} = \mbox{ дважды } \drawAngle{GDF,FDC}$
+и $\drawAngle{GEF} = \mbox{ дважды } \drawAngle{GDF}$ (случай I.),\\
 $\therefore \drawAngle{FEC} = \mbox{ дважды } \drawAngle{FDC}$.
 \stopCenterAlign
 \stopsubproposition
@@ -6355,9 +6358,9 @@ draw byLabelsOnPolygon(B, F, D)(2, 0);
 Пусть сегмент будет больше половины круга, проведем \drawUnitLine{DF} и~\drawUnitLine{BF} к~центру.
 
 \startCenterAlign
-$\drawAngle{F} = \mbox{ дважды } \drawAngle{A} \mbox{ или дважды } = \drawAngle{E}$ \inprop[prop:III.XX];
+$\drawAngle{F} = \mbox{ дважды } \drawAngle{A} \mbox{ или дважды } = \drawAngle{E}$ \inprop[prop:III.XX].
 
-$\therefore \drawAngle{A} = \drawAngle{E}$
+$\therefore \drawAngle{A} = \drawAngle{E}$.
 \stopCenterAlign
 \stopsubproposition
 
@@ -6395,7 +6398,7 @@ draw byLabelsOnCircle(B, D, E, A, G)(F);
 Пусть сегмент будет меньше или равен половине круга, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
 
 \startCenterAlign
-$\drawAngle{BAG} = \drawAngle{BEG}$ и~$\drawAngle{GAD} = \drawAngle{GED}$ (случай I.)
+$\drawAngle{BAG} = \drawAngle{BEG}$ и~$\drawAngle{GAD} = \drawAngle{GED}$ (случай I.).
 
 $\therefore \drawAngle{BAG,GAD} = \drawAngle{BEG,GED}$.
 \stopCenterAlign
@@ -6436,12 +6439,13 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 \problemNP[2]{П}{ротивоположные}{углы \drawAngle{DAC,CAB} и~\drawAngle{BCA,ACD} или \drawAngle{CDB,BDA} и~\drawAngle{ABD,DBC} четырехугольника вписанного в~круг, вместе равны двум прямым углам.}
 
 \startCenterAlign
-Проведем диагонали \drawUnitLine{AC} и~\drawUnitLine{BD},\\
-поскольку углы в~одной дуге равны\\
-$\drawAngle{CDB} = \drawAngle{CAB}$,\\
-и $\drawAngle{DAC} = \drawAngle{DBC}$;
+Проведем диагонали \drawUnitLine{AC} и~\drawUnitLine{BD}.
 
-добавим к~каждому \drawAngle{BCA,ACD}.\\
+Поскольку углы в~одной дуге равны,\\
+$\drawAngle{CDB} = \drawAngle{CAB}$\\
+и $\drawAngle{DAC} = \drawAngle{DBC}$.
+
+Добавим к~каждому \drawAngle{BCA,ACD},
 $\drawAngle{DAC,CAB} + \drawAngle{BCA,ACD} = \drawAngle{BCA,ACD} + \drawAngle{CDB} + \drawAngle{DBC} = \drawTwoRightAngles$ \inprop[prop:I.XXXII].
 
 Так же можно показать, что\\
@@ -6498,16 +6502,16 @@ draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 draw byNamedLine(AB);
 draw byNamedArcExact(M);
 draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
-},
+}.
 
-проведем прямую \drawUnitLine{AD}, секущую оба,
+Проведем прямую \drawUnitLine{AD}, секущую оба.
 
-проведем \drawUnitLine{BC} и~\drawUnitLine{BD}.
+Проведем \drawUnitLine{BC} и~\drawUnitLine{BD}.
 
 Поскольку сегменты подобны,\\
-$\drawAngle{C} = \drawAngle{D}$ \indef[def:III.XI],
+$\drawAngle{C} = \drawAngle{D}$ \indef[def:III.XI].
 
-но $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:I.XVI], что невозможно.
+Но $\drawAngle{C} > \drawAngle{D}$ \inprop[prop:I.XVI], что невозможно.
 
 Следовательно, никакая точка одного сегмента не расположена вовне другого сегмента и~значит сегменты совпадают.
 \stopCenterAlign
@@ -6571,12 +6575,13 @@ draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
 },\\
 так, что \drawUnitLine{CD} совпадет с~\drawUnitLine{AB},\\
 концы \drawUnitLine{CD} будут на концах \drawUnitLine{AB}\\
-и \drawArc{M} по одну сторону с~\drawArc{N};\\
-поскольку $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
-\drawUnitLine{CD} будет полностью совпадать с~\drawUnitLine{AB};
+и \drawArc{M} по одну сторону с~\drawArc{N}.
+
+Поскольку $\drawUnitLine{CD} = \drawUnitLine{AB}$,\\
+\drawUnitLine{CD} будет полностью совпадать с~\drawUnitLine{AB}.
 \stopCenterAlign
 
-\noindent равные сегменты на одной прямой и~по одну ее сторону также совпадают \inprop[prop:III.XXIII], и, следовательно, равны.
+\noindent Равные сегменты на одной прямой и~по одну ее сторону также совпадают \inprop[prop:III.XXIII], и, следовательно, равны.
 
 \qed
 \stopProposition
@@ -6608,11 +6613,14 @@ draw byLabelsOnPolygon(D, F, E)(2, 0);
 \problemNP{К}{данному}{сегменту круга пристроить круг, сегментом которого он является.}
 
 \startCenterAlign
-Из любой точки сегмента проведем \drawUnitLine{BC} и~\drawUnitLine{AB},\\
-рассечем обе пополам и~из точек рассечения\\
-проведем $\drawUnitLine{EF} \perp \drawUnitLine{BC}$\\
-и $\drawUnitLine{DF} \perp \drawUnitLine{AB}$\\
-где они пересекаются, там и~находится центр круга..
+Из любой точки сегмента проведем \drawUnitLine{BC} и~\drawUnitLine{AB}.
+
+Рассечем обе пополам и~из точек рассечения.
+
+Проведем $\drawUnitLine{EF} \perp \drawUnitLine{BC}$\\
+и $\drawUnitLine{DF} \perp \drawUnitLine{AB}$.
+
+Где они пересекаются, там и~находится центр круга.
 \stopCenterAlign
 
 Поскольку \drawUnitLine{BC} кончающаяся на окружности рассекается перпендикуляром \drawUnitLine{EF}, который проходит через центр \inprop[prop:III.I], так же и~\drawUnitLine{DF} проходит через центр, следовательно, их пересечение и~есть центр.
@@ -6675,13 +6683,17 @@ draw byLabelsOnPolygon(E, H, F)(2, 0);
 
 \startCenterAlign
 Поскольку, пусть $\drawAngle{G} = \drawAngle{H}$ при центре,\\
-проведем \drawUnitLine{BC} и~\drawUnitLine{EF}.\\
+проведем \drawUnitLine{BC} и~\drawUnitLine{EF}.
+
 Тогда, поскольку $\circleG = \circleH$,\\
 у \drawLine[bottom]{BG,CG,BC} и~\drawLine[bottom]{EH,FH,EF}\\
-$\drawUnitLine{BG} = \drawUnitLine{CG} = \drawUnitLine{EH} = \drawUnitLine{FH}$,\\
-и $\drawAngle{G} = \drawAngle{H}$,\\
-$\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$ \inprop[prop:I.IV].\\
-Но $\drawAngle{A} = \drawAngle{D}$ \inprop[prop:III.XX];\\
+$\drawUnitLine{BG} = \drawUnitLine{CG} = \drawUnitLine{EH} = \drawUnitLine{FH}$\\
+и $\drawAngle{G} = \drawAngle{H}$.
+
+$\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$ \inprop[prop:I.IV].
+
+Но $\drawAngle{A} = \drawAngle{D}$ \inprop[prop:III.XX].
+
 $\therefore$
 \drawFromCurrentPicture{
 startTempScale(1/5);
@@ -6698,8 +6710,9 @@ draw byNamedLine(EF);
 draw byLabelsOnCircle(E, F)(H);
 stopTempScale;
 }
-подобны \indef[def:III.XI];\\
-и равны \inprop[prop:III.XXIV].\\
+подобны \indef[def:III.XI]\\
+и равны \inprop[prop:III.XXIV].
+
 А если равные сегменты вычесть из равных кругов, оставшиеся сегменты будут равны,\\
 то есть $
 \drawFromCurrentPicture{
@@ -6711,8 +6724,9 @@ draw byNamedArcLabel(Gb);
 draw byNamedFilledCircleSegment(H);
 draw byNamedArcLabel(Hb);
 }
-$ \inax[ax:III];\\
-и $\therefore \drawArc{Gb} = \drawArc{Hb}$.
+$ \inax[ax:III].
+
+И $\therefore \drawArc{Gb} = \drawArc{Hb}$.
 \stopCenterAlign
 
 И если равные углы будут при окружности, очевидно, что углы в~центре, будучи вдвое больше углов при окружности, также равны, и, следовательно, дуги, на которые они опираются, тоже равны.
@@ -6778,16 +6792,17 @@ draw byLabelsOnPolygon(E, H, F)(2, 0);
 
 \startCenterAlign
 Поскольку, если такое возможно, пусть один из них\\
-\drawAngle{D} будет больше другого \drawAngle{BAK},\\
-сделаем $\drawAngle{BAK,KAC} = \drawAngle{D}$
+\drawAngle{D} будет больше другого \drawAngle{BAK}.
 
-$\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \inprop[prop:III.XXVI]
+Cделаем $\drawAngle{BAK,KAC} = \drawAngle{D}$.
 
-но $\drawArc{GbI} = \drawArc{Hb}$ (\hypstr)\\
-$\therefore \drawArc{GbI} = \drawArc{GbI,GbII}$ часть равны целому, что невозможно;
+$\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \inprop[prop:III.XXVI].
 
-$\therefore$ ни один из углов не больше другого,
+Но $\drawArc{GbI} = \drawArc{Hb}$ (\hypstr)
 
+$\therefore \drawArc{GbI} = \drawArc{GbI,GbII}$ часть равны целому, что невозможно.
+
+$\therefore$ ни один из углов не больше другого,\\
 и $\therefore$ они равны.
 \stopCenterAlign
 
@@ -6843,13 +6858,13 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 
 Поскольку $\circleK = \circleL$\\
 $\drawUnitLine{AK}, \drawUnitLine{BK} = \drawUnitLine{DL}, \drawUnitLine{EL}$,\\
-а также $\drawUnitLine{AB} = \drawUnitLine{DE}$ (\hypstr)
+а также $\drawUnitLine{AB} = \drawUnitLine{DE}$ (\hypstr).
 
-$\therefore \drawAngle{K} = \drawAngle{L}$
+$\therefore \drawAngle{K} = \drawAngle{L}$.
 
-$\therefore \drawArc{Kb} = \drawArc{Lb}$ \inprop[prop:III.XXVI]
+$\therefore \drawArc{Kb} = \drawArc{Lb}$ \inprop[prop:III.XXVI].
 
-и $\therefore \drawArc[bottom][1/3]{K} = \drawArc[bottom][1/3]{L}$ \inax[ax:III]
+И $\therefore \drawArc[bottom][1/3]{K} = \drawArc[bottom][1/3]{L}$ \inax[ax:III].
 \stopCenterAlign
 
 \qed
@@ -6899,17 +6914,15 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 \problemNP{В}{равных}{кругах \drawCircle[middle][1/3]{K} и~\drawCircle[middle][1/3]{L}, хорды \drawUnitLine{AB} и~\drawUnitLine{DE}, стягивающие равные дуги, равны.}
 
 \startCenterAlign
-Если дуги равны половинам окружностей, то предложение очевидно, а~если нет,
+Если дуги равны половинам окружностей, то предложение очевидно, а~если нет,\\
+пусть \drawUnitLine{AK}, \drawUnitLine{BK} и~\drawUnitLine{DL}, \drawUnitLine{EL} проведены из центров.
 
-пусть \drawUnitLine{AK}, \drawUnitLine{BK} и~\drawUnitLine{DL}, \drawUnitLine{EL} проведены из центров;
+Поскольку $\drawArc{Kb} = \drawArc{Lb}$ (\hypstr),\\
+$\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII].
 
-поскольку $\drawArc{Kb} = \drawArc{Lb}$ (\hypstr)\\
-и $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII];
+Но $\drawUnitLine{AK} \mbox{ и~} \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ и~} \drawUnitLine{EL}$.
 
-но $\drawUnitLine{AK} \mbox{ и~} \drawUnitLine{BK} = \drawUnitLine{DL} \mbox{ и~} \drawUnitLine{EL}$
-
-$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:I.IV],
-
+$\therefore \drawUnitLine{AB} = \drawUnitLine{DE}$ \inprop[prop:I.IV],\\
 а это и~есть хорды, стягивающие равные дуги.
 \stopCenterAlign
 
@@ -6948,15 +6961,17 @@ draw byLabelLineEnd(C, D, 0);
 \problemNP{Р}{ассечь}{данную дугу \drawArc[middle][1/5]{El,Er} пополам.}
 
 \startCenterAlign
-Проведем \drawUnitLine{AC,CB};\\
-сделаем $\drawUnitLine{AC} = \drawUnitLine{CB}$,\\
-проведем $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, она и~будет рассекать дугу.
+Проведем \drawUnitLine{AC,CB}.
+
+Сделаем $\drawUnitLine{AC} = \drawUnitLine{CB}$.
+
+Проведем $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, она и~будет рассекать дугу.
 
 Проведем \drawUnitLine{DA} и~\drawUnitLine{DB}.
 
 $\drawUnitLine{AC} = \drawUnitLine{CB}$ (\conststr)\\
 \drawUnitLine{DC} общая,\\
-и $\drawAngle{ACD} = \drawAngle{DCB}$ (\conststr)
+и $\drawAngle{ACD} = \drawAngle{DCB}$ (\conststr).
 
 $\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
 $
@@ -7012,9 +7027,10 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 \startCenterAlign
 Угол \drawAngle{EAB,CAE} в~полукруге прямой.
 
-Проведем \drawUnitLine{AE} и~\drawUnitLine{BE,EC}\\
+Проведем \drawUnitLine{AE} и~\drawUnitLine{BE,EC}.
+
 $\drawAngle{B}=\drawAngle{EAB}$ и~$\drawAngle{C} = \drawAngle{CAE}$ \inprop[prop:I.V]\\
-$\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ половина } \drawTwoRightAngles= \drawRightAngle$ \inprop[prop:I.XXXII]
+$\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ половина } \drawTwoRightAngles= \drawRightAngle$ \inprop[prop:I.XXXII].
 \stopCenterAlign
 \stopsubproposition
 
@@ -7043,8 +7059,10 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 \startCenterAlign
 Угол \drawAngle{BAD} в~сегменте больше полукруга острый.
 
-Проведем диаметр \drawUnitLine{BC} и~\drawUnitLine{AC}\\
-$\therefore \drawAngle{BAD,DAC} = \mbox{ прямому углу}$\\
+Проведем диаметр \drawUnitLine{BC} и~\drawUnitLine{AC}
+
+$\therefore \drawAngle{BAD,DAC} = \mbox{ прямому углу}$
+
 $\therefore$ \drawAngle{BAD} острый.
 \stopCenterAlign
 \stopsubproposition
@@ -7075,9 +7093,11 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 \startCenterAlign
 Угол \drawAngle{D} в~сегменте меньше полукруга тупой.
 
-Возьмем на противоположной стороне окружности любую точку, к~которой проведем \drawUnitLine{BC} и~\drawUnitLine{AB}.\\
-Поскольку $\drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \inprop[prop:III.XXII]\\
-но $\drawAngle{B} < \drawRightAngle$ (случай II.),\\
+Возьмем на противоположной стороне окружности любую точку, к~которой проведем \drawUnitLine{BC} и~\drawUnitLine{AB}.
+
+Поскольку $\drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \inprop[prop:III.XXII].
+
+Но $\drawAngle{B} < \drawRightAngle$ (случай II.),\\
 $\therefore$ \drawAngle{D} тупой.
 \stopCenterAlign
 \stopsubproposition
@@ -7123,13 +7143,12 @@ draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 Если же нет, проведем $\drawUnitLine{AB} \perp \drawUnitLine{EF}$ из точки касания, которая будет проходить через центр \inprop[prop:III.XIX]
 
 \startCenterAlign
-$\therefore \drawAngle{ADB} = \drawAngle{ABE} $ \inprop[prop:III.XXXI]
-
-$\drawAngle{A} + \drawAngle{DBA} = \drawAngle{ABE} = \drawAngle{FBA}$ \inprop[prop:I.XXXII]
+$\therefore \drawAngle{ADB} = \drawAngle{ABE} $ \inprop[prop:III.XXXI],
+$\drawAngle{A} + \drawAngle{DBA} = \drawAngle{ABE} = \drawAngle{FBA}$ \inprop[prop:I.XXXII]\\
 
 $\therefore \drawAngle{A} = \drawAngle{FBD}$ \inax[ax:III].
 
-Теперь $\drawAngle{B} = \drawTwoRightAngles = \drawAngle{A} + \drawAngle{C}$ \inprop[prop:III.XXII]
+Теперь $\drawAngle{B} = \drawTwoRightAngles = \drawAngle{A} + \drawAngle{C}$ \inprop[prop:III.XXII].
 
 $\therefore \drawAngle{DBE} = \drawAngle{C}$ \inax[ax:III], который и~будет углом в~накрестлежащем сегменте.
 \stopCenterAlign
@@ -7174,19 +7193,17 @@ draw byLabelsOnPolygon(K, D, noPoint)(0, 0);
 
 Если данный угол прямой, то рассечем отрезок и~опишем на нем полукруг, который, очевидно, будет содержать прямой угол \inprop[prop:III.XXXI].
 
-Если же данный угол острый или тупой, сделаем с~данной прямой на одном из ее концов,
-
 \startCenterAlign
-$\drawAngle{DAB} = \drawAngle{givenAcute}$,
+Если же данный угол острый или тупой, сделаем с~данной прямой на одном из ее концов $\drawAngle{DAB} = \drawAngle{givenAcute}$.
 
-проведем $\drawUnitLine{AG} \perp \drawUnitLine{KD}$\\
-и сделаем $\drawAngle{B} = \drawAngle{BAE}$,
+Проведем $\drawUnitLine{AG} \perp \drawUnitLine{KD}$\\
+и сделаем $\drawAngle{B} = \drawAngle{BAE}$.
 
-опишем \drawCircle[middle][1/5]{G} с~\drawUnitLine{AG} или \drawUnitLine{GB} в~качестве радиуса, ведь они равны.
+Опишем \drawCircle[middle][1/5]{G} с~\drawUnitLine{AG} или \drawUnitLine{GB} в~качестве радиуса, ведь они равны.
 
-\drawUnitLine{KD} касается \circleG\ \inprop[prop:III.XVI]
+\drawUnitLine{KD} касается \circleG\ \inprop[prop:III.XVI].
 
-$\therefore$ \drawUnitLine{AB} делит круг на два сегмента, вмещающие углы равные \drawAngle{EAK,BAE} и~\drawAngle{DAB}, соответственно равные \drawAngle{givenObtuse} и~\drawAngle{givenAcute} \inprop[prop:III.XXXII]
+$\therefore$ \drawUnitLine{AB} делит круг на два сегмента, вмещающие углы равные \drawAngle{EAK,BAE} и~\drawAngle{DAB}, соответственно равные \drawAngle{givenObtuse} и~\drawAngle{givenAcute} \inprop[prop:III.XXXII].
 \stopCenterAlign
 
 \qed
@@ -7219,20 +7236,20 @@ draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
 \problemNP{О}{т}{данного круга \drawCircle{O} отсечь сегмент, вмещающий данный прямолинейный угол \drawAngle{givenAngle}.}
 
 \startCenterAlign
-Проведем \drawUnitLine{EF} \inprop[prop:III.XVII], касательную к~кругу в~любой точке;
+Проведем \drawUnitLine{EF} \inprop[prop:III.XVII], касательную к~кругу в~любой точке.
 
-в точке касания сделаем $\drawAngle{B} = \drawAngle{givenAngle}$, данному углу;
+В точке касания сделаем $\drawAngle{B} = \drawAngle{givenAngle}$, данному углу.
 
-тогда \drawFromCurrentPicture[middle][segmentO]{
+Тогда \drawFromCurrentPicture[middle][segmentO]{
 draw byNamedFilledCircleSegment(O);
 draw byLabelsOnCircle(A, B)(O);
 } содержит угол $=$ данному углу.
 
 Поскольку \drawUnitLine{EF} касательная,\\
 и \drawUnitLine{AB} сечет ее,\\
-угол в~$\segmentO\ = \drawAngle{B}$ \inprop[prop:III.XXXII],
+угол в~$\segmentO\ = \drawAngle{B}$ \inprop[prop:III.XXXII].
 
-но $\drawAngle{B} = \drawAngle{givenAngle}$ (\conststr)
+Но $\drawAngle{B} = \drawAngle{givenAngle}$ (\conststr)
 \stopCenterAlign
 
 \qed
@@ -7326,11 +7343,10 @@ draw byLabelsOnPolygon(B, E, K)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай III.}]
-Пусть ни одна из прямых не проходит через центр, проведем через точку их пересечения диаметр \drawSizedLine{KE,EL},
-
 \startCenterAlign
+Пусть ни одна из прямых не проходит через центр, проведем через точку их пересечения диаметр \drawSizedLine{KE,EL}\\
 и $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{BE} \times \drawSizedLine{ED}$ (случай II.),\\
-а также $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{AE} \times \drawSizedLine{EC}$ (случай II.);
+а также $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{AE} \times \drawSizedLine{EC}$ (случай II.).
 
 $\therefore \drawSizedLine{BE} \times \drawSizedLine{ED} = \drawSizedLine{AE} \times \drawSizedLine{EC}$.
 \stopCenterAlign
@@ -7367,13 +7383,12 @@ draw byLabelPoint(C, angle(C-F) - 45, 2);
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай I.}]
 \startCenterAlign
-Пусть \drawSizedLine{FA,CF,DC} проходит через центр,
+Пусть \drawSizedLine{FA,CF,DC} проходит через центр.
 
-проведем \drawSizedLine{BF} из центра к~точке касания;
+Проведем \drawSizedLine{BF} из центра к~точке касания.
 
-$\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{BF}^2$ \inprop[prop:I.XLVII],
-
-или $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{CF}^2$,
+$\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{BF}^2$ \inprop[prop:I.XLVII],\\
+или $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{CF}^2$.
 
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{FA,CF,DC} \times \drawSizedLine{DC}$ \inprop[prop:II.VI].
 \stopCenterAlign
@@ -7407,13 +7422,12 @@ draw byLabelPoint(C, angle(C-E) + 45, 2);
 }\drawCurrentPictureInMargin
 \startsubproposition[title={Случай II.}]
 \startCenterAlign
-Если \drawSizedLine{CA,DC} не проходит через центр,
-
+Если \drawSizedLine{CA,DC} не проходит через центр,\\
 проведем \drawSizedLine{EA} и~\drawSizedLine{EC}.
 
-Тогда $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \inprop[prop:II.VI],
+Тогда $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \inprop[prop:II.VI].
 
-то есть, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$,
+То есть, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$.
 
 $\therefore \drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \inprop[prop:III.XVIII].
 \stopCenterAlign
@@ -7457,18 +7471,21 @@ draw byLabelPoint(C, angle(C-F) + 45, 2);
 \problemNP{Е}{сли}{из точки вне круга проведены две прямых линии, одна из которых \drawSizedLine{CA,DC} сечет круг, а~другая \drawSizedLine{DB} лишь падает на него, и~если прямоугольник заключенный между  всей секущей линией \drawSizedLine{CA,DC} и~ее внешней частью \drawSizedLine{DC} равен квадрату линии падающей на круг, та \drawSizedLine{DB} является касательной к~кругу.}
 
 \startCenterAlign
-Проведем из данной точки касательную к~кругу \drawSizedLine{DE},\\
-и проведем из центра \drawSizedLine{DF}, \drawSizedLine{BF}, и~\drawSizedLine{EF},\\
-$\drawSizedLine{DE}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \inprop[prop:III.XXXVI]\\
-но $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (\hypstr),\\
+Проведем из данной точки касательную к~кругу \drawSizedLine{DE}.
+
+И проведем из центра \drawSizedLine{DF}, \drawSizedLine{BF}, и~\drawSizedLine{EF}.
+
+$\drawSizedLine{DE}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \inprop[prop:III.XXXVI],\\
+но $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ (\hypstr).
+
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{DE}^2$,\\
-и $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$;
+и $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$.
 
 Тогда в~\drawLine{DB,DF,BF} и~\drawLine{EF,DF,DE}\\
 $\drawSizedLine{BF} \mbox{ и~} \drawSizedLine{DB} = \drawSizedLine{EF} \mbox{ и~} \drawSizedLine{DE}$,\\
 и \drawSizedLine{DF} общая обоим,\\
-$\therefore \drawAngle{B} = \drawAngle{E}$ \inprop[prop:I.VIII];\\
-но $\drawAngle{E} = \drawRightAngle$, прямому углу \inprop[prop:III.XVIII],
+$\therefore \drawAngle{B} = \drawAngle{E}$ \inprop[prop:I.VIII],\\
+но $\drawAngle{E} = \drawRightAngle$, прямому углу \inprop[prop:III.XVIII].
 
 $\therefore \drawAngle{B} = \drawRightAngle$, прямому углу\\
 и $\therefore$ \drawSizedLine{DB} касается круга \inprop[prop:III.XVI].
@@ -7654,13 +7671,13 @@ draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
 и если $\drawUnitLine{EC,BE} = \drawUnitLine{GH}$, задача решена.
 
 Если же \drawUnitLine{EC,BE} не равна \drawUnitLine{GH},\\
-$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (\hypstr);
+$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (\hypstr).
 
-сделаем $\drawUnitLine{EC} = \drawUnitLine{GH}$ \inprop[prop:I.III]\\
+Сделаем $\drawUnitLine{EC} = \drawUnitLine{GH}$ \inprop[prop:I.III]\\
 взяв \drawUnitLine{EC} за радиус, построим \drawCircle{C}, секущий \circleO, \\
 и проведем \drawUnitLine{AC}, которая и~будет искомой прямой.
 
-Поскольку $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], \conststr)
+Поскольку $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], \conststr).
 \stopCenterAlign
 
 \qed
@@ -7708,23 +7725,24 @@ draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
 \problemNP{В}{данный}{круг \drawCircle{O} вписать треугольник, равноугольный данному.}
 
 \startCenterAlign
-Проведем касательную \drawUnitLine{GH}, к~любой точке круга \inprop[prop:III.XVII];
+Проведем касательную \drawUnitLine{GH}, к~любой точке круга \inprop[prop:III.XVII].
 
-в точке касания сделаем $\drawAngle{CAH} = \drawAngle{E}$ \inprop[prop:I.XXIII].
+В точке касания сделаем $\drawAngle{CAH} = \drawAngle{E}$ \inprop[prop:I.XXIII].
 
-Так же сделаем $\drawAngle{GAB} = \drawAngle{F}$,
-
+Так же сделаем $\drawAngle{GAB} = \drawAngle{F}$\\
 и проведем \drawUnitLine{BC}.
 
 Поскольку $\drawAngle{CAH} = \drawAngle{E}$ (\conststr)\\
-и $\drawAngle{CAH} = \drawAngle{B}$ \inprop[prop:III.XXXII]\\
-$\therefore \drawAngle{B} = \drawAngle{E}$;\\
-также и~$\drawAngle{C} = \drawAngle{F}$ по той же причине.
+и $\drawAngle{CAH} = \drawAngle{B}$ \inprop[prop:III.XXXII].
 
-$\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII],
+$\therefore \drawAngle{B} = \drawAngle{E}$.
+
+Также и~$\drawAngle{C} = \drawAngle{F}$ по той же причине.
+
+$\therefore \drawAngle{BAC} = \drawAngle{D}$ \inprop[prop:I.XXXII].
 \stopCenterAlign
 
-\noindent и~следовательно вписанный в~круг треугольник равноуголен данному.
+\noindent И, следовательно, вписанный в~круг треугольник равноуголен данному.
 
 \qed
 \stopProposition
@@ -7796,17 +7814,17 @@ draw byNamedArbitraryFigure(LAKC);
 draw byLabelsOnPolygon(L, A, K, C)(0, 0);
 stopTempAngleScale;
 },
-взятые вместе равны четырем прямым углам. \inprop[prop:I.XXXII]
+взятые вместе равны четырем прямым углам \inprop[prop:I.XXXII].
 
-но \drawAngle{C} и~\drawAngle{A} прямые (\conststr)
+Но \drawAngle{C} и~\drawAngle{A} прямые (\conststr).
 
-$\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, двум прямым углам,
+$\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, двум прямым углам.
 
-но $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \inprop[prop:I.XIII]\\
+Но $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \inprop[prop:I.XIII]\\
 и $\drawAngle{CKA} = \drawAngle{DFH}$ (\conststr) и~$\therefore \drawAngle{L} = \drawAngle{DFE}$.
 
 Таким же образом можно показать, что\\
-$\drawAngle{N} = \drawAngle{FED}$;
+$\drawAngle{N} = \drawAngle{FED}$.
 
 $\therefore \drawAngle{M} = \drawAngle{D}$ \inprop[prop:I.XXXII]\\
 и значит, описанный около круга треугольник равноуголен данному.
@@ -7860,7 +7878,7 @@ stopAutoLabeling;
 stopTempScale;
 } вписать круг.}
 
-Рассечем пополам \drawAngle{EBD,DBF} и~\drawAngle{GCD,DCF} \inprop[prop:I.IX] с~помощью \drawUnitLine{BD} и~\drawUnitLine{CD};
+Рассечем пополам \drawAngle{EBD,DBF} и~\drawAngle{GCD,DCF} \inprop[prop:I.IX] с~помощью \drawUnitLine{BD} и~\drawUnitLine{CD}.
 
 Из точки, где они встречаются, проведем \drawUnitLine{FD}, \drawUnitLine{ED} и~\drawUnitLine{GD} соотвтетственно перпендикулярные \drawUnitLine{BC}, \drawUnitLine{AB} и~\drawUnitLine{CA}.
 
@@ -7883,15 +7901,16 @@ draw byNamedLineSeq(0)(BE,ED,BD);
 stopAutoLabeling;
 stopTempScale;
 }\\
-$\drawAngle{DBF} = \drawAngle{EBD}$, $\drawAngle{F} = \drawAngle{E}$ и~\drawUnitLine{BD} общая,\\
+$\drawAngle{DBF} = \drawAngle{EBD}$, $\drawAngle{F} = \drawAngle{E}$ и~\drawUnitLine{BD} общая.
+
 $\therefore \drawUnitLine{ED} = \drawUnitLine{FD}$ (\inpropL[prop:I.IV], \inpropL[prop:I.XXVI]).
 
-Так же можно показать, что $\drawUnitLine{GD} = \drawUnitLine{FD}$,
+Так же можно показать, что $\drawUnitLine{GD} = \drawUnitLine{FD}$.
 
-$\therefore \drawUnitLine{FD} = \drawUnitLine{ED} = \drawUnitLine{GD}$;
+$\therefore \drawUnitLine{FD} = \drawUnitLine{ED} = \drawUnitLine{GD}$.
 \stopCenterAlign
 
-\noindent так, взяв любую из этих линий за радиус, опишем \drawCircle[middle][1/2]{D} и~его окружность будет проходить через концы других двух, а~стороны данного треугольника, перпендикулярные к~трем радиусам и~проходящие через их концы, касаются круга \inprop[prop:III.XVI], который, таким образом, вписан в~данный треугольник.
+\noindent Взяв любую из этих линий за радиус, опишем \drawCircle[middle][1/2]{D} и~его окружность будет проходить через концы других двух, а~стороны данного треугольника, перпендикулярные к~трем радиусам и~проходящие через их концы, касаются круга \inprop[prop:III.XVI], который, таким образом, вписан в~данный треугольник.
 
 \qed
 \stopProposition
@@ -7939,7 +7958,7 @@ proptmp(100, 200, -30, (0, 0));
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного треугольника описать круг.}
 
-Сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$ и~$\drawUnitLine{CE} = \drawUnitLine{EA}$ \inprop[prop:I.X]
+Сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$ и~$\drawUnitLine{CE} = \drawUnitLine{EA}$ \inprop[prop:I.X].
 
 Из точек рассечения проведем \drawUnitLine{DF} и~\drawUnitLine{EF} $\perp$ \drawUnitLine{AD} и~\drawUnitLine{CE} соответственно \inprop[prop:I.XI], и~из точки из пересечения проведем \drawUnitLine{BF}, \drawUnitLine{AF} и~\drawUnitLine{CF} и~опишем круг с~любой из них в~качестве радиуса, это и~будет искомый круг.
 
@@ -7960,14 +7979,14 @@ stopAutoLabeling;
 }\\
 $\drawUnitLine{DB} = \drawUnitLine{AD}$ (\conststr),\\
 \drawUnitLine{DF} общая,\\
-$\drawAngle{FDB} = \drawAngle{ADF}$ (\conststr),
+$\drawAngle{FDB} = \drawAngle{ADF}$ (\conststr).
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{BF}$ \inprop[prop:I.IV].
 
 Так же можно показать и~что $\drawUnitLine{CF} = \drawUnitLine{AF}$.
 \stopCenterAlign
 
-$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$; и, следовательно, круг с~центром в~точке их пересечения и~с любой из них в~качестве радиуса опишет данный треугольник.
+$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$, и, следовательно, круг с~центром в~точке их пересечения и~с любой из них в~качестве радиуса опишет данный треугольник.
 
 \qed
 \stopProposition
@@ -8003,31 +8022,31 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{В}{данный}{круг \drawCircle{E} вписать квадрат.}
 
-Проведем два диаметра круга $\perp$ друг другу, и~проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} и~\drawUnitLine{CD}.
-
 \startCenterAlign
+Проведем два диаметра круга $\perp$ друг другу,\\ 
+проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} и~\drawUnitLine{CD}.
+
 \drawLine[middle][squareABCD]{DA,CD,BC,AB} квадрат.
 
-Поскольку \drawAngle{A} и~\drawAngle{D} каждый в~полукруге, оба являются прямыми \inprop[prop:III.XXXI],
+Поскольку \drawAngle{A} и~\drawAngle{D} каждый в~полукруге, оба являются прямыми \inprop[prop:III.XXXI].
 
-$\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII]:
+$\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII].
 
 так же и~$\drawUnitLine{DA} \parallel \drawUnitLine{BC}$.
 
-И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (\conststr),
-
+И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (\conststr)\\
 и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 
 $\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \inprop[prop:I.IV].
 \stopCenterAlign
 
-И поскольку смежные углы и~стороны параллелограмма \squareABCD\ равны, все его стороны и~углы равны \inprop[prop:I.XXXIV]; и~$\therefore$ \squareABCD, вписанный в~данный круг является квадратом.
+И поскольку смежные углы и~стороны параллелограмма \squareABCD\ равны, все его стороны и~углы равны \inprop[prop:I.XXXIV]. И~$\therefore$ \squareABCD, вписанный в~данный круг является квадратом.
 
 \qed
 \stopProposition
 
 \startProposition[title={Предл. VII. Задача},reference=prop:IV.VII]
-\defineNewPicture[1/5]{
+\defineNewPicture[1/6]{
 pair A, B, C, D, E, F, G, H, K;
 numeric r;
 r := 7/4u;
@@ -8061,17 +8080,22 @@ draw byLabelsOnPolygon(A, E, D)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного круга \drawCircle{E} описать квадрат.}
 
-Проведем два перпендикулярных друг другу диаметра данного круга и~через их концы проведем \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} и~\drawUnitLine{KF} касательные к~кругу.
-
 \startCenterAlign
-Тогда \drawLine[middle][squareFGHK]{KF,HK,GH,FG} будет квадратом.\\
+Проведем два перпендикулярных друг другу диаметра данного круга \drawUnitLine{BD}, \drawUnitLine{AC}, и~через их концы проведем \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} и~\drawUnitLine{KF} касательные к~кругу,\\
+тогда \drawLine[middle][squareFGHK]{KF,HK,GH,FG} будет квадратом.
+
 $\drawAngle{C} = \drawRightAngle$ прямому углу, \inprop[prop:III.XVIII]\\
 так же и~$\drawAngle{E} = \drawRightAngle$ (\conststr),\\
-$\therefore \drawUnitLine{HK} \parallel \drawUnitLine{BD}$.\\
-Таким же образом можно показать что $\drawUnitLine{FG} \parallel \drawUnitLine{BD}$, а~также что $\drawUnitLine{GH} \mbox{ и~} \drawUnitLine{KF} \parallel \drawUnitLine{AC}$.\\
+$\therefore \drawUnitLine{HK} \parallel \drawUnitLine{BD}$.
+
+Таким же образом можно показать что $\drawUnitLine{FG} \parallel \drawUnitLine{BD}$,\\
+а~также что $\drawUnitLine{GH} \mbox{ и~} \drawUnitLine{KF} \parallel \drawUnitLine{AC}$.
+
 $\therefore$ \squareFGHK\ параллелограмм,\\
-и поскольку $\drawAngle{C} = \drawAngle{G} = \drawAngle{F} = \drawAngle{K} = \drawAngle{H}$, все они прямые \inprop[prop:I.XXXIV].\\
-Также очевидно, что \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} и~\drawUnitLine{KF} равны между собой.\\
+и поскольку $\drawAngle{G} = \drawAngle{F} = \drawAngle{K} = \drawAngle{H} = \drawAngle{C}$, все они прямые \inprop[prop:I.XXXIV].
+
+Также очевидно, что \drawUnitLine{HK}, \drawUnitLine{GH}, \drawUnitLine{FG} и~\drawUnitLine{KF} равны между собой.
+
 $\therefore$ \squareFGHK\ квадрат.
 \stopCenterAlign
 
@@ -8114,24 +8138,24 @@ draw byLabelsOnPolygon(F, G, E)(2, 0);
 
 \startCenterAlign
 Сделаем $\drawUnitLine{ED} = \drawUnitLine{AE}$,\\
-и $\drawUnitLine{KC} = \drawUnitLine{DK}$,\\
-проведем $\drawUnitLine{FG,GK} = \drawUnitLine{AE,ED}$,\\
-и $\drawUnitLine{EG,GH} = \drawUnitLine{DK,KC}$\\
-\inprop[prop:I.XXXI]
+и $\drawUnitLine{KC} = \drawUnitLine{DK}$.
 
-$\therefore$ \drawPolygon{EDKG} параллелограмм,
+Проведем $\drawUnitLine{FG,GK} \parallel \drawUnitLine{AE,ED}$,\\
+и $\drawUnitLine{EG,GH} \parallel \drawUnitLine{DK,KC}$ \inprop[prop:I.XXXI].
 
-и поскольку $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (\hypstr)\\
-$\drawUnitLine{ED} = \drawUnitLine{DK}$
+$\therefore$ \drawPolygon{EDKG} параллелограмм.
 
-$\therefore$ \polygonEDKG\ равносторонний \inprop[prop:I.XXXIV]
+И поскольку $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ (\hypstr),\\
+$\drawUnitLine{ED} = \drawUnitLine{DK}$.
 
-таким же образом можно показать, что $ \drawPolygon{GKCH} = \drawPolygon{FGHB}$ равносторонние параллелограммы;
+$\therefore$ \polygonEDKG\ равносторонний \inprop[prop:I.XXXIV].
+
+Таким же образом можно показать, что $ \drawPolygon{GKCH} = \drawPolygon{FGHB}$ равносторонние параллелограммы.
 
 $\therefore \drawUnitLine{AE} = \drawUnitLine{GK} = \drawUnitLine{GH} = \drawUnitLine{FG}$.
 \stopCenterAlign
 
-и значит если построить круг с~центром в~точке схождения этих линий с~любой их них в~качестве радиуса, он будет вписан в~квадрат \inprop[prop:III.XVI].
+И значит если построить круг с~центром в~точке схождения этих линий с~любой их них в~качестве радиуса, он будет вписан в~квадрат \inprop[prop:III.XVI].
 
 \qed
 \stopProposition
@@ -8164,23 +8188,23 @@ draw byLabelsOnPolygon(B, E, A)(2, -1);
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного квадрата \drawPolygon{ACD,ABC} описать круг.}
 
+\startCenterAlign
 Проведем пересекающие друг друга диагонали \drawUnitLine{AE,EC} и~\drawUnitLine{BE,ED}.
 
-Тогда, поскольку стороны у~\drawPolygon{ACD} и~\drawPolygon{ABC} равны, а~основание \drawUnitLine{AE,EC} общее,
-
-\startCenterAlign
+Тогда, $\because$ стороны у~\drawPolygon{ACD} и~\drawPolygon{ABC} равны,\\ а~основание \drawUnitLine{AE,EC} общее,\\
 $\drawAngle{DAE} = \drawAngle{EAB}$ \inprop[prop:I.VIII],\\
-то есть \drawAngle{DAE,EAB} рассечена пополам. \\
+то есть \drawAngle{DAE,EAB} рассечена пополам.
+
 Так же можно показать и~что \drawAngle{ABE,EBC} рассечена пополам.
 
-Но $\drawAngle{DAE,EAB} = \drawAngle{ABE,EBC}$,
+Но $\drawAngle{DAE,EAB} = \drawAngle{ABE,EBC}$.
 
-значит и~их половины $\drawAngle{EAB} = \drawAngle{ABE}$.
+Значит и~их половины $\drawAngle{EAB} = \drawAngle{ABE}$.
 
-$\therefore \drawUnitLine{BE} = \drawUnitLine{AE}$ \inprop[prop:I.VI];
+$\therefore \drawUnitLine{BE} = \drawUnitLine{AE}$ \inprop[prop:I.VI].
 
-Так же можно показать что \\
-$\drawUnitLine{AE} = \drawUnitLine{BE} = \drawUnitLine{EC} = \drawUnitLine{ED}$.
+Так же можно показать,\\
+что $\drawUnitLine{AE} = \drawUnitLine{BE} = \drawUnitLine{EC} = \drawUnitLine{ED}$.
 \stopCenterAlign
 
 И если в~точке схождения этих линий с~любой из них в~качестве радиуса построить круг, он опишет данный квадрат.
@@ -8227,31 +8251,38 @@ draw byLabelsOnPolygon(A, C, D)(2, 0);
 
 \startCenterAlign
 Возьмем любую прямую \drawProportionalLine{AC,CB} \\
-и разделим ее так, что $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \inprop[prop:II.XI]
+и разделим ее так, что $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \inprop[prop:II.XI].
 
-С \drawProportionalLine{AC,CB} в~качестве радиуса опишем \drawCircle[middle][1/5]{A} и~впишем в~него от конца радиуса $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \inprop[prop:IV.I];\\
-проведем \drawProportionalLine{AD}.
+С \drawProportionalLine{AC,CB} в~качестве радиуса опишем \drawCircle[middle][1/5]{A} и~впишем в~него от конца радиуса $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \inprop[prop:IV.I].
+
+Проведем \drawProportionalLine{AD}.
 
 Тогда \drawLine{AD,BD,CB,AC} и~есть искомый треугольник.
 
-Действительно, проведем \drawProportionalLine{CD} и~опишем \drawCircle[middle][1/3]{F} около \drawLine{AD,CD,AC} \inprop[prop:IV.V]
+Действительно, проведем \drawProportionalLine{CD} и~опишем \drawCircle[middle][1/3]{F} около \drawLine{AD,CD,AC} \inprop[prop:IV.V].
 
 Поскольку $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
 $\therefore$ \drawProportionalLine{BD} касается \circleF\ \inprop[prop:III.XXXVII]\\
-$\therefore \drawAngle{BDC} = \drawAngle{A}$ \inprop[prop:III.XXXII],\\
-добавим \drawAngle{CDA} к~каждому,\\
-$\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$;
+$\therefore \drawAngle{BDC} = \drawAngle{A}$ \inprop[prop:III.XXXII].
 
-но $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ или } \drawAngle{BDC,CDA} = \drawAngle{B}$ \inprop[prop:I.V]:\\
-поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.V]\\
-следовательно $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \inprop[prop:I.XXXII]\\
-$\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \inprop[prop:I.VI]\\
-$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (\conststr)\\
-$\therefore \drawAngle{A} = \drawAngle{CDA}$ \inprop[prop:I.V]
+Добавим \drawAngle{CDA} к~каждому,\\
+$\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$.
 
-$\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ дважды } \drawAngle{A}$;
+Но $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ или } \drawAngle{BDC,CDA} = \drawAngle{B}$ \inprop[prop:I.V].
 
-и, следовательно, каждый из углов при основании вдвое больше угла в~вершине.
+Поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \inprop[prop:I.V].
+
+Следовательно $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \inprop[prop:I.XXXII].
+
+$\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \inprop[prop:I.VI].
+
+$\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ (\conststr).
+
+$\therefore \drawAngle{A} = \drawAngle{CDA}$ \inprop[prop:I.V].
+
+$\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ дважды } \drawAngle{A}$.
+
+И, следовательно, каждый из углов при основании вдвое больше угла в~вершине.
 \stopCenterAlign
 
 \qed
@@ -8278,7 +8309,6 @@ byAngleDefineWithName(B, A, C, byblack, -1)(Al);
 byAngleDefineWithName(D, A, E, byblack, -1)(Ar);
 byAngleDefine(C, A, D, byblack, 0);
 byAngleDefineExtendedWithName(E, C, A, byblack, 1)(ECA)(byyellow);
-byAngleDefineWithName(E, C, A, byblack, -1)(ECAb);
 byAngleDefine(D, C, E, byblue, 0);
 byAngleDefine(A, D, B, byblack, 1);
 byAngleDefine(B, D, C, byred, 0);
@@ -8296,7 +8326,7 @@ draw byLabelsOnCircle(A, B, C, D, E)(O);
 \drawCurrentPictureInMargin
 \problemNP[2]{В}{данный}{круг \drawCircle[middle][1/6]{O} вписать равносторонний и~равноугольный пятиугольник.}
 
-Построим равносторонний треугольник, в~котором каждый из углов при основании вдвое больше угла в~вершине, и~впишем в~данный круг равноугольный ему треугольник \drawPolygon{ACD} \inprop[prop:IV.II];
+Построим равносторонний треугольник, в~котором каждый из углов при основании вдвое больше угла в~вершине, и~впишем в~данный круг равноугольный ему треугольник \drawPolygon{ACD} \inprop[prop:IV.II].
 
 \startCenterAlign
 Рассечем \drawAngle{ECA,DCE} и~\drawAngle{ADB,BDC} пополам \inprop[prop:I.IX].
@@ -8356,11 +8386,11 @@ draw byLabelsOnPolygon(B, F, D)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного круга \drawCircle[middle][1/4]{F} описать равносторонний и~равноугольный пятиугольник.}
 
+\startCenterAlign
 Проведем пять касательных через вершины любого правильного пятиугольника вписанного в~круг \circleF\ \inprop[prop:III.XVII].
 
 Эти пять касательных и~будут образовывать искомый пятиугольник.
 
-\startCenterAlign
 Проведем
 $\left\{\vcenter{
 \nointerlineskip\hbox{\drawProportionalLine{FB}}
@@ -8371,23 +8401,26 @@ $\left\{\vcenter{
 }\right.$.\\
 В \drawLine{FB,FK,BK} и~\drawLine{FK,FC,KC}\\
 $\drawProportionalLine{BK} = \drawProportionalLine{KC}$ \inprop[prop:I.XLVII] \\
-$\drawProportionalLine{FC} = \drawProportionalLine{FB}$, и~\drawProportionalLine{FK} общая.\\
-$\therefore \drawAngle{FKB} = \drawAngle{CKF}$ и~$\therefore \drawAngle{BFK} = \drawAngle{KFC}$ \inprop[prop:I.VIII]\\
-$\therefore \drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$, и~$\drawAngle{BFK,KFC} = \mbox{ дважды } \drawAngle{KFC}$.\\
+$\drawProportionalLine{FC} = \drawProportionalLine{FB}$, и~\drawProportionalLine{FK} общая.
+
+$\therefore \drawAngle{FKB} = \drawAngle{CKF}$ и~$\therefore \drawAngle{BFK} = \drawAngle{KFC}$ \inprop[prop:I.VIII]
+
+$\therefore \drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$, и~$\drawAngle{BFK,KFC} = \mbox{ дважды } \drawAngle{KFC}$.
+
 Таким же образом можно показать, что\\
-$\drawAngle{FLC,DLF} = \mbox{ дважды } \drawAngle{FLC}$, и~$\drawAngle{CFL,LFD} = \mbox{ дважды } \drawAngle{CFL}$.\\
+$\drawAngle{FLC,DLF} = \mbox{ дважды } \drawAngle{FLC}$, и~$\drawAngle{CFL,LFD} = \mbox{ дважды } \drawAngle{CFL}$.
 
 Но $\drawAngle{BFK,KFC} = \drawAngle{CFL,LFD}$ \inprop[prop:III.XXVII],\\
 $\therefore$ и~их половины $\drawAngle{KFC} = \drawAngle{CFL}$, а~также $\drawAngle{FCK} = \drawAngle{LCF}$,\\
 и \drawProportionalLine{FC} общая.
 
 $\therefore \drawAngle{CKF} = \drawAngle{FLC}$ и~$\drawProportionalLine{KC} = \drawProportionalLine{CL}$,\\
-$\therefore \drawProportionalLine{KC,CL} = \mbox{ дважды } \drawProportionalLine{KC}$;
+$\therefore \drawProportionalLine{KC,CL} = \mbox{ дважды } \drawProportionalLine{KC}$.
 
 Таким же образом можно показать, что $\drawProportionalLine{BK,HB} = \mbox{ дважды } \drawProportionalLine{BK}$,\\
-но $\drawProportionalLine{BK} = \drawProportionalLine{KC}$
+но $\drawProportionalLine{BK} = \drawProportionalLine{KC}$.
 
-$\therefore \drawProportionalLine{BK,HB} = \drawProportionalLine{KC,CL}$;
+$\therefore \drawProportionalLine{BK,HB} = \drawProportionalLine{KC,CL}$.
 \stopCenterAlign
 
 Так же можно показать, что остальные стороны равны и, следовательно, пятиугольник равносторонний, так же он и~равноугольный, поскольку
@@ -8483,12 +8516,10 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(FC,FD,KD,CK);
 stopAutoLabeling;
 stopTempScale;
-};
+},\\
+$\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ и~$\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV].
 
-$\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ и~$\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV]
-
-И поскольку $\drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ дважды } \drawAngle{KDF}$
-
+И поскольку $\drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ дважды } \drawAngle{KDF}$,\\
 $\therefore \mbox{ дважды } \drawAngle{FBH}$, а~значит \drawAngle{HCF,FCK} рассечен \drawUnitLine{FB} пополам.
 
 Так же можно показать, что \drawAngle{DEF,FEM} рассекается пополам \drawUnitLine{FE}, и~оставшийся угол многоугольника рассекается таким же образом.
@@ -8514,7 +8545,7 @@ stopAutoLabeling;
 stopTempScale;
 }\\
 получим $\drawAngle{HCF} = \drawAngle{FCK}$ (\conststr), \drawUnitLine{FC} общая,\\
-и $\drawAngle{H} = \drawAngle{K} = \mbox{ прямому углу }$;
+и $\drawAngle{H} = \drawAngle{K} = \drawRightAngle \mbox{ прямому углу }$.
 
 $\therefore \drawUnitLine{FK} = \drawUnitLine{FH}$ \inprop[prop:I.XXVI]
 \stopCenterAlign
@@ -8564,10 +8595,11 @@ draw byLabelsOnPolygon(A, F, E)(2, -1);
 \problemNP{О}{коло}{данного равностороннего и~равноугольного пятиугольника описать круг.}
 
 \startCenterAlign
-Рассечем пополам \drawAngle{BCF,FCD} и~\drawAngle{CDF,FDE} с~помощью \drawUnitLine{FC} и~\drawUnitLine{FD}, и~из точки их пересечения проведем \drawUnitLine{FE}, \drawUnitLine{FA} и~\drawUnitLine{FB}.\\
-$\drawAngle{BCF,FCD} = \drawAngle{CDF,FDE}$,\\
-$\drawAngle{FCD} = \drawAngle{CDF}$,\\
-$\therefore \drawUnitLine{FD} = \drawUnitLine{FC}$ \inprop[prop:I.VI].\\
+Рассечем пополам \drawAngle{BCF,FCD} и~\drawAngle{CDF,FDE} с~помощью \drawUnitLine{FC} и~\drawUnitLine{FD}, и~из точки их пересечения проведем \drawUnitLine{FE}, \drawUnitLine{FA} и~\drawUnitLine{FB}.
+
+$\drawAngle{BCF,FCD} = \drawAngle{CDF,FDE}$, $\drawAngle{FCD} = \drawAngle{CDF}$,\\
+$\therefore \drawUnitLine{FD} = \drawUnitLine{FC}$ \inprop[prop:I.VI].
+
 И поскольку в
 \drawFromCurrentPicture{
 draw byNamedAngle(BCF);
@@ -8583,12 +8615,14 @@ draw byNamedLineSeq(0)(FC,FD,CD);
 stopAutoLabeling;
 },\\
 $\drawUnitLine{BC} = \drawUnitLine{CD}$, и~\drawUnitLine{FC} общая,\\
-также и~$\drawAngle{BCF} = \drawAngle{FCD}$.\\
+также и~$\drawAngle{BCF} = \drawAngle{FCD}$.
+
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ \inprop[prop:I.IV].
 
 Так же можно показать, что\\
-$\drawUnitLine{FA} = \drawUnitLine{FE} = \drawUnitLine{FB}$.\\
-И следовательно $\drawUnitLine{FA} = \drawUnitLine{FB} = \drawUnitLine{FC} = \drawUnitLine{FD} = \drawUnitLine{FE}$.
+$\drawUnitLine{FA} = \drawUnitLine{FE} = \drawUnitLine{FB}$.
+
+И, следовательно, $\drawUnitLine{FA} = \drawUnitLine{FB} = \drawUnitLine{FC} = \drawUnitLine{FD} = \drawUnitLine{FE}$.
 \stopCenterAlign
 
 Таким образом, круг с~центром в~месте пересечения этих пяти линий с~любой из них в~качестве радиуса будет описывать данный пятиугольник.
@@ -8597,7 +8631,7 @@ $\drawUnitLine{FA} = \drawUnitLine{FE} = \drawUnitLine{FB}$.\\
 \stopProposition
 
 \startProposition[title={Предл. XV. Задача},reference=prop:IV.XV]
-\defineNewPicture[1/2]{
+\defineNewPicture{
 pair A, B, C, D, E, F, G, H;
 numeric r;
 r := 9/4u;
@@ -8640,7 +8674,7 @@ draw byLabelsOnPolygon(G, E, D)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{В}{данный}{круг \drawCircle[middle][1/4]{G} вписать равносторонний и~равноугольный шестиугольник.}
 
-На любой точке окружности опишем \drawCircle[middle][1/4]{D} проходящий через центр и~проведем диаметры \drawUnitLine{AD}, \drawUnitLine{CF} и~\drawUnitLine{BE}; проведем \drawUnitLine{CD}, \drawUnitLine{DE}, \drawUnitLine{EF}, и~т. д., так и~получим искомый шестиугольник вписанный в~круг.
+На любой точке окружности опишем \drawCircle[middle][1/4]{D} проходящий через центр и~проведем диаметры \drawUnitLine{AD}, \drawUnitLine{CF} и~\drawUnitLine{BE}. Проведем \drawUnitLine{CD}, \drawUnitLine{DE}, \drawUnitLine{EF}, и~т. д., так и~получим искомый шестиугольник вписанный в~круг.
 
 Поскольку \drawUnitLine{GD} проходит через центры кругов
 \drawFromCurrentPicture{
@@ -8668,28 +8702,33 @@ $\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \
 \startProposition[title={Предл. XVI. Задача},reference=prop:IV.XVI]
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, O;
-numeric r;
+byPointLabelDefine(O, "");
+numeric r, a;
 r := 9/4u;
+a := 18;
 O := (0, 0);
-A := (dir(90 + 0*120)*r) shifted O;
-C := (dir(90 + 1*120)*r) shifted O;
-D := (dir(90 + 2*120)*r) shifted O;
-B := (dir(90 + 1*72)*r) shifted O;
-F := (dir(90 + 2*72)*r) shifted O;
-G := (dir(90 + 3*72)*r) shifted O;
-H := (dir(90 + 4*72)*r) shifted O;
-draw byLine(C, F, byblack, 1, 0);
-byLineDefine(A, B, byred, 0, 0);
-byLineDefine(B, F, byblue, 0, 0);
+A := (dir(a + 0*120)*r) shifted O;
+C := (dir(a + 1*120)*r) shifted O;
+D := (dir(a + 2*120)*r) shifted O;
+B := (dir(a + 1*72)*r) shifted O;
+F := (dir(a + 2*72)*r) shifted O;
+G := (dir(a + 3*72)*r) shifted O;
+H := (dir(a + 4*72)*r) shifted O;
+draw byLine(C, F, byred, 1, 0);
+byLineDefine(A, B, byblack, 1, 0);
+byLineDefine(B, F, byblue, 1, 0);
 byLineDefine(F, G, byblack, 0, 1);
 byLineDefine(G, H, byblack, 0, 1);
 byLineDefine(H, A, byblack, 0, 1);
-byLineDefine(A, C, byyellow, 0, 0);
+byLineDefine(A, C, byyellow, 1, 0);
 byLineDefine(C, D, byblack, 0, 1);
 byLineDefine(D, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
 draw byNamedLineSeq(0)(AC,CD,DA);
-draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byCircleR(O, r, byblack, 0, 1, 1)(O);
+draw byArc(O, A, B, r, byblack, 0, 0, 1, 0)(AB);
+draw byArc(O, B, C, r, byblue, 0, 0, 1, 0)(BC);
+draw byArc(O, C, F, r, byred, 0, 0, 1, 0)(CF);
 draw byLabelsOnCircle(A, B, C, F)(O);
 }
 \drawCurrentPictureInMargin
@@ -8698,20 +8737,40 @@ draw byLabelsOnCircle(A, B, C, F)(O);
 Пусть \drawUnitLine{AB} и~\drawUnitLine{BF} будут сторонами правильного пятиугольника, вписанного в~данный круг, а~\drawUnitLine{AC} стороной вписанного правильного треугольника.
 
 \startCenterAlign
-\startformula
-\left.\vcenter{\hbox{дуга, стагиваемая} \hbox{\drawUnitLine{AB} и~\drawUnitLine{BF}}}\right\} = \dfrac{2}{5} = \dfrac{6}{15} \left\{\vcenter{\hbox{всей} \hbox{окружности}}\right.
-\stopformula
+Дуга $\drawFromCurrentPicture{
+startGlobalRotation(-angle(A-C));
+startAutoLabeling;
+draw byNamedArc(AB,BC);
+stopAutoLabeling;
+stopGlobalRotation;
+} 
+= \dfrac{1}{3} = \dfrac{5}{15} \drawCircle[middle][1/5]{O}$.
 
-\startformula
-\left.\vcenter{\hbox{дуга, стягиваемая} \hbox{\drawUnitLine{AC}}}\right\} = \dfrac{1}{3} = \dfrac{5}{15} \left\{\vcenter{\hbox{всей} \hbox{окружности}}\right.
-\stopformula
+Дуга $\drawFromCurrentPicture{
+startGlobalRotation(-angle(A-F));
+startAutoLabeling;
+draw byNamedArc(AB,BC,CF);
+stopAutoLabeling;
+stopGlobalRotation;
+} 
+= \dfrac{2}{5} = \dfrac{6}{15} \drawCircle[middle][1/5]{O}$.
 
-Их разность $ = \dfrac{1}{15}$
+Их разность $
+\drawFromCurrentPicture{
+startGlobalRotation(-angle(A-F));
+startTempScale(1/2);
+startAutoLabeling;
+draw byNamedArc(CF);
+stopAutoLabeling;
+stopTempScale;
+stopGlobalRotation;
+}
+ = \dfrac{1}{15} \drawCircle[middle][1/5]{O}$
+
+$\therefore$ дуга стягиваемая $\drawUnitLine{FC} = \dfrac{1}{15}$ всей окружности.
 \stopCenterAlign
 
-$\therefore$ дуга стягиваемая $\drawUnitLine{CF} = \dfrac{1}{15}$ всей окружности.
-
-А значит, если прямые, равные \drawUnitLine{CF}, вписать в~круг \inprop[prop:IV.I], получим равносторонний и~равноугольный пятнадцатиугольник вписанный в~круг.
+А значит, если прямые, равные \drawUnitLine{FC}, вписать в~круг \inprop[prop:IV.I], получим равносторонний и~равноугольный пятнадцатиугольник вписанный в~круг.
 
 \qed
 \stopProposition

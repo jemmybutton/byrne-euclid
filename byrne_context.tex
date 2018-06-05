@@ -8041,8 +8041,8 @@ draw byLabelsOnPolygon(F, G, E)(2, 0);
 \startCenterAlign
 Make $\drawUnitLine{ED} = \drawUnitLine{AE}$,\\
 and $\drawUnitLine{KC} = \drawUnitLine{DK}$,\\
-draw $\drawUnitLine{FG,GK} = \drawUnitLine{AE,ED}$,\\
-and $\drawUnitLine{EG,GH} = \drawUnitLine{DK,KC}$\\
+draw $\drawUnitLine{FG,GK} \parallel \drawUnitLine{AE,ED}$,\\
+and $\drawUnitLine{EG,GH} \parallel \drawUnitLine{DK,KC}$\\
 \inprop[prop:I.XXXI]
 
 $\therefore$ \drawPolygon[bottom]{EDKG} is a parallelogram;
@@ -8204,7 +8204,6 @@ byAngleDefineWithName(B, A, C, byblack, -1)(Al);
 byAngleDefineWithName(D, A, E, byblack, -1)(Ar);
 byAngleDefine(C, A, D, byblack, 0);
 byAngleDefineExtendedWithName(E, C, A, byblack, 1)(ECA)(byyellow);
-byAngleDefineWithName(E, C, A, byblack, -1)(ECAb);
 byAngleDefine(D, C, E, byblue, 0);
 byAngleDefine(A, D, B, byblack, 1);
 byAngleDefine(B, D, C, byred, 0);
