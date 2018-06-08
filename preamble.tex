@@ -86,7 +86,6 @@
 	\fi\ignorespaces
 \global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter\dfcpl}}}\csname\lastPict\endcsname}}
 
-
 % \drawDefinedPicture draws defined and named picture, aligned as needed and,
 % possibly, with margins modified with \offsetPicture (i. e., if we want picture to act as if it's less tall that it actually is,
 % we put some value as its first argument, if we want picture to be less deep, we use second argument, and place picture
@@ -103,14 +102,16 @@
 \newdimen\midht
 \newdimen\middp
 \def\drawDefinedPicture#1#2{{\ignorespaces
-	\setbox0\vbox{\vskip2pt\vskip-\pictOffsetTop\reuseMPgraphic{\currentInstance::#1}\vskip2pt\vskip-\pictOffsetBottom}\ignorespaces
+	\setbox0\vbox{\reuseMPgraphic{\currentInstance::#1}}\ignorespaces
+	\ifdim\ht0<\baselineskip\advance\pictOffsetTop by 1pt\advance\pictOffsetBottom by 1pt\fi\ignorespaces
+	\setbox0\vbox{\vskip2pt\vskip-\pictOffsetTop\box0\vskip2pt\vskip-\pictOffsetBottom}\ignorespaces
 	\def\tmpmiddle{middle}\ignorespaces
 	\def\tmpalignment{#2}\ignorespaces
 	\ifx\tmpalignment\tmpmiddle\ignorespaces
 		\middp=0.5\ht0
 		\midht=0.5\ht0
-		\advance\middp by -2.75pt
-		\advance\midht by 2.75pt
+		\advance\middp by -3pt
+		\advance\midht by 3pt
 	\else\ignorespaces
 		\middp=0pt
 		\midht=\ht0
