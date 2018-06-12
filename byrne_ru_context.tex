@@ -121,7 +121,7 @@ byLineStylize (C, C, 1, 0, -1) (BLb);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2018 изд.\,0.3}
+{\tfb 2018 изд.\,0.4}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -3730,7 +3730,7 @@ stopTempAngleScale;
 }
 $ \inprop[prop:I.IV].
 
-Теперь, поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$\\
+Теперь, поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$,\\
 $\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ дважды } \polygonBLC$,\\
 и $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ дважды } \polygonAFC$ \inprop[prop:I.XLI].
 
@@ -3898,8 +3898,9 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalig
 +&\drawProportionalLine{A} \cdot \drawProportionalLine{LH}}\right.$}
 
 \startCenterAlign
-Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ и~} = \drawProportionalLine{A}$ (\inpropL[prop:I.II], \inpropL[prop:I.III]); достроим параллелограммы, то есть
+Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ и~} = \drawProportionalLine{A}$ (\inpropL[prop:I.II], \inpropL[prop:I.III]).
 
+Достроим параллелограммы, то есть\\
 проведем $\left\{\eqalign{
 \drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \cr
 \vcenter{
@@ -4072,7 +4073,8 @@ $\drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportiona
 $\drawAngle{GBK} = \drawAngle{FDG}$ \inprop[prop:I.V], $\drawAngle{GBK} = \drawAngle{FGD}$ \inprop[prop:I.XXIX],\\
 $\therefore \drawAngle{FDG} = \drawAngle{FGD}$.
 
-$\therefore$ согласно \inpropL[prop:I.VI], \inpropL[prop:I.XXIX] и \inpropL[prop:I.XXXIV]),\\ $\drawFromCurrentPicture[middle][squareFGHD]{
+$\therefore$ согласно \inpropL[prop:I.VI], \inpropL[prop:I.XXIX] и \inpropL[prop:I.XXXIV],\\
+$\drawFromCurrentPicture[middle][squareFGHD]{
 draw byNamedPolygon(DHG);
 draw byNamedLineFull(G, G, 1, 0, -1)(DF);
 draw byNamedLineFull(D, D, 0, 1, -1)(FG);
@@ -4150,7 +4152,7 @@ $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportiona
 \drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
 }\right\}$ \inprop[prop:I.XXXI].
 
-$\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI],$\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]
+$\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI],$\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII].
 
 $\therefore \mbox{\inax[ax:II] } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$.
 
@@ -4220,7 +4222,7 @@ $\drawPolygon{MHGF} = \drawPolygon{DCLH} = \drawPolygon{CLKA}$ (\inpropL[prop:I.
 
 $\therefore \drawPolygon{BDHM,DCLH,MHGF} = \drawPolygon{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$.
 
-Но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
+Но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV],\\
 $\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:II]).
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$.
@@ -4602,15 +4604,16 @@ $\drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLi
 Согласно \inpropL[prop:II.IV]\\
 $\drawProportionalLine{CA,AD}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$.
 
-Добавим $\drawProportionalLine{DB}^2$ к~обоим\\
-$\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \inprop[prop:I.XLVII]\\
-$= 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \left\{\eqalign{
-&\drawProportionalLine{AD}^2 \cr
-&\drawProportionalLine{DB}^2
-}\right\}$ или\\
-$+ \drawProportionalLine{BA}^2$ \inprop[prop:I.XLVII].
+Добавим $\drawProportionalLine{DB}^2$ к~обоим.
 
-$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$: значит, $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$.
+$\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2$.
+
+Но $\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \inprop[prop:I.XLVII],\\
+и $\drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BA}^2$ \inprop[prop:I.XLVII].
+
+$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$. 
+
+Значит, $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}^2$.
 \stopCenterAlign
 
 \qed
@@ -5017,9 +5020,11 @@ draw byLabelsOnCircle(A, B, C, E)(F);
 
 \startCenterAlign
 Проведем внутри круга любую прямую \drawUnitLine{AD,DB},\\
-сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$, проведем $\drawUnitLine{EC} \perp \drawUnitLine{AD,DB}$; рассечем пополам \drawUnitLine{EC}, точка рассечения и~есть центр.
+сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$, проведем $\drawUnitLine{EC} \perp \drawUnitLine{AD,DB}$.
 
-Действительно, пусть это не так, тогда пусть другая точка будет центром, и~проведем от нее \drawUnitLine{AG}, \drawUnitLine{DG} и~\drawUnitLine{BG}.
+Рассечем пополам \drawUnitLine{EC}, точка рассечения и~есть центр.
+
+Действительно, пусть это не так, тогда пусть другая точка будет центром, и~проведем от нее \drawUnitLine{GA}, \drawUnitLine{GD} и~\drawUnitLine{GB}.
 
 Поскольку в~\drawLine{AG,DG,AD} и~\drawLine{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (\hypstr и~\indefL[def:XV]),\\
 $\drawUnitLine{AD} = \drawUnitLine{DB}$ (\conststr) и~\drawUnitLine{DG} общая обоим,\\
@@ -5121,8 +5126,9 @@ draw byLabelsOnPolygon(A, E, C)(2, 0);
 
 В \drawLine[bottom][triangleAEF]{AE,EF,AF} и~\drawLine[bottom][triangleFEB]{EF,EB,FB}\\
 $\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая,\\
-и $\drawUnitLine{AF} = \drawUnitLine{FB},\\ 
-\therefore \drawAngle{AFE} = \drawAngle{EFB}$ \inprop[prop:I.VIII]\\
+и $\drawUnitLine{AF} = \drawUnitLine{FB}$.
+
+$\therefore \drawAngle{AFE} = \drawAngle{EFB}$ \inprop[prop:I.VIII]\\
 и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \indef[def:X].
 
 Теперь, пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$.
@@ -5172,8 +5178,9 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 \startCenterAlign
 Если \drawUnitLine{AC} делится пополам, \drawUnitLine{EF} $\perp$ ей \inprop[prop:III.III].
 
-$\therefore \drawAngle{FED,DEC} = \drawRightAngle$,\\
-и если \drawUnitLine{BD} делится пополам, $\drawUnitLine{EF} \perp \drawUnitLine{BD}$ \inprop[prop:III.III].
+$\therefore \drawAngle{FED,DEC} = \drawRightAngle$.
+
+И если \drawUnitLine{BD} делится пополам, $\drawUnitLine{EF} \perp \drawUnitLine{BD}$ \inprop[prop:III.III].
 
 $\therefore \drawAngle{FED} = \drawRightAngle$.
 
