@@ -5642,11 +5642,20 @@ draw byLabelsOnPolygon(Hd, Pdd, Bd)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{К}{руг}{\drawFromCurrentPicture{draw byNamedCircle(PII);} не сечет круга \drawFromCurrentPicture[middle][circlePI]{draw byNamedCircle(PI);} более чем в~двух точках.}
 
-Действительно, будь такое возможно, пусть они пересекаются в~трех точках, из центра \drawCircle[middle][1/5]{PII} проведем \drawUnitLine{PG}, \drawUnitLine{PB} и~\drawUnitLine{PH} к~точкам пересечения.
+\startCenterAlign
+Действительно, будь такое возможно, пусть они пересекаются в~трех точках.
 
-$\therefore \drawUnitLine{PG} = \drawUnitLine{PB} = \drawUnitLine{PH}$ \indef[def:XV], но, поскольку круги пересекаются, у~них не один центр \inprop[prop:III.V]:
+Из центра \drawCircle[middle][1/5]{PII} проведем \drawUnitLine{PG}, \drawUnitLine{PB} и~\drawUnitLine{PH} к~точкам пересечения.
 
-$\therefore$ рассматриваемая точка не центр \circlePI , и~$\therefore$, поскольку \drawUnitLine{PG}, \drawUnitLine{PB} и~\drawUnitLine{PH} проведены не из центра, они не равны (\inpropL[prop:III.VII], \inpropN[prop:III.VIII]), но выше было показано, что они равны, что невозможно, круги, стало быть, не пересекаются в~трех точках.
+$\therefore \drawUnitLine{PG} = \drawUnitLine{PB} = \drawUnitLine{PH}$ \indef[def:XV],\\
+но, поскольку круги пересекаются, у~них не один центр \inprop[prop:III.V].
+
+$\therefore$ рассматриваемая точка не центр \circlePI,\\
+и~$\therefore$, поскольку \drawUnitLine{PG}, \drawUnitLine{PB} и~\drawUnitLine{PH} проведены не из центра,\\
+они не равны (\inpropL[prop:III.VII], \inpropN[prop:III.VIII]).
+
+Но выше было показано, что они равны, что невозможно, круги, стало быть, не пересекаются в~трех точках.
+\stopCenterAlign
 
 \qed
 \stopProposition
@@ -5806,7 +5815,8 @@ draw byLabelsOnPolygon(B, G, H, D)(2, 0);
 \startCenterAlign
 Проведем \drawUnitLine{DH} и~\drawUnitLine{DG}.
 
-Но $\drawUnitLine{BG} = \drawUnitLine{DG}$ \indef[def:XV],\\
+Но $\drawUnitLine{BG} = \drawUnitLine{DG}$ \indef[def:XV].
+
 $\therefore$ если добавить к~каждой \drawUnitLine{GH},\\
 $\drawUnitLine{GH,BG} = \drawUnitLine{GH} + \drawUnitLine{DG}$.
 
@@ -5931,17 +5941,17 @@ $\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AF,FB}}\nointerlines
 \startCenterAlign
 Из центра \drawCircle[middle][1/4]{E}\\
 проведем $\drawProportionalLine{EF} \perp \drawProportionalLine{AF,FB}$ и~$\drawProportionalLine{EG} \perp \drawProportionalLine{CG,GD}$,\\
-соединим \drawProportionalLine{EA} и~\drawProportionalLine{EC}.
+проведем \drawProportionalLine{EA} и~\drawProportionalLine{EC}.
 
 Тогда $\drawProportionalLine{CG} = \frac{1}{2} \drawProportionalLine{CG,GD}$ \inprop[prop:III.III]\\
 и $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \inprop[prop:III.III].
 
 Поскольку $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ (\hypstr),\\
-$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$\\
+$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$ \inax[ax:VII]\\
 и $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \indef[def:XV],\\
 $\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$.
 
-Но поскольку \drawAngle{F} прямой,\\
+Но поскольку \drawAngle{F} прямой (\conststr),\\
 $\drawProportionalLine{EA}^2 = \drawProportionalLine{EF}^2 + \drawProportionalLine{AF}^2$ \inprop[prop:I.XLVII]\\
 и $\drawProportionalLine{EC}^2 = \drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2$ по той же причине.
 
@@ -6074,17 +6084,18 @@ draw byLabelPoint(L, angle(E-H)-45, 2);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
-Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{FG} расположенные по разные стороны от центра или пересекающиеся. 
+Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{GF} расположенные по разные стороны от центра или пересекающиеся. 
 
-Проведем из центра \drawUnitLine{EL,LK} и~$\drawUnitLine{EH} \perp \drawUnitLine{FG} \mbox{ и~} \drawUnitLine{BC}$.
+Проведем из центра\\
+\drawUnitLine{EL,LK} и~$\drawUnitLine{EH} \perp \drawUnitLine{GF} \mbox{ и~} \drawUnitLine{BC}$.
 
 Сделаем $\drawUnitLine{EH} = \drawUnitLine{EL}$,\\
-и проведем $\drawUnitLine{MN} \perp \drawUnitLine{EL,LK}$.
+и проведем $\drawUnitLine{NM} \perp \drawUnitLine{EL,LK}$.
 
-Поскольку \drawUnitLine{BC} и~\drawUnitLine{MN} равноудалены от центра, $\drawUnitLine{BC} = \drawUnitLine{MN}$ \inprop[prop:III.XIV],\\
-но $\drawUnitLine{MN} > \drawUnitLine{FG}$ \inprop[prop:III.XV].
+Поскольку \drawUnitLine{BC} и~\drawUnitLine{NM} равноудалены от~центра, $\drawUnitLine{BC} = \drawUnitLine{NM}$ \inprop[prop:III.XIV],\\
+но $\drawUnitLine{NM} > \drawUnitLine{GF}$ (Случай I).
 
-$\therefore \drawUnitLine{BC} > \drawUnitLine{FG}$.
+$\therefore \drawUnitLine{BC} > \drawUnitLine{GF}$.
 \stopCenterAlign
 \stopsubproposition
 
