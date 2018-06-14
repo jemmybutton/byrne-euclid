@@ -6881,7 +6881,7 @@ draw $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, and it bisects the arc.
 Draw \drawUnitLine{DA} and \drawUnitLine{DB}.
 
 $\drawUnitLine{AC} = \drawUnitLine{CB}$ (\conststr)\\
-\drawUnitLine{DC} is common,\\
+\drawUnitLine{DC} is common,\\ % common to what? most likely triangles ACD and CBD
 and $\drawAngle{ACD} = \drawAngle{DCB}$ (\conststr)
 
 $\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
@@ -7729,7 +7729,7 @@ At the extremities of the radii draw \drawUnitLine{NL}, \drawUnitLine{LM} and \d
 The four angles of
 \drawFromCurrentPicture[bottom]{
 startTempAngleScale(2/3);
-draw byNamedAngle(A, C, L, CKA);
+draw byNamedAngleResized(A, C, L, CKA);
 draw byNamedArbitraryFigure(LAKC);
 draw byLabelsOnPolygon(L, A, K, C)(0, 0);
 stopTempAngleScale;

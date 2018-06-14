@@ -6270,7 +6270,7 @@ draw byLabelPoint(D, angle(D-C)-90, 1);
 \problemNP{Е}{сли}{прямая \drawUnitLine{CD} касается круга, прямая \drawUnitLine{FC}, проведенная из центра к~точке касания перпендикулярна ей.}
 
 \startCenterAlign
-Действительно, если возможно, пусть \drawUnitLine{FB,BG} будем $\perp \drawUnitLine{CD}$,\\
+Действительно, если возможно, пусть \drawUnitLine{FB,BG} будет $\perp \drawUnitLine{CD}$,\\
 тогда, поскольку $\drawAngle{G} = \drawRightAngle$, \drawAngle{C} острый \inprop[prop:I.XVII].
 
 $\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \inprop[prop:I.XIX].
@@ -6318,7 +6318,8 @@ $\therefore \drawAngle{FCE} = \drawRightAngle$, прямому углу.
 
 Но $\drawAngle{ACF,FCE} = \drawRightAngle$ (\hypstr).
 
-И $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, часть равна целому, что невозможно.
+И $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$,\\
+часть равна целому, что невозможно.
 \stopCenterAlign
 
 Следовательно, предполагаемая точка не центр, и~то же можно показать для любой другой точки, не лежащей на \drawUnitLine{AC}.
@@ -6351,7 +6352,7 @@ draw byLabelsOnPolygon(F, E, A)(2, 0);
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай I.}]
 \startCenterAlign
-Пусть центр круга будет на \drawUnitLine{EF,EA}\\
+Пусть центр круга будет на \drawUnitLine{EF,EA},\\
 стороне \drawAngle{CAF}.
 
 Поскольку $\drawUnitLine{EC} = \drawUnitLine{EA}$,\\
@@ -6561,7 +6562,7 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 $\drawAngle{CDB} = \drawAngle{CAB}$\\
 и $\drawAngle{DAC} = \drawAngle{DBC}$.
 
-Добавим к~каждому \drawAngle{BCA,ACD},
+Добавим к~каждому \drawAngle{BCA,ACD},\\
 $\drawAngle{DAC,CAB} + \drawAngle{BCA,ACD} = \drawAngle{BCA,ACD} + \drawAngle{CDB} + \drawAngle{DBC} = \drawTwoRightAngles$ \inprop[prop:I.XXXII].
 
 Так же можно показать, что\\
@@ -7031,7 +7032,8 @@ draw byLabelsOnPolygon(D, L, E)(2, 0);
 
 \startCenterAlign
 Если дуги равны половинам окружностей, то предложение очевидно, а~если нет,\\
-пусть \drawUnitLine{AK}, \drawUnitLine{BK} и~\drawUnitLine{DL}, \drawUnitLine{EL} проведены из центров.
+пусть \drawUnitLine{AK}, \drawUnitLine{BK} и~\drawUnitLine{DL}, \drawUnitLine{EL}\\
+проведены из центров.
 
 Поскольку $\drawArc{Kb} = \drawArc{Lb}$ (\hypstr),\\
 $\drawAngle{K} = \drawAngle{L}$ \inprop[prop:III.XXVII].
@@ -7079,18 +7081,19 @@ draw byLabelLineEnd(C, D, 0);
 \startCenterAlign
 Проведем \drawUnitLine{AC,CB}.
 
-Сделаем $\drawUnitLine{AC} = \drawUnitLine{CB}$.
+Сделаем $\drawUnitLine{AC} = \drawUnitLine{CB}$ \inprop[prop:I.X].
 
-Проведем $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, она и~будет рассекать дугу.
+Проведем $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$ \inprop[prop:I.XI], она и~будет рассекать дугу.
 
 Проведем \drawUnitLine{DA} и~\drawUnitLine{DB}.
 
+Тогда у \drawLine[bottom]{AD,DC,CA} и \drawLine[bottom]{DB,BC,CD}\\
 $\drawUnitLine{AC} = \drawUnitLine{CB}$ (\conststr)\\
 \drawUnitLine{DC} общая,\\
 и $\drawAngle{ACD} = \drawAngle{DCB}$ (\conststr).
 
 $\therefore \drawUnitLine{DA} = \drawUnitLine{DB}$ \inprop[prop:I.IV]\\
-$
+и $
 \drawFromCurrentPicture{
 startGlobalRotation(-arcAngle.El);
 startAutoLabeling;
@@ -7177,7 +7180,7 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 
 Проведем диаметр \drawUnitLine{BC} и~\drawUnitLine{AC}
 
-$\therefore \drawAngle{BAD,DAC} = \mbox{ прямому углу}$
+$\therefore \drawAngle{BAD,DAC} = \mbox{ прямому углу}$.
 
 $\therefore$ \drawAngle{BAD} острый.
 \stopCenterAlign
@@ -7393,7 +7396,7 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{AE,EC}}
 \nointerlineskip\hbox{\drawSizedLine{DE,EB}}}\right\}$
-секут друг друга, прямоугольник, заключенный между частями одного равен прямоугольнику, заключенному между частями другого.}
+секут друг друга, прямоугольник, заключенный между частями одной равен прямоугольнику, заключенному между частями другой.}
 \drawCurrentPictureInMargin
 \startsubproposition[title={Случай I.}]
 Если данные прямые проходят через центр, они секут друг друга посередине, следовательно прямоугольники заключенные между их частями являются квадратами, и~значит, равны.
@@ -7543,7 +7546,7 @@ draw byLabelPoint(C, angle(C-E) + 45, 2);
 
 Тогда $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \inprop[prop:II.VI].
 
-То есть, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$.
+То есть $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$.
 
 $\therefore \drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \inprop[prop:III.XVIII].
 \stopCenterAlign
@@ -7925,7 +7928,7 @@ draw byLabelsOnPolygon(A, K, B)(2, 0);
 Четыре угла
 \drawFromCurrentPicture[bottom]{
 startTempAngleScale(2/3);
-draw byNamedAngle(A, C, L, CKA);
+draw byNamedAngleResized(A, C, L, CKA);
 draw byNamedArbitraryFigure(LAKC);
 draw byLabelsOnPolygon(L, A, K, C)(0, 0);
 stopTempAngleScale;
@@ -8032,7 +8035,7 @@ $\therefore \drawUnitLine{FD} = \drawUnitLine{ED} = \drawUnitLine{GD}$.
 \stopProposition
 
 \startProposition[title={Предл. V. Задача},reference=prop:IV.V]
-\defineNewPicture[1]{
+\defineNewPicture[3/4]{
 def proptmp (expr a, b, c, s) =
 pair A, B, C, D, E, F;
 numeric r;
@@ -8074,11 +8077,16 @@ proptmp(100, 200, -30, (0, 0));
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного треугольника описать круг.}
 
-Сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$ и~$\drawUnitLine{CE} = \drawUnitLine{EA}$ \inprop[prop:I.X].
-
-Из точек рассечения проведем \drawUnitLine{DF} и~\drawUnitLine{EF} $\perp$ \drawUnitLine{AD} и~\drawUnitLine{CE} соответственно \inprop[prop:I.XI], и~из точки из пересечения проведем \drawUnitLine{BF}, \drawUnitLine{AF} и~\drawUnitLine{CF} и~опишем круг с~любой из них в~качестве радиуса, это и~будет искомый круг.
-
 \startCenterAlign
+Сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$\\
+и~$\drawUnitLine{CE} = \drawUnitLine{EA}$ \inprop[prop:I.X].
+
+Из точек рассечения проведем\\ 
+\drawUnitLine{DF} и~\drawUnitLine{EF} $\perp$ \drawUnitLine{AD} и~\drawUnitLine{CE} \inprop[prop:I.XI],\\
+из точки из пересечения проведем\\
+\drawUnitLine{BF}, \drawUnitLine{AF} и~\drawUnitLine{CF}\\
+и~опишем круг с~любой из них в~качестве радиуса, это и~будет искомый круг.
+
 В
 \drawFromCurrentPicture{
 draw byNamedAngle(FDB);
@@ -8100,15 +8108,16 @@ $\drawAngle{FDB} = \drawAngle{ADF}$ (\conststr).
 $\therefore \drawUnitLine{AF} = \drawUnitLine{BF}$ \inprop[prop:I.IV].
 
 Так же можно показать и~что $\drawUnitLine{CF} = \drawUnitLine{AF}$.
-\stopCenterAlign
 
-$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$, и, следовательно, круг с~центром в~точке их пересечения и~с любой из них в~качестве радиуса опишет данный треугольник.
+$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$,\\
+и, следовательно, круг с~центром в~точке их пересечения и~с любой из них в~качестве радиуса опишет данный треугольник.
+\stopCenterAlign
 
 \qed
 \stopProposition
 
 \startProposition[title={Предл. VI. Задача},reference=prop:IV.VI]
-\defineNewPicture[1/4]{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E;
 numeric r;
 r := 7/4u;
@@ -8140,9 +8149,8 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 
 \startCenterAlign
 Проведем два диаметра круга $\perp$ друг другу,\\ 
-проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} и~\drawUnitLine{CD}.
-
-\drawLine[middle][squareABCD]{DA,CD,BC,AB} квадрат.
+проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} и~\drawUnitLine{CD},\\
+тогда \drawLine[middle][squareABCD]{DA,CD,BC,AB} квадрат.
 
 Поскольку \drawAngle{A} и~\drawAngle{D} каждый в~полукруге, оба являются прямыми \inprop[prop:III.XXXI].
 
@@ -8154,9 +8162,11 @@ $\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII
 и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 
 $\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \inprop[prop:I.IV].
-\stopCenterAlign
 
-И поскольку смежные углы и~стороны параллелограмма \squareABCD\ равны, все его стороны и~углы равны \inprop[prop:I.XXXIV]. И~$\therefore$ \squareABCD, вписанный в~данный круг является квадратом.
+Поскольку смежные углы и~стороны параллелограмма \squareABCD\ равны, все его стороны и~углы равны \inprop[prop:I.XXXIV].
+
+И~$\therefore$ \squareABCD, вписанный в~данный круг является квадратом.
+\stopCenterAlign
 
 \qed
 \stopProposition

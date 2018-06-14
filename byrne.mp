@@ -1789,7 +1789,7 @@ vardef byNamedAngleResized (text anglesToUse) =
                 if (numOfAngles > 0):
                     useThisAngle := false;
                     forsuffixes k=anglesToUse:
-                        if (str j = str k):
+                        if (getAttribute("angle", "Synonym", str j) = getAttribute("angle", "Synonym", str k)):
                             useThisAngle := true;
                         fi;
                     endfor;
