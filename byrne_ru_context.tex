@@ -1719,10 +1719,10 @@ draw byLabelsOnPolygon(D, B, A, C)(0, 0);
 Проведем \drawUnitLine{BC}, на которой построим \drawLine{CD,DB,BC} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD}.
 
-Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr),\\
-\drawUnitLine{AD} общая обоим треугольникам\\
-и $\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr).
-
+Поскольку в \drawLine[middle]{DB,BA,AD} и \drawLine[middle]{CD,DA,AC}\\
+$\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr),\\
+$\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr)\\
+и \drawUnitLine{AD} общая обоим,\\
 $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
 \stopCenterAlign
 
@@ -1755,9 +1755,9 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 проведем \drawUnitLine{AD}, делая $\drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.IX].
 
 Тогда $\drawUnitLine{BD} = \drawUnitLine{DC}$ \inprop[prop:I.IV],\\
-поскольку $\drawUnitLine{AB} = \drawUnitLine{AC}$ (\conststr),\\
-$\drawAngle{BAD} = \drawAngle{CAD}$\\
-и \drawUnitLine{AD} общая обоим треугольникам.
+ведь в \drawLine[bottom]{DB,BA,AD} и \drawLine[bottom]{CD,DA,AC}\\
+$\drawUnitLine{AB} = \drawUnitLine{AC}$, $\drawAngle{BAD} = \drawAngle{CAD}$ (\conststr)\\
+и \drawUnitLine{AD} общая обоим.
 
 Следовательно, данная линия рассечена пополам.
 \stopCenterAlign
@@ -1797,10 +1797,10 @@ draw byLabelsOnPolygon(B, A, C)(2, 0);
 построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD} и~она будет перпендикуляром к~данной прямой.
 
-Поскольку $\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr)\\
+Поскольку в \drawLine[bottom]{DB,BA,AD} и \drawLine[bottom]{CD,DA,AC}
+$\drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr)\\
 $\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr)\\
-и \drawUnitLine{AD} общая обоим треугольникам.
-
+и \drawUnitLine{AD} общая обоим,\\
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \inprop[prop:I.VIII].
 
 $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X].
@@ -1855,11 +1855,11 @@ draw byLabelLineEnd(C, A, 0);
 
 Тогда $\drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$.
 
-Поскольку \inprop[prop:I.VIII], раз $\drawUnitLine{DB} = \drawUnitLine{CD}$ (\conststr),\\
-\drawUnitLine{AD} общая обоим треугольникам,\\
-и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV].
-
-$\therefore \drawAngle{ADB} = \drawAngle{CDA}$,\\
+Поскольку в \drawLine[bottom]{DB,BA,AD} и \drawLine[bottom]{CD,DA,AC}
+$\drawUnitLine{DB} = \drawUnitLine{CD}$ (\conststr),\\
+\drawUnitLine{AD} общая обоим\\
+и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:XV]\\
+$\therefore \drawAngle{ADB} = \drawAngle{CDA}$\inprop[prop:I.VIII],\\
 и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:X].
 \stopCenterAlign
 
@@ -1929,13 +1929,13 @@ draw byLabelLineEnd(A, D, 0);
 \problemNP{Е}{сли}{две прямые \drawUnitLine{BD} и~\drawUnitLine{DC} образуют с~третьей \drawUnitLine{AD} смежные углы, находясь по разные стороны от нее, и~эти углы \drawAngle{BDA} и~\drawAngle{CDA} равны двум прямым углам, то эти прямые будут лежать на одной прямой.}
 
 \startCenterAlign
-Действительно, пусть \drawUnitLine{ED}, а~не \drawUnitLine{DC}, будет продолжением \drawUnitLine{BD},\\
+Действительно, пусть \drawUnitLine{ED}, а~не~\drawUnitLine{DC}, будет продолжением \drawUnitLine{BD},\\
 тогда $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$.
 
 Но, согласно гипотезе $\drawAngle{BDA} + \drawAngle{CDA} = \drawTwoRightAngles$
 
-$\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$, \inax[ax:III],\\
-что не имеет смысла \inax[ax:IX].
+$\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$ \inax[ax:III],\\
+что невозможно \inax[ax:IX].
 
 $\therefore \drawUnitLine{ED}$ не является продолжением \drawUnitLine{BD}, и~то же можно показать для любой другой прямой линии, за исключением \drawUnitLine{DC}.
 
@@ -2884,11 +2884,12 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 \startCenterAlign
 Проведем диагональ \drawUnitLine{AD}.
 
-$\drawUnitLine{AB} = \drawUnitLine{CD}$ (\hypstr),\\
-$\drawAngle{BAD} = \drawAngle{CDA}$ \inprop[prop:I.XXIX]\\
-и \drawUnitLine{AD} общая обоим треугольникам.
-
-$\therefore \drawUnitLine{AC} = \drawUnitLine{BD}$, и~$\drawAngle{ADB} = \drawAngle{DAC}$ \inprop[prop:I.IV].
+Поскольку в \drawLine{DC,CA,AD} и \drawLine{DA,AB,BD}\\
+$\drawUnitLine{CD} = \drawUnitLine{AB}$ (\hypstr),\\
+$\drawAngle{CDA} = \drawAngle{BAD}$ \inprop[prop:I.XXIX]\\
+и \drawUnitLine{AD} общая обоим,\\
+$\therefore \drawUnitLine{AC} = \drawUnitLine{BD}$\\
+и~$\drawAngle{DAC} = \drawAngle{ADB}$ \inprop[prop:I.IV].
 
 И $\therefore \drawUnitLine{AC} \parallel \drawUnitLine{BD}$ \inprop[prop:I.XXVII].
 \stopCenterAlign
@@ -2925,7 +2926,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 
 \startCenterAlign
 Поскольку $\left\{\eqalign{\drawAngle{BAD} &= \drawAngle{CDA}\cr\drawAngle{DAC} &= \drawAngle{ADB}\cr}\right\}$ \inprop[prop:I.XXIX]\\
-и \drawUnitLine{AD} общая обоим треугольникам.
+и \drawUnitLine{AD} общая \drawLine{AD,CD,AC} и~\drawLine{AB,BD,AD}.
 
 $\therefore \left\{\eqalign{\drawUnitLine{AB} &= \drawUnitLine{CD}\cr \drawUnitLine{AC} &= \drawUnitLine{BD}\cr \drawAngle{B} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXVI]\\
 и $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \inax[ax:II].
@@ -3210,7 +3211,7 @@ $\polygonADC =
 
 Но $\polygonADC = \polygonBDC$ (\hypstr).
 
-$\therefore \polygonBDC = \polygonFDC$, часть равна целому, что не имеет смысла.
+$\therefore \polygonBDC = \polygonFDC$, часть равна целому, что невозможно.
 
 $\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$. 
 
@@ -3281,7 +3282,7 @@ draw byNamedLineFull(G, G, 1, 1, 0)(EF);
 
 Но $\polygonACD = \polygonBEF$.
 
-$\therefore \polygonBEF = \polygonGEF$, часть равна целому, что не имеет смысла.
+$\therefore \polygonBEF = \polygonGEF$, часть равна целому, что невозможно.
 
 $\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CD,DE,EF}$: и~таким же образом можно показать, что никакая другая линия, кроме \drawSizedLine{AB} не $\parallel \drawSizedLine{CD,DE,EF}$.
 
@@ -8158,9 +8159,8 @@ $\therefore \drawUnitLine{CD} \parallel \drawUnitLine{AB}$ \inprop[prop:I.XXVIII
 
 так же и~$\drawUnitLine{DA} \parallel \drawUnitLine{BC}$.
 
-И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (\conststr)\\
-и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
-
+И, поскольку $\drawAngle{AEB} = \drawAngle{DEA}$ (\conststr),\\
+и $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV],
 $\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \inprop[prop:I.IV].
 
 Поскольку смежные углы и~стороны параллелограмма \squareABCD\ равны, все его стороны и~углы равны \inprop[prop:I.XXXIV].
@@ -8452,15 +8452,24 @@ draw byLabelsOnCircle(A, B, C, D, E)(O);
 \drawCurrentPictureInMargin
 \problemNP[2]{В}{данный}{круг \drawCircle[middle][1/6]{O} вписать равносторонний и~равноугольный пятиугольник.}
 
-Построим равносторонний треугольник, в~котором каждый из углов при основании вдвое больше угла в~вершине, и~впишем в~данный круг равноугольный ему треугольник \drawPolygon{ACD} \inprop[prop:IV.II].
-
 \startCenterAlign
+Построим равнобедренный треугольник, в~котором каждый из углов при основании вдвое больше угла в~вершине \inprop[prop:IV.X].
+
+Впишем равноугольный ему\\
+треугольник \drawPolygon{ACD} в~данный круг \drawCircle[middle][1/6]{O} \inprop[prop:IV.II].
+
 Рассечем \drawAngle{ECA,DCE} и~\drawAngle{ADB,BDC} пополам \inprop[prop:I.IX].
 
 Проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и~\drawUnitLine{DE}.
-\stopCenterAlign
 
-Поскольку углы \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} и~\drawAngle{ADB} равны между собой, дуги, на которых они стоят, тоже равны \inprop[prop:III.XXVI], и~$\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и~\drawUnitLine{DE} стягивающие эти дуги также равны между собой \inprop[prop:III.XXIX] и~$\therefore$ пятиугольник является равносторонним, а~также равноугольным, поскольку все его углы стоят на равных дугах \inprop[prop:III.XXVII].
+Поскольку углы \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} и~\drawAngle{ADB}\\
+равны между собой, дуги, на которых они стоят, тоже равны \inprop[prop:III.XXVI].
+
+И~$\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и~\drawUnitLine{DE} стягивающие эти дуги также равны между собой \inprop[prop:III.XXIX].
+
+И~$\therefore$ пятиугольник является равносторонним,\\
+а~также равноугольным, поскольку все его углы стоят на равных дугах \inprop[prop:III.XXVII].
+\stopCenterAlign
 
 \qed
 \stopProposition
@@ -8625,7 +8634,7 @@ draw byLabelsOnPolygon(E, F, D)(2, -2);
 
 Проведем \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FB}, \drawUnitLine{FE}, и~т. д.
 
-Поскольку $\drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, и~\drawUnitLine{FC} общая обоим треугольникам\\
+Поскольку в
 \drawFromCurrentPicture{
 startTempScale(1/2);
 draw byNamedAngle(FBH,HCF);
@@ -8642,7 +8651,8 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(FC,FD,KD,CK);
 stopAutoLabeling;
 stopTempScale;
-},\\
+}\\
+$\drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, и~\drawUnitLine{FC} общая обоим,\\
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ и~$\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV].
 
 И поскольку $\drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ дважды } \drawAngle{KDF}$,\\
@@ -8741,7 +8751,7 @@ draw byNamedLineSeq(0)(FC,FD,CD);
 stopAutoLabeling;
 },\\
 $\drawUnitLine{BC} = \drawUnitLine{CD}$, и~\drawUnitLine{FC} общая,\\
-также и~$\drawAngle{BCF} = \drawAngle{FCD}$.
+а~также $\drawAngle{BCF} = \drawAngle{FCD}$.
 
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ \inprop[prop:I.IV].
 
@@ -8800,9 +8810,12 @@ draw byLabelsOnPolygon(G, E, D)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{В}{данный}{круг \drawCircle[middle][1/4]{G} вписать равносторонний и~равноугольный шестиугольник.}
 
-На любой точке окружности опишем \drawCircle[middle][1/4]{D} проходящий через центр и~проведем диаметры \drawUnitLine{AD}, \drawUnitLine{CF} и~\drawUnitLine{BE}. Проведем \drawUnitLine{CD}, \drawUnitLine{DE}, \drawUnitLine{EF}, и~т. д., так и~получим искомый шестиугольник вписанный в~круг.
+\startCenterAlign
+На любой точке окружности опишем \drawCircle[middle][1/4]{D} проходящий через центр и~проведем диаметры \drawUnitLine{AD}, \drawUnitLine{CF} и~\drawUnitLine{BE}.
 
-Поскольку \drawUnitLine{GD} проходит через центры кругов
+Проведем \drawUnitLine{CD}, \drawUnitLine{DE}, \drawUnitLine{EF}, и~т. д., так и~получим искомый шестиугольник вписанный в~круг.
+
+Поскольку \drawUnitLine{GD} проходит через центры кругов,
 \drawFromCurrentPicture{
 draw byNamedAngle(DGC);
 startAutoLabeling;
@@ -8816,11 +8829,15 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(GD,GE,DE);
 stopAutoLabeling;
 }
-равносторонние треугольники, так как $\drawAngle{DGC} = \drawAngle{EGD} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], но $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \inprop[prop:I.XIII];
+равносторонние,\\
+так как $\drawAngle{DGC} = \drawAngle{EGD} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], но $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \inprop[prop:I.XIII].
 
-$\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], и~вертикальные углы равны между собой \inprop[prop:I.XV], и~стоят на равных дугах \inprop[prop:III.XXVI], которые стагивают равные хорды \inprop[prop:III.XXIX].
+$\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \drawTwoRightAngles$ \inprop[prop:I.XXXII], и~вертикальные углы равны между собой \inprop[prop:I.XV],\\
+и~стоят на равных дугах \inprop[prop:III.XXVI],\\
+которые стагивают равные хорды \inprop[prop:III.XXIX].
 
 И поскольку каждый из углов шестиугольника вдвое больше угла равностороннего треугольника, этот шестиугольник также равносторонний.
+\stopCenterAlign
 
 \qed
 \stopProposition
