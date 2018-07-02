@@ -3801,7 +3801,7 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalig
 &\drawProportionalLine{A} \cdot \drawProportionalLine{GK}\cr
 +&\drawProportionalLine{A} \cdot \drawProportionalLine{KL}\cr
 +&\drawProportionalLine{A} \cdot \drawProportionalLine{LH}}\right.$\\
-is equal to the sum of the rectangles contained by the undivided line, and several parts of the divided line.}
+is equal to the sum of the rectangles contained by the undivided line, and the several parts of the divided line.}
 
 \startCenterAlign
 Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{GB}$ (\inpropL[prop:I.II], \inpropL[prop:I.III]); complete the parallelograms, that is to say,
@@ -4245,7 +4245,7 @@ byLineDefine(O, P, byblack, 0, 1);
 draw byLabelsOnPolygon(A, C, B, D, N, P, F, L, H, E, O, M)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{EH,HL}, the square of the sum of the whole line and any of its parts is equal to four times the rectangle contained by the whole line, and that part together with the square of the other part. \\
+\problemNP{I}{f}{a straight line be divided into any two parts \drawProportionalLine{EH,HL}, the square of the sum of the whole line and any one of its parts is equal to four times the rectangle contained by the whole line, and that part together with the square of the other part. \\
 $\drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
 }
 
@@ -4385,7 +4385,7 @@ draw byLabelsOnPolygon(A, E, F, D, G)(0, 0);
 draw byLabelsOnPolygon(G, B, C, A)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line \drawProportionalLine{AC,CB} be bisected and produced to any point \drawProportionalLine{AC,CB,BD}, the squares of the whole produced line, and of the produced part, are together double of the squares of half line, and of the line made up of the half and produced part.\\
+\problemNP{I}{f}{a straight line \drawProportionalLine{AC,CB} be bisected and produced to any point \drawProportionalLine{AC,CB,BD}, the squares of the whole produced line, and of the produced part, are together double of the squares of the half line, and of the line made up of the half and produced part.\\
 $\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
 }
 
@@ -4398,11 +4398,12 @@ and $\left\{\eqalign{
 }\right\}$ \inprop[prop:I.XXXI]\\
 draw \drawProportionalLine{AG} also.
 
-$\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $=$ half right angle \inprop[prop:I.XXXII]\\
-$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $=$ half right angle \inprop[prop:I.XXXII]\\
+$\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $=$ half a right angle \inprop[prop:I.XXXII]\\
+$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $=$ half a right angle \inprop[prop:I.XXXII]\\
 $\therefore \drawAngle{CEA,BEC} = $ a right angle.
 
-$\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} =$ half a right angle (\inpropL[prop:I.V], \inpropL[prop:I.XXXII], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV]),\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
+$\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} =$\\
+half a right angle (\inpropL[prop:I.V], \inpropL[prop:I.XXXII], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV]),\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
 and $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropL[prop:I.XXXIV]).
 
 Hence by \inprop[prop:I.XLVII]
@@ -4458,7 +4459,8 @@ Describe \drawPolygon[bottom]{AHKC,HBDK} \inprop[prop:I.XLVI],\\
 make $\drawProportionalLine{EA} = \drawProportionalLine{CE}$ \inprop[prop:I.X],\\
 draw \drawProportionalLine{BE},\\
 take $\drawProportionalLine{EA,AF} = \drawProportionalLine{BE}$ \inprop[prop:I.III],\\
-on \drawProportionalLine{AF} describe \drawPolygon[bottom]{AHGF} \inprop[prop:I.XLVI],\\
+on \drawProportionalLine{AF} describe \drawPolygon[bottom]{AHGF} \inprop[prop:I.XLVI].
+
 Produce \drawProportionalLine{KG} \inpost[post:II].
 
 Then, \inprop[prop:II.VI] $\drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EA,AF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AH,HB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AH,HB}^2$, or,\\
@@ -4629,9 +4631,8 @@ To draw \drawSizedLine{HE} such that, $\drawSizedLine{HE}^2 = \drawPolygon{abcde
 }
 
 \startCenterAlign
-Make $\drawPolygon{BCDE} = \drawPolygon{abcdef}$ \inprop[prop:I.XLV].
-
-Produce \drawSizedLine{EG,GB} until $\drawSizedLine{FE} = \drawSizedLine{ED}$;\\
+Make $\drawPolygon{BCDE} = \drawPolygon{abcdef}$ \inprop[prop:I.XLV],
+produce \drawSizedLine{EG,GB} until $\drawSizedLine{FE} = \drawSizedLine{ED}$;\\
 take $\drawSizedLine{FE,EG} = \drawSizedLine{GB}$ \inprop[prop:I.X].
 
 Describe
@@ -4778,7 +4779,7 @@ An angle in a segment is the angle contained by two straight lines drawn from an
 \defineNewPicture{
 	pair O, A, B, C;
 	numeric r, b, e;
-	r := u;
+	r := 3/4u;
 	b := -3/2;
 	e := 9/2;
 	O := (0, 0);
@@ -4830,7 +4831,7 @@ A sector of a circle is the figure contained by two radii and the arch between t
 	draw byArcBE(M, b, e, r1, byblack, 0, 0, 0, 1)(M);
 	draw byArcBE(N, b, e, r2, byblack, 0, 0, 0, 1)(N);
 }\drawCurrentPictureInMargin
-Similar segments of circles are those, which contain equal angles.
+Similar segments of circles are those which contain equal angles.
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.XII]
@@ -4896,7 +4897,7 @@ Draw within the circle any straight line \drawUnitLine{AD,DB}, make $\drawUnitLi
 
 For, if it be possible, let any other point as the point of concourse of \drawUnitLine{AG}, \drawUnitLine{DG} and \drawUnitLine{BG} be the centre.
 
-Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (\hypstr\ and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (\conststr) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and therefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (\conststr) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
+Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (\hypstr\ and \indefL[def:XV]), $\drawUnitLine{AD} = \drawUnitLine{DB}$ (\conststr) and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], and are therefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ (\conststr) $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:XI] which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
 
 \qed
 \stopProposition
@@ -5040,7 +5041,7 @@ and if \drawUnitLine{BD} be bisected, $\drawUnitLine{EF} \perp \drawUnitLine{BD}
 $\therefore \drawAngle{FED} = \drawRightAngle$;
 
 and $\therefore \drawAngle{FED} = \drawAngle{FED,DEC}$;\\
-a part equal to whole, which is absurd:
+a part equal to the whole, which is absurd:
 
 $\therefore$ \drawUnitLine{AC} and \drawUnitLine{BD} do not bisect one another.
 \stopCenterAlign
@@ -5078,7 +5079,7 @@ draw byLabelsOnPolygon(C, E, F)(2, 0);
 draw byLabelsOnPolygon(C, F, E)(2, -1);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two circles intersect \drawArc{Ma,Na,Nb,Mb} they have not the same centre.}
+\problemNP{I}{f}{two circles intersect \drawArc{Ma,Na,Nb,Mb}, they have not the same centre.}
 
 Suppose it possible that two intersecting circles have a common centre; from such supposed centre draw \drawUnitLine{CE} to the intersecting point, and \drawUnitLine{EF,FG} meeting the circumferences of the circles.
 
@@ -5096,7 +5097,7 @@ $\therefore$ circles supposed to intersect in any point cannot have the same cen
 \stopProposition
 
 \startProposition[title={Prop. VI. theor.},reference=prop:III.VI]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair M, N, B, C, E, F;
 numeric r[], a;
 path c[];
@@ -5122,7 +5123,7 @@ draw byLabelsOnPolygon(E, F, C)(2, 0);
 draw byLabelPoint(E, angle(B-F)+45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two circles \drawFromCurrentPicture{draw byNamedCircle(M,N);} touch one another internally, they have not the same centre.}
+\problemNP{I}{f}{two circles \drawCircle{N,M} touch one another internally, they have not the same centre.}
 
 For, if it be possible, let both circles have the same centre; from such a supposed centre draw \drawUnitLine{FE,EB}, and \drawUnitLine{CF} to the point of contact.
 
@@ -5217,10 +5218,10 @@ $\drawAngle{KFE} = \drawAngle{GFE}$ and $\drawUnitLine{FG} = \drawUnitLine{FM}$
 $\therefore \drawUnitLine{EG} = \drawUnitLine{EM}$ \inprop[prop:I.IV]
 
 $\therefore \drawUnitLine{EG} = \drawUnitLine{EM,MH} = \drawUnitLine{EM}$\\
-a part equal to whole, which is absurd:
+a part equal to the whole, which is absurd:
 \stopCenterAlign
 
-$\therefore \drawUnitLine{FG} = \drawUnitLine{FM,MK}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
+\noindent $\therefore \drawUnitLine{FG} = \drawUnitLine{FM,MK}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
 
 \stopsubproposition
 
@@ -5301,14 +5302,14 @@ draw byLabelsOnPolygon(H, D, G)(2, 0);
 draw byLabelsOnPolygon(G, M, H)(2, 0);
 }
 \drawCurrentPictureInMargin
-Of those lines falling on the convex circumference the least (\drawUnitLine{DG}) which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
+Of those lines falling on the convex circumference the least is that (\drawUnitLine{DG}) which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
 
 \startCenterAlign
 For, since $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DG,GM}$ \inprop[prop:I.XX]\\
 and $\drawUnitLine{KM} = \drawUnitLine{GM}$,\\
 $\therefore \drawUnitLine{DK} > \drawUnitLine{DG}$ \inax[ax:V]
 
-Again, since $\drawUnitLine{HM} + \drawUnitLine{DH} > \drawUnitLine{KM} + \drawUnitLine{DK}$ \inprop[prop:I.XXI],\\
+And again, since $\drawUnitLine{HM} + \drawUnitLine{DH} > \drawUnitLine{KM} + \drawUnitLine{DK}$ \inprop[prop:I.XXI],\\
 and $\drawUnitLine{HM} = \drawUnitLine{KM}$,
 
 $\therefore \drawUnitLine{DK} < \drawUnitLine{DH}$. And so of others.
@@ -5356,10 +5357,8 @@ make $\drawUnitLine{DO} = \drawUnitLine{DH}$, and draw \drawUnitLine{BM,BO}.
 Then in \drawLine[middle][triangleDMO]{DM,DO,BO,BM} and \drawLine[middle][triangleDMH]{HM,DH,DM} we have $\drawUnitLine{DO} = \drawUnitLine{DH}$\\
 and \drawUnitLine{DM} common, and also $\drawAngle{MDN} = \drawAngle{HDM}$,
 
-$\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \inprop[prop:I.IV]
-
-But $\drawUnitLine{HM} = \drawUnitLine{BM}$;
-
+$\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \inprop[prop:I.IV];\\
+but $\drawUnitLine{HM} = \drawUnitLine{BM}$;\\
 $\therefore \drawUnitLine{BM} = \drawUnitLine{BM,BO}$, which is absurd.
 
 $\therefore \drawUnitLine{DH} \mbox{ is } \neq \drawUnitLine{DO}$, nor to any part of \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \mbox{ is } \ngtr \drawUnitLine{DH}$. % \mbox{ is not } =,  \mbox{ is not } >
@@ -5464,11 +5463,11 @@ draw byLabelsOnPolygon(Hd, Pdd, Bd)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{O}{ne}{circle \drawFromCurrentPicture{draw byNamedCircle(PII);} cannot intersect another \drawFromCurrentPicture[middle][circlePI]{draw byNamedCircle(PI);} in more points than two.}
 
-For if it be possible, let it intersect in three points; from the centre of \drawCircle{PII} draw \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} to the points of intersection;
+For, if it be possible, let it intersect in three points; from the centre of \drawCircle{PII} draw \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} to the points of intersection;
 
 $\therefore \drawUnitLine{PG} = \drawUnitLine{PB} = \drawUnitLine{PH}$ \indef[def:XV], but as the circles intersect, they have not the same centre \inprop[prop:III.V]:
 
-$\therefore$ the assumed point is not the centre of \circlePI , and $\therefore$ as \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} from a point not the centre, they are not equal (\inpropL[prop:III.VII], \inpropL[prop:III.VIII]); but it was shown before that they were equal, which is absurd; the circles therefore do not intersect in three points.
+$\therefore$ the assumed point is not the centre of \circlePI , and $\therefore$ as \drawUnitLine{PG}, \drawUnitLine{PB} and \drawUnitLine{PH} are drawn from a point not the centre, they are not equal (\inpropL[prop:III.VII], \inpropL[prop:III.VIII]); but it was shown before that they were equal, which is absurd; the circles therefore do not intersect in three points.
 
 \qed
 \stopProposition

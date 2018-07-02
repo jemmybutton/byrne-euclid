@@ -5242,7 +5242,7 @@ $\therefore$ круги, пересекающиеся в~любой точке �
 \stopProposition
 
 \startProposition[title={Предл. VI. Теорема},reference=prop:III.VI]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair M, N, B, C, E, F;
 numeric r[], a;
 path c[];
@@ -5266,9 +5266,11 @@ draw byCircle(N, C, byblack, 0, 0, -1)(N);
 draw byLabelsOnCircle(B, C)(M);
 draw byLabelsOnPolygon(E, F, C)(2, 0);
 draw byLabelPoint(E, angle(B-F)+45, 2);
+byPointLabelDefine(M, "");
+byPointLabelDefine(N, "");
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{два круга \drawFromCurrentPicture{draw byNamedCircle(M,N);} касаются друг друга, то у~них не один и~тот же центр.}
+\problemNP{Е}{сли}{два круга \drawCircle{N,M} касаются друг друга, то у~них не один и~тот же центр.}
 
 Действительно, пусть это возможно, и~у кругов будет один центр. Из предполагаемого центра проведем \drawUnitLine{FE,EB} и~\drawUnitLine{CF} к~точке касания.
 

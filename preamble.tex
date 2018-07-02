@@ -74,16 +74,20 @@
 		\global\def\lastPict{#2}\ignorespaces
 		\expandafter\ifx\csname #2\endcsname\relax\ignorespaces
 			\startreusableMPgraphic{\currentInstance::#2}
+				startOffspringPictureMode;
 				linecap := butt;
 				#3
+				stopOffspringPictureMode;
 			\stopreusableMPgraphic\ignorespaces
 			\global\addToUndefineList{#2}\ignorespaces
 		\fi\ignorespaces
 	\else\ignorespaces
 		\global\def\lastPict{lastPicture}\ignorespaces
 		\startreusableMPgraphic{\currentInstance::\lastPict}
+			startOffspringPictureMode;
 			linecap := butt;
 			#3
+			stopOffspringPictureMode;
 		\stopreusableMPgraphic
 	\fi\ignorespaces
 \global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter\dfcpl}}}\csname\lastPict\endcsname}}

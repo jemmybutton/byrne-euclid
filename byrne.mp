@@ -36,9 +36,10 @@ magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
 rayExtension := 1/3u;
 
-boolean textLabels, autoLabelingMode, mainPictureMode;
+boolean textLabels, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
 
 textLabels := false;
+omitDuplicateTextLabels := false;
 textLabelShift := lineWidth;
 autoLabelingMode := false;
 mainPictureMode := false;
@@ -135,11 +136,7 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
         boolean valueExists;
         valueExists := false;
         if omitDuplicates:
-            forsuffixes i=scantokens(listName):
-                if (str i = valueToAdd):
-                    valueExists := true;
-                fi;
-            endfor;
+            valueExists := isInList (valueToAdd, listName)
         fi;
         if not valueExists:
             if (whereToAdd = 1):
@@ -149,6 +146,22 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
             fi;
         fi;
     fi;
+enddef;
+
+vardef isInList (expr valueToLookFor)(suffix listName) =
+    save rv, i;
+    boolean rv;
+    rv := false;
+    if (not string listName) or (unknown listName):
+        string listName;
+        listName := "";
+    fi;
+    forsuffixes i=scantokens(listName):
+        if (str i = valueToLookFor):
+            rv := true;
+        fi;
+    endfor;
+    rv
 enddef;
 
 vardef setAttribute@#(expr attrGenus, attrSpecies, attrName, attrValue) =
@@ -292,6 +305,19 @@ def startAutoLabeling =
 enddef;
 
 def stopAutoLabeling =
+    endgroup
+enddef;
+
+def startOffspringPictureMode =
+    begingroup
+        save uniqueTextLabels, omitDuplicateTextLabels;
+        string uniqueTextLabels;
+        boolean omitDuplicateTextLabels;
+        omitDuplicateTextLabels := true;
+        uniqueTextLabels := "";
+enddef;
+
+def stopOffspringPictureMode =
     endgroup
 enddef;
 
@@ -2199,22 +2225,30 @@ numeric textLabelAvSize;
 textLabelAvSize := abs(ulcorner(textLabelRender("A")) - llcorner(textLabelRender("A")));
 
 vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
-    save labelItself, bb;
+    save labelItself, labelString, bb;
     path bb;
     picture labelItself;
+    string labelString;
     if not string labelType.scantokens(t):
         string labelType.scantokens(t);
         labelType.scantokens(t) := t;
     fi;
-    labelItself := textLabelRender(labelType.scantokens(t));
-    labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
-    if (d > 0):
-        bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
-        labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
+    labelString := str labelType & "." & t;
+    if (not isInList(labelString, uniqueTextLabels)) or (not omitDuplicateTextLabels):
+        appendList(uniqueTextLabels, labelString, 1, false);
+        labelItself := textLabelRender(labelType.scantokens(t));
+        labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
+        if (d > 0):
+            bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
+            labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
+        fi;
+        labelItself := image(
+            draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
+        );
+    else:
+        labelItself := image();
     fi;
-    image(
-        draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
-    )
+    labelItself
 enddef;
 
 vardef byLabelPoint(suffix p)(expr a, d) =
