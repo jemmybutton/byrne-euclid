@@ -5507,11 +5507,9 @@ draw byLabelsOnCircle(A, H)(M);
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{f}{two circles \drawCircle[middle][1/4]{N} and \drawCircle[middle][1/5]{M} touch one another internally, the right line joining their centres, being produced, shall pass through a point of contact.}
 
-\startCenterAlign
-For, if it be possible, let \drawSizedLine{GF} join their centres, and produce it both ways;\\
-from a point of contact draw \drawSizedLine{AG} to the centre of \circleN,\\
-and from the same point of contact draw \drawSizedLine{AF} to the centre of \circleM.
+For, if it be possible, let \drawSizedLine{GF} join their centres, and produce it both ways; from a point of contact draw \drawSizedLine{AG} to the centre of \circleN, and from the same point of contact draw \drawSizedLine{AF} to the centre of \circleM.
 
+\startCenterAlign
 Because in
 \drawFromCurrentPicture{
 draw byNamedPolygon(AFG);
@@ -5574,10 +5572,11 @@ $\because \drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \inpr
 and $\drawUnitLine{FC} = \drawUnitLine{AF}$ \indef[def:XV],\\
 and $\drawUnitLine{DG} = \drawUnitLine{AG}$ \indef[def:XV],
 
-$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, a part greater than whole, which is absurd.
+$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$,\\
+a part greater than the whole, which is absurd.
 \stopCenterAlign
 
-The centres are not therefore so placed that the line joining them can pass through any point but the point of contact.
+The centres are not therefore so placed, that the line joining them can pass through any point but the point of contact.
 
 \qed
 \stopProposition
@@ -5618,7 +5617,7 @@ draw byLabelsOnPolygon(B, G, H, D)(2, 0);
 }
 
 \startsubproposition[title={Figure I.}]\drawCurrentPictureInMargin
-For if it possible, let \drawCircle{M} and \drawCircle{N} touch one another internally in two points; draw \drawUnitLine{GH} joining their centres, and produce it until it pass through one of the points of contact \inprop[prop:III.XI];
+For, if it possible, let \drawCircle{M} and \drawCircle{N} touch one another internally in two points; draw \drawUnitLine{GH} joining their centres, and produce it until it pass through one of the points of contact \inprop[prop:III.XI];
 
 \startCenterAlign
 draw \drawUnitLine{DH} and \drawUnitLine{DG}.
@@ -5767,7 +5766,8 @@ For, as in the preceding case,\\
 $\drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2 = \drawProportionalLine{AF}^2 + \drawProportionalLine{EF}^2$\\
 but $\drawProportionalLine{EG}^2 = \drawProportionalLine{EF}^2$
 
-$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$, and the doubles of these $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$ are also equal.
+$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$, % improvement: in the original, there were squares of these here
+and the doubles of these \drawProportionalLine{AF,FB} and \drawProportionalLine{CG,GD} are also equal.
 \stopCenterAlign
 
 \qed
@@ -5941,7 +5941,8 @@ draw byLabelsOnPolygon(C, D, B)(2, 0);
 draw byLabelPoint(H, angle(G-H)+45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BD,DA} of the circle perpendicular to it falls without the circle\\
+\problemNP{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BD,DA} % improvement: in the original it was simply DA
+of a circle perpendicular to it falls without the circle\\
 And if any straight line \drawUnitLine{AG} by drawn from a point within that perpendicular to the point of contact, it cuts the circle.}
 
 \startsubproposition[title={Part I.}]
@@ -5958,24 +5959,21 @@ therefore \drawUnitLine{AC} drawn $\perp \drawUnitLine{DA}$ does not meet the ci
 \stopsubproposition
 
 \startsubproposition[title={Part II.}]
-Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be drawn from a point \drawFromCurrentPicture{
-draw byNamedLineSeq(0)(AG,HG,DH);
-draw byLabelsOnPolygon(D, G, A)(2, 0);
-} between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
+Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be drawn from a point \drawFromCurrentPicture{draw byNamedPointLines(G,"GF");} between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
 
 \startCenterAlign
 $\because \drawAngle{DAG,GAE} = \drawRightAngle$,\\ %Because
 $\therefore \drawAngle{DAG}$ is an acute angle;\\
 suppose $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, drawn from the centre of the circle, it must fall at the side of \drawAngle{DAG} the acute angle.
 
-$\therefore$ \drawAngle{G} which is supposed to be a right angle is $> \drawAngle{DAG}$,
+$\therefore$ \drawAngle{G} which is supposed to be a right angle, is $> \drawAngle{DAG}$,
 
 $\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$;
 
 but $\drawUnitLine{DH} = \drawUnitLine{DA}$,
 \stopCenterAlign
 
-and $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, a part greater than the whole, which is absurd. Therefore the point does not fall outside the circle, and therefore the straight line \drawUnitLine{AG} cuts the circle.
+\noindent and $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, a part greater than the whole, which is absurd. Therefore the point does not fall outside the circle, and therefore the straight line \drawUnitLine{AG} cuts the circle.
 \stopsubproposition
 
 \qed
@@ -6020,19 +6018,14 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/5]{EI} from a given point, either in or outside of its circumference.}
 
-If a given point be in the circumference, as at \drawPointL[middle][FB]{B}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be required tangent \inprop[prop:III.XVI].
+If a given point be in the circumference, as at \drawPointL[middle][FB]{B}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be the required tangent \inprop[prop:III.XVI].
 
-But if the given point\drawFromCurrentPicture[bottom]{
-startTempScale(1/3);
-draw byNamedLineSeq(0)(DE,AD,AB);
-draw byLabelsOnPolygon(E, A, B)(2, 0);
-stopTempScale;
-} be outside of the circumference,
+But if the given point \drawPointL[middle][FB]{A} be outside of the circumference,
 
 \startCenterAlign
 draw \drawUnitLine{DE,AD} from it to the centre, cutting \circleEI;\\
 and draw $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
-describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{AD,DE}$,\\ % improvement: These two lines were not originally there, but without them this proof makes no sense
+describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{DE,AD}$,\\ % improvement: These two lines were not originally there, but without them this proof makes no sense
 draw \drawUnitLine{BE,FB} to the centre from the point where \drawUnitLine{FD} falls on \circleEII\ circumference,\\
 draw $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ from the point where it cuts \circleEI,\\
 %
@@ -6596,7 +6589,7 @@ draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[4]{I}{n}{equal circles \drawCircle[middle][1/5]{G} and \drawCircle[middle][1/5]{H} the arcs \drawArc{Gb}, \drawArc{Hb} on which stand equal angles, whether at the centre of circumference, are equal.}
+\problemNP[4]{I}{n}{equal circles \drawCircle[middle][1/5]{G} and \drawCircle[middle][1/5]{H}, the arcs \drawArc{Gb}, \drawArc{Hb} on which stand equal angles, whether at the centre of circumference, are equal.}
 
 \startCenterAlign
 For, let $\drawAngle{G} = \drawAngle{H}$ at the centre,\\
@@ -6706,7 +6699,7 @@ draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{n}{equal circles \drawCircle[middle][1/3]{G} and \drawCircle[middle][1/3]{H} the angles \drawAngle{BAK} and \drawAngle{D} which stand upon equal arches are equal, whether they be at the centres or at circumferences.}
+\problemNP[3]{I}{n}{equal circles \drawCircle[middle][1/3]{G} and \drawCircle[middle][1/3]{H} the angles \drawAngle{BAK} and \drawAngle{D} which stand upon equal arches are equal, whether they be at the centres or at the circumferences.}
 
 \startCenterAlign
 For if it be possible, let one of them\\
@@ -6767,7 +6760,7 @@ draw byLabelsOnPolygon(A, K, B)(2, 0);
 draw byLabelsOnPolygon(D, L, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{equal circles \drawCircle[middle][1/3]{K} and \drawCircle[middle][1/3]{L} equal chords \drawUnitLine{AB}, \drawUnitLine{DE} cut off equal arches.}
+\problemNP{I}{n}{equal circles \drawCircle[middle][1/3]{K} and \drawCircle[middle][1/3]{L}, equal chords \drawUnitLine{AB}, \drawUnitLine{DE} cut off equal arches.}
 
 \startCenterAlign
 From the centres of the equal circles,\\
@@ -6828,7 +6821,7 @@ draw byLabelsOnPolygon(A, K, B)(2, 0);
 draw byLabelsOnPolygon(D, L, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{equal circles \drawCircle[middle][1/3]{K} and \drawCircle[middle][1/3]{L} the chords \drawUnitLine{AB}, \drawUnitLine{DE} which subtend equal arcs are equal.}
+\problemNP{I}{n}{equal circles \drawCircle[middle][1/3]{K} and \drawCircle[middle][1/3]{L} the chords \drawUnitLine{AB} and \drawUnitLine{DE} which subtend equal arcs are equal.}
 
 \startCenterAlign
 If the equal arcs be semicircles the proposition is evident. But if not,
@@ -7147,7 +7140,7 @@ draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
 \problemNP{T}{o}{cut off from a given circle \drawCircle{O} a segment which shall contain an angle equal to a given angle \drawAngle{givenAngle}.}
 
 \startCenterAlign
-Draw \drawUnitLine{EF} \inprop[prop:III.XVII], a tangent to the circle at any point;
+Draw \drawUnitLine{EF} \inprop[prop:III.XVII], a~tangent to the circle at any point;
 
 at the point of contact make $\drawAngle{B} = \drawAngle{givenAngle}$ the given angle;
 

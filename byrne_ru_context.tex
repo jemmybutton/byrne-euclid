@@ -6159,10 +6159,7 @@ $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
 \stopsubproposition
 
 \startsubproposition[title={Часть II.}]
-Пусть $\drawUnitLine{EK} \perp \drawUnitLine{DA}$ и~пусть \drawUnitLine{AG} проведена из точки \drawFromCurrentPicture{
-draw byNamedLineSeq(0)(AG,HG,DH);
-draw byLabelsOnPolygon(D, G, A)(2, 0);
-} между \drawUnitLine{EK} и~кругом, и, если возможно, не сечет круг.
+Пусть $\drawUnitLine{EK} \perp \drawUnitLine{DA}$ и~пусть \drawUnitLine{AG} проведена из точки \drawFromCurrentPicture{draw byNamedPointLines(G,"GF");} между \drawUnitLine{EK} и~кругом, и, если возможно, не сечет круг.
 
 \startCenterAlign
 $\drawAngle{DAG,GAE} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ острый угол.
@@ -6224,13 +6221,10 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 Если данная точка \drawPointL[middle][FB]{B} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и~будет искомой касательной \inprop[prop:III.XVI].
 
 \startCenterAlign
-Но если точка \drawFromCurrentPicture[bottom]{
-draw byNamedLineSeq(0)(DE,AD,AB);
-draw byLabelsOnPolygon(E, A, B)(2, 0);
-} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
+Но если точка \drawPointL[middle][FB]{A} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
 и проведем $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
 опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\\ 
-с~радиусом $= \drawUnitLine{AD,DE}$,\\
+с~радиусом $= \drawUnitLine{DE,AD}$,\\
 проведем \drawUnitLine{BE,FB} к~центру из точки, где \drawUnitLine{FD} падает на окружность \circleEII,\\
 проведем $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ из точки, где та сечет \circleEI.
 
