@@ -7420,7 +7420,7 @@ byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(D, A, byblack, 0, 0);
 draw byNamedLineSeq(-1)(AB,BC,CD,DA);
 }\drawCurrentPictureInMargin[inside]
-A rectilinear figure is said to be \emph{inscribed in} another, when all the angular points of the inscribed figure are on sides of the figure in which it is said to be inscribed.
+A rectilinear figure is said to be \emph{inscribed in} another, when all the angular points of the inscribed figure are on the sides of the figure in which it is said to be inscribed.
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:IV.II]
@@ -7467,7 +7467,7 @@ draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCDo);
 draw byFilledCircleSector(O, r, 0, 8, white)(O);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.IV]
-A rectilinear figure is said to be \emph{circumscribed about} a circle, when each of its sides is tangent to the circle.
+A rectilinear figure is said to be \emph{circumscribed about} a circle, when each of its sides is a tangent to the circle.
 \stopDefinitionOnlyNumber
 
 \vfill\pagebreak
@@ -7581,7 +7581,8 @@ But if \drawUnitLine{EC,BE} be not equal to \drawUnitLine{GH},\\
 $\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ (\hypstr);
 
 make $\drawUnitLine{EC} = \drawUnitLine{GH}$ \inprop[prop:I.III]\\
-with \drawUnitLine{EC} as radius, describe \drawCircle{C}, cutting \circleO, \\
+with \drawUnitLine{EC} as radius,\\
+describe \drawCircle{C}, cutting \circleO, \\
 and draw \drawUnitLine{AC}, which is the line required.
 
 For $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ (\indefL[prop:I.XV], \conststr).
@@ -7716,14 +7717,14 @@ draw byLabelsOnPolygon(A, K, B)(2, 0);
 \problemNP{A}{bout}{a given circle \drawCircle[middle][1/3]{K} to circumscribe a triangle equiangular to a given triangle.}
 
 \startCenterAlign
-Produce any side \drawUnitLine{GH}, of a given triangle both ways;
+Produce any side \drawUnitLine{GH}, of the given triangle both ways;
 
 from the centre of the given circle draw \drawUnitLine{KC}, any radius.
 
 Make $\drawAngle{CKA} = \drawAngle{DFH}$ \inprop[prop:I.XXIII]\\
 and $\drawAngle{BKC} = \drawAngle{GED}$.
 
-At the extremities of the radii draw \drawUnitLine{NL}, \drawUnitLine{LM} and \drawUnitLine{MN}, tangents to the given circle. \inprop[prop:III.XVII]
+At the extremities of the radii, draw \drawUnitLine{NL}, \drawUnitLine{LM} and \drawUnitLine{MN}, tangents to the given circle. \inprop[prop:III.XVII]
 
 The four angles of
 \drawFromCurrentPicture[bottom]{
@@ -7797,9 +7798,7 @@ stopAutoLabeling;
 stopTempScale;
 } to inscribe a circle.}
 
-Bisect \drawAngle{EBD,DBF} and \drawAngle{GCD,DCF} \inprop[prop:I.IX] by \drawUnitLine{BD} and \drawUnitLine{CD}.
-
-From the point where these lines meet draw \drawUnitLine{FD}, \drawUnitLine{ED} and \drawUnitLine{GD} respectively perpendicular to \drawUnitLine{BC}, \drawUnitLine{AB} and \drawUnitLine{CA}.
+Bisect \drawAngle{EBD,DBF} and \drawAngle{GCD,DCF} \inprop[prop:I.IX] by \drawUnitLine{BD} and \drawUnitLine{CD}; from the point where these lines meet draw \drawUnitLine{FD}, \drawUnitLine{ED} and \drawUnitLine{GD} respectively perpendicular to \drawUnitLine{BC}, \drawUnitLine{AB} and \drawUnitLine{CA}.
 
 \startCenterAlign
 In
@@ -7828,7 +7827,7 @@ In like manner, it may be shown also that $\drawUnitLine{GD} = \drawUnitLine{FD}
 $\therefore \drawUnitLine{FD} = \drawUnitLine{ED} = \drawUnitLine{GD}$;
 \stopCenterAlign
 
-hence with any of these lines as radius, describe \drawCircle[middle][1/2]{D} and it will pass through the extremities of the other two; and the sides of the given triangle, being perpendicular to the three radii at their extremities, touch the circle \inprop[prop:III.XVI], which is therefore inscribed in the given triangle.
+hence with any one of these lines as radius, describe \drawCircle[middle][1/2]{D} and it will pass through the extremities of the other two; and the sides of the given triangle, being perpendicular to the three radii at their extremities, touch the circle \inprop[prop:III.XVI], which is therefore inscribed in the given triangle. 
 
 \qed
 \stopProposition
@@ -7904,7 +7903,7 @@ $\therefore \drawUnitLine{AF} = \drawUnitLine{BF}$ \inprop[prop:I.IV].
 In like manner it may be shown that $\drawUnitLine{CF} = \drawUnitLine{AF}$.
 \stopCenterAlign
 
-$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$; and therefore a circle described from the concourse of these three lines with any one of them as radius will circumscribe the given triangle.
+$\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$; and therefore a circle described from the concourse of these three lines with any one of them as a radius will circumscribe the given triangle.
 
 \qed
 \stopProposition
@@ -7958,7 +7957,7 @@ and $\drawUnitLine{BE} = \drawUnitLine{AE} = \drawUnitLine{DE}$ \indef[def:XV].
 $\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \inprop[prop:I.IV];
 \stopCenterAlign
 
-and since the adjacent sides and angles of the parallelogram \squareABCD\ are equal, they are all equal \inprop[prop:I.XXXIV]; and $\therefore$ \squareABCD, inscribed in the given circle is a square.
+and since the adjacent sides and angles of the parallelogram \squareABCD\ are equal, they are all equal \inprop[prop:I.XXXIV]; and $\therefore$ \squareABCD, inscribed in the given circle, is a square.
 
 \qed
 \stopProposition
@@ -8074,7 +8073,7 @@ In like manner it can be shown that $ \drawPolygon[bottom]{GKCH} = \drawPolygon[
 $\therefore \drawUnitLine{AE} = \drawUnitLine{GK} = \drawUnitLine{GH} = \drawUnitLine{FG}$.
 \stopCenterAlign
 
-and therefore if a circle be described from the concourse of these lines with any of them as radius, it will be inscribed in the given square \inprop[prop:III.XVI].
+\noindent and therefore if a circle be described from the concourse of these lines with any one of them as radius, it will be inscribed in the given square \inprop[prop:III.XVI].
 
 \qed
 \stopProposition
@@ -8114,7 +8113,7 @@ then, because \drawPolygon{ACD} and \drawPolygon{ABC} have their sides equal, an
 \startCenterAlign
 $\drawAngle{DAE} = \drawAngle{EAB}$ \inprop[prop:I.VIII],\\
 or \drawAngle{DAE,EAB} is bisected: \\
-in like manner it may be shown that \drawAngle{ABE,EBC} is bisected;
+in like manner it can be shown that \drawAngle{ABE,EBC} is bisected;
 
 but $\drawAngle{DAE,EAB} = \drawAngle{ABE,EBC}$,
 
@@ -8295,7 +8294,7 @@ draw byLabelsOnPolygon(M, D, L, C, K, B, H, G)(2, 0);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{describe an equilateral pentagon about a given circle \drawCircle[middle][1/4]{F}.}
+\problemNP{T}{o}{describe an equilateral and equiangular pentagon about a given circle \drawCircle[middle][1/4]{F}.}
 
 Draw five tangents through the vertices of the angles of any regular pentagon inscribed in the given circle \circleF\ \inprop[prop:III.XVII].
 
@@ -8345,9 +8344,9 @@ $\drawAngle{FLC,DLF} = \mbox{ twice } \drawAngle{FLC}$ and $\drawAngle{FKB,CKF} 
 and therefore $ \drawAngle{CKF} = \drawAngle{FLC}$,
 
 $\therefore \drawAngle{FLC,DLF} = \drawAngle{FKB,CKF}$;
-\stopCenterAlign
 
 in the same manner it can be demonstrated that the other angles of the described pentagon are equal.
+\stopCenterAlign
 
 \qed
 \stopProposition
@@ -8436,11 +8435,11 @@ stopTempScale;
 
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ and $\drawAngle{FBH} = \drawAngle{KDF}$ \inprop[prop:I.IV]
 
-And $\because \drawAngle{HCF,FCK} = \drawAngle{KDF,FDE} = \mbox{ twice } \drawAngle{KDF}$ %because
+And $\because \drawAngle{B} = \drawAngle{D} = \mbox{ twice } \drawAngle{KDF}$ %because
 
-$\therefore \mbox{ twice } \drawAngle{FBH}$, hence \drawAngle{HCF,FCK} is bisected by \drawUnitLine{FB}.
+$\therefore \mbox{ twice } \drawAngle{FBH}$, hence \drawAngle{B} is bisected by \drawUnitLine{FB}.
 
-In like manner it may be demonstrated that \drawAngle{DEF,FEM} is bisected by \drawUnitLine{FE}, and that the remaining angle of polygon is bisected in a similar manner.
+In like manner it may be demonstrated that \drawAngle{DEF,FEM} is bisected by \drawUnitLine{FE}, and that the remaining angle of the polygon is bisected in a similar manner.
 
 Draw \drawUnitLine{FK}, \drawUnitLine{FH}, \&c.\ perpendicular to the sides of the pentagon.
 
@@ -8596,7 +8595,7 @@ draw byLabelsOnPolygon(G, E, D)(2, 0);
 
 From any point in the circumference of the given circle describe \drawCircle[middle][1/4]{D} passing through its centre, and draw the diameters \drawUnitLine{AD}, \drawUnitLine{CF} and \drawUnitLine{BE}; draw \drawUnitLine{CD}, \drawUnitLine{DE}, \drawUnitLine{EF}, \&c.\ and the required hexagon is inscribed in the given circle.
 
-Since \drawUnitLine{GD} passes through the centres of the circles
+Since \drawUnitLine{GD} passes through the centres of the circles,
 \drawFromCurrentPicture{
 draw byNamedAngle(DGC);
 startAutoLabeling;
