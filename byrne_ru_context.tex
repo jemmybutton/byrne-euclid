@@ -9059,7 +9059,7 @@ $\therefore$ Если будет несколько величин… и~т. д.
 \startProposition[title={Предл. II. Теорема}, reference=prop:V.II]
 \defineNewPicture{
 byMagnitudeSymbolDefine("circle", byyellow, 0)(ab);
-byMagnitudeSymbolDefine("sectorUp", byyellow, 1)(cd);
+byMagnitudeSymbolDefine("sectorUp", byred, 1)(cd);
 byMagnitudeSymbolDefine("circle", byblue, 0)(e);
 byMagnitudeSymbolDefine("sectorUp", byblack, 1)(f);
 byMagnitudeDefine(A, 0, false)(3)(ab);
@@ -9552,7 +9552,7 @@ byMagnitudeDefine(VI, 0, false)(2, 2)(via, vib);
 а также \magnitudeII\ составляет часть \magnitudeI;\\
 тогда \magnitudeIV\ будет составлять такую же часть \magnitudeIII.
 
-Если перевернуть, получим $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$,\\
+Если перевернуть, $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.B],\\
 но \magnitudeII\ составляет часть \magnitudeI,
 то есть, \magnitudeI\ кратна \magnitudeII.
 
@@ -9702,7 +9702,7 @@ byMagnitudeSymbolDefine("circle", byblue, 0)(III);
 
 $\therefore M' \magnitudeII \ngtr m' \magnitudeIII$,\\
 но $M' \magnitudeI > m' \magnitudeIII$,\\
-поскольку $m' \magnitudeIII$, первое кратное, которое $> M' \magnitudeIb$, в~то время как $(m' - 1)\magnitudeIII$ или $m' \magnitudeIII - \magnitudeIII \ngtr M' \magnitudeIa$.
+поскольку $m' \magnitudeIII$, первое кратное, которое $> M' \magnitudeIb$, в~то время как $(m' - 1)\magnitudeIII$ или $m' \magnitudeIII - \magnitudeIII \ngtr M' \magnitudeIa$, и $\magnitudeIII \ngtr M' \magnitudeIa$.
 
 $\therefore m' \magnitudeIII - \magnitudeIII + \magnitudeIII$ должна быть $< M' \magnitudeIb + M' \magnitudeIa$,
 то есть, $m' \magnitudeIII$ должна быть $< M' \magnitudeI$.
@@ -10701,7 +10701,7 @@ $ar^5 : ar^4 :: ar^4 : ar^3 :: ar^3 : ar^2 :: ar^2 : ar :: ar : a$,\\
 Так, отношение, составленное из отношений\\
 $\color[byred]{2} : \color[byred]{3}$, $\color[byyellow]{4} : \color[byyellow]{7}$, $\color[byblue]{6} : \color[byblue]{11}$, $\color[byblack]{2} : \color[byblack]{5}$,\\
 будет отношением $\color[byred]{2} \times \color[byyellow]{4} \times \color[byblue]{6} \times \color[byblack]{2} : \color[byred]{3} \times \color[byyellow]{7} \times \color[byblue]{11} \times \color[byblack]{5}$,\\
-или отношением $96 : 1155$ или $32 : 285$.
+или отношением $96 : 1155$ или $32 : 385$.
 \stopCenterAlign
 
 \def\varA{\color[byred]{A}}
