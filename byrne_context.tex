@@ -10954,7 +10954,7 @@ draw byLabelsOnPolygon(A, Q, D, C, B, M)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{and parallelograms having the same altitude are to one another as their bases.}
 
-Let the triangles \drawPolygon[bottom]{ABC} and \drawPolygon[bottom]{ACD} have a common vertex and their bases \drawUnitLine{BC} and \drawUnitLine{CD} in the same straight line.
+Let the triangles \drawPolygon[bottom]{ABC} and \drawPolygon[bottom]{ACD} have a common vertex, and their bases \drawUnitLine{BC} and \drawUnitLine{CD} in the same straight line.
 
 Produce \drawUnitLine{BC,CD} both ways, take successively on \drawUnitLine{CD} produced lines equal to it; and on \drawUnitLine{BC} produced lines successively equal to it; and draw lines from the common vertex to their extremities.
 
@@ -11356,7 +11356,7 @@ $\therefore \drawUnitLine{FG} : \drawUnitLine{FD} :: \drawUnitLine{EF} : \drawUn
 and consequently $\drawUnitLine{FG} = \drawUnitLine{EF}$ \inprop[prop:V.IX];\\
 $\therefore \triangleDEF\ =
 \drawLine[bottom][triangleDGF]{FD,FG,GD}$ in every respect \inprop[prop:I.IV].\\
-but $\drawAngle{GFD} = \drawAngle{A}$ (\conststr),\\
+But $\drawAngle{GFD} = \drawAngle{A}$ (\conststr),\\
 and $\therefore \drawAngle{EFD} = \drawAngle{A}$;\\
 and since also $\drawAngle{EFD} = \drawAngle{C}$,\\
 $\drawAngle{E} = \drawAngle{B}$ \inprop[prop:I.XXXII];\\
@@ -11404,7 +11404,7 @@ draw byLabelsOnPolygon(D, F, E)(0, 0);
 \problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{CA,BC,AB} and \drawLine[bottom][triangleDEF]{FD,EF,DE}) have one angle in each equal (\drawAngle{F} equal to \drawAngle{C}), the sides about two other angles ($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$), and each of the remaining angles (\drawAngle{A} and \drawAngle{D}) either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
 
 \startCenterAlign
-First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
+First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides, are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
 
 $\because \drawAngle{C} = \drawAngle{F}$ (\hypstr) and $\drawAngle{GBC} = \drawAngle{E}$ (\conststr)\\ %Because
 $\therefore \drawAngle{CGB} = \drawAngle{D}$ \inprop[prop:I.XXXII];
@@ -11424,7 +11424,7 @@ $\therefore$ they are equal, and since $\drawAngle{C} = \drawAngle{F}$ (\hypstr)
 $\therefore \drawAngle{A} = \drawAngle{D}$ \inprop[prop:I.XXXII], and therefore the triangles are equiangular.
 \stopCenterAlign
 
-But if \drawAngle{A} and \drawAngle{D} be assumed to be each not less than a right angle, it may be proved as before, that the triangles are equiangular, and have the sides about equal angles proportional \inprop[prop:VI.IV].
+But if \drawAngle{A} and \drawAngle{D} be assumed to be each not less than a right angle, it may be proved as before, that the triangles are equiangular, and have the sides about equal the angles proportional \inprop[prop:VI.IV].
 
 \qed
 \stopProposition
@@ -11452,12 +11452,14 @@ draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 \problemNP{I}{n}{a right angled tiangle (\drawPolygon[bottom][triangleABC]{ABD,ADC}), if a perpendicular (\drawUnitLine{AD}) be drawn from the right angle to the opposite side, the triangles (\drawPolygon[bottom][triangleABD]{ABD}, \drawPolygon[bottom][triangleADC]{ADC}) on each side of it are similar to the whole triangle and to each other.}
 
 \startCenterAlign
-$\because \drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:XI], and \drawAngle{B} common to \triangleABC\ and \triangleABD;\\ % Because
+$\because \drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:XI],\\
+and \drawAngle{B} common to \triangleABC\ and \triangleABD;\\ % Because
 $\drawAngle{C} = \drawAngle{DAB}$ \inprop[prop:I.XXXII];
 
-$\therefore$ \triangleABC\ and \triangleABD\ are equiangular and consequently have their sides about equal angles proportional \inprop[prop:VI.IV], and are therefore similar \indef[def:VI.I].
+$\therefore$ \triangleABC\ and \triangleABD\ are equiangular; and consequently have their sides about the equal angles proportional \inprop[prop:VI.IV], and are therefore similar \indef[def:VI.I].
 
-In like manner it may be proved that \triangleADC\ is similar to \triangleABC; but \triangleABD\ has been shown to be similar to \triangleABC; $\therefore$ \triangleABD\ and \triangleADC\ are similar to the whole and to each other.
+In like manner it may be proved that \triangleADC\ is similar to \triangleABC; but \triangleABD\ has been shown to be similar to \triangleABC;\\
+$\therefore$ \triangleABD\ and \triangleADC\ are similar to the whole and to each other.
 \stopCenterAlign
 
 \qed
@@ -11664,8 +11666,8 @@ $\left\{\vcenter{
 \startCenterAlign
 Draw \drawSizedLine{DG,GE} and \drawSizedLine{DH,HF} making any angle;\\
 take $\drawUnitLine{DG} = \drawUnitLine{A}$,\\
-take $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
-take $\drawUnitLine{DH} = \drawUnitLine{C}$,\\
+and $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
+also $\drawUnitLine{DH} = \drawUnitLine{C}$,\\
 draw \drawUnitLine{GH},\\
 and $\drawUnitLine{EF} \parallel \drawUnitLine{GH}$ \inprop[prop:I.XXXI];\\
 \drawSizedLine{HF} is the fourth proportional.
@@ -11780,9 +11782,9 @@ draw byLine(B, D, byyellow, 0, 0);
 draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{E}{qual}{parallelograms \drawPolygon{BFAD} and \drawPolygon{CEBG}, which have one angle in each equal, have the sides about equal angles reciprocally proportional\\
+\problemNP{E}{qual}{parallelograms \drawPolygon{BFAD} and \drawPolygon{CEBG}, which have one angle in each equal, have the sides about the equal angles reciprocally proportional\\
 ($\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$)\\
-And parallelograms which have one angle in each equal, and the sides about the reciprocally proportional, are equal.}
+And parallelograms which have one angle in each equal, and the sides about them reciprocally proportional, are equal.}
 
 \startCenterAlign
 Let \drawUnitLine{BG} and \drawUnitLine{BF}; and \drawUnitLine{BD} and \drawUnitLine{BE}, be so placed that \drawUnitLine{BG,BF} and \drawUnitLine{BD,BE} may be continued right lines. It is evident that they may assume this position. (\inpropL[prop:I.XIII], \inpropL[prop:I.XIV], \inpropL[prop:I.XV])
@@ -11831,7 +11833,7 @@ draw byNamedLineSeq(0)(noLine,AE,BA,BD,DA,AC);
 draw byLabelsOnPolygon(A, E, D, B, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{E}{qual}{triangles, which have one angle in each equal ($\drawAngle{DAE} = \drawAngle{BAC}$), have the sides about equal angles reciprocally proportional\\
+\problemNP{E}{qual}{triangles, which have one angle in each equal ($\drawAngle{DAE} = \drawAngle{BAC}$), have the sides about the equal angles reciprocally proportional\\
 ($\drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$)\\
 And two triangles which have an angle of the one equal to an angle of the other, and the sides about the equal angles reciprocally proportional, are equal.}
 
@@ -11906,7 +11908,7 @@ draw byLabelsOnPolygon(E, H, C, D)(0, 0);
 draw byLabelLine(0)(E, F);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$) the rectangle ($\drawUnitLine{AB} \times \drawUnitLine{F}$) contained by the extremes, is equal to the rectangle ($\drawUnitLine{CD} \times \drawUnitLine{E}$) contained by the means\\
+\problemNP{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$) the rectangle ($\drawUnitLine{AB} \times \drawUnitLine{F}$) contained by the extremes, is equal to the rectangle ($\drawUnitLine{CD} \times \drawUnitLine{E}$) contained by the means.\\
 And if the rectangle contained by the extremes be equal to the rectangle contained by the means, the four straight lines are proportional.}
 
 \startsubproposition[title={Part I.}]
@@ -12062,7 +12064,7 @@ draw byLabelsOnPolygon(G, H, K, B, A)(0, 0);
 \problemNP{O}{n}{a given straight line (\drawUnitLine{AB}) to construct a rectilinear figure similar to a given one (\drawPolygon[middle][polygonCD]{DCF,DFE,DEL}) and similarly placed.}
 
 \startCenterAlign
-Resolve the given figure into triangles by drawing lines \drawUnitLine{DF} and \drawUnitLine{DE}.
+Resolve the given figure into triangles by drawing the lines \drawUnitLine{DF} and \drawUnitLine{DE}.
 
 At the extremities of \drawUnitLine{AB} make\\
 $\drawAngle{GBA} = \drawAngle{FDC}$ and $\drawAngle{A} = \drawAngle{C}$;\\
@@ -12134,7 +12136,7 @@ $\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{D
 $\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \inprop[prop:V.XVI],\\
 but $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (\conststr),\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$\\
-consequently $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$ for they have the sides about equal angles \drawAngle{E} and \drawAngle{B} reciprocally proportional \inprop[prop:VI.XV];
+consequently $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$ for they have the sides about the equal angles \drawAngle{E} and \drawAngle{B} reciprocally proportional \inprop[prop:VI.XV];
 
 $\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \inprop[prop:V.VII];\\
 but $\triangleABC : \triangleABG :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$ \inprop[prop:VI.I],
@@ -12195,7 +12197,7 @@ draw byLabelsOnPolygon(F, L, K, H, G)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{S}{imilar}{polygons may be divided into the same number of similar triangles, each similar pair of which are proportional to the polygons; and the polygons are to each other in the duplicate ratio of their homologous sides.}
 
-Draw \drawUnitLine{BE} and \drawUnitLine{BD}, and \drawUnitLine{GL} and \drawUnitLine{GK}, resolving the polygons into triangles. Then because the polygons are similar $\drawAngle{C} = \drawAngle{H}$, and $\drawUnitLine{BC} : \drawUnitLine{CD} :: \drawUnitLine{GH} : \drawUnitLine{HK}$
+Draw \drawUnitLine{BE} and \drawUnitLine{BD}, and \drawUnitLine{GL} and \drawUnitLine{GK}, resolving the polygons into triangles. Then because the polygons are similar, $\drawAngle{C} = \drawAngle{H}$, and $\drawUnitLine{BC} : \drawUnitLine{CD} :: \drawUnitLine{GH} : \drawUnitLine{HK}$
 
 \startCenterAlign
 $\therefore$ \drawPolygon{BCD} and \drawPolygon{GHK} are similar,\\
@@ -12203,7 +12205,7 @@ and $\drawAngle{BDC} = \drawAngle{GKH}$ \inprop[prop:VI.VI];
 
 but $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$ because they are angles of similar polygons; therefore the remainders \drawAngle{BDE} and \drawAngle{GKL} are equal;\\
 hence $\drawUnitLine{BD} : \drawUnitLine{CD} :: \drawUnitLine{GK} : \drawUnitLine{HK}$,\\
-on account if the similar triangles,\\
+on account of the similar triangles,\\
 and $\drawUnitLine{CD} : \drawUnitLine{DE} :: \drawUnitLine{HK} : \drawUnitLine{KL}$,\\
 on account of the similar polygons,\\
 $\therefore \drawUnitLine{BD} : \drawUnitLine{DE} :: \drawUnitLine{GK} : \drawUnitLine{KL}$,\\
@@ -12257,7 +12259,7 @@ endfor;
 \drawCurrentPictureInMargin
 \problemNP{R}{ectilinear}{figures (\drawPolygon[bottom]{A} and \drawPolygon[bottom]{B}) which are similar to the same figure (\drawPolygon[bottom]{C}) are similar also to each other.}
 
-Since \polygonA\ and \polygonC\ are similar, they are equiangular, and have the sides about the equal angles proportional \indef[def:VI.I]; and since figures \polygonB\ and \polygonC\ are also similar, they are equiangular, and have the sides about the equal angles proportional; therefore \polygonA\ and \polygonB\ are also equiangular, and have the sides about the equal angles proportional \inprop[prop:V.XI], and therefore similar.
+Since \polygonA\ and \polygonC\ are similar, they are equiangular, and have the sides about the equal angles proportional \indef[def:VI.I]; and since the figures \polygonB\ and \polygonC\ are also similar, they are equiangular, and have the sides about the equal angles proportional; therefore \polygonA\ and \polygonB\ are also equiangular, and have the sides about the equal angles proportional \inprop[prop:V.XI], and are therefore similar.
 
 \qed
 \stopProposition
@@ -12375,7 +12377,7 @@ draw byLabelsOnPolygon(D, A, B, C, E, F, G, H)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP[3]{E}{quiangular}{parallelograms (\drawPolygon[bottom]{ABCD} and \drawPolygon[bottom]{EFGC}) are to one another in a ratio compounded of the ratios of their sides.}
 
-Let two of the sides \drawUnitLine{BC} and \drawUnitLine{CG} about the equal angles be placed so that they may form on straight line.
+Let two of the sides \drawUnitLine{BC} and \drawUnitLine{CG} about the equal angles be placed so that they may form one straight line.
 
 \startCenterAlign
 Since $\drawAngle{BCD} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
@@ -12470,7 +12472,7 @@ are similar \inprop[prop:VI.IV],\\
 $\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{GA,DG} : \drawUnitLine{DK,KC}$;
 
 and the remaining opposite sides are equal to those,\\
-$\therefore$ \parallelogramAEFG\ and \parallelogramABCD\ have sides about the equal angles proportional, and are therefore similar.
+$\therefore$ \parallelogramAEFG\ and \parallelogramABCD\ have the sides about the equal angles proportional, and are therefore similar.
 
 In the same manner it can be demonstrated that the parallelograms \parallelogramABCD\ and \parallelogramFHCK\ are similar.\\
 Since, therefore, each of the parallelograms \parallelogramAEFG\ and \parallelogramFHCK\ is similar to \parallelogramABCD, they are similar to each other.
@@ -12740,7 +12742,7 @@ Then $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \
 But $\drawSizedLine{DE}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$ \inprop[prop:I.XLVII];
 
 $\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$,\\
-from both take $\drawSizedLine{EC}^2$,\\
+from both, take $\drawSizedLine{EC}^2$,\\
 and $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
 
 But $\drawSizedLine{DC} = \drawSizedLine{G}$ (\conststr),\\
@@ -12828,7 +12830,7 @@ byLineStylize(G, E, 0, 1, -1)(DEt);
 draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{cut a given straight line (\drawProportionalLine{AE,EB}) in extreme and mean ratio.}
+\problemNP{T}{o}{cut a given finite straight line (\drawProportionalLine{AE,EB}) in extreme and mean ratio.}
 
 \startCenterAlign
 On \drawProportionalLine{AE,EB} describe the square \drawPolygon[middle][squareABHC]{ACFE,EFHB} \inprop[prop:I.XLVI];\\
@@ -13105,7 +13107,7 @@ stopAutoLabeling;
 stopGlobalRotation;
 }, \&c.\ each $= \arcEF$, draw the radii to the extremities of the equal arcs.
 
-The since the arcs \arcBC, \arcCK, \arcKL, \&c.\ are all equal, the angles \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, \&c.\ are also equal \inprop[prop:III.XXVII]; $\therefore$ \drawAngle{BC,CK,KL} is the same multiple of \drawAngle{BC} which are \drawFromCurrentPicture[middle][arcBL]{
+The since the arcs \arcBC, \arcCK, \arcKL, \&c.\ are all equal, the angles \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, \&c.\ are also equal \inprop[prop:III.XXVII]; $\therefore$ \drawAngle{BC,CK,KL} is the same multiple of \drawAngle{BC} which the arc \drawFromCurrentPicture[middle][arcBL]{
 startGlobalRotation(180-angle(B-L));
 draw byNamedArc(BC,CK,KL);
 stopGlobalRotation;
@@ -13113,7 +13115,7 @@ stopGlobalRotation;
 startGlobalRotation(180-angle(E-N));
 draw byNamedArc(EF,FM,MN);
 stopGlobalRotation;
-} is of arc \arcEF.
+} is of the arc \arcEF.
 
 
 \startCenterAlign
