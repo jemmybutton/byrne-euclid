@@ -136,15 +136,17 @@
 	\global\expandafter\advance\csname ltrn#1\endcsname by 1
 \fi
 \doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
-{\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][size=artbox]\ignorespaces}
-{\doifelsefile{lettrines/#1.pdf}
-{\externalfigure[lettrines/#1.pdf][width=1.5cm,height=1.5cm]\ignorespaces}
-{\ignorespaces
-	\ifx#1\plateName
-		\framed[width=8cm,height=1.5cm,frame=off]{}\ignorespaces
-	\else
-		\framed[width=1.5cm,height=1.5cm]{\tfd #1}\ignorespaces
-	\fi}\ignorespaces}}
+	{\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][size=artbox]\ignorespaces}
+	{\doifelsefile{lettrines/#1.svg}
+		{\externalfigure[lettrines/#1.svg][height=1.5cm]\ignorespaces}
+		{\doifelsefile{lettrines/#1.pdf}
+			{\externalfigure[lettrines/#1.pdf][width=1.5cm,height=1.5cm]\ignorespaces}
+			{\ignorespaces
+			\ifx#1\plateName
+					\framed[width=8cm,height=1.5cm,frame=off]{}\ignorespaces
+				\else
+					\framed[width=1.5cm,height=1.5cm]{\tfd #1}\ignorespaces
+				\fi}\ignorespaces}}}
 
 % This one is used standalone, f. e. in the Introduction
 \def\regularLettrine#1{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-3pt}\vskip -5pt}\noindent}
