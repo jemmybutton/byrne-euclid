@@ -199,6 +199,7 @@
 
 \def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{startAutoLabeling;draw byNamedAngleWithDummySides(#1);stopAutoLabeling;}}
 
+\def\drawAngleWithSides#1{\drawFromCurrentPicture[middle][anglewithsides#1]{startAutoLabeling;draw byNamedAngleSides(#1)();stopAutoLabeling;}}
 
 \def\drawPolygon{\dodoubleempty\drawpolygon}
 \def\drawpolygon[#1][#2]#3{{\ignorespaces

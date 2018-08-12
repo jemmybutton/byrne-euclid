@@ -1889,8 +1889,8 @@ draw byLabelLineEnd(A, D, 0);
 \problemNP[5]{Е}{сли}{прямая линия \drawUnitLine{ED} восставленная на другой прямой линии \drawUnitLine{BC} образует с~ней углы, то это будут либо два прямых угла, либо их сумма будет равна двум прямым углам.}
 
 \startCenterAlign
-Если \drawUnitLine{ED} $\perp$ к~\drawUnitLine{BC} тогда,\\
-\drawAngle{ADB,EDA} и~$\drawAngle{CDE} = \drawTwoRightAngles$ \indef[def:I.X].
+Если $\drawUnitLine{ED} \perp \drawUnitLine{BC}$, тогда\\
+$\drawAngle{ADB,EDA} + \drawAngle{CDE} = \drawTwoRightAngles$ \indef[def:I.X].
 
 Но если \drawUnitLine{ED} будет не $\perp$ к~\drawUnitLine{BC},\\
 проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$ \inprop[prop:I.XI].
@@ -2014,11 +2014,7 @@ draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
 draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[middle]{BE,EC,AC,AB} внешний угол \drawFromCurrentPicture[middle][anglesECDpDCF]{
-startAutoLabeling;
-draw byNamedAngleSides(ECD,DCF)(CF);
-stopAutoLabeling;
-} будет больше любого из противолежащих ему внутренних углов \drawAngle{B} или \drawAngle{A}.
+\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[middle]{BE,EC,AC,AB} внешний угол \drawAngleWithSides{FCE} будет больше любого из противолежащих ему внутренних углов \drawAngle{B} или \drawAngle{A}.
 }
 
 \startCenterAlign
@@ -2031,10 +2027,10 @@ $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \in
 и~$\drawUnitLine{AE} = \drawUnitLine{ED}$ (\conststr).
 
 $\therefore \drawAngle{B} = \drawAngle{ECD}$ \inprop[prop:I.IV],\\
-$\therefore \anglesECDpDCF\ > \drawAngle{B}$.
+$\therefore \drawAngleWithSides{FCE} > \drawAngle{B}$.
 
 Так же можно показать, что при продлении \drawUnitLine{BC}, $\drawAngle{GCA} > \drawAngle{A}$, \\
-и, следовательно, \anglesECDpDCF\ который $= \drawAngle{GCA}$ будет $> \drawAngle{A}$.
+и, следовательно, \drawAngleWithSides{FCE} который $= \drawAngle{GCA}$ будет $> \drawAngle{A}$.
 \stopCenterAlign
 
 \qed
@@ -2407,27 +2403,11 @@ draw byLabelsOnPolygon(D, A, B, C)(0, 0);
 draw byLabelsOnPolygon(G, E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{Е}{сли}{у двух треугольников по две стороны соответственно равны друг другу ($\drawUnitLine[9mm]{AB} = \drawUnitLine[9mm]{EF}$ и~$\drawUnitLine[9mm]{AD} = \drawUnitLine[9mm]{GE}$), и~угол заключенный ними в~одном
-\drawFromCurrentPicture{
-startAutoLabeling;
-draw byNamedAngleSides(BAC,CAD)(AB,CA,AD);
-stopAutoLabeling;
-}
-больше, чем в~другом
-\drawFromCurrentPicture[middle][angleFEG]{
-startAutoLabeling;
-draw byNamedAngleSides(FEG)(EF, GE);
-stopAutoLabeling;
-},
-то сторона \drawUnitLine{DB} противолежащая большему углу больше стороны, противолежащей меньшему \drawUnitLine{FG}.
+\problemNP[3]{Е}{сли}{у двух треугольников по две стороны соответственно равны друг другу ($\drawUnitLine[9mm]{AB} = \drawUnitLine[9mm]{EF}$ и~$\drawUnitLine[9mm]{AD} = \drawUnitLine[9mm]{GE}$), и~угол заключенный ними в~одном \drawAngleWithSides{DAB} больше, чем в~другом \drawAngleWithSides{FEG}, то сторона \drawUnitLine{DB} противолежащая большему углу больше стороны, противолежащей меньшему \drawUnitLine{FG}.
 }
 
 \startCenterAlign
-Сделаем $\drawFromCurrentPicture[middle][angleBAC]{
-startAutoLabeling;
-draw byNamedAngleSides(BAC)(AB, CA);
-stopAutoLabeling;
-} = \angleFEG$ \inprop[prop:I.XXIII],\\
+Сделаем $\drawAngleWithSides{BAC} = \drawAngleWithSides{FEG}$ \inprop[prop:I.XXIII],\\
 и $\drawUnitLine{CA} = \drawUnitLine{GE}$ \inprop[prop:I.III],\\
 проведем \drawUnitLine{CD} и~\drawUnitLine{BC}.
 

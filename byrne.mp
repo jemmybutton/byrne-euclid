@@ -1619,8 +1619,8 @@ enddef;
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
 vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
-    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse, processedAnglesList;
-    string centerName, pointName[], processedAnglesList;
+    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse, processedAnglesList, processedLinesList;
+    string centerName, pointName[], processedAnglesList, processedLinesList;
     pair ac, p[];
     boolean uniqueCenter, angleCheck, doNotLabelCenter;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
@@ -1632,6 +1632,9 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
     doNotLabelCenter := false;
     scaleToUse := -1;
     processedAnglesList := "";
+    forsuffixes lN=linesList:
+        appendList(processedLinesList, str lN, 1, false);
+    endfor;
     forsuffixes aN=anglesList:
         if attributeExists("angle", "Synonym", str aN):
             appendList(processedAnglesList, str aN, 1, false);
@@ -1654,6 +1657,11 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
             scaleToUse := getAttribute("angle", "ScaleCorrection", str aN);
         fi;
     endfor;
+    if (length(processedLinesList) = 0):
+        if (known pointLinesList.scantokens(centerName)):
+            processedLinesList := pointLinesList.scantokens(centerName);
+        fi;
+    fi;
     if (scaleToUse < 0):
         scaleToUse := angleScale;
     fi;
@@ -1719,7 +1727,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                         lineCol := black;
                         lineDash := 0;
                         lineTh := 1;
-                        forsuffixes lN=linesList:
+                        forsuffixes lN=scantokens(processedLinesList):
                             if (getAttribute("line", "EndAName", str lN) = centerName):
                                 if (abs(angle(getAttribute("line", "EndB", str lN) - getAttribute("line", "EndA", str lN)) - angleDir[i]) < 1):
                                     lineCol := getAttribute("line", "Color", str lN);
