@@ -36,9 +36,10 @@ magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
 rayExtension := 1/3u;
 
-boolean textLabels, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
+boolean textLabels, ghostLines, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
 
 textLabels := false;
+ghostLines := true;
 omitDuplicateTextLabels := false;
 textLabelShift := lineWidth;
 autoLabelingMode := false;
@@ -323,10 +324,15 @@ enddef;
 
 def startMainPictureMode =
     begingroup
-        save mainPictureMode;
+        save mainPictureMode, ghostPicture;
         boolean mainPictureMode;
+        picture ghostPicture;
+        ghostPicture := image();
         mainPictureMode := true;
 enddef;
+
+picture ghostPicture;
+ghostPicture := image();
 
 def stopMainPictureMode =
     endgroup
@@ -405,6 +411,15 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
         = whatever[bS, bS shifted cutAngle2];
     clippingPath := clippingPathPoint1 -- clippingPathPoint2 -- clippingPathPoint3 -- clippingPathPoint4 -- cycle;
     clip p to clippingPath;
+    if mainPictureMode and ghostLines:
+        save gP;
+        picture gP;
+        gP := ghostPicture;
+        ghostPicture := image(
+            draw gP;
+            draw a--b withcolor white withpen pencircle scaled lineWidthHair;
+            );
+    fi;
     p rotated globalRotation
 enddef;
 
@@ -884,6 +899,52 @@ vardef byPointMarkDefine (suffix pointName)(expr col, sty) =
     setAttribute("point", "Style", str pointName, sty);
 enddef;
 
+vardef byPointXYZDefine (suffix pointName)(expr ox, oy, oz) =
+if mainPictureMode:
+    appendList(allPointsList, str pointName, 1, true);
+fi;
+    setAttribute("point", "X", str pointName, ox);
+    setAttribute("point", "Y", str pointName, oy);
+    setAttribute("point", "Z", str pointName, oz);
+    pair pointName;
+    pointName := (ox, oy);
+enddef;
+
+vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
+    save px, py, pz, ox, oy, oz, pointsToProcess;
+    numeric px, py, pz, ox, oy, oz;
+    string pointsToProcess;
+    if (length(str pointsList) = 0):
+        pointsToProcess := allPointsList;
+    else:
+        pointsToProcess := str pointsList;
+    fi;
+    forsuffixes i=scantokens(pointsToProcess):
+        ox := getAttribute("point", "X", str i);
+        oy := getAttribute("point", "Y", str i);
+        oz := getAttribute("point", "Z", str i);
+        px := + ox*cosd(za) + oy*sind(za) + oz*0;
+        py := - ox*sind(za) + oy*cosd(za) + oz*0;
+        ox := px; oy := py;
+        px := + ox*cosd(ya) + oz*sind(ya) + oy*0;
+        pz := - ox*sind(ya) + oz*cosd(ya) + oy*0;
+        ox := px; oz := pz;
+        pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
+        py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
+        oz := pz; oy := py;
+        i := (px, py);
+        if toRotate:
+            setAttribute("point", "X", str pointName, px);
+            setAttribute("point", "Y", str pointName, py);
+            setAttribute("point", "Z", str pointName, pz);
+        fi;
+    endfor;
+enddef;
+
+vardef byProjectPoints (expr xa, ya, za) =
+    byRotatePoints(xa, ya, za, false)();
+enddef;
+
 vardef byPointMarkRender (suffix pointName) =
     image(
         if (getAttribute("point", "Style", str pointName) = 0):
@@ -1299,7 +1360,7 @@ vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     ) rotated globalRotation
 enddef;
 
-vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
+vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName)=
     save pL, p, tn;
     path p;
     string pL;
@@ -1312,8 +1373,13 @@ vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
     endfor;
     setAttribute("polygon", "Path", str polygonName, p);
     setAttribute("polygon", "Color", str polygonName, col);
+    setAttribute("polygon", "Transparency", str polygonName, 1);
     setAttribute("polygon", "PointsList", str polygonName, pL);
     setAttribute("polygon", "Synonym", str polygonName, str polygonName);
+enddef;
+
+vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
+    byPolygonDefineWithName (pointsList)(col)(polygonName);
     byNamedPolygon(polygonName)
 enddef;
 
@@ -1328,13 +1394,42 @@ vardef byPolygon (text pointsList)(expr col)=
 enddef;
 
 vardef byNamedPolygon (text polygonsList) =
+    save polyPath, polyCol, polyTransp, polyGhost;
+    path polyPath;
+    color polyCol;
+    numeric polyTransp;
+    picture polyGhost;
     image(
         draw image(
             forsuffixes pN=polygonsList:
-                if (getAttribute("polygon", "Color", str pN) <> white):
-                    fill (getAttribute("polygon", "Path", str pN) scaled scaleFactor) withcolor getAttribute("polygon", "Color", str pN);
+                polyPath := getAttribute("polygon", "Path", str pN) scaled scaleFactor;
+                polyCol := getAttribute("polygon", "Color", str pN);
+                polyTransp := getAttribute("polygon", "Transparency", str pN);
+                if (polyCol <> white):
+                    fill polyPath
+                        withcolor
+                            if polyTransp = 1:
+                                polyCol
+                            else:
+                                transparent(1, polyTransp, polyCol)
+                            fi;
+                    polyGhost := image(
+                        draw ghostPicture;
+                        draw polyPath withcolor polyCol withpen pencircle scaled 2lineWidth;
+                        );
+                    clip polyGhost to polyPath;
+                    draw polyGhost;
                 else:
                     draw (getAttribute("polygon", "Path", str pN) scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
+                fi;
+                if mainPictureMode and ghostLines:
+                    save gP;
+                    picture gP;
+                    gP := ghostPicture;
+                    ghostPicture := image(
+                        draw gP;
+                        draw polyPath withcolor white withpen pencircle scaled lineWidthHair;
+                        );
                 fi;
             endfor;
             ) rotated globalRotation;
