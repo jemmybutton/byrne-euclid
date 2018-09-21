@@ -417,7 +417,13 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
         gP := ghostPicture;
         ghostPicture := image(
             draw gP;
-            draw a--b withcolor white withpen pencircle scaled lineWidthHair;
+            begingroup;
+                save ghostLines;
+                boolean ghostLines;
+                ghostLines := false;
+                draw byLineRender (a, b, white, dp, 0, c, d, ct, dt, s, sf);
+                draw byLineRender (a, b, col, dp, 2, c, d, ct, dt, s, sf);
+            endgroup;
             );
     fi;
     p rotated globalRotation
@@ -903,26 +909,35 @@ vardef byPointXYZDefine (suffix pointName)(expr ox, oy, oz) =
 if mainPictureMode:
     appendList(allPointsList, str pointName, 1, true);
 fi;
-    setAttribute("point", "X", str pointName, ox);
-    setAttribute("point", "Y", str pointName, oy);
-    setAttribute("point", "Z", str pointName, oz);
+    setAttribute("point", "XYZ", str pointName, (ox, oy, oz));
     pair pointName;
     pointName := (ox, oy);
 enddef;
 
 vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
-    save px, py, pz, ox, oy, oz, pointsToProcess;
+    save px, py, pz, oxyz, ox, oy, oz, pointsToProcess;
     numeric px, py, pz, ox, oy, oz;
+    color oxyz;
     string pointsToProcess;
-    if (length(str pointsList) = 0):
+    forsuffixes i=pointsList:
+        appendList(pointsToProcess, str i, 1, false);
+    endfor;
+    show(pointsToProcess);
+    if (length(pointsToProcess) = 0):
         pointsToProcess := allPointsList;
-    else:
-        pointsToProcess := str pointsList;
     fi;
     forsuffixes i=scantokens(pointsToProcess):
-        ox := getAttribute("point", "X", str i);
-        oy := getAttribute("point", "Y", str i);
-        oz := getAttribute("point", "Z", str i);
+        if attributeExists("point", "XYZ", str i):
+            oxyz := getAttribute("point", "XYZ", str i);
+        elseif typeOf(i) = "pair":
+            byPointXYZDefine(i)(xpart i, ypart i, 0);
+            oxyz := getAttribute("point", "XYZ", str i);
+        else:
+            errmessage("Point " & str i & " doesn't exist");
+        fi;
+        ox := redpart oxyz;
+        oy := greenpart oxyz;
+        oz := bluepart oxyz;
         px := + ox*cosd(za) + oy*sind(za) + oz*0;
         py := - ox*sind(za) + oy*cosd(za) + oz*0;
         ox := px; oy := py;
@@ -932,11 +947,10 @@ vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
         pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
         py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
         oz := pz; oy := py;
+        pair i;
         i := (px, py);
         if toRotate:
-            setAttribute("point", "X", str pointName, px);
-            setAttribute("point", "Y", str pointName, py);
-            setAttribute("point", "Z", str pointName, pz);
+            setAttribute("point", "XYZ", str pointName, (px,py,pz));
         fi;
     endfor;
 enddef;
