@@ -893,6 +893,93 @@ vardef generateLineSynonyms =
 enddef;
 
 %
+% Some general 3D stuff
+%
+
+color projectionAngle;
+projectionAngle := (0, 0, 0);
+
+primarydef somecolor colorrotated someangle =
+begingroup
+    save ox, oy, oz, px, py, pz, xa, ya, za;
+    ox := redpart somecolor;
+    oy := greenpart somecolor;
+    oz := bluepart somecolor;
+    xa := redpart someangle;
+    ya := greenpart someangle;
+    za := bluepart someangle;
+    px := + ox*cosd(za) + oy*sind(za) + oz*0;
+    py := - ox*sind(za) + oy*cosd(za) + oz*0;
+    ox := px; oy := py;
+    px := + ox*cosd(ya) + oz*sind(ya) + oy*0;
+    pz := - ox*sind(ya) + oz*cosd(ya) + oy*0;
+    ox := px; oz := pz;
+    pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
+    py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
+    oz := pz; oy := py;
+    (ox, oy, oz)
+endgroup
+enddef;
+
+vardef spaceRotated (suffix somepath)(expr someangle) =
+    save rv, tv, spacepoint, op, rp, tp;
+    path rv, tv;
+    color spacepoint[];
+    pair op[], rp[], tp[];
+    if (typeOf(thirdDimension.somepath) <> "path"):
+        path thirdDimension.somepath;
+        thirdDimension.somepath := somepath scaled 0;
+    fi;
+    for i := 0 step 1 until length(somepath):
+        op0 := point i of somepath;
+        spacepoint0 :=
+            (xpart(op0), ypart(op0),
+                xpart(point i of thirdDimension.somepath)
+                ) colorrotated someangle;
+        rp0 := (redpart(spacepoint0), greenpart(spacepoint0));
+        tp0 := (bluepart(spacepoint0), 0);
+        if (i = 0):
+            rv := rp0;
+            tv := tp0;
+        else:
+            op1 := postcontrol (i-1) of somepath;
+            spacepoint1 :=
+                (xpart(op1), ypart(op1),
+                    xpart(postcontrol (i-1) of thirdDimension.somepath)
+                    ) colorrotated someangle;
+            rp1 := (redpart(spacepoint1), greenpart(spacepoint1));
+            tp1 := (bluepart(spacepoint1), 0);
+            op2 := precontrol i of somepath;
+            spacepoint2 :=
+                (xpart(op2), ypart(op2),
+                    xpart(precontrol i of thirdDimension.somepath)
+                    ) colorrotated someangle;
+            rp2 := (redpart(spacepoint2), greenpart(spacepoint2));
+            tp2 := (bluepart(spacepoint2), 0);
+            rv := rv .. controls rp1 and rp2 ..
+                if ((i < length(somepath)) or (not cycle somepath)):
+                    rp0
+                else:
+                    cycle
+                fi;
+            tv := tv .. controls tp1 and tp2 ..
+                if ((i < length(somepath)) or (not cycle somepath)):
+                    tp0
+                else:
+                    cycle
+                fi;
+        fi;
+    endfor;
+    thirdDimension.somepath := tv;
+    rv
+enddef;
+
+vardef bySetProjection (expr xa, ya, za) =
+    projectionAngle := (xa, ya, za);
+    byRotatePoints(xa, ya, za, false)();
+enddef;
+
+%
 % Points
 %
 
@@ -915,8 +1002,7 @@ fi;
 enddef;
 
 vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
-    save px, py, pz, oxyz, ox, oy, oz, pointsToProcess;
-    numeric px, py, pz, ox, oy, oz;
+    save oxyz, pointsToProcess;
     color oxyz;
     string pointsToProcess;
     forsuffixes i=pointsList:
@@ -935,28 +1021,13 @@ vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
         else:
             errmessage("Point " & str i & " doesn't exist");
         fi;
-        ox := redpart oxyz;
-        oy := greenpart oxyz;
-        oz := bluepart oxyz;
-        px := + ox*cosd(za) + oy*sind(za) + oz*0;
-        py := - ox*sind(za) + oy*cosd(za) + oz*0;
-        ox := px; oy := py;
-        px := + ox*cosd(ya) + oz*sind(ya) + oy*0;
-        pz := - ox*sind(ya) + oz*cosd(ya) + oy*0;
-        ox := px; oz := pz;
-        pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
-        py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
-        oz := pz; oy := py;
+        oxyz := oxyz colorrotated (xa, ya, za);
         pair i;
-        i := (px, py);
+        i := (redpart(oxyz), greenpart(oxyz));
         if toRotate:
-            setAttribute("point", "XYZ", str pointName, (px,py,pz));
+            setAttribute("point", "XYZ", str pointName, oxyz);
         fi;
     endfor;
-enddef;
-
-vardef byProjectPoints (expr xa, ya, za) =
-    byRotatePoints(xa, ya, za, false)();
 enddef;
 
 vardef byPointMarkRender (suffix pointName) =
@@ -1099,19 +1170,23 @@ enddef;
 % Arcs and circles
 %
 
-vardef byArcRender (expr o, b, e, r, col, dp, th, s, et) =
-    save p, q, m, t, currentLineWidth;
-    path p[];
+vardef byArcRender (expr o, b, e, r, sr, col, dp, th, s, et) =
+    save p, q, m, t, currentLineWidth, srCircle;
+    path p[], srCircle;
     picture q;
     pair t[];
     numeric m[];
     numeric currentLineWidth;
+    save thirdDimension;
     image(
+        srCircle := fullcircle;
+        srCircle := spaceRotated(srCircle)(sr);
+        srCircle := spaceRotated(srCircle)(projectionAngle);
         currentLineWidth := lineThickness(th);
-        p0 := ((subpath (b, e) of fullcircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
-        p1 := ((subpath (b, e) of fullcircle) scaled (r*scaleFactor)) shifted (o*scaleFactor);
-        p2 := (fullcircle scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
-        p3 := ((subpath (b + sign(b-e)*1/4, e + sign(e-b)*1/4) of fullcircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        p0 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
+        p1 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor)) shifted (o*scaleFactor);
+        p2 := (srCircle scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
+        p3 := ((subpath (b + sign(b-e)*1/4, e + sign(e-b)*1/4) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
         q := image(
             draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p1), dp) fi;
         );
@@ -1177,7 +1252,17 @@ enddef;
 vardef byNamedArcExact (text arcslist) =
     image(
         forsuffixes aN=arcslist:
-            draw byArcRender(getAttribute("arc", "Center", str aN), getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN), getAttribute("arc", "Diameter", str aN), getAttribute("arc", "Color", str aN), getAttribute("arc", "Dashed", str aN), getAttribute("arc", "Thin", str aN), getAttribute("arc", "Shift", str aN), getAttribute("arc", "EndType", str aN));
+            draw byArcRender(
+                getAttribute("arc", "Center", str aN),
+                getAttribute("arc", "Begin", str aN),
+                getAttribute("arc", "End", str aN),
+                getAttribute("arc", "Diameter", str aN),
+                (0, 0, 0),
+                getAttribute("arc", "Color", str aN),
+                getAttribute("arc", "Dashed", str aN),
+                getAttribute("arc", "Thin", str aN),
+                getAttribute("arc", "Shift", str aN),
+                getAttribute("arc", "EndType", str aN));
         endfor;
         if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
@@ -1188,7 +1273,15 @@ enddef;
 vardef byNamedArc (text arcslist) =
     image(
         forsuffixes aN=arcslist:
-            draw byArcRender(getAttribute("arc", "Center", str aN), getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN), getAttribute("arc", "Diameter", str aN), getAttribute("arc", "Color", str aN), getAttribute("arc", "Dashed", str aN), getAttribute("arc", "Thin", str aN), 0, 0);
+            draw byArcRender(
+                getAttribute("arc", "Center", str aN),
+                getAttribute("arc", "Begin", str aN),
+                getAttribute("arc", "End", str aN),
+                getAttribute("arc", "Diameter", str aN),
+                (0, 0, 0),
+                getAttribute("arc", "Color", str aN),
+                getAttribute("arc", "Dashed", str aN),
+                getAttribute("arc", "Thin", str aN), 0, 0);
         endfor;
         if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
@@ -1247,6 +1340,7 @@ vardef byCircleDefineFree (expr o, r, col, dp, th, s) (suffix circleName) =
     setAttribute("circle", "AName", str circleName, "");
     setAttribute("circle", "BName", str circleName, "");
     setAttribute("circle", "CName", str circleName, "");
+    setAttribute("circle", "SpaceRotation", str circleName, (0,0,0));
     setAttribute("circle", "Synonym", str circleName, str circleName);
 enddef;
 
@@ -1283,7 +1377,14 @@ enddef;
 vardef byNamedCircle (text circlesList) =
     image(
         forsuffixes cN=circlesList:
-            draw byArcRender (getAttribute("circle", "Center", str cN), 0, 8, getAttribute("circle", "Diameter", str cN), getAttribute("circle", "Color", str cN), getAttribute("circle", "Dashed", str cN), getAttribute("circle", "Thin", str cN), getAttribute("circle", "Shift", str cN), 0);
+            draw byArcRender (
+                getAttribute("circle", "Center", str cN), 0, 8,
+                getAttribute("circle", "Diameter", str cN),
+                getAttribute("circle", "SpaceRotation", str cN),
+                getAttribute("circle", "Color", str cN),
+                getAttribute("circle", "Dashed", str cN),
+                getAttribute("circle", "Thin", str cN),
+                getAttribute("circle", "Shift", str cN), 0);
             if (textLabels and autoLabelingMode):
                 if (getAttribute("circle", "CenterName", str cN) <> ""):
                     draw byTextLabel(pointLabel)(
@@ -1427,13 +1528,16 @@ vardef byNamedPolygon (text polygonsList) =
                             else:
                                 transparent(1, polyTransp, polyCol)
                             fi;
-                    polyGhost := image(
+                fi;
+                polyGhost := image(
+                    if (polyCol <> white):
                         draw ghostPicture;
-                        draw polyPath withcolor polyCol withpen pencircle scaled 2lineWidth;
-                        );
-                    clip polyGhost to polyPath;
-                    draw polyGhost;
-                else:
+                    fi;
+                    draw polyPath withcolor polyCol withpen pencircle scaled 2lineWidth;
+                    );
+                clip polyGhost to polyPath;
+                draw polyGhost;
+                if (polyCol = white):
                     draw (getAttribute("polygon", "Path", str pN) scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
                 fi;
                 if mainPictureMode and ghostLines:
