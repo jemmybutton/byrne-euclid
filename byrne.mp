@@ -999,6 +999,12 @@ vardef byPointLabelDefine (suffix pointName)(expr t) =
     setAttribute("point", "Label", str pointName, t);
 enddef;
 
+vardef byPointLabelRemove (text pointsList) =
+    forsuffixes i=pointsList:
+    	byPointLabelDefine(i, "");
+    endfor;
+enddef;
+
 vardef byPointMarkDefine (suffix pointName)(expr col, sty) =
     setAttribute("point", "Color", str pointName, col);
     setAttribute("point", "Style", str pointName, sty);
@@ -1321,10 +1327,6 @@ vardef byNamedArc (text arcslist) =
             draw byNamedArcLabel(arcslist);
         fi;
     )
-enddef;
-
-vardef byReturnArcCenter (expr arcName) =
-    scantokens(getAttribute("arc", "CenterName", arcName))
 enddef;
 
 vardef byNamedArcLabel (text arcslist) =
@@ -2625,7 +2627,7 @@ vardef byLabelsOnCircle(text pointsList)(suffix cn) =
     elseif string getAttribute("arc", "CenterName", str cn):
         t := getAttribute("arc", "Thin", str cn);
         s := getAttribute("arc", "Shift", str cn);
-        c := byReturnArcCenter(str cn);
+        c := scantokens(getAttribute("arc", "CenterName", str cn));
     else:
         errmessage("There is no circle or arc named " & str cn);
     fi;

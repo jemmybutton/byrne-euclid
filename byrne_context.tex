@@ -1107,10 +1107,7 @@ or A is to B, as C is to D.
 	D := dir(90)*s;
 	byAngleDefine(B, A, C, byblack, 1);
 	byAngleDefine(B, A, D, byblack, 1);
-	byPointLabelDefine(A, "");
-	byPointLabelDefine(B, "");
-	byPointLabelDefine(C, "");
-	byPointLabelDefine(D, "");
+	byPointLabelRemove(A,B,C,D);
 }
 
 \symb{\drawAngle{BAC}}
@@ -1132,8 +1129,7 @@ or A is to B, as C is to D.
 		byLineDefine (A, D, byblack, 0, 0);
 		byLineDefine (B, D, byblack, 0, 0);
 		byLineDefine (C, D, byblack, 0, 0);
-	byPointLabelDefine(A, "");
-	byPointLabelDefine(D, "");
+	byPointLabelRemove(A,D);
 }
 
 \symb{\drawFromCurrentPicture{
@@ -4605,9 +4601,9 @@ F := (-h, 0);
 G := 1/2[B, F];
 r := abs(B - G);
 H := (D--(E shifted ((E-D)*10))) intersectionpoint ((fullcircle scaled 2r) shifted G);
+byPointLabelRemove(a,b,c,d,e,f);
 forsuffixes i=a,b,c,d,e,f:
 	i := i shifted (xpart(G)-xpart(1/2[urcorner(A),ulcorner(A)]), r - ypart(lrcorner(A)) + 1/2u);
-	byPointLabelDefine(i, "");
 endfor;
 draw byPolygon(a,b,c,d,e,f)(byyellow);
 draw byPolygon(B,C,D,E)(byred);
@@ -12252,9 +12248,7 @@ Cc := (Ac scaled s2) shifted d2;
 draw byPolygonWithName(Aa,Ab,Ac)(byred)(A);
 draw byPolygonWithName(Ba,Bb,Bc)(byblue)(B);
 draw byPolygonWithName(Ca,Cb,Cc)(byyellow)(C);
-forsuffixes i=Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc:
-	byPointLabelDefine(i, "");
-endfor;
+byPointLabelRemove(Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc);
 }
 \drawCurrentPictureInMargin
 \problemNP{R}{ectilinear}{figures (\drawPolygon[bottom]{A} and \drawPolygon[bottom]{B}) which are similar to the same figure (\drawPolygon[bottom]{C}) are similar also to each other.}
@@ -12302,9 +12296,7 @@ draw byLineWithName(Ob, Oe, byblack, 1, 0)(O);
 draw byLine(E, F, byred, 0, 0);
 draw byLine(G, H, byyellow, 0, 0);
 draw byLineWithName(Pb, Pe, byred, 1, 0)(P);
-forsuffixes i=Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L:
-	byPointLabelDefine(i, "");
-endfor;
+byPointLabelRemove(Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L);
 draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }
 \drawCurrentPicture
@@ -12502,9 +12494,9 @@ Dc := dir(144) scaled 1/2u;
 Dd := dir(-144) scaled 3/5u;
 De := dir(-72) scaled 1/2u;
 d1 := (3u, 3/2u);
+byPointLabelRemove(Da,Db,Dc,Dd,De);
 forsuffixes i=Da,Db,Dc,Dd,De:
 	i := ((i rotated 36) scaled 3/2) shifted d1;
-	byPointLabelDefine(i, "");
 endfor;
 draw byPolygonWithName(Da,Db,Dc,Dd,De)(byblue)(D);
 pair F, M;
@@ -12884,9 +12876,7 @@ byLineDefine(B, D, byblue, 1, 0);
 byLineDefine(D, C, byblue, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(-1)(AB,BD,DC,CA);
-forsuffixes i=H, G, L, K, F, E:
-	byPointLabelDefine(i, "");
-endfor;
+byPointLabelRemove(H, G, L, K, F, E);
 draw byLabelsOnPolygon(B, F, E, A, L, K, C, H, G)(0, 0);
 draw byLabelsOnPolygon(A, D, C)(2, 0);
 }
