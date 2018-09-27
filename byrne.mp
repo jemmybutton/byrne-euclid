@@ -1505,10 +1505,77 @@ vardef byNamedArbitraryFigure (text arbitraryFiguresList) =
     path p;
     image(
         forsuffixes pN=arbitraryFiguresList:
-            p := (getAttribute("arbitraryFigure", "Path", str pN) scaled scaleFactor);
-            draw p withpen pencircle scaled lineThickness(getAttribute("arbitraryFigure", "Thin", str pN)) withcolor getAttribute("arbitraryFigure", "Color", str pN) if (getAttribute("arbitraryFigure", "Dashed", str pN) > 0): dashed byDashPattern(arclength(p), getAttribute("arbitraryFigure", "Dashed", str pN)) fi;
+            p := getAttribute("arbitraryFigure", "Path", str pN);
+            draw byArbitraryFigureRender
+                (p, getAttribute("arbitraryFigure", "Color", str pN),
+                    getAttribute("arbitraryFigure", "Dashed", str pN),
+                    getAttribute("arbitraryFigure", "Thin", str pN));
         endfor;
     ) rotated globalRotation
+enddef;
+
+vardef byArbitraryFigureRender (expr p, col, dp, th) =
+    image(
+        draw (p scaled scaleFactor)
+            withpen pencircle scaled lineThickness(th)
+            withcolor col
+            if (dp > 0):
+                dashed byDashPattern(arclength(p), dp)
+            fi;
+        )
+enddef;
+
+vardef byArbitraryCurveDefine (text pointsList)(expr col, dp, th)(suffix arbitraryCurveName) =
+    save pL, p;
+    string pL;
+    path p;
+    pL := "";
+    p := byListToPath(pointsList);
+    forsuffixes pN=pointsList:
+        appendList(pL, str pN, 1, false);
+    endfor;
+    setAttribute("arbitraryCurve", "PointsList", str arbitraryCurveName, pL);
+    setAttribute("arbitraryCurve", "Path", str arbitraryCurveName, p);
+    setAttribute("arbitraryCurve", "Color", str arbitraryCurveName, col);
+    setAttribute("arbitraryCurve", "Dashed", str arbitraryCurveName, dp);
+    setAttribute("arbitraryCurve", "Thin", str arbitraryCurveName, th);
+    setAttribute("arbitraryCurve", "Synonym", str arbitraryCurveName, str arbitraryCurveName);
+enddef;
+
+vardef byNamedArbitraryCurve (text curvesList) =
+    save p;
+    path p;
+    image(
+        forsuffixes cN=curvesList:
+            p := byListToPath(scantokens(getAttribute("arbitraryCurve", "PointsList", str cN)));
+            draw byArbitraryFigureRender
+                (p, getAttribute("arbitraryCurve", "Color", str cN),
+                    getAttribute("arbitraryCurve", "Dashed", str cN),
+                    getAttribute("arbitraryCurve", "Thin", str cN)) rotated globalRotation;
+            if (autoLabelingMode):
+                if (textLabels):
+                    draw byLabelsOnPolygon(scantokens(getAttribute("arbitraryCurve", "PointsList", str cN)), noPoint)(1, 0);
+                fi;
+            fi;
+        endfor;
+        )
+enddef;
+
+vardef byListToPath(text pointsList) =
+    save pathString, rp;
+    string pathString;
+    path rp;
+    pathString := "";
+    forsuffixes pN=pointsList:
+        pathString := pathString & str pN & "..";
+    endfor;
+    rp := scantokens(substring (0, length(pathString) - 2) of pathString);
+    rp
+enddef;
+
+vardef byArbitraryCurve (text pointsList)(expr col, dp, th)(suffix arbitraryCurveName) =
+    byArbitraryCurveDefine (pointsList)(col, dp, th)(arbitraryCurveName);
+    byNamedArbitraryCurve(arbitraryCurveName)
 enddef;
 
 %
@@ -1530,7 +1597,15 @@ vardef byNamedFilledCircleSegment (text filledCircleSegmentList) =
     path p;
     image(
         forsuffixes csN=filledCircleSegmentList:
-            fill ((subpath (getAttribute("filledCircleSegment", "Begin", str csN), getAttribute("filledCircleSegment", "End", str csN)) of fullcircle)--cycle) scaled (getAttribute("filledCircleSegment", "Diameter", str csN)*scaleFactor) shifted (getAttribute("filledCircleSegment", "Center", str csN)*scaleFactor) withcolor getAttribute("filledCircleSegment", "Color", str csN);
+            fill (
+                (subpath
+                    (getAttribute("filledCircleSegment", "Begin", str csN),
+                    getAttribute("filledCircleSegment", "End", str csN))
+                        of fullcircle)
+                    --cycle)
+                    scaled (getAttribute("filledCircleSegment", "Diameter", str csN)*scaleFactor)
+                    shifted (getAttribute("filledCircleSegment", "Center", str csN)*scaleFactor)
+                    withcolor getAttribute("filledCircleSegment", "Color", str csN);
         endfor;
     ) rotated globalRotation
 enddef;
