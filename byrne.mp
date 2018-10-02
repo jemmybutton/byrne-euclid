@@ -53,13 +53,15 @@ vardef sin primary x = (sind(x*radian)) enddef;
 
 vardef cos primary x = (cosd(x*radian)) enddef;
 
-color byred, byblue, byyellow, byblack, bygrey, bytransparent;
+color byred, byblue, byyellow, byblack, bygrey, bytransparent, byDefaultAngleOptionalColor;
 byred := (.85, .3, .1);
 byblue := (.15, .35, .6);
 byyellow := (.95, .7, 0.1);
 byblack := black;
 bygrey := (.8, .8, .8);
 bytransparent := 0.99white;
+
+byDefaultAngleOptionalColor := white;
 
 linecap := butt;
 
@@ -971,18 +973,31 @@ vardef isInPlane (expr colPoint, colPlaneA, colPlaneB, colPlaneC) =
     save vecsToCompare, rv;
     color vecsToCompare[];
     boolean rv;
+    rv := false;
     if (colPoint = colPlaneA)
         or (colPoint = colPlaneB)
         or (colPoint = colPlaneC):
         rv := true;
     else:
-        vecsToCompare1 := unitvectorXYZ((colPlaneA-colPlaneB) crossproduct (colPlaneC-colPlaneB));
-        vecsToCompare2 := unitvectorXYZ((colPoint-colPlaneB) crossproduct (colPlaneC-colPlaneB));
-        if ((absXYZ(vecsToCompare1 - vecsToCompare2) < 1/100)
-            or (absXYZ(vecsToCompare1 + vecsToCompare2) < 1/100)):
+        vecsToCompare1 := colPlaneA-colPlaneB;
+        vecsToCompare2 := colPlaneC-colPlaneB;
+        vecsToCompare3 := colPoint-colPlaneB;
+    fi;
+    if not rv:
+        if ((absXYZ(unitvectorXYZ(vecsToCompare1) - unitvectorXYZ(vecsToCompare3)) < 1/100)
+            or (absXYZ(unitvectorXYZ(vecsToCompare1) + unitvectorXYZ(vecsToCompare3)) < 1/100)
+            or (absXYZ(unitvectorXYZ(vecsToCompare2) - unitvectorXYZ(vecsToCompare3)) < 1/100)
+            or (absXYZ(unitvectorXYZ(vecsToCompare2) + unitvectorXYZ(vecsToCompare3)) < 1/100)):
             rv := true;
         else:
-            rv := false;
+            vecsToCompare4 := unitvectorXYZ(vecsToCompare1 crossproduct vecsToCompare2);
+            vecsToCompare5 := unitvectorXYZ(vecsToCompare3 crossproduct vecsToCompare2);
+            if ((absXYZ(vecsToCompare4 - vecsToCompare5) < 1/100)
+                or (absXYZ(vecsToCompare4 + vecsToCompare5) < 1/100)):
+                rv := true;
+            else:
+                rv := false;
+            fi;
         fi;
     fi;
     rv
@@ -1056,8 +1071,6 @@ vardef bySetProjection (expr xa, ya, za) =
     projectionAngle := (xa, ya, za);
     byRotatePoints(xa, ya, za, false)();
 enddef;
-
-
 
 %
 % Points
@@ -1918,7 +1931,7 @@ fi;
     setAttribute("angle", "CVal", str angleName, angle(c-b));
     setAttribute("angle", "Direction", str angleName, ad);
     setAttribute("angle", "Color", str angleName, col);
-    setAttribute0("angle", "OptionalColor", str angleName, white);
+    setAttribute0("angle", "OptionalColor", str angleName, byDefaultAngleOptionalColor);
     setAttribute("angle", "Style", str angleName, sty);
     setAttribute("angle", "AName", str angleName, str a);
     setAttribute("angle", "BName", str angleName, str b);
@@ -2221,7 +2234,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                             if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
-                                if (getAttribute("angle", "Style", str aN) = 0) or (getAttribute0("angle", "OptionalColor", str aN) <> white):
+                                if (getAttribute("angle", "Style", str aN) = 0) or ((getAttribute0("angle", "OptionalColor", str aN) <> white) and (getAttribute0("angle", "OptionalColor", str aN) <> bytransparent)):
                                     angleType[i] := 0;
                                 fi;
                             fi;
@@ -2231,7 +2244,8 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
                             if ((getAttribute("angle", "Style", str aN) <> 0)
-                                    and (getAttribute0("angle", "OptionalColor", str aN) = white))
+                                    and ((getAttribute0("angle", "OptionalColor", str aN) = white)
+                                        or (getAttribute0("angle", "OptionalColor", str aN) = bytransparent)))
                                 or ((getAttribute("angle", "Style", str aN) = 0)
                                     and (getAttribute("angle", "Color", str aN) = white)):
                                 angleType[angleNum] := 1;
@@ -2592,10 +2606,10 @@ vardef byConstructCompoundAngle (expr angleName) =
             cwC := scantokens(cwCName) - scantokens(getAttribute("angle", "BName", str i));
             notInPlane := false;
             if threeDMode:
-                if not isInPlane(pointXYZ.scantokens(cwCName),
+                if (not isInPlane(pointXYZ.scantokens(cwCName),
                     pointXYZ.scantokens(pointA),
                     pointXYZ.scantokens(pointB),
-                    pointXYZ.scantokens(pointC)):
+                    pointXYZ.scantokens(pointC))):
                     notInPlane := true;
                 fi;
             fi;
