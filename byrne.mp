@@ -430,10 +430,16 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
 enddef;
 
 vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-if mainPictureMode:
-    appendList(allLinesList, str lineName, 1, true);
-fi;
-    setAttribute("line", "Angle", str lineName, angle(b-a));
+    save lA;
+    if mainPictureMode:
+        appendList(allLinesList, str lineName, 1, true);
+    fi;
+    if (a <> b):
+        lA := angle(b-a);
+    else:
+        lA := 0;
+    fi;
+    setAttribute("line", "Angle", str lineName, lA);
     setAttribute("line", "Color", str lineName, col);
     setAttribute("line", "Dashed", str lineName, dp);
     setAttribute("line", "Thin", str lineName, th);
@@ -447,6 +453,8 @@ fi;
     setAttribute("line", "EndBType", str lineName, 0);
     setAttribute("line", "EndAName", str lineName, str a);
     setAttribute("line", "EndBName", str lineName, str b);
+    setAttribute("line", "DirAName", str lineName, str a);
+    setAttribute("line", "DirBName", str lineName, str b);
     setAttribute("line", "UseLineLabel", str lineName, false);
     setAttribute("line", "Label", str lineName, str lineName);
     setAttribute("line", "Synonym", str lineName, str lineName);
@@ -456,10 +464,12 @@ vardef byLineDefine (suffix a, b) (expr col, dp, th) =
     byLineDefineWithName (a, b, col, dp, th) (scantokens(str a & str b));
 enddef;
 
-vardef byLineStylize (expr c, d, ct, dt, s) (suffix lineName) =
+vardef byLineStylize (suffix c, d)(expr ct, dt, s) (suffix lineName) =
     setAttribute("line", "Shift", str lineName, s);
     setAttribute("line", "DirA", str lineName, c);
     setAttribute("line", "DirB", str lineName, d);
+    setAttribute("line", "DirAName", str lineName, str c);
+    setAttribute("line", "DirBName", str lineName, str d);
     setAttribute("line", "EndAType", str lineName, ct);
     setAttribute("line", "EndBType", str lineName, dt);
 enddef;
@@ -469,7 +479,7 @@ vardef byLine (suffix a, b)(expr col, dp, th) =
     byNamedLineFull(a, b, 0, 0, 0)(scantokens(str a & str b))
 enddef;
 
-vardef byLineFull (suffix a, b)(expr col, dp, th, c, d, ct, dt, s) =
+vardef byLineFull (suffix a, b)(expr col, dp, th)(suffix c, d)(expr ct, dt, s) =
     byLineDefine (a, b) (col, dp, th);
     byLineStylize (c, d, ct, dt, s)(scantokens(str a & str b));
     byNamedLine(scantokens(str a & str b))
@@ -498,7 +508,12 @@ enddef;
 vardef byNamedLine (text linesList) =
     image(
         forsuffixes lN=linesList:
-            draw byNamedLineFull(getAttribute("line", "DirA", str lN), getAttribute("line", "DirB", str lN), getAttribute("line", "EndAType", str lN), getAttribute("line", "EndBType", str lN), getAttribute("line", "Shift", str lN))(lN);
+            draw byNamedLineFull(
+                scantokens(getAttribute("line", "DirAName", str lN)),
+                scantokens(getAttribute("line", "DirBName", str lN)),
+                getAttribute("line", "EndAType", str lN),
+                getAttribute("line", "EndBType", str lN),
+                getAttribute("line", "Shift", str lN))(lN);
         endfor;
     )
 enddef;
@@ -898,6 +913,8 @@ vardef generateLineSynonyms =
                 setAttribute("line", "EndBName", candidateName2, getAttribute("line", "EndAName", originalName));
                 setAttribute("line", "DirA", candidateName2, getAttribute("line", "DirB", originalName));
                 setAttribute("line", "DirB", candidateName2, getAttribute("line", "DirA", originalName));
+                setAttribute("line", "DirAName", candidateName2, getAttribute("line", "DirBName", originalName));
+                setAttribute("line", "DirBName", candidateName2, getAttribute("line", "DirAName", originalName));
                 setAttribute("line", "Angle", candidateName2, 180 + getAttribute("line", "Angle", originalName));
             fi;
         endfor;
@@ -931,6 +948,55 @@ begingroup
     oz := pz; oy := py;
     (ox, oy, oz)
 endgroup
+enddef;
+
+primarydef colorone crossproduct colortwo =
+begingroup
+    save xp, yp, zp;
+    numeric xp[], yp[], zp[];
+    xp1 := (redpart colorone)/cm;
+    yp1 := (greenpart colorone)/cm;
+    zp1 := (bluepart colorone)/cm;
+    xp2 := (redpart colortwo)/cm;
+    yp2 := (greenpart colortwo)/cm;
+    zp2 := (bluepart colortwo)/cm;
+    xp3 := ((yp1*zp2) - (zp1*yp2))*cm;
+    yp3 := ((zp1*xp2) - (xp1*zp2))*cm;
+    zp3 := ((xp1*yp2) - (yp1*xp2))*cm;
+    (xp3, yp3, zp3)
+endgroup
+enddef;
+
+vardef isInPlane (expr colPoint, colPlaneA, colPlaneB, colPlaneC) =
+    save vecsToCompare, rv;
+    color vecsToCompare[];
+    boolean rv;
+    if (colPoint = colPlaneA)
+        or (colPoint = colPlaneB)
+        or (colPoint = colPlaneC):
+        rv := true;
+    else:
+        vecsToCompare1 := unitvectorXYZ((colPlaneA-colPlaneB) crossproduct (colPlaneC-colPlaneB));
+        vecsToCompare2 := unitvectorXYZ((colPoint-colPlaneB) crossproduct (colPlaneC-colPlaneB));
+        if ((absXYZ(vecsToCompare1 - vecsToCompare2) < 1/100)
+            or (absXYZ(vecsToCompare1 + vecsToCompare2) < 1/100)):
+            rv := true;
+        else:
+            rv := false;
+        fi;
+    fi;
+    rv
+enddef;
+
+vardef unitvectorXYZ (expr somecolor) =
+    somecolor/absXYZ(somecolor)
+enddef;
+
+vardef absXYZ (expr somecolor) =
+    (sqrt(
+        ((redpart somecolor)/1cm)**2
+        + ((greenpart somecolor)/1cm)**2
+        + ((bluepart somecolor)/1cm)**2)*1cm)
 enddef;
 
 vardef spaceRotated (suffix somepath)(expr someangle) =
@@ -991,6 +1057,8 @@ vardef bySetProjection (expr xa, ya, za) =
     byRotatePoints(xa, ya, za, false)();
 enddef;
 
+
+
 %
 % Points
 %
@@ -1019,6 +1087,18 @@ fi;
     pointName := (ox, oy);
 enddef;
 
+% in order to automatically project points they need to be added
+% to allPointsList list.
+def byPair (text pointsList) =
+begingroup
+    save i;
+    pair pointsList;
+    forsuffixes i := pointsList:
+        appendList(allPointsList, str i, 1, true);
+    endfor;
+endgroup
+enddef;
+
 vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
     save oxyz, pointsToProcess;
     color oxyz;
@@ -1026,7 +1106,6 @@ vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
     forsuffixes i=pointsList:
         appendList(pointsToProcess, str i, 1, false);
     endfor;
-    show(pointsToProcess);
     if (length(pointsToProcess) = 0):
         pointsToProcess := allPointsList;
     fi;
@@ -1823,15 +1902,9 @@ fi;
     save p, q, d, ad, ac;
     path p;
     picture q;
-    pair d;
     numeric ad;
     boolean ac;
-    d := 1/2[unitvector(a-b),unitvector(c-b)];
-    if (abs(d) = 0):
-        d := (unitvector(a-c) rotated 90);
-    fi;
-    p := fullcircle rotated (180 + angle(d));
-    p := subpath(xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b])), xpart((p scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]))) of p;
+    p := byConstructAngleArc(a, b, c);
     ad := angle(point (arctime arclength(p)/2 of p) of p);
     if (ypart(unitvector(a-b) rotated -ad)) > 0:
         ac := true;
@@ -1847,13 +1920,74 @@ fi;
     setAttribute("angle", "Color", str angleName, col);
     setAttribute0("angle", "OptionalColor", str angleName, white);
     setAttribute("angle", "Style", str angleName, sty);
-    setAttribute("angle", "Center", str angleName, b);
     setAttribute("angle", "AName", str angleName, str a);
     setAttribute("angle", "BName", str angleName, str b);
     setAttribute("angle", "CName", str angleName, str c);
     setAttribute("angle", "ScaleCorrection", str angleName, 1);
     setAttribute("angle", "Standalone", str angleName, 0);
     setAttribute("angle", "Synonym", str angleName, str angleName);
+enddef;
+
+vardef byConstructAngleArc (suffix a, b, c) =
+    save p, d, cutTime;
+    pair d;
+    path p[];
+    numeric cutTime[];
+    d := 1/2[unitvector(a-b),unitvector(c-b)];
+    if (abs(d) = 0):
+        d := (unitvector(a-c) rotated 90);
+    fi;
+    p0 := fullcircle;
+    if (attributeExists("point", "XYZ", str a)
+        and attributeExists("point", "XYZ", str b)
+        and attributeExists("point", "XYZ", str c)):
+        p0 := byFullCircleToPlane(
+            getAttribute("point", "XYZ", str a),
+            getAttribute("point", "XYZ", str b),
+            getAttribute("point", "XYZ", str c)
+            );
+    fi;
+    cutTime1 := xpart((p0 scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b]));
+    cutTime2 := xpart((p0 scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]));
+    p1 := subpath (cutTime1, cutTime2) of p0;
+    p2 := subpath (cutTime1 - length(p0), cutTime2) of p0;
+    p3 := subpath (cutTime1 + length(p0), cutTime2) of p0;
+    if (arclength(p2) > arclength(p3)):
+        p4 := p3;
+    else:
+        p4 := p2;
+    fi;
+    if (arclength(p1) < arclength(p4)):
+        p4 := p1;
+    fi;
+    p4
+enddef;
+
+vardef byIsArcClockwise (expr p) =
+    save rv;
+    boolean rv;
+    if ypart(direction (1/2length(p)) of (p rotated -angle(point 1/2length(p) of p))) < 0:
+        rv := true;
+    else:
+        rv := false;
+    fi;
+    rv
+enddef;
+
+vardef byFullCircleToPlane (expr colPlaneA, colPlaneB, colPlaneC) =
+    save dvec, fvec, p;
+    color dvec;
+    pair fvec;
+    path p;
+    dvec := unitvectorXYZ((colPlaneA-colPlaneB) crossproduct (colPlaneC-colPlaneB));
+    dvec := dvec colorrotated projectionAngle;
+    fvec := (redpart dvec, greenpart dvec);
+    if (abs(fvec) > 0):
+        p := ((fullcircle rotated -angle(fvec)) xscaled sqrt(1-abs(fvec)**2)) rotated angle(fvec);
+    else:
+        p := fullcircle;
+    fi;
+    p
 enddef;
 
 vardef byAngleDefine (suffix a, b, c)(expr col, sty) =
@@ -1894,31 +2028,51 @@ vardef byAngleExtended (suffix a, b, c)(expr col, sty)(text optionalColors) =
 enddef;
 
 vardef byNamedAngle (text anglesList) =
-    save p, q;
+    save p, q, processedAL;
     picture q;
     path p;
+    string processedAL;
     image(
-        forsuffixes aN=anglesList:
-            if attributeExists("angle", "Synonym", str aN):
-                setAttribute("angle", "ScaleCorrection", str aN, angleScale);
-                p := getAttribute("angle", "Arc", str aN);
-                q := image(
-                    if (getAttribute("angle", "Color", str aN) <> white):
-                        if (typeOf(getAttribute("angle", "Style", str aN)) = "numeric"):
-                            draw scantokens(byAngleMacroName[getAttribute("angle", "Style", str aN)]) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
-                        elseif (typeOf(getAttribute("angle", "Style", str aN)) = "string"):
-                            draw scantokens("byAngleM" & getAttribute("angle", "Style", str aN)) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
-                        fi;
-                    else:
-                        draw byAngleMWhite(p, 0, 0);
+        processedAL := byProcessAnglesList(anglesList);
+        forsuffixes aN=scantokens(processedAL):
+            setAttribute("angle", "ScaleCorrection", str aN, angleScale);
+            p := byConstructAngleArc(
+                scantokens(getAttribute("angle", "AName", str aN)),
+                scantokens(getAttribute("angle", "BName", str aN)),
+                scantokens(getAttribute("angle", "CName", str aN)));
+            q := image(
+                if (getAttribute("angle", "Color", str aN) <> white):
+                    if (typeOf(getAttribute("angle", "Style", str aN)) = "numeric"):
+                        draw scantokens(byAngleMacroName[getAttribute("angle", "Style", str aN)]) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
+                    elseif (typeOf(getAttribute("angle", "Style", str aN)) = "string"):
+                        draw scantokens("byAngleM" & getAttribute("angle", "Style", str aN)) (p, getAttribute("angle", "Color", str aN), angleOptionalColor.scantokens(angleSynonym.aN));
                     fi;
-                );
-                draw (q shifted (getAttribute("angle", "Center", str aN) scaled scaleFactor)) rotated globalRotation;
-            else:
-                draw byNamedAngle(scantokens(byConstructCoupoundAngle(str aN)));
-            fi;
+                else:
+                    draw byAngleMWhite(p, 0, 0);
+                fi;
+            );
+            draw (q shifted (scantokens(getAttribute("angle", "BName", str aN)) scaled scaleFactor)) rotated globalRotation;
         endfor;
     )
+enddef;
+
+vardef byProcessAnglesList(text anglesListToProcess)=
+    save processedAnglesList, compoundAngleString;
+    string processedAnglesList, compoundAngleString;
+    processedAnglesList := "";
+    forsuffixes aN=anglesListToProcess:
+        if attributeExists("angle", "Synonym", str aN):
+            appendList(processedAnglesList, str aN, 1, false);
+        else:
+            compoundAngleString := byConstructCompoundAngle(str aN);
+            if compoundAngleString <> "":
+                appendList(processedAnglesList, compoundAngleString, 1, false);
+            else:
+                errmessage("Unknown angle: " & str aN);
+            fi;
+        fi;
+    endfor;
+    processedAnglesList
 enddef;
 
 string byAngleMacroName[];
@@ -1987,35 +2141,50 @@ enddef;
 % once it shifts inside an angle; and after that it clips everything
 % to angle outline.
 vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
-    save centerName, uniqueCenter, angleDir, angleCount, angleType, angleSide, anglePart ,angleNum, angleCheck, ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse, processedAnglesList, processedLinesList;
+    save centerName, uniqueCenter, angleGenArc, angleDir, angleCount, angleType, angleSide, anglePart, angleNum, angleCheck,
+        ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse,
+        processedAnglesList, processedLinesList,
+        planePoints, threeDMode, projectedCircle, labelVector;
     string centerName, pointName[], processedAnglesList, processedLinesList;
-    pair ac, p[];
-    boolean uniqueCenter, angleCheck, doNotLabelCenter;
+    pair ac, p[], labelVector;
+    boolean uniqueCenter, angleCheck, doNotLabelCenter, threeDMode;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
-    path compoundAnglePath, compoundAngleArc;
-    color lineCol;
+    path angleGenArc, compoundAnglePath, compoundAngleArc, projectedCircle;
+    color lineCol, planePoints[];
     picture outputImage;
     centerName := "";
     uniqueCenter := true;
     doNotLabelCenter := false;
     scaleToUse := -1;
-    processedAnglesList := "";
+    processedAnglesList := byProcessAnglesList(anglesList);
     forsuffixes lN=linesList:
         appendList(processedLinesList, str lN, 1, false);
     endfor;
-    forsuffixes aN=anglesList:
-        if attributeExists("angle", "Synonym", str aN):
-            appendList(processedAnglesList, str aN, 1, false);
-        else:
-            appendList(processedAnglesList, byConstructCoupoundAngle(str aN), 1, false);
-        fi;
-    endfor;
+    threeDMode := false;
     forsuffixes aN=scantokens(processedAnglesList):
-        ac := getAttribute("angle", "Center", str aN);
+        ac := scantokens(getAttribute("angle", "BName", str aN));
         if (centerName = ""):
             centerName := getAttribute("angle", "BName", str aN);
+            if (attributeExists("point", "XYZ", getAttribute("angle", "AName", str aN))
+                and attributeExists("point", "XYZ", getAttribute("angle", "BName", str aN))
+                and attributeExists("point", "XYZ", getAttribute("angle", "CName", str aN))):
+                threeDMode := true;
+                planePoints1 := getAttribute("point", "XYZ", getAttribute("angle", "AName", str aN));
+                planePoints2 := getAttribute("point", "XYZ", getAttribute("angle", "BName", str aN));
+                planePoints3 := getAttribute("point", "XYZ", getAttribute("angle", "CName", str aN));
+                projectedCircle := byFullCircleToPlane(planePoints1, planePoints2, planePoints3);
+            else:
+                projectedCircle := fullcircle;
+            fi;
         elseif (centerName <> getAttribute("angle", "BName", str aN)):
             uniqueCenter := false;
+        elseif threeDMode:
+            if (not isInPlane(getAttribute("point", "XYZ", getAttribute("angle", "AName", str aN)),
+                    planePoints1, planePoints2, planePoints3))
+                or (not isInPlane(getAttribute("point", "XYZ", getAttribute("angle", "CName", str aN)),
+                    planePoints1, planePoints2, planePoints3)):
+                errmessage("The angles are not coplanar");
+            fi;
         fi;
         if (getAttribute("angle", "Standalone", str aN) > 1):
             doNotLabelCenter := true;
@@ -2037,12 +2206,15 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
         startTempAngleScale(scaleToUse);
             if (uniqueCenter):
                 angleNum := 0;
-                show (processedAnglesList);
                 forsuffixes aN=scantokens(processedAnglesList):
-                    anglePart1 := angle(point 0 of getAttribute("angle", "Arc", str aN));
-                    as1 := sign(ypart((direction 0 of getAttribute("angle", "Arc", str aN)) rotated -anglePart1));
-                    anglePart2 := angle(point 0 of reverse(getAttribute("angle", "Arc", str aN)));
-                    as2 := sign(ypart((direction 0 of reverse(getAttribute("angle", "Arc", str aN))) rotated -anglePart2));
+                    angleGenArc := byConstructAngleArc(
+                        scantokens(getAttribute("angle", "AName", str aN)),
+                        scantokens(getAttribute("angle", "BName", str aN)),
+                        scantokens(getAttribute("angle", "CName", str aN)));
+                    anglePart1 := angle(point 0 of angleGenArc);
+                    as1 := sign(ypart((direction 0 of angleGenArc) rotated -anglePart1));
+                    anglePart2 := angle(point 0 of reverse(angleGenArc));
+                    as2 := sign(ypart((direction 0 of reverse(angleGenArc)) rotated -anglePart2));
                     for j=1,2:
                         angleCheck := true;
                         for i := 1 step 1 until angleNum:
@@ -2124,13 +2296,18 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     fi;
                 endfor;
                 if (j = 2):
-                    b := (angleDir[n[1]]/360)*8;
-                    e := (angleDir[n[2]]/360)*8;
-                    if (b > e): b := b - 8; fi;
-                    if (angleSide[n[1]] > angleSide[n[2]]):
-                        compoundAngleArc := ((subpath (b, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
+                    if not threeDMode:
+                        b := (angleDir[n[1]]/360)*8;
+                        e := (angleDir[n[2]]/360)*8;
                     else:
-                        compoundAngleArc := ((subpath (b + 8, e) of fullcircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
+                        b := xpart(projectedCircle intersectiontimes ((0, 0) -- dir(angleDir[n[1]])*10));
+                        e := xpart(projectedCircle intersectiontimes ((0, 0) -- dir(angleDir[n[2]])*10));
+                    fi;
+                    if (b > e): b := b - length(projectedCircle); fi;
+                    if (angleSide[n[1]] > angleSide[n[2]]):
+                        compoundAngleArc := ((subpath (b, e) of projectedCircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
+                    else:
+                        compoundAngleArc := ((subpath (b + 8, e) of projectedCircle) scaled (u * angleScale)) shifted (ac*scaleFactor);
                     fi;
                     compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
                 elseif (j <> 0):
@@ -2147,7 +2324,13 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
             draw outputImage rotated globalRotation;
             if (textLabels and autoLabelingMode) and (j=2):
                 for i=1,2:
-                    draw byTextLabel(pointLabel)(pointName[n[i]], ac + (dir(angleDir[n[i]])*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
+                    if not threeDMode:
+                        labelVector := dir(angleDir[n[i]]);
+                    else:
+                        labelVector := (projectedCircle intersectionpoint ((0, 0) -- dir(angleDir[n[i]])*10)) scaled 2;
+                    fi;
+                    draw byTextLabel(pointLabel)(pointName[n[i]],
+                        ac + (labelVector*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
                 endfor;
                 if not doNotLabelCenter:
                     draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
@@ -2349,10 +2532,10 @@ vardef sortPointAnglesList (expr anglesListToSort) =
     rv
 enddef;
 
-vardef byConstructCoupoundAngle (expr angleName) =
-    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, dirA, dirC, rv;
-    string pointA, pointB, pointC, cPointA, cPointB, cPointC, angleList, rv;
-    boolean isFirst, isLast;
+vardef byConstructCompoundAngle (expr angleName) =
+    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, cwAName, cwCName, dirA, dirC, rv, threeDMode, notInPlane;
+    string pointA, pointB, pointC, cPointA, cPointB, cPointC, cwAName, cwCName, angleList, rv;
+    boolean isFirst, isLast, threeDMode, notInPlane;
     pair cwA, cwC, dirA, dirC;
     angleList := "";
     numeric n;
@@ -2385,30 +2568,51 @@ vardef byConstructCoupoundAngle (expr angleName) =
         fi;
         dirA := scantokens(pointA) - scantokens(pointB);
         dirC := scantokens(pointC) - scantokens(pointB);
+        threeDMode := false;
+        if ((typeOf(pointXYZ.scantokens(pointA)) = "color")
+            and (typeOf(pointXYZ.scantokens(pointB)) = "color")
+            and (typeOf(pointXYZ.scantokens(pointC)) = "color")):
+            threeDMode := true;
+        fi;
         isFirst := false;
         isLast := false;
         forsuffixes i=scantokens(pointAnglesList.scantokens(pointB) & ", " & pointAnglesList.scantokens(pointB)):
-            if getAttribute("angle", "ArcClockwise", str i):
-                cwA := scantokens(getAttribute("angle", "CName", str i));
-                cwC := scantokens(getAttribute("angle", "AName", str i));
+            if byIsArcClockwise(byConstructAngleArc(
+                scantokens(getAttribute("angle", "AName", str i)),
+                scantokens(getAttribute("angle", "BName", str i)),
+                scantokens(getAttribute("angle", "CName", str i))
+                )):
+                cwAName := getAttribute("angle", "CName", str i);
+                cwCName := getAttribute("angle", "AName", str i);
             else:
-                cwA := scantokens(getAttribute("angle", "AName", str i));
-                cwC := scantokens(getAttribute("angle", "CName", str i));
+                cwAName := getAttribute("angle", "AName", str i);
+                cwCName := getAttribute("angle", "CName", str i);
             fi;
-            cwA := cwA - scantokens(getAttribute("angle", "BName", str i));
-            cwC := cwC - scantokens(getAttribute("angle", "BName", str i));
-            if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1):
-                isFirst := true;
+            cwA := scantokens(cwAName) - scantokens(getAttribute("angle", "BName", str i));
+            cwC := scantokens(cwCName) - scantokens(getAttribute("angle", "BName", str i));
+            notInPlane := false;
+            if threeDMode:
+                if not isInPlane(pointXYZ.scantokens(cwCName),
+                    pointXYZ.scantokens(pointA),
+                    pointXYZ.scantokens(pointB),
+                    pointXYZ.scantokens(pointC)):
+                    notInPlane := true;
+                fi;
             fi;
-            if isFirst and not isLast:
-                appendList(angleList, str i, 1, true)
-            fi;
-            if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
-                isLast := true;
+            if not notInPlane:
+                if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1) and (not isFirst):
+                    isFirst := true;
+                fi;
+                if isFirst and not isLast:
+                    appendList(angleList, str i, 1, true)
+                fi;
+                if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
+                    isLast := true;
+                fi;
             fi;
         endfor;
         if (not isFirst) or (not isLast):
-            errmessage("Can't construct angle:" & lineName);
+            errmessage("Can't construct angle: " & angleName);
         fi;
         rv := angleList;
     fi;
