@@ -1,0 +1,474 @@
+\definepapersize[custom]
+ [width=145mm,height=200mm]
+\setuppapersize[custom][custom]
+\setuppagenumbering[alternative=doublesided]
+\setuplayout[backspace=12mm,
+	width=76mm,	height=172mm,
+	header=5mm,
+	headerdistance=8mm,
+	topspace=10mm,
+	footer=0mm,
+	margin=52mm]
+\definelayout[title][backspace=15mm,
+	width=115mm,	height=172mm,
+	header=5mm,
+	headerdistance=8mm,
+	topspace=10mm,
+	footer=0mm]	
+	
+\switchtobodyfont[10pt]
+\setupbodyfont[ebgaramond-be]
+
+\input preamble.tex
+\input preamble_be.tex
+
+
+\def\mpPre{textLabels := true;byDefaultAngleOptionalColor := bytransparent;angleScale := 4/3;}
+
+\starttext
+
+\startProposition[title={Prop. I. Theor.}, reference=prop:XI.I]
+\defineNewPicture[1/4]{
+	numeric w;
+	w := 3cm;
+	byPointXYZDefine(P, 0, 0, 0);
+	byPointXYZDefine(Q, w, 0, 0);
+	byPointXYZDefine(R, w, 0, w);
+	byPointXYZDefine(S, 0, 0, w);
+	byPointXYZDefine(A, 1/6w, 0, 1/2w);
+	byPointXYZDefine(B, 1/2w, 0, 1/2w);
+	byPointXYZDefine(C, 5/6w, 1/4w, 1/2w);
+	byPointXYZDefine(D, 5/6w, 0, 1/2w);
+	byPointLabelRemove(P,Q,R,S);
+	byCircleDefineR(B, 1/3w, byblue, 0, 0, 0)(B);
+	circleSpaceRotation.B := (0, 0, 0);
+	byArcDefine (B, C, A)(1/3w, byblue, 0, 0, -1, 0) (BAC);
+	byArcDefine (B, D, C)(1/3w, byred, 0, 0, -1, 0) (BDC);
+	byArcDefine (B, A, D)(1/3w, byblue, 1, 0, -1, 0) (BAD);
+	byLineDefine(A, B, byblue, 0, 0);
+	byLineDefine(B, C, byblue, 1, 0);
+	bySetProjection(15, 30, 0);
+	draw byNamedArcExact(BAD);
+	draw byPolygon(P, Q, R, S)(byyellow);
+	draw byNamedArcExact(BAC,BDC);
+	draw byLine(B, D, byred, 0, 0);
+	draw byNamedLineSeq(0)(AB,BC);
+	draw byLabelsOnPolygon(D, B, A)(2, 0);
+	draw byLabelLineEnd(C, B, 0);
+	draw byLabelLineEnd(A, B, 0);
+	draw byLabelLineEnd(D, B, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{A}{ part}{of a straight line cannot be in the plane of reference and a part in plane more elevated.}
+
+For, if possible, let a part \drawUnitLine{AB} of the straight line \drawUnitLine{AB,BC} be in the plane of reference \drawPolygon{PQRS}, and a part \drawUnitLine{BC} be in a plane more elevated.
+
+Then there is in the plane of reference \drawPolygon{PQRS} some straight line continuous with \drawUnitLine{AB} in a straight line. Let it be \drawUnitLine{BD}. Therefore \drawUnitLine{AB} is a common segment of the two straight lines \drawUnitLine{AB,BC} and \drawUnitLine{AB,BD}, which is impossible, since, if we describe a circle \drawArc{BAC,BDC,BAD}  with center \drawPointL{B} and radius \drawUnitLine{AB}, then the diameters cut off unequal circumferences \drawArc{BAC} and \drawArc{BAC,BDC} of the circle.
+
+Therefore, a part of a straight line cannot be in the plane of reference and a part in plane more elevated. 
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. II. Theor.}, reference=prop:XI.II]
+\defineNewPicture{
+	pair A, B, C, D, E, F, G, H, K;
+	A := (0, 3cm);
+	B := (3cm, 0);
+	C := (0, 0);
+	D := (3cm, 3cm);
+	E = whatever[A, B] = whatever[C, D];
+	F := 2/5[E, C];
+	G := 2/5[E, B];
+	H := 1/3[C, B];
+	K := 2/3[C, B];
+	byLineDefine(A, E, byblue, 0, 0);
+	byLineDefine(E, G, byblue, 1, 0);
+	byLineDefine(G, B, byblue, 1, 0);
+	byLineDefine(D, E, byred, 0, 0);
+	byLineDefine(E, F, byred, 1, 0);
+	byLineDefine(F, C, byred, 1, 0);
+	byLineDefine(C, H, byblack, 0, 0);
+	byLineDefine(H, K, byblack, 0, 0);
+	byLineDefine(K, B, byblack, 0, 0);
+	byLineDefine(F, H, byyellow, 0, 0);
+	byLineDefine(G, K, byyellow, 0, 0);
+	byLineDefine(F, G, byblack, 1, 0);
+	draw byNamedLine(FG,FH,GK);
+	draw byNamedLineSeq(0)(AE,EG, GB,KB,HK,CH,FC,EF,DE);
+	draw byLabelsOnPolygon(E,G,B,K,H,C,F)(0, 0);
+	draw byLabelLineEnd(A, E, 0);
+	draw byLabelLineEnd(D, E, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines cut one another, then they lie in one plane; and every triangle lies in one plane.}
+
+For let the two straight lines \drawUnitLine{AB} and \drawUnitLine{CD} cut one another at the point \drawPointL{E}.
+
+I say that \drawUnitLine{AB} and\drawUnitLine{CD} lie in one plane, and that every triangle lies in one plane.
+
+Take the points \drawPointL{F} and \drawPointL{G} at random on \drawUnitLine{EC} and  \drawUnitLine{EB}, join  \drawUnitLine{CB} and \drawUnitLine{FG}, and draw \drawUnitLine{FH} and \drawUnitLine{GK} across.
+
+I say first that the triangle \drawLine{EB,BC,CE} lies in one plane.
+
+For, if part of the triangle \drawLine{EB,BC,CE}, either \drawLine{FH,HC,CF} or \drawLine{GB,BK,KG}, is in the plane of reference, and the rest in another, then a part also of one of the straight lines \drawUnitLine{EC} or \drawUnitLine{EB} is in the plane of reference, and a part in another. \inprop[prop:XI.I]
+
+But, if the part \drawLine{FG,GB,BC,CF} of the triangle \drawLine{EB,BC,CE} is in the plane of reference, and the rest in another, then a part also of both the straight lines \drawUnitLine{EC} and \drawUnitLine{EB} is in the plane of reference and a part in another, which was proved absurd.
+
+Therefore the triangle \drawLine{EB,BC,CE} lies in one plane. \inprop[prop:XI.I]
+
+But, in whatever plane the triangle \drawLine{EB,BC,CE} lies, each of the straight lines \drawUnitLine{EC} and \drawUnitLine{EB} also lies, and in whatever plane each of the straight lines \drawUnitLine{EC} and \drawUnitLine{EB} lies, \drawUnitLine{AB} and \drawUnitLine{CD} also lie.
+
+Therefore the straight lines \drawUnitLine{AB} and \drawUnitLine{CD} lie in one plane; and every triangle lies in one plane.
+
+Therefore, if two straight lines cut one another, then they lie in one plane; and every triangle lies in one plane. 
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. III. Theor.}, reference=prop:XI.III]
+\defineNewPicture{
+	numeric w, h;
+	w := 4cm;
+	h := 3cm;
+	byPointXYZDefine(A, 1/2w, 0, 0);
+	byPointXYZDefine(A', 1/2w, h, 0);
+	byPointXYZDefine(A'', -1/2w, 0, 0);
+	byPointXYZDefine(A''', -1/2w, h, 0);
+	byPointXYZDefine(C, 0, 0, -1/2w);
+	byPointXYZDefine(C', 0, h, -1/2w);
+	byPointXYZDefine(C'', 0, 0, 1/2w);
+	byPointXYZDefine(C''', 0, h, 1/2w);
+	byPointXYZDefine(B, 0, h, 0);
+	byPointXYZDefine(D, 0, 0, 0);
+	byPointXYZDefine(F, 0, 1/2h, -1/8w);
+	byPointXYZDefine(E, 1/8w, 1/2h, 0);
+	bySetProjection(-25, 60, -90);
+	draw byPolygon(B, C''', C'', D)(byred);
+	draw byPolygon(D, B, A''', A'')(byyellow);
+	draw byPolygon(D, A, A', B)(byyellow);
+	draw byPolygon(C, D, B, C')(byred);
+	draw byLine(D, B, byblack, 0, 0);
+	draw byArbitraryCurve (B, F, D)(byblack, 1, 0)(BFD);
+	draw byArbitraryCurve (B, E, D)(byblue, 1, 0)(BED);
+	byPointLabelRemove(A',A'',A''',C',C'',C''');
+	draw byLabelsOnPolygon(C, C', B, A', A, D)(0, 0);
+	draw byLabelLineEnd(E, F, 0);
+	draw byLabelLineEnd(F, E, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two planes cut one another, then their intersection is a straight line.}
+
+Let two planes \drawPolygon{DBA'''A'',DAA'B} and \drawPolygon{BC'''C''D,CDBC'} cut one another, and let the line \drawUnitLine{DB} be their intersection.
+
+I say that the line \drawUnitLine{DB} is a straight line.
+
+For, if not, join the straight line 
+\drawFromCurrentPicture[middle][lineBED]{
+startAutoLabeling;
+draw byNamedArbitraryCurve(BED);
+stopAutoLabeling;
+}
+from \drawPointL{B} to \drawPointL{D} in the plane \drawPolygon{DBA'''A'',DAA'B}, and the straight line 
+\drawFromCurrentPicture[middle][lineBFD]{
+startAutoLabeling;
+draw byNamedArbitraryCurve(BFD);
+stopAutoLabeling;
+} 
+in the plane \drawPolygon{BC'''C''D,CDBC'}.
+
+Then the two straight lines \lineBED\ and \lineBFD\ have the same ends and clearly enclose an area, which is absurd.
+
+Therefore \lineBED\ and \lineBFD\ are not straight lines.
+
+Similarly we can prove that neither is there any other straight line joined from \drawPointL{B} to \drawPointL{D} except \drawUnitLine{DB}, the intersection of the planes \drawPolygon{DBA'''A'',DAA'B} and \drawPolygon{BC'''C''D,CDBC'}.
+
+Therefore, if two planes cut one another, then their intersection is a straight line. 
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. IV. Theor.}, reference=prop:XI.IV]
+\defineNewPicture{
+	numeric w, h, d;
+	w := 3cm;
+	h := 3cm;
+	d := 4cm;
+	byPair(A, B, C, D, E, G, H);
+	A := (-1/2w, 1/2h);
+	B := (1/2w, -1/2h);
+	C := (1/2w, 1/2h);
+	D := (-1/2w, -1/2h);
+	E = whatever[A, B] = whatever[C, D];
+	G := 1/2[A, D];
+	H = whatever[E, G] = whatever[B, C];
+	byPointXYZDefine(F, 0, 0, d);
+	bySetProjection(-60, 0, 35);
+	byLineDefine(A, E, byred, 0, 0);
+	byLineDefine(E, B, byred, 1, 0);
+	byLineDefine(C, E, byblue, 0, 0);
+	byLineDefine(E, D, byblue, 1, 0);
+	byLineDefine(E, F, byblack, 0, 1);
+	byLineDefine(G, E, byyellow, 0, 0);
+	byLineDefine(E, H, byyellow, 1, 0);
+	byLineDefine(A, F, byred, 0, 2);
+	byLineDefine(B, F, byred, 1, 2);
+	byLineDefine(C, F, byblue, 0, 2);
+	byLineDefine(D, F, byblue, 1, 2);
+	byLineDefine(G, F, byyellow, 0, 2);
+	byLineDefine(H, F, byyellow, 1, 2);
+	byLineDefine(A, G, byblack, 1, 1);
+	byLineDefine(G, D, byblack, 1, 2);
+	byLineDefine(C, H, byblack, 1, 2);
+	byLineDefine(H, B, byblack, 1, 1);
+	draw byAngle(D, A, E, byred, 0);
+	draw byAngle(F, A, D, byyellow, 0);
+	draw byAngle(A, E, G, byblue, 0);
+	draw byNamedLine(AG,CH,EF);
+	draw byNamedLineSeq(0)(AF, CF, CE, AE);
+	draw byAngle(G, E, F, byblack, 1);
+	draw byAngle(H, E, F, byblack, 0);
+	draw byAngle(B, E, H, byblue, 0);
+	draw byAngle(E, B, C, byred, 1);
+	draw byAngle(F, B, C, byyellow, 1);
+	draw byNamedLine(GD,HB);
+	draw byNamedLineSeq(0)(GF,GE,EH,HF);
+	draw byNamedLineSeq(0)(DF,ED,EB,BF);
+	draw byLabelsOnPolygon(F, A, E)(2, 0); 
+	draw byLabelsOnPolygon(D, G, F, C, H, B, E)(0, 0); 
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{a straight line is set up at right angles to two straight lines which cut one another at their common point of section, then it is also at right angles to the plane passing through them.}
+
+For let a straight line \drawUnitLine{EF} be set up at right angles to the two straight lines \drawUnitLine{AB} and \drawUnitLine{CD} at \drawPointL{E}, the point at which the lines cut one another.
+
+I say that \drawUnitLine{EF} is also at right angles to the plane passing through \drawUnitLine{AB} and \drawUnitLine{CD}. (\inpropL[prop:XI.II] \inpropN[prop:I.III])
+
+Cut off \drawUnitLine{AE}, \drawUnitLine{EB}, \drawUnitLine{CE}, and \drawUnitLine{ED} equal to one another. Draw any straight line \drawUnitLine{GH} across through \drawPointL{E} at random. Join \drawUnitLine{AD} and \drawUnitLine{CB}, and join \drawUnitLine{FA}, \drawUnitLine{FG}, \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FH}, and \drawUnitLine{FB} from a point \drawPointL{F} taken at random on \drawUnitLine{EF}. (\inpropL[prop:I.XV] \inpropN[prop:I.IV])
+
+Now, since the two straight lines \drawUnitLine{AE} and \drawUnitLine{ED} equal the two straight lines \drawUnitLine{CE} and \drawUnitLine{EB} and contain equal angles, therefore the base \drawUnitLine{AD} equals the base \drawUnitLine{CB}, and the triangle \drawLine{AE,ED,DA} equals the triangle \drawLine{EC,CB,BE}, so that $\drawAngle{GAE} = \drawAngle{HBE}$. (\inpropL[prop:I.XV] \inpropN[prop:I.XXVI])
+
+But $\drawAngle{AEG} = \drawAngle{BEH}$, $\therefore$ \drawLine{AE,EG,GA} and \drawLine{BE,EH,HB} are two triangles which have two angles equal to two angles respectively, and one side equal to one side, namely that adjacent to the equal angles, that is to say, $\drawUnitLine{AE} = \drawUnitLine{EB}$. Therefore they also have the remaining sides equals to the remaining sides, that is, $\drawUnitLine{GE} = \drawUnitLine{EH}$, and $\drawUnitLine{AG} = \drawUnitLine{BH}$.
+
+And, since $\drawUnitLine{AE} = \drawUnitLine{EB}$, while \drawUnitLine{FE} is common and at right angles, therefore the base \drawUnitLine{FA} equals the base \drawUnitLine{FB}. \inprop[prop:I.IV]
+
+For the same reason, $\drawUnitLine{FC} = \drawUnitLine{FD}$. \inprop[prop:I.VIII]
+
+And, since $\drawUnitLine{AD} = \drawUnitLine{CB}$, and $\drawUnitLine{FA} = \drawUnitLine{FB}$, the two sides \drawUnitLine{FA} and \drawUnitLine{AD} equal the two sides \drawUnitLine{FB} and \drawUnitLine{BC} respectively, and the base \drawUnitLine{FD} was proved equal to the the base \drawUnitLine{FC}, therefore the angle \drawAngle{FAD} also equals the angle \drawAngle{FBC}. \inprop[prop:I.IV]
+
+And since, again, \drawUnitLine{AG} was proved equal to \drawUnitLine{BH}, and further, $\drawUnitLine{FA} = \drawUnitLine{FB}$, the two sides \drawUnitLine{FA} and \drawUnitLine{AG} equal the two sides \drawUnitLine{FB} and \drawUnitLine{BH}, and the angle \drawAngle{FAG} was proved equal to the angle \drawAngle{HBF}, therefore the base $\drawUnitLine{FG} = \drawUnitLine{FH}$. \inprop[prop:I.VIII]
+
+Again, since \drawUnitLine{GE} was proved equal to \drawUnitLine{EH}, and \drawUnitLine{EF} is common, the two sides \drawUnitLine{GE} and \drawUnitLine{EF} equal the two sides \drawUnitLine{HE} and \drawUnitLine{EF}, and the base \drawUnitLine{FG} equals the base \drawUnitLine{FH}, $\therefore \drawAngle{GEF} = \drawAngle{HEF}$.
+
+Therefore each of the angles \drawAngle{GEF} and \drawAngle{HEF} is right.
+
+$\therefore$ \drawUnitLine{FE} is at right angles to \drawUnitLine{GH} drawn at random through \drawPointL{E}.
+
+Similarly we can prove that \drawUnitLine{FE} also makes right angles with all the straight lines which meet it and are in the plane of reference. \indef[def:XI.III]
+
+But a straight line is at right angles to a plane when it makes right angles with all the straight lines which meet it and are in that same plane, therefore \drawUnitLine{FE} is at right angles to the plane of reference.
+
+But the plane of reference is the plane through the straight lines \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+Therefore \drawUnitLine{FE} is at right angles to the plane through \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+Therefore if a straight line is set up at right angles to two straight lines which cut one another at their common point of section, then it is also at right angles to the plane passing through them. 
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. V. Theor.}, reference=prop:XI.V]
+\defineNewPicture[1/4]{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 3cm;
+	byPair(B, D, E, F, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	B := (1/4w, -1/2h);
+	D := B shifted (1/2w, 0);
+	E := (3/4w, -3/4h);
+	F := (3/4w, -1/4h);
+	byPointXYZDefine(A, xpart(B), ypart(B), d);
+	byPointXYZDefine(C, xpart(F), ypart(F), 1/2d);
+	byPointXYZDefine(A', xpart(F), ypart(F), d);
+	byPointXYZDefine(A'', xpart(F), ypart(F), -1/2d);
+	byPointXYZDefine(A''', xpart(B), ypart(B), -1/2d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, A', A'', A''');
+	bySetProjection(-60, 0, 60);
+	draw byPolygon(B, F, A'', A''')(byblue);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(byyellow);
+	draw byPolygon(A, A', F, B)(byblue);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(B, C, byred, 0, 0);
+	byLineDefine(B, D, byblue, 0, 0);
+	byLineDefine(B, E, byblue, 1, 0);
+	byLineDefine(B, F, byred, 1, 0);
+	draw byNamedLine(BC, BD, BF);
+	draw byNamedLineSeq(0)(AB, BE);
+	draw byAngle(A, B, C, byred, 0);
+	draw byAngle(C, B, F, byred, 1);
+	%draw byAngle(A, B, D, byblack, -1);
+	%draw byAngle(A, B, E, byblack, -1);
+	draw byLabelsOnPolygon(B, A, C, F, D, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{a straight line is set up at right angles to three straight lines which meet one another at their common point of section, then the three straight lines lie in one plane.}
+
+Let a straight line \drawUnitLine{AB} be set up at right angles to the three straight lines \drawUnitLine{BC}, \drawUnitLine{BD}, and \drawUnitLine{BE} at their intersection \drawPointL{B}.
+
+I say that \drawUnitLine{BC}, \drawUnitLine{BD}, and \drawUnitLine{BE} lie in one plane. \inprop[prop:XI.III]
+
+For suppose that they do not, but, if possible, let \drawUnitLine{BD}, and \drawUnitLine{BE} lie in the plane of reference \drawPolygon[middle][planeOfReference]{PnwPnePsePsw} and \drawUnitLine{BC} in one more elevated. Produce the plane \drawPolygon[middle][otherPlane]{AA'FB,BFA''A'''} through \drawUnitLine{AB} and \drawUnitLine{BC}.
+
+\otherPlane\ intersects \planeOfReference\ in a straight line. Let the intersection be \drawUnitLine{BF}. Therefore the three straight lines \drawUnitLine{AB}, \drawUnitLine{BC}, and \drawUnitLine{BF} lie in one plane \otherPlane, namely that drawn through \drawUnitLine{AB} and \drawUnitLine{BC}. \inprop[prop:XI.IV]
+
+Now, since \drawUnitLine{AB} is at right angles to each of the straight lines \drawUnitLine{BD} and \drawUnitLine{BE}, therefore \drawUnitLine{AB} is also at right angles to the plane \planeOfReference\ through \drawUnitLine{BD} and \drawUnitLine{BE}.
+
+But the plane \planeOfReference\ through \drawUnitLine{BD} and \drawUnitLine{BE} is the plane of reference, therefore \drawUnitLine{AB} is at right angles to the plane of reference. \indef[def:XI.III]
+
+Thus \drawUnitLine{AB} also makes right angles with all the straight lines which meet it and lie in the plane of reference.
+
+But \drawUnitLine{BF}, which is the plane of reference, meets it, therefore the angle \drawAngle{FBA} is right. And, by hypothesis, the angle \drawAngle{ABC} is also right, therefore the angle $\drawAngle{FBA} = \drawAngle{ABC}$, and they lie in one plane, which is impossible.
+
+Therefore the straight line \drawUnitLine{BC} is not in a more elevated plane. Therefore the three straight lines \drawUnitLine{BC}, \drawUnitLine{BD}, and \drawUnitLine{BE} lie in one plane.
+
+Therefore, if a straight line is set up at right angles to three straight lines which meet one another at their common point of section, then the three straight lines lie in one plane. 
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. VI. Theor.}, reference=prop:XI.VI]
+\defineNewPicture{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(B, D, E, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	B := (1/4w, -1/6h);
+	D := B shifted (1/2w, 0);
+	E := D shifted (0, -d);
+	byPointXYZDefine(A, xpart(B), ypart(B), d);
+	byPointXYZDefine(C, xpart(D), ypart(D), d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw);
+	bySetProjection(-75, 0, -60);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
+	draw byAngle(A, B, D, byblue, 0);
+	draw byAngle(B, D, E, byyellow, 0);
+	draw byAngle(C, D, B, byblack, 0);
+	draw byAngle(C, D, E, byblack, 1);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(C, D, byblack, 1, 0);
+	byLineDefine(B, D, byblue, 0, 0);
+	byLineDefine(D, E, byblue, 1, 0);
+	byLineDefine(B, E, byred, 0, 0);
+	byLineDefine(A, D, byred, 1, 0);
+	byLineDefine(A, E, byyellow, 0, 0);
+	draw byNamedLineSeq(0)(CD, BD);
+	draw byAngle(E, D, A, byred, 0);
+	draw byNamedLineSeq(0)(AD, DE);
+	draw byNamedLineSeq(0)(AB, BE, AE);
+	draw byAngle(A, B, E, byred, 1);
+	draw byLabelsOnPolygon(C, E, B, A)(0, 0);
+	draw byLabelsOnPolygon(E, D, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines are at right angles to the same plane, then the straight lines are parallel.}
+
+Let the two straight lines \drawUnitLine{AB} and \drawUnitLine{CD} be at right angles to the plane of reference \drawPolygon[middle][planeOfReference]{PnwPnePsePsw}.
+
+I say that $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
+
+Let them meet the plane of reference \planeOfReference\ at the points \drawPointL{B} and \drawPointL{D}. (\inpropL[prop:I.XI], \inpropL[prop:I.III])
+
+Join the straight line \drawUnitLine{BD}. Draw \drawUnitLine{DE} in \planeOfReference $\perp \drawUnitLine{BD}$, and make $\drawUnitLine{DE} = \drawUnitLine{AB}$. \indef[def:XI.III]
+
+Now, since \drawUnitLine{AB} is at right angles to \planeOfReference, it also makes right angles with all the straight lines which meet it and lie in the plane of reference.
+
+But each of the straight lines \drawUnitLine{BD} and \drawUnitLine{BE} lies in \planeOfReference\ and meets \drawUnitLine{AB}, therefore each of the angles \drawAngle{ABD} and \drawAngle{ABE} is right. For the same reason each of the angles \drawAngle{CDB} and  \drawAngle{CDE} is also right. \inprop[prop:I.IV]
+
+And since in \drawLine{AD,DB,BA} and \drawLine{DE,EB,BD} $\drawUnitLine{AB} = \drawUnitLine{DE}$, and \drawUnitLine{BD} is common, therefore the two sides \drawUnitLine{AB} and \drawUnitLine{BD} equal the two sides \drawUnitLine{ED} and \drawUnitLine{DB}. And they include right angles \drawAngle{ABD} and \drawAngle{BDE}, therefore the base $\drawUnitLine{AD} = \drawUnitLine{BE}$. \inprop[prop:I.VIII]
+
+And, since in \drawLine{AE,EB,BA} and \drawLine{DA,AE,ED} $\drawUnitLine{AB} = \drawUnitLine{DE}$ while $\drawUnitLine{AD} = \drawUnitLine{BE}$, the two sides \drawUnitLine{AB} and \drawUnitLine{BE} equal the two sides \drawUnitLine{ED} and \drawUnitLine{DA}, and \drawUnitLine{AE} is their common base, therefore the angle \drawAngle{ABE} equals the angle \drawAngle{EDA}.
+
+But the angle \drawAngle{ABE} is right, therefore the angle \drawAngle{EDA} is also right. Therefore \drawUnitLine{ED} is at right angles to \drawUnitLine{DA}. \inprop[prop:XI.V]
+
+But it is also at right angles to each of the straight lines \drawUnitLine{BD} and \drawUnitLine{DC}, therefore \drawUnitLine{ED} is set up at right angles to the three straight lines \drawUnitLine{BD}, \drawUnitLine{DA}, and \drawUnitLine{DC} at their intersection. Therefore the three straight lines \drawUnitLine{BD}, \drawUnitLine{DA}, and \drawUnitLine{DC} lie in one plane. \inprop[prop:XI.II]
+
+But in whatever plane \drawUnitLine{DB} and \drawUnitLine{DA} lie, \drawUnitLine{AB} also lies, for every triangle lies in one plane.
+
+Therefore the straight lines \drawUnitLine{AB}, \drawUnitLine{BD}, and \drawUnitLine{DC} lie in one plane. And each of the angles \drawAngle{ABD} and \drawAngle{BDC} is right, therefore \drawUnitLine{AB} is parallel to \drawUnitLine{CD}. \inprop[prop:I.XXVIII]
+
+Therefore, if two straight lines are at right angles to the same plane, then the straight lines are parallel. 
+
+\qed
+\stopProposition
+
+
+\startProposition[title={Prop. VII. Theor.}, reference=prop:XI.VII]
+\defineNewPicture[1/4]{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(A, B, C, D, E, F, H, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	A := (1/4w, -1/4h);
+	B := A shifted (1/2w, 0);
+	C := A shifted (0, -1/2h);
+	D := B shifted (0, -1/2h);
+	E := 1/3[A, B];
+	F := 3/4[C, D];
+	H := 1/2[E, F];
+	byPointXYZDefine(G, xpart(H), ypart(H), 1/4d);
+	byPointXYZDefine(E', xpart(E), ypart(E), d);
+	byPointXYZDefine(F', xpart(F), ypart(F), d);
+	byPointXYZDefine(E'', xpart(E), ypart(E), -d);
+	byPointXYZDefine(F'', xpart(F), ypart(F), -d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, E', F', E'', F'');
+	bySetProjection(-45, 0, -75);
+	draw byPolygon(E, F, F'', E'')(byyellow);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
+	byLineDefine(A, E, byblue, 0, 0);
+	byLineDefine(E, B, byblue, 0, 0);
+	byLineDefine(C, F, byblue, 1, 0);
+	byLineDefine(F, D, byblue, 1, 0);
+	byLineDefine(E, F, byred, 1, 0);
+	draw byNamedLine(EB, FD);
+	draw byPolygon(E, F, F', E')(byyellow);
+	draw byArbitraryCurve (E, G, F)(byred, 0, 0)(EGF);
+	draw byNamedLineSeq(0)(AE, EF, CF);
+	draw byLabelsOnPolygon(E, G, F)(2, 0);
+	draw byLabelsOnPolygon(A, E, B, D, F, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines are parallel and points are taken at random on each of them, then the straight line joining the points is in the same plane with the parallel straight lines.}
+
+Let \drawUnitLine{AB} and \drawUnitLine{CD} be two parallel straight lines, and let points \drawPointL{E} and \drawPointL{F} be taken at random on them respectively.
+
+I say that the straight line joining the points \drawPointL{E} and \drawPointL{F} lies in the same plane \drawPolygon[middle][planeOfReference]{PnwPnePsePsw} with the parallel straight lines. \inprop[prop:XI.III]
+
+For suppose it is not, but, if possible, let it be in a more elevated plane. Draw a plane \drawPolygon[middle][planeEGF]{EFF'E',EFF''E''} through \drawFromCurrentPicture[middle][lineEGF]{
+startAutoLabeling;
+draw byNamedArbitraryCurve(EGF);
+stopAutoLabeling;
+}. Its intersection with the plane of reference is a straight line. Let it be \drawUnitLine{EF}.
+
+$\therefore$ the two straight lines \lineEGF\ and \drawUnitLine{EF} enclose an area, which is impossible. $\therefore$ the straight line joined from \drawPointL{E} to \drawPointL{F} is not in a plane more elevated. $\therefore$ the straight line joined from \drawPointL{E} to \drawPointL{F} lies in the plane through the parallel straight lines \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+$\therefore$, if two straight lines are parallel and points are taken at random on each of them, then the straight line joining the points is in the same plane with the parallel straight lines. 
+
+\qed
+\stopProposition
+
+\stoptext

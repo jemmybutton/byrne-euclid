@@ -423,8 +423,8 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
                 save ghostLines;
                 boolean ghostLines;
                 ghostLines := false;
-                draw byLineRender (a, b, white, dp, 0, c, d, ct, dt, s, sf);
-                draw byLineRender (a, b, col, dp, 2, c, d, ct, dt, s, sf);
+                draw byLineRender (a, b, white, dp, 2, c, d, ct, dt, s, sf);
+                % draw byLineRender (a, b, col, dp, 2, c, d, ct, dt, s, sf);
             endgroup;
             );
     fi;
@@ -2196,7 +2196,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     planePoints1, planePoints2, planePoints3))
                 or (not isInPlane(getAttribute("point", "XYZ", getAttribute("angle", "CName", str aN)),
                     planePoints1, planePoints2, planePoints3)):
-                errmessage("The angles are not coplanar");
+                errmessage("The angles " & processedAnglesList & " are not coplanar");
             fi;
         fi;
         if (getAttribute("angle", "Standalone", str aN) > 1):
@@ -2606,7 +2606,11 @@ vardef byConstructCompoundAngle (expr angleName) =
             cwC := scantokens(cwCName) - scantokens(getAttribute("angle", "BName", str i));
             notInPlane := false;
             if threeDMode:
-                if (not isInPlane(pointXYZ.scantokens(cwCName),
+                if (not isInPlane(pointXYZ.scantokens(cwAName),
+                    pointXYZ.scantokens(pointA),
+                    pointXYZ.scantokens(pointB),
+                    pointXYZ.scantokens(pointC)))
+                or (not isInPlane(pointXYZ.scantokens(cwCName),
                     pointXYZ.scantokens(pointA),
                     pointXYZ.scantokens(pointB),
                     pointXYZ.scantokens(pointC))):
