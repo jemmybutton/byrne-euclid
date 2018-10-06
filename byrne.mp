@@ -1100,6 +1100,15 @@ fi;
     pointName := (ox, oy);
 enddef;
 
+vardef byPointXYZEmpty (text pointNames) =
+    forsuffixes pN = pointNames:
+        if mainPictureMode:
+            appendList(allPointsList, str pN, 1, true);
+        fi;
+        color pointXYZ.pN;
+    endfor;
+enddef;
+
 % in order to automatically project points they need to be added
 % to allPointsList list.
 def byPair (text pointsList) =
