@@ -545,8 +545,8 @@ Therefore, if two straight lines are parallel, and one of them is at right angle
 \defineNewPicture{
 	numeric w, h, d;
 	w := 4cm;
-	h := 3cm;
-	d := 2cm;
+	h := 4cm;
+	d := 9/5cm;
 	byPair(Pnw, Pne, Pse, Psw);
 	Pnw := (0, 0);
 	Pne := (w, 0);
@@ -562,12 +562,12 @@ Therefore, if two straight lines are parallel, and one of them is at right angle
 	pointXYZ.G := 1/2[pointXYZ.E, pointXYZ.F];
 	pointXYZ.H := 1/2[pointXYZ.A, pointXYZ.B];
 	pointXYZ.K := 1/2[pointXYZ.C, pointXYZ.D];
-	pointXYZ.Eab' := 5/4[pointXYZ.A, pointXYZ.E];
-	pointXYZ.Fab' := 5/4[pointXYZ.B, pointXYZ.F];
+	pointXYZ.Eab' := 4/3[pointXYZ.A, pointXYZ.E];
+	pointXYZ.Fab' := 4/3[pointXYZ.B, pointXYZ.F];
 	pointXYZ.A' := 5/4[pointXYZ.E, pointXYZ.A];
 	pointXYZ.B' := 5/4[pointXYZ.F, pointXYZ.B];
-	pointXYZ.Ecd' := 5/4[pointXYZ.C, pointXYZ.E];
-	pointXYZ.Fcd' := 5/4[pointXYZ.D, pointXYZ.F];
+	pointXYZ.Ecd' := 4/3[pointXYZ.C, pointXYZ.E];
+	pointXYZ.Fcd' := 4/3[pointXYZ.D, pointXYZ.F];
 	pointXYZ.C' := 5/4[pointXYZ.E, pointXYZ.C];
 	pointXYZ.D' := 5/4[pointXYZ.F, pointXYZ.D];
 	pointXYZ.H' := (redpart(pointXYZ.H), greenpart(pointXYZ.H), bluepart(pointXYZ.G));
@@ -595,8 +595,13 @@ Therefore, if two straight lines are parallel, and one of them is at right angle
 	draw byNamedLine(CK, KD, EG, GF);
 	draw byPolygonWithName(K, K', G)(byblue)(planeHK);
 	draw byNamedLine(GK);
-	draw byLabelsOnPolygon(A, E, G, F, D, K, C)(0, 0);
-	draw byLabelsOnPolygon(B, H)(4, 0);
+	draw byLabelsOnPolygon(Fab', F, D, D')(2, 0);
+	draw byLabelsOnPolygon(C', C, E)(2, 0);
+	draw byLabelsOnPolygon(A', A, E, Ecd')(2, 0);
+	draw byLabelsOnPolygon(F, B, B')(2, 0);
+	draw byLabelsOnPolygon(H', G, F)(2, 0);
+	draw byLabelsOnPolygon(K, H, A)(2, 0);
+	draw byLabelsOnPolygon(D, K, C)(2, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{S}{traight}{lines which are parallel to the same straight line and are not in the same plane with it are also parallel to one another.}
@@ -614,6 +619,73 @@ For the same reason  $\drawUnitLine{CD} \perp \planeHK$. $\therefore$ each of th
 But, if two straight lines be at right angles to the same plane, the straight lines are parallel \inprop[prop:XI.VI].
 
 Therefore $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. X. Theor.}, reference=prop:XI.X]
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 7/2cm;
+	d := 2cm;
+	s := (0, 0, d);
+	byPointXYZDefine(Pnw, 0, 0, 0);
+	byPointXYZDefine(Pne, w, 0, 0);
+	byPointXYZDefine(Pse, w, -w, 0);
+	byPointXYZDefine(Psw, 0, -w, 0);
+	byPointXYZDefine(A, 1/5w, -4/5w, 0);
+	byPointXYZDefine(B, 1/5w, -1/5w, 0);
+	byPointXYZDefine(C, 4/5w, -1/5w, 0);
+	byPointXYZEmpty(D, E, F, Pnw', Pne', Pse', Psw');
+	pointXYZ.D := pointXYZ.A + s;
+	pointXYZ.E := pointXYZ.B + s;
+	pointXYZ.F := pointXYZ.C + s;
+	pointXYZ.Pnw' := pointXYZ.Pnw + s;
+	pointXYZ.Pne' := pointXYZ.Pne + s;
+	pointXYZ.Pse' := pointXYZ.Pse + s;
+	pointXYZ.Psw' := pointXYZ.Psw + s;
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
+	bySetProjection(-72, 0, -22);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(B, C, byblue, 0, 0);
+	byLineDefine(C, A, byyellow, 0, 0);
+	byLineDefine(D, E, byred, 1, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(F, D, byyellow, 1, 0);
+	byLineDefine(A, D, byblack, 1, 0);
+	byLineDefine(C, F, byblack, 0, 2);
+	byLineDefine(B, E, byblack, 0, 0);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(planeOne);
+	draw byAngle(A, B, C, byred, 0);
+	draw byNamedLineSeq(0)(AB, BC, CA);
+	draw byNamedLine(AD, CF, BE);
+	draw byPolygonWithName(Pnw', Pne', Pse', Psw')(white)(planeTwo);
+	draw byAngle(D, E, F, byred, 1);
+	draw byNamedLineSeq(0)(DE, EF, FD);
+	draw byLabelsOnPolygon(A, B, E, F, C)(0, 0);
+	draw byLabelsOnPolygon(E, D, F)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines meeting one another be parallel to two straight lines meeting one another not in the same plane, they will contain equal angles.}
+
+For let the two straight lines \drawUnitLine{AB}, \drawUnitLine{BC} meeting one another be parallel to the two straight lines \drawUnitLine{DE}, \drawUnitLine{EF} meeting one another, not in the same plane. I say that the angle \drawAngle{B} is equal to the angle \drawAngle{E}.
+
+For let \drawUnitLine{BA}, \drawUnitLine{BC}, \drawUnitLine{ED}, \drawUnitLine{EF} be cut off equal to one another, and let \drawUnitLine{AD}, \drawUnitLine{CF}, \drawUnitLine{BE}, \drawUnitLine{AC}, \drawUnitLine{DF} be joined.
+
+Now, since \drawUnitLine{BA} is equal and parallel to \drawUnitLine{ED}, therefore \drawUnitLine{AD} is also equal and parallel to \drawUnitLine{BE}. \inprop[prop:I.XXXIII]
+
+For the same reason \drawUnitLine{CF} is also equal and parallel to \drawUnitLine{BE}.
+
+Therefore each of the straight lines \drawUnitLine{AD}, \drawUnitLine{CF} is equal and parallel to \drawUnitLine{BE}.
+
+But straight lines which are parallel to the same straight line and are not in the same plane with it are parallel to one another. \inprop[prop:XI.IX]
+
+Therefore \drawUnitLine{AD} is parallel and equal to \drawUnitLine{CF}.
+
+And \drawUnitLine{AC}, \drawUnitLine{DF} join them. Therefore \drawUnitLine{AC} is also equal and parallel to \drawUnitLine{DF}. \inprop[prop:I.XXXIII]
+
+Now, since in \drawLine{AB,BC,CA} and \drawLine{DE,EF,FD} $\drawUnitLine{AB} = \drawUnitLine{DE}$, $\drawUnitLine{BC}=\drawUnitLine{EF}$ and $\drawUnitLine{AC}=\drawUnitLine{DF}$, $\therefore \drawAngle{B} = \drawAngle{E}$. \inprop[prop:I.VIII]
 
 \qed
 \stopProposition

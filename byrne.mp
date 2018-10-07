@@ -2124,15 +2124,20 @@ vardef byAngleMSolid (expr angleArc, angleColor)(suffix angleOptionalColors) =
 enddef;
 
 vardef byAngleMLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
-    save p;
-    path p;
-    p := angleArc scaled ((u*angleScale) - lineWidth);
-    image(
+    save p, rv;
+    path p[];
+    picture rv;
+    p0 := angleArc scaled ((u*angleScale) - lineWidth);
+    p1 := (0, 0)--p0--cycle;
+    p2 := (0, 0)--(angleArc scaled (u*angleScale))--cycle;
+    rv := image(
         if (angleOptionalColors[0] <> bytransparent):
-            fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
+            fill p2 withcolor angleOptionalColors[0];
         fi;
-        draw p withpen pencircle scaled lineWidth withcolor angleColor;
-    )
+        draw p0 withpen pencircle scaled lineWidth withcolor angleColor;
+    );
+    clip rv to p2;
+    rv
 enddef;
 
 vardef byAngleMThinLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
