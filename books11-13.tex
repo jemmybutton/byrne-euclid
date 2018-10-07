@@ -31,22 +31,24 @@
 
 \startProposition[title={Prop. I. Theor.}, reference=prop:XI.I]
 \defineNewPicture[1/4]{
-	numeric w;
+	numeric w, r;
 	w := 3cm;
-	byPointXYZDefine(P, 0, 0, 0);
-	byPointXYZDefine(Q, w, 0, 0);
-	byPointXYZDefine(R, w, 0, w);
-	byPointXYZDefine(S, 0, 0, w);
-	byPointXYZDefine(A, 1/6w, 0, 1/2w);
-	byPointXYZDefine(B, 1/2w, 0, 1/2w);
-	byPointXYZDefine(C, 5/6w, 1/4w, 1/2w);
-	byPointXYZDefine(D, 5/6w, 0, 1/2w);
+	r := 1/3w;
+	byPair(A, B, C, D);
+	A := (-r, 0);
+	B := (0, 0);
+	D := (r, 0);
+	C := B shifted (dir(30)*r);
+	byPointXYZDefine(P, -1/2w, 0, -1/2w);
+	byPointXYZDefine(Q, 1/2w, 0, -1/2w);
+	byPointXYZDefine(R, 1/2w, 0, 1/2w);
+	byPointXYZDefine(S, -1/2w, 0, 1/2w);
 	byPointLabelRemove(P,Q,R,S);
-	byCircleDefineR(B, 1/3w, byblue, 0, 0, 0)(B);
+	byCircleDefineR(B, r, byblue, 0, 0, 0)(B);
 	circleSpaceRotation.B := (0, 0, 0);
-	byArcDefine (B, C, A)(1/3w, byblue, 0, 0, -1, 0) (BAC);
-	byArcDefine (B, D, C)(1/3w, byred, 0, 0, -1, 0) (BDC);
-	byArcDefine (B, A, D)(1/3w, byblue, 1, 0, -1, 0) (BAD);
+	byArcDefine (B, C, A)(r, byblue, 0, 0, -1, 0) (BAC);
+	byArcDefine (B, D, C)(r, byred, 0, 0, -1, 0) (BDC);
+	byArcDefine (B, A, D)(r, byblue, 1, 0, -1, 0) (BAD);
 	byLineDefine(A, B, byblue, 0, 0);
 	byLineDefine(B, C, byblue, 1, 0);
 	bySetProjection(15, 30, 0);
