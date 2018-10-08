@@ -432,7 +432,8 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
 enddef;
 
 vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-    save lA;
+    save lA, lL;
+    numeric lL;
     if mainPictureMode:
         appendList(allLinesList, str lineName, 1, true);
     fi;
@@ -441,11 +442,16 @@ vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
     else:
         lA := 0;
     fi;
+    if (typeOf(pointXYZ.a) = "color") and (typeOf(pointXYZ.b) = "color"):
+        lL := absXYZ(pointXYZ.a - pointXYZ.b);
+    else:
+        lL := abs(a-b);
+    fi;
     setAttribute("line", "Angle", str lineName, lA);
     setAttribute("line", "Color", str lineName, col);
     setAttribute("line", "Dashed", str lineName, dp);
     setAttribute("line", "Thin", str lineName, th);
-    setAttribute("line", "Length", str lineName, arclength(a--b));
+    setAttribute("line", "Length", str lineName, lL);
     setAttribute("line", "EndA", str lineName, a);
     setAttribute("line", "EndB", str lineName, b);
     setAttribute("line", "Shift", str lineName, 0);

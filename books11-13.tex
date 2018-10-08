@@ -625,7 +625,7 @@ Therefore $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
 
 \startProposition[title={Prop. X. Theor.}, reference=prop:XI.X]
 \defineNewPicture{
-	numeric w, h, d;
+	numeric w, d;
 	color s;
 	w := 7/2cm;
 	d := 2cm;
@@ -646,7 +646,7 @@ Therefore $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
 	pointXYZ.Pse' := pointXYZ.Pse + s;
 	pointXYZ.Psw' := pointXYZ.Psw + s;
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
-	bySetProjection(-72, 0, -22);
+	bySetProjection(-65, 0, -22);
 	byLineDefine(A, B, byred, 0, 0);
 	byLineDefine(B, C, byblue, 0, 0);
 	byLineDefine(C, A, byyellow, 0, 0);
@@ -686,6 +686,167 @@ Therefore \drawUnitLine{AD} is parallel and equal to \drawUnitLine{CF}.
 And \drawUnitLine{AC}, \drawUnitLine{DF} join them. Therefore \drawUnitLine{AC} is also equal and parallel to \drawUnitLine{DF}. \inprop[prop:I.XXXIII]
 
 Now, since in \drawLine{AB,BC,CA} and \drawLine{DE,EF,FD} $\drawUnitLine{AB} = \drawUnitLine{DE}$, $\drawUnitLine{BC}=\drawUnitLine{EF}$ and $\drawUnitLine{AC}=\drawUnitLine{DF}$, $\therefore \drawAngle{B} = \drawAngle{E}$. \inprop[prop:I.VIII]
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XI. Prob.}, reference=prop:XI.XI]
+\defineNewPicture{
+	numeric w, h, d;
+	byPair(B, C, D, E, F, G, H, Pnw, Pne, Pse, Psw);
+	w := 3cm;
+	h := 3cm;
+	d := 7/4cm;
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	byPointXYZDefine(A, 1/3w, -1/2h, d);
+	B := (5/6w, -4/5h);
+	C := (5/6w, -1/5h);
+	F := (redpart(pointXYZ.A), greenpart(pointXYZ.A));
+	D = whatever[B, C] = whatever[F, F + ((B-C) rotated 90)];
+	E := 4/3[D, F];
+	G := F shifted (B-D);
+	H := F shifted (C-D);
+	byPointXYZDefine(E', xpart(E), ypart(E), 6/5d);
+	byPointXYZDefine(D', xpart(D), ypart(D), 6/5d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, E', D');
+	byLineDefine(A, F, byblack, 0, 0);
+	byLineDefine(A, D, byred, 0, 0);
+	byLineDefine(B, D, byyellow, 0, 0);
+	byLineDefine(D, C, byyellow, 0, 0);
+	byLineDefine(D, F, byblue, 0, 0);
+	byLineDefine(F, E, byblue, 1, 0);
+	byLineDefine(G, F, byblack, 1, 0);
+	byLineDefine(F, H, byblack, 1, 0);
+	bySetProjection(-60, 0, 50);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
+	draw byNamedLine(FH, DC);
+	draw byPolygonWithName(E, E', D', D)(byyellow)(planeEAD);
+	draw byNamedLine(DF, FE);
+	draw byNamedLineSeq(0)(GF, AF, AD, BD);
+	draw byLabelsOnPolygon(A, H, C, D, B, G, E)(0, 0);
+	draw byLabelsOnPolygon(D, F, G)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{F}{rom}{a given elevated point to draw a straight line perpendicular to a given plane.}
+
+Let \drawPointL{A} be the given elevated point, and the plane of reference the given plane \drawPolygon{refPlane}. Thus it is required to draw from \drawPointL{A} a straight line perpendicular to \drawPolygon{refPlane}.
+
+Let any straight line \drawUnitLine{BC} be drawn, at random, in the plane of reference,
+and let \drawUnitLine{AD} be drawn from the point \drawPointL{A} perpendicular to \drawUnitLine{BC}. \inprop[prop:I.XII]
+
+If then $\drawUnitLine{AD} \perp \drawPolygon{refPlane}$, that which was enjoined will have been done.
+
+But, if not, let \drawUnitLine{DE} be drawn from the point \drawPointL{D} at right angles to \drawUnitLine{BC} and in \drawPolygon{refPlane} \inprop[prop:I.XI], let \drawUnitLine{AF} be drawn from \drawPointL{A} perpendicular to \drawUnitLine{DE} \inprop[prop:I.XII], and let \drawUnitLine{GH} be drawn through the point \drawPointL{F} parallel to \drawUnitLine{BC}. \inprop[prop:I.XXXI]
+
+Now, since \drawUnitLine{BC} is at right angles to each of the straight lines \drawUnitLine{DA}, \drawUnitLine{DE}, therefore \drawUnitLine{BC} is also at right angles to the plane \drawPolygon{planeEAD} through \drawUnitLine{ED}, \drawUnitLine{DA}. \inprop[prop:XI.IV]
+
+And \drawUnitLine{GH} is parallel to it; but, if two straight lines be parallel, and one of them be at right angles to any plane, the remaining one will also be at right angles to the same plane. \inprop[prop:XI.VIII]
+
+$\therefore \drawUnitLine{GH} \perp \drawPolygon{planeEAD}$
+
+Therefore \drawUnitLine{GH} is also at right angles to all the straight lines which meet it and are in \drawPolygon{planeEAD}. \inprop[def:XI.III]
+
+But \drawUnitLine{AF} meets it and is in the plane through \drawUnitLine{ED}, $\therefore \drawUnitLine{GH} \perp \drawUnitLine{AF}$, so that $\drawUnitLine{AF} \perp \drawUnitLine{GH}$.
+
+But $\drawUnitLine{AF} \perp \drawUnitLine{DE}$, $\therefore \drawUnitLine{AF} \perp \drawUnitLine{GH} \mbox{ and } \drawUnitLine{DE}$.
+
+But, if a straight line be set up at right angles to two straight lines which cut one another, at the point of section, it will also be at right angles to the plane through them. \inprop[prop:XI.IV]
+
+$\therefore \drawUnitLine{AF} \perp \drawPolygon{refPlane}$.
+
+Therefore from the given elevated point \drawPointL{A} the straight line \drawUnitLine{AF} has been drawn perpendicular to the plane of reference \drawPolygon{refPlane}.
+
+\qef
+\stopProposition
+
+\startProposition[title={Prop. XII. Prob.}, reference=prop:XI.XII]
+\defineNewPicture{
+	numeric w, h, d;
+	byPair(A, C, Pnw, Pne, Pse, Psw);
+	w := 5/2cm;
+	h := 5/2cm;
+	d := 2cm;
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	A := (1/3w, -2/3h);
+	C := (2/3w, -1/3h);
+	byPointXYZDefine(B, xpart(C), ypart(C), d);
+	byPointXYZDefine(D, xpart(A), ypart(A), 3/4d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw);
+	byLineDefine(A, D, byblue, 0, 0);
+	byLineDefine(C, B, byred, 0, 0);
+	bySetProjection(-60, 0, 30);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
+	draw byNamedLine(AD, CB);
+	draw byLabelsOnPolygon(A, D, B, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{T}{o}{set up a straight line at right angles to a given plane from a given point in it.}
+
+Let the plane of reference be the given plane \drawPolygon{refPlane}, and \drawPointL{A} the point in it. Thus it is required to set up from \drawPointL{A} a straight line at right angles to the \drawPolygon{refPlane}.
+
+Let any elevated point \drawPointL{B} be conceived, from \drawPointL{B} let \drawUnitLine{BC} be drawn perpendicular to \drawPolygon{refPlane} \inprop[prop:XI.XI], and through the point \drawPointL{A} let \drawUnitLine{AD} be drawn parallel to \drawUnitLine{BC}. \inprop[prop:I.XXXI]
+
+Then, since $\drawUnitLine{AD} \parallel \drawUnitLine{CB}$, while one of them, $\drawUnitLine{BC} \perp \drawPolygon{refPlane}$, $\therefore \drawUnitLine{AD} \perp \drawPolygon{refPlane}$. \inprop[prop:XI.VIII]
+
+Therefore \drawUnitLine{AD} has been set up at right angles to the given plane \drawPolygon{refPlane} from the point \drawPointL{A} in it.
+
+\qef
+\stopProposition
+
+\startProposition[title={Prop. XIII. Theor.}, reference=prop:XI.XIII]
+\defineNewPicture{
+	numeric w, h, d;
+	byPair(A, D, E, C', Pnw, Pne, Pse, Psw);
+	w := 5/2cm;
+	h := 5/2cm;
+	d := 2cm;
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	A := (1/2w, -1/2h);
+	D := 1/3[Pnw, Psw];
+	E = whatever[A, D] = whatever[Pne, Pse];
+	C' := 1/2[A, E];
+	byPointXYZDefine(B, xpart(A), ypart(A), 5/6d);
+	byPointXYZDefine(C, xpart(C'), ypart(C'), 5/6d);
+	byPointXYZDefine(D', xpart(D), ypart(D), d);
+	byPointXYZDefine(E', xpart(E), ypart(E), d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, C', D', E');
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(A, C, byred, 1, 0);
+	byLineDefine(D, A, byblue, 0, 0);
+	byLineDefine(A, E, byblue, 0, 0);
+	bySetProjection(-75, 0, 30);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
+	draw byPolygonWithName(D, D', E', E)(byyellow)(planeABC);
+	draw byAngle(B, A, C, byblue, 0);
+	draw byAngle(C, A, E, byred, 0);
+	draw byNamedLine(AB, AC, DA, AE);
+	draw byLabelsOnPolygon(A, B, C, E)(0, 0);
+	draw byLabelsOnPolygon(Psw, D, D')(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{F}{rom}{the same point two straight lines cannot be set up at right angles to the same plane on the same side.}
+
+For, if possible, from the same point \drawPointL{A} let the two straight lines \drawUnitLine{AB}, \drawUnitLine{AC} be set up at right angles to the plane of reference \drawPolygon{refPlane} and on the same side, and let a plane \drawPolygon{planeABC} be drawn through \drawUnitLine{BA}, \drawUnitLine{AC}. It will then make, as section through \drawPointL{A} in \drawPolygon{refPlane}, a straight line. \inprop[prop:XI.III]
+
+Let it make \drawUnitLine{DA,AE}; therefore the straight lines \drawUnitLine{AB},
+\drawUnitLine{AC}, \drawUnitLine{DA,AE} are in one plane \drawPolygon{planeABC}.
+
+And, since $\drawUnitLine{CA} \perp \drawPolygon{refPlane}$, it will also make right angles with all the straight lines which meet it and are in the plane of reference. \indef[def:XI.III]
+
+But \drawUnitLine{DA,AE} meets it and is in \drawPolygon{refPlane}; therefore the angle \drawAngle{CAE} is right.
+
+For the same reason the angle \drawAngle{EAB} is also right; $\therefore \drawAngle{CAE} = \drawAngle{EAB}$.
+
+And they are in one plane: which is impossible.
 
 \qed
 \stopProposition
