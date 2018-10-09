@@ -844,9 +844,212 @@ And, since $\drawUnitLine{CA} \perp \drawPolygon{refPlane}$, it will also make r
 
 But \drawUnitLine{DA,AE} meets it and is in \drawPolygon{refPlane}; therefore the angle \drawAngle{CAE} is right.
 
-For the same reason the angle \drawAngle{EAB} is also right; $\therefore \drawAngle{CAE} = \drawAngle{EAB}$.
+For the same reason the angle \drawAngle{EAB} is also right; $\therefore \drawAngle{CAE} = \drawAngle{EAB}$. And they are in one plane: which is impossible.
 
-And they are in one plane: which is impossible.
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XIV. Theor.}, reference=prop:XI.XIV]
+\defineNewPicture{
+	numeric w, w', h, d;
+	color s[];
+	w := 3/2cm;
+	w' := 3cm;
+	h := 2cm;
+	d := 2cm;
+	s1 := (0, 0, d);
+	s2 := ((w'-w)/2, 0, -1/8h);
+	s3 := (redpart(s2), 0, -bluepart(s2));
+	byPointXYZDefine(E', 0, 0, 0);
+	byPointXYZDefine(E, 0, -h, 0);
+	byPointXYZDefine(F, w, 0, 0);
+	byPointXYZDefine(F', w, -h, 0);
+	byPointXYZDefine(B, 1/3w, -1/2h, 0);
+	byPointXYZDefine(G, w', 0, 1/2d);
+	byPointXYZDefine(H, w', -h, 1/2d);
+	byPointXYZEmpty(D, D', C, C', C'h, Cg, F'h, Fg ,A, K);
+	pointXYZ.D' := pointXYZ.E' + s1;
+	pointXYZ.D := pointXYZ.E + s1;
+	pointXYZ.C := pointXYZ.F + s1;
+	pointXYZ.C' := pointXYZ.F' + s1;
+	pointXYZ.A := pointXYZ.B + s1;
+	pointXYZ.K := 1/2[pointXYZ.G, pointXYZ.H];
+	pointXYZ.Cg := pointXYZ.C + s2;
+	pointXYZ.C'h := pointXYZ.C' + s2;
+	pointXYZ.Fg := pointXYZ.F + s3;
+	pointXYZ.F'h := pointXYZ.F' + s3;
+	byPointLabelRemove(C', D',  E',F');
+	bySetProjection(-75, 0, 12);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(G, H, byyellow, 0, 0);
+	byLineDefine(A, K, byred, 0, 0);
+	byLineDefine(B, K, byblue, 0, 0);
+	draw byPolygonWithName(E, E', F, F')(byblue)(planeB);
+	draw byArbitraryCurve (C, Cg, G)(byred, 1, 2)(CG);
+	draw byArbitraryCurve (F, Fg, G)(byblue, 1, 2)(FG);
+	draw byAngle(A, B, K, byred, 0);
+	draw byAngle(K, A, B, byblue, 0);
+	draw byNamedLineSeq(0)(BK, AB, AK, noLine);
+	draw byNamedLine(GH);
+	draw byPolygonWithName(D, D', C, C')(byred)(planeA);
+	draw byArbitraryCurve (C', C'h, H)(byred, 1, 2)(CH);
+	draw byArbitraryCurve (F', F'h, H)(byblue, 1, 2)(FH);
+	draw byLabelsOnPolygon(E, D, D', C, F')(0, 0);
+	draw byLabelsOnPolygon(Fg, F, F')(2, 0);
+	draw byLabelsOnPolygon(B, A, G, K, H)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{P}{lanes}{to which the same straight line is at right angles will be parallel.}
+
+For let any straight line \drawUnitLine{AB} be at right angles to each of the planes \drawPolygon{planeA}, \drawPolygon{planeB}. I say that the planes are parallel.
+
+For, if not, they will meet when produced.
+
+Let them meet; they will then make, as common section, a straight line. \inprop[prop:XI.III]
+
+Let them make \drawUnitLine{GH}. Let a point \drawPointL{K} be taken at random on \drawUnitLine{GH}, and let \drawUnitLine{AK}, \drawUnitLine{BK} be joined.
+
+Now, since $\drawUnitLine{AB} \perp \drawPolygon{planeB}$, $\therefore \drawUnitLine{AB} \perp \drawUnitLine{BK}$, which is a straight line in \drawPolygon{planeB} produced. \indef[def:XI.III] 
+
+$\therefore \drawAngle{B}$ is right.
+
+For the same reason  \drawAngle{B} is also right.
+
+Thus, in the triangle \drawLine{AK,KB,BA} $\drawAngle{A} + \drawAngle{B} = \drawTwoRightAngles$, which is impossible. \inprop[prop:I.XVII]
+
+Therefore the planes \drawPolygon{planeA}, \drawPolygon{planeB} will not meet when produced. $\therefore \drawPolygon{planeA} \parallel \drawPolygon{planeB}$ \indef[def:XI.VIII]
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XV. Theor.}, reference=prop:XI.XV]
+\defineNewPicture{
+	numeric w, d;
+	color s[];
+	w := 7/2cm;
+	d := 2cm;
+	s0 := (0, 0, -d);
+	s1 := (1/4w, 1/3w, -d);
+	byPointXYZDefine(Pnw, 0, 0, 0);
+	byPointXYZDefine(Pne, w, 0, 0);
+	byPointXYZDefine(Pse, w, -w, 0);
+	byPointXYZDefine(Psw, 0, -w, 0);
+	byPointXYZDefine(A, 1/6w, -4/5w, 0);
+	byPointXYZDefine(B, 1/4w, -1/2w, 0);
+	byPointXYZDefine(C, 3/5w, -4/5w, 0);
+	byPointXYZEmpty(D, E, F, G, H, K, Pnw', Pne', Pse', Psw');
+	pointXYZ.D := pointXYZ.A + s1;
+	pointXYZ.E := pointXYZ.B + s1;
+	pointXYZ.F := pointXYZ.C + s1;
+	pointXYZ.H := pointXYZ.A + s0;
+	pointXYZ.G:= pointXYZ.B + s0;
+	pointXYZ.K := pointXYZ.C + s0;
+	pointXYZ.Pnw' := pointXYZ.Pnw + s0;
+	pointXYZ.Pne' := pointXYZ.Pne + s0;
+	pointXYZ.Pse' := pointXYZ.Pse + s0;
+	pointXYZ.Psw' := pointXYZ.Psw + s0;
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
+	bySetProjection(-65, 0, 30);
+	byLineDefine(A, B, byyellow, 0, 0);
+	byLineDefine(B, C, byyellow, 1, 0);
+	byLineDefine(D, E, byred, 1, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(H,G, byred, 0, 0);
+	byLineDefine(G, K, byblue, 0, 0);
+	byLineDefine(B, G, black, 0, 0);
+	draw byPolygonWithName(Pnw', Pne', Pse', Psw')(byyellow)(planeTwo);
+	draw byAngle(B, G, H, byred, 0);
+	draw byAngle(B, G, K, byblue, 0);
+	draw byAngle(G, B, A, byyellow, 0);
+	draw byNamedLineSeq(0)(HG,GK);
+	draw byNamedLineSeq(0)(DE, EF);
+	draw byNamedLine(BG);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(planeOne);
+	draw byNamedLineSeq(0)(AB, BC);
+	draw byLabelsOnPolygon(H,A, B, C, K, G)(0, 0);
+	draw byLabelsOnPolygon(F, E, D, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines meeting one another be parallel to two straight lines meeting one another, not being in the same plane, the planes through them are parallel.}
+
+For let the two straight lines \drawUnitLine{AB}, \drawUnitLine{BC} meeting one another be parallel to the two straight lines \drawUnitLine{DE}, \drawUnitLine{EF} meeting one another, not being in the same plane. I say that the planes \drawPolygon{planeOne}, \drawPolygon{planeTwo} produced through \drawUnitLine{AB}, \drawUnitLine{BC} and \drawUnitLine{DE}, \drawUnitLine{EF} will not meet one another.
+
+For let \drawUnitLine{BG} be drawn from the point \drawPointL{B} perpendicular to the \drawPolygon{planeTwo}. \inprop[prop:XI.XI] And let it meet \drawPolygon{planeTwo} at the point \drawPointL{G}. Through \drawPointL{G} let be drawn $\drawUnitLine{GH} \parallel \drawUnitLine{ED}$, and $\drawUnitLine{GK} \parallel \drawUnitLine{EF}$. \inprop[prop:I.XXXI]
+
+Now, since $\drawUnitLine{BG} \perp \drawPolygon{planeTwo}$, therefore it will also make right angles with all the straight lines which meet it and are in \drawPolygon{planeTwo}. \indef[def:XI.III] $\therefore \drawAngle{BGH} = \drawAngle{BGK} = \drawRightAngle$.
+
+And, since $\drawUnitLine{BA} \parallel \drawUnitLine{GH}$ \inprop[prop:XI.IX], $\therefore \drawAngle{GBA} + \drawAngle{BGH} = \drawTwoRightAngles$. \inprop[prop:I.XXIX]
+
+But $\drawAngle{BGH} = \drawRightAngle$, $\therefore \drawAngle{GBA} = \drawRightAngle$, $\therefore \drawUnitLine{GB} \perp \drawUnitLine{BA}$.
+
+For the same reason $\drawUnitLine{GB} \perp \drawUnitLine{BC}$.
+
+Since then the straight line \drawUnitLine{GB} is set up at right angles to the two straight lines \drawUnitLine{BA}, \drawUnitLine{BC} which cut one another, $\therefore \drawUnitLine{GB} \perp \drawPolygon{planeOne}$. \inprop[prop:XI.IV]
+
+But planes to which the same straight line is at right angles are parallel \inprop[prop:XI.XIV], $\therefore \drawPolygon{planeOne} \parallel \drawPolygon{planeTwo}$
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XVI. Theor.}, reference=prop:XI.XVI]
+\defineNewPicture{
+	numeric w, d;
+	color s;
+	w := 3/2cm;
+	d := 3/2cm;
+	s := (0, 0, -d);
+	byPointXYZDefine(A', 0, 0, 0);
+	byPointXYZDefine(B, w, 0, 0);
+	byPointXYZDefine(B', w, -w, 0);
+	byPointXYZDefine(A, 0, -w, 0);
+	byPointXYZEmpty(C, C', D, D', E, F, G, H, K);
+	pointXYZ.C := pointXYZ.A + s;
+	pointXYZ.C' := pointXYZ.A' + s;
+	pointXYZ.D := pointXYZ.B + s;
+	pointXYZ.D' := pointXYZ.B' + s;
+	pointXYZ.E := 2/3[pointXYZ.A, pointXYZ.A'];
+	pointXYZ.F := 2/3[pointXYZ.B', pointXYZ.B];
+	pointXYZ.G := 1/3[pointXYZ.C, pointXYZ.C'];
+	pointXYZ.H := 1/3[pointXYZ.D', pointXYZ.D];
+	pointXYZ.K := 2[1/2[pointXYZ.E, pointXYZ.G], 1/2[pointXYZ.F, pointXYZ.H]];
+	byPointLabelRemove(A', B', C', D');
+	bySetProjection(-65, 0, 30);
+	byLineDefine(E, F, byred, 0, 0);
+	byLineDefine(F, K, byred, 1, 0);
+	byLineDefine(G, H, byblue, 0, 0);
+	byLineDefine(H, K, byblue, 1, 0);
+	draw byPolygonWithName(C, C', D, D')(byred)(planeCD);
+	draw byPolygonWithName(G, E, F, H)(byyellow)(planeGEFH);
+	draw byPolygonWithName(A, A', B, B')(byblue)(planeAB);
+	draw byNamedLineSeq(0)(EF, FK, HK, GH);
+	draw byLabelsOnPolygon(C, G, A, E, A', B, F, K, H, D')(0, 0);
+	draw byLabelsOnPolygon(C', D, D')(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two parallel planes be cut by any plane, their common sections are parallel.}
+
+For let the two parallel planes \drawPolygon{planeAB}, \drawPolygon{planeCD} be cut by the plane \drawPolygon{planeGEFH}, and let \drawUnitLine{EF}, \drawUnitLine{GH} be their common sections. I say that $\drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
+
+For, if not, \drawUnitLine{EF}, \drawUnitLine{GH} will, when produced, meet either in
+the direction of \drawPointL{F}, \drawPointL{H} or of \drawPointL{E}, \drawPointL{G}.
+
+Let them be produced, as in the direction of \drawPointL{F}, \drawPointL{H}, and let them, first, meet at \drawPointL{K}.
+
+Now, since \drawUnitLine{EF,FK} is in \drawPolygon{planeAB}, therefore all the points on \drawUnitLine{EF,FK} are also in \drawPolygon{planeAB}. \inprop[prop:XI.I]
+
+But \drawPointL{K} is one of the points on the straight line \drawUnitLine{EF,FK}, therefore \drawPointL{K} is in \drawPolygon{planeAB}.
+
+For the same reason \drawPointL{K} is also in \drawPolygon{planeCD}, therefore the planes \drawPolygon{planeAB}, \drawPolygon{planeCD} will meet when produced.
+
+But they do not meet, $\because$ they are parallel. (\hypstr)
+
+Therefore the straight lines \drawUnitLine{EF}, \drawUnitLine{GH} will not meet when produced in the direction of \drawPointL{F}, \drawPointL{H}.
+
+Similarly we can prove that neither will the straight lines \drawUnitLine{EF}, \drawUnitLine{GH} meet when produced in the direction of \drawPointL{E}, \drawPointL{G}.
+
+But straight lines which do not meet in either direction are parallel. \indef[def:I.XXIII]
+
+$\therefore \drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
 
 \qed
 \stopProposition
