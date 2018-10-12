@@ -437,15 +437,24 @@ vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
     if mainPictureMode:
         appendList(allLinesList, str lineName, 1, true);
     fi;
-    if (a <> b):
-        lA := angle(b-a);
-    else:
-        lA := 0;
-    fi;
     if (typeOf(pointXYZ.a) = "color") and (typeOf(pointXYZ.b) = "color"):
         lL := absXYZ(pointXYZ.a - pointXYZ.b);
+        if (typeOf(a) = "pair") and (typeOf(b) = "pair"):
+            if (a <> b):
+                lA := angle(b-a);
+            else:
+                lA := 0;
+            fi;
+        else:
+            lA := 0;
+        fi;
     else:
         lL := abs(a-b);
+        if (a <> b):
+            lA := angle(b-a);
+        else:
+            lA := 0;
+        fi;
     fi;
     setAttribute("line", "Angle", str lineName, lA);
     setAttribute("line", "Color", str lineName, col);
@@ -975,6 +984,21 @@ begingroup
 endgroup
 enddef;
 
+
+primarydef colorone dotproduct colortwo =
+begingroup
+    save xp, yp, zp;
+    numeric xp[], yp[], zp[];
+    xp1 := (redpart colorone)/cm;
+    yp1 := (greenpart colorone)/cm;
+    zp1 := (bluepart colorone)/cm;
+    xp2 := (redpart colortwo)/cm;
+    yp2 := (greenpart colortwo)/cm;
+    zp2 := (bluepart colortwo)/cm;
+    xp1*xp2 + yp1*yp2 + zp1*zp2
+endgroup
+enddef;
+
 vardef isInPlane (expr colPoint, colPlaneA, colPlaneB, colPlaneC) =
     save vecsToCompare, rv;
     color vecsToCompare[];
@@ -1018,6 +1042,17 @@ vardef absXYZ (expr somecolor) =
         ((redpart somecolor)/1cm)**2
         + ((greenpart somecolor)/1cm)**2
         + ((bluepart somecolor)/1cm)**2)*1cm)
+enddef;
+
+vardef lineAndPlaneIntersection (expr lineA, lineB, planeA, planeB, planeC) =
+    save planeNormal, planeOrigin, lineD;
+    color planeNormal, planeOrigin;
+    numeric lineD;
+    planeNormal := unitvectorXYZ((planeA-planeB) crossproduct (planeC-planeB));
+    planeOrigin := planeB;
+    lineD := (planeNormal dotproduct (planeOrigin - lineA))
+            /(planeNormal dotproduct (lineB - lineA));
+    lineA + ((lineB-lineA)*lineD)
 enddef;
 
 vardef spaceRotated (suffix somepath)(expr someangle) =
@@ -1437,10 +1472,12 @@ vardef byNamedArc (text arcslist) =
 enddef;
 
 vardef byNamedArcLabel (text arcslist) =
-    save pointsListB, pointsListE, pointsListO, i, j, k, allArcsDefined, beginFree, endFree;
+    save pointsListB, pointsListE, pointsListO, pointsListD, labelPos, labelVec, i, j, k, allArcsDefined, beginFree, endFree;
     string pointsListB[], pointsListE[], pointsListO[];
-    numeric i, j, k;
+    numeric i, j, k, pointsListD[];
     boolean allArcsDefined, beginFree, endFree;
+    color labelVec;
+    pair labelPos;
     image(
         if (textLabels):
             i := -1;
@@ -1450,6 +1487,7 @@ vardef byNamedArcLabel (text arcslist) =
                 pointsListB[i] := getAttribute("arc", "BName", str aN);
                 pointsListE[i] := getAttribute("arc", "EName", str aN);
                 pointsListO[i] := getAttribute("arc", "CenterName", str aN);
+                pointsListR[i] := getAttribute("arc", "Diameter", str aN);
                 if (getAttribute("arc", "BName", str aN) = "")
                     or (getAttribute("arc", "EName", str aN) = ""):
                     allArcsDefined := false;
@@ -1470,16 +1508,38 @@ vardef byNamedArcLabel (text arcslist) =
                         fi;
                     endfor;
                     if beginFree:
+                        if (typeOf(pointXYZ.scantokens(pointsListB[j])) = "color"):
+                            labelVec := unitvectorXYZ(pointXYZ.scantokens(pointsListB[j]) - pointXYZ.scantokens(pointsListO[j]));
+                            labelVec := labelVec colorrotated projectionAngle;
+                            labelPos := scantokens(pointsListO[j])
+                                + ((redpart(labelVec), greenpart(labelVec))
+                                    * (pointsListR[j]/2));
+                        else:
+                            labelPos := scantokens(pointsListO[j])
+                                + (unitvector(scantokens(pointsListB[j]) - scantokens(pointsListO[j]))
+                                    * (pointsListR[j]/2));
+                        fi;
                         draw byTextLabel(pointLabel)(
                             pointsListB[j],
-                            scantokens(pointsListB[j]),
+                            labelPos,
                             angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
                             textLabelShift);
                     fi;
                     if endFree:
+                        if (typeOf(pointXYZ.scantokens(pointsListB[j])) = "color"):
+                            labelVec := unitvectorXYZ(pointXYZ.scantokens(pointsListE[j]) - pointXYZ.scantokens(pointsListO[j]));
+                            labelVec := labelVec colorrotated projectionAngle;
+                            labelPos := scantokens(pointsListO[j])
+                                + ((redpart(labelVec), greenpart(labelVec))
+                                    * (pointsListR[j]/2));
+                        else:
+                            labelPos := scantokens(pointsListO[j])
+                                + (unitvector(scantokens(pointsListE[j]) - scantokens(pointsListO[j]))
+                                    * (pointsListR[j]/2));
+                        fi;
                         draw byTextLabel(pointLabel)(
                             pointsListE[j],
-                            scantokens(pointsListE[j]),
+                            labelPos,
                             angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
                             textLabelShift);
                     fi;
@@ -1782,7 +1842,10 @@ vardef byNamedPolygon (text polygonsList) =
                 polyPath := byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor;
                 polyCol := getAttribute("polygon", "Color", str pN);
                 polyTransp := getAttribute("polygon", "Transparency", str pN);
-                if (polyCol <> white):
+                if (polyCol <> white)
+                    and ((redpart(polyCol) >= 0)
+                        and (greenpart(polyCol) >= 0)
+                        and(bluepart(polyCol) >= 0)):
                     fill polyPath
                         withcolor
                             if polyTransp = 1:
@@ -1792,15 +1855,27 @@ vardef byNamedPolygon (text polygonsList) =
                             fi;
                 fi;
                 polyGhost := image(
-                    if (polyCol <> white):
+                    if (polyCol <> white)
+                        and ((redpart(polyCol) >= 0)
+                            and (greenpart(polyCol) >= 0)
+                            and(bluepart(polyCol) >= 0)):
                         draw ghostPicture;
                     fi;
-                    draw polyPath withcolor polyCol withpen pencircle scaled 2lineWidth;
+                    if ((redpart(polyCol) >= 0)
+                        and (greenpart(polyCol) >= 0)
+                        and(bluepart(polyCol) >= 0)):
+                        draw polyPath withcolor polyCol withpen pencircle scaled 2lineWidth;
+                    else:
+                        draw polyPath withcolor white withpen pencircle scaled 2lineWidth;
+                    fi;
                     );
                 clip polyGhost to polyPath;
                 draw polyGhost;
-                if (polyCol = white):
-                    draw (byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor) withcolor black withpen pencircle scaled lineWidthThin;
+                if (polyCol = white)
+                    or ((redpart(polyCol) < 0)
+                        or (greenpart(polyCol) < 0)
+                        or (bluepart(polyCol) < 0)):
+                    draw (byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor) withcolor (polyCol*-1) withpen pencircle scaled lineWidthThin;
                 fi;
                 if mainPictureMode and ghostLines:
                     save gP;

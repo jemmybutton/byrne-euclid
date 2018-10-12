@@ -30,7 +30,7 @@
 % Heath's translation of the Elements https://archive.org/stream/euclid_heath_2nd_ed/3_euclid_heath_2nd_ed is used as a reference, as well as this online edition https://mathcs.clarku.edu/~djoyce/elements/Euclid.html
 
 \startProposition[title={Prop. I. Theor.}, reference=prop:XI.I]
-\defineNewPicture[1/4]{
+\defineNewPicture{
 	numeric w, r;
 	w := 3cm;
 	r := 1/3w;
@@ -38,7 +38,7 @@
 	A := (-r, 0);
 	B := (0, 0);
 	D := (r, 0);
-	C := B shifted (dir(30)*r);
+	C := B shifted (dir(30)*4/3r);
 	byPointXYZDefine(P, -1/2w, 0, -1/2w);
 	byPointXYZDefine(Q, 1/2w, 0, -1/2w);
 	byPointXYZDefine(R, 1/2w, 0, 1/2w);
@@ -67,7 +67,7 @@
 
 For, if possible, let a part \drawUnitLine{AB} of the straight line \drawUnitLine{AB,BC} be in the plane of reference \drawPolygon{PQRS}, and a part \drawUnitLine{BC} be in a plane more elevated.
 
-There then will be in \drawPolygon{PQRS} some straight line continuous with \drawUnitLine{AB} in a straight line. Let it be \drawUnitLine{BD}. 
+There will then be in \drawPolygon{PQRS} some straight line continuous with \drawUnitLine{AB} in a straight line. Let it be \drawUnitLine{BD}. 
 
 Therefore \drawUnitLine{AB} is a common segment of the two straight lines \drawUnitLine{AB,BC} and \drawUnitLine{AB,BD}, which is impossible, inasmuch as, if we describe a circle \drawArc{BAC,BDC,BAD} with centre \drawPointL{B} and radius \drawUnitLine{AB}, then the diameters will cut off unequal circumferences \drawArc{BAC} and \drawArc{BAC,BDC} of the circle.
 
@@ -1050,6 +1050,83 @@ Similarly we can prove that neither will the straight lines \drawUnitLine{EF}, \
 But straight lines which do not meet in either direction are parallel. \indef[def:I.XXIII]
 
 $\therefore \drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XVII. Theor.}, reference=prop:XI.XVII]
+\defineNewPicture{
+	numeric w, d;
+	color s;
+	w := 2cm;
+	d := 3/2cm;
+	s := (0, 0, -d);
+	byPointXYZDefine(A, 3/4w, -1/4w, 0);
+	byPointXYZDefine(B, 4/5w, -1/2w, -2d);
+	byPointXYZDefine(C, 1/4w, -3/4w, 0);
+	byPointXYZDefine(D, 1/5w, -1/2w, -2d);
+	byPointXYZDefine(G, 0, -w, 0);
+	byPointXYZDefine(G', 0, 0, 0);
+	byPointXYZDefine(H, w, 0, 0);
+	byPointXYZDefine(H', w, -w, 0);
+	byPointXYZEmpty(E, F, O, K, K', L, L', M, M', N, N');
+	pointXYZ.K := pointXYZ.G + s;
+	pointXYZ.K' := pointXYZ.G' + s;
+	pointXYZ.L := pointXYZ.H + s;
+	pointXYZ.L' := pointXYZ.H' + s;
+	pointXYZ.M := pointXYZ.G + 2s;
+	pointXYZ.M' := pointXYZ.G' + 2s;
+	pointXYZ.N := pointXYZ.H + 2s;
+	pointXYZ.N' := pointXYZ.H' + 2s;
+	pointXYZ.F := lineAndPlaneIntersection(pointXYZ.C, pointXYZ.D, 
+		pointXYZ.L', pointXYZ.K, pointXYZ.K');
+	pointXYZ.E := lineAndPlaneIntersection(pointXYZ.A, pointXYZ.B, 
+		pointXYZ.L', pointXYZ.K, pointXYZ.K');
+	pointXYZ.O := lineAndPlaneIntersection(pointXYZ.A, pointXYZ.D, 
+		pointXYZ.L', pointXYZ.K, pointXYZ.K');
+	byPointLabelRemove(G',H',K',L',M',N');
+	byLineDefine(A, E, byred, 0, 0);
+	byLineDefine(E, B, byred, 1, 0);
+	byLineDefine(C, F, byyellow, 0, 0);
+	byLineDefine(F, D, byyellow, 1, 0);
+	byLineDefine(A, O, byblue, 0, 0);
+	byLineDefine(O, D, byblue, 1, 0);
+	byLineDefine(C, A, byblack, 0, 0);
+	byLineDefine(D, B, byblack, 1, 0);
+	byLineDefine(F, O, byblack, 0, 2);
+	byLineDefine(O, E, byblack, 1, 2);
+	bySetProjection(-60, 0, 30);
+	draw byPolygonWithName(M, M', N, N')(-byred)(planeMN);
+	draw byPolygonWithName(D, O, E, B)(byyellow)(planeDOEB);
+	draw byNamedLine(OD);
+	draw byNamedLineSeq(0)(FD,DB,EB);
+	draw byPolygonWithName(K, K', L, L')(-byyellow)(planeKL);
+	draw byPolygonWithName(F, C, A, O)(byred)(planeFCAO);
+	draw byNamedLine(AO);
+	draw byNamedLineSeq(0)(CF,FO,OE,AE,CA);
+	draw byPolygonWithName(G, G', H, H')(-byblue)(planeGH);
+	draw byLabelsOnPolygon(M, K, G, G', H, L, N, N')(0, 0);
+	draw byLabelsOnPolygon(D, F, C, A, E, B)(0, 0);
+	draw byLabelsOnPolygon(E, O, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines be cut by parallel planes, they will be cut in the same ratios.}
+
+For let the two straight lines \drawUnitLine{AB}, \drawUnitLine{CD} be cut by the parallel planes \drawPolygon{planeGH}, \drawPolygon{planeKL}, \drawPolygon{planeMN} at the points \drawPointL{A}, \drawPointL{E}, \drawPointL{B} and \drawPointL{C}, \drawPointL{F}, \drawPointL{D}.
+
+I say that, $\drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{CF}:\drawUnitLine{FD}$.
+
+For let \drawUnitLine{AC}, \drawUnitLine{BD}, \drawUnitLine{AD} be joined, let \drawUnitLine{AD} meet the \drawPolygon{planeKL} at the point \drawPointL{O}, and let \drawUnitLine{EO}, \drawUnitLine{OF} be joined.
+
+Now, since the two parallel planes \drawPolygon{planeKL}, \drawPolygon{planeMN} are cut by the plane \drawPolygon{planeDOEB}, their common sections \drawUnitLine{EO}, \drawUnitLine{BD} are parallel. \inprop[prop:XI.XVI]
+
+For the same reason, since the two \drawPolygon{planeGH}, \drawPolygon{planeKL} are cut by the plane \drawPolygon{planeFCAO}, their common sections \drawUnitLine{AC}, \drawUnitLine{OF} are parallel. \inprop[prop:XI.XVI]
+
+And, since $\drawUnitLine{EO} \parallel \drawUnitLine{BD}$, one of the sides of the triangle \drawLine{AB,BD,DA}, therefore, proportionally, $\drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{AO}:\drawUnitLine{OD}$. \inprop[prop:VI.II]
+
+Again, since $\drawUnitLine{OF} \parallel \drawUnitLine{AC}$, one of the sides of the triangle \drawLine{AD,DC,CA}, proportionally, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine{CF}\drawUnitLine{FD}$. \inprop[prop:VI.II]
+
+But it was also proved that, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine{AE}:\drawUnitLine{EB}$, $\therefore \drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{CF}:\drawUnitLine{FD}$.
 
 \qed
 \stopProposition
