@@ -27,7 +27,7 @@
 
 \starttext
 
-% Heath's translation of the Elements https://archive.org/stream/euclid_heath_2nd_ed/3_euclid_heath_2nd_ed is used as a reference, as well as this online edition https://mathcs.clarku.edu/~djoyce/elements/Euclid.html
+% Heath's translation of the Elements https://archive.org/stream/euclid_heath_2nd_ed/3_euclid_heath_2nd_ed is used as a reference
 
 \startProposition[title={Prop. I. Theor.}, reference=prop:XI.I]
 \defineNewPicture{
@@ -747,7 +747,7 @@ And \drawUnitLine{GH} is parallel to it; but, if two straight lines be parallel,
 
 $\therefore \drawUnitLine{GH} \perp \drawPolygon{planeEAD}$
 
-Therefore \drawUnitLine{GH} is also at right angles to all the straight lines which meet it and are in \drawPolygon{planeEAD}. \inprop[def:XI.III]
+Therefore \drawUnitLine{GH} is also at right angles to all the straight lines which meet it and are in \drawPolygon{planeEAD}. \indef[def:XI.III]
 
 But \drawUnitLine{AF} meets it and is in the plane through \drawUnitLine{ED}, $\therefore \drawUnitLine{GH} \perp \drawUnitLine{AF}$, so that $\drawUnitLine{AF} \perp \drawUnitLine{GH}$.
 
@@ -1127,6 +1127,276 @@ And, since $\drawUnitLine{EO} \parallel \drawUnitLine{BD}$, one of the sides of 
 Again, since $\drawUnitLine{OF} \parallel \drawUnitLine{AC}$, one of the sides of the triangle \drawLine{AD,DC,CA}, proportionally, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine{CF}\drawUnitLine{FD}$. \inprop[prop:VI.II]
 
 But it was also proved that, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine{AE}:\drawUnitLine{EB}$, $\therefore \drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{CF}:\drawUnitLine{FD}$.
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XVIII. Theor.}, reference=prop:XI.XVIII]
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 2cm;
+	d := 3/2cm;
+	byPair(Pnw, Pne, Pse, Psw, C, F, B, E);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	C := 1/2[Pnw, Psw];
+	E := 1/2[Pne, Pse];
+	B := 2/3[C, E];
+	F := 1/3[C, B];
+	byPointXYZDefine(A, xpart(B), ypart(B), d);
+	byPointXYZDefine(D, xpart(C), ypart(C), d);
+	byPointXYZDefine(G, xpart(F), ypart(F), d);
+	byPointXYZDefine(E', xpart(E), ypart(E), d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, E');
+	bySetProjection(-60, 0, 30);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(C, F, byblack, 0, 0);
+	byLineDefine(F, B, byblue, 1, 0);
+	byLineDefine(B, E, byred, 1, 0);
+	byLineDefine(F, G, byblue, 0, 0);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
+	draw byPolygonWithName(C, D, E', E)(byyellow)(planeDE);
+	draw byAngle(A, B, E, byred, 0);
+	draw byAngle(G, F, B, byblue, 0);
+	draw byNamedLine(AB,FG,CF,FB,BE);
+	draw byLabelsOnPolygon(D, G, A, E', E, B, F, noPoint)(0, 0);
+	draw byLabelsOnPolygon(Psw, C, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two straight lines be cut by parallel planes, they will be cut in the same ratios.}
+
+For let any straight line \drawUnitLine{AB} be at right angles to the
+plane of reference \drawPolygon{refPlane}.
+
+I say that all the planes through \drawUnitLine{AB} are also at right angles to \drawPolygon{refPlane}.
+
+For let \drawPolygon{planeDE} be drawn through \drawUnitLine{AB}, let \drawUnitLine{CE} be the common section of \drawPolygon{planeDE} and \drawPolygon{refPlane}. 
+
+Let a point \drawPointL{F} be taken at random on \drawUnitLine{CE}, and from \drawPointL{F} let $\drawUnitLine{FG} \perp \drawUnitLine{CE}$ be drawn in \drawPolygon{planeDE}. \inprop[prop:I.XI]
+
+Now, since $\drawUnitLine{AB} \perp \drawPolygon{refPlane}$, \drawUnitLine{AB}  is also at right angles to all the straight lines which meet it and are in the plane of reference. \indef[def:XI.III] So that it is also at right angles to \drawUnitLine{CE};
+$\therefore \drawAngle{ABE} = \drawRightAngle$.
+
+But $\drawAngle{GFB} = \drawRightAngle$, $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{FG}$. \inprop[prop:I.XXVIII]
+
+But $\drawUnitLine{AB} \perp \drawPolygon{refPlane}$, $\therefore \drawUnitLine{FG} \perp \drawPolygon{refPlane}$. \inprop[prop:XI.VIII]
+
+Now a plane is at right angles to a plane, when the straight lines drawn, in one of the planes, at right angles to the common section of the planes are at right angles to the remaining plane. \indef[def:XI.IV]
+
+And \drawUnitLine{FG}, drawn in one of the planes \drawPolygon{planeDE} at right angles to \drawUnitLine{CE}, the common section of the planes, was proved to be
+at right angles to \drawPolygon{refPlane}. $\therefore \drawPolygon{planeDE} \perp  \drawPolygon{refPlane}$.
+
+Similarly also it can be proved that all the planes through \drawUnitLine{AB} are at right angles to the plane of reference.
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XIX. Theor.}, reference=prop:XI.XIX]
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(Pnw, Pne, Pse, Psw, A, C, D, G, H);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	D := (1/2w, -1/2h);
+	A := 1/5[Psw, Pse];
+	C := 4/5[Psw, Pse];
+	G = whatever[Pnw, Pne] = whatever[A, D];
+	H = whatever[Pnw, Pne] = whatever[C, D];
+	byPointXYZDefine(A', xpart(A), ypart(A), d);
+	byPointXYZDefine(C', xpart(C), ypart(C), d);
+	byPointXYZDefine(B, xpart(D), ypart(D), d);
+	byPointXYZDefine(G', xpart(G), ypart(G), d);
+	byPointXYZDefine(H', xpart(H), ypart(H), d);
+	byPointXYZEmpty(E, F);
+	byRotatePoints(0, 0, 0, false)(A, C); % pointXYZ.A and pointXYZ.C do not exist at this stage. They are created on rotation.
+	pointXYZ.E := 2/3[pointXYZ.A, pointXYZ.B];
+	pointXYZ.F := 2/3[pointXYZ.C, pointXYZ.B];
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, G, H, A', C', G', H');
+	bySetProjection(-75, 0, 15);
+	byLineDefine(B, D, byblack, 0, 0);
+	byLineDefine(D, E, byred, 0, 0);
+	byLineDefine(D, F, byyellow, 0, 0);
+	byLineDefine(A, D, byblue, 0, 0);
+	byLineDefine(D, C, byblue, 1, 0);
+	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
+	draw byPolygonWithName(G, G', B, D)(byyellow)(planeAB');
+	draw byPolygonWithName(H, H', B, D)(byred)(planeBC');
+	draw byPolygonWithName(A, A', B, D)(byyellow)(planeAB'');
+	draw byPolygonWithName(C, D, B, C')(byred)(planeBC'');
+	draw byNamedLine(BD,DE, DF);
+	draw byNamedLineSeq(0)(AD, DC);
+	draw byLabelsOnPolygon(A, E, B, F, C, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{two planes which cut one another be at right angles to any plane, their common section will also be at right angles to the same plane.}
+
+For let the two planes \drawPolygon[middle][planeAB]{planeAB',planeAB''}, \drawPolygon[middle][planeBC]{planeBC',planeBC''} be at right angles to the
+plane of reference \drawPolygon{refPlane}, and let \drawUnitLine{BD} be their common section.
+
+I say that $\drawUnitLine{BD} \perp \drawPolygon{refPlane}$.
+
+For suppose it is not, and from the point \drawPointL{D} let \drawUnitLine{DE} be drawn in \planeAB\ at right angles to the straight line \drawUnitLine{AD}, and \drawUnitLine{DF} in \planeBC\ at right angles to \drawUnitLine{CD}.
+
+Now, since $\planeAB \perp \drawPolygon{refPlane}$, and \drawUnitLine{DE} has been drawn in the \planeAB\ at right angles to \drawUnitLine{AD}, their common section,  $\therefore \drawUnitLine{DE} \perp \drawPolygon{refPlane}$. \indef[def:XI.IV]
+
+Similarly we can prove that $\drawUnitLine{DF} \perp \drawPolygon{refPlane}$.
+
+Therefore from the same point \drawPointL{D} two straight lines have been set up at right angles to the plane of reference on the same side: which is impossible. \inprop[prop:XI.XIII]
+
+Therefore no straight line except the common section \drawUnitLine{DB} of \planeAB, \planeBC\ can be set up from the point \drawPointL{D} at right angles to \drawPolygon{refPlane}.
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XX. Theor.}, reference=prop:XI.XX]
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 2cm;
+	d := 2cm;
+	byPair(A, B, C, E, B', C');
+	B := (0, 0);
+	A := (2/3w, 1/2h);
+	C := (w, 0);
+	E := 3/4[B, C];
+	B' := (0, h);
+	C' := (w, h);
+	byPointXYZDefine(D, 3/4w, 1/4h, d);
+	byPointLabelRemove(B', C');
+	bySetProjection(-60, 0, 15);
+	byLineDefine(A, B, byblue, 0, 0);
+	byLineDefine(A, E, byblue, 1, 0);
+	byLineDefine(A, D, byred, 0, 0);
+	byLineDefine(A, C, byyellow, 0, 0);
+	byLineDefine(B, E, byblack, 0, 0);
+	byLineDefine(E, C, byblack, 1, 0);
+	byLineDefine(D, B, byyellow, 1, 0);
+	byLineDefine(D, C, byred, 1, 0);
+	draw byPolygonWithName(B, B', C', C)(white)(planeBAC);
+	draw byAngle(B, A, E, byred, 0);
+	draw byAngle(E, A, C, byred, 1);
+	draw byAngle(C, A, D, byblue, 0);
+	draw byAngle(D, A, B, byyellow, 0);
+	draw byNamedLineSeq(0)(AE, AD);
+	draw byNamedLineSeq(0)(AB, AC);
+	draw byNamedLineSeq(0)(AD, DC, EC, BE, DB);
+	draw byLabelsOnPolygon(B, A, D, C, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{a solid angle be contained by three plane angles, any two, taken together in any manner, are greater than the remaining one.}
+
+For let the solid angle at \drawFromCurrentPicture[middle][angleA]{
+startAutoLabeling;
+draw byNamedSolidAngle(A);
+stopAutoLabeling;
+}
+be contained by the three plane angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB}.
+
+I say that any two of the angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB}, taken to­gether in any manner, are greater than the remaining one.
+
+If now $\drawAngle{BAC} = \drawAngle{CAD} = \drawAngle{DAB}$, it is manifest that any two are greater than the remaining one.
+
+But, if not, let \drawAngle{BAC} be greater, and on the straight line \drawUnitLine{AB}, and at the point \drawPointL{A} on it, let the angle \drawAngle{BAE} be constructed, in the plane \drawPolygon{planeBAC}, equal to the angle \drawAngle{DAB}.
+
+Let \drawUnitLine{AE} be made equal to \drawUnitLine{AD}, and let \drawUnitLine{BE,EC}, drawn across through the point \drawPointL{E}, cut the straight lines \drawUnitLine{AB}, \drawUnitLine{AC} at the points \drawPointL{B}, \drawPointL{C}; let \drawUnitLine{DB}, \drawUnitLine{DC} be joined.
+
+Now, since in \drawLine{BD,DA,AB} and \drawLine{AE,EB,BA} $\drawUnitLine{DA} = \drawUnitLine{AE}$, and \drawUnitLine{AB} is common, two sides are equal to two sides; and $\drawAngle{DAB} = \drawAngle{BAE}$, $\therefore \drawUnitLine{DB} = \drawUnitLine{BE}$. \inprop[prop:I.IV]
+
+And, since in \drawLine{BD,DC,CB} the two sides \drawUnitLine{BD}, \drawUnitLine{DC} are greater than \drawUnitLine{BC} \inprop[prop:I.XX], and of these \drawUnitLine{DB} was proved equal to \drawUnitLine{BE}, therefore the remainder \drawUnitLine{DC} is greater than the remainder \drawUnitLine{EC}.
+
+Now, since in \drawLine{DC,CA,AD} and \drawLine{AC,CE,EA} $\drawUnitLine{DA} = \drawUnitLine{AE}$, and \drawUnitLine{AC} is common, and the base \drawUnitLine{DC} is greater than the base \drawUnitLine{EC}, $\therefore \drawAngle{DAC} > \drawAngle{EAC}$. \inprop[prop:I.XXV]
+
+But $\drawAngle{DAB} = \drawAngle{BAE}$, $\therefore$ \drawAngle{DAB}, \drawAngle{DAC} are greater than \drawAngle{BAC}.
+
+Similarly we can prove that the remaining angles also, taken together two and two, are greater than the remaining one.
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XXI. Theor.}, reference=prop:XI.XXI]
+\defineNewPicture{
+	startTempAngleScale(2);
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 2cm;
+	d := 2cm;
+	byPair(A, B, D);
+	B := (0, 0);
+	A := (1/2w, h);
+	D := (w, 0);
+	byPointXYZDefine(C, 1/2w, 1/2h, d);
+	bySetProjection(-75, 0, 10);
+	byLineDefine(A, B, byyellow, 0, 0);
+	byLineDefine(A, C, byred, 0, 0);
+	byLineDefine(A, D, byblue, 0, 0);
+	byLineDefine(B, C, byblue, 1, 0);
+	byLineDefine(C, D, byyellow, 1, 0);
+	byLineDefine(D, B, byred, 1, 0);
+	byAngleDefine(B, A, C, byred, 0);
+	byAngleDefine(C, A, D, byblue, 0);
+	byAngleDefine(D, A, B, byyellow, 0);
+	byAngleDefineExtended(C, B, A, byred, 2)(byblue);
+	byAngleDefineExtended(A, B, D, byyellow, 1)(byblue);
+	byAngleDefineExtended(B, C, A, byred, 1)(byyellow);
+	byAngleDefineExtended(A, C, D, byblue, 2)(byyellow);
+	byAngleDefineExtended(C, D, A, byblue, 1)(byred);
+	byAngleDefineExtended(A, D, B, byyellow, 2)(byred);
+	draw byNamedAngle(BAC, CAD, DAB, CBA, ABD, BCA, ACD, CDA, ADB);
+	draw byNamedLine(AC);
+	draw byNamedLineSeq(0)(AB, AD);
+	draw byAngle(D, B, C, byblack, 1);
+	draw byAngle(B, C, D, byblack, 2);
+	draw byAngle(C, D, B, byblack, -1);
+	draw byNamedLineSeq(0)(BC, CD, DB);
+	draw byLabelsOnPolygon(B, C, D)(0, 0);
+	draw byLabelsOnPolygon(D, A, B)(2, 0);
+	stopTempAngleScale;
+}
+\drawCurrentPictureInMargin
+\problemNP{A}{ny}{solid angle is contained by plane angles less than four right angles.}
+
+Let the angle at \drawFromCurrentPicture[middle][angleA]{
+startAutoLabeling;
+draw byNamedSolidAngle(A);
+stopAutoLabeling;
+} be a solid angle contained by the plane angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB}.
+
+I say that the angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB} are less than four right angles.
+
+For let points \drawPointL{B}, \drawPointL{C}, \drawPointL{D} be taken at random on the straight lines \drawUnitLine{AB}, \drawUnitLine{AC}, \drawUnitLine{AD} respectively, and let \drawUnitLine{BC}, \drawUnitLine{CD}, \drawUnitLine{DB} be joined.
+
+Now, since the solid angle at \drawFromCurrentPicture[middle][angleB]{
+startAutoLabeling;
+draw byNamedSolidAngle(CBA,ABD,CBD);
+stopAutoLabeling;
+} is contained by the three plane angles \drawAngle{CBA}, \drawAngle{ABD}, \drawAngle{CBD}, any two are greater than the remaining one. \inprop[prop:XI.XX]
+
+For the same reason $\drawAngle{BCA} + \drawAngle{ACD} > \drawAngle{BCD}$, and $\drawAngle{CDA} + \drawAngle{ADB} > \drawAngle{CDB}$.
+
+Therefore the six angles $\drawAngle{CBA} + \drawAngle{ABD} + \drawAngle{BCA}, \drawAngle{ACD} + \drawAngle{CDA} +  \drawAngle{ADB} > \drawAngle{CBD} + \drawAngle{BCD} + \drawAngle{CDB}$.
+
+But $\drawAngle{CBD} + \drawAngle{BDC} + \drawAngle{BCD} = \drawTwoRightAngles$. \inprop[prop:I.XXXII]
+
+$\therefore \drawAngle{CBA} + \drawAngle{ABD} + \drawAngle{BCA}, \drawAngle{ACD} + \drawAngle{CDA} +  \drawAngle{ADB} > \drawTwoRightAngles$.
+
+And, since the three angles of each of the triangles \drawLine{AB,BC,CA},  \drawLine{AC,CD,DA},  \drawLine{AD,DB,BA} are equal to two right angles,
+$\therefore \drawAngle{CBA} + \drawAngle{ACB} + \drawAngle{BAC} + \drawAngle{ACD} + \drawAngle{CDA} + \drawAngle{CAD} + \drawAngle{ADB} + \drawAngle{DBA} + \drawAngle{BAD} = 3\drawTwoRightAngles$.
+
+And $\drawAngle{ABC} + \drawAngle{BCA} + \drawAngle{ACD} + \drawAngle{CDA} + \drawAngle{ADB} + \drawAngle{DBA} > \drawTwoRightAngles$.
+
+Therefore the remaining three angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB} containing the solid angle \angleA\ are less than four right angles.
 
 \qed
 \stopProposition

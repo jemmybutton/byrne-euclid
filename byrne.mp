@@ -45,6 +45,10 @@ textLabelShift := lineWidth;
 autoLabelingMode := false;
 mainPictureMode := false;
 
+boolean solidAngleMode;
+
+solidAngleMode := false;
+
 numeric dpLength[];
 dpLength0 := 2lineWidth;
 dpLength1 := 2lineWidth;
@@ -2153,9 +2157,30 @@ vardef byNamedAngle (text anglesList) =
                 else:
                     draw byAngleMWhite(p, 0, 0);
                 fi;
+                if solidAngleMode and (textLabels and autoLabelingMode):
+                    draw (p scaled (1/3angleScale*u))--(0,0)--cycle withcolor white;
+                    fill (p scaled (1/3angleScale*u))--(0,0)--cycle withcolor white;
+                fi;
             );
             draw (q shifted (scantokens(getAttribute("angle", "BName", str aN)) scaled scaleFactor)) rotated globalRotation;
         endfor;
+    )
+enddef;
+
+vardef byNamedSolidAngle (text anglesList) =
+    save solidAngleMode, processedAL, centerName, rv;
+    boolean solidAngleMode;
+    string processedAL, centerName;
+    processedAL := byProcessAnglesList(anglesList);
+    solidAngleMode := true;
+    image(
+        forsuffixes aN := scantokens(processedAL):
+            centerName := getAttribute("angle", "BName", str aN);
+        endfor;
+        draw byNamedAngle(anglesList);
+        if (textLabels and autoLabelingMode):
+            draw byTextLabel(pointLabel)(centerName, scantokens(centerName), 0, 0);
+        fi;
     )
 enddef;
 
@@ -2238,6 +2263,9 @@ vardef byAngleMDashedLine (expr angleArc, angleColor)(suffix angleOptionalColors
     path p;
     p := angleArc scaled ((u*angleScale) - lineWidth);
     image(
+        if (angleOptionalColors[0] <> bytransparent):
+            fill (p--(0,0)--cycle) withcolor angleOptionalColors[0];
+        fi;
         draw p withpen pencircle scaled lineWidth withcolor angleColor dashed byDashPattern(arclength(p), 1);
     )
 enddef;
