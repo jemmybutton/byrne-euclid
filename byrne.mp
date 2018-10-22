@@ -344,6 +344,220 @@ def stopMainPictureMode =
     endgroup
 enddef;
 
+
+%
+% Some general 3D stuff
+%
+
+color projectionAngle;
+projectionAngle := (0, 0, 0);
+
+primarydef somecolor colorrotated someangle =
+begingroup
+    save ox, oy, oz, px, py, pz, xa, ya, za;
+    ox := redpart somecolor;
+    oy := greenpart somecolor;
+    oz := bluepart somecolor;
+    xa := redpart someangle;
+    ya := greenpart someangle;
+    za := bluepart someangle;
+    px := + ox*cosd(za) + oy*sind(za) + oz*0;
+    py := - ox*sind(za) + oy*cosd(za) + oz*0;
+    ox := px; oy := py;
+    px := + ox*cosd(ya) + oz*sind(ya) + oy*0;
+    pz := - ox*sind(ya) + oz*cosd(ya) + oy*0;
+    ox := px; oz := pz;
+    pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
+    py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
+    oz := pz; oy := py;
+    (ox, oy, oz)
+endgroup
+enddef;
+
+primarydef colorone crossproduct colortwo =
+begingroup
+    save xp, yp, zp;
+    numeric xp[], yp[], zp[];
+    xp1 := (redpart colorone)/cm;
+    yp1 := (greenpart colorone)/cm;
+    zp1 := (bluepart colorone)/cm;
+    xp2 := (redpart colortwo)/cm;
+    yp2 := (greenpart colortwo)/cm;
+    zp2 := (bluepart colortwo)/cm;
+    xp3 := ((yp1*zp2) - (zp1*yp2))*cm;
+    yp3 := ((zp1*xp2) - (xp1*zp2))*cm;
+    zp3 := ((xp1*yp2) - (yp1*xp2))*cm;
+    (xp3, yp3, zp3)
+endgroup
+enddef;
+
+primarydef colorone dotproduct colortwo =
+begingroup
+    save xp, yp, zp;
+    numeric xp[], yp[], zp[];
+    xp1 := (redpart colorone)/cm;
+    yp1 := (greenpart colorone)/cm;
+    zp1 := (bluepart colorone)/cm;
+    xp2 := (redpart colortwo)/cm;
+    yp2 := (greenpart colortwo)/cm;
+    zp2 := (bluepart colortwo)/cm;
+    xp1*xp2 + yp1*yp2 + zp1*zp2
+endgroup
+enddef;
+
+vardef isInPlane (expr colPoint, colPlaneA, colPlaneB, colPlaneC) =
+    save vecsToCompare, rv;
+    color vecsToCompare[];
+    boolean rv;
+    rv := false;
+    if (colPoint = colPlaneA)
+        or (colPoint = colPlaneB)
+        or (colPoint = colPlaneC):
+        rv := true;
+    else:
+        vecsToCompare1 := colPlaneA-colPlaneB;
+        vecsToCompare2 := colPlaneC-colPlaneB;
+        vecsToCompare3 := colPoint-colPlaneB;
+    fi;
+    if not rv:
+        if ((absXYZ(unitvectorXYZ(vecsToCompare1) - unitvectorXYZ(vecsToCompare3)) < 1/100)
+            or (absXYZ(unitvectorXYZ(vecsToCompare1) + unitvectorXYZ(vecsToCompare3)) < 1/100)
+            or (absXYZ(unitvectorXYZ(vecsToCompare2) - unitvectorXYZ(vecsToCompare3)) < 1/100)
+            or (absXYZ(unitvectorXYZ(vecsToCompare2) + unitvectorXYZ(vecsToCompare3)) < 1/100)):
+            rv := true;
+        else:
+            vecsToCompare4 := unitvectorXYZ(vecsToCompare1 crossproduct vecsToCompare2);
+            vecsToCompare5 := unitvectorXYZ(vecsToCompare3 crossproduct vecsToCompare2);
+            if ((absXYZ(vecsToCompare4 - vecsToCompare5) < 1/100)
+                or (absXYZ(vecsToCompare4 + vecsToCompare5) < 1/100)):
+                rv := true;
+            else:
+                rv := false;
+            fi;
+        fi;
+    fi;
+    rv
+enddef;
+
+vardef unitvectorXYZ (expr somecolor) =
+    somecolor/absXYZ(somecolor)
+enddef;
+
+vardef absXYZ (expr somecolor) =
+    (sqrt(
+        ((redpart somecolor)/1cm)**2
+        + ((greenpart somecolor)/1cm)**2
+        + ((bluepart somecolor)/1cm)**2)*1cm)
+enddef;
+
+vardef lineAndPlaneIntersection (expr lineA, lineB, planeA, planeB, planeC) =
+    save planeNormal, planeOrigin, lineD;
+    color planeNormal, planeOrigin;
+    numeric lineD;
+    planeNormal := unitvectorXYZ((planeA-planeB) crossproduct (planeC-planeB));
+    planeOrigin := planeB;
+    lineD := (planeNormal dotproduct (planeOrigin - lineA))
+            /(planeNormal dotproduct (lineB - lineA));
+    lineA + ((lineB-lineA)*lineD)
+enddef;
+
+vardef spaceRotated (suffix somepath)(expr someangle) =
+    save rv, tv, spacepoint, op, rp, tp;
+    path rv, tv;
+    color spacepoint[];
+    pair op[], rp[], tp[];
+    if (typeOf(thirdDimension.somepath) <> "path"):
+        path thirdDimension.somepath;
+        thirdDimension.somepath := somepath scaled 0;
+    fi;
+    for i := 0 step 1 until length(somepath):
+        op0 := point i of somepath;
+        spacepoint0 :=
+            (xpart(op0), ypart(op0),
+                xpart(point i of thirdDimension.somepath)
+                ) colorrotated someangle;
+        rp0 := (redpart(spacepoint0), greenpart(spacepoint0));
+        tp0 := (bluepart(spacepoint0), 0);
+        if (i = 0):
+            rv := rp0;
+            tv := tp0;
+        else:
+            op1 := postcontrol (i-1) of somepath;
+            spacepoint1 :=
+                (xpart(op1), ypart(op1),
+                    xpart(postcontrol (i-1) of thirdDimension.somepath)
+                    ) colorrotated someangle;
+            rp1 := (redpart(spacepoint1), greenpart(spacepoint1));
+            tp1 := (bluepart(spacepoint1), 0);
+            op2 := precontrol i of somepath;
+            spacepoint2 :=
+                (xpart(op2), ypart(op2),
+                    xpart(precontrol i of thirdDimension.somepath)
+                    ) colorrotated someangle;
+            rp2 := (redpart(spacepoint2), greenpart(spacepoint2));
+            tp2 := (bluepart(spacepoint2), 0);
+            rv := rv .. controls rp1 and rp2 ..
+                if ((i < length(somepath)) or (not cycle somepath)):
+                    rp0
+                else:
+                    cycle
+                fi;
+            tv := tv .. controls tp1 and tp2 ..
+                if ((i < length(somepath)) or (not cycle somepath)):
+                    tp0
+                else:
+                    cycle
+                fi;
+        fi;
+    endfor;
+    thirdDimension.somepath := tv;
+    rv
+enddef;
+
+vardef bySetProjection (expr xa, ya, za) =
+    projectionAngle := (xa, ya, za);
+    byRotatePoints(xa, ya, za, false)();
+enddef;
+
+vardef byPutPointsInSpace (text pL) =
+    byRotatePoints(0, 0, 0, true)(pL);
+enddef;
+
+vardef byRotateAroundAxis (expr pointA, lineEndA, lineEndB, a) =
+    save vecA, vecB, rV, q;
+    color vecA, vecB, rV;
+    cmykcolor q[];
+    vecA := pointA - lineEndA;
+    vecB := unitvectorXYZ(lineEndB - lineEndA);
+    q1 := (0, redpart(vecA), greenpart(vecA), bluepart(vecA));
+    q2 := (cosd(a/2), sind(a/2)*redpart(vecB), sind(a/2)*greenpart(vecB), sind(a/2)*bluepart(vecB));
+    %q3 := (cyanpart(q2), -magentapart(q2), -yellowpart(q2), -blackpart(q2));
+    q4 := (q2 hamiltonProduct q1);% hamiltonProduct q3;
+    rV := (magentapart(q4), yellowpart(q4), blackpart(q4)) + lineEndA;
+    rV
+enddef;
+
+primarydef colorone hamiltonProduct colortwo =
+begingroup
+    save a, b, c, d;
+    numeric a[], b[],c[],d[];
+    a1 := cyanpart(colorone);
+    b1 := magentapart(colorone);
+    c1 := yellowpart(colorone);
+    d1 := blackpart(colorone);
+    a2 := cyanpart(colortwo);
+    b2 := magentapart(colortwo);
+    c2 := yellowpart(colortwo);
+    d2 := blackpart(colortwo);
+    (
+        (a1*a2) - (b1*b2) - (c1*c2) - (d1*d2),
+        (a1*b2) + (b1*a2) + (c1*d2) - (d1*c2),
+        (a1*c2) - (b1*d2) + (c1*a2) + (d1*b2),
+        (a1*d2) + (b1*c2) - (c1*b2) + (d1*a2)
+    )
+endgroup
+enddef;
+
 %
 % This section is dedicated to lines
 %
@@ -940,181 +1154,6 @@ vardef generateLineSynonyms =
             fi;
         endfor;
     fi;
-enddef;
-
-%
-% Some general 3D stuff
-%
-
-color projectionAngle;
-projectionAngle := (0, 0, 0);
-
-primarydef somecolor colorrotated someangle =
-begingroup
-    save ox, oy, oz, px, py, pz, xa, ya, za;
-    ox := redpart somecolor;
-    oy := greenpart somecolor;
-    oz := bluepart somecolor;
-    xa := redpart someangle;
-    ya := greenpart someangle;
-    za := bluepart someangle;
-    px := + ox*cosd(za) + oy*sind(za) + oz*0;
-    py := - ox*sind(za) + oy*cosd(za) + oz*0;
-    ox := px; oy := py;
-    px := + ox*cosd(ya) + oz*sind(ya) + oy*0;
-    pz := - ox*sind(ya) + oz*cosd(ya) + oy*0;
-    ox := px; oz := pz;
-    pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
-    py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
-    oz := pz; oy := py;
-    (ox, oy, oz)
-endgroup
-enddef;
-
-primarydef colorone crossproduct colortwo =
-begingroup
-    save xp, yp, zp;
-    numeric xp[], yp[], zp[];
-    xp1 := (redpart colorone)/cm;
-    yp1 := (greenpart colorone)/cm;
-    zp1 := (bluepart colorone)/cm;
-    xp2 := (redpart colortwo)/cm;
-    yp2 := (greenpart colortwo)/cm;
-    zp2 := (bluepart colortwo)/cm;
-    xp3 := ((yp1*zp2) - (zp1*yp2))*cm;
-    yp3 := ((zp1*xp2) - (xp1*zp2))*cm;
-    zp3 := ((xp1*yp2) - (yp1*xp2))*cm;
-    (xp3, yp3, zp3)
-endgroup
-enddef;
-
-
-primarydef colorone dotproduct colortwo =
-begingroup
-    save xp, yp, zp;
-    numeric xp[], yp[], zp[];
-    xp1 := (redpart colorone)/cm;
-    yp1 := (greenpart colorone)/cm;
-    zp1 := (bluepart colorone)/cm;
-    xp2 := (redpart colortwo)/cm;
-    yp2 := (greenpart colortwo)/cm;
-    zp2 := (bluepart colortwo)/cm;
-    xp1*xp2 + yp1*yp2 + zp1*zp2
-endgroup
-enddef;
-
-vardef isInPlane (expr colPoint, colPlaneA, colPlaneB, colPlaneC) =
-    save vecsToCompare, rv;
-    color vecsToCompare[];
-    boolean rv;
-    rv := false;
-    if (colPoint = colPlaneA)
-        or (colPoint = colPlaneB)
-        or (colPoint = colPlaneC):
-        rv := true;
-    else:
-        vecsToCompare1 := colPlaneA-colPlaneB;
-        vecsToCompare2 := colPlaneC-colPlaneB;
-        vecsToCompare3 := colPoint-colPlaneB;
-    fi;
-    if not rv:
-        if ((absXYZ(unitvectorXYZ(vecsToCompare1) - unitvectorXYZ(vecsToCompare3)) < 1/100)
-            or (absXYZ(unitvectorXYZ(vecsToCompare1) + unitvectorXYZ(vecsToCompare3)) < 1/100)
-            or (absXYZ(unitvectorXYZ(vecsToCompare2) - unitvectorXYZ(vecsToCompare3)) < 1/100)
-            or (absXYZ(unitvectorXYZ(vecsToCompare2) + unitvectorXYZ(vecsToCompare3)) < 1/100)):
-            rv := true;
-        else:
-            vecsToCompare4 := unitvectorXYZ(vecsToCompare1 crossproduct vecsToCompare2);
-            vecsToCompare5 := unitvectorXYZ(vecsToCompare3 crossproduct vecsToCompare2);
-            if ((absXYZ(vecsToCompare4 - vecsToCompare5) < 1/100)
-                or (absXYZ(vecsToCompare4 + vecsToCompare5) < 1/100)):
-                rv := true;
-            else:
-                rv := false;
-            fi;
-        fi;
-    fi;
-    rv
-enddef;
-
-vardef unitvectorXYZ (expr somecolor) =
-    somecolor/absXYZ(somecolor)
-enddef;
-
-vardef absXYZ (expr somecolor) =
-    (sqrt(
-        ((redpart somecolor)/1cm)**2
-        + ((greenpart somecolor)/1cm)**2
-        + ((bluepart somecolor)/1cm)**2)*1cm)
-enddef;
-
-vardef lineAndPlaneIntersection (expr lineA, lineB, planeA, planeB, planeC) =
-    save planeNormal, planeOrigin, lineD;
-    color planeNormal, planeOrigin;
-    numeric lineD;
-    planeNormal := unitvectorXYZ((planeA-planeB) crossproduct (planeC-planeB));
-    planeOrigin := planeB;
-    lineD := (planeNormal dotproduct (planeOrigin - lineA))
-            /(planeNormal dotproduct (lineB - lineA));
-    lineA + ((lineB-lineA)*lineD)
-enddef;
-
-vardef spaceRotated (suffix somepath)(expr someangle) =
-    save rv, tv, spacepoint, op, rp, tp;
-    path rv, tv;
-    color spacepoint[];
-    pair op[], rp[], tp[];
-    if (typeOf(thirdDimension.somepath) <> "path"):
-        path thirdDimension.somepath;
-        thirdDimension.somepath := somepath scaled 0;
-    fi;
-    for i := 0 step 1 until length(somepath):
-        op0 := point i of somepath;
-        spacepoint0 :=
-            (xpart(op0), ypart(op0),
-                xpart(point i of thirdDimension.somepath)
-                ) colorrotated someangle;
-        rp0 := (redpart(spacepoint0), greenpart(spacepoint0));
-        tp0 := (bluepart(spacepoint0), 0);
-        if (i = 0):
-            rv := rp0;
-            tv := tp0;
-        else:
-            op1 := postcontrol (i-1) of somepath;
-            spacepoint1 :=
-                (xpart(op1), ypart(op1),
-                    xpart(postcontrol (i-1) of thirdDimension.somepath)
-                    ) colorrotated someangle;
-            rp1 := (redpart(spacepoint1), greenpart(spacepoint1));
-            tp1 := (bluepart(spacepoint1), 0);
-            op2 := precontrol i of somepath;
-            spacepoint2 :=
-                (xpart(op2), ypart(op2),
-                    xpart(precontrol i of thirdDimension.somepath)
-                    ) colorrotated someangle;
-            rp2 := (redpart(spacepoint2), greenpart(spacepoint2));
-            tp2 := (bluepart(spacepoint2), 0);
-            rv := rv .. controls rp1 and rp2 ..
-                if ((i < length(somepath)) or (not cycle somepath)):
-                    rp0
-                else:
-                    cycle
-                fi;
-            tv := tv .. controls tp1 and tp2 ..
-                if ((i < length(somepath)) or (not cycle somepath)):
-                    tp0
-                else:
-                    cycle
-                fi;
-        fi;
-    endfor;
-    thirdDimension.somepath := tv;
-    rv
-enddef;
-
-vardef bySetProjection (expr xa, ya, za) =
-    projectionAngle := (xa, ya, za);
-    byRotatePoints(xa, ya, za, false)();
 enddef;
 
 %

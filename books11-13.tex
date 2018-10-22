@@ -1401,4 +1401,89 @@ Therefore the remaining three angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngl
 \qed
 \stopProposition
 
+\startProposition[title={Prop. XXII. Theor.}, reference=prop:XI.XXII]
+\defineNewPicture{
+	numeric d, a[];
+	pair s;
+	d := 3/2cm;
+	a1 := 60;
+	a2 := 40;
+	a3 := 50;
+	s := (0, -4/3d);
+	byPair(A, B, C, D, E, F, G, H, K);
+	B := (0, 0);
+	A := B shifted (dir(-90-1/2a1)*d);
+	C := B shifted (dir(-90+1/2a1)*d);
+	E := B shifted s;
+	D := E shifted (dir(-90-1/2a2)*d);
+	F := E shifted (dir(-90+1/2a2)*d);
+	H := E shifted s;
+	G := H shifted (dir(-90-1/2a3)*d);
+	K := H shifted (dir(-90+1/2a3)*d);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(B, C, byred, 1, 0);
+	byLineDefine(A, C, byred, 0, 2);
+	byLineDefine(D, E, byblue, 0, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(D, F, byblue, 0, 2);
+	byLineDefine(G, H, byyellow, 0, 0);
+	byLineDefine(H, K, byyellow, 1, 0);
+	byLineDefine(G, K, byyellow, 0, 2);
+	draw byAngle(A, B, C, byred, 0);
+	draw byAngle(D, E, F, byblue, 0);
+	draw byAngle(G, H, K, byyellow, 0);
+	draw byNamedLineSeq(0)(AB, BC, AC);
+	draw byNamedLineSeq(0)(DE, EF, DF);
+	draw byNamedLineSeq(0)(GH, HK, GK);
+	draw byLabelsOnPolygon(A, B, C)(0, 0);
+	draw byLabelsOnPolygon(D, E, F)(0, 0);
+	draw byLabelsOnPolygon(G, H, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{A}{ny}{there be three plane angles of which two, taken together in any manner, are greater than the remaining one, and they are contained by equal straight lines, it is possible to construct a triangle out of the straight lines joining the extremities of the equal straight lines.}
+
+Let there be three plane angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK}, of which two, taken together in any manner, are greater than the remaining one, namely $\drawAngle{ABC} + \drawAngle{DEF} > \drawAngle{GHK}$, $\drawAngle{DEF} + \drawAngle{GHK} > \drawAngle{ABC}$, $\drawAngle{GHK} + \drawAngle{ABC} > \drawAngle{DEF}$. Let $\drawUnitLine{AB} = \drawUnitLine{BC} = \drawUnitLine{DE} = \drawUnitLine{EF} = \drawUnitLine{GH} = \drawUnitLine{HK}$, and let \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK} be joined.
+
+I say that it is possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK}, that is, that any two of the straight lines \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK} are greater than the remaining one.
+
+Now, if $\drawAngle{ABC} = \drawAngle{DEF} = \drawAngle{GHK}$, it is manifest that, $\drawUnitLine{AC} = \drawUnitLine{DF} = \drawUnitLine{GK}$, it is possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK}.
+
+\defineNewPictureBasedOnOld{
+	byPair(L);
+	L := ((K shifted(-H)) rotated a1) shifted H;
+	byPutPointsInSpace(G, H, K, L);
+	byLineDefine(G, L, byblack, 0, 0);
+	byLineDefine(H, L, byblack, 1, 0);
+	byLineDefine(K, L, byblack, 0, 2);
+	draw byNamedLine(GL);
+	draw byAngle(K, H, L, byred, 1);
+	draw byAngle(G, H, K, byyellow, 0);
+	draw byNamedLineSeq(0)(HL,KL);
+	draw byNamedLineSeq(0)(GH, HK, GK);
+	draw byLabelsOnPolygon(G, H, L, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+But, if not, let them be unequal, and on the straight line \drawUnitLine{HK}, and at the point \drawPointL{H} on it, let the angle \drawAngle{KHL} be constructed equal to the angle \drawAngle{ABC}.
+
+Let \drawUnitLine{HL} be made equal to one of the straight lines \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK}, and let \drawUnitLine{KL}, \drawUnitLine{GL} be joined.
+
+Now, since the two sides \drawUnitLine{AB}, \drawUnitLine{BC} are equal to the two sides \drawUnitLine{KH}, \drawUnitLine{HL}, and $\drawAngle{ABC} = \drawAngle{KHL}$, $\therefore \drawUnitLine{AC} = \drawUnitLine{KL}$. \inprop[prop:I.IV]
+
+And, since $\drawAngle{ABC} + \drawAngle{GHK} > \drawAngle{DEF}$, while $\drawAngle{ABC} = \drawAngle{KHL}$, $\therefore \drawAngle{GHL} > \drawAngle{DEF}$.
+
+And, since the two sides \drawUnitLine{GH}, \drawUnitLine{HL} are equal to the two sides \drawUnitLine{DE}, \drawUnitLine{EF}, and $\drawAngle{GHL} > \drawAngle{DEF}$, $\therefore \drawUnitLine{GL} > \drawUnitLine{DF}$. \inprop[prop:I.XXIV]
+
+But \drawUnitLine{GK}, \drawUnitLine{KL} are greater than \drawUnitLine{GL}.
+Therefore \drawUnitLine{GK}, \drawUnitLine{KL} are much greater than \drawUnitLine{DF}. 
+
+But $\drawUnitLine{KL} = \drawUnitLine{AC}$;
+therefore \drawUnitLine{AC}, \drawUnitLine{GK} are greater than the remaining straight line \drawUnitLine{DE}.
+
+Similarly we can prove that \drawUnitLine{AC}, \drawUnitLine{DE} are greater than \drawUnitLine{GK}, and further \drawUnitLine{DE}, \drawUnitLine{GK} are greater than \drawUnitLine{AC}.
+
+Therefore it is possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DE}, \drawUnitLine{GK}.
+
+\qed
+\stopProposition
+
 \stoptext

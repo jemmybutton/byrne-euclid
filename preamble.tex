@@ -7,16 +7,19 @@
 % Every time new proposition is introduced, we define new picture
 % with all its colors and styles, preceded with inclusion of byrne.mp library. 
 % It is done with \startMPinclusions in ConTeXt.
-% Note that every time new MPinstance is defined.
+% Note that every time new MPinstance is defined .
 % Before doing so we clear everything after previous definitions (explained below)
+% In case the picture extends the previous picture, CreateNewInstanceForPicturefalse
+% can be set temporarily
 
 \def\mpPre{}
 \def\mpPost{}
 
+\newif\ifCreateNewInstanceForPicture
+\CreateNewInstanceForPicturetrue
+
 \def\defineNewPicture{\dodoubleempty\definenewpicture}
 \def\definenewpicture[#1][#2]#3{\ignorespaces
-	\undefineList\ignorespaces
-	\def\undefineList{}\ignorespaces
 	\iffirstargument\ignorespaces
 		\global\def\sfA{#1}\ignorespaces
 	\else\ignorespaces
@@ -27,9 +30,13 @@
 	\else\ignorespaces
 		\global\def\sfB{1}\ignorespaces
 	\fi\ignorespaces
-	\global\advance \mpInst by 1\ignorespaces
-	\global\def\currentInstance{\the\mpInst}\ignorespaces
-	\defineMPinstance[\currentInstance]\ignorespaces
+	\ifCreateNewInstanceForPicture\ignorespaces
+		\undefineList\ignorespaces
+		\def\undefineList{}\ignorespaces
+		\global\advance \mpInst by 1\ignorespaces
+		\global\def\currentInstance{\the\mpInst}\ignorespaces
+		\defineMPinstance[\currentInstance]\ignorespaces
+	\fi\ignorespaces
 	\startreusableMPgraphic{\currentInstance::currentPicture}
 		input byrne;
 		\mpPre
@@ -42,6 +49,21 @@
 		stopMainPictureMode;
 		\mpPost
 	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}\global\addToUndefineList{#2}\ignorespaces}
+	
+\def\defineNewPictureBasedOnOld{\dodoubleempty\definenewpicturebasedonold}
+\def\definenewpicturebasedonold[#1][#2]#3{\ignorespaces
+	\CreateNewInstanceForPicturefalse
+	\ifsecondargument\ignorespaces
+		\defineNewPicture[#1][#2]{#3}\ignorespaces
+	\else\ignorespaces
+		\iffirstargument\ignorespaces
+			\defineNewPicture[#1]{#3}\ignorespaces
+		\else\ignorespaces
+			\defineNewPicture{#3}
+		\fi\ignorespaces
+	\fi\ignorespaces
+	\CreateNewInstanceForPicturetrue
+	}
 
 % Every time some simple picture is drawn, new macro is defined
 % with \markPictAsReady. If macro is defined, predefined picture is used.
