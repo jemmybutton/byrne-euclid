@@ -18,6 +18,8 @@ The book itself (byrne_context.tex) and Russian translation (byrne_ru_context.te
 
 MetaPost library (byrne.mp) and lettrines generator (lettrines.mp) are licensed under GPLv3 or later.
 
+To build the book from command line run `context byrne_context.tex` within the book directory. To generate lettrines run `mpost lettrines.mp` within `\lettrines` directory.
+
 Tested with TeXLive 2015 on Ubuntu 16.04
 
 See releases for prepared .pdf

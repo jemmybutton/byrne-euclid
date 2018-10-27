@@ -57,6 +57,10 @@ vardef sin primary x = (sind(x*radian)) enddef;
 
 vardef cos primary x = (cosd(x*radian)) enddef;
 
+vardef arcsind primary x = angle((1+-+x,x)) enddef;
+
+vardef arccosd primary x = angle((x,1+-+x)) enddef;
+
 color byred, byblue, byyellow, byblack, bygrey, bytransparent, byDefaultAngleOptionalColor;
 byred := (.85, .3, .1);
 byblue := (.15, .35, .6);
@@ -352,6 +356,8 @@ enddef;
 color projectionAngle;
 projectionAngle := (0, 0, 0);
 
+% rotation order is Z, Y, X
+
 primarydef somecolor colorrotated someangle =
 begingroup
     save ox, oy, oz, px, py, pz, xa, ya, za;
@@ -531,8 +537,8 @@ vardef byRotateAroundAxis (expr pointA, lineEndA, lineEndB, a) =
     vecB := unitvectorXYZ(lineEndB - lineEndA);
     q1 := (0, redpart(vecA), greenpart(vecA), bluepart(vecA));
     q2 := (cosd(a/2), sind(a/2)*redpart(vecB), sind(a/2)*greenpart(vecB), sind(a/2)*bluepart(vecB));
-    %q3 := (cyanpart(q2), -magentapart(q2), -yellowpart(q2), -blackpart(q2));
-    q4 := (q2 hamiltonProduct q1);% hamiltonProduct q3;
+    q3 := (cyanpart(q2), -magentapart(q2), -yellowpart(q2), -blackpart(q2));
+    q4 := (q2 hamiltonProduct q1) hamiltonProduct q3;
     rV := (magentapart(q4), yellowpart(q4), blackpart(q4)) + lineEndA;
     rV
 enddef;
@@ -655,7 +661,7 @@ vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
     if mainPictureMode:
         appendList(allLinesList, str lineName, 1, true);
     fi;
-    if (typeOf(pointXYZ.a) = "color") and (typeOf(pointXYZ.b) = "color"):
+    if byIsPointInSpace(a, b):
         lL := absXYZ(pointXYZ.a - pointXYZ.b);
         if (typeOf(a) = "pair") and (typeOf(b) = "pair"):
             if (a <> b):
@@ -1193,6 +1199,13 @@ vardef byPointXYZEmpty (text pointNames) =
     endfor;
 enddef;
 
+vardef byIsPointInSpace (text pointNames) =
+    save pN;
+    (true forsuffixes pN = pointNames:
+        and (typeOf(pointXYZ.pN) = "color")
+    endfor)
+enddef;
+
 % in order to automatically project points they need to be added
 % to allPointsList list.
 def byPair (text pointsList) =
@@ -1381,16 +1394,22 @@ enddef;
 % Arcs and circles
 %
 
-vardef byArcRender (expr o, b, e, r, sr, col, dp, th, s, et) =
-    save p, q, m, t, currentLineWidth, srCircle;
+vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
+    save p, q, m, t, currentLineWidth, srCircle, xang, xp, yang, pvt;
     path p[], srCircle;
     picture q;
-    pair t[];
+    pair t[], xp;
     numeric m[];
-    numeric currentLineWidth;
+    numeric currentLineWidth, xang, yang;
+    color pvt;
     save thirdDimension;
     image(
         srCircle := fullcircle;
+        xp := (bluepart(pv), greenpart(pv));
+        xang := angle(xp);
+        pvt := (redpart(pv), ypart(xp rotated -xang), xpart(xp rotated -xang));
+        yang := angle((bluepart(pvt), redpart(pvt)));
+        srCircle := spaceRotated(srCircle)((-xang, yang, 0)); % plane vector to Euler angles conversion should eventually go somewhere
         srCircle := spaceRotated(srCircle)(sr);
         srCircle := spaceRotated(srCircle)(projectionAngle);
         currentLineWidth := lineThickness(th);
@@ -1448,6 +1467,7 @@ vardef byArcDefineBE (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcNam
     setAttribute("arc", "EndType", str arcName, et);
     setAttribute("arc", "Angle", str arcName, angle((point b of fullcircle) - (point e of fullcircle)));
     setAttribute("arc", "SpaceRotation", str arcName, (0,0,0));
+    setAttribute("arc", "PlaneVector", str arcName, (0,0,1));
     setAttribute("arc", "Synonym", str arcName, str arcName);
 enddef;
 
@@ -1483,6 +1503,7 @@ vardef byNamedArcExact (text arcslist) =
                 getAttribute("arc", "End", str aN),
                 getAttribute("arc", "Diameter", str aN),
                 getAttribute("arc", "SpaceRotation", str aN),
+                getAttribute("arc", "PlaneVector", str aN),
                 getAttribute("arc", "Color", str aN),
                 getAttribute("arc", "Dashed", str aN),
                 getAttribute("arc", "Thin", str aN),
@@ -1504,6 +1525,7 @@ vardef byNamedArc (text arcslist) =
                 getAttribute("arc", "End", str aN),
                 getAttribute("arc", "Diameter", str aN),
                 getAttribute("arc", "SpaceRotation", str aN),
+                getAttribute("arc", "PlaneVector", str aN),
                 getAttribute("arc", "Color", str aN),
                 getAttribute("arc", "Dashed", str aN),
                 getAttribute("arc", "Thin", str aN), 0, 0);
@@ -1551,7 +1573,7 @@ vardef byNamedArcLabel (text arcslist) =
                         fi;
                     endfor;
                     if beginFree:
-                        if (typeOf(pointXYZ.scantokens(pointsListB[j])) = "color"):
+                        if byIsPointInSpace(scantokens(pointsListB[j])):
                             labelVec := unitvectorXYZ(pointXYZ.scantokens(pointsListB[j]) - pointXYZ.scantokens(pointsListO[j]));
                             labelVec := labelVec colorrotated projectionAngle;
                             labelPos := scantokens(pointsListO[j])
@@ -1569,7 +1591,7 @@ vardef byNamedArcLabel (text arcslist) =
                             textLabelShift);
                     fi;
                     if endFree:
-                        if (typeOf(pointXYZ.scantokens(pointsListB[j])) = "color"):
+                        if byIsPointInSpace(scantokens(pointsListB[j])):
                             labelVec := unitvectorXYZ(pointXYZ.scantokens(pointsListE[j]) - pointXYZ.scantokens(pointsListO[j]));
                             labelVec := labelVec colorrotated projectionAngle;
                             labelPos := scantokens(pointsListO[j])
@@ -1604,6 +1626,7 @@ vardef byCircleDefineFree (expr o, r, col, dp, th, s) (suffix circleName) =
     setAttribute("circle", "BName", str circleName, "");
     setAttribute("circle", "CName", str circleName, "");
     setAttribute("circle", "SpaceRotation", str circleName, (0,0,0));
+    setAttribute("circle", "PlaneVector", str circleName, (0,0,1));
     setAttribute("circle", "Synonym", str circleName, str circleName);
 enddef;
 
@@ -1628,20 +1651,48 @@ vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
     pair o;
     numeric r;
     o := byFindCircleCenterABC(a, b, c);
-    r := abs(o - a);
+    if byIsPointInSpace(a, b, c):
+        r := absXYZ(pointXYZ.a - byFindCircleCenterABCinSpace(pointXYZ.a, pointXYZ.b, pointXYZ.c));
+    else:
+        r := abs(o - a);
+    fi;
     byCircleDefineFree(o, r, col, dp, th, s)(circleName);
     setAttribute("circle", "AName", str circleName, str a);
     setAttribute("circle", "BName", str circleName, str b);
     setAttribute("circle", "CName", str circleName, str c);
+    if byIsPointInSpace(a, b, c):
+        save pv;
+        color pv;
+        pv := unitvectorXYZ((pointXYZ.a - pointXYZ.b) crossproduct (pointXYZ.c - pointXYZ.b));
+        setAttribute("circle", "PlaneVector", str circleName, pv);
+    fi;
     byNamedCircle(circleName)
 enddef;
 
-vardef byFindCircleCenterABC (expr a, b, c) =
+vardef byFindCircleCenterABC (suffix a, b, c) =
     save rv;
     pair rv;
-    rv = whatever[1/2[a, b], 1/2[a, b] shifted ((a-b) rotated 90)]
-        = whatever[1/2[b, c], 1/2[b, c] shifted ((b-c) rotated 90)];
+    if byIsPointInSpace(a, b, c):
+        save rvInSpace;
+        color rvInSpace;
+        rvInSpace := byFindCircleCenterABCinSpace(pointXYZ.a, pointXYZ.b, pointXYZ.c) colorrotated projectionAngle;
+        rv := (redpart(rvInSpace), greenpart(rvInSpace));
+    else:
+        rv = whatever[1/2[a, b], 1/2[a, b] shifted ((a-b) rotated 90)]
+            = whatever[1/2[b, c], 1/2[b, c] shifted ((b-c) rotated 90)];
+    fi;
     rv
+enddef;
+
+vardef byFindCircleCenterABCinSpace (expr a, b, c) =
+    save vec;
+    color vec[];
+    vec0 := ((a - b) crossproduct (c - b));
+    vec1 := byRotateAroundAxis (vec0, a - b, (0, 0, 0), 90);
+    vec2 := byRotateAroundAxis (vec0, c - b, (0, 0, 0), 90);
+    vec3 = whatever[1/2[a, b], 1/2[a, b] + vec1]
+        = whatever[1/2[b, c], 1/2[b, c] + vec2]; % Fails from time to time because of some roundoff errors
+    vec3
 enddef;
 
 vardef byReturnCircleCenter (expr circleName) =
@@ -1668,6 +1719,7 @@ vardef byNamedCircle (text circlesList) =
                 circlecenter, 0, 8,
                 getAttribute("circle", "Diameter", str cN),
                 getAttribute("circle", "SpaceRotation", str cN),
+                getAttribute("circle", "PlaneVector", str cN),
                 getAttribute("circle", "Color", str cN),
                 getAttribute("circle", "Dashed", str cN),
                 getAttribute("circle", "Thin", str cN),
@@ -2745,9 +2797,7 @@ vardef byConstructCompoundAngle (expr angleName) =
         dirA := scantokens(pointA) - scantokens(pointB);
         dirC := scantokens(pointC) - scantokens(pointB);
         threeDMode := false;
-        if ((typeOf(pointXYZ.scantokens(pointA)) = "color")
-            and (typeOf(pointXYZ.scantokens(pointB)) = "color")
-            and (typeOf(pointXYZ.scantokens(pointC)) = "color")):
+        if byIsPointInSpace(scantokens(pointA), scantokens(pointB), scantokens(pointC)):
             threeDMode := true;
         fi;
         isFirst := false;

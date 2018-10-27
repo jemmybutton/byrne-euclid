@@ -1486,4 +1486,201 @@ Therefore it is possible to construct a triangle out of straight lines equal to 
 \qed
 \stopProposition
 
+\startProposition[title={Prop. XXIII. Prob.}, reference=prop:XI.XXIII]
+\defineNewPicture{
+	numeric d, a[];
+	pair s;
+	d := 3/2cm;
+	a1 := 46;
+	a2 := 50;
+	a3 := 48;
+	s := (0, -4/3d);
+	byPair(A, B, C, D, E, F, G, H, K);
+	B := (0, 0);
+	A := B shifted (dir(-90-1/2a1)*d);
+	C := B shifted (dir(-90+1/2a1)*d);
+	E := B shifted s;
+	D := E shifted (dir(-90-1/2a2)*d);
+	F := E shifted (dir(-90+1/2a2)*d);
+	H := E shifted s;
+	G := H shifted (dir(-90-1/2a3)*d);
+	K := H shifted (dir(-90+1/2a3)*d);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(B, C, byred, 1, 0);
+	byLineDefine(A, C, byred, 0, 2);
+	byLineDefine(D, E, byblue, 0, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(D, F, byblue, 0, 2);
+	byLineDefine(G, H, byyellow, 0, 0);
+	byLineDefine(H, K, byyellow, 1, 0);
+	byLineDefine(G, K, byyellow, 0, 2);
+	draw byAngle(A, B, C, byred, 0);
+	draw byAngle(D, E, F, byblue, 0);
+	draw byAngle(G, H, K, byyellow, 0);
+	draw byNamedLineSeq(0)(AB, BC, AC);
+	draw byNamedLineSeq(0)(DE, EF, DF);
+	draw byNamedLineSeq(0)(GH, HK, GK);
+	draw byLabelsOnPolygon(A, B, C)(0, 0);
+	draw byLabelsOnPolygon(D, E, F)(0, 0);
+	draw byLabelsOnPolygon(G, H, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{T}{o}{construct a solid angle out of three plane angles two of which, taken togetfier in any manner, are greater than the remaining one: thus the three angles must be less than four right angles.}
+
+Let the angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK} be the three given plane angles, and let two of these, taken together in any manner, be greater than the remaining one, while, further, the three are less than four right angles; thus it is required to construct a solid angle out of angles equal to the angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK}.
+
+Let \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK} be cut off equal to one another, and let \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK} be joined. It is therefore possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DE}, \drawUnitLine{GK}. \inprop[prop:XI.XXII]
+
+\defineNewPictureBasedOnOld{
+	numeric s, h;
+	s := 3;
+	byPair(L, M, N, O, P, Q);
+	L := (0, 0);
+	M := L shifted (-s*abs(A-C), 0);
+	N := ((fullcircle scaled (s*2abs(G-K))) shifted L) intersectionpoint ((fullcircle scaled (s*2abs(D-F))) shifted M);
+	O := byFindCircleCenterABC(L, M, N);
+	P := 2/3[O, L];
+	Q := 2/3[O, M];
+	h := sqrt(((abs(A-B)/cm)**2) - ((abs(L-O)/(s*cm))**2))*s*cm;
+	byPointXYZDefine(R, xpart(O), ypart(O), h);
+	bySetProjection(-45, 0, 30);
+	byLineDefine(L, M, byblack, 0, 0);
+	byLineDefine(M, N, byblack, 1, 0);
+	byLineDefine(N, L, byblack, 0, 2);
+	byLineDefine(L, P, byyellow, 1, 0);
+	byLineDefine(P, O, byyellow, 0, 0);
+	byLineDefine(M, Q, byred, 1, 0);
+	byLineDefine(Q, O, byred, 0, 0);
+	byLineDefine(N, O, byblue, 0, 0);
+	byLineDefine(Q, P, byblue, 0, 2);
+	byLineDefine(O, R, byblue, 1, 0);
+	byLineDefine(R, L, byyellow, 1, 2);
+	byLineDefine(R, M, byred, 1, 2);
+	byLineDefine(R, N, byblue, 1, 2);
+	draw byAngle(L, O, M, byred, 1);
+	draw byAngle(M, O, N, byblue, 1);
+	draw byAngle(N, O, L, byyellow, 1);
+	draw byNamedLine(LP, PO, MQ, QO, NO, QP);
+	draw byNamedLineSeq(0)(LM, MN, NL);
+	draw byAngle(L, O, R, byblack, 1);
+	draw byCircleABC(L, M, N, byblack, 0, 0, 0)(LMN);
+	draw byAngle(M, R, N, byblue, 2);
+	draw byNamedLine(OR, RM, RN);
+	draw byAngle(N, R, L, byyellow, 2);
+	draw byAngle(L, R, M, byred, 2);
+	draw byNamedLine(RL);
+	draw byLabelsOnPolygon(L, M, R, N)(0, 0);
+	draw byLabelsOnPolygon(M, O, R)(2, 0);
+	draw byLabelsOnPolygon(L, P, Q, M)(2, 0);
+}
+\drawCurrentPictureInMargin
+Let \drawLine{LM,MN,NL} be so constructed that $\drawUnitLine{AC}=\drawUnitLine{LM}$, $\drawUnitLine{DF} = \drawUnitLine{MN}$, and further $\drawUnitLine{GK} = \drawUnitLine{NL}$, let the circle \drawCircle{LMN} be described about the triangle \drawLine{LM,MN,NL} , let its centre be taken, and let it be \drawPointL{O}; let \drawUnitLine{LO}, \drawUnitLine{MO}, \drawUnitLine{NO} be joined. I say that $\drawUnitLine{AB} > \drawUnitLine{LO}$.
+
+For, if not, \drawUnitLine{AB} is either equal to \drawUnitLine{LO}, or less.
+
+First, let $\drawUnitLine{AB} = \drawUnitLine{LO}$. Then, since $\drawUnitLine{AB} = \drawUnitLine{BC}$, and $\drawUnitLine{OL} = \drawUnitLine{OM}$, the two sides \drawUnitLine{AB}, \drawUnitLine{BC} are equal to the two sides \drawUnitLine{LO}, \drawUnitLine{OM} respectively. And, by hypothesis, $\drawUnitLine{AC} =\drawUnitLine{LM}$. $\therefore \drawAngle{ABC} = \drawAngle{LOM}$. \inprop[prop:I.VIII]
+
+For the same reason $\drawAngle{DEF} = \drawAngle{MON}$, and further $\drawAngle{GHK} = \drawAngle{NOL}$. $\therefore$ the three angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK} are equal to the three angles \drawAngle{LOM}, \drawAngle{MON}, \drawAngle{NOL}.
+
+But $\drawAngle{LOM} + \drawAngle{MON} + \drawAngle{NOL} = 4\drawRightAngle$. $\therefore \drawAngle{ABC} + \drawAngle{DEF} + \drawAngle{GHK} = 4\drawRightAngle$.
+
+But they are also, by hypothesis, $< 4\drawRightAngle$: which is absurd.
+
+$\therefore \drawUnitLine{AB} \neq \drawUnitLine{LO}$.
+
+I say next that neither is \drawUnitLine{AB} less than \drawUnitLine{LO}. For, if possible, let it be so, and let \drawUnitLine{OP} be made equal to \drawUnitLine{AB}, and \drawUnitLine{OQ} equal to \drawUnitLine{BC}, and let \drawUnitLine{PQ} be joined.
+
+Then, since $\drawUnitLine{AB} = \drawUnitLine{BC}$, $\drawUnitLine{OP} = \drawUnitLine{OQ}$, so that the remainder \drawUnitLine{LP} is equal to \drawUnitLine{QM}.
+
+$\therefore \drawUnitLine{LM} \parallel \drawUnitLine{PQ}$ \inprop[prop:VI.II], and \drawLine{LM,MO,OL} is equiangular with \drawLine{PQ,QO,OP} \inprop[prop:I.XXIX]. $\therefore \drawUnitLine{OL}:\drawUnitLine{LM}::\drawUnitLine{OP}::\drawUnitLine{PQ}$ \inprop[prop:VI.IV]. And alternately, $\drawUnitLine{LO}:\drawUnitLine{OP}::\drawUnitLine{LM}::\drawUnitLine{PQ}$ \inprop[prop:V.XVI].
+
+But $\drawUnitLine{LO} > \drawUnitLine{OP}$, $\therefore \drawUnitLine{LM} > \drawUnitLine{PQ}$.
+
+But $\drawUnitLine{LM} = \drawUnitLine{AC}$(\conststr), $\therefore \drawUnitLine{AC} > \drawUnitLine{PQ}$.
+
+Since, then, the two sides \drawUnitLine{AB}, \drawUnitLine{BC} are equal to the two sides \drawUnitLine{PO}, \drawUnitLine{OQ}, and the base \drawUnitLine{AC} is greater than the base \drawUnitLine{PQ}, $\therefore \drawAngle{ABC} > \drawAngle{QOP}$. \inprop[prop:I.XXV]
+
+Similarly we can prove that $\drawAngle{DEF} > \drawAngle{MON}$, and $\drawAngle{GHK} > \drawAngle{NOL}$.
+
+$\therefore \drawAngle{ABC} + \drawAngle{DEF} + \drawAngle{GHK} > \drawAngle{LOM} + \drawAngle{MON} + \drawAngle{NOL}$.
+
+But, by hypothesis, $\drawAngle{ABC} + \drawAngle{DEF} + \drawAngle{GHK} < 4\drawRightAngle$, $\therefore \drawAngle{LOM} + \drawAngle{MON} + \drawAngle{NOL}$ are much less than $4\drawRightAngle$.
+
+But they are also $= 4\drawRightAngle$: which is absurd.
+
+Therefore $\drawUnitLine{AB} \nless \drawUnitLine{LO}$. And it was proved that $\drawUnitLine{AB} \neq \drawUnitLine{LO}$, $\therefore \drawUnitLine{AB} > \drawUnitLine{LO}$.
+
+Let then \drawUnitLine{OR} be set up from \drawPointL{O} at right angles to the plane of \drawCircle{LMN} \inprop[prop:XI.XII]. And let $\drawUnitLine{OR}^2 =\drawUnitLine{AB}^2 - \drawUnitLine{LO}^2$ (Lemma). Let \drawUnitLine{RL}, \drawUnitLine{RM}, \drawUnitLine{RN} be joined.
+
+Then, since \drawUnitLine{RO} is at right angles to the plane of \drawCircle{LMN}, $\therefore \drawUnitLine{RO} \perp \drawUnitLine{LO}, \drawUnitLine{MO}, \drawUnitLine{NO}$.
+
+And, since $\drawUnitLine{LO} = \drawUnitLine{OM}$, while \drawUnitLine{OR} is common and at right angles, $\therefore \drawUnitLine{RL} = \drawUnitLine{RM}$. \inprop[prop:I.IV]
+
+For the same reason $\drawUnitLine{RN} = \drawUnitLine{RL} = \drawUnitLine{RM}$.
+
+Next, since by hypothesis $\drawUnitLine{OR}^2 = \drawUnitLine{AB}^2 - \drawUnitLine{LO}^2$, $\therefore \drawUnitLine{AB}^2 = \drawUnitLine{LO}^2, \drawUnitLine{OR}^2$.
+
+But $\drawUnitLine{LR}^2 = \drawUnitLine{LO}^2, \drawUnitLine{OR}^2$, for $\drawAngle{LOR} = \drawRightAngle$ \inprop[prop:I.XLVII]. $\therefore \drawUnitLine{AB}^2 = \drawUnitLine{RL}^2$, $\therefore \drawUnitLine{AB} = \drawUnitLine{RL}$.
+
+But each of the straight lines \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK} is equal to \drawUnitLine{AB}, while each of the straight lines \drawUnitLine{RM}, \drawUnitLine{RN} is equal to \drawUnitLine{RL}. $\therefore$ each of the straight lines \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK} is equal to each of the straight lines \drawUnitLine{RL}, \drawUnitLine{RM}, \drawUnitLine{RN}.
+
+And, since the two sides \drawUnitLine{LR}, \drawUnitLine{RM} are equal to the two sides \drawUnitLine{AB}, \drawUnitLine{BC}, and the base \drawUnitLine{LM} is by hypothesis equal to the base \drawUnitLine{AC}, $\therefore \drawAngle{LRM} = \drawAngle{ABC}$. \inprop[prop:I.VIII]
+
+For the same reason $\drawAngle{MRN} = \drawAngle{DEF}$ and $\drawAngle{LRN} = \drawAngle{GHK}$.
+
+$\therefore$, out of the three plane angles \drawAngle{LRM}, \drawAngle{MRN}, \drawAngle{LRN}, which are equal to the three given angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK}, the solid angle
+\drawFromCurrentPicture[middle][angleA]{
+startAutoLabeling;
+draw byNamedSolidAngle(R);
+stopAutoLabeling;
+}
+at \drawPointL{R} has been constructed, which is contained by the angles \drawAngle{LRM}, \drawAngle{MRN}, \drawAngle{LRN}.
+
+\qefNB
+
+\startsubproposition[title={Lemma}]
+
+But how it is possible to take the square on \drawUnitLine{OR} equal to that area by which the square on \drawUnitLine{AB} is greater than the square on \drawUnitLine{LO}, we can show as follows.
+
+Let the straight lines  \drawUnitLine{AB},  \drawUnitLine{LO} be set out, and let  \drawUnitLine{AB} be the greater.
+
+\defineNewPictureBasedOnOld{
+	pair A', B', C', O';
+	numeric l, s';
+	s' := 3/4;
+	l := s'*s*abs(A-B);
+	O' := (0, 0);
+	A' := (-1/2l, 0);
+	B' := (1/2l, 0);
+	C' := (fullcircle scaled l) intersectionpoint ((fullcircle scaled (s'*absXYZ(pointXYZ.L-pointXYZ.O))) shifted B');
+	byLineDefine(A', B', byred, 0, 0);
+	byLineDefine(B', C', byblack, 1, 0);
+	byLineDefine(C', A', byblack, 0, 2);
+	byArcDefine (O', B', A')(1/2l, byblue, 0, 0, 0, 0) (O);
+	draw byAngle(A', C', B', byblack, 2);
+	draw byNamedLineSeq(-1)(A'B',B'C',C'A');
+	draw byNamedArc(O);
+	draw byLabelsOnPolygon(A', C', B')(0, 0);
+}
+\drawCurrentPictureInMargin
+Let the semicircle \drawArc{O} be described on \drawUnitLine{A'B'}, and into \drawArc{O} let \drawUnitLine{A'C'} be fitted equal to \drawUnitLine{LO}, not being greater than the diameter \drawUnitLine{A'B'} \inprop[prop:IV.I]. Let \drawUnitLine{C'B'} be joined.
+
+Since then the angle \drawAngle{A'C'B'} is an angle in the semicircle \drawArc{O}, $\therefore \drawAngle{A'C'B'} = \drawRightAngle$. \inprop[prop:III.XXXI]
+
+$\therefore \drawUnitLine{A'B'}^2 = \drawUnitLine{A'C'}^2 + \drawUnitLine{C'B'}^2$. \inprop[prop:I.XLVII]
+
+Hence $\drawUnitLine{A'B'}^2 - \drawUnitLine{C'B'}^2 = \drawUnitLine{A'C'}^2$.
+
+But $\drawUnitLine{A'C'} =\drawUnitLine{LO}$.
+
+$\therefore \drawUnitLine{A'B'}^2 - \drawUnitLine{C'B'}^2 = \drawUnitLine{LO}^2$.
+
+If then we cut off \drawUnitLine{OR} equal to \drawUnitLine{BC}, the square on \drawUnitLine{AB} will be greater than the square on \drawUnitLine{LO} by the square on \drawUnitLine{OR}.
+
+\stopsubproposition
+
+\qef
+
+\stopProposition
+
 \stoptext
