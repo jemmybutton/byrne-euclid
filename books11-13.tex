@@ -1202,11 +1202,15 @@ Similarly also it can be proved that all the planes through \drawUnitLine{AB} ar
 	w := 3cm;
 	h := 3cm;
 	d := 2cm;
-	byPair(Pnw, Pne, Pse, Psw, A, C, D, G, H);
+	byPair(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw', A, C, D, G, H);
 	Pnw := (0, 0);
 	Pne := (w, 0);
 	Pse := (w, -h);
 	Psw := (0, -h);
+	Pnw' := 3/2[Psw, Pnw];
+	Pne' := 3/2[Pse, Pne];
+	Pse' := 3/2[Pne, Pse];
+	Psw' := 3/2[Pnw, Psw];
 	D := (1/2w, -1/2h);
 	A := 1/5[Psw, Pse];
 	C := 4/5[Psw, Pse];
@@ -1221,14 +1225,14 @@ Similarly also it can be proved that all the planes through \drawUnitLine{AB} ar
 	byRotatePoints(0, 0, 0, false)(A, C); % pointXYZ.A and pointXYZ.C do not exist at this stage. They are created on rotation.
 	pointXYZ.E := 2/3[pointXYZ.A, pointXYZ.B];
 	pointXYZ.F := 2/3[pointXYZ.C, pointXYZ.B];
-	byPointLabelRemove(Pnw, Pne, Pse, Psw, G, H, A', C', G', H');
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw', G, H, A', C', G', H');
 	bySetProjection(-75, 0, 15);
 	byLineDefine(B, D, byblack, 0, 0);
 	byLineDefine(D, E, byred, 0, 0);
 	byLineDefine(D, F, byyellow, 0, 0);
 	byLineDefine(A, D, byblue, 0, 0);
 	byLineDefine(D, C, byblue, 1, 0);
-	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
+	draw byPolygonWithName(Pnw', Pne', Pse', Psw')(white)(refPlane);
 	draw byPolygonWithName(G, G', B, D)(byyellow)(planeAB');
 	draw byPolygonWithName(H, H', B, D)(byred)(planeBC');
 	draw byPolygonWithName(A, A', B, D)(byyellow)(planeAB'');
@@ -1680,7 +1684,87 @@ If then we cut off \drawUnitLine{OR} equal to \drawUnitLine{BC}, the square on \
 \stopsubproposition
 
 \qef
+\stopProposition
 
+\startProposition[title={Prop. XXIV. Theor.}, reference=prop:XI.XXIV]
+\defineNewPicture{
+	color d[];
+	d1 := (5/2cm, 0cm, 0cm);
+	d2 := (1/5cm, 2cm, 0cm);
+	d3 := (1/4cm, 1/6cm, 2cm);
+	byPointXYZDefine(A, 0, 0, 0);
+	byPointXYZEmpty(B, C, D, E, F, G, H);
+	pointXYZ.B := pointXYZ.A + d2;
+	pointXYZ.C := pointXYZ.A + d2 + d3;
+	pointXYZ.D := pointXYZ.A + d3;
+	pointXYZ.E := pointXYZ.A + d1 + d3;
+	pointXYZ.F := pointXYZ.A + d1 + d2 + d3;
+	pointXYZ.G := pointXYZ.A + d1;
+	pointXYZ.H := pointXYZ.A + d1+ d2;
+	bySetProjection(15, 12, 0);
+	byLineDefine(A, B, byred, 1, 0);
+	byLineDefine(D, C, byred, 0, 0);
+	byLineDefine(A, D, byblue, 1, 0);
+	byLineDefine(B, C, byblue, 0, 0);
+	byLineDefine(A, H, byblack, 1, 0);
+	byLineDefine(D, F, byblack, 0, 0);
+	byLineDefine(B, H, byyellow, 1, 0);
+	byLineDefine(C, F, byyellow, 0, 0);
+	byLineDefine(A, G, byblack, 0, 2);
+	byLineDefine(D, E, byblack, 0, 2);
+	byLineDefine(H, G, byblack, 0, 2);
+	byLineDefine(F, E, byblack, 0, 2);
+	byLineDefine(H, F, byblack, 0, 2);
+	byLineDefine(G, E, byblack, 0, 2);
+	byPolygonDefine(A, B, C, D)(white);
+	byPolygonDefine(B, H, F, C)(white);
+	byPolygonDefine(D, C, F, E)(white);
+	draw byAngle(A, B, H, byred, 0);
+	draw byNamedLine(AH, HG);
+	draw byNamedLineSeq(0)(BH, HF);
+	draw byNamedLineSeq(0)(AG, GE);
+	draw byNamedLine(DC, DF);
+	draw byAngle(D, C, F, byred, 1);
+	draw byNamedLineSeq(0)(AB, BC, CF, FE, DE, AD);
+	draw byLabelsOnPolygon(A, B, H, F, E, D)(0, 0);
+	draw byLabelsOnPolygon(E, G, A)(2, 0);
+	draw byLabelsOnPolygon(F, C, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{a solid be contained by parallel planes, the opposite planes in it are equal and parallelogrammic.}
+
+For let the solid \drawPolygon[middle][theSolid]{ABCD,BHFC,DCFE} be contained by the parallel planes
+\drawLine[middle][planeAC]{AB,BC,CD,DA}, \drawLine[middle][planeGF]{GH,HF,FE,EG}, \drawLine[middle][planeAH]{AB,BH,HG,GA}, \drawLine[middle][planeDF]{DC,CF,FE,ED}, \drawLine[middle][planeBF]{BH,HF,FC,CB}, \drawLine[middle][planeAE]{AG,GE,ED,DA}. I say that the opposite planes in it are equal and parallelogrammic.
+
+For, since the two parallel planes \planeAH, \planeDF\ are cut by the plane \planeAC,
+their common sections are parallel. \inprop[prop:XI.XVI]
+
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{DC}$.
+
+Again, since the two parallel planes \planeBF, \planeAE\ are cut by the plane \planeAC, their common sections are parallel. \inprop[prop:XI.XVI]
+
+$\therefore \drawUnitLine{BC} \parallel \drawUnitLine{AD}$.
+
+But $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, $\therefore$ \planeAC\ is a parallelogram.
+
+Similarly we can prove that each of the planes \planeDF, \planeGF, \planeAH, \planeBF, \planeAE is a parallelogram.
+
+Let \drawUnitLine{AH}, \drawUnitLine{DF} be joined.
+
+Then, since $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, and $\drawUnitLine{BH} \parallel \drawUnitLine{CF}$, the two straight lines \drawUnitLine{AB}, \drawUnitLine{BH} which meet one another are parallel to the two straight lines \drawUnitLine{DC}, \drawUnitLine{CF} which meet one
+another, not in the same plane; therefore they will contain equal angles. \inprop[prop:XI.X]
+
+$\therefore \drawAngle{ABH} =  \drawAngle{DCF}$.
+
+And, since the two sides \drawUnitLine{AB}, \drawUnitLine{BH} are equal to the two sides \drawUnitLine{DC}, \drawUnitLine{CF} \inprop[prop:I.XXXIV], and $\drawAngle{ABH} =  \drawAngle{DCF}$, $\therefore \drawUnitLine{AH} = \drawUnitLine{DF}$, and the triangle \drawLine{AB,BH,HA} is equal to the triangle \drawLine{DC,CF,FD}. \inprop[prop:I.IV]
+
+And the parallelogram \planeAH\ is double of the triangle \drawLine{AB,BH,HA}, and the parallelogram \planeDF\ double of the triangle \drawLine{DC,CF,FD}. \inprop[prop:I.XXXIV]
+
+$\therefore \planeAH\ =  \planeDF$.
+
+Similarly we can prove that $\planeAC\ = \planeGF$, and $\planeAE\ = \planeBF$.
+
+\qed
 \stopProposition
 
 \stoptext

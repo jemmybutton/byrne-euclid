@@ -1409,7 +1409,7 @@ vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
         xang := angle(xp);
         pvt := (redpart(pv), ypart(xp rotated -xang), xpart(xp rotated -xang));
         yang := angle((bluepart(pvt), redpart(pvt)));
-        srCircle := spaceRotated(srCircle)((-xang, yang, 0)); % plane vector to Euler angles conversion should eventually go somewhere
+        srCircle := spaceRotated(srCircle)((-xang, yang, 0)); % plane vector to angles conversion should eventually go somewhere
         srCircle := spaceRotated(srCircle)(sr);
         srCircle := spaceRotated(srCircle)(projectionAngle);
         currentLineWidth := lineThickness(th);
@@ -1906,6 +1906,10 @@ vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName)=
     setAttribute("polygon", "Synonym", str polygonName, str polygonName);
 enddef;
 
+vardef byPolygonDefine (text pointsList)(expr col) =
+    byPolygonDefineWithName(pointsList)(col)(scantokens(byPolygonName(pointsList)));
+enddef;
+
 vardef byPolygonPathFromList (expr pointsList) =
     forsuffixes pN=scantokens(pointsList): pN -- endfor cycle
 enddef;
@@ -1916,13 +1920,17 @@ vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
 enddef;
 
 vardef byPolygon (text pointsList)(expr col)=
+    byPolygonWithName(pointsList)(col)(scantokens(byPolygonName(pointsList)))
+enddef;
+
+vardef byPolygonName(text pointsList) =
     save polygonName;
     string polygonName;
     polygonName := "";
     forsuffixes pN=pointsList:
         polygonName := polygonName & str pN;
     endfor;
-    byPolygonWithName(pointsList)(col)(scantokens(polygonName))
+    polygonName
 enddef;
 
 vardef byNamedPolygon (text polygonsList) =
