@@ -1767,4 +1767,117 @@ Similarly we can prove that $\planeAC\ = \planeGF$, and $\planeAE\ = \planeBF$.
 \qed
 \stopProposition
 
+\startProposition[title={Prop. XXV. Theor.}, reference=prop:XI.XXV]
+\defineNewPicture{
+	color d[];
+	numeric f;
+	d1 := (-1/8cm, 3/2cm, 0cm);
+	d2 := (0cm, 0cm, -3/2cm);
+	d3 := (3/2cm, 0cm, 0cm);
+	f := 3/5;
+	byPointXYZDefine(A, 0, 0, 0);
+	byPointXYZEmpty(B, C, D, E, F, G, H, H', R, V, U, K, L, M, N, P, L', W, S, K', O, I, N', Q, X, Y, T);
+	byPointLabelRemove(H', L', K', N');
+	pointXYZ.B := pointXYZ.A + d1;
+	pointXYZ.C := pointXYZ.A + d2 + d3;
+	pointXYZ.D := pointXYZ.A + d1 + d2 + d3;
+	pointXYZ.R := pointXYZ.B + d2;
+	pointXYZ.V := pointXYZ.A + d2;
+	pointXYZ.H := pointXYZ.A + d3;
+	pointXYZ.H' := pointXYZ.H + d1;
+	pointXYZ.E := f[pointXYZ.A, pointXYZ.H];
+	pointXYZ.F := f[pointXYZ.V, pointXYZ.C];
+	pointXYZ.G := f[pointXYZ.B, pointXYZ.H'];
+	pointXYZ.U := f[pointXYZ.R, pointXYZ.D];
+	pointXYZ.K := 2[pointXYZ.E, pointXYZ.A];
+	pointXYZ.L := 3[pointXYZ.E, pointXYZ.A];
+	pointXYZ.M := 2[pointXYZ.E, pointXYZ.H];
+	pointXYZ.N := 3[pointXYZ.E, pointXYZ.H];
+	pointXYZ.P := 2[pointXYZ.F, pointXYZ.V];
+	pointXYZ.L' := 3[pointXYZ.F, pointXYZ.V];
+	pointXYZ.W := 2[pointXYZ.F, pointXYZ.C];
+	pointXYZ.S := 3[pointXYZ.F, pointXYZ.C];
+	pointXYZ.K' := 2[pointXYZ.G, pointXYZ.B];
+	pointXYZ.O := 3[pointXYZ.G, pointXYZ.B];
+	pointXYZ.I := 2[pointXYZ.G, pointXYZ.H'];
+	pointXYZ.N' := 3[pointXYZ.G, pointXYZ.H'];
+	pointXYZ.Q := 2[pointXYZ.U, pointXYZ.R];
+	pointXYZ.X := 3[pointXYZ.U, pointXYZ.R];
+	pointXYZ.Y := 2[pointXYZ.U, pointXYZ.D];
+	pointXYZ.T := 3[pointXYZ.U, pointXYZ.D];
+	bySetProjection(15, -15, 0);
+	byLineDefine(E, A, byblue, 0, 0);
+	byLineDefine(A, K, byblue, 1, 0);
+	byLineDefine(K, L, byblue, 0, 2);
+	byLineDefine(E, H, byyellow, 0, 0);
+	byLineDefine(H, M, byyellow, 1, 0);
+	byLineDefine(M, N, byyellow, 0, 2);
+	draw byPolygon(X, Q, P, L')(white);
+	draw byPolygon(Q, R, V, P)(white);
+	draw byPolygon(R, U, F, V)(white);
+	draw byPolygon(U, D, C, F)(white);
+	draw byPolygon(D, Y, W, C)(white);
+	draw byPolygon(Y, T, S, W)(white);
+	draw byPolygon(L', P, K, L)(white);
+	draw byPolygon(P, V, A, K)(white);
+	draw byPolygon(V, F, E, A)(white);
+	draw byPolygon(F, C, H, E)(white);
+	draw byPolygon(C, W, M, H)(white);
+	draw byPolygon(W, S, N, M)(white);
+	draw byPolygon(L, O, X, L')(black);
+	draw byPolygon(K, K', Q, P)(black);
+	draw byPolygon(A, B, R, V)(byblue);
+	draw byPolygon(E, G, U, F)(byred);
+	draw byPolygon(H, H', D, C)(byyellow);
+	draw byPolygon(M, I, Y, W)(black);
+	draw byPolygon(N, N', T, S)(black);
+	draw byPolygon(X, Q, K', O)(white);
+	draw byPolygon(Q, R, B, K')(white);
+	draw byPolygon(R, U, G, B)(white);
+	draw byPolygon(G, U, D, H')(white);
+	draw byPolygon(D, Y, I, H')(white);
+	draw byPolygon(Y, T, N', I)(white);
+	draw byPolygon(L, O, K', K)(white);
+	draw byPolygon(K, K', B, A)(white);
+	draw byPolygon(A, B, G, E)(white);
+	draw byPolygon(E, G, H', H)(white);
+	draw byPolygon(H, H', I, M)(white);
+	draw byPolygon(M, I, N', N)(white);
+	draw byNamedLineSeq(0)(KL, AK, EA, EH, HM, MN);
+	draw byLabelsOnPolygon(L, O, X, Q, R, U, D, Y, T, S, N, M, H, E, A, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{I}{f}{a parallelepipedal solid be cut by a plane which is parallel to the opposite planes, then, as the base is to the base, so will the solid be to the solid.}
+
+For let the parallelepipedal solid \drawPolygon[middle][solidABCD]{RUGB,GUDH',ABGE,EGH'H,HH'DC} be cut by the plane \drawPolygon[middle][planeFG]{EGUF} which is parallel to the opposite planes \drawPolygon[middle][pgAR]{ABRV}, \drawPolygon[middle][pgDH]{HH'DC}; I say that $\drawPolygon[middle][pgAF]{VFEA} : \drawPolygon[middle][pgEC]{FCHE} :: \drawPolygon[middle][solidAU]{RUGB,ABGE,EGUF} : \drawPolygon[middle][solidED]{GUDH',EGH'H,HH'DC}$.
+
+For let \drawUnitLine{AH} be produced in each direction, let any number of straight lines whatever, \drawUnitLine{AK}, \drawUnitLine{KL}, be made equal to \drawUnitLine{AE}, and any number whatever, \drawUnitLine{HM}, \drawUnitLine{MN}, equal to \drawUnitLine{EH}; and let the parallelograms \drawPolygon[middle][pgLP]{L'PKL}, \drawPolygon[middle][pgKV]{PVAK}, \drawPolygon[middle][pgHW]{CWMH}, \drawPolygon[middle][pgMS]{WSNM} and the solids \drawPolygon[middle][solidLQ]{LOK'K,XQK'O,KK'QP}, \drawPolygon[middle][solidKR]{KK'BA,QRBK',ABRV}, \drawPolygon[middle][solidDM]{HH'IM,DYIH',MIYW}, \drawPolygon[middle][solidMT]{MIN'N,YTN'I,NN'TS} be completed.
+
+Then, since $\drawUnitLine{LK} = \drawUnitLine{KA} = \drawUnitLine{AE}$,
+$\pgLP = \pgKV = \pgAF$, $\drawPolygon[middle][pgKO]{LOK'K} = \drawPolygon[middle][pgKB]{KK'BA} = \drawPolygon[middle][pgAG]{ABGE}$, and further $\drawPolygon[middle][pgLX]{LOXL'} = \drawPolygon[middle][pgKQ]{KK'QP} = \pgAR$, for they are opposite. \inprop[prop:XI.XXIV]
+
+For the same reason $\pgEC = \pgHW = \pgMS$, $\drawPolygon[middle][pgHG]{EGH'H} = \drawPolygon[middle][pgHI]{HH'IM} = \drawPolygon[middle][pgIN]{MIN'N}$, and further $\pgDH = \drawPolygon[middle][pgMY]{MIYW} = \drawPolygon[middle][pgNT]{NN'TS}$. 
+
+$\therefore$ in \solidLQ, \solidKR, \solidAU three planes are equal to three planes.
+
+But the three planes are equal to the three opposite; $\therefore \solidLQ = \solidKR = \solidAU$.
+
+For the same reason $\solidED = \solidDM = \solidMT$.
+
+$\therefore \drawPolygon[middle][pgLF]{L'PKL,PVAK,VFEA} : \pgAF :: \drawPolygon[middle][solidLU]{LOK'K,KK'BA,ABGE,XQK'O,QRBK',RUGB,EGUF} : \solidAU$.
+
+For the same reason, $\drawPolygon[middle][pgNF]{FCHE,CWMH,WSNM} : \pgEC :: \drawPolygon[middle][solidNU]{EGH'H,HH'IM,MIN'N,GUDH',DYIH',YTN'I,NN'TS} : \solidED$.
+
+And\\
+if $\pgLF = \pgNF$, $\solidLU = \solidNU$;\\
+if $\pgLF > \pgNF$, $\solidLU > \solidNU$;\\
+if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
+
+Therefore, there being four magnitudes, the two bases \pgAF, \pgEC, and the two solids \solidAU, \solidED, equimultiples have been taken of the base \pgAF and the solid \solidAU, namely the base \pgLF and the solid \solidLU, and equimultiples of the base \pgEC and the solid \solidED, namely the base \pgNF and the solid \solidNU, and it has been proved that, if $\pgLF > \pgNF$, $\solidLU > \solidNU$, if $\pgLF = \pgNF$, $\solidLU = \solidNU$, and if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
+
+$\therefore \pgAF : \pgEC :: \solidAU :: \solidED$. \indef[def:V.V]
+
+\qed
+\stopProposition
+
 \stoptext

@@ -84,6 +84,9 @@
 % Second (optional) argument is for picture's name for future reuse
 % If picture with the same name exists, it's not defined again.
 % Third argument is MP code for picture itself.
+% To actually define an inline picture \defineFromCurrentPicture is called.
+% The latter can also be called separately, which can be convenient
+% if one wants to define multiple inline pictures in one place.
 % Whenever everything is defined, \drawDefinedPicture macro is called for
 \def\drawFromCurrentPicture{\dodoubleempty\drawfromcurrentpicture}
 \def\drawfromcurrentpicture[#1][#2]#3{{\ignorespaces
@@ -93,26 +96,26 @@
 		\global\def\dfcpl{middle}\ignorespaces
 	\fi\ignorespaces
 	\ifsecondargument\ignorespaces
-		\global\def\lastPict{#2}\ignorespaces
 		\expandafter\ifx\csname #2\endcsname\relax\ignorespaces
-			\startreusableMPgraphic{\currentInstance::#2}
-				startOffspringPictureMode;
-				linecap := butt;
-				#3
-				stopOffspringPictureMode;
-			\stopreusableMPgraphic\ignorespaces
+			\defineFromCurrentPicture{\dfcpl}{#2}{#3}\ignorespaces
 			\global\addToUndefineList{#2}\ignorespaces
+		\else\ignorespaces
+			\global\def\lastPict{#2}\ignorespaces
 		\fi\ignorespaces
 	\else\ignorespaces
-		\global\def\lastPict{lastPicture}\ignorespaces
-		\startreusableMPgraphic{\currentInstance::\lastPict}
+		\defineFromCurrentPicture{\dfcpl}{lastPicture}{#3}\ignorespaces
+	\fi\ignorespaces
+\csname\lastPict\endcsname}}
+
+\def\defineFromCurrentPicture#1#2#3{\ignorespaces
+		\startreusableMPgraphic{\currentInstance::#2}
 			startOffspringPictureMode;
 			linecap := butt;
 			#3
 			stopOffspringPictureMode;
-		\stopreusableMPgraphic
-	\fi\ignorespaces
-\global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter\dfcpl}}}\csname\lastPict\endcsname}}
+		\stopreusableMPgraphic\ignorespaces
+\global\def\lastPict{#2}\ignorespaces
+\global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter#1}}}}
 
 % \drawDefinedPicture draws defined and named picture, aligned as needed and,
 % possibly, with margins modified with \offsetPicture (i. e., if we want picture to act as if it's less tall that it actually is,
