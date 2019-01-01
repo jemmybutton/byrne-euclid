@@ -147,7 +147,7 @@ Therefore the straight lines \drawUnitLine{AB} and \drawUnitLine{CD} are in one 
 	byPointXYZDefine(D, 0, 0, 0);
 	byPointXYZDefine(F, 0, 1/2h, -1/8w);
 	byPointXYZDefine(E, 1/8w, 1/2h, 0);
-	bySetProjection(-25, 60, -90);
+	bySetProjection(-25, 60, 90);
 	draw byPolygon(B, C''', C'', D)(byred);
 	draw byPolygon(D, B, A''', A'')(byyellow);
 	draw byPolygon(D, A, A', B)(byyellow);
@@ -205,7 +205,7 @@ Similarly we can prove that neither will there be any other straight line joined
 	G := 1/2[A, D];
 	H = whatever[E, G] = whatever[B, C];
 	byPointXYZDefine(F, 0, 0, d);
-	bySetProjection(-60, 0, 35);
+	bySetProjection(-60, 0, -35);
 	byLineDefine(A, E, byred, 0, 0);
 	byLineDefine(E, B, byred, 1, 0);
 	byLineDefine(C, E, byblue, 0, 0);
@@ -298,7 +298,7 @@ Therefore \drawUnitLine{FE} is at right angles to the plane through \drawUnitLin
 	byPointXYZDefine(A'', xpart(F), ypart(F), -1/2d);
 	byPointXYZDefine(A''', xpart(B), ypart(B), -1/2d);
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, A', A'', A''');
-	bySetProjection(-60, 0, 60);
+	bySetProjection(-60, 0, -60);
 	draw byPolygon(B, F, A'', A''')(byblue);
 	draw byPolygon(Pnw, Pne, Pse, Psw)(byyellow);
 	draw byPolygon(A, A', F, B)(byblue);
@@ -356,7 +356,7 @@ Therefore the straight line \drawUnitLine{BC} is not in a more elevated plane. T
 	byPointXYZDefine(A, xpart(B), ypart(B), d);
 	byPointXYZDefine(C, xpart(D), ypart(D), d);
 	byPointLabelRemove(Pnw, Pne, Pse, Psw);
-	bySetProjection(-75, 0, -60);
+	bySetProjection(-75, 0, 60);
 	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
 	draw byAngle(A, B, D, byblue, 0);
 	draw byAngle(B, D, E, byyellow, 0);
@@ -431,7 +431,7 @@ Therefore the straight lines \drawUnitLine{AB}, \drawUnitLine{BD}, and \drawUnit
 	byPointXYZDefine(E'', xpart(E), ypart(E), -d);
 	byPointXYZDefine(F'', xpart(F), ypart(F), -d);
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, E', F', E'', F'');
-	bySetProjection(-45, 0, -75);
+	bySetProjection(-45, 0, 75);
 	draw byPolygon(E, F, F'', E'')(byyellow);
 	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
 	byLineDefine(A, E, byblue, 0, 0);
@@ -485,7 +485,7 @@ $\therefore$, if two straight lines are parallel and points are taken at random 
 	byPointXYZDefine(A', xpart(B), ypart(B), 6/5d);
 	byPointXYZDefine(C', xpart(D), ypart(D), 6/5d);
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, A', C');
-	bySetProjection(-75, 0, -60);
+	bySetProjection(-75, 0, 60);
 	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
 	draw byPolygon(B, D, C', A')(byyellow);
 	draw byAngle(A, B, D, byblue, 0);
@@ -573,7 +573,7 @@ Therefore, if two straight lines are parallel, and one of them is at right angle
 	pointXYZ.H' := (redpart(pointXYZ.H), greenpart(pointXYZ.H), bluepart(pointXYZ.G));
 	pointXYZ.K' := (redpart(pointXYZ.K), greenpart(pointXYZ.K), bluepart(pointXYZ.G));
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, Eab', Fab', Ecd', Fcd', A', B', C', D', H', K');
-	bySetProjection(-75, 0, -70);
+	bySetProjection(-75, 0, 70);
 	draw byPolygonWithName(H, H', G)(byblue)(planeHK'');
 	draw byPolygonWithName(E, Ecd', Fcd', F)(byred)(planeGK'');
 	draw byPolygonWithName(A', A, B, B')(byyellow)(planeGH');
@@ -646,7 +646,7 @@ Therefore $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
 	pointXYZ.Pse' := pointXYZ.Pse + s;
 	pointXYZ.Psw' := pointXYZ.Psw + s;
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
-	bySetProjection(-65, 0, -22);
+	bySetProjection(-65, 0, 22);
 	byLineDefine(A, B, byred, 0, 0);
 	byLineDefine(B, C, byblue, 0, 0);
 	byLineDefine(C, A, byyellow, 0, 0);
@@ -720,7 +720,7 @@ Now, since in \drawLine{AB,BC,CA} and \drawLine{DE,EF,FD} $\drawUnitLine{AB} = \
 	byLineDefine(F, E, byblue, 1, 0);
 	byLineDefine(G, F, byblack, 1, 0);
 	byLineDefine(F, H, byblack, 1, 0);
-	bySetProjection(-60, 0, 50);
+	bySetProjection(-60, 0, -50);
 	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
 	draw byNamedLine(FH, DC);
 	draw byPolygonWithName(E, E', D', D)(byyellow)(planeEAD);
@@ -780,7 +780,7 @@ Therefore from the given elevated point \drawPointL{A} the straight line \drawUn
 	byPointLabelRemove(Pnw, Pne, Pse, Psw);
 	byLineDefine(A, D, byblue, 0, 0);
 	byLineDefine(C, B, byred, 0, 0);
-	bySetProjection(-60, 0, 30);
+	bySetProjection(-60, 0, -30);
 	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
 	draw byNamedLine(AD, CB);
 	draw byLabelsOnPolygon(A, D, B, C)(0, 0);
@@ -823,7 +823,7 @@ Therefore \drawUnitLine{AD} has been set up at right angles to the given plane \
 	byLineDefine(A, C, byred, 1, 0);
 	byLineDefine(D, A, byblue, 0, 0);
 	byLineDefine(A, E, byblue, 0, 0);
-	bySetProjection(-75, 0, 30);
+	bySetProjection(-75, 0, -30);
 	draw byPolygonWithName(Pnw, Pne, Pse, Psw)(white)(refPlane);
 	draw byPolygonWithName(D, D', E', E)(byyellow)(planeABC);
 	draw byAngle(B, A, C, byblue, 0);
@@ -879,7 +879,7 @@ For the same reason the angle \drawAngle{EAB} is also right; $\therefore \drawAn
 	pointXYZ.Fg := pointXYZ.F + s3;
 	pointXYZ.F'h := pointXYZ.F' + s3;
 	byPointLabelRemove(C', D',  E',F');
-	bySetProjection(-75, 0, 12);
+	bySetProjection(-75, 0, -12);
 	byLineDefine(A, B, byblack, 0, 0);
 	byLineDefine(G, H, byyellow, 0, 0);
 	byLineDefine(A, K, byred, 0, 0);
@@ -949,7 +949,7 @@ Therefore the planes \drawPolygon{planeA}, \drawPolygon{planeB} will not meet wh
 	pointXYZ.Pse' := pointXYZ.Pse + s0;
 	pointXYZ.Psw' := pointXYZ.Psw + s0;
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
-	bySetProjection(-65, 0, 30);
+	bySetProjection(-65, 0, -30);
 	byLineDefine(A, B, byyellow, 0, 0);
 	byLineDefine(B, C, byyellow, 1, 0);
 	byLineDefine(D, E, byred, 1, 0);
@@ -1013,7 +1013,7 @@ But planes to which the same straight line is at right angles are parallel \inpr
 	pointXYZ.H := 1/3[pointXYZ.D', pointXYZ.D];
 	pointXYZ.K := 2[1/2[pointXYZ.E, pointXYZ.G], 1/2[pointXYZ.F, pointXYZ.H]];
 	byPointLabelRemove(A', B', C', D');
-	bySetProjection(-65, 0, 30);
+	bySetProjection(-65, 0, -30);
 	byLineDefine(E, F, byred, 0, 0);
 	byLineDefine(F, K, byred, 1, 0);
 	byLineDefine(G, H, byblue, 0, 0);
@@ -1095,7 +1095,7 @@ $\therefore \drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
 	byLineDefine(D, B, byblack, 1, 0);
 	byLineDefine(F, O, byblack, 0, 2);
 	byLineDefine(O, E, byblack, 1, 2);
-	bySetProjection(-60, 0, 30);
+	bySetProjection(-60, 0, -30);
 	draw byPolygonWithName(M, M', N, N')(-byred)(planeMN);
 	draw byPolygonWithName(D, O, E, B)(byyellow)(planeDOEB);
 	draw byNamedLine(OD);
@@ -1152,7 +1152,7 @@ But it was also proved that, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine
 	byPointXYZDefine(G, xpart(F), ypart(F), d);
 	byPointXYZDefine(E', xpart(E), ypart(E), d);
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, E');
-	bySetProjection(-60, 0, 30);
+	bySetProjection(-60, 0, -30);
 	byLineDefine(A, B, byred, 0, 0);
 	byLineDefine(C, F, byblack, 0, 0);
 	byLineDefine(F, B, byblue, 1, 0);
@@ -1226,7 +1226,7 @@ Similarly also it can be proved that all the planes through \drawUnitLine{AB} ar
 	pointXYZ.E := 2/3[pointXYZ.A, pointXYZ.B];
 	pointXYZ.F := 2/3[pointXYZ.C, pointXYZ.B];
 	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw', G, H, A', C', G', H');
-	bySetProjection(-75, 0, 15);
+	bySetProjection(-75, 0, -15);
 	byLineDefine(B, D, byblack, 0, 0);
 	byLineDefine(D, E, byred, 0, 0);
 	byLineDefine(D, F, byyellow, 0, 0);
@@ -1278,7 +1278,7 @@ Therefore no straight line except the common section \drawUnitLine{DB} of \plane
 	C' := (w, h);
 	byPointXYZDefine(D, 3/4w, 1/4h, d);
 	byPointLabelRemove(B', C');
-	bySetProjection(-60, 0, 15);
+	bySetProjection(-60, 0, -15);
 	byLineDefine(A, B, byblue, 0, 0);
 	byLineDefine(A, E, byblue, 1, 0);
 	byLineDefine(A, D, byred, 0, 0);
@@ -1341,7 +1341,7 @@ Similarly we can prove that the remaining angles also, taken together two and tw
 	A := (1/2w, h);
 	D := (w, 0);
 	byPointXYZDefine(C, 1/2w, 1/2h, d);
-	bySetProjection(-75, 0, 10);
+	bySetProjection(-75, 0, -10);
 	byLineDefine(A, B, byyellow, 0, 0);
 	byLineDefine(A, C, byred, 0, 0);
 	byLineDefine(A, D, byblue, 0, 0);
@@ -1547,7 +1547,7 @@ Let \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, 
 	Q := 2/3[O, M];
 	h := sqrt(((abs(A-B)/cm)**2) - ((abs(L-O)/(s*cm))**2))*s*cm;
 	byPointXYZDefine(R, xpart(O), ypart(O), h);
-	bySetProjection(-45, 0, 30);
+	bySetProjection(-45, 0, -35);
 	byLineDefine(L, M, byblack, 0, 0);
 	byLineDefine(M, N, byblack, 1, 0);
 	byLineDefine(N, L, byblack, 0, 2);
@@ -1876,56 +1876,6 @@ if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
 Therefore, there being four magnitudes, the two bases \pgAF, \pgEC, and the two solids \solidAU, \solidED, equimultiples have been taken of the base \pgAF and the solid \solidAU, namely the base \pgLF and the solid \solidLU, and equimultiples of the base \pgEC and the solid \solidED, namely the base \pgNF and the solid \solidNU, and it has been proved that, if $\pgLF > \pgNF$, $\solidLU > \solidNU$, if $\pgLF = \pgNF$, $\solidLU = \solidNU$, and if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
 
 $\therefore \pgAF : \pgEC :: \solidAU :: \solidED$. \indef[def:V.V]
-
-\qed
-\stopProposition
-
-\startProposition[title={Prop. XXIV. Theor.}, reference=prop:XI.XXVI]
-\defineNewPicture{
-	color d[];
-	d1 := (5/2cm, 0cm, 0cm);
-	d2 := (1/5cm, 2cm, 0cm);
-	d3 := (1/4cm, 1/6cm, 2cm);
-	byPointXYZDefine(A, 0, 0, 0);
-	byPointXYZEmpty(B, C, D, E, F, G, H);
-	pointXYZ.B := pointXYZ.A + d2;
-	pointXYZ.C := pointXYZ.A + d2 + d3;
-	pointXYZ.D := pointXYZ.A + d3;
-	pointXYZ.E := pointXYZ.A + d1 + d3;
-	pointXYZ.F := pointXYZ.A + d1 + d2 + d3;
-	pointXYZ.G := pointXYZ.A + d1;
-	pointXYZ.H := pointXYZ.A + d1+ d2;
-	bySetProjection(15, 12, 0);
-	byLineDefine(A, B, byred, 1, 0);
-	byLineDefine(D, C, byred, 0, 0);
-	byLineDefine(A, D, byblue, 1, 0);
-	byLineDefine(B, C, byblue, 0, 0);
-	byLineDefine(A, H, byblack, 1, 0);
-	byLineDefine(D, F, byblack, 0, 0);
-	byLineDefine(B, H, byyellow, 1, 0);
-	byLineDefine(C, F, byyellow, 0, 0);
-	byLineDefine(A, G, byblack, 0, 2);
-	byLineDefine(D, E, byblack, 0, 2);
-	byLineDefine(H, G, byblack, 0, 2);
-	byLineDefine(F, E, byblack, 0, 2);
-	byLineDefine(H, F, byblack, 0, 2);
-	byLineDefine(G, E, byblack, 0, 2);
-	byPolygonDefine(A, B, C, D)(white);
-	byPolygonDefine(B, H, F, C)(white);
-	byPolygonDefine(D, C, F, E)(white);
-	draw byAngle(A, B, H, byred, 0);
-	draw byNamedLine(AH, HG);
-	draw byNamedLineSeq(0)(BH, HF);
-	draw byNamedLineSeq(0)(AG, GE);
-	draw byNamedLine(DC, DF);
-	draw byAngle(D, C, F, byred, 1);
-	draw byNamedLineSeq(0)(AB, BC, CF, FE, DE, AD);
-	draw byLabelsOnPolygon(A, B, H, F, E, D)(0, 0);
-	draw byLabelsOnPolygon(E, G, A)(2, 0);
-	draw byLabelsOnPolygon(F, C, D)(2, 0);
-}
-\drawCurrentPictureInMargin
-\problemNP{O}{n}{On a given straight line, and at a given point on it, to construct a solid angle equal to a given solid angle.}
 
 \qed
 \stopProposition

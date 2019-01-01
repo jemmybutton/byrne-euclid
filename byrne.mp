@@ -356,28 +356,52 @@ enddef;
 color projectionAngle;
 projectionAngle := (0, 0, 0);
 
-% rotation order is Z, Y, X
+color rotationAxisB.X, rotationAxisE.X, rotationAxisB.Y, rotationAxisE.Y, rotationAxisB.Z, rotationAxisE.Z;
+string rotationAxisPart.X, rotationAxisPart.Y, rotationAxisPart.Z;
+rotationAxisB.X := (0, 0, 0);
+rotationAxisE.X := (1, 0, 0);
+rotationAxisPart.X := "redpart";
+rotationAxisB.Y := (0, 0, 0);
+rotationAxisE.Y := (0, 1, 0);
+rotationAxisPart.Y := "greenpart";
+rotationAxisB.Z := (0, 0, 0);
+rotationAxisE.Z := (0, 0, 1);
+rotationAxisPart.Z := "bluepart";
 
 primarydef somecolor colorrotated someangle =
-begingroup
-    save ox, oy, oz, px, py, pz, xa, ya, za;
-    ox := redpart somecolor;
-    oy := greenpart somecolor;
-    oz := bluepart somecolor;
-    xa := redpart someangle;
-    ya := greenpart someangle;
-    za := bluepart someangle;
-    px := + ox*cosd(za) + oy*sind(za) + oz*0;
-    py := - ox*sind(za) + oy*cosd(za) + oz*0;
-    ox := px; oy := py;
-    px := + ox*cosd(ya) + oz*sind(ya) + oy*0;
-    pz := - ox*sind(ya) + oz*cosd(ya) + oy*0;
-    ox := px; oz := pz;
-    pz := + oz*cosd(xa) + oy*sind(xa) + ox*0;
-    py := - oz*sind(xa) + oy*cosd(xa) + ox*0;
-    oz := pz; oy := py;
-    (ox, oy, oz)
-endgroup
+    rotateColor.ZYX(somecolor, someangle)
+enddef;
+
+% Rotation order can be selected like this rotateColor.XYZ
+
+vardef rotateColor@#(expr somecolor, someangle) =
+    save rotationOrder, argumentString, rv;
+    string rotationOrder[], argumentString;
+    color rv;
+    argumentString := str @#;
+    if argumentString = "":
+        rotationOrder0 = "X";
+        rotationOrder1 = "Y";
+        rotationOrder2 = "Z";
+    else:
+        for i := 0 step 1 until length(argumentString) - 1:
+            rotationOrder[i] = substring (i, i + 1) of argumentString;
+        endfor;
+    fi;
+    rv := somecolor;
+    rv := byRotateAroundAxis(
+            rotationAxisB.scantokens(rotationOrder0),
+            rotationAxisE.scantokens(rotationOrder0),
+            scantokens(rotationAxisPart.scantokens(rotationOrder0))(someangle), rv);
+    rv := byRotateAroundAxis(
+            rotationAxisB.scantokens(rotationOrder1),
+            rotationAxisE.scantokens(rotationOrder1),
+            scantokens(rotationAxisPart.scantokens(rotationOrder1))(someangle), rv);
+    rv := byRotateAroundAxis(
+            rotationAxisB.scantokens(rotationOrder2),
+            rotationAxisE.scantokens(rotationOrder2),
+            scantokens(rotationAxisPart.scantokens(rotationOrder2))(someangle), rv);
+    rv
 enddef;
 
 primarydef colorone crossproduct colortwo =
