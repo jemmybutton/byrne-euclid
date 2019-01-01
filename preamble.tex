@@ -38,7 +38,7 @@
 		\defineMPinstance[\currentInstance]\ignorespaces
 	\fi\ignorespaces
 	\startreusableMPgraphic{\currentInstance::currentPicture}
-		input byrne;
+		\ifCreateNewInstanceForPicture input byrne; \fi
 		\mpPre
 		startMainPictureMode;
 		scaleFactor := \sfB;

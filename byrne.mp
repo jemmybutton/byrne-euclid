@@ -529,7 +529,7 @@ vardef byPutPointsInSpace (text pL) =
     byRotatePoints(0, 0, 0, true)(pL);
 enddef;
 
-vardef byRotateAroundAxis (expr pointA, lineEndA, lineEndB, a) =
+vardef byRotateAroundAxis (expr lineEndA, lineEndB, a, pointA) =
     save vecA, vecB, rV, q;
     color vecA, vecB, rV;
     cmykcolor q[];
@@ -543,10 +543,34 @@ vardef byRotateAroundAxis (expr pointA, lineEndA, lineEndB, a) =
     rV
 enddef;
 
+def byRotatePointsAroundAxis (expr lineEndA, lineEndB, a)(text pointsList) =
+begingroup
+    save lineEndAxyz, lineEndBxyz, pN;
+    color lineEndAxyz, lineEndBxyz;
+    if (typeOf(lineEndA) = "color"):
+        lineEndAxyz := lineEndA;
+    else:
+        lineEndAxyz := pointXYZ.lineEndA;
+    fi;
+    if (typeOf(lineEndB) = "color"):
+        lineEndBxyz := lineEndB;
+    else:
+        lineEndBxyz := pointXYZ.lineEndB;
+    fi;
+    forsuffixes pN := pointsList:
+        if (typeOf(pN) = "color"):
+            pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pN);
+        else:
+            pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pointXYZ.pN);
+        fi;
+    endfor;
+endgroup
+enddef;
+
 primarydef colorone hamiltonProduct colortwo =
 begingroup
     save a, b, c, d;
-    numeric a[], b[],c[],d[];
+    numeric a[], b[], c[], d[];
     a1 := cyanpart(colorone);
     b1 := magentapart(colorone);
     c1 := yellowpart(colorone);
@@ -1187,7 +1211,9 @@ if mainPictureMode:
 fi;
     setAttribute("point", "XYZ", str pointName, (ox, oy, oz));
     pair pointName;
+    color pointXYZ.pointName;
     pointName := (ox, oy);
+    pointXYZ.pointName := (ox, oy, oz);
 enddef;
 
 vardef byPointXYZEmpty (text pointNames) =
@@ -1394,29 +1420,38 @@ enddef;
 % Arcs and circles
 %
 
+vardef byCirclePathGenerate (expr sr, pv) =
+    save circPath, xp, xang, yang;
+    path circPath;
+    color pvt;
+    numeric xang, yang;
+    pair xp;
+    circPath := fullcircle;
+    xp := (bluepart(pv), greenpart(pv));
+    xang := angle(xp);
+    pvt := (redpart(pv), ypart(xp rotated -xang), xpart(xp rotated -xang));
+    yang := angle((bluepart(pvt), redpart(pvt)));
+    circPath := spaceRotated(circPath)((-xang, yang, 0)); % plane vector to angles conversion should eventually go somewhere
+    circPath := spaceRotated(circPath)(sr);
+    circPath := spaceRotated(circPath)(projectionAngle);
+    circPath
+enddef;
+
 vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
-    save p, q, m, t, currentLineWidth, srCircle, xang, xp, yang, pvt;
+    save p, q, m, t, currentLineWidth, srCircle;
     path p[], srCircle;
     picture q;
-    pair t[], xp;
+    pair t[];
     numeric m[];
-    numeric currentLineWidth, xang, yang;
-    color pvt;
+    numeric currentLineWidth;
     save thirdDimension;
     image(
-        srCircle := fullcircle;
-        xp := (bluepart(pv), greenpart(pv));
-        xang := angle(xp);
-        pvt := (redpart(pv), ypart(xp rotated -xang), xpart(xp rotated -xang));
-        yang := angle((bluepart(pvt), redpart(pvt)));
-        srCircle := spaceRotated(srCircle)((-xang, yang, 0)); % plane vector to angles conversion should eventually go somewhere
-        srCircle := spaceRotated(srCircle)(sr);
-        srCircle := spaceRotated(srCircle)(projectionAngle);
+        srCircle := byCirclePathGenerate(sr, pv);
         currentLineWidth := lineThickness(th);
         p0 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
         p1 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor)) shifted (o*scaleFactor);
         p2 := (srCircle scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
-        p3 := ((subpath (b + sign(b-e)*1/4, e + sign(e-b)*1/4) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        p3 := ((subpath (b + sign(b-e)*1/16, e + sign(e-b)*1/16) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
         q := image(
             draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p1), dp) fi;
         );
@@ -1537,12 +1572,13 @@ vardef byNamedArc (text arcslist) =
 enddef;
 
 vardef byNamedArcLabel (text arcslist) =
-    save pointsListB, pointsListE, pointsListO, pointsListD, labelPos, labelVec, i, j, k, allArcsDefined, beginFree, endFree;
+    save pointsListB, pointsListE, pointsListO, pointsListD, labelPos, labelVec, labelAng, i, j, k, allArcsDefined, beginFree, endFree, pointsListCrv;
     string pointsListB[], pointsListE[], pointsListO[];
-    numeric i, j, k, pointsListD[];
+    numeric i, j, k, pointsListD[], labelAng;
     boolean allArcsDefined, beginFree, endFree;
     color labelVec;
     pair labelPos;
+    path pointsListCrv[];
     image(
         if (textLabels):
             i := -1;
@@ -1553,6 +1589,12 @@ vardef byNamedArcLabel (text arcslist) =
                 pointsListE[i] := getAttribute("arc", "EName", str aN);
                 pointsListO[i] := getAttribute("arc", "CenterName", str aN);
                 pointsListR[i] := getAttribute("arc", "Diameter", str aN);
+                begingroup
+                    save thirdDimension;
+                    pointsListCrv[i] := subpath
+                        (getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN))
+                        of byCirclePathGenerate (getAttribute("arc", "SpaceRotation", str aN), getAttribute("arc", "PlaneVector", str aN));
+                endgroup
                 if (getAttribute("arc", "BName", str aN) = "")
                     or (getAttribute("arc", "EName", str aN) = ""):
                     allArcsDefined := false;
@@ -1573,39 +1615,21 @@ vardef byNamedArcLabel (text arcslist) =
                         fi;
                     endfor;
                     if beginFree:
-                        if byIsPointInSpace(scantokens(pointsListB[j])):
-                            labelVec := unitvectorXYZ(pointXYZ.scantokens(pointsListB[j]) - pointXYZ.scantokens(pointsListO[j]));
-                            labelVec := labelVec colorrotated projectionAngle;
-                            labelPos := scantokens(pointsListO[j])
-                                + ((redpart(labelVec), greenpart(labelVec))
-                                    * (pointsListR[j]/2));
-                        else:
-                            labelPos := scantokens(pointsListO[j])
-                                + (unitvector(scantokens(pointsListB[j]) - scantokens(pointsListO[j]))
-                                    * (pointsListR[j]/2));
-                        fi;
+                        labelAng := angle(direction 0 of pointsListCrv[j]) + 180;
+                        labelPos := ((point 0 of pointsListCrv[j]) * pointsListR[j]) + scantokens(pointsListO[j]);
                         draw byTextLabel(pointLabel)(
                             pointsListB[j],
                             labelPos,
-                            angle(scantokens(pointsListB[j])-scantokens(pointsListO[j])) - 90,
+                            labelAng,
                             textLabelShift);
                     fi;
                     if endFree:
-                        if byIsPointInSpace(scantokens(pointsListB[j])):
-                            labelVec := unitvectorXYZ(pointXYZ.scantokens(pointsListE[j]) - pointXYZ.scantokens(pointsListO[j]));
-                            labelVec := labelVec colorrotated projectionAngle;
-                            labelPos := scantokens(pointsListO[j])
-                                + ((redpart(labelVec), greenpart(labelVec))
-                                    * (pointsListR[j]/2));
-                        else:
-                            labelPos := scantokens(pointsListO[j])
-                                + (unitvector(scantokens(pointsListE[j]) - scantokens(pointsListO[j]))
-                                    * (pointsListR[j]/2));
-                        fi;
+                        labelAng := angle(direction 0 of reverse(pointsListCrv[j])) + 180;
+                        labelPos := ((point 0 of reverse(pointsListCrv[j])) * pointsListR[j]) + scantokens(pointsListO[j]);
                         draw byTextLabel(pointLabel)(
                             pointsListE[j],
                             labelPos,
-                            angle(scantokens(pointsListE[j])-scantokens(pointsListO[j])) + 90,
+                            labelAng,
                             textLabelShift);
                     fi;
                 endfor;
@@ -1688,8 +1712,8 @@ vardef byFindCircleCenterABCinSpace (expr a, b, c) =
     save vec;
     color vec[];
     vec0 := ((a - b) crossproduct (c - b));
-    vec1 := byRotateAroundAxis (vec0, a - b, (0, 0, 0), 90);
-    vec2 := byRotateAroundAxis (vec0, c - b, (0, 0, 0), 90);
+    vec1 := byRotateAroundAxis (a - b, (0, 0, 0), 90, vec0);
+    vec2 := byRotateAroundAxis (c - b, (0, 0, 0), 90, vec0);
     vec3 = whatever[1/2[a, b], 1/2[a, b] + vec1]
         = whatever[1/2[b, c], 1/2[b, c] + vec2]; % Fails from time to time because of some roundoff errors
     vec3

@@ -1767,7 +1767,7 @@ Similarly we can prove that $\planeAC\ = \planeGF$, and $\planeAE\ = \planeBF$.
 \qed
 \stopProposition
 
-\startProposition[title={Prop. XXV. Theor.}, reference=prop:XI.XXV]
+\startProposition[title={Prop. XXV. Theor.}, reference=prop:XI.XXV] % this one's unfinished due to lack of enthusiasm
 \defineNewPicture{
 	color d[];
 	numeric f;
@@ -1876,6 +1876,56 @@ if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
 Therefore, there being four magnitudes, the two bases \pgAF, \pgEC, and the two solids \solidAU, \solidED, equimultiples have been taken of the base \pgAF and the solid \solidAU, namely the base \pgLF and the solid \solidLU, and equimultiples of the base \pgEC and the solid \solidED, namely the base \pgNF and the solid \solidNU, and it has been proved that, if $\pgLF > \pgNF$, $\solidLU > \solidNU$, if $\pgLF = \pgNF$, $\solidLU = \solidNU$, and if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
 
 $\therefore \pgAF : \pgEC :: \solidAU :: \solidED$. \indef[def:V.V]
+
+\qed
+\stopProposition
+
+\startProposition[title={Prop. XXIV. Theor.}, reference=prop:XI.XXVI]
+\defineNewPicture{
+	color d[];
+	d1 := (5/2cm, 0cm, 0cm);
+	d2 := (1/5cm, 2cm, 0cm);
+	d3 := (1/4cm, 1/6cm, 2cm);
+	byPointXYZDefine(A, 0, 0, 0);
+	byPointXYZEmpty(B, C, D, E, F, G, H);
+	pointXYZ.B := pointXYZ.A + d2;
+	pointXYZ.C := pointXYZ.A + d2 + d3;
+	pointXYZ.D := pointXYZ.A + d3;
+	pointXYZ.E := pointXYZ.A + d1 + d3;
+	pointXYZ.F := pointXYZ.A + d1 + d2 + d3;
+	pointXYZ.G := pointXYZ.A + d1;
+	pointXYZ.H := pointXYZ.A + d1+ d2;
+	bySetProjection(15, 12, 0);
+	byLineDefine(A, B, byred, 1, 0);
+	byLineDefine(D, C, byred, 0, 0);
+	byLineDefine(A, D, byblue, 1, 0);
+	byLineDefine(B, C, byblue, 0, 0);
+	byLineDefine(A, H, byblack, 1, 0);
+	byLineDefine(D, F, byblack, 0, 0);
+	byLineDefine(B, H, byyellow, 1, 0);
+	byLineDefine(C, F, byyellow, 0, 0);
+	byLineDefine(A, G, byblack, 0, 2);
+	byLineDefine(D, E, byblack, 0, 2);
+	byLineDefine(H, G, byblack, 0, 2);
+	byLineDefine(F, E, byblack, 0, 2);
+	byLineDefine(H, F, byblack, 0, 2);
+	byLineDefine(G, E, byblack, 0, 2);
+	byPolygonDefine(A, B, C, D)(white);
+	byPolygonDefine(B, H, F, C)(white);
+	byPolygonDefine(D, C, F, E)(white);
+	draw byAngle(A, B, H, byred, 0);
+	draw byNamedLine(AH, HG);
+	draw byNamedLineSeq(0)(BH, HF);
+	draw byNamedLineSeq(0)(AG, GE);
+	draw byNamedLine(DC, DF);
+	draw byAngle(D, C, F, byred, 1);
+	draw byNamedLineSeq(0)(AB, BC, CF, FE, DE, AD);
+	draw byLabelsOnPolygon(A, B, H, F, E, D)(0, 0);
+	draw byLabelsOnPolygon(E, G, A)(2, 0);
+	draw byLabelsOnPolygon(F, C, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP{O}{n}{On a given straight line, and at a given point on it, to construct a solid angle equal to a given solid angle.}
 
 \qed
 \stopProposition
