@@ -369,10 +369,14 @@ rotationAxisE.Z := (0, 0, 1);
 rotationAxisPart.Z := "bluepart";
 
 primarydef somecolor colorrotated someangle =
-    rotateColor.ZYX(somecolor, someangle)
+    rotateColor(somecolor, someangle)
 enddef;
 
-% Rotation order can be selected like this rotateColor.XYZ
+% Rotation order can be selected like this rotateColor.XYZ,
+% or by setting defaultRotationOrder
+
+string defaultRotationOrder;
+defaultRotationOrder := "ZYX";
 
 vardef rotateColor@#(expr somecolor, someangle) =
     save rotationOrder, argumentString, rv;
@@ -380,14 +384,11 @@ vardef rotateColor@#(expr somecolor, someangle) =
     color rv;
     argumentString := str @#;
     if argumentString = "":
-        rotationOrder0 = "X";
-        rotationOrder1 = "Y";
-        rotationOrder2 = "Z";
-    else:
-        for i := 0 step 1 until length(argumentString) - 1:
-            rotationOrder[i] = substring (i, i + 1) of argumentString;
-        endfor;
+        argumentString := defaultRotationOrder;
     fi;
+    for i := 0 step 1 until length(argumentString) - 1:
+        rotationOrder[i] = substring (i, i + 1) of argumentString;
+    endfor;
     rv := somecolor;
     rv := byRotateAroundAxis(
             rotationAxisB.scantokens(rotationOrder0),
@@ -2937,6 +2938,54 @@ byAngleDefineWithName (pointN, pointO, pointE)(black, 1)(rightAngleNE);
 byAngleDefineWithName (pointE, pointO, pointS)(black, 1)(rightAngleES);
 byAngleDefineWithName (pointS, pointO, pointW)(black, 1)(rightAngleSE);
 byAngleDefineWithName (pointW, pointO, pointN)(black, 1)(rightAngleWN);
+
+%
+% Arrows
+%
+
+vardef byRotationArrowDefineWithName (suffix axisA, axisB, pointA) (expr ang, col, sty) (suffix arrowName) =
+    %for i := 0 step ang/()
+    %byRotateAroundAxis (axisA, axisB, ang, pointA)
+    setAttribute("rotationarrow", "AxisA", str arrowName, str axisA);
+    setAttribute("rotationarrow", "AxisB", str arrowName, str axisB);
+    setAttribute("rotationarrow", "Point", str arrowName, str pointA);
+    setAttribute("rotationarrow", "Angle", str arrowName, ang);
+    setAttribute("rotationarrow", "Color", str arrowName, col);
+    setAttribute("rotationarrow", "Style", str arrowName, sty);
+enddef;
+
+vardef byGenerateArrowPath (expr axisA, axisB, pointA, ang) =
+    save arrowPath, spacePoint;
+    path arrowPath;
+    color spacePoint;
+    spacePoint := scantokens(pointA) colorrotated projectionAngle;
+    arrowPath := (redpart(spacePoint), greenpart(spacePoint));
+    for i := 0 step (ang/floor(ang/5)) until ang:
+        spacePoint := byRotateAroundAxis (scantokens(axisA), scantokens(axisB), i, scantokens(pointA)) colorrotated projectionAngle;
+        arrowPath := arrowPath -- (redpart(spacePoint), greenpart(spacePoint));
+    endfor;
+    arrowPath
+enddef;
+
+vardef byNamedRotationArrow (text arrowsList) =
+    save arrowPath, arrowPoint, ahlength, ahangle;
+    path arrowPath;
+    color arrowPoint;
+    ahlength := 10pt;
+    ahangle := 30;
+    image(
+        forsuffixes aN=arrowsList:
+            arrowPath := byGenerateArrowPath(
+                getAttribute("rotationarrow", "AxisA", str aN),
+                getAttribute("rotationarrow", "AxisB", str aN),
+                getAttribute("rotationarrow", "Point", str aN),
+                getAttribute("rotationarrow", "Angle", str aN)
+                );
+            arrowPath := subpath (0, (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
+            drawarrow arrowPath withpen (pencircle scaled lineWidth) withcolor getAttribute("rotationarrow", "Color", str aN);
+        endfor;
+    )
+enddef;
 
 %
 % Magnitudes
