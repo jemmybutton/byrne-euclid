@@ -545,9 +545,12 @@ vardef spaceRotated (suffix somepath)(expr someangle) =
     rv
 enddef;
 
-vardef bySetProjection (expr xa, ya, za) =
+vardef bySetProjection@#(expr xa, ya, za) =
     projectionAngle := (xa, ya, za);
-    byRotatePoints(xa, ya, za, false)();
+    byRotatePoints@#(xa, ya, za, false)();
+    if str @# <> "":
+        defaultRotationOrder := str @#;
+    fi;
 enddef;
 
 vardef byPutPointsInSpace (text pL) =
@@ -705,10 +708,17 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
 enddef;
 
 vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
+    byLineDefine.lineName(a, b)(col, dp, th)
+enddef;
+
+vardef byLineDefine@#(suffix a, b)(expr col, dp, th) =
+if str @# = "":
+    byLineDefine.scantokens(str a & str b)(a, b)(col, dp, th);
+else:
     save lA, lL;
     numeric lL;
     if mainPictureMode:
-        appendList(allLinesList, str lineName, 1, true);
+        appendList(allLinesList, str @#, 1, true);
     fi;
     if byIsPointInSpace(a, b):
         lL := absXYZ(pointXYZ.a - pointXYZ.b);
@@ -729,29 +739,26 @@ vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
             lA := 0;
         fi;
     fi;
-    setAttribute("line", "Angle", str lineName, lA);
-    setAttribute("line", "Color", str lineName, col);
-    setAttribute("line", "Dashed", str lineName, dp);
-    setAttribute("line", "Thin", str lineName, th);
-    setAttribute("line", "Length", str lineName, lL);
-    setAttribute("line", "EndA", str lineName, a);
-    setAttribute("line", "EndB", str lineName, b);
-    setAttribute("line", "Shift", str lineName, 0);
-    setAttribute("line", "DirA", str lineName, a);
-    setAttribute("line", "DirB", str lineName, b);
-    setAttribute("line", "EndAType", str lineName, 0);
-    setAttribute("line", "EndBType", str lineName, 0);
-    setAttribute("line", "EndAName", str lineName, str a);
-    setAttribute("line", "EndBName", str lineName, str b);
-    setAttribute("line", "DirAName", str lineName, str a);
-    setAttribute("line", "DirBName", str lineName, str b);
-    setAttribute("line", "UseLineLabel", str lineName, false);
-    setAttribute("line", "Label", str lineName, str lineName);
-    setAttribute("line", "Synonym", str lineName, str lineName);
-enddef;
-
-vardef byLineDefine (suffix a, b) (expr col, dp, th) =
-    byLineDefineWithName (a, b, col, dp, th) (scantokens(str a & str b));
+    setAttribute("line", "Angle", str @#, lA);
+    setAttribute("line", "Color", str @#, col);
+    setAttribute("line", "Dashed", str @#, dp);
+    setAttribute("line", "Thin", str @#, th);
+    setAttribute("line", "Length", str @#, lL);
+    setAttribute("line", "EndA", str @#, a);
+    setAttribute("line", "EndB", str @#, b);
+    setAttribute("line", "Shift", str @#, 0);
+    setAttribute("line", "DirA", str @#, a);
+    setAttribute("line", "DirB", str @#, b);
+    setAttribute("line", "EndAType", str @#, 0);
+    setAttribute("line", "EndBType", str @#, 0);
+    setAttribute("line", "EndAName", str @#, str a);
+    setAttribute("line", "EndBName", str @#, str b);
+    setAttribute("line", "DirAName", str @#, str a);
+    setAttribute("line", "DirBName", str @#, str b);
+    setAttribute("line", "UseLineLabel", str @#, false);
+    setAttribute("line", "Label", str @#, str @#);
+    setAttribute("line", "Synonym", str @#, str @#);
+fi;
 enddef;
 
 vardef byLineStylize (suffix c, d)(expr ct, dt, s) (suffix lineName) =
@@ -764,9 +771,13 @@ vardef byLineStylize (suffix c, d)(expr ct, dt, s) (suffix lineName) =
     setAttribute("line", "EndBType", str lineName, dt);
 enddef;
 
-vardef byLine (suffix a, b)(expr col, dp, th) =
-    byLineDefine (a, b) (col, dp, th);
-    byNamedLineFull(a, b, 0, 0, 0)(scantokens(str a & str b))
+vardef byLine@#(suffix a, b)(expr col, dp, th) =
+if str @# = "":
+    byLine.scantokens(str a & str b)(a, b)(col, dp, th)
+else:
+    byLineDefine@#(a, b, col, dp, th);
+    byNamedLineFull(a, b, 0, 0, 0)(@#)
+fi
 enddef;
 
 vardef byLineFull (suffix a, b)(expr col, dp, th)(suffix c, d)(expr ct, dt, s) =
@@ -775,10 +786,12 @@ vardef byLineFull (suffix a, b)(expr col, dp, th)(suffix c, d)(expr ct, dt, s) =
     byNamedLine(scantokens(str a & str b))
 enddef;
 
-vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-    byLineDefineWithName (a, b, col, dp, th) (lineName);
-    setAttribute("line", "UseLineLabel", str lineName, true);
-    byNamedLineFull(a, b, 0, 0, 0)(lineName)
+% This one's behaviour is slightly off, since it affects line label type
+
+vardef byLineWithName(suffix a, b)(expr col, dp, th)(suffix lineLabel) =
+    byLineDefine.lineLabel(a, b, col, dp, th);
+    setAttribute("line", "UseLineLabel", str lineLabel, true);
+    byNamedLineFull(a, b, 0, 0, 0)(lineLabel)
 enddef;
 
 vardef byNamedLineFull (expr c, d, ct, dt, s) (suffix lineName) =
@@ -1269,7 +1282,7 @@ begingroup
 endgroup
 enddef;
 
-vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
+vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
     save oxyz, pointsToProcess;
     color oxyz;
     string pointsToProcess;
@@ -1288,7 +1301,7 @@ vardef byRotatePoints (expr xa, ya, za, toRotate)(text pointsList) =
         else:
             errmessage("Point " & str i & " doesn't exist");
         fi;
-        oxyz := oxyz colorrotated (xa, ya, za);
+        oxyz := rotateColor@#(oxyz, (xa, ya, za));
         pair i;
         i := (redpart(oxyz), greenpart(oxyz));
         if toRotate:
@@ -1619,7 +1632,7 @@ vardef byNamedArcLabel (text arcslist) =
                     pointsListCrv[i] := subpath
                         (getAttribute("arc", "Begin", str aN), getAttribute("arc", "End", str aN))
                         of byCirclePathGenerate (getAttribute("arc", "SpaceRotation", str aN), getAttribute("arc", "PlaneVector", str aN));
-                endgroup
+                endgroup;
                 if (getAttribute("arc", "BName", str aN) = "")
                     or (getAttribute("arc", "EName", str aN) = ""):
                     allArcsDefined := false;
@@ -1938,7 +1951,14 @@ vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     ) rotated globalRotation
 enddef;
 
-vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName)=
+vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName) =
+    byPolygonDefine.polygonName (pointsList)(col);
+enddef;
+
+vardef byPolygonDefine@#(text pointsList)(expr col) =
+if str @# = "":
+    byPolygonDefine.scantokens(byPolygonName(pointsList))(pointsList)(col);
+else:
     save pL, p, tn;
     path p;
     string pL;
@@ -1949,14 +1969,11 @@ vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName)=
     forsuffixes pN=pointsList:
         appendList(pL, str pN, -tn, false);
     endfor;
-    setAttribute("polygon", "Color", str polygonName, col);
-    setAttribute("polygon", "Transparency", str polygonName, 1);
-    setAttribute("polygon", "PointsList", str polygonName, pL);
-    setAttribute("polygon", "Synonym", str polygonName, str polygonName);
-enddef;
-
-vardef byPolygonDefine (text pointsList)(expr col) =
-    byPolygonDefineWithName(pointsList)(col)(scantokens(byPolygonName(pointsList)));
+    setAttribute("polygon", "Color", str @#, col);
+    setAttribute("polygon", "Transparency", str @#, 1);
+    setAttribute("polygon", "PointsList", str @#, pL);
+    setAttribute("polygon", "Synonym", str @#, str @#);
+fi;
 enddef;
 
 vardef byPolygonPathFromList (expr pointsList) =
@@ -1964,12 +1981,17 @@ vardef byPolygonPathFromList (expr pointsList) =
 enddef;
 
 vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
-    byPolygonDefineWithName (pointsList)(col)(polygonName);
-    byNamedPolygon(polygonName)
+    byPolygon.polygonName(pointsList)(col)
 enddef;
 
-vardef byPolygon (text pointsList)(expr col)=
-    byPolygonWithName(pointsList)(col)(scantokens(byPolygonName(pointsList)))
+vardef byPolygon@#(text pointsList)(expr col) =
+if str @# = "":
+    byPolygonDefine.scantokens(byPolygonName(pointsList))(pointsList)(col);
+    byNamedPolygon(scantokens(byPolygonName(pointsList)))
+else:
+    byPolygonDefine.@#(pointsList)(col);
+    byNamedPolygon(@#)
+fi
 enddef;
 
 vardef byPolygonName(text pointsList) =
@@ -2150,37 +2172,45 @@ enddef;
 %
 
 vardef byAngleDefineWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
-if mainPictureMode:
-    appendList(pointAnglesList.b, str angleName, 1, true);
-    appendList(anglePointsList, str b, 1, true);
-fi;
-    save p, q, d, ad, ac;
-    path p;
-    picture q;
-    numeric ad;
-    boolean ac;
-    p := byConstructAngleArc(a, b, c);
-    ad := angle(point (arctime arclength(p)/2 of p) of p);
-    if (ypart(unitvector(a-b) rotated -ad)) > 0:
-        ac := true;
-    else:
-        ac := false;
+    byAngleDefine.angleName(a, b, c)(col, sty);
+enddef;
+
+vardef byAngleDefine@#(suffix a, b, c)(expr col, sty) =
+if str @# = "":
+    byAngleDefine.scantokens(str a & str b & str c)(a, b, c)(col, sty);
+else:
+    if mainPictureMode:
+        appendList(pointAnglesList.b, str @#, 1, true);
+        appendList(anglePointsList, str b, 1, true);
     fi;
-    setAttribute("angle", "Arc", str angleName, p);
-    setAttribute("angle", "ArcClockwise", str angleName, ac);
-    setAttribute("angle", "Val", str angleName, 180*arclength(p scaled 2)/pi);
-    setAttribute("angle", "AVal", str angleName, angle(a-b));
-    setAttribute("angle", "CVal", str angleName, angle(c-b));
-    setAttribute("angle", "Direction", str angleName, ad);
-    setAttribute("angle", "Color", str angleName, col);
-    setAttribute0("angle", "OptionalColor", str angleName, byDefaultAngleOptionalColor);
-    setAttribute("angle", "Style", str angleName, sty);
-    setAttribute("angle", "AName", str angleName, str a);
-    setAttribute("angle", "BName", str angleName, str b);
-    setAttribute("angle", "CName", str angleName, str c);
-    setAttribute("angle", "ScaleCorrection", str angleName, 1);
-    setAttribute("angle", "Standalone", str angleName, 0);
-    setAttribute("angle", "Synonym", str angleName, str angleName);
+        save p, q, d, ad, ac;
+        path p;
+        picture q;
+        numeric ad;
+        boolean ac;
+        p := byConstructAngleArc(a, b, c);
+        ad := angle(point (arctime arclength(p)/2 of p) of p);
+        if (ypart(unitvector(a-b) rotated -ad)) > 0:
+            ac := true;
+        else:
+            ac := false;
+        fi;
+        setAttribute("angle", "Arc", str @#, p);
+        setAttribute("angle", "ArcClockwise", str @#, ac);
+        setAttribute("angle", "Val", str @#, 180*arclength(p scaled 2)/pi);
+        setAttribute("angle", "AVal", str @#, angle(a-b));
+        setAttribute("angle", "CVal", str @#, angle(c-b));
+        setAttribute("angle", "Direction", str @#, ad);
+        setAttribute("angle", "Color", str @#, col);
+        setAttribute0("angle", "OptionalColor", str @#, byDefaultAngleOptionalColor);
+        setAttribute("angle", "Style", str @#, sty);
+        setAttribute("angle", "AName", str @#, str a);
+        setAttribute("angle", "BName", str @#, str b);
+        setAttribute("angle", "CName", str @#, str c);
+        setAttribute("angle", "ScaleCorrection", str @#, 1);
+        setAttribute("angle", "Standalone", str @#, 0);
+        setAttribute("angle", "Synonym", str @#, str @#);
+fi;
 enddef;
 
 vardef byConstructAngleArc (suffix a, b, c) =
@@ -2245,41 +2275,50 @@ vardef byFullCircleToPlane (expr colPlaneA, colPlaneB, colPlaneC) =
     p
 enddef;
 
-vardef byAngleDefine (suffix a, b, c)(expr col, sty) =
-    byAngleDefineWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c));
-enddef;
-
 vardef byAngleWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
-    byAngleDefineWithName(a, b, c, col, sty)(angleName);
-    byNamedAngle(angleName)
+    byAngle.angleName(a, b, c, col, sty)
 enddef;
 
-vardef byAngle(suffix a, b, c)(expr col, sty) =
-    byAngleWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))
+vardef byAngle@#(suffix a, b, c)(expr col, sty) =
+if str @# = "":
+    byAngle.scantokens(str a & str b & str c)(a, b, c, col, sty)
+else:
+    byAngleDefine@#(a, b, c, col, sty);
+    byNamedAngle(@#)
+fi
 enddef;
 
 vardef byAngleDefineExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+    byAngleDefineExtended.angleName(a, b, c)(col, sty)(optionalColors)
+enddef;
+
+vardef byAngleDefineExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
+if str @# = "":
+    byAngleDefineExtended.scantokens(str a & str b & str c)(a, b, c)(col, sty)(optionalColors);
+else:
     save n;
     numeric n;
     n := 0;
-    byAngleDefineWithName(a, b, c, col, sty)(angleName);
+    byAngleDefine.@#(a, b, c, col, sty);
     forsuffixes oC=optionalColors:
-        setAttribute[n]("angle", "OptionalColor", str angleName, oC);
+        setAttribute[n]("angle", "OptionalColor", str @#, oC);
         n := n + 1;
     endfor;
-enddef;
-
-vardef byAngleDefineExtended (suffix a, b, c)(expr col, sty)(text optionalColors) =
-    byAngleDefineExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors);
+fi;
 enddef;
 
 vardef byAngleExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
-    byAngleDefineExtendedWithName(a, b, c)(col, sty)(angleName)(optionalColors);
-    byNamedAngle(angleName)
+    byAngleExtended.angleName(a, b, c)(col, sty)(optionalColors)
 enddef;
 
-vardef byAngleExtended (suffix a, b, c)(expr col, sty)(text optionalColors) =
-    byAngleExtendedWithName(a, b, c)(col, sty)(scantokens(str a & str b & str c))(optionalColors)
+vardef byAngleExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
+    if str @# = "":
+        byAngleDefineExtended.scantokens(str a & str b & str c)(a, b, c)(col, sty)(optionalColors);
+        byNamedAngle(scantokens(str a & str b & str c))
+    else:
+        byAngleDefineExtended@#(a, b, c)(col, sty)(optionalColors);
+        byNamedAngle(@#)
+    fi
 enddef;
 
 vardef byNamedAngle (text anglesList) =
@@ -2934,10 +2973,10 @@ pointS := (0, -2u*angleScale);
 pointW := (-2u*angleScale, 0);
 pointO := (0, 0);
 
-byAngleDefineWithName (pointN, pointO, pointE)(black, 1)(rightAngleNE);
-byAngleDefineWithName (pointE, pointO, pointS)(black, 1)(rightAngleES);
-byAngleDefineWithName (pointS, pointO, pointW)(black, 1)(rightAngleSE);
-byAngleDefineWithName (pointW, pointO, pointN)(black, 1)(rightAngleWN);
+byAngleDefine.rightAngleNE (pointN, pointO, pointE)(black, 1);
+byAngleDefine.rightAngleES (pointE, pointO, pointS)(black, 1);
+byAngleDefine.rightAngleSE (pointS, pointO, pointW)(black, 1);
+byAngleDefine.rightAngleWN (pointW, pointO, pointN)(black, 1);
 
 %
 % Arrows
