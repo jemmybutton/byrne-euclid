@@ -135,108 +135,6 @@ vardef angleOpticalScale (expr v) =
     ((va/60)**(-1/2))
 enddef;
 
-vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates) =
-    if (not string listName) or (unknown listName):
-        string listName;
-        listName := "";
-    fi;
-    if length(listName) = 0:
-        listName := valueToAdd;
-    else:
-        save valueExists;
-        boolean valueExists;
-        valueExists := false;
-        if omitDuplicates:
-            valueExists := isInList (valueToAdd, listName)
-        fi;
-        if not valueExists:
-            if (whereToAdd = 1):
-                listName := listName & ", " & valueToAdd;
-            else:
-                listName := valueToAdd & ", " & listName;
-            fi;
-        fi;
-    fi;
-enddef;
-
-vardef isInList (expr valueToLookFor)(suffix listName) =
-    save rv, i;
-    boolean rv;
-    rv := false;
-    if (not string listName) or (unknown listName):
-        string listName;
-        listName := "";
-    fi;
-    forsuffixes i=scantokens(listName):
-        if (str i = valueToLookFor):
-            rv := true;
-        fi;
-    endfor;
-    rv
-enddef;
-
-vardef setAttribute@#(expr attrGenus, attrSpecies, attrName, attrValue) =
-    save finName;
-    string finName;
-    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
-        finName := attrName;
-    else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
-        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
-            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
-                finName := attrName;
-            fi;
-        fi;
-    fi;
-    if str @# = "":
-        scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName);
-    elseif (typeOf(scantokens(attrGenus & attrSpecies).scantokens(finName)0) <> typeOf(attrValue)):
-        scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
-    fi;
-    scantokens(attrGenus & attrSpecies).scantokens(finName)@# := attrValue;
-enddef;
-
-vardef getAttribute@#(expr attrGenus, attrSpecies, attrName) =
-    save finName;
-    string finName;
-    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
-        finName := attrName;
-    else:
-        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
-        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
-            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
-                if known scantokens(attrGenus & attrSpecies).scantokens(attrName)@#:
-                    finName := attrName;
-                fi;
-            fi;
-        fi;
-    fi;
-    scantokens(attrGenus & attrSpecies).scantokens(finName)@#
-enddef;
-
-vardef attributeExists (expr attrGenus, attrSpecies, attrName) =
-    save rv;
-    boolean rv;
-    if known scantokens(attrGenus & attrSpecies).scantokens(attrName):
-        rv := true;
-    else:
-        rv := false;
-    fi;
-    rv
-enddef;
-
-setAttribute("line", "Color", "noLine", white);
-setAttribute("line", "Dashed", "noLine", 0);
-setAttribute("line", "EndAName", "noLine", "noLine");
-setAttribute("line", "EndBName", "noLine", "noLine");
-setAttribute("line", "EndA", "noLine", inf);
-setAttribute("line", "EndB", "noLine", inf);
-setAttribute("line", "Synonym", "noLine", "noLine");
-
-setAttribute("line", "Color", "dummyLine", bygrey);
-setAttribute("line", "Dashed", "dummyLine", 0);
-setAttribute("line", "Thin", "dummyLine", 1);
-
 vardef distanceToLine (expr givenPoint, givenLine) =
     save p;
     pair p[];
@@ -348,6 +246,111 @@ def stopMainPictureMode =
     endgroup
 enddef;
 
+%
+% This section is devoted to lists
+%
+
+vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates) =
+    if (not string listName) or (unknown listName):
+        string listName;
+        listName := "";
+    fi;
+    if length(listName) = 0:
+        listName := valueToAdd;
+    else:
+        save valueExists;
+        boolean valueExists;
+        valueExists := false;
+        if omitDuplicates:
+            valueExists := isInList (valueToAdd, listName)
+        fi;
+        if not valueExists:
+            if (whereToAdd = 1):
+                listName := listName & ", " & valueToAdd;
+            else:
+                listName := valueToAdd & ", " & listName;
+            fi;
+        fi;
+    fi;
+enddef;
+
+vardef isInList (expr valueToLookFor)(suffix listName) =
+    save rv, i;
+    boolean rv;
+    rv := false;
+    if (not string listName) or (unknown listName):
+        string listName;
+        listName := "";
+    fi;
+    forsuffixes i=scantokens(listName):
+        if (str i = valueToLookFor):
+            rv := true;
+        fi;
+    endfor;
+    rv
+enddef;
+
+vardef setAttribute@#(expr attrGenus, attrSpecies, attrName, attrValue) =
+    save finName;
+    string finName;
+    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
+        finName := attrName;
+    else:
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
+        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
+            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
+                finName := attrName;
+            fi;
+        fi;
+    fi;
+    if str @# = "":
+        scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName);
+    elseif (typeOf(scantokens(attrGenus & attrSpecies).scantokens(finName)0) <> typeOf(attrValue)):
+        scantokens(typeOf(attrValue)) scantokens(attrGenus & attrSpecies).scantokens(finName)[];
+    fi;
+    scantokens(attrGenus & attrSpecies).scantokens(finName)@# := attrValue;
+enddef;
+
+vardef getAttribute@#(expr attrGenus, attrSpecies, attrName) =
+    save finName;
+    string finName;
+    if not string scantokens(attrGenus & "Synonym").scantokens(attrName):
+        finName := attrName;
+    else:
+        finName := scantokens(attrGenus & "Synonym").scantokens(attrName);
+        if (boolean scantokens(attrGenus & "SynonymPartial").scantokens(attrName)):
+            if scantokens(attrGenus & "SynonymPartial").scantokens(attrName):
+                if known scantokens(attrGenus & attrSpecies).scantokens(attrName)@#:
+                    finName := attrName;
+                fi;
+            fi;
+        fi;
+    fi;
+    scantokens(attrGenus & attrSpecies).scantokens(finName)@#
+enddef;
+
+vardef attributeExists (expr attrGenus, attrSpecies, attrName) =
+    save rv;
+    boolean rv;
+    if known scantokens(attrGenus & attrSpecies).scantokens(attrName):
+        rv := true;
+    else:
+        rv := false;
+    fi;
+    rv
+enddef;
+
+setAttribute("line", "Color", "noLine", white);
+setAttribute("line", "Dashed", "noLine", 0);
+setAttribute("line", "EndAName", "noLine", "noLine");
+setAttribute("line", "EndBName", "noLine", "noLine");
+setAttribute("line", "EndA", "noLine", inf);
+setAttribute("line", "EndB", "noLine", inf);
+setAttribute("line", "Synonym", "noLine", "noLine");
+
+setAttribute("line", "Color", "dummyLine", bygrey);
+setAttribute("line", "Dashed", "dummyLine", 0);
+setAttribute("line", "Thin", "dummyLine", 1);
 
 %
 % Some general 3D stuff
@@ -557,6 +560,18 @@ vardef byPutPointsInSpace (text pL) =
     byRotatePoints(0, 0, 0, true)(pL);
 enddef;
 
+% Gets a list of either 2d or 3d points and returns 3d points
+
+vardef byGetPointXYZ (suffix givenPoint) =
+    if (typeOf(givenPoint) = "color"):
+        givenPoint
+    elseif (typeOf(pointXYZ.givenPoint) = "color"):
+        pointXYZ.givenPoint
+    else:
+        errmessage("Point " & str givenPoint & " has no representation in space");
+    fi
+enddef;
+
 vardef byRotateAroundAxis (expr lineEndA, lineEndB, a, pointA) =
     save vecA, vecB, rV, q;
     color vecA, vecB, rV;
@@ -571,28 +586,29 @@ vardef byRotateAroundAxis (expr lineEndA, lineEndB, a, pointA) =
     rV
 enddef;
 
-def byRotatePointsAroundAxis (expr lineEndA, lineEndB, a)(text pointsList) =
-begingroup
+vardef byRotatePointsAroundAxis (suffix lineEndA, lineEndB)(expr a)(text pointsList) =
     save lineEndAxyz, lineEndBxyz, pN;
     color lineEndAxyz, lineEndBxyz;
     if (typeOf(lineEndA) = "color"):
         lineEndAxyz := lineEndA;
     else:
+        byPutPointsInSpace(lineEndA);
         lineEndAxyz := pointXYZ.lineEndA;
     fi;
     if (typeOf(lineEndB) = "color"):
         lineEndBxyz := lineEndB;
     else:
+        byPutPointsInSpace(lineEndB);
         lineEndBxyz := pointXYZ.lineEndB;
     fi;
     forsuffixes pN := pointsList:
         if (typeOf(pN) = "color"):
             pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pN);
         else:
-            pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pointXYZ.pN);
+            byPutPointsInSpace(pN);
+            pointXYZ.pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pointXYZ.pN);
         fi;
     endfor;
-endgroup
 enddef;
 
 primarydef colorone hamiltonProduct colortwo =
@@ -707,21 +723,23 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
     p rotated globalRotation
 enddef;
 
-%vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-%    byLineDefine.lineName(a, b)(col, dp, th)
-%enddef;
+vardef byReturnLineLength (suffix a, b) =
+    if byIsPointInSpace(a, b):
+        absXYZ(pointXYZ.a - pointXYZ.b)
+    else:
+        abs(a-b)
+    fi
+enddef;
 
 vardef byLineDefine@#(suffix a, b)(expr col, dp, th) =
 if str @# = "":
     byLineDefine.scantokens(str a & str b)(a, b)(col, dp, th);
 else:
-    save lA, lL;
-    numeric lL;
+    save lA;
     if mainPictureMode:
         appendList(allLinesList, str @#, 1, true);
     fi;
     if byIsPointInSpace(a, b):
-        lL := absXYZ(pointXYZ.a - pointXYZ.b);
         if (typeOf(a) = "pair") and (typeOf(b) = "pair"):
             if (a <> b):
                 lA := angle(b-a);
@@ -732,7 +750,6 @@ else:
             lA := 0;
         fi;
     else:
-        lL := abs(a-b);
         if (a <> b):
             lA := angle(b-a);
         else:
@@ -743,7 +760,6 @@ else:
     setAttribute("line", "Color", str @#, col);
     setAttribute("line", "Dashed", str @#, dp);
     setAttribute("line", "Thin", str @#, th);
-    setAttribute("line", "Length", str @#, lL);
     setAttribute("line", "EndA", str @#, a);
     setAttribute("line", "EndB", str @#, b);
     setAttribute("line", "Shift", str @#, 0);
@@ -1096,7 +1112,10 @@ vardef byNamedCompoundLineRender (expr cu, pw, sty)(text linesList) =
         if (abs(angleCheck[i/2] - angleCheck[1]) > 1/100):
             lineNotStraight := true;
         fi;
-        totalLength := totalLength + getAttribute("line", "Length", str lN);
+        totalLength := totalLength
+            + byReturnLineLength(
+                scantokens(getAttribute("line", "EndAName", str lN)),
+                scantokens(getAttribute("line", "EndBName", str lN)));
     endfor;
     if (lineNotStraight):
         message("The line is not straight");
@@ -1115,7 +1134,9 @@ vardef byNamedCompoundLineRender (expr cu, pw, sty)(text linesList) =
     image(
         j := 0;
         forsuffixes lN=linesList:
-            correctedLength := (getAttribute("line", "Length", str lN)**pwL)*sc;
+            correctedLength := (byReturnLineLength(
+                scantokens(getAttribute("line", "EndAName", str lN)),
+                scantokens(getAttribute("line", "EndBName", str lN)))**pwL)*sc;
             currentPosition1 := currentPosition0 + correctedLength;
             a := (currentPosition0, 0);
             b := (currentPosition1, 0);
@@ -1286,6 +1307,7 @@ begingroup
     pair pointsList;
     forsuffixes i := pointsList:
         appendList(allPointsList, str i, 1, true);
+        numeric pointXYZ.i;
     endfor;
 endgroup
 enddef;
@@ -1297,7 +1319,7 @@ vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
     color oxyz;
     string pointsToProcess;
     forsuffixes i=pointsList:
-        appendList(pointsToProcess, str i, 1, false);
+        appendList(pointsToProcess, str i, 1, true);
     endfor;
     if (length(pointsToProcess) = 0):
         pointsToProcess := allPointsList;
@@ -1315,7 +1337,7 @@ vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
         pair i;
         i := (redpart(oxyz), greenpart(oxyz));
         if toRotate:
-            setAttribute("point", "XYZ", str pointName, oxyz);
+            setAttribute("point", "XYZ", str i, oxyz);
         fi;
     endfor;
 enddef;
@@ -1537,7 +1559,7 @@ enddef;
 
 vardef byArcDefineBE@#(suffix o)(expr b, e, r, col, dp, th, s, et) =
 if str @# = "":
-    byArcDefineBE.scantokens(o)(b, e, r, col, dp, th, s, et);
+    byArcDefineBE.scantokens(str o)(b, e, r, col, dp, th, s, et);
 else:
     setAttribute("arc", "Color", str @#, col);
     setAttribute("arc", "Dashed", str @#, dp);
@@ -1560,7 +1582,7 @@ enddef;
 
 vardef byArcBE@#(suffix o)(expr b, e, r, col, dp, th, s, et) =
 if str @# = "":
-    byArcBE.scantokens(o)(o)(b, e, r, col, dp, th, s, et)
+    byArcBE.scantokens(str o)(o)(b, e, r, col, dp, th, s, et)
 else:
     byArcDefineBE.@#(o, b, e, r, col, dp, th, s, et);
     byNamedArcExact(@#)
@@ -1569,7 +1591,7 @@ enddef;
 
 vardef byArcDefine@#(suffix o, pb, pe)(expr r, col, dp, th, s, et) =
 if str @# = "":
-    byArcDefine.scantokens(str pb & str pe)(o, pb, pe)(r, col, dp, th, s, et);
+    byArcDefine.scantokens(str pb & str o & str pe)(o, pb, pe)(r, col, dp, th, s, et);
 else:
     save b, e;
     numeric b, e;
@@ -1586,7 +1608,7 @@ enddef;
 
 vardef byArc@#(suffix o, pb, pe)(expr r, col, dp, th, s, et) =
 if str @# = "":
-    byArc.scantokens(str pb & str pe)(o, pb, pe)(r, col, dp, th, s, et)
+    byArc.scantokens(str pb & str o & str pe)(o, pb, pe)(r, col, dp, th, s, et)
 else:
     byArcDefine.@#(o, pb, pe, r, col, dp, th, s, et);
     byNamedArcExact(@#)
@@ -2021,10 +2043,6 @@ vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     ) rotated globalRotation
 enddef;
 
-%vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName) =
-%    byPolygonDefine.polygonName (pointsList)(col);
-%enddef;
-
 vardef byPolygonDefine@#(text pointsList)(expr col) =
 if str @# = "":
     byPolygonDefine.scantokens(byPolygonName(pointsList))(pointsList)(col);
@@ -2049,10 +2067,6 @@ enddef;
 vardef byPolygonPathFromList (expr pointsList) =
     forsuffixes pN=scantokens(pointsList): pN -- endfor cycle
 enddef;
-
-%vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
-%    byPolygon.polygonName(pointsList)(col)
-%enddef;
 
 vardef byPolygon@#(text pointsList)(expr col) =
 if str @# = "":
@@ -2240,10 +2254,6 @@ enddef;
 % Angles
 %
 
-%vardef byAngleDefineWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
-%    byAngleDefine.angleName(a, b, c)(col, sty);
-%enddef;
-
 vardef byAngleDefine@#(suffix a, b, c)(expr col, sty) =
 if str @# = "":
     byAngleDefine.scantokens(str a & str b & str c)(a, b, c)(col, sty);
@@ -2344,10 +2354,6 @@ vardef byFullCircleToPlane (expr colPlaneA, colPlaneB, colPlaneC) =
     p
 enddef;
 
-%vardef byAngleWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
-%    byAngle.angleName(a, b, c, col, sty)
-%enddef;
-
 vardef byAngle@#(suffix a, b, c)(expr col, sty) =
 if str @# = "":
     byAngle.scantokens(str a & str b & str c)(a, b, c, col, sty)
@@ -2356,10 +2362,6 @@ else:
     byNamedAngle(@#)
 fi
 enddef;
-
-%vardef byAngleDefineExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
-%    byAngleDefineExtended.angleName(a, b, c)(col, sty)(optionalColors)
-%enddef;
 
 vardef byAngleDefineExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
 if str @# = "":
@@ -2375,10 +2377,6 @@ else:
     endfor;
 fi;
 enddef;
-
-%vardef byAngleExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
-%    byAngleExtended.angleName(a, b, c)(col, sty)(optionalColors)
-%enddef;
 
 vardef byAngleExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
 if str @# = "":
@@ -3052,25 +3050,29 @@ byAngleDefine.rightAngleWN (pointW, pointO, pointN)(black, 1);
 
 vardef byRotationArrowDefine@#(suffix axisA, axisB, pointA) (expr ang, col, sty) =
 if str @# = "":
-    byRotationArrowDefine.scantokens(str axisA & str axisB)(axisA, axisB, pointA) (ang, col, sty);
+    byRotationArrowDefine.scantokens(str axisA & str axisB & str pointA)(axisA, axisB, pointA) (ang, col, sty);
 else:
-    setAttribute("rotationarrow", "AxisA", str @#, str axisA);
-    setAttribute("rotationarrow", "AxisB", str @#, str axisB);
-    setAttribute("rotationarrow", "Point", str @#, str pointA);
+    setAttribute("rotationarrow", "AxisA", str @#, axisA);
+    setAttribute("rotationarrow", "AxisB", str @#, axisB);
+    setAttribute("rotationarrow", "Point", str @#, pointA);
+    setAttribute("rotationarrow", "AxisAName", str @#, str axisA);
+    setAttribute("rotationarrow", "AxisBName", str @#, str axisB);
+    setAttribute("rotationarrow", "PointName", str @#, str pointA);
     setAttribute("rotationarrow", "Angle", str @#, ang);
     setAttribute("rotationarrow", "Color", str @#, col);
     setAttribute("rotationarrow", "Style", str @#, sty);
+    setAttribute("rotationarrow", "Synonym", str @#, str @#);
 fi;
 enddef;
 
-vardef byGenerateArrowPath (expr axisA, axisB, pointA, ang) =
+vardef byGenerateRotationArrowPath (expr axisA, axisB, pointA, ang) =
     save arrowPath, spacePoint;
     path arrowPath;
     color spacePoint;
-    spacePoint := scantokens(pointA) colorrotated projectionAngle;
+    spacePoint := pointA colorrotated projectionAngle;
     arrowPath := (redpart(spacePoint), greenpart(spacePoint));
     for i := 0 step (ang/floor(ang/5)) until ang:
-        spacePoint := byRotateAroundAxis (scantokens(axisA), scantokens(axisB), i, scantokens(pointA)) colorrotated projectionAngle;
+        spacePoint := byRotateAroundAxis (axisA, axisB, i, pointA) colorrotated projectionAngle;
         arrowPath := arrowPath -- (redpart(spacePoint), greenpart(spacePoint));
     endfor;
     arrowPath
@@ -3085,19 +3087,19 @@ vardef byNamedRotationArrow (text arrowsList) =
     ahangle := 30;
     image(
         forsuffixes aN=arrowsList:
-            arrowPath := byGenerateArrowPath(
-                getAttribute("rotationarrow", "AxisA", str aN),
-                getAttribute("rotationarrow", "AxisB", str aN),
-                getAttribute("rotationarrow", "Point", str aN),
+            arrowPath := byGenerateRotationArrowPath(
+                byGetPointXYZ(scantokens(getAttribute("rotationarrow", "AxisAName", str aN))),
+                byGetPointXYZ(scantokens(getAttribute("rotationarrow", "AxisBName", str aN))),
+                byGetPointXYZ(scantokens(getAttribute("rotationarrow", "PointName", str aN))),
                 getAttribute("rotationarrow", "Angle", str aN)
-                );
+                ) scaled scaleFactor;
             arrowStyle := getAttribute("rotationarrow", "Style", str aN);
             if arrowStyle = 0:
                 arrowPath := subpath (0, (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
-                drawarrow arrowPath withpen (pencircle scaled lineWidth) withcolor getAttribute("rotationarrow", "Color", str aN);
+                drawarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
             else:
                 arrowPath := subpath ((arctime ahlength of arrowPath), (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
-                drawdblarrow arrowPath withpen (pencircle scaled lineWidth) withcolor getAttribute("rotationarrow", "Color", str aN);
+                drawdblarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
             fi;
         endfor;
     )
