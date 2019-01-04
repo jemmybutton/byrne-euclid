@@ -788,7 +788,7 @@ enddef;
 
 % This one's behaviour is slightly off, since it affects line label type
 
-vardef byLineWithName(suffix a, b)(expr col, dp, th)(suffix lineLabel) =
+vardef byLineWithName (suffix a, b)(expr col, dp, th)(suffix lineLabel) =
     byLineDefine.lineLabel(a, b, col, dp, th);
     setAttribute("line", "UseLineLabel", str lineLabel, true);
     byNamedLineFull(a, b, 0, 0, 0)(lineLabel)
@@ -1986,8 +1986,7 @@ enddef;
 
 vardef byPolygon@#(text pointsList)(expr col) =
 if str @# = "":
-    byPolygonDefine.scantokens(byPolygonName(pointsList))(pointsList)(col);
-    byNamedPolygon(scantokens(byPolygonName(pointsList)))
+    byPolygon.scantokens(byPolygonName(pointsList))(pointsList)(col)
 else:
     byPolygonDefine.@#(pointsList)(col);
     byNamedPolygon(@#)
@@ -2313,8 +2312,7 @@ enddef;
 
 vardef byAngleExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
     if str @# = "":
-        byAngleDefineExtended.scantokens(str a & str b & str c)(a, b, c)(col, sty)(optionalColors);
-        byNamedAngle(scantokens(str a & str b & str c))
+        byAngleExtended.scantokens(str a & str b & str c)(a, b, c)(col, sty)(optionalColors)
     else:
         byAngleDefineExtended@#(a, b, c)(col, sty)(optionalColors);
         byNamedAngle(@#)
@@ -2982,15 +2980,17 @@ byAngleDefine.rightAngleWN (pointW, pointO, pointN)(black, 1);
 % Arrows
 %
 
-vardef byRotationArrowDefineWithName (suffix axisA, axisB, pointA) (expr ang, col, sty) (suffix arrowName) =
-    %for i := 0 step ang/()
-    %byRotateAroundAxis (axisA, axisB, ang, pointA)
-    setAttribute("rotationarrow", "AxisA", str arrowName, str axisA);
-    setAttribute("rotationarrow", "AxisB", str arrowName, str axisB);
-    setAttribute("rotationarrow", "Point", str arrowName, str pointA);
-    setAttribute("rotationarrow", "Angle", str arrowName, ang);
-    setAttribute("rotationarrow", "Color", str arrowName, col);
-    setAttribute("rotationarrow", "Style", str arrowName, sty);
+vardef byRotationArrowDefine@#(suffix axisA, axisB, pointA) (expr ang, col, sty) =
+if str @# = "":
+    byRotationArrowDefine.scantokens(str axisA & str axisB)(axisA, axisB, pointA) (ang, col, sty);
+else:
+    setAttribute("rotationarrow", "AxisA", str @#, str axisA);
+    setAttribute("rotationarrow", "AxisB", str @#, str axisB);
+    setAttribute("rotationarrow", "Point", str @#, str pointA);
+    setAttribute("rotationarrow", "Angle", str @#, ang);
+    setAttribute("rotationarrow", "Color", str @#, col);
+    setAttribute("rotationarrow", "Style", str @#, sty);
+fi;
 enddef;
 
 vardef byGenerateArrowPath (expr axisA, axisB, pointA, ang) =
@@ -3007,9 +3007,10 @@ vardef byGenerateArrowPath (expr axisA, axisB, pointA, ang) =
 enddef;
 
 vardef byNamedRotationArrow (text arrowsList) =
-    save arrowPath, arrowPoint, ahlength, ahangle;
+    save arrowPath, arrowPoint, arrowStyle, ahlength, ahangle;
     path arrowPath;
     color arrowPoint;
+    numeric arrowStyle;
     ahlength := 10pt;
     ahangle := 30;
     image(
@@ -3020,8 +3021,14 @@ vardef byNamedRotationArrow (text arrowsList) =
                 getAttribute("rotationarrow", "Point", str aN),
                 getAttribute("rotationarrow", "Angle", str aN)
                 );
-            arrowPath := subpath (0, (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
-            drawarrow arrowPath withpen (pencircle scaled lineWidth) withcolor getAttribute("rotationarrow", "Color", str aN);
+            arrowStyle := getAttribute("rotationarrow", "Style", str aN);
+            if arrowStyle = 0:
+                arrowPath := subpath (0, (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
+                drawarrow arrowPath withpen (pencircle scaled lineWidth) withcolor getAttribute("rotationarrow", "Color", str aN);
+            else:
+                arrowPath := subpath ((arctime ahlength of arrowPath), (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
+                drawdblarrow arrowPath withpen (pencircle scaled lineWidth) withcolor getAttribute("rotationarrow", "Color", str aN);
+            fi;
         endfor;
     )
 enddef;
