@@ -591,7 +591,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 		draw byLine(O, C)(byred, 0, 0);
 		draw byLine(O, E)(byyellow, 0, 0);
 		draw byLine(D, A)(byblue, 0, 0);
-		draw byCircleR(O, r, byred, 0, 0, 0)(O);
+		draw byCircleR.O(O, r, byred, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XV]
 \startalignment[last]
@@ -613,7 +613,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byyellow, 0, 0);
-		draw byCircleR(O, r, byred, 0, 0, 0)(O);
+		draw byCircleR.O(O, r, byred, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XVII]
 \startalignment[last]
@@ -629,8 +629,8 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byblue, 0, 0);
-		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0)(O);
-		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0)(O);
+		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0);
+		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XVIII]
 \startalignment[last]
@@ -650,8 +650,8 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 	A := point 1 of P;
 	B := point 3 of P;
 		draw byLine(A, B)(byred, 0, 0);
-		draw byArc(O, A, B)(r, byblue, 0, 0, 0, 0)(O);
-		draw byArc(O, B, A)(r, byblue, 1, 0, 0, 0)(O);
+		draw byArc(O, A, B)(r, byblue, 0, 0, 0, 0);
+		draw byArc(O, B, A)(r, byblue, 1, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XIX]
 \startalignment[last]
@@ -1235,8 +1235,8 @@ draw byNamedLineSeq(0)(AD,BD);
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
 		draw byNamedLineSeq(1)(AB,CA,BC);
-		draw byCircle(A, B, byblue, 0, 0, 1/2)(A);
-		draw byCircle(B, A, byred, 0, 0, 1/2)(B);
+		draw byCircle.A(A, B, byblue, 0, 0, 1/2);
+		draw byCircle.B(B, A, byred, 0, 0, 1/2);
 		draw byLabelsOnPolygon(A, C, B)(0, -1);
 }
 \drawCurrentPictureInMargin
@@ -1296,8 +1296,8 @@ byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(BE,BD,DA,AF);
 draw byNamedLineSeq(0)(AB,BC);
-draw byCircle(D, E, byred, 0, 0, 1/2)(A);
-draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
+draw byCircle.A(D, E, byred, 0, 0, 1/2);
+draw byCircle.B(B, C, byblue, 0, 0, -1/2);
 draw byLabelsOnPolygon(E, D, A, F)(2, -1);
 draw byLabelsOnPolygon(E, B, C)(2, -1);
 draw byLabelsOnCircle(C)(B);
@@ -1366,7 +1366,7 @@ byLineDefine(B, C, byblack, 1, 0);
 byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
-draw byCircle(A, D, byblue, 0, 0, 0)(A);
+draw byCircle.A(A, D, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(B, A, D)(2, -1);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
@@ -1826,9 +1826,9 @@ draw byLine(A, D, byred, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,CA);
-draw byArc(A, B, C)(r, byred, 0, 0, 0, 0)(O);
-draw byArcBE(A, a2-1/4, a2, r, byred, 1, 0, 0, 0)(Ol);
-draw byArcBE(A, a1, a1+1/4, r, byred, 1, 0, 0, 0)(Or);
+draw byArc.O(A, B, C)(r, byred, 0, 0, 0, 0);
+draw byArcBE.Ol(A, a2-1/4, a2, r, byred, 1, 0, 0, 0);
+draw byArcBE.Or(A, a1, a1+1/4, r, byred, 1, 0, 0, 0);
 draw byLine(D, B, byblack, 0, 0);
 draw byLine(B, E, byblack, 1, 0);
 draw byLine(C, D, byyellow, 0, 0);
@@ -2256,7 +2256,7 @@ LIII := LI shifted (0, -d);
 LIV := LIII shifted (-r2, 0);
 LV := LIII shifted (0, -d);
 LVI := LV shifted (-r1, 0);
-draw byCircle(A, D, byblue, 0, 0, 0)(A);
+draw byCircle.A(A, D, byblue, 0, 0, 0);
 byLineDefine(A, D, byblue, 0, 0);
 byLineDefine(B, E, byred, 0, 0);
 byLineDefine(A, B, byblack, 0, 0);
@@ -2267,7 +2267,7 @@ draw byNamedLineSeq(0)(AD,AB,BE);
 draw byLineWithName (LII, LI, byblack, 1, 0)(L');
 draw byLineWithName (LIV, LIII, byred, 1, 0)(L'');
 draw byLineWithName (LVI, LV, byblue, 1, 0)(L''');
-draw byCircle(B, E, byred, 0, 0, 0)(B);
+draw byCircle.B(B, E, byred, 0, 0, 0);
 draw byLabelsOnPolygon(D, A, C)(2, 0);
 draw byLabelsOnPolygon(E, B, A)(2, 0);
 draw byLabelsOnPolygon(A, C, B)(2, 0);
@@ -4706,7 +4706,7 @@ byLineDefine(F, E, byblack, 1, 0);
 byLineDefine(E, G, byblue, 1, 0);
 byLineDefine(G, B, byblack, 0, 0);
 draw byNamedLineSeq(-1)(FE,EG,GB,HB,HF);
-draw byArc(G, B, F, r, byred, 0, 0, 0, 0)(G);
+draw byArc.G(G, B, F, r, byred, 0, 0, 0, 0);
 byLineDefine(B, F, byblack, 0, 0);
 draw byLabelsOnPolygon(B, C, D, E, F, H)(0, 0);
 draw byLabelsOnPolygon(H, G, B)(2, 0);
@@ -4765,7 +4765,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	O := (0, 0);
 	A := (-r, -r);
 	B := (r, -r);
-	draw byCircleR(O, r, byblack, 0, 0, -1)(O);
+	draw byCircleR.O(O, r, byblack, 0, 0, -1);
 	draw byLine(A, B, byblack, 0, 0);
 }\drawCurrentPictureInMargin
 Про прямую говорят, что она касается круга, если она встречает круг, но при продолжении не пересекает его.
@@ -4782,11 +4782,11 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	B := A shifted (dir(110) scaled (r1-r2));
 	C := A shifted (dir(-130) scaled (r1+r3));
 	fill (fullcircle scaled 2r1) shifted A withcolor byyellow;
-	draw byCircleR(A, r1, byyellow, 0, 0, 0)(A);
+	draw byCircleR.A(A, r1, byyellow, 0, 0, 0);
 	fill (fullcircle scaled 2r2) shifted B withcolor byred;
-	draw byCircleR(B, r2, byblack, 0, 0, -1/2)(B);
+	draw byCircleR.B(B, r2, byblack, 0, 0, -1/2);
 	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
-	draw byCircleR(C, r3, byblue, 0, 0, -1/2)(C);
+	draw byCircleR.C(C, r3, byblue, 0, 0, -1/2);
 }\drawCurrentPictureInMargin
 Про круги говорят, что они касаются друг друга, если они встречаясь, не пересекают друг друга.
 \stopDefinitionOnlyNumber
@@ -4808,7 +4808,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	byLineDefine(O, E, byred, 0, 0);
 	byLineDefine(O, F, byblue, 0, 0);
 	draw byNamedLineSeq(0)(OE,OF);
-	draw byCircleR(O, r, byblack, 0, 0, 0)(O);
+	draw byCircleR.O(O, r, byblack, 0, 0, 0);
 }\drawCurrentPictureInMargin
 Про прямые говорят, что они равноотстоят от центра круга, если перпендикуляры проведенные к~ним из центра круга равны.
 \stopDefinitionOnlyNumber
@@ -4826,8 +4826,8 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	r := 3/4u;
 	A := (0, 0);
 	B := (0, -1/8u);
-	draw byFilledCircleSegment(A, r, 1/2, 4 - 1/2, byred)(A);
-	draw byFilledCircleSegment(B, r, 4 - 1/2, 8 + 1/2, byblue)(B);
+	draw byFilledCircleSegment.A(A, r, 1/2, 4 - 1/2, byred);
+	draw byFilledCircleSegment.B(B, r, 4 - 1/2, 8 + 1/2, byblue);
 }\drawCurrentPictureInMargin
 Сегментом круга называется фигура, заключающаяся между прямой и~частью круга, отсекаемой этой прямой.
 \stopDefinitionOnlyNumber
@@ -4845,7 +4845,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	C := B shifted ((unitvector(B-O) rotated -90) scaled r);
 	byAngleDefine(C, B, A, byred, 0);
 	draw byNamedAngleResized();
-	draw byArcBE(O, b, e, r, byblack, 0, 0, 0, 0)(O);
+	draw byArcBE.O(O, b, e, r, byblack, 0, 0, 0, 0);
 	draw byLine(A, B, byblack, 0, 0);
 	draw byLine(B, C, byblack, 0, 0);
 	draw byLine(O, B, byblack, 1, 0);
@@ -4868,7 +4868,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	byAngleDefine(C, A, D, byblue, 0);
 	byAngleDefine(C, B, D, byyellow, 0);
 	draw byNamedAngleResized();
-	draw byArcBE(O, b, e, r, byblack, 0, 0, 0, 0)(O);
+	draw byArcBE.O(O, b, e, r, byblack, 0, 0, 0, 0);
 	draw byLine(C, A, byblack, 0, 0);
 	draw byLine(C, B, byblack, 0, 0);
 	draw byLine(D, A, byblack, 0, 0);
@@ -4891,8 +4891,8 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	C := point e of fullcircle scaled 2r;
 	byAngleDefine(C, A, B, byblue, 0);
 	draw byNamedAngleResized();
-	draw byArcBE(O, b, e, r, byblack, 1, 0, 0, 0)(Op);
-	draw byArcBE(O, e, b + 8, r, byblack, 0, 0, 0, 0)(Om);
+	draw byArcBE.Op(O, b, e, r, byblack, 1, 0, 0, 0);
+	draw byArcBE.Om(O, e, b + 8, r, byblack, 0, 0, 0, 0);
 	draw byLine(C, A, byblack, 0, 0);
 	draw byLine(B, A, byblack, 0, 0);
 }\drawCurrentPictureInMargin
@@ -4907,8 +4907,8 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	b := 1;
 	e := 3;
 	O := (0, 0);
-	draw byFilledCircleSector(O, r, b, e, byyellow)(O);
-	draw byArcBE(O, e, b + 8, r, byblack, 0, 0, -1, 0)(O);
+	draw byFilledCircleSector.O(O, r, b, e, byyellow);
+	draw byArcBE.O(O, e, b + 8, r, byblack, 0, 0, -1, 0);
 }\drawCurrentPictureInMargin
 Сектором круга называют фигуру, заключающуюся между двумя радиусами и~дугой между ними.
 \stopDefinitionOnlyNumber
@@ -4931,8 +4931,8 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	F := (point e of fullcircle scaled 2r2) shifted N;
 	draw byPolygon(A,B,C)(byred);
 	draw byPolygon(D,E,F)(byred);
-	draw byArcBE(M, b, e, r1, byblack, 0, 0, 0, 1)(M);
-	draw byArcBE(N, b, e, r2, byblack, 0, 0, 0, 1)(N);
+	draw byArcBE.M(M, b, e, r1, byblack, 0, 0, 0, 1);
+	draw byArcBE.N(N, b, e, r2, byblack, 0, 0, 0, 1);
 }\drawCurrentPictureInMargin
 Подобными сегментами называют сегменты, углы в~которых равны.
 \stopDefinitionOnlyNumber
@@ -4945,10 +4945,10 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	r2 := 1/2u;
 	r3 := 3/4u;
 	O := (0, 0);
-	draw byFilledCircleSegment(O, r3, 0, 8, byred)(OI);
-	draw byFilledCircleSegment(O, r2, 0, 8, white)(OII);
-	draw byCircleR(O, r2, byblack, 0, 0, 0)(OII);
-	draw byFilledCircleSegment(O, r1, 0, 8, byblue)(OIII);
+	draw byFilledCircleSegment.OI(O, r3, 0, 8, byred);
+	draw byFilledCircleSegment.OII(O, r2, 0, 8, white);
+	draw byCircleR.OII(O, r2, byblack, 0, 0, 0);
+	draw byFilledCircleSegment.OIII(O, r1, 0, 8, byblue);
 }\drawCurrentPictureInMargin
 Круги, имеющие один центр называют концентрическими.
 \stopDefinitionOnlyNumber
@@ -4984,7 +4984,7 @@ draw byMarkLine(1/2, byblack)(EC);
 byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(B, G, byblack, 1, 0);
 draw byNamedLineSeq(0)(AG,BG);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(A, G, B)(2, 0);
 draw byLabelsOnPolygon(E, D, A)(2, 0);
 draw byLabelsOnPolygon(E, F, C)(2, -4);
@@ -5034,7 +5034,7 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AD,BD);
-draw byCircleR(D, r, byred, 0, 0, 0)(D);
+draw byCircleR.D(D, r, byred, 0, 0, 0);
 draw byLabelsOnPolygon(B, F, A, D)(0, 0);
 draw byLabelsOnPolygon(A, E, F)(2, 0);
 }
@@ -5088,7 +5088,7 @@ draw byLine(F, B, byred, 1, 0);
 byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(D, F, A)(2, -2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
@@ -5138,7 +5138,7 @@ draw byNamedAngleResized();
 draw byLine(E, F, byblack, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, byblack, 0, 0);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(F);
 draw byLabelLineEnd(F, E, 0);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
@@ -5188,10 +5188,10 @@ byLineDefine(C, E, byyellow, 0, 0);
 byLineDefine(E, F, byblack, 0, 0);
 byLineDefine(F, G, byblack, 1, 0);
 draw byNamedLineSeq(0)(CE,EF,FG);
-draw byArcBE(M, 4, 0, r1, byred, 0, 0, 0, 0)(Ma);
-draw byArcBE(N, 4, 0, r2, byblue, 0, 0, 0, 0)(Na);
-draw byArcBE(N, 4, 8, r2, byblue, 0, 0, 0, 0)(Nb);
-draw byArcBE(M, 4, 8, r1, byred, 0, 0, 0, 0)(Mb);
+draw byArcBE.Ma(M, 4, 0, r1, byred, 0, 0, 0, 0);
+draw byArcBE.Na(N, 4, 0, r2, byblue, 0, 0, 0, 0);
+draw byArcBE.Nb(N, 4, 8, r2, byblue, 0, 0, 0, 0);
+draw byArcBE.Mb(M, 4, 8, r1, byred, 0, 0, 0, 0);
 draw byLabelLineEnd(C, E, 0);
 draw byLabelLineEnd(G, E, 0);
 draw byLabelsOnPolygon(C, E, F)(2, 0);
@@ -5235,8 +5235,8 @@ byLineDefine(C, F, byyellow, 0, 0);
 byLineDefine(F, E, byblue, 1, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CF,FE,EB);
-draw byCircle(M, C, byred, 0, 0, 0)(M);
-draw byCircle(N, C, byblack, 0, 0, -1)(N);
+draw byCircle.M(M, C, byred, 0, 0, 0);
+draw byCircle.N(N, C, byblack, 0, 0, -1);
 draw byLabelsOnCircle(B, C)(M);
 draw byLabelsOnPolygon(E, F, C)(2, 0);
 draw byLabelPoint(E, angle(B-F)+45, 2);
@@ -5276,7 +5276,7 @@ draw byLine(F, C, byblue, 0, 0);
 draw byLine(F, A, byblack, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
 draw byLine(F, G, byblue, 1, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D, G)(E);
 draw byLabelsOnPolygon(D, F, G)(2, 0);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
@@ -5318,7 +5318,7 @@ draw byLine(E, B, byred, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 }
@@ -5355,7 +5355,7 @@ draw byLine(M, G, byblue, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, D, byblack, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, G, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
@@ -5405,7 +5405,7 @@ draw byLine(M, F, byblue, 1, 0);
 byLineDefine(D, M, byblack, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DM,DF);
-draw byCircle(M, E, byblack, 0, 0, 0)(M);
+draw byCircle.M(M, E, byblack, 0, 0, 0);
 draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(2, 0);
 }
@@ -5446,7 +5446,7 @@ draw byLine(K, M, byred, 0, 0);
 byLineDefine(D, G, byblack, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(DG,DH);
-draw byCircle(M, G, byblack, 0, 0, 0)(M);
+draw byCircle.M(M, G, byblack, 0, 0, 0);
 draw byLabelsOnPolygon(K, H, M)(2, -2);
 draw byLabelsOnPolygon(G, K, M)(2, -2);
 draw byLabelsOnPolygon(D, G, K)(2, -2);
@@ -5491,7 +5491,7 @@ byLineDefine(N, M, byyellow, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 byLineDefine(D, O, byred, 1, 0);
 draw byNamedLineSeq(0)(DH,DO,NM);
-draw byCircle(M, H, byblack, 0, 0, 0)(M);
+draw byCircle.M(M, H, byblack, 0, 0, 0);
 draw byLabelsOnPolygon(H, D, O, N)(2, 0);
 draw byLabelsOnPolygon(N, M, H)(2, 0);
 draw byLabelsOnPolygon(G, H, M)(2, -2);
@@ -5544,7 +5544,7 @@ draw byLine(D, C, byblue, 0, 0);
 draw byLine(D, F, byblack, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
-draw byCircleR(D, r, byblue, 0, 0, 0)(D);
+draw byCircleR.D(D, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
@@ -5593,16 +5593,16 @@ crd2 := crd2 .. (point -2 of crd1) .. cycle;
 draw byLine(P, B, byyellow, 0, 0);
 draw byLine(P, G, byblack, 0, 0);
 draw byLine(P, H, byblue, 0, 0);
-draw byArbitraryFigure(cr1, byred, 0, 0)(fI);
-draw byArbitraryFigure(cr2, byblue, 0, 0)(fII);
+draw byArbitraryFigure.fI(cr1, byred, 0, 0);
+draw byArbitraryFigure.fII(cr2, byblue, 0, 0);
 draw byLine(Pdd, Gd, byblack, 0, 0);
 byLineDefine(Pdd, Bd, byyellow, 0, 0);
 byLineDefine(Pdd, Hd, byblue, 0, 0);
 draw byNamedLineSeq(0)(PddBd,PddHd);
-draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
-draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
-byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
-byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
+draw byArbitraryFigure.fdI(crd1, byred, 0, 0);
+draw byArbitraryFigure.fdII(crd2, byblue, 0, 0);
+byCircleDefineR.PI(P, r, byred, 0, 0, 0);
+byCircleDefineR.PII(P, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(G, B, H)(PI);
 draw byLabelsOnPolygon(G, P, H)(2, 0);
 byPointLabelDefine(Gd, "G");
@@ -5662,8 +5662,8 @@ draw byLine(G, F, byblack, 0, 0);
 draw byLine(F, K, byblue, 0, 0);
 byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
-draw byCircle(M, A, byblack, 0, 0, 0)(M);
-draw byCircle(N, A, byblue, 0, 0, -1)(N);
+draw byCircle.M(M, A, byblack, 0, 0, 0);
+draw byCircle.N(N, A, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
 draw byLabelsOnPolygon(A, D, N)(2, -1);
 draw byLabelsOnCircle(A, H)(M);
@@ -5722,8 +5722,8 @@ byLineDefine(D, G, byblue, 0, 0);
 byLineDefine(A, F, byyellow, 1, 0);
 byLineDefine(A, G, byyellow, 0, 0);
 draw byNamedLineSeq(0)(FC,CD,DG,AG,AF);
-draw byCircle(M, A, byblue, 0, 0, -1/2)(M);
-draw byCircle(N, A, byred, 0, 0, -1/2)(N);
+draw byCircle.M(M, A, byblue, 0, 0, -1/2);
+draw byCircle.N(N, A, byred, 0, 0, -1/2);
 byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
 draw byLabelsOnPolygon(C, F, A)(2, 0);
@@ -5774,10 +5774,10 @@ byLineDefine(D, H, byred, 0, 0);
 byLineDefine(B, G, byblue, 1, 0);
 byLineDefine(G, H, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,GH,DH);
-draw byCircleR(M, r1, byyellow, 0, 0, 1)(M);
-draw byArbitraryFigure(cr2, byblue, 0, 0)(fI);
-byCircleDefineR(M, r1, byyellow, 0, 0, 0)(M);
-byCircleDefineR(N, r2, byblue, 0, 0, 0)(N);
+draw byCircleR.M(M, r1, byyellow, 0, 0, 1);
+draw byArbitraryFigure.fI(cr2, byblue, 0, 0);
+byCircleDefineR.M(M, r1, byyellow, 0, 0, 0);
+byCircleDefineR.N(N, r2, byblue, 0, 0, 0);
 byPointLabelDefine(M, "H");
 byPointLabelDefine(N, "G");
 draw byLabelsOnCircle(D, B)(M);
@@ -5824,10 +5824,10 @@ C := point t4 of cr3;
 draw byLine(A, C, byred, 0, 0);
 draw byMarkLine(3/7, byblack)(AC);
 draw byMarkLine(4/7, byblack)(AC);
-draw byArcBE(P, t3, t4, r1, byblue, 0, 0, 0, 0)(PI);
-draw byArcBE(P, t4, t3 + 8, r1, byblack, 0, 0, 0, 0)(PII);
-draw byArcBE(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0)(QI);
-draw byArcBE(Q, t5, t6, r1, byblack, 0, 0, 0, 0)(QII);
+draw byArcBE.PI(P, t3, t4, r1, byblue, 0, 0, 0, 0);
+draw byArcBE.PII(P, t4, t3 + 8, r1, byblack, 0, 0, 0, 0);
+draw byArcBE.QI(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0);
+draw byArcBE.QII(Q, t5, t6, r1, byblack, 0, 0, 0, 0);
 }
 
 \startsubproposition[title={Случай II.}]
@@ -5854,10 +5854,10 @@ byLineDefine(A, G, byred, 1, 0);
 byLineDefine(C, H, byblue, 1, 0);
 byLineDefine(C, G, byblack, 0, 0);
 draw byNamedLineSeq(0)(HA,AG,CG,CH);
-draw byArbitraryFigure(cr5, byyellow, 0, 0)(fII);
-draw byArbitraryFigure(cr6, byblue, 0, 0)(fIII);
-byCircleDefineR(H, r1, byyellow, 0, 0, 0)(H);
-byCircleDefineR(G, r2, byblue, 0, 0, 0)(G);
+draw byArbitraryFigure.fII(cr5, byyellow, 0, 0);
+draw byArbitraryFigure.fIII(cr6, byblue, 0, 0);
+byCircleDefineR.H(H, r1, byyellow, 0, 0, 0);
+byCircleDefineR.G(G, r2, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(H, G, C)(0, 0);
 draw byLabelPoint(A, angle(G-A)+45, 3);
 }
@@ -5903,7 +5903,7 @@ draw byLine(A, F, byred, 0, 0);
 draw byLine(F, B, byred, 1, 0);
 draw byLine(C, G, byyellow, 0, 0);
 draw byLine(G, D, byyellow, 1, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(F, E, G)(2, 0);
 draw byLabelLineEnd(G, E, 0);
@@ -5979,7 +5979,7 @@ draw byLine(D, E, byred, 0, 0);
 draw byLine(E, A, byblack, 0, 0);
 draw byLine(F, G, byred, 1, 0);
 draw byLine(M, N, byblue, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, M, N, F, G)(E);
 draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
@@ -6051,7 +6051,7 @@ draw byLine(F, G, byyellow, 0, 0);
 draw byLine(M, N, blue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byLine(D, A, byblack, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, B, C, F, G, M, N)(E);
 draw byLabelLineEnd(K, H, 0);
 draw byLabelLineEnd(H, K, 0);
@@ -6107,7 +6107,7 @@ draw byLine(G, F, byblack, 1, 0);
 draw byLine(B, D, byyellow, 1, 0);
 draw byLine(D, A, byblack, 0, 0);
 draw byLineFull(E, K, byyellow, 0, 0)(E, K, 0, 0, -1);
-draw byCircle(D, A, byblue, 0, 0, 0)(D);
+draw byCircle.D(D, A, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C)(D);
 draw byLabelsOnPolygon(E, A, K, noPoint)(0, -1);
 draw byLabelsOnPolygon(F, G, A)(2, 0);
@@ -6181,8 +6181,8 @@ byLineDefine(D, E, byred, 1, 0);
 byLineDefine(F, B, byblack, 0, 0);
 byLineDefine(B, E, byblack, 1, 0);
 draw byNamedLineSeq(0)(AD,DE,BE,FB);
-draw byCircleR(E, r1, byred, 0, 0, -1)(EI);
-draw byCircleR(E, r2, byyellow, 0, 0, 0)(EII);
+draw byCircleR.EI(E, r1, byred, 0, 0, -1);
+draw byCircleR.EII(E, r2, byyellow, 0, 0, 0);
 draw byLabelsOnCircle(A, F)(EII);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
 draw byLabelPoint(D, angle(A-E)+45, 2);
@@ -6221,7 +6221,7 @@ C := (r, 0);
 G := (r, 6/5r);
 D := 6/5[C, G];
 B := (dir(angle(G-F))*r) shifted F;
-draw byCircle(F, C, byyellow, 0, 0, 0)(F);
+draw byCircle.F(F, C, byyellow, 0, 0, 0);
 byAngleDefine(F, C, G, byred, 0);
 byAngleDefine(C, G, F, byyellow, 0);
 draw byNamedAngleResized();
@@ -6272,7 +6272,7 @@ draw byNamedAngleResized();
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(C, E, byblue, 0, 0);
 draw byLine(C, F, byred, 1, 0);
-draw byCircleR(G, r, byred, 0, 0, 0)(G);
+draw byCircleR.G(G, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, C)(G);
 draw byLabelLineEnd(F, C, 0);
 draw byLabelLineEnd(E, C, 0);
@@ -6315,7 +6315,7 @@ draw byLine(A, C, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 0);
 draw byLine(E, F, byred, 1, 0);
 draw byLine(E, A, byred, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, C)(E);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
 }
@@ -6353,7 +6353,7 @@ draw byLine(E, C, byblack, 0, 1);
 draw byLine(A, B, byblack, 0, 1);
 draw byLine(E, B, byblack, 0, 1);
 draw byLine(A, F, byblack, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, B, C)(E);
 draw byLabelsOnPolygon(B, E, A)(2, 0);
 }
@@ -6393,7 +6393,7 @@ draw byLine(D, F, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 1);
 draw byLine(E, F, byblack, 0, 1);
 draw byLine(D, G, byred, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(D, G, C, F)(E);
 draw byLabelsOnPolygon(G, E, D)(2, 0);
 }
@@ -6437,7 +6437,7 @@ draw byLine(B, A, byblack, 0, 1);
 draw byLine(B, E, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(D, E, byblack, 0, 1);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A)(F);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }\drawCurrentPictureInMargin
@@ -6468,8 +6468,8 @@ byAngleDefine(G, A, D, byred, 0);
 byAngleDefine(B, E, G, byblue, 0);
 byAngleDefine(G, E, D, byblack, 0);
 draw byNamedAngleResized();
-draw byFilledCircleSegment(F, r, xpart(cr intersectiontimes (F -- 2[F, B])), xpart(cr intersectiontimes (F -- 2[F, G])), byblue)(BG);
-draw byFilledCircleSegment(F, r, xpart(cr intersectiontimes (F -- 2[F, G])), 8 + xpart(cr intersectiontimes (F -- 2[F, D])), byyellow)(GD);
+draw byFilledCircleSegment.BG(F, r, xpart(cr intersectiontimes (F -- 2[F, B])), xpart(cr intersectiontimes (F -- 2[F, G])), byblue);
+draw byFilledCircleSegment.GD(F, r, xpart(cr intersectiontimes (F -- 2[F, G])), 8 + xpart(cr intersectiontimes (F -- 2[F, D])), byyellow);
 draw byLine(G, A, byblue, 0, 0);
 draw byLine(G, E, byred, 0, 0);
 draw byLine(B, D, byblack, 1, 0);
@@ -6477,7 +6477,7 @@ draw byLine(B, A, byblack, 0, 1);
 draw byLine(B, E, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(D, E, byblack, 0, 1);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
 \drawCurrentPictureInMargin
@@ -6519,7 +6519,7 @@ draw byLine(C, D, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(B, D, byblack, 0, 0);
-draw byCircleR(E, r, byred, 0, 0, 1/2)(E);
+draw byCircleR.E(E, r, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -6568,8 +6568,8 @@ draw byLineFull(A, D, byred, 0, 0)(B, D, 1, 0, 0);
 draw byLineFull(B, C, byblue, 0, 0)(A, C, 1, 0, 0);
 draw byLineFull(B, D, byyellow, 0, 0)(A, D, 1, 0, 0);
 draw byLineFull(A, B, byblack, 0, 0)(A, B, 0, 0, 1);
-draw byArc(M, A, B, r1, byred, 0, 0, 0, 1)(M);
-draw byArc(N, A, B, r2, byblue, 0, 0, 0, 1)(N);
+draw byArc.M(M, A, B, r1, byred, 0, 0, 0, 1);
+draw byArc.N(N, A, B, r2, byblue, 0, 0, 0, 1);
 draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 draw byLabelPoint(C, (angle(C-M)-90+angle(D-A))/2, 1);
@@ -6623,12 +6623,12 @@ A := point length(cr1) of cr1;
 B := point 0 of cr1;
 C := point length(cr2) of cr2;
 D := point 0 of cr2;
-draw byFilledCircleSegment (M, r, t1, t2, byred)(M);
+draw byFilledCircleSegment.M(M, r, t1, t2, byred);
 draw byLineFull(A, B, byblack, 0, 0)(A, B, 0, 0, -1);
-draw byArc(M, B, A, r, byblue, 0, 0, 1/2, 1)(M);
-draw byFilledCircleSegment (N, r, t1, t2, byyellow)(N);
+draw byArc.M(M, B, A, r, byblue, 0, 0, 1/2, 1);
+draw byFilledCircleSegment.N(N, r, t1, t2, byyellow);
 draw byLineFull(C, D, byblue, 0, 0)(C, D, 0, 0, -1);
-draw byArc(N, D, C, r, byred, 0, 0, 1/2, 1)(N);
+draw byArc.N(N, D, C, r, byred, 0, 0, 1/2, 1);
 draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
 draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
 }
@@ -6690,7 +6690,7 @@ byLineDefine(E, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(DF,EF);
 draw byLine(A, B, byblack, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
-draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
+draw byArcBE.O(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0);
 draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelLineEnd(D, F, 0);
 draw byLabelLineEnd(E, F, 0);
@@ -6737,29 +6737,29 @@ F := point t2 of cr2;
 byAngleDefine(B, A, C, byred, 0);
 byAngleDefine(B, G, C, byyellow, 0);
 draw byNamedAngleResized(BAC, BGC);
-draw byFilledCircleSegment (G, r, t1, t2, byyellow)(G);
+draw byFilledCircleSegment.G(G, r, t1, t2, byyellow);
 draw byLine(B, C, byblack, 0, 0);
 draw byLine(A, B, byblack, 0, 1);
 draw byLine(A, C, byblack, 0, 1);
 byLineDefine(B, G, byblue, 0, 0);
 byLineDefine(C, G, byred, 0, 0);
 draw byNamedLineSeq(0)(BG,CG);
-draw byArc(G, C, B, r, byblue, 0, 0, 0, 0)(G);
-draw byArc(G, B, C, r, byblack, 0, 0, 0, 0)(Gb);
-byCircleDefineR(G, r, byblue, 0, 0, 0)(G);
+draw byArc.G(G, C, B, r, byblue, 0, 0, 0, 0);
+draw byArc.Gb(G, B, C, r, byblack, 0, 0, 0, 0);
+byCircleDefineR.G(G, r, byblue, 0, 0, 0);
 byAngleDefine(E, D, F, byblue, 0);
 byAngleDefine(E, H, F, byblack, 0);
 draw byNamedAngleResized(EDF, EHF);
-draw byFilledCircleSegment (H, r, t1, t2, byyellow)(H);
+draw byFilledCircleSegment.H(H, r, t1, t2, byyellow);
 draw byLine(E, F, byblack, 1, 0);
 draw byLine(D, E, byblack, 0, 1);
 draw byLine(D, F, byblack, 0, 1);
 byLineDefine(E, H, byblue, 1, 0);
 byLineDefine(F, H, byred, 1, 0);
 draw byNamedLineSeq(0)(EH,FH);
-draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
-draw byArc(H, E, F, r, byblack, 0, 0, 0, 0)(Hb);
-byCircleDefineR(H, r, byred, 0, 0, 0)(H);
+draw byArc.H(H, F, E, r, byred, 0, 0, 0, 0);
+draw byArc.Hb(H, E, F, r, byblack, 0, 0, 0, 0);
+byCircleDefineR.H(H, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(G);
 draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
@@ -6854,10 +6854,10 @@ byLineDefine(G, B, byblack, 0, 1);
 byLineDefine(G, C, byblack, 0, 1);
 draw byNamedLineSeq(0)(GB,GC);
 draw byLine(G, K, byblack, 0, 1);
-draw byArc(G, C, B, r, byred, 0, 0, 0, 0)(G);
-draw byArc(G, B, K, r, byblack, 0, 0, 0, 0)(GbI);
-draw byArc(G, K, C, r, byred, 1, 0, 0, 0)(GbII);
-byCircleDefineR(G, r, byred, 0, 0, 0)(G);
+draw byArc.G(G, C, B, r, byred, 0, 0, 0, 0);
+draw byArc.GbI(G, B, K, r, byblack, 0, 0, 0, 0);
+draw byArc.GbII(G, K, C, r, byred, 1, 0, 0, 0);
+byCircleDefineR.G(G, r, byred, 0, 0, 0);
 byAngleDefine(E, D, F, byred, 0);
 byAngleDefine(E, H, F, byred, 0);
 draw byNamedAngleResized(EDF, EHF);
@@ -6866,9 +6866,9 @@ draw byLine(D, E, byblack, 0, 1);
 byLineDefine(H, E, byblack, 0, 1);
 byLineDefine(H, F, byblack, 0, 1);
 draw byNamedLineSeq(0)(HE,HF);
-draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
-draw byArc(H, E, F, r, byblack, 1, 0, 0, 0)(Hb);
-byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byArc.H(H, F, E, r, byblue, 0, 0, 0, 0);
+draw byArc.Hb(H, E, F, r, byblack, 1, 0, 0, 0);
+byCircleDefineR.H(H, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, K)(G);
 draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
@@ -6919,18 +6919,18 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, K, byblack, 0, 0);
 byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
-draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
-draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
-byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
+draw byArc.K(K, B, A, r, byyellow, 0, 0, 0, 0);
+draw byArc.Kb(K, A, B, r, byblue, 0, 0, 0, 0);
+byCircleDefineR.K(K, r, byyellow, 0, 0, 0);
 byAngleDefine(D, L, E, byyellow, 0);
 draw byNamedAngleResized(DLE);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, byblack, 1, 0);
 byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
-draw byArc(L, E, D, r, byblack, 0, 0, 0, 0)(L);
-draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
-byCircleDefineR(L, r, byblack, 0, 0, 0)(L);
+draw byArc.L(L, E, D, r, byblack, 0, 0, 0, 0);
+draw byArc.Lb(L, D, E, r, byred, 0, 0, 0, 0);
+byCircleDefineR.L(L, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(K);
 draw byLabelsOnCircle(D, E)(L);
 draw byLabelsOnPolygon(A, K, B)(2, 0);
@@ -6980,18 +6980,18 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, K, byblack, 0, 0);
 byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
-draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
-draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
-byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
+draw byArc.K(K, B, A, r, byyellow, 0, 0, 0, 0);
+draw byArc.Kb(K, A, B, r, byblue, 0, 0, 0, 0);
+byCircleDefineR.K(K, r, byyellow, 0, 0, 0);
 byAngleDefine(D, L, E, byyellow, 0);
 draw byNamedAngleResized(DLE);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, byblack, 1, 0);
 byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
-draw byArc(L, E, D, r, byblack, 0, 0, 0, 0)(L);
-draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
-byCircleDefineR(L, r, byblack, 0, 0, 0)(L);
+draw byArc.L(L, E, D, r, byblack, 0, 0, 0, 0);
+draw byArc.Lb(L, D, E, r, byred, 0, 0, 0, 0);
+byCircleDefineR.L(L, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(K);
 draw byLabelsOnCircle(D, E)(L);
 draw byLabelsOnPolygon(A, K, B)(2, 0);
@@ -7040,8 +7040,8 @@ draw byLine(D, C, byyellow, 0, 0);
 draw byLine(D, B, byblue, 1, 0);
 draw byLine(A, C, byblack, 0, 0);
 draw byLine(C, B, byblack, 1, 0);
-draw byArc(E, B, D, r, byred, 1, 0, 0, 0)(Er);
-draw byArc(E, D, A, r, byred, 0, 0, 0, 0)(El);
+draw byArc.Er(E, B, D, r, byred, 1, 0, 0, 0);
+draw byArc.El(E, D, A, r, byred, 0, 0, 0, 0);
 draw byLabelsOnCircle(A, B, D)(Er);
 draw byLabelLineEnd(C, D, 0);
 }
@@ -7107,7 +7107,7 @@ draw byLine(A, B, byblack, 0, 1);
 draw byLine(A, C, byblack, 0, 1);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, C, byblack, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -7140,7 +7140,7 @@ draw byLine(A, B, byblack, 0, 1);
 draw byLine(B, D, byblack, 0, 1);
 draw byLine(A, C, byblue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -7174,7 +7174,7 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byLine(C, D, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -7220,7 +7220,7 @@ draw byLine(C, B, byblack, 0, 1);
 draw byLine(D, B, byred, 0, 0);
 draw byLineFull(E, F, byblue, 0, 0)(E, F, 0, 0, 1);
 draw byLine(A, B, byblack, 0, 0);
-draw byCircleR(O, r, byred, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(O);
 draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 }
@@ -7266,7 +7266,7 @@ draw byLine(G, B, byyellow, 0, 0);
 draw byLine(A, G, byblue, 0, 0);
 draw byLine(G, E, byblue, 1, 0);
 draw byLineFull(K, D, byred, 0, 0)(K, D, 0, 0, 1);
-draw byCircle(G, B, byblue, 0, 0, 0)(G);
+draw byCircle.G(G, B, byblue, 0, 0, 0);
 byAngleDefine.givenRight(E, A, K, byblack, 1);
 byAngleDefine.givenObtuse(B, A, K, byblack, 1);
 byAngleDefine.givenAcute(D, A, B, byblack, 1);
@@ -7310,14 +7310,14 @@ A := point 1 of cr;
 B := point -2 of cr;
 E := (r, -r) shifted O;
 F := (-r, -r) shifted O;
-draw byFilledCircleSegment(O, r, -2, 1, byyellow)(O);
+draw byFilledCircleSegment.O(O, r, -2, 1, byyellow);
 byAngleDefine.B(F, B, A, byblue, 0);
 byAngleDefine.givenAngle(F, B, A, byred, 0);
 setAttribute("angle", "Standalone", "givenAngle", 2);
 draw byNamedAngleResized(B);
 draw byLine(A, B, byblack, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
-draw byCircleR(O, r, byblue, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A)(O);
 draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
 }
@@ -7358,7 +7358,7 @@ draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
 draw byLine(D, E, byblue, 0, 0);
 draw byLine(E, B, byblue, 1, 0);
-draw byCircleR(E, r, byyellow, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byyellow, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -7389,7 +7389,7 @@ draw byLine(H, D, byblue, 1, 0);
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, H, byred, 1, 0);
 draw byLine(H, C, byblack, 1, 0);
-draw byCircleR(E, r, byred, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(B, D, C, A)(E);
 draw byLabelsOnPolygon(D, H, C)(2, 0);
 draw byLabelsOnPolygon(B, E, A)(2, 0);
@@ -7426,7 +7426,7 @@ draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, D, byblue, 1, 0);
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, K, L, A, C)(F);
 draw byLabelsOnPolygon(B, E, K)(2, 0);
 }
@@ -7463,7 +7463,7 @@ draw byLine(F, A, byblack, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
 draw byNamedLineSeq(0)(DB,DC);
-draw byCircleR(F, r, byblack, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(F);
 draw byLabelsOnPolygon(B, D, F, A)(2, 0);
 draw byLabelPoint(C, angle(C-F) - 45, 2);
@@ -7504,7 +7504,7 @@ draw byLine(E, B, byyellow, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, E, byblack, 0, 0);
 draw byNamedLineSeq(0)(DB,DE);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(B, D, E, A)(2, 0);
 draw byLabelPoint(C, angle(C-E) + 45, 2);
@@ -7550,7 +7550,7 @@ byLineDefine(E, F, byblue, 1, 0);
 byLineDefine(D, B, byred, 0, 0);
 byLineDefine(D, E, byblue, 0, 0);
 draw byNamedLineSeq(0)(BF,DB,DE,EF);
-draw byCircleR(F, r, byblack, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, E)(F);
 draw byLabelsOnPolygon(E, F, B)(2, 0);
 draw byLabelsOnPolygon(B, D, E)(2, 0);
@@ -7634,7 +7634,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(1)(DA,CD,BC,AB);
-draw byCircleR(O, r, byblack, 0, 0, 1)(O);
+draw byCircleR.O(O, r, byblack, 0, 0, 1);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
 Про прямолинейную фигуру говорят, что она \emph{вписывается} в~круг, когда каждый угол вписываемой фигуры касается окружности.
@@ -7650,8 +7650,8 @@ C := (-r, -r);
 D := (r, -r);
 O := (0, 0);
 draw byPolygon(A,B,C,D)(byred);
-draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCDo);
-draw byFilledCircleSector(O, r, 0, 8, white)(O);
+draw byArbitraryFigure.ABCDo(A--B--C--D--cycle, byred, 0, 0);
+draw byFilledCircleSector.O(O, r, 0, 8, white);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.IV]
 Про фигуру говорят, что она \emph{описывается} около круга, если каждая из ее сторон касается окружности.
@@ -7673,8 +7673,8 @@ F := dir(300)*r1;
 r2 := abs(1/2[A, B]);
 O := (0, 0);
 draw byPolygon(A,B,C,D,E,F)(byblue);
-draw byArbitraryFigure(A--B--C--D--E--F--cycle, byblue, 0, 0)(ABCDEFo);
-draw byFilledCircleSector(O, r2, 0, 8, white)(O);
+draw byArbitraryFigure.ABCDEFo(A--B--C--D--E--F--cycle, byblue, 0, 0);
+draw byFilledCircleSector.O(O, r2, 0, 8, white);
 }\drawCurrentPictureInMargin[inside]
 Про круг говорят, что он \emph{вписывается} в~фигуру, когда его окружность касается каждой из сторон фигуры.
 \stopDefinitionOnlyNumber
@@ -7696,7 +7696,7 @@ H = whatever[B, C] = whatever[I, I shifted ((B-C) rotated 90)];
 K = whatever[C, A] = whatever[I, I shifted ((C-A) rotated 90)];
 r := abs(D-I);
 draw byPolygon(G,H,K)(byblue);
-draw byCircleR(I, r, byblack, 0, 0, -1)(I);
+draw byCircleR.I(I, r, byblack, 0, 0, -1);
 }\drawCurrentPictureInMargin[inside]
 Про круг говорят, что он \emph{описывается} около прямолинейной фигуры, если его окружность проходит через все углы фигуры.
 
@@ -7711,7 +7711,7 @@ O := (0, 0);
 A := dir(0)*r;
 B := dir(100)*r;
 draw byLine(A, B, byblack, 0, 0);
-draw byCircleR(O, r, byblue, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 0);
 }\drawCurrentPictureInMargin[inside]
 Говорят что прямая \emph{вписывается} в~круг, когда ее концы находятся на окружности.
 \stopDefinitionOnlyNumber
@@ -7745,8 +7745,8 @@ draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, byred, 1, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
-draw byCircleR(O, r1, byyellow, 0, 0, 0)(O);
-draw byCircle(C, E, byblue, 0, 0, 0)(C);
+draw byCircleR.O(O, r1, byyellow, 0, 0, 0);
+draw byCircle.C(C, E, byblue, 0, 0, 0);
 draw byLabelsOnCircle(C, B)(O);
 draw byLabelsOnPolygon(C, A, E)(2, 0);
 draw byLabelsOnPolygon(C, E, A)(2, -1);
@@ -7801,11 +7801,11 @@ byAngleDefine(F, E, D, byblue, 0);
 byAngleDefine(E, D, F, byred, 0);
 byAngleDefine(D, F, E, byyellow, 0);
 draw byNamedAngleResized();
-draw byArbitraryFigure(B--A--C, byblack, 0, 1)(BAC);
-draw byArbitraryFigure(D--E--F--cycle, byblack, 0, 1)(BAC);
+draw byArbitraryFigure.BAC(B--A--C, byblack, 0, 1);
+draw byArbitraryFigure.BAC(D--E--F--cycle, byblack, 0, 1);
 draw byLine(B, C, byyellow, 0, 0);
 draw byLine(G, H, byred, 0, 0);
-draw byCircleR(O, r, byblack, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelsOnPolygon(D, E, F)(0, 0);
 draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
@@ -7867,16 +7867,16 @@ byAngleDefine(E, D, F, byred, 1);
 byAngleDefine(K, A, L, byblack, 0);
 byAngleDefine(L, C, K, byblack, 0);
 draw byNamedAngleResized();
-draw byArbitraryFigure(F--D--E, byblack, 0, 1)(FDE);
+draw byArbitraryFigure.FDE(F--D--E, byblack, 0, 1);
 byLineDefine(N, L, byblue, 0, 0);
 byLineDefine(L, M, byyellow, 0, 0);
 byLineDefine(M, N, byred, 1, 0);
 draw byLine(G, H, byblack, 0, 0);
 draw byLine(K, C, byred, 0, 0);
-draw byArbitraryFigure(A--K--B, byblack, 0, 1)(AKB);
-draw byCircleR(K, r, byred, 0, 0, -1)(K);
+draw byArbitraryFigure.AKB(A--K--B, byblack, 0, 1);
+draw byCircleR.K(K, r, byred, 0, 0, -1);
 draw byNamedLineSeq(0)(NL,LM,MN);
-byArbitraryFigureDefine(L--A--K--C--cycle, byblack, 0, 1)(LAKC);
+byArbitraryFigureDefine.LAKC(L--A--K--C--cycle, byblack, 0, 1);
 draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
 draw byLabelsOnPolygon(G, E, F, H, noPoint)(0, 0);
 draw byLabelsOnPolygon(F, D, E)(2, 0);
@@ -7952,7 +7952,7 @@ byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byblack, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CA);
-draw byCircle(D, G, byblack, 0, 0, -1)(D);
+draw byCircle.D(D, G, byblack, 0, 0, -1);
 byLineDefine(B, F, byblack, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
 draw byLabelsOnPolygon(B, E, A, G, C, F)(0, 0);
@@ -8034,7 +8034,7 @@ draw byLine(B, C, byblack, 0, 0);
 fi;
 draw byLine(C, E, byred, 0, 0);
 draw byLine(E, A, byred, 1, 0);
-draw byCircleR(F, r, byblack, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(F);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
@@ -8110,7 +8110,7 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DA);
-draw byCircleR(E, r, byred, 0, 0, 1)(E);
+draw byCircleR.E(E, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -8168,7 +8168,7 @@ byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(KF,HK,GH,FG);
-draw byCircleR(E, r, byblue, 0, 0, -1)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(H, B, G, A, F, D, K, C)(0, 0);
 draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
@@ -8224,7 +8224,7 @@ byLineDefine(E, D, byblue, 0, 0);
 byLineDefine(D, K, byred, 1, 0);
 byLineDefine(K, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AE,ED,DK,KC);
-draw byCircleR(G, r, byyellow, 0, 0, -1)(G);
+draw byCircleR.G(G, r, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(B, F, A, E, D, K, C, H)(0, 0);
 draw byLabelsOnPolygon(F, G, E)(2, 0);
 }
@@ -8276,7 +8276,7 @@ draw byLine(A, E, byblue, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
 draw byLine(B, E, byblack, 0, 0);
 draw byLine(E, D, byblack, 1, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(B, E, A)(2, -1);
 }
@@ -8334,8 +8334,8 @@ draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(A, C, byblack, 0, 0);
 draw byLine(C, B, byblack, 1, 0);
-draw byCircleABC(A, C, D, byblue, 0, 0, 0)(F);
-draw byCircle(A, B, byred, 0, 0, 0)(A);
+draw byCircleABC.F(A, C, D, byblue, 0, 0, 0);
+draw byCircle.A(A, B, byred, 0, 0, 0);
 draw byLabelsOnCircle(B)(A);
 draw byLabelsOnCircle(A)(F);
 draw byLabelPoint(D, angle(D-A)-15, 2);
@@ -8394,7 +8394,7 @@ B := (dir(90+1/5(360))*r) shifted O;
 C := (dir(90+2/5(360))*r) shifted O;
 D := (dir(90+3/5(360))*r) shifted O;
 E := (dir(90+4/5(360))*r) shifted O;
-draw byArbitraryFigure(C--E--B--D, byblack, 0, 1)(pg);
+draw byArbitraryFigure.pg(C--E--B--D, byblack, 0, 1);
 draw byPolygon(A,C,D)(byyellow);
 byAngleDefineExtended(A, B, C, byblack, -1)(bytransparent);
 byAngleDefineExtended(D, E, A, byblack, -1)(bytransparent);
@@ -8415,7 +8415,7 @@ byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(O);
 }
 \drawCurrentPictureInMargin
@@ -8483,7 +8483,7 @@ byLineDefine(C, L, byyellow, 0, 0);
 byLineDefine(L, M, byblack, 0, 0);
 byLineDefine(M, G, byblack, 0, 0);
 draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
-draw byCircleR(F, r2, byred, 0, 0, -1)(F);
+draw byCircleR.F(F, r2, byred, 0, 0, -1);
 draw byLabelsOnPolygon(M, D, L, C, K, B, H, G)(2, 0);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }
@@ -8587,7 +8587,7 @@ byLineDefine(K, D, byblack, 1, 0);
 byLineDefine(D, E, byblack, 0, 1);
 byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
-draw byCircle(F, H, byyellow, 0, 0, -1)(F);
+draw byCircle.F(F, H, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(C, H, B, A, E, D, K)(0, 0);
 draw byLabelsOnPolygon(E, F, D)(2, -2);
 }
@@ -8692,7 +8692,7 @@ byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, E, byblack, 1, 0);
 byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR(F, r, byred, 0, 0, 1)(F);
+draw byCircleR.F(F, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(F);
 draw byLabelsOnPolygon(A, F, E)(2, -1);
 }
@@ -8765,8 +8765,8 @@ draw byLine(C, D, byblack, 1, 0);
 draw byLine(D, E, byred, 1, 0);
 draw byLine(E, F, byblue, 1, 0);
 draw byLine(F, A, byblack, 0, 0);
-draw byCircle(D, G, byred, 0, 0, 0)(D);
-draw byCircleR(G, r, byyellow, 0, 0, 0)(G);
+draw byCircle.D(D, G, byred, 0, 0, 0);
+draw byCircleR.G(G, r, byyellow, 0, 0, 0);
 byLineDefine(G, C, lineColor.CF, 0, 0);
 byLineDefine(G, D, lineColor.AD, 0, 0);
 byLineDefine(G, E, lineColor.BE, 0, 0);
@@ -8837,10 +8837,10 @@ byLineDefine(C, D, byblack, 0, 1);
 byLineDefine(D, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
 draw byNamedLineSeq(0)(AC,CD,DA);
-draw byCircleR(O, r, byblack, 0, 1, 1)(O);
-draw byArc(O, A, B, r, byblack, 0, 0, 1, 0)(AB);
-draw byArc(O, B, C, r, byblue, 0, 0, 1, 0)(BC);
-draw byArc(O, C, F, r, byred, 0, 0, 1, 0)(CF);
+draw byCircleR.O(O, r, byblack, 0, 1, 1);
+draw byArc.AB(O, A, B, r, byblack, 0, 0, 1, 0);
+draw byArc.BC(O, B, C, r, byblue, 0, 0, 1, 0);
+draw byArc.CF(O, C, F, r, byred, 0, 0, 1, 0);
 draw byLabelsOnCircle(A, B, C, F)(O);
 }
 \drawCurrentPictureInMargin
@@ -8974,15 +8974,15 @@ $\eqalign{
 
 \startProposition[title={Предл. I. Теорема}, reference=prop:V.I]
 \defineNewPicture{
-byMagnitudeSymbolDefine("semicircleUp", byred, 1)(ab);
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(cd);
-byMagnitudeSymbolDefine("sectorDown", byblue, 1)(ef);
-byMagnitudeDefine(A, 0, false)(5)(ab);
-byMagnitudeDefine(B, 0, false)(1)(ab);
-byMagnitudeDefine(C, 0, false)(5)(cd);
-byMagnitudeDefine(D, 0, false)(1)(cd);
-byMagnitudeDefine(E, 0, false)(5)(ef);
-byMagnitudeDefine(F, 0, false)(1)(ef);
+byMagnitudeSymbolDefine.ab("semicircleUp", byred, 1);
+byMagnitudeSymbolDefine.cd("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.ef("sectorDown", byblue, 1);
+byMagnitudeDefine.A(0, false)(5)(ab);
+byMagnitudeDefine.B(0, false)(1)(ab);
+byMagnitudeDefine.C(0, false)(5)(cd);
+byMagnitudeDefine.D(0, false)(1)(cd);
+byMagnitudeDefine.E(0, false)(5)(ef);
+byMagnitudeDefine.F(0, false)(1)(ef);
 }
 \problemNP{Е}{сли}{будет несколько величин равнократных каждая каждой такому же количеству других величин, то сколько раз одна из первых будет кратна одной из вторых, столько же раз все первые будут кратны всем вторым.}
 
@@ -9031,16 +9031,16 @@ $\therefore$ Если будет несколько величин… и~т. д.
 
 \startProposition[title={Предл. II. Теорема}, reference=prop:V.II]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(ab);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(cd);
-byMagnitudeSymbolDefine("circle", byblue, 0)(e);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(f);
-byMagnitudeDefine(A, 0, false)(3)(ab);
-byMagnitudeDefine(B, 0, false)(1)(ab);
-byMagnitudeDefine(C, 0, false)(3)(cd);
-byMagnitudeDefine(D, 0, false)(1)(cd);
-byMagnitudeDefine(E, 0, false)(4)(e);
-byMagnitudeDefine(F, 0, false)(4)(f);
+byMagnitudeSymbolDefine.ab("circle", byyellow, 0);
+byMagnitudeSymbolDefine.cd("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.e("circle", byblue, 0);
+byMagnitudeSymbolDefine.f("sectorUp", byblack, 1);
+byMagnitudeDefine.A(0, false)(3)(ab);
+byMagnitudeDefine.B(0, false)(1)(ab);
+byMagnitudeDefine.C(0, false)(3)(cd);
+byMagnitudeDefine.D(0, false)(1)(cd);
+byMagnitudeDefine.E(0, false)(4)(e);
+byMagnitudeDefine.F(0, false)(4)(f);
 }
 \problemNP{Е}{сли}{первая величина столько же раз кратна второй, сколько третья четвертой, а~пятая столько же раз кратна второй, сколько шестая четвертой, то первая вместе с~пятой будут столько же раз кратны третьей, сколько третья вместе с~шестой — четвертой.}
 
@@ -9076,16 +9076,16 @@ $\therefore$ Если первая величина… и~т. д.
 
 \startProposition[title={Предл. III. Теорема}, reference=prop:V.III]
 \defineNewPicture{
-byMagnitudeSymbolDefine("square", byyellow, 0)(a);
-byMagnitudeSymbolDefine("square", byred, 0)(be);
-byMagnitudeSymbolDefine("rhombus", byblack, 0)(c);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(df);
-byMagnitudeDefine(A, 0, false)(1, 2, 1)(a);
-byMagnitudeDefine(B, 0, false)(1)(be);
-byMagnitudeDefine(C, 0, false)(2, 2)(c);
-byMagnitudeDefine(D, 0, false)(1)(df);
-byMagnitudeDefine(E, 0, false)(4, 4, 4, 4)(be);
-byMagnitudeDefine(F, 0, false)(4, 4, 4, 4)(df);
+byMagnitudeSymbolDefine.a("square", byyellow, 0);
+byMagnitudeSymbolDefine.be("square", byred, 0);
+byMagnitudeSymbolDefine.c("rhombus", byblack, 0);
+byMagnitudeSymbolDefine.df("rhombus", byblue, 0);
+byMagnitudeDefine.A(0, false)(1, 2, 1)(a);
+byMagnitudeDefine.B(0, false)(1)(be);
+byMagnitudeDefine.C(0, false)(2, 2)(c);
+byMagnitudeDefine.D(0, false)(1)(df);
+byMagnitudeDefine.E(0, false)(4, 4, 4, 4)(be);
+byMagnitudeDefine.F(0, false)(4, 4, 4, 4)(df);
 }
 \problemNP{Е}{сли}{первая величина имеет такое же отношение ко второй, какое третья имеет к~четвертой, то и~равнократные к~первой и~третьей к~равнократным второй и~четвертой, взятые в~соответствующем порядке будут иметь то же отношение.}
 
@@ -9115,18 +9115,18 @@ $\therefore$ Если первая величина… и~т. д.
 
 \startDefinition[title={Определение V.}, reference=def:V.V,ownnumber=5]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(a);
-byMagnitudeSymbolDefine("square", byyellow, 0)(b);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(c);
-byMagnitudeSymbolDefine("wedgeDown", byblack, 0)(d);
-byMagnitudeDefine(A, 0, false)(1)(a);
-byMagnitudeDefine(B, 0, false)(1)(b);
-byMagnitudeDefine(C, 0, false)(1)(c);
-byMagnitudeDefine(D, 0, false)(1)(d);
-byMagnitudeDefine(Am, 1, false)(2, 3, 4, 5, 6)(a);
-byMagnitudeDefine(Bm, 1, false)(2, 3, 4, 5, 6)(b);
-byMagnitudeDefine(Cm, 1, false)(2, 3, 4, 5, 6)(c);
-byMagnitudeDefine(Dm, 1, false)(2, 3, 4, 5, 6)(d);
+byMagnitudeSymbolDefine.a("circle", byred, 0);
+byMagnitudeSymbolDefine.b("square", byyellow, 0);
+byMagnitudeSymbolDefine.c("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.d("wedgeDown", byblack, 0);
+byMagnitudeDefine.A(0, false)(1)(a);
+byMagnitudeDefine.B(0, false)(1)(b);
+byMagnitudeDefine.C(0, false)(1)(c);
+byMagnitudeDefine.D(0, false)(1)(d);
+byMagnitudeDefine.Am(1, false)(2, 3, 4, 5, 6)(a);
+byMagnitudeDefine.Bm(1, false)(2, 3, 4, 5, 6)(b);
+byMagnitudeDefine.Cm(1, false)(2, 3, 4, 5, 6)(c);
+byMagnitudeDefine.Dm(1, false)(2, 3, 4, 5, 6)(d);
 }
 
 Четыре величины, \drawMagnitude{A}, \drawMagnitude{B}, \drawMagnitude{C}, \drawMagnitude{D}, называются пропорциональными, если любые равнократные первой и~третьей, а~также любые равнократные второй и~четвертой в~виде
@@ -9251,10 +9251,10 @@ $\eqalign{
 
 \startProposition[title={Предл. IV. Теорема}, reference=prop:V.IV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(I);
-byMagnitudeSymbolDefine("square", byblack, 0)(II);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(III);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("circle", byyellow, 0);
+byMagnitudeSymbolDefine.II("square", byblack, 0);
+byMagnitudeSymbolDefine.III("rhombus", byred, 0);
+byMagnitudeSymbolDefine.IV("wedgeDown", byblue, 0);
 }
 \problemNP{Е}{сли}{первая величина имеет такое же отношение ко второй, какое третья имеет к~четвертой, то и~равнократные первой и~третьей будут иметь то же отношение к~равнократным второй и~четвертой.}
 
@@ -9284,12 +9284,12 @@ $\therefore$ Если первая величина… и~т.  д.
 
 \startProposition[title={Предл. V. Теорема}, reference=prop:V.V]
 \defineNewPicture{
-byMagnitudeSymbolDefine("sectorDown", byblue, 1)(a);
-byMagnitudeSymbolDefine("semicircleDown", byyellow, 1)(b);
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(c);
-byMagnitudeSymbolDefine("miniSquare", byred, 0)(d);
-byMagnitudeDefine(I, 0, false)(1, 2, 1)(a, a, b);
-byMagnitudeDefine(II, 0, false)(1, 1)(c, d);
+byMagnitudeSymbolDefine.a("sectorDown", byblue, 1);
+byMagnitudeSymbolDefine.b("semicircleDown", byyellow, 1);
+byMagnitudeSymbolDefine.c("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.d("miniSquare", byred, 0);
+byMagnitudeDefine.I(0, false)(1, 2, 1)(a, a, b);
+byMagnitudeDefine.II(0, false)(1, 1)(c, d);
 }
 \problemNP{Е}{сли}{одна величина столько же раз кратна другой, сколько и~величина отнимаемая от первой кратна к~величине отнимаемой от второй, то остаток будет столько же раз кратен остатку, как целое целому.}
 
@@ -9310,14 +9310,14 @@ $\therefore$ Если одна величина… и~т. д.
 
 \startProposition[title={Предл. VI. Теорема}, reference=prop:V.VI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("sectorDown", byyellow, 1)(a);
-byMagnitudeSymbolDefine("miniSquare", byred, 0)(b);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(c);
-byMagnitudeSymbolDefine("miniTriangleUp", byblue, 0)(d);
-byMagnitudeDefine(I, 0, false)(1, 2, 1)(a);
-byMagnitudeDefine(II, 0, false)(1)(b);
-byMagnitudeDefine(III, 0, false)(2)(c);
-byMagnitudeDefine(IV, 0, false)(1)(d);
+byMagnitudeSymbolDefine.a("sectorDown", byyellow, 1);
+byMagnitudeSymbolDefine.b("miniSquare", byred, 0);
+byMagnitudeSymbolDefine.c("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.d("miniTriangleUp", byblue, 0);
+byMagnitudeDefine.I(0, false)(1, 2, 1)(a);
+byMagnitudeDefine.II(0, false)(1)(b);
+byMagnitudeDefine.III(0, false)(2)(c);
+byMagnitudeDefine.IV(0, false)(1)(d);
 }
 \problemNP[5]{Е}{сли}{две величины равнократны двум другим, и~если равнократные последним отняты от первых двух, то остатки будут либо равны вторым, либо будут им равнократны.}
 
@@ -9338,18 +9338,18 @@ $\therefore$ Если две величины… и~т. д.
 
 \startPropositionAZ[title={Предл. A. Теорема}, reference=prop:V.A]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(a);
-byMagnitudeSymbolDefine("square", byblack, 0)(b);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(c);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(d);
-byMagnitudeDefine(I, 0, false)(1)(a);
-byMagnitudeDefine(II, 0, false)(1)(b);
-byMagnitudeDefine(III, 0, false)(1)(c);
-byMagnitudeDefine(IV, 0, false)(1)(d);
-byMagnitudeDefine(dI, 0, false)(2)(a);
-byMagnitudeDefine(dII, 0, false)(2)(b);
-byMagnitudeDefine(dIII, 0, false)(2)(c);
-byMagnitudeDefine(dIV, 0, false)(2)(d);
+byMagnitudeSymbolDefine.a("circle", byred, 0);
+byMagnitudeSymbolDefine.b("square", byblack, 0);
+byMagnitudeSymbolDefine.c("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.d("rhombus", byyellow, 0);
+byMagnitudeDefine.I(0, false)(1)(a);
+byMagnitudeDefine.II(0, false)(1)(b);
+byMagnitudeDefine.III(0, false)(1)(c);
+byMagnitudeDefine.IV(0, false)(1)(d);
+byMagnitudeDefine.dI(0, false)(2)(a);
+byMagnitudeDefine.dII(0, false)(2)(b);
+byMagnitudeDefine.dIII(0, false)(2)(c);
+byMagnitudeDefine.dIV(0, false)(2)(d);
 }
 \problemNP{Е}{сли}{первая величина относится ко второй так же, как третья к~четвертой, то если первая больше второй, то третья также больше четвертой,
 если равна, равна, а~если меньше, то меньше.}
@@ -9383,10 +9383,10 @@ $\therefore$ Если первая величина… и~т. д.
 
 \startPropositionAZ[title={Предл. B. Теорема}, reference=prop:V.B]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
 \problemNP{Е}{сли}{четыре величины пропорциональны, они будут пропорциональны и~если их перевернуть.}
 
@@ -9416,12 +9416,12 @@ $\therefore$ Если четыре величины пропорциональн
 
 \startPropositionAZ[title={Предл. C. Теорема}, reference=prop:V.C]
 \defineNewPicture{
-byMagnitudeSymbolDefine("square", byblue, 0)(i);
-byMagnitudeDefine(I, 0, false)(2, 2)(i);
-byMagnitudeSymbolDefine("circle", byblack, 0)(II);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(iii);
-byMagnitudeDefine(III, 0, false)(2, 2)(iii);
-byMagnitudeSymbolDefine("wedgeUp", byred, 0)(IV);
+byMagnitudeSymbolDefine.i("square", byblue, 0);
+byMagnitudeDefine.I(0, false)(2, 2)(i);
+byMagnitudeSymbolDefine.II("circle", byblack, 0);
+byMagnitudeSymbolDefine.iii("rhombus", byyellow, 0);
+byMagnitudeDefine.III(0, false)(2, 2)(iii);
+byMagnitudeSymbolDefine.IV("wedgeUp", byred, 0);
 }
 \problemNP{Е}{сли}{первая величина столько же раз кратна второй, или составляет такую же ее часть, как и~третья — четвертой, то первая относится ко второй, как третья к~четвертой.}
 
@@ -9478,20 +9478,20 @@ $\therefore$ Если первая величина… и~т. д.
 
 \startPropositionAZ[title={Предл. D. Теорема}, reference=prop:V.D]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(i);
-byMagnitudeSymbolDefine("square", byblack, 0)(ii);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(iii);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(iv);
-byMagnitudeSymbolDefine("semicircleDown", byred, 1)(va);
-byMagnitudeSymbolDefine("semicircleUp", byred, 1)(vb);
-byMagnitudeSymbolDefine("sectorDown", byblack, 1)(via);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(vib);
-byMagnitudeDefine(I, 0, false)(1, 2)(i);
-byMagnitudeDefine(II, 0, false)(1)(ii);
-byMagnitudeDefine(III, 0, false)(2, 2)(iii);
-byMagnitudeDefine(IV, 0, false)(1)(iv);
-byMagnitudeDefine(V, 0, false)(1, 2)(va, vb);
-byMagnitudeDefine(VI, 0, false)(2, 2)(via, vib);
+byMagnitudeSymbolDefine.i("circle", byyellow, 0);
+byMagnitudeSymbolDefine.ii("square", byblack, 0);
+byMagnitudeSymbolDefine.iii("rhombus", byred, 0);
+byMagnitudeSymbolDefine.iv("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.va("semicircleDown", byred, 1);
+byMagnitudeSymbolDefine.vb("semicircleUp", byred, 1);
+byMagnitudeSymbolDefine.via("sectorDown", byblack, 1);
+byMagnitudeSymbolDefine.vib("sectorUp", byblack, 1);
+byMagnitudeDefine.I(0, false)(1, 2)(i);
+byMagnitudeDefine.II(0, false)(1)(ii);
+byMagnitudeDefine.III(0, false)(2, 2)(iii);
+byMagnitudeDefine.IV(0, false)(1)(iv);
+byMagnitudeDefine.V(0, false)(1, 2)(va, vb);
+byMagnitudeDefine.VI(0, false)(2, 2)(via, vib);
 }
 \problemNP{Е}{сли}{первая величина относится ко второй так, как третья к~четвертой, и~если первая кратна второй или составляет ее часть, то и~третья к~четвертой столько же раз кратна или составляет такую же ее часть.}
 
@@ -9541,9 +9541,9 @@ $\therefore$ Если первая величина относится ко вт
 
 \startProposition[title={Предл. VII. Теорема}, reference=prop:V.VII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(I);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine.I("circle", byred, 0);
+byMagnitudeSymbolDefine.II("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
 }
 \problemNP{Р}{авные}{величины имеют одно отношение к~какой-либо величине, и~эта величина имеет такое же отношение к~равным величинам.}
 
@@ -9574,18 +9574,18 @@ $\therefore$ Равные величины… и~т. д.
 
 \startDefinition[title={Определение VII.}, reference=def:V.VII,ownnumber=7]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(i);
-byMagnitudeSymbolDefine("square", byyellow, 0)(ii);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(iii);
-byMagnitudeSymbolDefine("wedgeDown", byblack, 0)(iv);
-byMagnitudeDefine(I, 0, false)(5)(i);
-byMagnitudeDefine(II, 0, false)(4)(ii);
-byMagnitudeDefine(III, 0, false)(5)(iii);
-byMagnitudeDefine(IV, 0, false)(4)(iv);
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(Ia);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(IIa);
-byMagnitudeSymbolDefine("square", byblue, 0)(IIIa);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IVa);
+byMagnitudeSymbolDefine.i("circle", byred, 0);
+byMagnitudeSymbolDefine.ii("square", byyellow, 0);
+byMagnitudeSymbolDefine.iii("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.iv("wedgeDown", byblack, 0);
+byMagnitudeDefine.I(0, false)(5)(i);
+byMagnitudeDefine.II(0, false)(4)(ii);
+byMagnitudeDefine.III(0, false)(5)(iii);
+byMagnitudeDefine.IV(0, false)(4)(iv);
+byMagnitudeSymbolDefine.Ia("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.IIa("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.IIIa("square", byblue, 0);
+byMagnitudeSymbolDefine.IVa("rhombus", byyellow, 0);
 }
 
 Когда из равнократных четырех величин (взятых как в~пятом определении), кратное первой больше кратного второй, а~кратное третьей не больше кратного четвертой, то говорят, что первая имеет большее отношение ко второй, чем третья к~четвертой, и~наоборот, говорят что третья имеет к~четвертой меньшее отношение, чем первая ко второй.
@@ -9652,11 +9652,11 @@ byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IVa);
 
 \startProposition[title={Предл. VIII. Теорема}, reference=prop:V.VIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(Ia);
-byMagnitudeSymbolDefine("square", byred, 0)(Ib);
-byMagnitudeDefine(I, 0, false)(1, 1)(Ia, Ib);
-byMagnitudeSymbolDefine("square", byyellow, 0)(II);
-byMagnitudeSymbolDefine("circle", byblue, 0)(III);
+byMagnitudeSymbolDefine.Ia("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.Ib("square", byred, 0);
+byMagnitudeDefine.I(0, false)(1, 1)(Ia, Ib);
+byMagnitudeSymbolDefine.II("square", byyellow, 0);
+byMagnitudeSymbolDefine.III("circle", byblue, 0);
 }
 \problemNP{И}{з}{неравных величин к~одной и~той же величине большая имеет большее отношение, чем меньшая, и~эта величина имеет большее отношение к~меньшей, чем к~большей.}
 
@@ -9735,9 +9735,9 @@ $\color[byred]{64} + \color[byblack]{8}$ & $\color[byblue]{70}$ & $\color[byyell
 
 \startProposition[title={Предл. IX. Теорема}, reference=prop:V.IX]
 \defineNewPicture{
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(I);
-byMagnitudeSymbolDefine("circle", byred, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine.I("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.II("circle", byred, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
 }
 \problemNP{В}{еличины,}{имеющие одинаковое отношение к~одному и~тому же, равны между собой, и~те, к~которым одно и~то же имеет равные отношения, также равны.}
 
@@ -9773,9 +9773,9 @@ $\therefore$ Величины, имеющие одинаковое отноше�
 
 \startProposition[title={Предл. X. Теорема}, reference=prop:V.X]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("circle", byred, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("circle", byred, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
 }
 \problemNP{И}{з}{величин, имеющих отношение к~одному и~тому же, больше та, которая имеет большее отношение, а~та, к~которой одно и~то же имеет большее отношение, является меньшей из двух.}
 
@@ -9807,12 +9807,12 @@ $\therefore$ Из величин, имеющих… и~т. д.
 
 \startProposition[title={Предл. XI. Теорема}, reference=prop:V.XI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(I);
-byMagnitudeSymbolDefine("square", byblue, 0)(II);
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(III);
-byMagnitudeSymbolDefine("miniCircle", byblack, 0)(IV);
-byMagnitudeSymbolDefine("circle", byred, 0)(V);
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(VI);
+byMagnitudeSymbolDefine.I("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.II("square", byblue, 0);
+byMagnitudeSymbolDefine.III("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.IV("miniCircle", byblack, 0);
+byMagnitudeSymbolDefine.V("circle", byred, 0);
+byMagnitudeSymbolDefine.VI("wedgeDown", byyellow, 0);
 }
 \problemNP{О}{тношения,}{тождественные одному и~тому же, тождественны и~друг другу.}
 
@@ -9836,16 +9836,16 @@ $\therefore$ Отношения, тождественные между собо�
 
 \startProposition[title={Предл. XII. Теорема}, reference=prop:V.XII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("square", byred, 0)(I);
-byMagnitudeSymbolDefine("circle", byred, 0)(II);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(III);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(IV);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(V);
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(VI);
-byMagnitudeSymbolDefine("miniCircle", byblue, 0)(VII);
-byMagnitudeSymbolDefine("miniTriangleDown", byblue, 0)(VIII);
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(IX);
-byMagnitudeSymbolDefine("miniCircle", byblack, 0)(X);
+byMagnitudeSymbolDefine.I("square", byred, 0);
+byMagnitudeSymbolDefine.II("circle", byred, 0);
+byMagnitudeSymbolDefine.III("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.IV("sectorUp", byblack, 1);
+byMagnitudeSymbolDefine.V("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.VI("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.VII("miniCircle", byblue, 0);
+byMagnitudeSymbolDefine.VIII("miniTriangleDown", byblue, 0);
+byMagnitudeSymbolDefine.IX("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.X("miniCircle", byblack, 0);
 }
 \problemNP{Е}{сли}{несколько величин пропорциональны, то как одна из предыдущих будет относиться к~последующей, так и~все вместе предыдущие будут относиться ко всем вместе последующим.}
 
@@ -9876,12 +9876,12 @@ $\therefore$ Если несколько величин… и~т. д.
 
 \startProposition[title={Предл. XIII. Теорема}, reference=prop:V.XIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblue, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(V);
-byMagnitudeSymbolDefine("circle", byblack, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblue, 1);
+byMagnitudeSymbolDefine.III("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byblack, 1);
+byMagnitudeSymbolDefine.VI("circle", byblack, 0);
 }
 \problemNP{Е}{сли}{первая величина ко второй имеет такое же отношение, как третья к~четвертой, а~третья к~четвертой имеет большее отношение, чем пятая к~шестой, то и~первая ко второй будет иметь большее отношение, чем пятая к~шестой.}
 
@@ -9914,10 +9914,10 @@ $\therefore$ Если первая величина ко второй… и~т. 
 
 \startProposition[title={Предл. XIV. Теорема}, reference=prop:V.XIV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
 \problemNP{Е}{сли}{первая величина имеет ко второй такое же отношение, какое третья к~четвертой, то если первая больше третьей, то и~вторая будет больше четвертой, а~если равна, равна, а~если меньше, то меньше.}
 
@@ -9952,8 +9952,8 @@ $\therefore$ Если первая величина имеет ко второй
 
 \startProposition[title={Предл. XV. Теорема}, reference=prop:V.XV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(I);
-byMagnitudeSymbolDefine("square", byyellow, 0)(II);
+byMagnitudeSymbolDefine.I("circle", byred, 0);
+byMagnitudeSymbolDefine.II("square", byyellow, 0);
 }
 \problemNP{В}{еличины}{относятся друг к~другу так же, как и~их равнократные.}
 
@@ -9980,10 +9980,10 @@ $\therefore$ Величины относятся друг к~другу… и~т
 
 \startDefinition[title={Определение XIII},reference=def:V.XIII,ownnumber=13]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(I);
-byMagnitudeSymbolDefine("rhombus", byblack, 0)(II);
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(III);
-byMagnitudeSymbolDefine("square", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("circle", byyellow, 0);
+byMagnitudeSymbolDefine.II("rhombus", byblack, 0);
+byMagnitudeSymbolDefine.III("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.IV("square", byblue, 0);
 }
 Отношение называют переставленным, когда есть четыре пропорциональных величины, и~утверждается, что первая относится к~третьей так же, как вторая к~четвертой, как показано в~следующем предложении:
 
@@ -10000,10 +10000,10 @@ byMagnitudeSymbolDefine("square", byblue, 0)(IV);
 
 \startProposition[title={Предл. XVI. Теорема}, reference=prop:V.XVI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
 \problemNP{Е}{сли}{четыре величины пропорциональны, то они останутся пропорциональными в~переставленном порядке.}
 
@@ -10054,10 +10054,10 @@ $\varB : \varA :: \varD : \varC$;\\
 
 \startProposition[title={Предл. XVII. Теорема}, reference=prop:V.XVII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
 \problemNP{Е}{сли}{величины пропорциональны присоединенные, то они останутся пропорциональны взятые раздельно, то есть, если две величины взятые вместе относятся к~одной из них также, как две другие взятые вместе к~одной из тех, оставшаяся величина из первых двух будет иметь такое же отношение к~другой такое же отношение, как оставшаяся из вторых к~другой из них.}
 
@@ -10115,11 +10115,11 @@ $\varB : \varA :: \varD : \varC$.
 
 \startProposition[title={Предл. XVIII. Теорема}, reference=prop:V.XVIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
-byMagnitudeSymbolDefine("circle", byblack, 0)(V);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.V("circle", byblack, 0);
 }
 \problemNP{Е}{сли}{величины пропорциональны выделенные, то они будут пропорциональны и~составленные. То есть, если первая относится ко второй, как третья к~четвертой, то первая и~вторая вместе будут ко второй, как третья и~четвертая вместе к~четвертой.}
 
@@ -10151,10 +10151,10 @@ $\therefore$ Если величины пропорциональны выдел
 
 \startProposition[title={Предл. XIX. Теорема}, reference=prop:V.XIX]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byblue, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
 \problemNP{Е}{сли}{целая величина относится к~целой так же, как вычтенная из первой к~вычтенной из второй, то и~остаток будет относиться как остатку как целая к~целой.}
 
@@ -10184,12 +10184,12 @@ $\therefore$ Если целая величина относится к~цело
 
 \startPropositionAZ[title={Предл. E. Теорема}, reference=prop:V.E]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byblue, 0)(i);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(iii);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeDefine(I, 0, true)(1, 1)(i, II);
-byMagnitudeDefine(III, 0, true)(1, 1)(iii, IV);
+byMagnitudeSymbolDefine.i("circle", byblue, 0);
+byMagnitudeSymbolDefine.II("sectorUp", byblack, 1);
+byMagnitudeSymbolDefine.iii("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeDefine.I(0, true)(1, 1)(i, II);
+byMagnitudeDefine.III(0, true)(1, 1)(iii, IV);
 }
 \problemNP{Е}{сли}{четыре величины пропорциональны, они также пропорциональны если совершить конверсию, то есть первая к~избытку над второй относится также как третья к~ее избытку над четвертой.}
 
@@ -10270,12 +10270,12 @@ $\varA, \varB, \varC, \varD, \varE, \varF$, первый,\\
 
 \startProposition[title={Предл. XX. Теорема}, reference=prop:V.XX]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byred, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
-byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byred, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 }
 \problemNP{Е}{сли}{есть три величины и~другие три, которые, взятые попарно, будут иметь те же отношения, то если первая больше третьей, то и~четвертая будет больше шестой, если равны, то равны, а~если меньше, то меньше.}
 
@@ -10304,12 +10304,12 @@ $\therefore$ Если есть три величины… и~т. д.
 
 \startProposition[title={Предл. XXI. Теорема}, reference=prop:V.XXI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
-byMagnitudeSymbolDefine("wedgeUp", byred, 0)(II);
-byMagnitudeSymbolDefine("square", byblue, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
-byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.II("wedgeUp", byred, 0);
+byMagnitudeSymbolDefine.III("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 }
 \problemNP{Е}{сли}{есть три величины и~другие три, с~одинаковыми отношениями, если брать по две из каждого ряда, но в~противоположном порядке, тогда, если первая величина больше третьей, четвертая будет больше шестой, если равны, то равны, а~если меньше, то меньше.}
 
@@ -10365,20 +10365,20 @@ $\therefore$  Если есть три величины… и~т. д.
 
 \startProposition[title={Предл. XXII. Теорема}, reference=prop:V.XXII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byblue, 1)(V);
-byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(Ia);
-byMagnitudeSymbolDefine("rhombus", byblack, 0)(IIa);
-byMagnitudeSymbolDefine("square", byyellow, 0)(IIIa);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(IVa);
-byMagnitudeSymbolDefine("sectorUp", byblue, 1)(Va);
-byMagnitudeSymbolDefine("circle", byblack, 0)(VIa);
-byMagnitudeSymbolDefine("halfsquare", byyellow, 0)(VIIa);
-byMagnitudeSymbolDefine("halfrhombusUp", byred, 0)(VIIIa);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byred, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byblue, 1);
+byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
+byMagnitudeSymbolDefine.Ia("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.IIa("rhombus", byblack, 0);
+byMagnitudeSymbolDefine.IIIa("square", byyellow, 0);
+byMagnitudeSymbolDefine.IVa("rhombus", byred, 0);
+byMagnitudeSymbolDefine.Va("sectorUp", byblue, 1);
+byMagnitudeSymbolDefine.VIa("circle", byblack, 0);
+byMagnitudeSymbolDefine.VIIa("halfsquare", byyellow, 0);
+byMagnitudeSymbolDefine.VIIIa("halfrhombusUp", byred, 0);
 }
 \problemNP{Е}{сли}{есть любое количество величин и~столько же других величин, которые взятые по две из каждого ряда по порядку имеют равные отношения, то первые, первая будут иметь к~последней среди первых величин такое же отношение, как первая к~последней среди вторых.\\
 Это обычно обозначается словами \quotation{по равенству}.}
@@ -10436,14 +10436,14 @@ $\therefore$ Если есть любое количество величин…
 
 \startProposition[title={Предл. XXIII. Теорема}, reference=prop:V.XXIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblue, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byblue, 1)(V);
-byMagnitudeSymbolDefine("circle", byred, 0)(VI);
-byMagnitudeSymbolDefine("halfsquare", byblack, 0)(VII);
-byMagnitudeSymbolDefine("halfrhombusUp", byblack, 0)(VIII);
+byMagnitudeSymbolDefine.I("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblue, 1);
+byMagnitudeSymbolDefine.III("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byblue, 1);
+byMagnitudeSymbolDefine.VI("circle", byred, 0);
+byMagnitudeSymbolDefine.VII("halfsquare", byblack, 0);
+byMagnitudeSymbolDefine.VIII("halfrhombusUp", byblack, 0);
 }
 \problemNP{Е}{сли}{есть любое число величин и~столько же других, которые взятые по две в~противоположном порядке имеют равные отношения, первая к~последней из первого ряда будет иметь то же отношение, что и~первая к~последней из второго.\\
 Это обычно обозначается словами \quotation{по равенству в~перемешанной пропорции}.}
@@ -10506,12 +10506,12 @@ $\therefore$ Если есть любое количество величин…
 
 \startProposition[title={Предл. XXIV. Теорема}, reference=prop:V.XXIV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byblue, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
-byMagnitudeSymbolDefine("circle", byblue, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.VI("circle", byblue, 0);
 }
 \problemNP{Е}{сли}{первая величина ко второй имеет такое же отношение, как третья к~четвертой, а~пятая ко второй, такое же как шестая к~четвертой, то первая и~пятая вместе ко второй будут иметь такое же отношение, как третья с~шестой вместе к~четвертой.}
 
@@ -10552,10 +10552,10 @@ $\therefore$ Если первая величина ко второй… и~т. 
 
 \startProposition[title={Предл. XXV. Теорема}, reference=prop:V.XXV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(Ia);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(III);
-byMagnitudeSymbolDefine("square", byblue, 0)(IIa);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine.Ia("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.III("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.IIa("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
 \problemNP{Е}{сли}{четыре величины пропорциональны, то наибольшая и~наименьшая из них вместе больше других двух.}
 
@@ -12003,7 +12003,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(C, D, byyellow, 1, 0);
 draw byNamedLineSeq(-1)(AB,BC,CD,AD);
-draw byArc(O, C, A, r, byred, 0, 0, 0, 0)(O);
+draw byArc.O(O, C, A, r, byred, 0, 0, 0, 0);
 draw byLabelsOnPolygon(C, B, A, noPoint)(0, 0);
 draw byLabelsOnCircle(D)(O);
 }
@@ -12892,7 +12892,7 @@ byLineDefine(A, K, byblue, 0, 0);
 byLineDefine(K, E, byblue, 1, 0);
 byLineDefine(E, B, byblack, 1, 0);
 draw byNamedLineSeq(0)(GD,AG,AK,KE,EB);
-draw byArbitraryFigure(A..H..C, byblack, 0, 0)(AHC);
+draw byArbitraryFigure.AHC(A..H..C, byblack, 0, 0);
 byLineDefine.KAt(K, A, byblack, 0, 1);
 byLineStylize(H, G, 1, 0, 1)(KAt);
 byLineDefine.AGt(A, G, byblack, 0, 1);
@@ -13005,7 +13005,7 @@ draw byNamedLineSeq(0)(CF,DC,DE);
 draw byLine(A, E, byred, 1, 0);
 draw byLine(E, C, byblue, 0, 0);
 draw byLine(C, B, byblue, 1, 0);
-draw byArcBE(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0)(a);
+draw byArcBE.a(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0);
 d := (0, 2u);
 G := A shifted d;
 H := C shifted d;
@@ -13065,7 +13065,7 @@ draw byLineFull(E, A, byyellow, 1, 0)(E, A, 0, 0, -1);
 draw byLineFull(A, C, byblue, 0, 0)(A, C, 0, 0, -1);
 draw byLineFull(C, B, byblue, 1, 0)(C, B, 0, 0, -1);
 draw byLineFull(B, F, byyellow, 0, 0)(B, F, 0, 0, -1);
-draw byArcBE(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0)(a);
+draw byArcBE.a(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0);
 draw byLabelsOnCircle(D)(a);
 draw byLabelsOnPolygon(F, B, C, A, noPoint)(0, 0);
 draw byLabelLine(0)(G);
@@ -13334,11 +13334,11 @@ draw byLine(G, K, byblack, 0, 1);
 byLineDefine(G, B, byblack, 0, 1);
 byLineDefine(G, L, byblack, 0, 1);
 draw byNamedLineSeq(0)(GB,GL);
-draw byArc(G, L, B, r, byred, 0, 0, 0, 0)(LB);
-draw byArc(G, B, C, r, byblack, 0, 0, 0, 0)(BC);
-draw byArc(G, C, K, r, byred, 0, 0, 0, 0)(CK);
-draw byArc(G, K, L, r, byblue, 0, 0, 0, 0)(KL);
-byCircleDefineR(G, r, byred, 0, 0, 0)(G);
+draw byArc.LB(G, L, B, r, byred, 0, 0, 0, 0);
+draw byArc.BC(G, B, C, r, byblack, 0, 0, 0, 0);
+draw byArc.CK(G, C, K, r, byred, 0, 0, 0, 0);
+draw byArc.KL(G, K, L, r, byblue, 0, 0, 0, 0);
+byCircleDefineR.G(G, r, byred, 0, 0, 0);
 H := (0, -1/2u - 2r);
 D := (dir(aa)*r) shifted H;
 E := (dir(ba)*r) shifted H;
@@ -13357,11 +13357,11 @@ draw byLine(H, M, byblack, 0, 1);
 byLineDefine(H, E, byblack, 0, 1);
 byLineDefine(H, N, byblack, 0, 1);
 draw byNamedLineSeq(0)(HE,HN);
-draw byArc(H, N, E, r, byblue, 0, 0, 0, 0)(NE);
-draw byArc(H, E, F, r, byyellow, 1, 0, 0, 0)(EF);
-draw byArc(H, F, M, r, byred, 1, 0, 0, 0)(FM);
-draw byArc(H, M, N, r, byblue, 1, 0, 0, 0)(MN);
-byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byArc.NE(H, N, E, r, byblue, 0, 0, 0, 0);
+draw byArc.EF(H, E, F, r, byyellow, 1, 0, 0, 0);
+draw byArc.FM(H, F, M, r, byred, 1, 0, 0, 0);
+draw byArc.MN(H, M, N, r, byblue, 1, 0, 0, 0);
+byCircleDefineR.H(H, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C, K, L)(G);
 draw byLabelsOnCircle(E, F, M, N)(H);
 draw byLabelsOnPolygon(B, G, L)(2, 0);
@@ -13523,7 +13523,7 @@ draw byLine(C, A, byblack, 0, 0);
 draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, E, byyellow, 1, 0);
 draw byLine(C, E, byblue, 1, 0);
-draw byCircleABC(A, B, C, byyellow, 0, 0, 1/2)(O);
+draw byCircleABC.O(A, B, C, byyellow, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, E)(O);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 }
@@ -13580,7 +13580,7 @@ draw byLine(A, B, byblue, 1, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byyellow, 0, 0);
-draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byCircleABC.O(A, B, C, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, E)(O);
 draw byLabelsOnPolygon(C, D, B)(2, 0);
 }
@@ -13637,7 +13637,7 @@ draw byLine(A, B, byblack, 1, 0);
 draw byLine(B, C, byblue, 1, 0);
 draw byLine(C, D, byblack, 0, 0);
 draw byLine(D, A, byyellow, 0, 0);
-draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byCircleABC.O(A, B, C, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(O);
 draw byLabelsOnPolygon(D, E, B)(2, 0);
 }

@@ -93,13 +93,13 @@ byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(-1)(AB,BC,CA);
-byLineDefineWithName (C, A, byblack, 0, 0)(CAb);
+byLineDefine.CAb(C, A, byblack, 0, 0);
 byLineStylize (M, M, 1, 0, -1) (CAb);
-byLineDefineWithName (A, M, byblack, 0, 0)(AMb);
+byLineDefine.AMb(A, M, byblack, 0, 0);
 byLineStylize (C, C, 0, 1, -1) (AMb);
-byLineDefineWithName (B, C, byblack, 0, 0)(BCb);
+byLineDefine.BCb(B, C, byblack, 0, 0);
 byLineStylize (L, L, 0, 1, -1) (BCb);
-byLineDefineWithName (L, B, byblack, 0, 0)(BLb);
+byLineDefine.BLb(L, B, byblack, 0, 0);
 byLineStylize (C, C, 1, 0, -1) (BLb);
 draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
 draw byLabelsOnPolygon(A, J, C)(2, -1);
@@ -558,7 +558,7 @@ A figure is a surface enclosed on all sides by a line or lines.
 		draw byLine(O, C)(byred, 0, 0);
 		draw byLine(O, E)(byyellow, 0, 0);
 		draw byLine(D, A)(byblue, 0, 0);
-		draw byCircleR(O, r, byred, 0, 0, 0)(O);
+		draw byCircleR.O(O, r, byred, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XV]
 \startalignment[last]
@@ -580,7 +580,7 @@ This point (from which the equal lines are drawn) is called the centre of the ci
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byyellow, 0, 0);
-		draw byCircleR(O, r, byred, 0, 0, 0)(O);
+		draw byCircleR.O(O, r, byred, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XVII]
 \startalignment[last]
@@ -596,8 +596,8 @@ This point (from which the equal lines are drawn) is called the centre of the ci
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byblue, 0, 0);
-		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0)(O);
-		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0)(O);
+		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0);
+		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XVIII]
 \startalignment[last]
@@ -615,8 +615,8 @@ This point (from which the equal lines are drawn) is called the centre of the ci
 	A := point 1 of P;
 	B := point 3 of P;
 		draw byLine(A, B)(byred, 0, 0);
-		draw byArc(O, A, B)(r, byblue, 0, 0, 0, 0)(O);
-		draw byArc(O, B, A)(r, byblue, 1, 0, 0, 0)(O);
+		draw byArc(O, A, B)(r, byblue, 0, 0, 0, 0);
+		draw byArc(O, B, A)(r, byblue, 1, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XIX]
 \startalignment[last]
@@ -965,7 +965,7 @@ Geometry has for its principal objects the exposition and explanation of the pro
 	A := (0, s);
 	B := (1/2s, 0);
 	C := B xscaled -1;
-		draw byAngleWithName(B, A, C, byyellow, 0)(A);
+		draw byAngle.A(B, A, C, byyellow, 0);
 		byLineDefine(B, A, byblue, 0, 0);
 		byLineDefine(C, A, byred, 0, 0);
 		draw byNamedLineSeq(0)(CA,BA);
@@ -1184,8 +1184,8 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 		byLineDefine(B, C, byred, 0, 0);
 		byLineDefine(C, A, byyellow, 0, 0);
 		draw byNamedLineSeq(1)(AB,CA,BC);
-		draw byCircle(A, B, byblue, 0, 0, 1/2)(A);
-		draw byCircle(B, A, byred, 0, 0, 1/2)(B);
+		draw byCircle.A(A, B, byblue, 0, 0, 1/2);
+		draw byCircle.B(B, A, byred, 0, 0, 1/2);
 		draw byLabelsOnPolygon(A, C, B)(0, -1);
 }
 \drawCurrentPictureInMargin
@@ -1240,8 +1240,8 @@ byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(BE,BD,DA,AF);
 draw byNamedLineSeq(0)(AB,BC);
-draw byCircle(D, E, byred, 0, 0, 1/2)(A);
-draw byCircle(B, C, byblue, 0, 0, -1/2)(B);
+draw byCircle.A(D, E, byred, 0, 0, 1/2);
+draw byCircle.B(B, C, byblue, 0, 0, -1/2);
 draw byLabelsOnPolygon(E, D, A, F)(2, -1);
 draw byLabelsOnPolygon(E, B, C)(2, -1);
 draw byLabelsOnCircle(C)(B);
@@ -1311,7 +1311,7 @@ byLineDefine(B, C, byblack, 1, 0);
 byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
-draw byCircle(A, D, byblue, 0, 0, 0)(A);
+draw byCircle.A(A, D, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(B, A, D)(2, -1);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
@@ -1740,9 +1740,9 @@ draw byLine(A, D, byred, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,CA);
-draw byArc(A, B, C)(r, byred, 0, 0, 0, 0)(O);
-draw byArcBE(A, a2-1/4, a2, r, byred, 1, 0, 0, 0)(Ol);
-draw byArcBE(A, a1, a1+1/4, r, byred, 1, 0, 0, 0)(Or);
+draw byArc.O(A, B, C)(r, byred, 0, 0, 0, 0);
+draw byArcBE.Ol(A, a2-1/4, a2, r, byred, 1, 0, 0, 0);
+draw byArcBE.Or(A, a1, a1+1/4, r, byred, 1, 0, 0, 0);
 draw byLine(D, B, byblack, 0, 0);
 draw byLine(B, E, byblack, 1, 0);
 draw byLine(C, D, byyellow, 0, 0);
@@ -2168,7 +2168,7 @@ LIII := LI shifted (0, -d);
 LIV := LIII shifted (-r2, 0);
 LV := LIII shifted (0, -d);
 LVI := LV shifted (-r1, 0);
-draw byCircle(A, D, byblue, 0, 0, 0)(A);
+draw byCircle.A(A, D, byblue, 0, 0, 0);
 byLineDefine(A, D, byblue, 0, 0);
 byLineDefine(B, E, byred, 0, 0);
 byLineDefine(A, B, byblack, 0, 0);
@@ -2176,10 +2176,10 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, A, byyellow, 1, 0);
 draw byNamedLineSeq(0)(BC,CA);
 draw byNamedLineSeq(0)(AD,AB,BE);
-draw byLineWithName(LI, LII, byblack, 1, 0)(L');
-draw byLineWithName(LIII, LIV, byred, 1, 0)(L'');
-draw byLineWithName(LV, LVI, byblue, 1, 0)(L''');
-draw byCircle(B, E, byred, 0, 0, 0)(B);
+draw byLine.L'(LI, LII, byblack, 1, 0);
+draw byLine.L''(LIII, LIV, byred, 1, 0);
+draw byLine.L'''(LV, LVI, byblue, 1, 0);
+draw byCircle.B(B, E, byred, 0, 0, 0);
 draw byLabelsOnPolygon(D, A, C)(2, 0);
 draw byLabelsOnPolygon(E, B, A)(2, 0);
 draw byLabelsOnPolygon(A, C, B)(2, 0);
@@ -3589,13 +3589,13 @@ byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(-1)(AB,BC,CA);
-byLineDefineWithName (C, A, byblack, 0, 0)(CAb);
+byLineDefine.CAb(C, A, byblack, 0, 0);
 byLineStylize (M, M, 1, 0, -1) (CAb);
-byLineDefineWithName (A, M, byblack, 0, 0)(AMb);
+byLineDefine.AMb(A, M, byblack, 0, 0);
 byLineStylize (C, C, 0, 1, -1) (AMb);
-byLineDefineWithName (B, C, byblack, 0, 0)(BCb);
+byLineDefine.BCb(B, C, byblack, 0, 0);
 byLineStylize (L, L, 0, 1, -1) (BCb);
-byLineDefineWithName (L, B, byblack, 0, 0)(BLb);
+byLineDefine.BLb(L, B, byblack, 0, 0);
 byLineStylize (C, C, 1, 0, -1) (BLb);
 draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
 draw byLabelsOnPolygon(A, J, C)(2, -1);
@@ -3778,7 +3778,7 @@ draw byPolygon(L,H,C,E)(byred);
 draw byLine(K, D, byblack, 1, 0);
 draw byLine(L, E, byblack, 1, 0);
 byLineDefine(G, B, byblack, 0, 0);
-draw byLineWithName(M, N, byblack, 0, 0)(A); % improvement: the line wasn't there, but it should've been
+draw byLine.A(M, N, byblack, 0, 0); % improvement: the line wasn't there, but it should've been
 byLineDefine(H, C, byblack, 1, 0);
 byLineDefine(G, K, byblue, 0, 0);
 byLineDefine(K, L, byred, 0, 0);
@@ -4615,7 +4615,7 @@ byLineDefine(F, E, byblack, 1, 0);
 byLineDefine(E, G, byblue, 1, 0);
 byLineDefine(G, B, byblack, 0, 0);
 draw byNamedLineSeq(-1)(FE,EG,GB,HB,HF);
-draw byArc(G, B, F, r, byred, 0, 0, 0, 0)(G);
+draw byArc.G(G, B, F, r, byred, 0, 0, 0, 0);
 byLineDefine(B, F, byblack, 0, 0);
 draw byLabelsOnPolygon(B, C, D, E, F, H)(0, 0);
 draw byLabelsOnPolygon(H, G, B)(2, 0);
@@ -4672,7 +4672,7 @@ Equal circles are those whose diameters are equal.
 	O := (0, 0);
 	A := (-r, -r);
 	B := (r, -r);
-	draw byCircleR(O, r, byblack, 0, 0, -1)(O);
+	draw byCircleR.O(O, r, byblack, 0, 0, -1);
 	draw byLine(A, B, byblack, 0, 0);
 }\drawCurrentPictureInMargin
 A right line is said to touch a circle when it meets the circle, and being produced does not cut it.
@@ -4689,11 +4689,11 @@ A right line is said to touch a circle when it meets the circle, and being produ
 	B := A shifted (dir(110) scaled (r1-r2));
 	C := A shifted (dir(-130) scaled (r1+r3));
 	fill (fullcircle scaled 2r1) shifted A withcolor byyellow;
-	draw byCircleR(A, r1, byyellow, 0, 0, 0)(A);
+	draw byCircleR.A(A, r1, byyellow, 0, 0, 0);
 	fill (fullcircle scaled 2r2) shifted B withcolor byred;
-	draw byCircleR(B, r2, byblack, 0, 0, -1/2)(B);
+	draw byCircleR.B(B, r2, byblack, 0, 0, -1/2);
 	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
-	draw byCircleR(C, r3, byblue, 0, 0, -1/2)(C);
+	draw byCircleR.C(C, r3, byblue, 0, 0, -1/2);
 }\drawCurrentPictureInMargin
 Circles are said to touch one another which meet, but do not cut one another.
 \stopDefinitionOnlyNumber
@@ -4715,7 +4715,7 @@ Circles are said to touch one another which meet, but do not cut one another.
 	byLineDefine(O, E, byred, 0, 0);
 	byLineDefine(O, F, byblue, 0, 0);
 	draw byNamedLineSeq(0)(OE,OF);
-	draw byCircleR(O, r, byblack, 0, 0, 0)(O);
+	draw byCircleR.O(O, r, byblack, 0, 0, 0);
 }\drawCurrentPictureInMargin
 Right lines are said to be equally distant from the centre of a circle when the perpendiculars drawn to them from the centre are equal.
 \stopDefinitionOnlyNumber
@@ -4733,8 +4733,8 @@ And the straight line on which the greater perpendicular falls is said to be far
 	r := 3/4u;
 	A := (0, 0);
 	B := (0, -1/8u);
-	draw byFilledCircleSegment(A, r, 1/2, 4 - 1/2, byred)(A);
-	draw byFilledCircleSegment(B, r, 4 - 1/2, 8 + 1/2, byblue)(B);
+	draw byFilledCircleSegment.A(A, r, 1/2, 4 - 1/2, byred);
+	draw byFilledCircleSegment.B(B, r, 4 - 1/2, 8 + 1/2, byblue);
 }\drawCurrentPictureInMargin
 A segment of a circle is the figure contained by a straight line and the part of the circumference it cuts off.
 \stopDefinitionOnlyNumber
@@ -4760,7 +4760,7 @@ An angle of a segment is that contained by a straight line and a circumference o
 	byAngleDefine(C, A, D, byblue, 0);
 	byAngleDefine(C, B, D, byyellow, 0);
 	draw byNamedAngleResized();
-	draw byArcBE(O, b, e, r, byblack, 0, 0, 0, 0)(O);
+	draw byArcBE.O(O, b, e, r, byblack, 0, 0, 0, 0);
 	draw byLine(C, A, byblack, 0, 0);
 	draw byLine(C, B, byblack, 0, 0);
 	draw byLine(D, A, byblack, 0, 0);
@@ -4783,8 +4783,8 @@ An angle in a segment is the angle contained by two straight lines drawn from an
 	C := point e of fullcircle scaled 2r;
 	byAngleDefine(C, A, B, byblue, 0);
 	draw byNamedAngleResized();
-	draw byArcBE(O, b, e, r, byblack, 1, 0, 0, 0)(Op);
-	draw byArcBE(O, e, b + 8, r, byblack, 0, 0, 0, 0)(Om);
+	draw byArcBE.Op(O, b, e, r, byblack, 1, 0, 0, 0);
+	draw byArcBE.Om(O, e, b + 8, r, byblack, 0, 0, 0, 0);
 	draw byLine(C, A, byblack, 0, 0);
 	draw byLine(B, A, byblack, 0, 0);
 }\drawCurrentPictureInMargin
@@ -4799,8 +4799,8 @@ An angle is said to stand on the part of the circumference, or the arch, interce
 	b := 1;
 	e := 3;
 	O := (0, 0);
-	draw byFilledCircleSector(O, r, b, e, byyellow)(O);
-	draw byArcBE(O, e, b + 8, r, byblack, 0, 0, -1, 0)(O);
+	draw byFilledCircleSector.O(O, r, b, e, byyellow);
+	draw byArcBE.O(O, e, b + 8, r, byblack, 0, 0, -1, 0);
 }\drawCurrentPictureInMargin
 A sector of a circle is the figure contained by two radii and the arch between them.
 \stopDefinitionOnlyNumber
@@ -4823,8 +4823,8 @@ A sector of a circle is the figure contained by two radii and the arch between t
 	F := (point e of fullcircle scaled 2r2) shifted N;
 	draw byPolygon(A,B,C)(byred);
 	draw byPolygon(D,E,F)(byred);
-	draw byArcBE(M, b, e, r1, byblack, 0, 0, 0, 1)(M);
-	draw byArcBE(N, b, e, r2, byblack, 0, 0, 0, 1)(N);
+	draw byArcBE.M(M, b, e, r1, byblack, 0, 0, 0, 1);
+	draw byArcBE.N(N, b, e, r2, byblack, 0, 0, 0, 1);
 }\drawCurrentPictureInMargin
 Similar segments of circles are those which contain equal angles.
 \stopDefinitionOnlyNumber
@@ -4837,10 +4837,10 @@ Similar segments of circles are those which contain equal angles.
 	r2 := 1/2u;
 	r3 := 3/4u;
 	O := (0, 0);
-	draw byFilledCircleSegment(O, r3, 0, 8, byred)(OI);
-	draw byFilledCircleSegment(O, r2, 0, 8, white)(OII);
-	draw byCircleR(O, r2, byblack, 0, 0, 0)(OII);
-	draw byFilledCircleSegment(O, r1, 0, 8, byblue)(OIII);
+	draw byFilledCircleSegment.OI(O, r3, 0, 8, byred);
+	draw byFilledCircleSegment.OII(O, r2, 0, 8, white);
+	draw byCircleR.OII(O, r2, byblack, 0, 0, 0);
+	draw byFilledCircleSegment.OIII(O, r1, 0, 8, byblue);
 }\drawCurrentPictureInMargin
 Circles which have the same centre are called \emph{concentric circles}.
 \stopDefinitionOnlyNumber
@@ -4878,7 +4878,7 @@ draw byMarkLine(1/2, byblack)(EC);
 byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(B, G, byblack, 1, 0);
 draw byNamedLineSeq(0)(AG,BG);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(A, G, B)(0, 0);
 draw byLabelsOnPolygon(E, D, A)(2, 0);
 draw byLabelsOnPolygon(E, F, C)(2, -4);
@@ -4917,7 +4917,7 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AD,BD);
-draw byCircleR(D, r, byred, 0, 0, 0)(D);
+draw byCircleR.D(D, r, byred, 0, 0, 0);
 draw byLabelsOnPolygon(B, F, A, D)(0, 0);
 draw byLabelsOnPolygon(A, E, F)(2, 0);
 }
@@ -4969,7 +4969,7 @@ draw byLine(F, B, byred, 1, 0);
 byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(D, F, A)(2, -2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
@@ -5017,7 +5017,7 @@ draw byNamedAngleResized();
 draw byLine(E, F, byblack, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, byblack, 0, 0);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(F);
 draw byLabelLineEnd(F, E, 0);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
@@ -5064,10 +5064,10 @@ byLineDefine(C, E, byyellow, 0, 0);
 byLineDefine(E, F, byblack, 0, 0);
 byLineDefine(F, G, byblack, 1, 0);
 draw byNamedLineSeq(0)(CE,EF,FG);
-draw byArcBE(M, 4, 0, r1, byred, 0, 0, 0, 0)(Ma);
-draw byArcBE(N, 4, 0, r2, byblue, 0, 0, 0, 0)(Na);
-draw byArcBE(N, 4, 8, r2, byblue, 0, 0, 0, 0)(Nb);
-draw byArcBE(M, 4, 8, r1, byred, 0, 0, 0, 0)(Mb);
+draw byArcBE.Ma(M, 4, 0, r1, byred, 0, 0, 0, 0);
+draw byArcBE.Na(N, 4, 0, r2, byblue, 0, 0, 0, 0);
+draw byArcBE.Nb(N, 4, 8, r2, byblue, 0, 0, 0, 0);
+draw byArcBE.Mb(M, 4, 8, r1, byred, 0, 0, 0, 0);
 draw byLabelLineEnd(C, E, 0);
 draw byLabelLineEnd(G, E, 0);
 draw byLabelsOnPolygon(C, E, F)(2, 0);
@@ -5111,8 +5111,8 @@ byLineDefine(C, F, byyellow, 0, 0);
 byLineDefine(F, E, byblue, 1, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(CF,FE,EB);
-draw byCircle(M, C, byred, 0, 0, 0)(M);
-draw byCircle(N, C, byblack, 0, 0, -1)(N);
+draw byCircle.M(M, C, byred, 0, 0, 0);
+draw byCircle.N(N, C, byblack, 0, 0, -1);
 draw byLabelsOnCircle(B, C)(M);
 draw byLabelsOnPolygon(E, F, C)(2, 0);
 draw byLabelPoint(E, angle(B-F)+45, 2);
@@ -5159,7 +5159,7 @@ draw byLine(E, B, byred, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 label.top(\sometxt{Fig. 1}, (0, r));
@@ -5177,7 +5177,7 @@ draw byLine(M, K, byblue, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, N, byblack, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(G, K, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
@@ -5246,7 +5246,7 @@ draw byLine(M, F, byblue, 1, 0);
 byLineDefine(D, M, byblack, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
 draw byNamedLineSeq(0)(DM,DF);
-draw byCircle(M, E, byblack, 0, 0, 0)(M);
+draw byCircle.M(M, E, byblack, 0, 0, 0);
 draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(2, 0);
 }
@@ -5289,7 +5289,7 @@ draw byLine(K, M, byred, 0, 0);
 byLineDefine(D, G, byblack, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(DG,DH);
-draw byCircle(M, G, byblack, 0, 0, 0)(M);
+draw byCircle.M(M, G, byblack, 0, 0, 0);
 draw byLabelsOnPolygon(K, H, M)(2, -2);
 draw byLabelsOnPolygon(G, K, M)(2, -2);
 draw byLabelsOnPolygon(D, G, K)(2, -2);
@@ -5335,7 +5335,7 @@ byLineDefine(N, M, byyellow, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 byLineDefine(D, O, byred, 1, 0);
 draw byNamedLineSeq(0)(DH,DO,NM);
-draw byCircle(M, H, byblack, 0, 0, 0)(M);
+draw byCircle.M(M, H, byblack, 0, 0, 0);
 draw byLabelsOnPolygon(H, D, O, N)(2, 0);
 draw byLabelsOnPolygon(N, M, H)(2, 0);
 draw byLabelsOnPolygon(G, H, M)(2, -2);
@@ -5384,7 +5384,7 @@ draw byLine(D, C, byblue, 0, 0);
 draw byLine(D, F, byblack, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
-draw byCircle(D, A, byblue, 0, 0, 0)(D);
+draw byCircle.D(D, A, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
@@ -5433,16 +5433,16 @@ crd2 := crd2 .. (point -2 of crd1) .. cycle;
 draw byLine(P, B, byyellow, 0, 0);
 draw byLine(P, G, byblack, 0, 0);
 draw byLine(P, H, byblue, 0, 0);
-draw byArbitraryFigure(cr1, byred, 0, 0)(fI);
-draw byArbitraryFigure(cr2, byblue, 0, 0)(fII);
+draw byArbitraryFigure.fI(cr1, byred, 0, 0);
+draw byArbitraryFigure.fII(cr2, byblue, 0, 0);
 draw byLine(Pdd, Gd, byblack, 0, 0);
 byLineDefine(Pdd, Bd, byyellow, 0, 0);
 byLineDefine(Pdd, Hd, byblue, 0, 0);
 draw byNamedLineSeq(0)(PddBd,PddHd);
-draw byArbitraryFigure(crd1, byred, 0, 0)(fdI);
-draw byArbitraryFigure(crd2, byblue, 0, 0)(fdII);
-byCircleDefineR(P, r, byred, 0, 0, 0)(PI);
-byCircleDefineR(P, r, byblue, 0, 0, 0)(PII);
+draw byArbitraryFigure.fdI(crd1, byred, 0, 0);
+draw byArbitraryFigure.fdII(crd2, byblue, 0, 0);
+byCircleDefineR.PI(P, r, byred, 0, 0, 0);
+byCircleDefineR.PII(P, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(G, B, H)(PI);
 draw byLabelsOnPolygon(G, P, H)(2, 0);
 byPointLabelDefine(Gd, "G");
@@ -5493,8 +5493,8 @@ draw byLine(G, F, byblack, 0, 0);
 draw byLine(F, K, byblue, 0, 0);
 byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
-draw byCircle(M, A, byblack, 0, 0, 0)(M);
-draw byCircle(N, A, byblue, 0, 0, -1)(N);
+draw byCircle.M(M, A, byblack, 0, 0, 0);
+draw byCircle.N(N, A, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
 draw byLabelsOnPolygon(A, D, N)(2, -1); 
 draw byLabelsOnCircle(A, H)(M);
@@ -5547,8 +5547,8 @@ byLineDefine(D, G, byblue, 0, 0);
 byLineDefine(A, F, byyellow, 1, 0);
 byLineDefine(A, G, byyellow, 0, 0);
 draw byNamedLineSeq(0)(FC,CD,DG,AG,AF);
-draw byCircle(M, A, byblue, 0, 0, -1/2)(M);
-draw byCircle(N, A, byred, 0, 0, -1/2)(N);
+draw byCircle.M(M, A, byblue, 0, 0, -1/2);
+draw byCircle.N(N, A, byred, 0, 0, -1/2);
 byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
 draw byLabelsOnPolygon(C, F, A)(2, 0);
@@ -5601,10 +5601,10 @@ byLineDefine(D, H, byred, 0, 0);
 byLineDefine(B, G, byblue, 1, 0);
 byLineDefine(G, H, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,GH,DH);
-draw byCircleR(M, r1, byyellow, 0, 0, 1)(M);
-draw byArbitraryFigure(cr2, byblue, 0, 0)(fI);
-byCircleDefineR(M, r1, byyellow, 0, 0, 0)(M);
-byCircleDefineR(N, r2, byblue, 0, 0, 0)(N);
+draw byCircleR.M(M, r1, byyellow, 0, 0, 1);
+draw byArbitraryFigure.fI(cr2, byblue, 0, 0);
+byCircleDefineR.M(M, r1, byyellow, 0, 0, 0);
+byCircleDefineR.N(N, r2, byblue, 0, 0, 0);
 byPointLabelDefine(M, "H");
 byPointLabelDefine(N, "G");
 draw byLabelsOnCircle(D, B)(M);
@@ -5647,10 +5647,10 @@ C := point t4 of cr3;
 draw byLine(A, C, byred, 0, 0);
 draw byMarkLine(3/7, byblack)(AC);
 draw byMarkLine(4/7, byblack)(AC);
-draw byArcBE(P, t3, t4, r1, byblue, 0, 0, 0, 0)(PI);
-draw byArcBE(P, t4, t3 + 8, r1, byblack, 0, 0, 0, 0)(PII);
-draw byArcBE(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0)(QI);
-draw byArcBE(Q, t5, t6, r1, byblack, 0, 0, 0, 0)(QII);
+draw byArcBE.PI(P, t3, t4, r1, byblue, 0, 0, 0, 0);
+draw byArcBE.PII(P, t4, t3 + 8, r1, byblack, 0, 0, 0, 0);
+draw byArcBE.QI(Q, t5, t6 + 8, r1, byblue, 0, 0, 0, 0);
+draw byArcBE.QII(Q, t5, t6, r1, byblack, 0, 0, 0, 0);
 }
 \startsubproposition[title={Figure II.}]\drawCurrentPictureInMargin
 But if the points of contact be the extremities of the right line joining the centres, this straight line must be bisected in two different points for the two centres; because it is the diameter of both circles, which is absurd.
@@ -5677,10 +5677,10 @@ byLineDefine(A, G, byred, 1, 0);
 byLineDefine(C, H, byblue, 1, 0);
 byLineDefine(C, G, byblack, 0, 0);
 draw byNamedLineSeq(0)(HA,AG,CG,CH);
-draw byArbitraryFigure(cr5, byyellow, 0, 0)(fII);
-draw byArbitraryFigure(cr6, byblue, 0, 0)(fIII);
-byCircleDefineR(H, r1, byyellow, 0, 0, 0)(H);
-byCircleDefineR(G, r2, byblue, 0, 0, 0)(G);
+draw byArbitraryFigure.fII(cr5, byyellow, 0, 0);
+draw byArbitraryFigure.fIII(cr6, byblue, 0, 0);
+byCircleDefineR.H(H, r1, byyellow, 0, 0, 0);
+byCircleDefineR.G(G, r2, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(H, G, C)(0, 0);
 draw byLabelPoint(A, angle(G-A)+45, 3);
 }
@@ -5726,7 +5726,7 @@ draw byLine(A, F, byred, 0, 0);
 draw byLine(F, B, byred, 1, 0);
 draw byLine(C, G, byyellow, 0, 0);
 draw byLine(G, D, byyellow, 1, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(F, E, G)(2, 0);
 draw byLabelLineEnd(G, E, 0);
@@ -5795,7 +5795,7 @@ draw byLine(D, E, byred, 0, 0);
 draw byLine(E, A, byblack, 0, 0);
 draw byLine(F, G, byred, 1, 0);
 draw byLine(M, N, byblue, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, M, N, F, G)(E);
 draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
@@ -5874,8 +5874,8 @@ draw byLine(F, G, byyellow, 0, 0);
 draw byLine(M, N, blue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byLine(D, A, byblack, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, B, C, F, G, M, N)(E);
 draw byLabelLineEnd(K, H, 0);
 draw byLabelLineEnd(H, K, 0);
@@ -5928,7 +5928,7 @@ draw byLine(G, F, byblack, 1, 0);
 draw byLine(B, D, byyellow, 1, 0);
 draw byLine(D, A, byblack, 0, 0);
 draw byLineFull(E, K, byyellow, 0, 0)(E, K, 0, 0, -1);
-draw byCircle(D, A, byblue, 0, 0, 0)(D);
+draw byCircle.D(D, A, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C)(D);
 draw byLabelsOnPolygon(E, A, K, noPoint)(0, -1);
 draw byLabelsOnPolygon(F, G, A)(2, 0);
@@ -6003,8 +6003,8 @@ byLineDefine(D, E, byred, 1, 0);
 byLineDefine(F, B, byblack, 0, 0);
 byLineDefine(B, E, byblack, 1, 0);
 draw byNamedLineSeq(0)(AD,DE,BE,FB);
-draw byCircleR(E, r1, byred, 0, 0, -1)(EI);
-draw byCircleR(E, r2, byyellow, 0, 0, 0)(EII);
+draw byCircleR.EI(E, r1, byred, 0, 0, -1);
+draw byCircleR.EII(E, r2, byyellow, 0, 0, 0);
 draw byLabelsOnCircle(A, F)(EII);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
 draw byLabelPoint(D, angle(A-E)+45, 2);
@@ -6044,7 +6044,7 @@ C := (r, 0);
 G := (r, 6/5r);
 D := 6/5[C, G];
 B := (dir(angle(G-F))*r) shifted F;
-draw byCircle(F, C, byyellow, 0, 0, 0)(F);
+draw byCircle.F(F, C, byyellow, 0, 0, 0);
 byAngleDefine(F, C, G, byred, 0);
 byAngleDefine(C, G, F, byyellow, 0);
 draw byNamedAngleResized();
@@ -6095,7 +6095,7 @@ draw byNamedAngleResized();
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(C, E, byblue, 0, 0);
 draw byLine(C, F, byred, 1, 0);
-draw byCircleR(G, r, byred, 0, 0, 0)(G);
+draw byCircleR.G(G, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, C)(G);
 draw byLabelLineEnd(F, C, 0);
 draw byLabelLineEnd(E, C, 0);
@@ -6136,7 +6136,7 @@ draw byLine(A, C, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 0);
 draw byLine(E, F, byred, 1, 0);
 draw byLine(E, A, byred, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, C)(E);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
 }
@@ -6174,7 +6174,7 @@ draw byLine(E, C, byblack, 0, 1);
 draw byLine(A, B, byblack, 0, 1);
 draw byLine(E, B, byblack, 0, 1);
 draw byLine(A, F, byblack, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, B, C)(E);
 draw byLabelsOnPolygon(B, E, A)(2, 0);
 }
@@ -6214,7 +6214,7 @@ draw byLine(D, F, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 1);
 draw byLine(E, F, byblack, 0, 1);
 draw byLine(D, G, byred, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(D, G, C, F)(E);
 draw byLabelsOnPolygon(G, E, D)(2, 0);
 }
@@ -6258,7 +6258,7 @@ draw byLine(B, A, byblack, 0, 1);
 draw byLine(B, E, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(D, E, byblack, 0, 1);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A)(F);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }
@@ -6290,8 +6290,8 @@ byAngleDefine(G, A, D, byred, 0);
 byAngleDefine(B, E, G, byblue, 0);
 byAngleDefine(G, E, D, byblack, 0);
 draw byNamedAngleResized();
-draw byFilledCircleSegment(F, r, xpart(cr intersectiontimes (F -- 2[F, B])), xpart(cr intersectiontimes (F -- 2[F, G])), byblue)(BG);
-draw byFilledCircleSegment(F, r, xpart(cr intersectiontimes (F -- 2[F, G])), 8 + xpart(cr intersectiontimes (F -- 2[F, D])), byyellow)(GD);
+draw byFilledCircleSegment.BG(F, r, xpart(cr intersectiontimes (F -- 2[F, B])), xpart(cr intersectiontimes (F -- 2[F, G])), byblue);
+draw byFilledCircleSegment.GD(F, r, xpart(cr intersectiontimes (F -- 2[F, G])), 8 + xpart(cr intersectiontimes (F -- 2[F, D])), byyellow);
 draw byLine(G, A, byblue, 0, 0);
 draw byLine(G, E, byred, 0, 0);
 draw byLine(B, D, byblack, 1, 0);
@@ -6299,7 +6299,7 @@ draw byLine(B, A, byblack, 0, 1);
 draw byLine(B, E, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(D, E, byblack, 0, 1);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
 \drawCurrentPictureInMargin
@@ -6341,7 +6341,7 @@ draw byLine(C, D, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(B, D, byblack, 0, 0);
-draw byCircleR(E, r, byred, 0, 0, 1/2)(E);
+draw byCircleR.E(E, r, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -6389,8 +6389,8 @@ draw byLineFull(A, D, byred, 0, 0)(B, D, 1, 0, 0);
 draw byLineFull(B, C, byblue, 0, 0)(A, C, 1, 0, 0);
 draw byLineFull(B, D, byyellow, 0, 0)(A, D, 1, 0, 0);
 draw byLineFull(A, B, byblack, 0, 0)(A, B, 0, 0, 1);
-draw byArc(M, A, B, r1, byred, 0, 0, 0, 1)(M);
-draw byArc(N, A, B, r2, byblue, 0, 0, 0, 1)(N);
+draw byArc.M(M, A, B, r1, byred, 0, 0, 0, 1);
+draw byArc.N(N, A, B, r2, byblue, 0, 0, 0, 1);
 draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 draw byLabelPoint(C, (angle(C-M)-90+angle(D-A))/2, 1);
@@ -6446,12 +6446,12 @@ A := point length(cr1) of cr1;
 B := point 0 of cr1;
 C := point length(cr2) of cr2;
 D := point 0 of cr2;
-draw byFilledCircleSegment (M, r, t1, t2, byred)(M);
+draw byFilledCircleSegment.M(M, r, t1, t2, byred);
 draw byLineFull(A, B, byblack, 0, 0)(A, B, 0, 0, -1);
-draw byArc(M, B, A, r, byblue, 0, 0, 1/2, 1)(M);
-draw byFilledCircleSegment (N, r, t1, t2, byyellow)(N);
+draw byArc.M(M, B, A, r, byblue, 0, 0, 1/2, 1);
+draw byFilledCircleSegment.N(N, r, t1, t2, byyellow);
 draw byLineFull(C, D, byblue, 0, 0)(C, D, 0, 0, -1);
-draw byArc(N, D, C, r, byred, 0, 0, 1/2, 1)(N);
+draw byArc.N(N, D, C, r, byred, 0, 0, 1/2, 1);
 draw byLabelsOnPolygon(B, A, noPoint)(0, 0);
 draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
 }
@@ -6511,7 +6511,7 @@ byLineDefine(E, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(DF,EF);
 draw byLine(A, B, byblack, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
-draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0)(O);
+draw byArcBE.O(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0);
 draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelLineEnd(D, F, 0);
 draw byLabelLineEnd(E, F, 0);
@@ -6555,29 +6555,29 @@ F := point t2 of cr2;
 byAngleDefine(B, A, C, byred, 0);
 byAngleDefine(B, G, C, byyellow, 0);
 draw byNamedAngleResized(BAC, BGC);
-draw byFilledCircleSegment (G, r, t1, t2, byyellow)(G);
+draw byFilledCircleSegment.G(G, r, t1, t2, byyellow);
 draw byLine(B, C, byblack, 0, 0);
 draw byLine(A, B, byblack, 0, 1);
 draw byLine(A, C, byblack, 0, 1);
 byLineDefine(B, G, byblue, 0, 0);
 byLineDefine(C, G, byred, 0, 0);
 draw byNamedLineSeq(0)(BG,CG);
-draw byArc(G, C, B, r, byblue, 0, 0, 0, 0)(G);
-draw byArc(G, B, C, r, byblack, 0, 0, 0, 0)(Gb);
-byCircleDefineR(G, r, byblue, 0, 0, 0)(G);
+draw byArc.G(G, C, B, r, byblue, 0, 0, 0, 0);
+draw byArc.Gb(G, B, C, r, byblack, 0, 0, 0, 0);
+byCircleDefineR.G(G, r, byblue, 0, 0, 0);
 byAngleDefine(E, D, F, byblue, 0);
 byAngleDefine(E, H, F, byblack, 0);
 draw byNamedAngleResized(EDF, EHF);
-draw byFilledCircleSegment (H, r, t1, t2, byyellow)(H);
+draw byFilledCircleSegment.H(H, r, t1, t2, byyellow);
 draw byLine(E, F, byblack, 1, 0);
 draw byLine(D, E, byblack, 0, 1);
 draw byLine(D, F, byblack, 0, 1);
 byLineDefine(E, H, byblue, 1, 0);
 byLineDefine(F, H, byred, 1, 0);
 draw byNamedLineSeq(0)(EH,FH);
-draw byArc(H, F, E, r, byred, 0, 0, 0, 0)(H);
-draw byArc(H, E, F, r, byblack, 0, 0, 0, 0)(Hb);
-byCircleDefineR(H, r, byred, 0, 0, 0)(H);
+draw byArc.H(H, F, E, r, byred, 0, 0, 0, 0);
+draw byArc.Hb(H, E, F, r, byblack, 0, 0, 0, 0);
+byCircleDefineR.H(H, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(G);
 draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
@@ -6673,10 +6673,10 @@ byLineDefine(G, B, byblack, 0, 1);
 byLineDefine(G, C, byblack, 0, 1);
 draw byNamedLineSeq(0)(GB,GC);
 draw byLine(G, K, byblack, 0, 1);
-draw byArc(G, C, B, r, byred, 0, 0, 0, 0)(G);
-draw byArc(G, B, K, r, byblack, 0, 0, 0, 0)(GbI);
-draw byArc(G, K, C, r, byred, 1, 0, 0, 0)(GbII);
-byCircleDefineR(G, r, byred, 0, 0, 0)(G);
+draw byArc.G(G, C, B, r, byred, 0, 0, 0, 0);
+draw byArc.GbI(G, B, K, r, byblack, 0, 0, 0, 0);
+draw byArc.GbII(G, K, C, r, byred, 1, 0, 0, 0);
+byCircleDefineR.G(G, r, byred, 0, 0, 0);
 byAngleDefine(E, D, F, byred, 0);
 byAngleDefine(E, H, F, byred, 0);
 draw byNamedAngleResized(EDF, EHF);
@@ -6685,9 +6685,9 @@ draw byLine(D, E, byblack, 0, 1);
 byLineDefine(H, E, byblack, 0, 1);
 byLineDefine(H, F, byblack, 0, 1);
 draw byNamedLineSeq(0)(HE,HF);
-draw byArc(H, F, E, r, byblue, 0, 0, 0, 0)(H);
-draw byArc(H, E, F, r, byblack, 1, 0, 0, 0)(Hb);
-byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byArc.H(H, F, E, r, byblue, 0, 0, 0, 0);
+draw byArc.Hb(H, E, F, r, byblack, 1, 0, 0, 0);
+byCircleDefineR.H(H, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, K)(G);
 draw byLabelsOnCircle(D, E, F)(H);
 draw byLabelsOnPolygon(B, G, C)(2, 0);
@@ -6737,18 +6737,18 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, K, byblack, 0, 0);
 byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
-draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
-draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
-byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
+draw byArc.K(K, B, A, r, byyellow, 0, 0, 0, 0);
+draw byArc.Kb(K, A, B, r, byblue, 0, 0, 0, 0);
+byCircleDefineR.K(K, r, byyellow, 0, 0, 0);
 byAngleDefine(D, L, E, byyellow, 0);
 draw byNamedAngleResized(DLE);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, byblack, 1, 0);
 byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
-draw byArc(L, E, D, r, byblack, 0, 0, 0, 0)(L);
-draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
-byCircleDefineR(L, r, byblack, 0, 0, 0)(L);
+draw byArc.L(L, E, D, r, byblack, 0, 0, 0, 0);
+draw byArc.Lb(L, D, E, r, byred, 0, 0, 0, 0);
+byCircleDefineR.L(L, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(K);
 draw byLabelsOnCircle(D, E)(L);
 draw byLabelsOnPolygon(A, K, B)(2, 0);
@@ -6798,18 +6798,18 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, K, byblack, 0, 0);
 byLineDefine(B, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(AK,BK);
-draw byArc(K, B, A, r, byyellow, 0, 0, 0, 0)(K);
-draw byArc(K, A, B, r, byblue, 0, 0, 0, 0)(Kb);
-byCircleDefineR(K, r, byyellow, 0, 0, 0)(K);
+draw byArc.K(K, B, A, r, byyellow, 0, 0, 0, 0);
+draw byArc.Kb(K, A, B, r, byblue, 0, 0, 0, 0);
+byCircleDefineR.K(K, r, byyellow, 0, 0, 0);
 byAngleDefine(D, L, E, byyellow, 0);
 draw byNamedAngleResized(DLE);
 draw byLine(D, E, byred, 1, 0);
 byLineDefine(D, L, byblack, 1, 0);
 byLineDefine(E, L, byblue, 1, 0);
 draw byNamedLineSeq(0)(DL,EL);
-draw byArc(L, E, D, r, byblack, 0, 0, 0, 0)(L);
-draw byArc(L, D, E, r, byred, 0, 0, 0, 0)(Lb);
-byCircleDefineR(L, r, byblack, 0, 0, 0)(L);
+draw byArc.L(L, E, D, r, byblack, 0, 0, 0, 0);
+draw byArc.Lb(L, D, E, r, byred, 0, 0, 0, 0);
+byCircleDefineR.L(L, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(K);
 draw byLabelsOnCircle(D, E)(L);
 draw byLabelsOnPolygon(A, K, B)(2, 0);
@@ -6859,8 +6859,8 @@ draw byLine(D, C, byyellow, 0, 0);
 draw byLine(D, B, byblue, 1, 0);
 draw byLine(A, C, byblack, 0, 0);
 draw byLine(C, B, byblack, 1, 0);
-draw byArc(E, B, D, r, byred, 1, 0, 0, 0)(Er);
-draw byArc(E, D, A, r, byred, 0, 0, 0, 0)(El);
+draw byArc.Er(E, B, D, r, byred, 1, 0, 0, 0);
+draw byArc.El(E, D, A, r, byred, 0, 0, 0, 0);
 draw byLabelsOnCircle(A, B, D)(Er);
 draw byLabelLineEnd(C, D, 0);
 }
@@ -6923,7 +6923,7 @@ draw byLine(A, B, byblack, 0, 1);
 draw byLine(A, C, byblack, 0, 1);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, C, byblack, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -6955,7 +6955,7 @@ draw byLine(A, B, byblack, 0, 1);
 draw byLine(B, D, byblack, 0, 1);
 draw byLine(A, C, byblue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -6984,7 +6984,7 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byLine(C, D, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
-draw byCircleR(E, r, byblue, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -7027,7 +7027,7 @@ draw byLine(C, B, byblack, 0, 1);
 draw byLine(D, B, byred, 0, 0);
 draw byLineFull(E, F, byblue, 0, 0)(E, F, 0, 0, 1);
 draw byLine(A, B, byblack, 0, 0);
-draw byCircleR(O, r, byred, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(O);
 draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 }
@@ -7074,7 +7074,7 @@ draw byLine(G, B, byyellow, 0, 0);
 draw byLine(A, G, byblue, 0, 0);
 draw byLine(G, E, byblue, 1, 0);
 draw byLineFull(K, D, byred, 0, 0)(K, D, 0, 0, 1);
-draw byCircle(G, B, byblue, 0, 0, 0)(G);
+draw byCircle.G(G, B, byblue, 0, 0, 0);
 byAngleDefine.givenRight(E, A, K, byblack, 1);
 byAngleDefine.givenObtuse(B, A, K, byblack, 1);
 byAngleDefine.givenAcute(D, A, B, byblack, 1);
@@ -7120,14 +7120,14 @@ A := point 1 of cr;
 B := point -2 of cr;
 E := (r, -r) shifted O;
 F := (-r, -r) shifted O;
-draw byFilledCircleSegment(O, r, -2, 1, byyellow)(O);
+draw byFilledCircleSegment.O(O, r, -2, 1, byyellow);
 byAngleDefine.B(F, B, A, byblue, 0);
 byAngleDefine.givenAngle(F, B, A, byred, 0);
 setAttribute("angle","Standalone","givenAngle",2);
 draw byNamedAngleResized(B);
 draw byLine(A, B, byblack, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
-draw byCircleR(O, r, byblue, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A)(O);
 draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
 }
@@ -7168,7 +7168,7 @@ draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
 draw byLine(D, E, byblue, 0, 0);
 draw byLine(E, B, byblue, 1, 0);
-draw byCircleR(E, r, byyellow, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byyellow, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -7199,7 +7199,7 @@ draw byLine(H, D, byblue, 1, 0);
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, H, byred, 1, 0);
 draw byLine(H, C, byblack, 1, 0);
-draw byCircleR(E, r, byred, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(B, D, C, A)(E);
 draw byLabelsOnPolygon(D, H, C)(2, 0);
 draw byLabelsOnPolygon(B, E, A)(2, 0);
@@ -7235,7 +7235,7 @@ draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, D, byblue, 1, 0);
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
-draw byCircleR(F, r, byblue, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, K, L, A, C)(F);
 draw byLabelsOnPolygon(B, E, K)(2, 0);
 }
@@ -7273,7 +7273,7 @@ draw byLine(F, A, byblack, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
 draw byNamedLineSeq(0)(DB,DC);
-draw byCircleR(F, r, byblack, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(F);
 draw byLabelsOnPolygon(B, D, F, A)(2, 0);
 draw byLabelPoint(C, angle(C-F) - 45, 2);
@@ -7315,7 +7315,7 @@ draw byLine(E, B, byyellow, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, E, byblack, 0, 0);
 draw byNamedLineSeq(0)(DB,DE);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(B, D, E, A)(2, 0);
 draw byLabelPoint(C, angle(C-E) + 45, 2);
@@ -7362,7 +7362,7 @@ byLineDefine(E, F, byblue, 1, 0);
 byLineDefine(D, B, byred, 0, 0);
 byLineDefine(D, E, byblue, 0, 0);
 draw byNamedLineSeq(0)(BF,DB,DE,EF);
-draw byCircleR(F, r, byblack, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, E)(F);
 draw byLabelsOnPolygon(E, F, B)(2, 0);
 draw byLabelsOnPolygon(B, D, E)(2, 0);
@@ -7442,7 +7442,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(1)(DA,CD,BC,AB);
-draw byCircleR(O, r, byblack, 0, 0, 1)(O);
+draw byCircleR.O(O, r, byblack, 0, 0, 1);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
 A rectilinear figure is said to be \emph{inscribed in} a circle, when the vertex of each angle of the figure is in the circumference of the circle.
@@ -7458,8 +7458,8 @@ C := (-r, -r);
 D := (r, -r);
 O := (0, 0);
 draw byPolygon(A,B,C,D)(byred);
-draw byArbitraryFigure(A--B--C--D--cycle, byred, 0, 0)(ABCDo);
-draw byFilledCircleSector(O, r, 0, 8, white)(O);
+draw byArbitraryFigure.ABCDo(A--B--C--D--cycle, byred, 0, 0);
+draw byFilledCircleSector.O(O, r, 0, 8, white);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.IV]
 A rectilinear figure is said to be \emph{circumscribed about} a circle, when each of its sides is a tangent to the circle.
@@ -7481,8 +7481,8 @@ F := dir(300)*r1;
 r2 := abs(1/2[A, B]);
 O := (0, 0);
 draw byPolygon(A,B,C,D,E,F)(byblue);
-draw byArbitraryFigure(A--B--C--D--E--F--cycle, byblue, 0, 0)(ABCDEFo);
-draw byFilledCircleSector(O, r2, 0, 8, white)(O);
+draw byArbitraryFigure.ABCDEFo(A--B--C--D--E--F--cycle, byblue, 0, 0);
+draw byFilledCircleSector.O(O, r2, 0, 8, white);
 }\drawCurrentPictureInMargin[inside]
 A circle is said to be \emph{inscribed in} a rectilinear figure, when each side of the figure is a tangent to the circle.
 \stopDefinitionOnlyNumber
@@ -7508,7 +7508,7 @@ byLineDefine(A, B, byblack, 0, 0);
 byLineDefine(B, C, byblack, 0, 0);
 byLineDefine(C, A, byblack, 0, 0);
 draw byNamedLineSeq(-1)(AB,BC,CA);
-draw byCircleR(I, r, byblack, 0, 0, -1)(I);
+draw byCircleR.I(I, r, byblack, 0, 0, -1);
 }\drawCurrentPictureInMargin[inside]
 A circle is said to be \emph{circumscribed about} a rectilinear figure, when the circumference passes through the vertex of each angle of the figure.
 
@@ -7524,7 +7524,7 @@ O := (0, 0);
 A := dir(0)*r;
 B := dir(100)*r;
 draw byLine(A, B, byblack, 0, 0);
-draw byCircleR(O, r, byblue, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 0);
 }\drawCurrentPictureInMargin[inside]
 A straight line is said to be \emph{inscribed in} a circle, when its extremities are in the circumference.
 \stopDefinitionOnlyNumber
@@ -7558,8 +7558,8 @@ draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, byred, 1, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
-draw byCircleR(O, r1, byyellow, 0, 0, 0)(O);
-draw byCircle(C, E, byblue, 0, 0, 0)(C);
+draw byCircleR.O(O, r1, byyellow, 0, 0, 0);
+draw byCircle.C(C, E, byblue, 0, 0, 0);
 draw byLabelsOnCircle(C, B)(O);
 draw byLabelsOnPolygon(C, A, E)(2, 0);
 draw byLabelsOnPolygon(C, E, A)(2, -1);
@@ -7615,11 +7615,11 @@ byAngleDefine(F, E, D, byblue, 0);
 byAngleDefine(E, D, F, byred, 0);
 byAngleDefine(D, F, E, byyellow, 0);
 draw byNamedAngleResized();
-draw byArbitraryFigure(B--A--C, byblack, 0, 1)(BAC);
-draw byArbitraryFigure(D--E--F--cycle, byblack, 0, 1)(BAC);
+draw byArbitraryFigure.BAC(B--A--C, byblack, 0, 1);
+draw byArbitraryFigure.BAC(D--E--F--cycle, byblack, 0, 1);
 draw byLine(B, C, byyellow, 0, 0);
 draw byLine(G, H, byred, 0, 0);
-draw byCircleR(O, r, byblack, 0, 0, 0)(O);
+draw byCircleR.O(O, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelsOnPolygon(D, E, F)(0, 0);
 draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
@@ -7693,16 +7693,16 @@ byAngleDefineExtended(E, D, F, byblack, 3)(byblue, byred);
 byAngleDefine(K, A, L, byblack, 0);
 byAngleDefine(L, C, K, byblack, 0);
 draw byNamedAngleResized();
-draw byArbitraryFigure(F--D--E, byblack, 0, 1)(FDE);
+draw byArbitraryFigure.FDE(F--D--E, byblack, 0, 1);
 byLineDefine(N, L, byblue, 0, 0);
 byLineDefine(L, M, byyellow, 0, 0);
 byLineDefine(M, N, byred, 1, 0); 
 draw byLine(G, H, byblack, 0, 0);
 draw byLine(K, C, byred, 0, 0);
-draw byArbitraryFigure(A--K--B, byblack, 0, 1)(AKB);
-draw byCircleR(K, r, byred, 0, 0, -1)(K);
+draw byArbitraryFigure.AKB(A--K--B, byblack, 0, 1);
+draw byCircleR.K(K, r, byred, 0, 0, -1);
 draw byNamedLineSeq(0)(NL,LM,MN);
-byArbitraryFigureDefine(L--A--K--C--cycle, byblack, 0, 1)(LAKC);
+byArbitraryFigureDefine.LAKC(L--A--K--C--cycle, byblack, 0, 1);
 draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
 draw byLabelsOnPolygon(G, E, F, H, noPoint)(0, 0);
 draw byLabelsOnPolygon(F, D, E)(2, 0);
@@ -7778,7 +7778,7 @@ byLineDefine(A, B, byyellow, 0, 0);
 byLineDefine(B, C, byblack, 0, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CA);
-draw byCircle(D, G, byblack, 0, 0, -1)(D);
+draw byCircle.D(D, G, byblack, 0, 0, -1);
 byLineDefine(B, F, byblack, 0, 0);
 byLineDefine(B, E, byyellow, 0, 0);
 draw byLabelsOnPolygon(B, E, A, G, C, F)(0, 0);
@@ -7857,7 +7857,7 @@ draw byLine(B, C, byblack, 0, 0);
 fi;
 draw byLine(C, E, byred, 0, 0);
 draw byLine(E, A, byred, 1, 0);
-draw byCircleR(F, r, byblack, 0, 0, 0)(F);
+draw byCircleR.F(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(F);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
@@ -7927,7 +7927,7 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DA);
-draw byCircleR(E, r, byred, 0, 0, 1)(E);
+draw byCircleR.E(E, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -7985,7 +7985,7 @@ byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(KF,HK,GH,FG);
-draw byCircleR(E, r, byblue, 0, 0, -1)(E);
+draw byCircleR.E(E, r, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(H, B, G, A, F, D, K, C)(0, 0);
 draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
@@ -8042,7 +8042,7 @@ byLineDefine(E, D, byblue, 0, 0);
 byLineDefine(D, K, byred, 1, 0);
 byLineDefine(K, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AE,ED,DK,KC);
-draw byCircleR(G, r, byyellow, 0, 0, -1)(G);
+draw byCircleR.G(G, r, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(B, F, A, E, D, K, C, H)(0, 0);
 draw byLabelsOnPolygon(F, G, E)(2, 0);
 }
@@ -8094,7 +8094,7 @@ draw byLine(A, E, byblue, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
 draw byLine(B, E, byblack, 0, 0);
 draw byLine(E, D, byblack, 1, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0)(E);
+draw byCircleR.E(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(B, E, A)(2, -1);
 }
@@ -8152,8 +8152,8 @@ draw byLine(B, D, byblue, 0, 0);
 draw byLine(C, D, byred, 0, 0);
 draw byLine(A, C, byblack, 0, 0);
 draw byLine(C, B, byblack, 1, 0);
-draw byCircleABC(A, C, D, byblue, 0, 0, 0)(F);
-draw byCircle(A, B, byred, 0, 0, 0)(A);
+draw byCircleABC.F(A, C, D, byblue, 0, 0, 0);
+draw byCircle.A(A, B, byred, 0, 0, 0);
 draw byLabelsOnCircle(B)(A);
 draw byLabelsOnCircle(A)(F);
 draw byLabelPoint(D, angle(D-A)-15, 2);
@@ -8205,7 +8205,7 @@ B := (dir(90+1/5(360))*r) shifted O;
 C := (dir(90+2/5(360))*r) shifted O;
 D := (dir(90+3/5(360))*r) shifted O;
 E := (dir(90+4/5(360))*r) shifted O;
-draw byArbitraryFigure(C--E--B--D, byblack, 0, 1)(pg);
+draw byArbitraryFigure.pg(C--E--B--D, byblack, 0, 1);
 draw byPolygon(A,C,D)(byyellow);
 byAngleDefineExtended(A, B, C, byblack, -1)(bytransparent);
 byAngleDefineExtended(D, E, A, byblack, -1)(bytransparent);
@@ -8226,7 +8226,7 @@ byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(O);
 }
 \drawCurrentPictureInMargin
@@ -8284,7 +8284,7 @@ byLineDefine(C, L, byyellow, 0, 0);
 byLineDefine(L, M, byblack, 0, 0);
 byLineDefine(M, G, byblack, 0, 0);
 draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
-draw byCircleR(F, r2, byred, 0, 0, -1)(F);
+draw byCircleR.F(F, r2, byred, 0, 0, -1);
 draw byLabelsOnPolygon(M, D, L, C, K, B, H, G)(2, 0);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }
@@ -8392,7 +8392,7 @@ byLineDefine(K, D, byblack, 1, 0);
 byLineDefine(D, E, byblack, 0, 1);
 byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
-draw byCircle(F, H, byyellow, 0, 0, -1)(F);
+draw byCircle.F(F, H, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(C, H, B, A, E, D, K)(0, 0);
 draw byLabelsOnPolygon(E, F, D)(2, -2);
 }
@@ -8499,7 +8499,7 @@ byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, E, byblack, 1, 0);
 byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR(F, r, byred, 0, 0, 1)(F);
+draw byCircleR.F(F, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(F);
 draw byLabelsOnPolygon(A, F, E)(2, -1);
 }
@@ -8574,8 +8574,8 @@ draw byLine(C, D, byblack, 1, 0);
 draw byLine(D, E, byred, 1, 0);
 draw byLine(E, F, byblue, 1, 0);
 draw byLine(F, A, byblack, 0, 0);
-draw byCircle(D, G, byred, 0, 0, 0)(D);
-draw byCircleR(G, r, byyellow, 0, 0, 0)(G);
+draw byCircle.D(D, G, byred, 0, 0, 0);
+draw byCircleR.G(G, r, byyellow, 0, 0, 0);
 byLineDefine(G, C, lineColor.CF, 0, 0);
 byLineDefine(G, D, lineColor.AD, 0, 0);
 byLineDefine(G, E, lineColor.BE, 0, 0);
@@ -8635,7 +8635,7 @@ byLineDefine(C, D, byblack, 0, 1);
 byLineDefine(D, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
 draw byNamedLineSeq(0)(AC,CD,DA);
-draw byCircleR(O, r, byblue, 0, 0, 1)(O);
+draw byCircleR.O(O, r, byblue, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, F)(O);
 }
 \drawCurrentPictureInMargin
@@ -8747,15 +8747,15 @@ $\eqalign{
 
 \startProposition[title={Prop. I. Theor.}, reference=prop:V.I]
 \defineNewPicture{
-byMagnitudeSymbolDefine("semicircleUp", byred, 1)(ab);
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(cd);
-byMagnitudeSymbolDefine("sectorDown", byblue, 1)(ef);
-byMagnitudeDefine(A, 0, false)(5)(ab);
-byMagnitudeDefine(B, 0, false)(1)(ab);
-byMagnitudeDefine(C, 0, false)(5)(cd);
-byMagnitudeDefine(D, 0, false)(1)(cd);
-byMagnitudeDefine(E, 0, false)(5)(ef);
-byMagnitudeDefine(F, 0, false)(1)(ef);
+byMagnitudeSymbolDefine.ab("semicircleUp", byred, 1);
+byMagnitudeSymbolDefine.cd("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.ef("sectorDown", byblue, 1);
+byMagnitudeDefine.A(0, false)(5)(ab);
+byMagnitudeDefine.B(0, false)(1)(ab);
+byMagnitudeDefine.C(0, false)(5)(cd);
+byMagnitudeDefine.D(0, false)(1)(cd);
+byMagnitudeDefine.E(0, false)(5)(ef);
+byMagnitudeDefine.F(0, false)(1)(ef);
 }
 \problemNP{I}{f}{any number of magnitudes be equimultiples of as many others, each of each: what multiple soever any one of the first is of its part, the same multiple shall of the first magnitudes taken together be of all the others taken together.}
 
@@ -8803,16 +8803,16 @@ $\therefore$ If any number of magnitudes, \&c.
 
 \startProposition[title={Prop. II. Theor.}, reference=prop:V.II]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(ab);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(cd);
-byMagnitudeSymbolDefine("circle", byblue, 0)(e);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(f);
-byMagnitudeDefine(A, 0, false)(3)(ab);
-byMagnitudeDefine(B, 0, false)(1)(ab);
-byMagnitudeDefine(C, 0, false)(3)(cd);
-byMagnitudeDefine(D, 0, false)(1)(cd);
-byMagnitudeDefine(E, 0, false)(4)(e);
-byMagnitudeDefine(F, 0, false)(4)(f);
+byMagnitudeSymbolDefine.ab("circle", byyellow, 0);
+byMagnitudeSymbolDefine.cd("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.e("circle", byblue, 0);
+byMagnitudeSymbolDefine.f("sectorUp", byblack, 1);
+byMagnitudeDefine.A(0, false)(3)(ab);
+byMagnitudeDefine.B(0, false)(1)(ab);
+byMagnitudeDefine.C(0, false)(3)(cd);
+byMagnitudeDefine.D(0, false)(1)(cd);
+byMagnitudeDefine.E(0, false)(4)(e);
+byMagnitudeDefine.F(0, false)(4)(f);
 }
 \problemNP{I}{f}{the first magnitude be the same multiple of the second that the third of the fourth, and the fifth the same multiple of the second that the sixth is of the fourth, then shall the first, together with the fifth, be the same multiple of the second that the third, together with the sixth, is of the fourth.}
 
@@ -8846,16 +8846,16 @@ $\therefore$ If the first magnitude, \&c.
 
 \startProposition[title={Prop. III. Theor.}, reference=prop:V.III]
 \defineNewPicture{
-byMagnitudeSymbolDefine("square", byyellow, 0)(a);
-byMagnitudeSymbolDefine("square", byred, 0)(be);
-byMagnitudeSymbolDefine("rhombus", byblack, 0)(c);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(df);
-byMagnitudeDefine(A, 0, false)(1, 2, 1)(a);
-byMagnitudeDefine(B, 0, false)(1)(be);
-byMagnitudeDefine(C, 0, false)(2, 2)(c);
-byMagnitudeDefine(D, 0, false)(1)(df);
-byMagnitudeDefine(E, 0, false)(4, 4, 4, 4)(be);
-byMagnitudeDefine(F, 0, false)(4, 4, 4, 4)(df);
+byMagnitudeSymbolDefine.a("square", byyellow, 0);
+byMagnitudeSymbolDefine.be("square", byred, 0);
+byMagnitudeSymbolDefine.c("rhombus", byblack, 0);
+byMagnitudeSymbolDefine.df("rhombus", byblue, 0);
+byMagnitudeDefine.A(0, false)(1, 2, 1)(a);
+byMagnitudeDefine.B(0, false)(1)(be);
+byMagnitudeDefine.C(0, false)(2, 2)(c);
+byMagnitudeDefine.D(0, false)(1)(df);
+byMagnitudeDefine.E(0, false)(4, 4, 4, 4)(be);
+byMagnitudeDefine.F(0, false)(4, 4, 4, 4)(df);
 }
 \problemNP{I}{f}{the first of four magnitudes be the same multiple of the second that the third is to the fourth, and if any equimultiples whatever of the first and third be taken, those shall be equimultiples; one of the second, and the other of the fourth.}
 
@@ -8882,18 +8882,18 @@ $\therefore$ If the first of four, \&c.
 
 \startDefinition[title={Definition V.}, reference=def:V.V,ownnumber=5]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(a);
-byMagnitudeSymbolDefine("square", byyellow, 0)(b);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(c);
-byMagnitudeSymbolDefine("wedgeDown", byblack, 0)(d);
-byMagnitudeDefine(A, 0, false)(1)(a);
-byMagnitudeDefine(B, 0, false)(1)(b);
-byMagnitudeDefine(C, 0, false)(1)(c);
-byMagnitudeDefine(D, 0, false)(1)(d);
-byMagnitudeDefine(Am, 1, false)(2, 3, 4, 5, 6)(a);
-byMagnitudeDefine(Bm, 1, false)(2, 3, 4, 5, 6)(b);
-byMagnitudeDefine(Cm, 1, false)(2, 3, 4, 5, 6)(c);
-byMagnitudeDefine(Dm, 1, false)(2, 3, 4, 5, 6)(d);
+byMagnitudeSymbolDefine.a("circle", byred, 0);
+byMagnitudeSymbolDefine.b("square", byyellow, 0);
+byMagnitudeSymbolDefine.c("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.d("wedgeDown", byblack, 0);
+byMagnitudeDefine.A(0, false)(1)(a);
+byMagnitudeDefine.B(0, false)(1)(b);
+byMagnitudeDefine.C(0, false)(1)(c);
+byMagnitudeDefine.D(0, false)(1)(d);
+byMagnitudeDefine.Am(1, false)(2, 3, 4, 5, 6)(a);
+byMagnitudeDefine.Bm(1, false)(2, 3, 4, 5, 6)(b);
+byMagnitudeDefine.Cm(1, false)(2, 3, 4, 5, 6)(c);
+byMagnitudeDefine.Dm(1, false)(2, 3, 4, 5, 6)(d);
 }
 
 Four magnitudes, \drawMagnitude{A}, \drawMagnitude{B}, \drawMagnitude{C}, \drawMagnitude{D}, are said to be proportionals when every equimultiple of the first and third be taken, and every equimultiple of the second and fourth, as,
@@ -9020,10 +9020,10 @@ The student should throughly understand this definition before proceeding furthe
 
 \startProposition[title={Prop. IV. Theor.}, reference=prop:V.IV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(I);
-byMagnitudeSymbolDefine("square", byblack, 0)(II);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(III);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("circle", byyellow, 0);
+byMagnitudeSymbolDefine.II("square", byblack, 0);
+byMagnitudeSymbolDefine.III("rhombus", byred, 0);
+byMagnitudeSymbolDefine.IV("wedgeDown", byblue, 0);
 }
 \problemNP{I}{f}{the first of four magnitudes have the same ratio to the second, which the third has to the fourth, then any equimultiples whatever of the first and third shall have the same ratio to any equimultiples of the second and fourth; viz., the equimultiple of the first shall have the same ratio to that of the second, which the equimultiple of the third has to that of the fourth.}
 
@@ -9040,12 +9040,12 @@ $\therefore$ If the first four magnitudes, \&c.
 
 \startProposition[title={Prop. V. Theor.}, reference=prop:V.V]
 \defineNewPicture{
-byMagnitudeSymbolDefine("sectorDown", byblue, 1)(a);
-byMagnitudeSymbolDefine("semicircleDown", byyellow, 1)(b);
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(c);
-byMagnitudeSymbolDefine("miniSquare", byred, 0)(d);
-byMagnitudeDefine(I, 0, false)(1, 2, 1)(a, a, b);
-byMagnitudeDefine(II, 0, false)(1, 1)(c, d);
+byMagnitudeSymbolDefine.a("sectorDown", byblue, 1);
+byMagnitudeSymbolDefine.b("semicircleDown", byyellow, 1);
+byMagnitudeSymbolDefine.c("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.d("miniSquare", byred, 0);
+byMagnitudeDefine.I(0, false)(1, 2, 1)(a, a, b);
+byMagnitudeDefine.II(0, false)(1, 1)(c, d);
 }
 \problemNP{I}{f}{one magnitude be the same multiple of another, which a magnitude taken from the first is of a magnitude taken from the other, the remainder shall be the same multiple of the remainder, that the whole is of the whole.}
 
@@ -9066,14 +9066,14 @@ $\therefore$ If one magnitude, \&c.
 
 \startProposition[title={Prop. VI. Theor.}, reference=prop:V.VI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("sectorDown", byyellow, 1)(a);
-byMagnitudeSymbolDefine("miniSquare", byred, 0)(b);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(c);
-byMagnitudeSymbolDefine("miniTriangleUp", byblue, 0)(d);
-byMagnitudeDefine(I, 0, false)(1, 2, 1)(a);
-byMagnitudeDefine(II, 0, false)(1)(b);
-byMagnitudeDefine(III, 0, false)(2)(c);
-byMagnitudeDefine(IV, 0, false)(1)(d);
+byMagnitudeSymbolDefine.a("sectorDown", byyellow, 1);
+byMagnitudeSymbolDefine.b("miniSquare", byred, 0);
+byMagnitudeSymbolDefine.c("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.d("miniTriangleUp", byblue, 0);
+byMagnitudeDefine.I(0, false)(1, 2, 1)(a);
+byMagnitudeDefine.II(0, false)(1)(b);
+byMagnitudeDefine.III(0, false)(2)(c);
+byMagnitudeDefine.IV(0, false)(1)(d);
 }
 \problemNP{I}{f}{two magnitudes be equimultiples of two others, and if equimultiples of these be taken from the first two, the remainders are either equal to these others, or equimultiples of them.}
 
@@ -9093,18 +9093,18 @@ $\therefore$ If two magnitudes be equimultiples, \&c.
 
 \startPropositionAZ[title={Prop. A. Theor.}, reference=prop:V.A]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(a);
-byMagnitudeSymbolDefine("square", byblack, 0)(b);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(c);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(d);
-byMagnitudeDefine(I, 0, false)(1)(a);
-byMagnitudeDefine(II, 0, false)(1)(b);
-byMagnitudeDefine(III, 0, false)(1)(c);
-byMagnitudeDefine(IV, 0, false)(1)(d);
-byMagnitudeDefine(dI, 0, false)(2)(a);
-byMagnitudeDefine(dII, 0, false)(2)(b);
-byMagnitudeDefine(dIII, 0, false)(2)(c);
-byMagnitudeDefine(dIV, 0, false)(2)(d);
+byMagnitudeSymbolDefine.a("circle", byred, 0);
+byMagnitudeSymbolDefine.b("square", byblack, 0);
+byMagnitudeSymbolDefine.c("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.d("rhombus", byyellow, 0);
+byMagnitudeDefine.I(0, false)(1)(a);
+byMagnitudeDefine.II(0, false)(1)(b);
+byMagnitudeDefine.III(0, false)(1)(c);
+byMagnitudeDefine.IV(0, false)(1)(d);
+byMagnitudeDefine.dI(0, false)(2)(a);
+byMagnitudeDefine.dII(0, false)(2)(b);
+byMagnitudeDefine.dIII(0, false)(2)(c);
+byMagnitudeDefine.dIV(0, false)(2)(d);
 }
 \problemNP{I}{f}{the first of the four magnitudes has the same ratio to the second which the third has to the fourth, then if the first be greater than the second, the third is also greater than the fourth; and if equal, equal; if less, less.}
 
@@ -9134,10 +9134,10 @@ Let $\varA : \varB :: \varC : \varD$, then, by \quotation{invertendo} it is infe
 
 \startPropositionAZ[title={Prop. B. Theor.}, reference=prop:V.B]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
 \problemNP{I}{f}{four magnitudes are proportionals, they are proportionals also when taken inversely.}
 
@@ -9168,12 +9168,12 @@ $\therefore$ If four magnitudes, \&c.
 
 \startPropositionAZ[title={Prop. C. Theor.}, reference=prop:V.C]
 \defineNewPicture{
-byMagnitudeSymbolDefine("square", byblue, 0)(i);
-byMagnitudeDefine(I, 0, false)(2, 2)(i);
-byMagnitudeSymbolDefine("circle", byblack, 0)(II);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(iii);
-byMagnitudeDefine(III, 0, false)(2, 2)(iii);
-byMagnitudeSymbolDefine("wedgeUp", byred, 0)(IV);
+byMagnitudeSymbolDefine.i("square", byblue, 0);
+byMagnitudeDefine.I(0, false)(2, 2)(i);
+byMagnitudeSymbolDefine.II("circle", byblack, 0);
+byMagnitudeSymbolDefine.iii("rhombus", byyellow, 0);
+byMagnitudeDefine.III(0, false)(2, 2)(iii);
+byMagnitudeSymbolDefine.IV("wedgeUp", byred, 0);
 }
 \problemNP{I}{f}{the first be the same multiple of the second, or the same part of it, that the third is of the fourth; the first is to the second, as the third is to the fourth.}
 
@@ -9232,20 +9232,20 @@ $\therefore$ If the first be the same multiple, \&c.
 
 \startPropositionAZ[title={Prop. D. Theor.}, reference=prop:V.D]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(i);
-byMagnitudeSymbolDefine("square", byblack, 0)(ii);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(iii);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(iv);
-byMagnitudeSymbolDefine("semicircleDown", byred, 1)(va);
-byMagnitudeSymbolDefine("semicircleUp", byred, 1)(vb);
-byMagnitudeSymbolDefine("sectorDown", byblack, 1)(via);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(vib);
-byMagnitudeDefine(I, 0, false)(1, 2)(i);
-byMagnitudeDefine(II, 0, false)(1)(ii);
-byMagnitudeDefine(III, 0, false)(2, 2)(iii);
-byMagnitudeDefine(IV, 0, false)(1)(iv);
-byMagnitudeDefine(V, 0, false)(1, 2)(va, vb);
-byMagnitudeDefine(VI, 0, false)(2, 2)(via, vib);
+byMagnitudeSymbolDefine.i("circle", byyellow, 0);
+byMagnitudeSymbolDefine.ii("square", byblack, 0);
+byMagnitudeSymbolDefine.iii("rhombus", byred, 0);
+byMagnitudeSymbolDefine.iv("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.va("semicircleDown", byred, 1);
+byMagnitudeSymbolDefine.vb("semicircleUp", byred, 1);
+byMagnitudeSymbolDefine.via("sectorDown", byblack, 1);
+byMagnitudeSymbolDefine.vib("sectorUp", byblack, 1);
+byMagnitudeDefine.I(0, false)(1, 2)(i);
+byMagnitudeDefine.II(0, false)(1)(ii);
+byMagnitudeDefine.III(0, false)(2, 2)(iii);
+byMagnitudeDefine.IV(0, false)(1)(iv);
+byMagnitudeDefine.V(0, false)(1, 2)(va, vb);
+byMagnitudeDefine.VI(0, false)(2, 2)(via, vib);
 }
 \problemNP{I}{f}{the first be to the second as the third to the fourth, and if the first be a multiple, or a part of the second; the third is the same multiple, or the same part of the fourth.}
 
@@ -9293,9 +9293,9 @@ $\therefore$ if the first be to the second, \&c.
 
 \startProposition[title={Prop. VII. Theor.}, reference=prop:V.VII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(I);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine.I("circle", byred, 0);
+byMagnitudeSymbolDefine.II("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
 }
 \problemNP{E}{qual}{magnitudes have the same ratio to the same magnitude, and the same has the same ratio to equal magnitudes.}
 
@@ -9324,18 +9324,18 @@ $\therefore$ Equal magnitudes, \&c.
 \startDefinition[title={Definition VII.}, reference=def:V.VII,ownnumber=7]
 \defineNewPicture{
 magnitudeScale := 2/9;
-byMagnitudeSymbolDefine("circle", byred, 0)(i);
-byMagnitudeSymbolDefine("square", byyellow, 0)(ii);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(iii);
-byMagnitudeSymbolDefine("wedgeDown", byblack, 0)(iv);
-byMagnitudeDefine(I, 0, false)(5)(i);
-byMagnitudeDefine(II, 0, false)(4)(ii);
-byMagnitudeDefine(III, 0, false)(5)(iii);
-byMagnitudeDefine(IV, 0, false)(4)(iv);
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(Ia);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(IIa);
-byMagnitudeSymbolDefine("square", byblue, 0)(IIIa);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IVa);
+byMagnitudeSymbolDefine.i("circle", byred, 0);
+byMagnitudeSymbolDefine.ii("square", byyellow, 0);
+byMagnitudeSymbolDefine.iii("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.iv("wedgeDown", byblack, 0);
+byMagnitudeDefine.I(0, false)(5)(i);
+byMagnitudeDefine.II(0, false)(4)(ii);
+byMagnitudeDefine.III(0, false)(5)(iii);
+byMagnitudeDefine.IV(0, false)(4)(iv);
+byMagnitudeSymbolDefine.Ia("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.IIa("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.IIIa("square", byblue, 0);
+byMagnitudeSymbolDefine.IVa("rhombus", byyellow, 0);
 }
 
 When of the equimultiples of four magnitudes (taken as in the fifth definition), the multiple of the first is greater than that of the second, but multiple of the third is not greater than the multiple of the fourth; then the first is said to have to the second a greater ratio than the third magnitude has to the fourth: and, on the contrary, the third is said to have to the fourth a less ratio than the first has to the second.
@@ -9402,11 +9402,11 @@ Among the above multiples we find $\color[byred]{16} > \color[byblack]{14}$ and 
 
 \startProposition[title={Prop. VIII. Theor.}, reference=prop:V.VIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(Ia);
-byMagnitudeSymbolDefine("square", byred, 0)(Ib);
-byMagnitudeDefine(I, 0, false)(1, 1)(Ia, Ib);
-byMagnitudeSymbolDefine("square", byyellow, 0)(II);
-byMagnitudeSymbolDefine("circle", byblue, 0)(III);
+byMagnitudeSymbolDefine.Ia("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.Ib("square", byred, 0);
+byMagnitudeDefine.I(0, false)(1, 1)(Ia, Ib);
+byMagnitudeSymbolDefine.II("square", byyellow, 0);
+byMagnitudeSymbolDefine.III("circle", byblue, 0);
 }
 \problemNP{O}{f}{unequal magnitudes the greater has a greater ratio to the same than the less has: and the same magnitude has a greater ratio to the less than it has to the greater.}
 
@@ -9485,9 +9485,9 @@ The student should understand all up to this proposition perfectly before procee
 
 \startProposition[title={Prop. IX. Theor.}, reference=prop:V.IX]
 \defineNewPicture{
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(I);
-byMagnitudeSymbolDefine("circle", byred, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine.I("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.II("circle", byred, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
 }
 \problemNP{M}{agnitudes}{which have the same ratio to the same magnitude are equal to one another; and those to which the same magnitude has the same ratio are equal to one another.}
 
@@ -9525,9 +9525,9 @@ Again, if $\color[byblue]{B} : \color[byyellow]{A} = \color[byred]{C} : \color[b
 
 \startProposition[title={Prop. X. Theor.}, reference=prop:V.X]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("circle", byred, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("circle", byred, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
 }
 \problemNP{T}{hat}{magnitude which has a greater ratio than another has unto the same magnitude, is the greater of the two; and that magnitude to which the same has a greater ratio than it has unto another magnitude, is the less of the two.}
 
@@ -9559,12 +9559,12 @@ $\therefore$ That magnitude which has, \&c.
 
 \startProposition[title={Prop. XI. Theor.}, reference=prop:V.XI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(I);
-byMagnitudeSymbolDefine("square", byblue, 0)(II);
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(III);
-byMagnitudeSymbolDefine("miniCircle", byblack, 0)(IV);
-byMagnitudeSymbolDefine("circle", byred, 0)(V);
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(VI);
+byMagnitudeSymbolDefine.I("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.II("square", byblue, 0);
+byMagnitudeSymbolDefine.III("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.IV("miniCircle", byblack, 0);
+byMagnitudeSymbolDefine.V("circle", byred, 0);
+byMagnitudeSymbolDefine.VI("wedgeDown", byyellow, 0);
 }
 \problemNP{R}{atios}{that are the same to the same ratio, are the same to each other.}
 
@@ -9588,16 +9588,16 @@ $\therefore$ Ratios that are the same \&c.
 
 \startProposition[title={Prop. XII. Theor.}, reference=prop:V.XII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("square", byred, 0)(I);
-byMagnitudeSymbolDefine("circle", byred, 0)(II);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(III);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(IV);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(V);
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(VI);
-byMagnitudeSymbolDefine("miniCircle", byblue, 0)(VII);
-byMagnitudeSymbolDefine("miniTriangleDown", byblue, 0)(VIII);
-byMagnitudeSymbolDefine("miniTriangleUp", byblack, 0)(IX);
-byMagnitudeSymbolDefine("miniCircle", byblack, 0)(X);
+byMagnitudeSymbolDefine.I("square", byred, 0);
+byMagnitudeSymbolDefine.II("circle", byred, 0);
+byMagnitudeSymbolDefine.III("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.IV("sectorUp", byblack, 1);
+byMagnitudeSymbolDefine.V("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.VI("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.VII("miniCircle", byblue, 0);
+byMagnitudeSymbolDefine.VIII("miniTriangleDown", byblue, 0);
+byMagnitudeSymbolDefine.IX("miniTriangleUp", byblack, 0);
+byMagnitudeSymbolDefine.X("miniCircle", byblack, 0);
 }
 \problemNP{I}{f}{any number of magnitudes be proportionals, as one of the antecedents is to its consequent, so shall all the antecedents taken together be to all the consequents.}
 
@@ -9628,12 +9628,12 @@ $\therefore$ If any number of magnitudes, \&c.
 
 \startProposition[title={Prop. XIII. Theor.}, reference=prop:V.XIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblue, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(V);
-byMagnitudeSymbolDefine("circle", byblack, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblue, 1);
+byMagnitudeSymbolDefine.III("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byblack, 1);
+byMagnitudeSymbolDefine.VI("circle", byblack, 0);
 }
 \problemNP{I}{f}{the first has to the second the same ratio which the third has to the fourth, but the third to the fourth a greater ratio than the fifth has to the sixth; the first shall also have to the second a greater ratio than the fifth to the sixth.}
 
@@ -9664,10 +9664,10 @@ $\therefore$ If the first has to the second, \&c.
 
 \startProposition[title={Prop. XIV. Theor.}, reference=prop:V.XIV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
 \problemNP{I}{f}{the first has the same ratio to the second which the third has to the fourth; then, if the first be greater than the third, the second shall be greater than the fourth; and if equal, equal; and if less, less.}
 
@@ -9699,8 +9699,8 @@ $\therefore$ If the first has the same ratio, \&c.
 
 \startProposition[title={Prop. XV. Theor.}, reference=prop:V.XV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byred, 0)(I);
-byMagnitudeSymbolDefine("square", byyellow, 0)(II);
+byMagnitudeSymbolDefine.I("circle", byred, 0);
+byMagnitudeSymbolDefine.II("square", byyellow, 0);
 }
 \problemNP{M}{agnitudes}{have the same ratio to one another which their equimultiples have.}
 
@@ -9726,10 +9726,10 @@ $\therefore$ Magnitudes have the same ratio, \&c.
 
 \startDefinition[title={Definition XIII},reference=def:V.XIII,ownnumber=8]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byyellow, 0)(I);
-byMagnitudeSymbolDefine("rhombus", byblack, 0)(II);
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(III);
-byMagnitudeSymbolDefine("square", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("circle", byyellow, 0);
+byMagnitudeSymbolDefine.II("rhombus", byblack, 0);
+byMagnitudeSymbolDefine.III("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.IV("square", byblue, 0);
 }
 The technical term permutando, or alternando, by permutation or alternately, is used when there are four proportionals, and it is inferred that the first has the same ratio to the third which the second has to the fourth; or that the first is to the third as the second to the fourth: as is shown in the following proposition :—
 
@@ -9746,10 +9746,10 @@ It may be necessary here to remark that the magnitudes \magnitudeI, \magnitudeII
 
 \startProposition[title={Prop. XVI. Theor.}, reference=prop:V.XVI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
 \problemNP{I}{f}{four magnitudes of the same kind be proportionals, they are also proportionals when taken alternately.}
 
@@ -9799,10 +9799,10 @@ $\varB - \varA : \varA :: \varD - \varC : \varC$ % two times \mbox{ minus }
 
 \startProposition[title={Prop. XVII. Theor.}, reference=prop:V.XVII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
 \problemNP{I}{f}{magnitudes, taken jointly, be proportionals, they shall also be proportionals when taken separately: that is, if two magnitudes together have to one of them the same ratio which two others have to one of these, the remaining one of the first two shall have to the other the same ratio which the remaining one of the last two has to the other of these.}
 
@@ -9857,11 +9857,11 @@ $\varB + \varA : \varA :: \varD + \varC : \varC$.
 
 \startProposition[title={Prop. XVIII. Theor.}, reference=prop:V.XVIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
-byMagnitudeSymbolDefine("circle", byblack, 0)(V);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.V("circle", byblack, 0);
 }
 \problemNP{I}{f}{magnitudes, taken separately, be proportionals, they shall also be proportionals taken jointly: that is, if the first be to the second as the third is to the fourth, the first and second together shall be to the second as the third and fourth together is to the fourth.}
 
@@ -9893,10 +9893,10 @@ $\therefore$ If magnitudes, taken separately, \&c.
 
 \startProposition[title={Prop. XIX. Theor.}, reference=prop:V.XIX]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byblue, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
 \problemNP{I}{f}{a whole magnitude be to a whole, as a magnitude taken from the first, is to a magnitude taken from the other; the remainder shall be to the reminder, as the whole to the whole.}
 
@@ -9926,12 +9926,12 @@ The term \quotation{convertendo,} by conversion, is made use of by geometricians
 
 \startPropositionAZ[title={Prop. E. Theor.}, reference=prop:V.E]
 \defineNewPicture{
-byMagnitudeSymbolDefine("circle", byblue, 0)(i);
-byMagnitudeSymbolDefine("sectorUp", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(iii);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeDefine(I, 0, true)(1, 1)(i, II);
-byMagnitudeDefine(III, 0, true)(1, 1)(iii, IV);
+byMagnitudeSymbolDefine.i("circle", byblue, 0);
+byMagnitudeSymbolDefine.II("sectorUp", byblack, 1);
+byMagnitudeSymbolDefine.iii("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeDefine.I(0, true)(1, 1)(i, II);
+byMagnitudeDefine.III(0, true)(1, 1)(iii, IV);
 }
 \problemNP{I}{f}{four magnitudes be proportionals, they are also proportionals by conversion: that is, the first is to its excess above the second, as the third is to its excess above the fourth.}
 
@@ -10008,12 +10008,12 @@ the term \quotation{ex \ae quali in proportione perturbatâ seu inordinatâ} inf
 
 \startProposition[title={Prop. XX. Theor.}, reference=prop:V.XX]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byred, 1)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
-byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byred, 1);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 }
 \problemNP{I}{f}{there be three magnitudes, and other three, which taken two and two, have the same ratio; then, if the first be greater than the third, the fourth shall be greater than the sixth; and if equal, equal; and if less, less.}
 
@@ -10042,12 +10042,12 @@ $\therefore$ If there be three magnitudes, \&c.
 
 \startProposition[title={Prop. XXI. Theor.}, reference=prop:V.XXI]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
-byMagnitudeSymbolDefine("wedgeUp", byred, 0)(II);
-byMagnitudeSymbolDefine("square", byblue, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
-byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.II("wedgeUp", byred, 0);
+byMagnitudeSymbolDefine.III("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 }
 \problemNP{I}{f}{there be three magnitudes, and other three which have the same ratio, taken two and two, but in a cross order; then if the first magnitude be greater than the third, the fourth shall be greater than the sixth; and if equal, equal, and if less, less.}
 
@@ -10095,20 +10095,20 @@ $\therefore$ If there be three, \&c.
 
 \startProposition[title={Prop. XXII. Theor.}, reference=prop:V.XXII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("rhombus", byblue, 0)(II);
-byMagnitudeSymbolDefine("square", byyellow, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byblue, 1)(V);
-byMagnitudeSymbolDefine("circle", byyellow, 0)(VI);
-byMagnitudeSymbolDefine("wedgeDown", byblue, 0)(Ia);
-byMagnitudeSymbolDefine("rhombus", byblack, 0)(IIa);
-byMagnitudeSymbolDefine("square", byyellow, 0)(IIIa);
-byMagnitudeSymbolDefine("rhombus", byred, 0)(IVa);
-byMagnitudeSymbolDefine("sectorUp", byblue, 1)(Va);
-byMagnitudeSymbolDefine("circle", byblack, 0)(VIa);
-byMagnitudeSymbolDefine("halfsquare", byyellow, 0)(VIIa);
-byMagnitudeSymbolDefine("halfrhombusUp", byred, 0)(VIIIa);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("rhombus", byblue, 0);
+byMagnitudeSymbolDefine.III("square", byyellow, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byred, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byblue, 1);
+byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
+byMagnitudeSymbolDefine.Ia("wedgeDown", byblue, 0);
+byMagnitudeSymbolDefine.IIa("rhombus", byblack, 0);
+byMagnitudeSymbolDefine.IIIa("square", byyellow, 0);
+byMagnitudeSymbolDefine.IVa("rhombus", byred, 0);
+byMagnitudeSymbolDefine.Va("sectorUp", byblue, 1);
+byMagnitudeSymbolDefine.VIa("circle", byblack, 0);
+byMagnitudeSymbolDefine.VIIa("halfsquare", byyellow, 0);
+byMagnitudeSymbolDefine.VIIIa("halfrhombusUp", byred, 0);
 }
 \problemNP{I}{f}{there be any number of magnitudes, and as many others, which, taken two and two in order, have the same ratio; the first shall have to the last of the first magnitudes the same ratio which the first of the others has to the last of the same.\\
 N.B.— This is usually cited by the words \quotation{ex \ae quali,} or \quotation{ex \ae quo.}}
@@ -10165,14 +10165,14 @@ $\therefore$ If there be any number, \&c.
 
 \startProposition[title={Prop. XXIII. Theor.}, reference=prop:V.XXIII]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byyellow, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblue, 1)(II);
-byMagnitudeSymbolDefine("square", byred, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byblue, 1)(V);
-byMagnitudeSymbolDefine("circle", byred, 0)(VI);
-byMagnitudeSymbolDefine("halfsquare", byblack, 0)(VII);
-byMagnitudeSymbolDefine("halfrhombusUp", byblack, 0)(VIII);
+byMagnitudeSymbolDefine.I("wedgeDown", byyellow, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblue, 1);
+byMagnitudeSymbolDefine.III("square", byred, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byblue, 1);
+byMagnitudeSymbolDefine.VI("circle", byred, 0);
+byMagnitudeSymbolDefine.VII("halfsquare", byblack, 0);
+byMagnitudeSymbolDefine.VIII("halfrhombusUp", byblack, 0);
 }
 \problemNP{I}{f}{there be any number of magnitudes, and as many others, which, taken two and two in a cross order, have the same ratio; the first shall have to the last of the first magnitudes the same ratio which the first of the others has to the last of the same.\\
 N.B.— This is usually cited by the words \quotation{ex \ae quali in proportione perturbatâ;} or \quotation{ex \ae quo perturbato.}}
@@ -10233,12 +10233,12 @@ $\therefore$ If there be any number, \&c.
 
 \startProposition[title={Prop. XXIV. Theor.}, reference=prop:V.XXIV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(I);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(II);
-byMagnitudeSymbolDefine("square", byblue, 0)(III);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
-byMagnitudeSymbolDefine("sectorUp", byred, 1)(V);
-byMagnitudeSymbolDefine("circle", byblue, 0)(VI);
+byMagnitudeSymbolDefine.I("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.III("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
+byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
+byMagnitudeSymbolDefine.VI("circle", byblue, 0);
 }
 \problemNP{I}{f}{the first has to the second the same ratio which the third has to the fourth, and the fifth to the second the same which the sixth has to the fourth, the first and fifth together shall have to the second the same ratio which the third and sixth together have to the fourth.}
 
@@ -10277,10 +10277,10 @@ $\therefore$ If the first, \&c.
 
 \startProposition[title={Prop. XXV. Theor.}, reference=prop:V.XXV]
 \defineNewPicture{
-byMagnitudeSymbolDefine("wedgeDown", byred, 0)(Ia);
-byMagnitudeSymbolDefine("semicircleDown", byblack, 1)(III);
-byMagnitudeSymbolDefine("square", byblue, 0)(IIa);
-byMagnitudeSymbolDefine("rhombus", byyellow, 0)(IV);
+byMagnitudeSymbolDefine.Ia("wedgeDown", byred, 0);
+byMagnitudeSymbolDefine.III("semicircleDown", byblack, 1);
+byMagnitudeSymbolDefine.IIa("square", byblue, 0);
+byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
 \problemNP{I}{f}{four magnitudes of the same kind are proportionals, the greatest and least of them together are greater than the other two together.}
 
@@ -11631,9 +11631,9 @@ A := (0, 0); Ae := (l1, 0);
 B := (0, 0); Be := (l2, 0);
 C := (0, 0); Ce := (l3, 0);
 a := 45;
-byLineDefineWithName(A, Ae, byblue, 1, 0)(A);
-byLineDefineWithName(B, Be, byred, 1, 0)(B);
-byLineDefineWithName(C, Ce, byyellow, 1, 0)(C);
+byLineDefine.A(A, Ae, byblue, 1, 0);
+byLineDefine.B(B, Be, byred, 1, 0);
+byLineDefine.C(C, Ce, byyellow, 1, 0);
 forsuffixes i=A, B, C:
 lineUseLineLabel.i := true;
 endfor;
@@ -11698,8 +11698,8 @@ r := 1/2*(l1 + l2);
 Ab := (0, 0);
 Bb := (l1, 0);
 Cb := (l1 + l2, 0);
-byLineDefineWithName(Ab, Bb, byblue, 1, 0)(A);
-byLineDefineWithName(Bb, Cb, byred, 1, 0)(B);
+byLineDefine.A(Ab, Bb, byblue, 1, 0);
+byLineDefine.B(Bb, Cb, byred, 1, 0);
 lineUseLineLabel.A := true;
 lineUseLineLabel.B := true;
 A := (0, 0);
@@ -11719,7 +11719,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(C, D, byyellow, 1, 0);
 draw byNamedLineSeq(-1)(AB,BC,CD,AD);
-draw byArc(O, C, A, r, byred, 0, 0, 0, 0)(O);
+draw byArc.O(O, C, A, r, byred, 0, 0, 0, 0);
 draw byLabelsOnPolygon(C, B, A, noPoint)(0, 0);
 draw byLabelsOnCircle(D)(O);
 }
@@ -11896,8 +11896,8 @@ draw byNamedLineSeq(0)(AB,AG);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(C, H, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,CH);
-draw byLineWithName(Ee, Eb, byred, 1, 0)(E);
-draw byLineWithName(Fe, Fb, byblack, 1, 0)(F);
+draw byLine.E(Ee, Eb, byred, 1, 0);
+draw byLine.F(Fe, Fb, byblack, 1, 0);
 draw byLabelsOnPolygon(F, G, A, B)(0, 0);
 draw byLabelsOnPolygon(E, H, C, D)(0, 0);
 draw byLabelLine(0)(E, F);
@@ -11964,10 +11964,10 @@ draw byPolygon(E,F,G,H)(byyellow);
 byLineDefine(E, F, byblack, 0, 0);
 byLineDefine(E, H, byred, 0, 0);
 draw byNamedLineSeq(0)(EF,EH);
-draw byLineWithName(Ab, Ae, byred, 0, 0)(A);
-draw byLineWithName(Bb, Be, byblue, 0, 0)(B);
-draw byLineWithName(Cb, Ce, byblack, 0, 0)(C);
-draw byLineWithName(Db, De, byyellow, 0, 0)(D);
+draw byLine.A(Ab, Ae, byred, 0, 0);
+draw byLine.B(Bb, Be, byblue, 0, 0);
+draw byLine.C(Cb, Ce, byblack, 0, 0);
+draw byLine.D(Db, De, byyellow, 0, 0);
 draw byLabelLine(0)(A, B, C, D);
 draw byLabelPolygon(1)(ABCD);
 draw byLabelPolygon(1)(EFGH);
@@ -12291,10 +12291,10 @@ draw byPolygon.EF(E,F,Ma,Mb,Mc,Md)(byblue);
 draw byPolygon.GH(G,H,Na,Nb,Nc,Nd)(white);
 draw byLine(A, B, byblack, 0, 0);
 draw byLine(C, D, byblue, 0, 0);
-draw byLineWithName(Ob, Oe, byblack, 1, 0)(O);
+draw byLine.O(Ob, Oe, byblack, 1, 0);
 draw byLine(E, F, byred, 0, 0);
 draw byLine(G, H, byyellow, 0, 0);
-draw byLineWithName(Pb, Pe, byred, 1, 0)(P);
+draw byLine.P(Pb, Pe, byred, 1, 0);
 byPointLabelRemove(Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L);
 draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }
@@ -12588,14 +12588,14 @@ byLineDefine(A, K, byblue, 0, 0);
 byLineDefine(K, E, byblue, 1, 0);
 byLineDefine(E, B, byblack, 1, 0);
 draw byNamedLineSeq(0)(GD,AG,AK,KE,EB);
-draw byArbitraryFigure(A..H..C, byblack, 0, 0)(AHC);
-byLineDefineWithName(K, A, byblack, 0, 1)(KAt);
+draw byArbitraryFigure.AHC(A..H..C, byblack, 0, 0);
+byLineDefine.KAt(K, A, byblack, 0, 1);
 byLineStylize(H, G, 1, 0, 1)(KAt);
-byLineDefineWithName(A, G, byblack, 0, 1)(AGt);
+byLineDefine.AGt(A, G, byblack, 0, 1);
 byLineStylize(K, H, 0, 0, 1)(AGt);
-byLineDefineWithName(G, H, byblack, 0, 1)(GHt);
+byLineDefine.GHt(G, H, byblack, 0, 1);
 byLineStylize(A, K, 0, 1, 1)(GHt);
-byLineDefineWithName(E, A, byblack, 0, 1)(EAt);
+byLineDefine.EAt(E, A, byblack, 0, 1);
 byLineStylize(F, G, 1, 0, 1)(EAt);
 draw byLabelsOnPolygon(A, G, D, C, B, E, K)(0, 0);
 draw byLabelsOnPolygon(K, H, A)(2, 0);
@@ -12700,11 +12700,11 @@ draw byNamedLineSeq(0)(CF,DC,DE);
 draw byLine(A, E, byred, 1, 0);
 draw byLine(E, C, byblue, 0, 0);
 draw byLine(C, B, byblue, 1, 0);
-draw byArcBE(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0)(a);
+draw byArcBE.a(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0);
 d := (0, 2u);
 G := A shifted d;
 H := C shifted d;
-byLineDefineWithName(G, H, byyellow, 1, 0)(G);
+byLineDefine.G(G, H, byyellow, 1, 0);
 lineUseLineLabel.G := true;
 draw byLabelsOnCircle(F)(a);
 draw byLabelsOnPolygon(E, D, C, B)(2, 0);
@@ -12755,14 +12755,14 @@ C := 1/2[A, B];
 D := (xpart(B), abs(G-H));
 E := C shifted (-abs(C-D), 0);
 F := C shifted (abs(C-D), 0);
-draw byLineWithName(H, G, byblack, 0, 0)(G);
+draw byLine.G(H, G, byblack, 0, 0);
 draw byLineFull(C, D, byred, 0, 0)(B, D, 1, 0, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLineFull(E, A, byyellow, 1, 0)(E, A, 0, 0, -1);
 draw byLineFull(A, C, byblue, 0, 0)(A, C, 0, 0, -1);
 draw byLineFull(C, B, byblue, 1, 0)(C, B, 0, 0, -1);
 draw byLineFull(B, F, byyellow, 0, 0)(B, F, 0, 0, -1);
-draw byArcBE(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0)(a);
+draw byArcBE.a(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0);
 draw byLabelsOnCircle(D)(a);
 draw byLabelsOnPolygon(F, B, C, A, noPoint)(0, 0);
 draw byLabelLine(0)(G);
@@ -12812,11 +12812,11 @@ byLineDefine(A, G, byblue, 1, 0);
 byLineDefine(G, D, byyellow, 0, 0);
 byLineDefine(D, E, byblack, 0, 0);
 draw byNamedLineSeq(0)(CA,DE,GD,AG);
-byLineDefineWithName(A, G, byblack, 0, 1)(AGt);
+byLineDefine.AGt(A, G, byblack, 0, 1);
 byLineStylize(A, D, 1, 0, -1)(AGt);
-byLineDefineWithName(G, D, byblack, 0, 1)(GDt);
+byLineDefine.GDt(G, D, byblack, 0, 1);
 byLineStylize(A, E, 0, 0, -1)(GDt);
-byLineDefineWithName(D, E, byblack, 0, 1)(DEt);
+byLineDefine.DEt(D, E, byblack, 0, 1);
 byLineStylize(G, E, 0, 1, -1)(DEt);
 draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(0, 0);
 }
@@ -12942,12 +12942,12 @@ byLineDefine(E, D, byred, 1, 0);
 byLineDefine(D, C, byblue, 1, 0);
 byLineDefine(C, A, byred, 0, 0);
 draw byNamedLineSeq(0)(ED,DC,noLine,CA,AB,BC,CE);
-byLineDefineWithName(A, B, byblack, 0, 1)(ABt);
-byLineDefineWithName(B, C, byblack, 0, 1)(BCt);
-byLineDefineWithName(C, A, byblack, 0, 1)(CAt);
-byLineDefineWithName(D, C, byblack, 0, 1)(DCt);
-byLineDefineWithName(C, E, byblack, 0, 1)(CEt);
-byLineDefineWithName(E, D, byblack, 0, 1)(EDt);
+byLineDefine.ABt(A, B, byblack, 0, 1);
+byLineDefine.BCt(B, C, byblack, 0, 1);
+byLineDefine.CAt(C, A, byblack, 0, 1);
+byLineDefine.DCt(D, C, byblack, 0, 1);
+byLineDefine.CEt(C, E, byblack, 0, 1);
+byLineDefine.EDt(E, D, byblack, 0, 1);
 draw byLabelsOnPolygon(E, C, B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
@@ -13017,11 +13017,11 @@ draw byLine(G, K, byblack, 0, 1);
 byLineDefine(G, B, byblack, 0, 1);
 byLineDefine(G, L, byblack, 0, 1);
 draw byNamedLineSeq(0)(GB,GL);
-draw byArc(G, L, B, r, byred, 0, 0, 0, 0)(LB);
-draw byArc(G, B, C, r, byblack, 0, 0, 0, 0)(BC);
-draw byArc(G, C, K, r, byred, 0, 0, 0, 0)(CK);
-draw byArc(G, K, L, r, byblue, 0, 0, 0, 0)(KL);
-byCircleDefineR(G, r, byred, 0, 0, 0)(G);
+draw byArc.LB(G, L, B, r, byred, 0, 0, 0, 0);
+draw byArc.BC(G, B, C, r, byblack, 0, 0, 0, 0);
+draw byArc.CK(G, C, K, r, byred, 0, 0, 0, 0);
+draw byArc.KL(G, K, L, r, byblue, 0, 0, 0, 0);
+byCircleDefineR.G(G, r, byred, 0, 0, 0);
 H := (0, -1/2u - 2r);
 D := (dir(aa)*r) shifted H;
 E := (dir(ba)*r) shifted H;
@@ -13040,11 +13040,11 @@ draw byLine(H, M, byblack, 0, 1);
 byLineDefine(H, E, byblack, 0, 1);
 byLineDefine(H, N, byblack, 0, 1);
 draw byNamedLineSeq(0)(HE,HN);
-draw byArc(H, N, E, r, byblue, 0, 0, 0, 0)(NE);
-draw byArc(H, E, F, r, byyellow, 1, 0, 0, 0)(EF);
-draw byArc(H, F, M, r, byred, 1, 0, 0, 0)(FM);
-draw byArc(H, M, N, r, byblue, 1, 0, 0, 0)(MN);
-byCircleDefineR(H, r, byblue, 0, 0, 0)(H);
+draw byArc.NE(H, N, E, r, byblue, 0, 0, 0, 0);
+draw byArc.EF(H, E, F, r, byyellow, 1, 0, 0, 0);
+draw byArc.FM(H, F, M, r, byred, 1, 0, 0, 0);
+draw byArc.MN(H, M, N, r, byblue, 1, 0, 0, 0);
+byCircleDefineR.H(H, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C, K, L)(G);
 draw byLabelsOnCircle(E, F, M, N)(H);
 draw byLabelsOnPolygon(B, G, L)(2, 0);
@@ -13199,7 +13199,7 @@ draw byLine(C, A, byblack, 0, 0);
 draw byLine(A, D, byyellow, 0, 0);
 draw byLine(D, E, byyellow, 1, 0);
 draw byLine(C, E, byblue, 1, 0);
-draw byCircleABC(A, B, C, byyellow, 0, 0, 1/2)(O);
+draw byCircleABC.O(A, B, C, byyellow, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, E)(O);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 }
@@ -13251,7 +13251,7 @@ draw byLine(A, B, byblue, 1, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byyellow, 0, 0);
-draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byCircleABC.O(A, B, C, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, E)(O);
 draw byLabelsOnPolygon(C, D, B)(2, 0);
 }
@@ -13306,7 +13306,7 @@ draw byLine(A, B, byblack, 1, 0);
 draw byLine(B, C, byblue, 1, 0);
 draw byLine(C, D, byblack, 0, 0);
 draw byLine(D, A, byyellow, 0, 0);
-draw byCircleABC(A, B, C, byred, 0, 0, 1/2)(O);
+draw byCircleABC.O(A, B, C, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(O);
 draw byLabelsOnPolygon(D, E, B)(2, 0);
 }

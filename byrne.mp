@@ -1,4 +1,4 @@
-%    byrne-euclid 0.1.0
+%    byrne-euclid 0.2.0
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2018 Sergey Slyusarev
@@ -707,9 +707,9 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
     p rotated globalRotation
 enddef;
 
-vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
-    byLineDefine.lineName(a, b)(col, dp, th)
-enddef;
+%vardef byLineDefineWithName (suffix a, b)(expr col, dp, th)(suffix lineName) =
+%    byLineDefine.lineName(a, b)(col, dp, th)
+%enddef;
 
 vardef byLineDefine@#(suffix a, b)(expr col, dp, th) =
 if str @# = "":
@@ -780,10 +780,14 @@ else:
 fi
 enddef;
 
-vardef byLineFull (suffix a, b)(expr col, dp, th)(suffix c, d)(expr ct, dt, s) =
-    byLineDefine (a, b) (col, dp, th);
-    byLineStylize (c, d, ct, dt, s)(scantokens(str a & str b));
-    byNamedLine(scantokens(str a & str b))
+vardef byLineFull@#(suffix a, b)(expr col, dp, th)(suffix c, d)(expr ct, dt, s) =
+if str @# = "":
+    byLineFull.scantokens(str a & str b)(a, b)(col, dp, th)(c, d)(ct, dt, s)
+else:
+    byLineDefine@#(a, b) (col, dp, th);
+    byLineStylize (c, d, ct, dt, s)(@#);
+    byNamedLine(@#)
+fi
 enddef;
 
 % This one's behaviour is slightly off, since it affects line label type
@@ -1243,15 +1247,19 @@ vardef byPointMarkDefine (suffix pointName)(expr col, sty) =
     setAttribute("point", "Style", str pointName, sty);
 enddef;
 
-vardef byPointXYZDefine (suffix pointName)(expr ox, oy, oz) =
-if mainPictureMode:
-    appendList(allPointsList, str pointName, 1, true);
+vardef byPointXYZDefine@#(expr ox, oy, oz) =
+if str @# = "":
+    errmessage("byPointXYZDefine needs a name (byPointXYZDefine.somename...)");
+else:
+    if mainPictureMode:
+        appendList(allPointsList, str @#, 1, true);
+    fi;
+        setAttribute("point", "XYZ", str @#, (ox, oy, oz));
+        pair @#;
+        color pointXYZ.@#;
+        @# := (ox, oy);
+        pointXYZ.@# := (ox, oy, oz);
 fi;
-    setAttribute("point", "XYZ", str pointName, (ox, oy, oz));
-    pair pointName;
-    color pointXYZ.pointName;
-    pointName := (ox, oy);
-    pointXYZ.pointName := (ox, oy, oz);
 enddef;
 
 vardef byPointXYZEmpty (text pointNames) =
@@ -1282,6 +1290,8 @@ begingroup
 endgroup
 enddef;
 
+% @# here stands for rotation order, e. g. byRotatePoints.XYZ
+
 vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
     save oxyz, pointsToProcess;
     color oxyz;
@@ -1296,7 +1306,7 @@ vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
         if attributeExists("point", "XYZ", str i):
             oxyz := getAttribute("point", "XYZ", str i);
         elseif typeOf(i) = "pair":
-            byPointXYZDefine(i)(xpart i, ypart i, 0);
+            byPointXYZDefine.i(xpart i, ypart i, 0);
             oxyz := getAttribute("point", "XYZ", str i);
         else:
             errmessage("Point " & str i & " doesn't exist");
@@ -1525,31 +1535,42 @@ vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
     ) rotated globalRotation
 enddef;
 
-vardef byArcDefineBE (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
-    setAttribute("arc", "Color", str arcName, col);
-    setAttribute("arc", "Dashed", str arcName, dp);
-    setAttribute("arc", "Thin", str arcName, th);
-    setAttribute("arc", "Shift", str arcName, s);
-    setAttribute("arc", "Diameter", str arcName, 2r);
-    setAttribute("arc", "Center", str arcName, o);
-    setAttribute("arc", "CenterName", str arcName, str o);
-    setAttribute("arc", "BName", str arcName, "");
-    setAttribute("arc", "EName", str arcName, "");
-    setAttribute("arc", "Begin", str arcName, b);
-    setAttribute("arc", "End", str arcName, e);
-    setAttribute("arc", "EndType", str arcName, et);
-    setAttribute("arc", "Angle", str arcName, angle((point b of fullcircle) - (point e of fullcircle)));
-    setAttribute("arc", "SpaceRotation", str arcName, (0,0,0));
-    setAttribute("arc", "PlaneVector", str arcName, (0,0,1));
-    setAttribute("arc", "Synonym", str arcName, str arcName);
+vardef byArcDefineBE@#(suffix o)(expr b, e, r, col, dp, th, s, et) =
+if str @# = "":
+    byArcDefineBE.scantokens(o)(b, e, r, col, dp, th, s, et);
+else:
+    setAttribute("arc", "Color", str @#, col);
+    setAttribute("arc", "Dashed", str @#, dp);
+    setAttribute("arc", "Thin", str @#, th);
+    setAttribute("arc", "Shift", str @#, s);
+    setAttribute("arc", "Diameter", str @#, 2r);
+    setAttribute("arc", "Center", str @#, o);
+    setAttribute("arc", "CenterName", str @#, str o);
+    setAttribute("arc", "BName", str @#, "");
+    setAttribute("arc", "EName", str @#, "");
+    setAttribute("arc", "Begin", str @#, b);
+    setAttribute("arc", "End", str @#, e);
+    setAttribute("arc", "EndType", str @#, et);
+    setAttribute("arc", "Angle", str @#, angle((point b of fullcircle) - (point e of fullcircle)));
+    setAttribute("arc", "SpaceRotation", str @#, (0,0,0));
+    setAttribute("arc", "PlaneVector", str @#, (0,0,1));
+    setAttribute("arc", "Synonym", str @#, str @#);
+fi;
 enddef;
 
-vardef byArcBE (suffix o)(expr b, e, r, col, dp, th, s, et) (suffix arcName) =
-    byArcDefineBE(o, b, e, r, col, dp, th, s, et)(arcName);
-    byNamedArcExact(arcName)
+vardef byArcBE@#(suffix o)(expr b, e, r, col, dp, th, s, et) =
+if str @# = "":
+    byArcBE.scantokens(o)(o)(b, e, r, col, dp, th, s, et)
+else:
+    byArcDefineBE.@#(o, b, e, r, col, dp, th, s, et);
+    byNamedArcExact(@#)
+fi
 enddef;
 
-vardef byArcDefine (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcName) =
+vardef byArcDefine@#(suffix o, pb, pe)(expr r, col, dp, th, s, et) =
+if str @# = "":
+    byArcDefine.scantokens(str pb & str pe)(o, pb, pe)(r, col, dp, th, s, et);
+else:
     save b, e;
     numeric b, e;
     b := xpart(((fullcircle scaled 2r) shifted o) intersectiontimes (o -- 2[o, pb]));
@@ -1557,14 +1578,19 @@ vardef byArcDefine (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcNam
     if (b > e):
         b := b - 8;
     fi;
-    byArcDefineBE(o, b, e, r, col, dp, th, s, et)(arcName);
-    setAttribute("arc", "BName", str arcName, str pb);
-    setAttribute("arc", "EName", str arcName, str pe);
+    byArcDefineBE.@#(o, b, e, r, col, dp, th, s, et);
+    setAttribute("arc", "BName", str @#, str pb);
+    setAttribute("arc", "EName", str @#, str pe);
+fi;
 enddef;
 
-vardef byArc (suffix o, pb, pe)(expr r, col, dp, th, s, et) (suffix arcName) =
-    byArcDefine(o, pb, pe, r, col, dp, th, s, et)(arcName);
-    byNamedArcExact(arcName)
+vardef byArc@#(suffix o, pb, pe)(expr r, col, dp, th, s, et) =
+if str @# = "":
+    byArc.scantokens(str pb & str pe)(o, pb, pe)(r, col, dp, th, s, et)
+else:
+    byArcDefine.@#(o, pb, pe, r, col, dp, th, s, et);
+    byNamedArcExact(@#)
+fi
 enddef;
 
 vardef byNamedArcExact (text arcslist) =
@@ -1676,39 +1702,58 @@ vardef byNamedArcLabel (text arcslist) =
     )
 enddef;
 
-vardef byCircleDefineFree (expr o, r, col, dp, th, s) (suffix circleName) =
-    setAttribute("circle", "Color", str circleName, col);
-    setAttribute("circle", "Dashed", str circleName, dp);
-    setAttribute("circle", "Thin", str circleName, th);
-    setAttribute("circle", "Shift", str circleName, s);
-    setAttribute("circle", "Diameter", str circleName, 2r);
-    setAttribute("circle", "Center", str circleName, o);
-    setAttribute("circle", "CenterName", str circleName, "");
-    setAttribute("circle", "AName", str circleName, "");
-    setAttribute("circle", "BName", str circleName, "");
-    setAttribute("circle", "CName", str circleName, "");
-    setAttribute("circle", "SpaceRotation", str circleName, (0,0,0));
-    setAttribute("circle", "PlaneVector", str circleName, (0,0,1));
-    setAttribute("circle", "Synonym", str circleName, str circleName);
+vardef byCircleDefineFree@#(expr o, r, col, dp, th, s) =
+if str @# = "":
+    errmessage("byCircleDefineFree needs a name (byCircleDefineFree.somename...)");
+else:
+    setAttribute("circle", "Color", str @#, col);
+    setAttribute("circle", "Dashed", str @#, dp);
+    setAttribute("circle", "Thin", str @#, th);
+    setAttribute("circle", "Shift", str @#, s);
+    setAttribute("circle", "Diameter", str @#, 2r);
+    setAttribute("circle", "Center", str @#, o);
+    setAttribute("circle", "CenterName", str @#, "");
+    setAttribute("circle", "AName", str @#, "");
+    setAttribute("circle", "BName", str @#, "");
+    setAttribute("circle", "CName", str @#, "");
+    setAttribute("circle", "SpaceRotation", str @#, (0,0,0));
+    setAttribute("circle", "PlaneVector", str @#, (0,0,1));
+    setAttribute("circle", "Synonym", str @#, str @#);
+fi;
 enddef;
 
-vardef byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
-    byCircleDefineFree(o, r, col, dp, th, s)(circleName);
-    setAttribute("circle", "CenterName", str circleName, str o);
+vardef byCircleDefineR@#(suffix o)(expr r, col, dp, th, s) =
+if str @# = "":
+    byCircleDefineR.scantokens(str o)(o)(r, col, dp, th, s)
+else:
+    byCircleDefineFree.@#(o, r, col, dp, th, s);
+    setAttribute("circle", "CenterName", str @#, str o);
+fi;
 enddef;
 
-vardef byCircleR (suffix o)(expr r, col, dp, th, s) (suffix circleName) =
-    byCircleDefineR(o, r, col, dp, th, s)(circleName);
-    byNamedCircle(circleName)
+vardef byCircleR@#(suffix o)(expr r, col, dp, th, s) =
+if str @# = "":
+    byCircleR.scantokens(str o)(o)(r, col, dp, th, s)
+else:
+    byCircleDefineR.@#(o, r, col, dp, th, s);
+    byNamedCircle(@#)
+fi
 enddef;
 
-vardef byCircle (suffix o, a)(expr col, dp, th, s) (suffix circleName) =
-    byCircleDefineR(o, abs(a-o), col, dp, th, s)(circleName);
-    setAttribute("circle", "AName", str circleName, str a);
-    byNamedCircle(circleName)
+vardef byCircle@#(suffix o, a)(expr col, dp, th, s) =
+if str @# = "":
+    byCircle.scantokens(str o & str a)(o, a)(col, dp, th, s)
+else:
+    byCircleDefineR.@#(o, abs(a-o), col, dp, th, s);
+    setAttribute("circle", "AName", str @#, str a);
+    byNamedCircle(@#)
+fi
 enddef;
 
-vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
+vardef byCircleABC@#(suffix a, b, c)(expr col, dp, th, s) =
+if str @# = "":
+    byCircleABC.scantokens(str a & str b & str c)(a, b, c)(col, dp, th, s)
+else:
     save o, r;
     pair o;
     numeric r;
@@ -1718,17 +1763,18 @@ vardef byCircleABC (suffix a, b, c)(expr col, dp, th, s) (suffix circleName) =
     else:
         r := abs(o - a);
     fi;
-    byCircleDefineFree(o, r, col, dp, th, s)(circleName);
-    setAttribute("circle", "AName", str circleName, str a);
-    setAttribute("circle", "BName", str circleName, str b);
-    setAttribute("circle", "CName", str circleName, str c);
+    byCircleDefineFree.@#(o, r, col, dp, th, s);
+    setAttribute("circle", "AName", str @#, str a);
+    setAttribute("circle", "BName", str @#, str b);
+    setAttribute("circle", "CName", str @#, str c);
     if byIsPointInSpace(a, b, c):
         save pv;
         color pv;
         pv := unitvectorXYZ((pointXYZ.a - pointXYZ.b) crossproduct (pointXYZ.c - pointXYZ.b));
-        setAttribute("circle", "PlaneVector", str circleName, pv);
+        setAttribute("circle", "PlaneVector", str @#, pv);
     fi;
-    byNamedCircle(circleName)
+    byNamedCircle(@#)
+fi
 enddef;
 
 vardef byFindCircleCenterABC (suffix a, b, c) =
@@ -1811,17 +1857,25 @@ enddef;
 % Arbitraty figures
 %
 
-vardef byArbitraryFigureDefine (expr p, col, dp, th)(suffix arbitraryFigureName) =
-    setAttribute("arbitraryFigure", "Path", str arbitraryFigureName, p);
-    setAttribute("arbitraryFigure", "Color", str arbitraryFigureName, col);
-    setAttribute("arbitraryFigure", "Dashed", str arbitraryFigureName, dp);
-    setAttribute("arbitraryFigure", "Thin", str arbitraryFigureName, th);
-    setAttribute("arbitraryFigure", "Synonym", str arbitraryFigureName, str arbitraryFigureName);
+vardef byArbitraryFigureDefine@#(expr p, col, dp, th) =
+if str @# = "":
+    errmessage("byArbitraryFigureDefine needs a name (byArbitraryFigureDefine.somename...)");
+else:
+    setAttribute("arbitraryFigure", "Path", str @#, p);
+    setAttribute("arbitraryFigure", "Color", str @#, col);
+    setAttribute("arbitraryFigure", "Dashed", str @#, dp);
+    setAttribute("arbitraryFigure", "Thin", str @#, th);
+    setAttribute("arbitraryFigure", "Synonym", str @#, str @#);
+fi;
 enddef;
 
-vardef byArbitraryFigure (expr p, col, dp, th)(suffix arbitraryFigureName) =
-    byArbitraryFigureDefine(p, col, dp, th)(arbitraryFigureName);
-    byNamedArbitraryFigure(arbitraryFigureName)
+vardef byArbitraryFigure@#(expr p, col, dp, th) =
+if str @# = "":
+    errmessage("byArbitraryFigure needs a name (byArbitraryFigure.somename...)");
+else:
+    byArbitraryFigureDefine@#(p, col, dp, th);
+    byNamedArbitraryFigure(@#)
+fi
 enddef;
 
 vardef byNamedArbitraryFigure (text arbitraryFiguresList) =
@@ -1849,7 +1903,10 @@ vardef byArbitraryFigureRender (expr p, col, dp, th) =
         )
 enddef;
 
-vardef byArbitraryCurveDefine (text pointsList)(expr col, dp, th)(suffix arbitraryCurveName) =
+vardef byArbitraryCurveDefine@#(text pointsList)(expr col, dp, th) =
+if str @# = "":
+    errmessage("byArbitraryCurveDefine needs a name (byArbitraryCurveDefine.somename...)");
+else:
     save pL, p;
     string pL;
     path p;
@@ -1858,12 +1915,13 @@ vardef byArbitraryCurveDefine (text pointsList)(expr col, dp, th)(suffix arbitra
     forsuffixes pN=pointsList:
         appendList(pL, str pN, 1, false);
     endfor;
-    setAttribute("arbitraryCurve", "PointsList", str arbitraryCurveName, pL);
-    setAttribute("arbitraryCurve", "Path", str arbitraryCurveName, p);
-    setAttribute("arbitraryCurve", "Color", str arbitraryCurveName, col);
-    setAttribute("arbitraryCurve", "Dashed", str arbitraryCurveName, dp);
-    setAttribute("arbitraryCurve", "Thin", str arbitraryCurveName, th);
-    setAttribute("arbitraryCurve", "Synonym", str arbitraryCurveName, str arbitraryCurveName);
+    setAttribute("arbitraryCurve", "PointsList", str @#, pL);
+    setAttribute("arbitraryCurve", "Path", str @#, p);
+    setAttribute("arbitraryCurve", "Color", str @#, col);
+    setAttribute("arbitraryCurve", "Dashed", str @#, dp);
+    setAttribute("arbitraryCurve", "Thin", str @#, th);
+    setAttribute("arbitraryCurve", "Synonym", str @#, str @#);
+fi;
 enddef;
 
 vardef byNamedArbitraryCurve (text curvesList) =
@@ -1897,23 +1955,31 @@ vardef byListToPath(text pointsList) =
     rp
 enddef;
 
-vardef byArbitraryCurve (text pointsList)(expr col, dp, th)(suffix arbitraryCurveName) =
-    byArbitraryCurveDefine (pointsList)(col, dp, th)(arbitraryCurveName);
-    byNamedArbitraryCurve(arbitraryCurveName)
+vardef byArbitraryCurve@#(text pointsList)(expr col, dp, th) =
+if str @# = "":
+    errmessage("byArbitraryCurve needs a name (byArbitraryCurve.somename...)");
+else:
+    byArbitraryCurveDefine@#(pointsList)(col, dp, th);
+    byNamedArbitraryCurve(@#)
+fi
 enddef;
 
 %
 % Filled figures
 %
 
-vardef byFilledCircleSegment (expr o, r, b, e, col) (suffix filledCircleSegmentName) =
-    setAttribute("filledCircleSegment", "Color", str filledCircleSegmentName, col);
-    setAttribute("filledCircleSegment", "Diameter", str filledCircleSegmentName, 2r);
-    setAttribute("filledCircleSegment", "Begin", str filledCircleSegmentName, b);
-    setAttribute("filledCircleSegment", "End", str filledCircleSegmentName, e);
-    setAttribute("filledCircleSegment", "Center", str filledCircleSegmentName, o);
-    setAttribute("filledCircleSegment", "Synonym", str filledCircleSegmentName, str filledCircleSegmentName);
-    byNamedFilledCircleSegment(filledCircleSegmentName)
+vardef byFilledCircleSegment@#(expr o, r, b, e, col) =
+if str @# = "":
+    errmessage("byFilledCircleSegment needs a name (byFilledCircleSegment.somename...)");
+else:
+    setAttribute("filledCircleSegment", "Color", str @#, col);
+    setAttribute("filledCircleSegment", "Diameter", str @#, 2r);
+    setAttribute("filledCircleSegment", "Begin", str @#, b);
+    setAttribute("filledCircleSegment", "End", str @#, e);
+    setAttribute("filledCircleSegment", "Center", str @#, o);
+    setAttribute("filledCircleSegment", "Synonym", str @#, str @#);
+    byNamedFilledCircleSegment(@#)
+fi
 enddef;
 
 vardef byNamedFilledCircleSegment (text filledCircleSegmentList) =
@@ -1934,13 +2000,17 @@ vardef byNamedFilledCircleSegment (text filledCircleSegmentList) =
     ) rotated globalRotation
 enddef;
 
-vardef byFilledCircleSector (expr o, r, b, e, col) (suffix filledCircleSectorName) =
-    setAttribute("filledCircleSector", "Color", str filledCircleSectorName, col);
-    setAttribute("filledCircleSector", "Diameter", str filledCircleSectorName, 2r);
-    setAttribute("filledCircleSector", "Begin", str filledCircleSectorName, b);
-    setAttribute("filledCircleSector", "End", str filledCircleSectorName, e);
-    setAttribute("filledCircleSector", "Center", str filledCircleSectorName, o);
-    byNamedFilledCircleSector(filledCircleSectorName)
+vardef byFilledCircleSector@#(expr o, r, b, e, col) =
+if str @# = "":
+    errmessage("byFilledCircleSector needs a name (byFilledCircleSector.somename...)");
+else:
+    setAttribute("filledCircleSector", "Color", str @#, col);
+    setAttribute("filledCircleSector", "Diameter", str @#, 2r);
+    setAttribute("filledCircleSector", "Begin", str @#, b);
+    setAttribute("filledCircleSector", "End", str @#, e);
+    setAttribute("filledCircleSector", "Center", str @#, o);
+    byNamedFilledCircleSector(@#)
+fi
 enddef;
 
 vardef byNamedFilledCircleSector (text filledCircleSectorList) =
@@ -1951,9 +2021,9 @@ vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     ) rotated globalRotation
 enddef;
 
-vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName) =
-    byPolygonDefine.polygonName (pointsList)(col);
-enddef;
+%vardef byPolygonDefineWithName (text pointsList)(expr col)(suffix polygonName) =
+%    byPolygonDefine.polygonName (pointsList)(col);
+%enddef;
 
 vardef byPolygonDefine@#(text pointsList)(expr col) =
 if str @# = "":
@@ -1980,9 +2050,9 @@ vardef byPolygonPathFromList (expr pointsList) =
     forsuffixes pN=scantokens(pointsList): pN -- endfor cycle
 enddef;
 
-vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
-    byPolygon.polygonName(pointsList)(col)
-enddef;
+%vardef byPolygonWithName (text pointsList)(expr col)(suffix polygonName)=
+%    byPolygon.polygonName(pointsList)(col)
+%enddef;
 
 vardef byPolygon@#(text pointsList)(expr col) =
 if str @# = "":
@@ -2170,9 +2240,9 @@ enddef;
 % Angles
 %
 
-vardef byAngleDefineWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
-    byAngleDefine.angleName(a, b, c)(col, sty);
-enddef;
+%vardef byAngleDefineWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
+%    byAngleDefine.angleName(a, b, c)(col, sty);
+%enddef;
 
 vardef byAngleDefine@#(suffix a, b, c)(expr col, sty) =
 if str @# = "":
@@ -2274,9 +2344,9 @@ vardef byFullCircleToPlane (expr colPlaneA, colPlaneB, colPlaneC) =
     p
 enddef;
 
-vardef byAngleWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
-    byAngle.angleName(a, b, c, col, sty)
-enddef;
+%vardef byAngleWithName (suffix a, b, c)(expr col, sty)(suffix angleName) =
+%    byAngle.angleName(a, b, c, col, sty)
+%enddef;
 
 vardef byAngle@#(suffix a, b, c)(expr col, sty) =
 if str @# = "":
@@ -2287,9 +2357,9 @@ else:
 fi
 enddef;
 
-vardef byAngleDefineExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
-    byAngleDefineExtended.angleName(a, b, c)(col, sty)(optionalColors)
-enddef;
+%vardef byAngleDefineExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+%    byAngleDefineExtended.angleName(a, b, c)(col, sty)(optionalColors)
+%enddef;
 
 vardef byAngleDefineExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
 if str @# = "":
@@ -2306,17 +2376,17 @@ else:
 fi;
 enddef;
 
-vardef byAngleExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
-    byAngleExtended.angleName(a, b, c)(col, sty)(optionalColors)
-enddef;
+%vardef byAngleExtendedWithName (suffix a, b, c)(expr col, sty)(suffix angleName)(text optionalColors) =
+%    byAngleExtended.angleName(a, b, c)(col, sty)(optionalColors)
+%enddef;
 
 vardef byAngleExtended@#(suffix a, b, c)(expr col, sty)(text optionalColors) =
-    if str @# = "":
-        byAngleExtended.scantokens(str a & str b & str c)(a, b, c)(col, sty)(optionalColors)
-    else:
-        byAngleDefineExtended@#(a, b, c)(col, sty)(optionalColors);
-        byNamedAngle(@#)
-    fi
+if str @# = "":
+    byAngleExtended.scantokens(str a & str b & str c)(a, b, c)(col, sty)(optionalColors)
+else:
+    byAngleDefineExtended@#(a, b, c)(col, sty)(optionalColors);
+    byNamedAngle(@#)
+fi
 enddef;
 
 vardef byNamedAngle (text anglesList) =
@@ -3038,15 +3108,19 @@ enddef;
 %
 
 % along with 'magnitudesymbol' one symbol long 'magnitude' is also defined at the same time.
-vardef byMagnitudeSymbolDefine (expr shp, col, sty)(suffix magnitudeSymbolName) =
-    setAttribute("magnitude", "Color", str magnitudeSymbolName, col);
-    setAttribute("magnitude", "Shape", str magnitudeSymbolName, shp);
-    setAttribute("magnitude", "Style", str magnitudeSymbolName, sty);
-    setAttribute1("magnitude", "Symbol", str magnitudeSymbolName, str magnitudeSymbolName);
-    setAttribute1("magnitude", "N", str magnitudeSymbolName, 1);
-    setAttribute("magnitude", "Alignment", str magnitudeSymbolName, 0);
-    setAttribute("magnitude", "NumberOfRows", str magnitudeSymbolName, 1);
-    setAttribute("magnitude", "Horizontal", str magnitudeSymbolName, false);
+vardef byMagnitudeSymbolDefine@#(expr shp, col, sty) =
+if str @# = "":
+    errmessage("byMagnitudeSymbolDefine needs a name (byMagnitudeSymbolDefine.somename...)");
+else:
+    setAttribute("magnitude", "Color", str @#, col);
+    setAttribute("magnitude", "Shape", str @#, shp);
+    setAttribute("magnitude", "Style", str @#, sty);
+    setAttribute1("magnitude", "Symbol", str @#, str @#);
+    setAttribute1("magnitude", "N", str @#, 1);
+    setAttribute("magnitude", "Alignment", str @#, 0);
+    setAttribute("magnitude", "NumberOfRows", str @#, 1);
+    setAttribute("magnitude", "Horizontal", str @#, false);
+fi;
 enddef;
 
 vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
@@ -3117,27 +3191,31 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
     )
 enddef;
 
-vardef byMagnitudeDefine (suffix magnitudeName)(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
-    setAttribute("magnitude", "Horizontal", str magnitudeName, hor);
-    setAttribute("magnitude", "Alignment", str magnitudeName, al);
+vardef byMagnitudeDefine@#(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
+if str @# = "":
+    errmessage("byMagnitudeDefine needs a name (byMagnitudeDefine.somename...)");
+else:
+    setAttribute("magnitude", "Horizontal", str @#, hor);
+    setAttribute("magnitude", "Alignment", str @#, al);
     save i;
     numeric i;
     i := 0;
     forsuffixes rN=rowsList:
         i := i + 1;
-        setAttribute[i]("magnitude", "N", str magnitudeName, rN);
+        setAttribute[i]("magnitude", "N", str @#, rN);
     endfor;
-    setAttribute("magnitude", "NumberOfRows", str magnitudeName, i);
+    setAttribute("magnitude", "NumberOfRows", str @#, i);
     i := 0;
     forever:
         forsuffixes sN=magnitudeSymbolsList:
             i := i + 1;
-            if (i <= getAttribute("magnitude", "NumberOfRows", str magnitudeName)):
-                setAttribute[i]("magnitude", "Symbol", str magnitudeName, str sN);
+            if (i <= getAttribute("magnitude", "NumberOfRows", str @#)):
+                setAttribute[i]("magnitude", "Symbol", str @#, str sN);
             fi;
         endfor;
-    exitif (i >= getAttribute("magnitude", "NumberOfRows", str magnitudeName));
+    exitif (i >= getAttribute("magnitude", "NumberOfRows", str @#));
     endfor;
+fi;
 enddef;
 
 vardef byNamedMagnitude (expr excl) (suffix magnitudeName) =
