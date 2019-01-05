@@ -560,7 +560,7 @@ vardef byPutPointsInSpace (text pL) =
     byRotatePoints(0, 0, 0, true)(pL);
 enddef;
 
-% Gets a list of either 2d or 3d points and returns 3d points
+% Gets a either a 2d or a 3d point and returns a 3d point
 
 vardef byGetPointXYZ (suffix givenPoint) =
     if (typeOf(givenPoint) = "color"):
@@ -3083,22 +3083,22 @@ vardef byNamedRotationArrow (text arrowsList) =
     path arrowPath;
     color arrowPoint;
     numeric arrowStyle;
-    ahlength := 10pt;
+    ahlength := 7pt;
     ahangle := 30;
     image(
         forsuffixes aN=arrowsList:
             arrowPath := byGenerateRotationArrowPath(
-                byGetPointXYZ(scantokens(getAttribute("rotationarrow", "AxisAName", str aN))),
-                byGetPointXYZ(scantokens(getAttribute("rotationarrow", "AxisBName", str aN))),
-                byGetPointXYZ(scantokens(getAttribute("rotationarrow", "PointName", str aN))),
+                pointXYZ.scantokens(getAttribute("rotationarrow", "AxisAName", str aN)),
+                pointXYZ.scantokens(getAttribute("rotationarrow", "AxisBName", str aN)),
+                pointXYZ.scantokens(getAttribute("rotationarrow", "PointName", str aN)),
                 getAttribute("rotationarrow", "Angle", str aN)
                 ) scaled scaleFactor;
             arrowStyle := getAttribute("rotationarrow", "Style", str aN);
             if arrowStyle = 0:
-                arrowPath := subpath (0, (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
+                arrowPath := subpath (0, (arctime (arclength(arrowPath) - 1/2ahlength) of arrowPath)) of arrowPath;
                 drawarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
             else:
-                arrowPath := subpath ((arctime ahlength of arrowPath), (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
+                arrowPath := subpath ((arctime 1/2ahlength of arrowPath), (arctime (arclength(arrowPath) - 1/2ahlength) of arrowPath)) of arrowPath;
                 drawdblarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
             fi;
         endfor;
