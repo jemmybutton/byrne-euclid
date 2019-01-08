@@ -604,7 +604,7 @@ vardef byRotatePointsAroundAxis (suffix lineEndA, lineEndB)(expr a)(text pointsL
     forsuffixes pN := pointsList:
         if (typeOf(pN) = "color"):
             pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pN);
-        else:
+        elseif (typeOf(pN) = "pair"):
             byPutPointsInSpace(pN);
             pointXYZ.pN := byRotateAroundAxis(lineEndAxyz, lineEndBxyz, a, pointXYZ.pN);
         fi;
@@ -1301,15 +1301,13 @@ enddef;
 
 % in order to automatically project points they need to be added
 % to allPointsList list.
-def byPair (text pointsList) =
-begingroup
+vardef byPair (text pointsList) =
     save i;
     pair pointsList;
     forsuffixes i := pointsList:
         appendList(allPointsList, str i, 1, true);
         numeric pointXYZ.i;
     endfor;
-endgroup
 enddef;
 
 % @# here stands for rotation order, e. g. byRotatePoints.XYZ
@@ -1325,19 +1323,21 @@ vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
         pointsToProcess := allPointsList;
     fi;
     forsuffixes i=scantokens(pointsToProcess):
-        if attributeExists("point", "XYZ", str i):
-            oxyz := getAttribute("point", "XYZ", str i);
-        elseif typeOf(i) = "pair":
-            byPointXYZDefine.i(xpart i, ypart i, 0);
-            oxyz := getAttribute("point", "XYZ", str i);
-        else:
-            errmessage("Point " & str i & " doesn't exist");
-        fi;
-        oxyz := rotateColor@#(oxyz, (xa, ya, za));
-        pair i;
-        i := (redpart(oxyz), greenpart(oxyz));
-        if toRotate:
-            setAttribute("point", "XYZ", str i, oxyz);
+        if known i:
+            if attributeExists("point", "XYZ", str i):
+                oxyz := getAttribute("point", "XYZ", str i);
+            elseif typeOf(i) = "pair":
+                byPointXYZDefine.i(xpart i, ypart i, 0);
+                oxyz := getAttribute("point", "XYZ", str i);
+            else:
+                errmessage("Point " & str i & " doesn't exist");
+            fi;
+            oxyz := rotateColor@#(oxyz, (xa, ya, za));
+            pair i;
+            i := (redpart(oxyz), greenpart(oxyz));
+            if toRotate:
+                setAttribute("point", "XYZ", str i, oxyz);
+            fi;
         fi;
     endfor;
 enddef;
