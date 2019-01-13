@@ -1726,7 +1726,7 @@ enddef;
 
 vardef byCircleDefineFree@#(expr o, r, col, dp, th, s) =
 if str @# = "":
-    errmessage("byCircleDefineFree needs a name (byCircleDefineFree.somename...)");
+    byCircleDefineFree.aCircle(o, r, col, dp, th, s);
 else:
     setAttribute("circle", "Color", str @#, col);
     setAttribute("circle", "Dashed", str @#, dp);
@@ -1881,7 +1881,7 @@ enddef;
 
 vardef byArbitraryFigureDefine@#(expr p, col, dp, th) =
 if str @# = "":
-    errmessage("byArbitraryFigureDefine needs a name (byArbitraryFigureDefine.somename...)");
+    byArbitraryFigureDefine.anArbitraryFigure(p, col, dp, th);
 else:
     setAttribute("arbitraryFigure", "Path", str @#, p);
     setAttribute("arbitraryFigure", "Color", str @#, col);
@@ -1893,7 +1893,7 @@ enddef;
 
 vardef byArbitraryFigure@#(expr p, col, dp, th) =
 if str @# = "":
-    errmessage("byArbitraryFigure needs a name (byArbitraryFigure.somename...)");
+    byArbitraryFigure.anArbitraryFigure(p, col, dp, th)
 else:
     byArbitraryFigureDefine@#(p, col, dp, th);
     byNamedArbitraryFigure(@#)
@@ -1927,7 +1927,7 @@ enddef;
 
 vardef byArbitraryCurveDefine@#(text pointsList)(expr col, dp, th) =
 if str @# = "":
-    errmessage("byArbitraryCurveDefine needs a name (byArbitraryCurveDefine.somename...)");
+    byArbitraryCurveDefine.anArbitraryCurve(pointsList)(col, dp, th);
 else:
     save pL, p;
     string pL;
@@ -1979,7 +1979,7 @@ enddef;
 
 vardef byArbitraryCurve@#(text pointsList)(expr col, dp, th) =
 if str @# = "":
-    errmessage("byArbitraryCurve needs a name (byArbitraryCurve.somename...)");
+    byArbitraryCurve.anArbitraryCurve(pointsList)(col, dp, th)
 else:
     byArbitraryCurveDefine@#(pointsList)(col, dp, th);
     byNamedArbitraryCurve(@#)
@@ -1992,7 +1992,7 @@ enddef;
 
 vardef byFilledCircleSegment@#(expr o, r, b, e, col) =
 if str @# = "":
-    errmessage("byFilledCircleSegment needs a name (byFilledCircleSegment.somename...)");
+    byFilledCircleSegment.aFilledCircleSegment(o, r, b, e, col)
 else:
     setAttribute("filledCircleSegment", "Color", str @#, col);
     setAttribute("filledCircleSegment", "Diameter", str @#, 2r);
@@ -2024,7 +2024,7 @@ enddef;
 
 vardef byFilledCircleSector@#(expr o, r, b, e, col) =
 if str @# = "":
-    errmessage("byFilledCircleSector needs a name (byFilledCircleSector.somename...)");
+    byFilledCircleSector.aFilledCircleSector(o, r, b, e, col)
 else:
     setAttribute("filledCircleSector", "Color", str @#, col);
     setAttribute("filledCircleSector", "Diameter", str @#, 2r);
@@ -3112,7 +3112,7 @@ enddef;
 % along with 'magnitudesymbol' one symbol long 'magnitude' is also defined at the same time.
 vardef byMagnitudeSymbolDefine@#(expr shp, col, sty) =
 if str @# = "":
-    errmessage("byMagnitudeSymbolDefine needs a name (byMagnitudeSymbolDefine.somename...)");
+    byMagnitudeSymbolDefine.aMagnitudeSymbol(shp, col, sty)
 else:
     setAttribute("magnitude", "Color", str @#, col);
     setAttribute("magnitude", "Shape", str @#, shp);
@@ -3195,7 +3195,7 @@ enddef;
 
 vardef byMagnitudeDefine@#(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
 if str @# = "":
-    errmessage("byMagnitudeDefine needs a name (byMagnitudeDefine.somename...)");
+    byMagnitudeDefine.aMagnitude(al, hor)(rowsList)(magnitudeSymbolsList);
 else:
     setAttribute("magnitude", "Horizontal", str @#, hor);
     setAttribute("magnitude", "Alignment", str @#, al);

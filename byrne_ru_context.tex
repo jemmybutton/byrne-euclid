@@ -591,7 +591,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 		draw byLine(O, C)(byred, 0, 0);
 		draw byLine(O, E)(byyellow, 0, 0);
 		draw byLine(D, A)(byblue, 0, 0);
-		draw byCircleR.O(O, r, byred, 0, 0, 0);
+		draw byCircleR(O, r, byred, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XV]
 \startalignment[last]
@@ -613,7 +613,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 	A := dir(0) scaled r;
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byyellow, 0, 0);
-		draw byCircleR.O(O, r, byred, 0, 0, 0);
+		draw byCircleR(O, r, byred, 0, 0, 0);
 }
 \startDefinitionOnlyNumber[reference=def:I.XVII]
 \startalignment[last]
@@ -4765,7 +4765,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	O := (0, 0);
 	A := (-r, -r);
 	B := (r, -r);
-	draw byCircleR.O(O, r, byblack, 0, 0, -1);
+	draw byCircleR(O, r, byblack, 0, 0, -1);
 	draw byLine(A, B, byblack, 0, 0);
 }\drawCurrentPictureInMargin
 Про прямую говорят, что она касается круга, если она встречает круг, но при продолжении не пересекает его.
@@ -4782,11 +4782,11 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	B := A shifted (dir(110) scaled (r1-r2));
 	C := A shifted (dir(-130) scaled (r1+r3));
 	fill (fullcircle scaled 2r1) shifted A withcolor byyellow;
-	draw byCircleR.A(A, r1, byyellow, 0, 0, 0);
+	draw byCircleR(A, r1, byyellow, 0, 0, 0);
 	fill (fullcircle scaled 2r2) shifted B withcolor byred;
-	draw byCircleR.B(B, r2, byblack, 0, 0, -1/2);
+	draw byCircleR(B, r2, byblack, 0, 0, -1/2);
 	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
-	draw byCircleR.C(C, r3, byblue, 0, 0, -1/2);
+	draw byCircleR(C, r3, byblue, 0, 0, -1/2);
 }\drawCurrentPictureInMargin
 Про круги говорят, что они касаются друг друга, если они встречаясь, не пересекают друг друга.
 \stopDefinitionOnlyNumber
@@ -4808,7 +4808,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	byLineDefine(O, E, byred, 0, 0);
 	byLineDefine(O, F, byblue, 0, 0);
 	draw byNamedLineSeq(0)(OE,OF);
-	draw byCircleR.O(O, r, byblack, 0, 0, 0);
+	draw byCircleR(O, r, byblack, 0, 0, 0);
 }\drawCurrentPictureInMargin
 Про прямые говорят, что они равноотстоят от центра круга, если перпендикуляры проведенные к~ним из центра круга равны.
 \stopDefinitionOnlyNumber
@@ -4826,8 +4826,8 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	r := 3/4u;
 	A := (0, 0);
 	B := (0, -1/8u);
-	draw byFilledCircleSegment.A(A, r, 1/2, 4 - 1/2, byred);
-	draw byFilledCircleSegment.B(B, r, 4 - 1/2, 8 + 1/2, byblue);
+	draw byFilledCircleSegment(A, r, 1/2, 4 - 1/2, byred);
+	draw byFilledCircleSegment(B, r, 4 - 1/2, 8 + 1/2, byblue);
 }\drawCurrentPictureInMargin
 Сегментом круга называется фигура, заключающаяся между прямой и~частью круга, отсекаемой этой прямой.
 \stopDefinitionOnlyNumber
@@ -4845,7 +4845,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	C := B shifted ((unitvector(B-O) rotated -90) scaled r);
 	byAngleDefine(C, B, A, byred, 0);
 	draw byNamedAngleResized();
-	draw byArcBE.O(O, b, e, r, byblack, 0, 0, 0, 0);
+	draw byArcBE(O, b, e, r, byblack, 0, 0, 0, 0);
 	draw byLine(A, B, byblack, 0, 0);
 	draw byLine(B, C, byblack, 0, 0);
 	draw byLine(O, B, byblack, 1, 0);
@@ -4868,7 +4868,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	byAngleDefine(C, A, D, byblue, 0);
 	byAngleDefine(C, B, D, byyellow, 0);
 	draw byNamedAngleResized();
-	draw byArcBE.O(O, b, e, r, byblack, 0, 0, 0, 0);
+	draw byArcBE(O, b, e, r, byblack, 0, 0, 0, 0);
 	draw byLine(C, A, byblack, 0, 0);
 	draw byLine(C, B, byblack, 0, 0);
 	draw byLine(D, A, byblack, 0, 0);
@@ -4908,7 +4908,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	e := 3;
 	O := (0, 0);
 	draw byFilledCircleSector.O(O, r, b, e, byyellow);
-	draw byArcBE.O(O, e, b + 8, r, byblack, 0, 0, -1, 0);
+	draw byArcBE(O, e, b + 8, r, byblack, 0, 0, -1, 0);
 }\drawCurrentPictureInMargin
 Сектором круга называют фигуру, заключающуюся между двумя радиусами и~дугой между ними.
 \stopDefinitionOnlyNumber
@@ -4931,8 +4931,8 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	F := (point e of fullcircle scaled 2r2) shifted N;
 	draw byPolygon(A,B,C)(byred);
 	draw byPolygon(D,E,F)(byred);
-	draw byArcBE.M(M, b, e, r1, byblack, 0, 0, 0, 1);
-	draw byArcBE.N(N, b, e, r2, byblack, 0, 0, 0, 1);
+	draw byArcBE(M, b, e, r1, byblack, 0, 0, 0, 1);
+	draw byArcBE(N, b, e, r2, byblack, 0, 0, 0, 1);
 }\drawCurrentPictureInMargin
 Подобными сегментами называют сегменты, углы в~которых равны.
 \stopDefinitionOnlyNumber
@@ -4945,10 +4945,10 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	r2 := 1/2u;
 	r3 := 3/4u;
 	O := (0, 0);
-	draw byFilledCircleSegment.OI(O, r3, 0, 8, byred);
-	draw byFilledCircleSegment.OII(O, r2, 0, 8, white);
-	draw byCircleR.OII(O, r2, byblack, 0, 0, 0);
-	draw byFilledCircleSegment.OIII(O, r1, 0, 8, byblue);
+	draw byFilledCircleSegment(O, r3, 0, 8, byred);
+	draw byFilledCircleSegment(O, r2, 0, 8, white);
+	draw byCircleR(O, r2, byblack, 0, 0, 0);
+	draw byFilledCircleSegment(O, r1, 0, 8, byblue);
 }\drawCurrentPictureInMargin
 Круги, имеющие один центр называют концентрическими.
 \stopDefinitionOnlyNumber
@@ -4984,7 +4984,7 @@ draw byMarkLine(1/2, byblack)(EC);
 byLineDefine(A, G, byblue, 0, 0);
 byLineDefine(B, G, byblack, 1, 0);
 draw byNamedLineSeq(0)(AG,BG);
-draw byCircleR.F(F, r, byblue, 0, 0, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(A, G, B)(2, 0);
 draw byLabelsOnPolygon(E, D, A)(2, 0);
 draw byLabelsOnPolygon(E, F, C)(2, -4);
@@ -5034,7 +5034,7 @@ draw byLine(A, B, byred, 0, 0);
 byLineDefine(A, D, byyellow, 0, 0);
 byLineDefine(B, D, byblue, 0, 0);
 draw byNamedLineSeq(0)(AD,BD);
-draw byCircleR.D(D, r, byred, 0, 0, 0);
+draw byCircleR(D, r, byred, 0, 0, 0);
 draw byLabelsOnPolygon(B, F, A, D)(0, 0);
 draw byLabelsOnPolygon(A, E, F)(2, 0);
 }
@@ -5088,7 +5088,7 @@ draw byLine(F, B, byred, 1, 0);
 byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(D, F, A)(2, -2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
@@ -5138,7 +5138,7 @@ draw byNamedAngleResized();
 draw byLine(E, F, byblack, 1, 0);
 draw byLine(B, D, byred, 0, 0);
 draw byLine(A, C, byblack, 0, 0);
-draw byCircleR.F(F, r, byblue, 0, 0, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(F);
 draw byLabelLineEnd(F, E, 0);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
@@ -5276,7 +5276,7 @@ draw byLine(F, C, byblue, 0, 0);
 draw byLine(F, A, byblack, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
 draw byLine(F, G, byblue, 1, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D, G)(E);
 draw byLabelsOnPolygon(D, F, G)(2, 0);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
@@ -5318,7 +5318,7 @@ draw byLine(E, B, byred, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, D, byyellow, 0, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 }
@@ -5355,7 +5355,7 @@ draw byLine(M, G, byblue, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, D, byblack, 0, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, G, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
@@ -5544,7 +5544,7 @@ draw byLine(D, C, byblue, 0, 0);
 draw byLine(D, F, byblack, 0, 0);
 draw byLine(F, L, byred, 1, 0);
 draw byLine(D, H, byred, 0, 0);
-draw byCircleR.D(D, r, byblue, 0, 0, 0);
+draw byCircleR(D, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
@@ -5774,7 +5774,7 @@ byLineDefine(D, H, byred, 0, 0);
 byLineDefine(B, G, byblue, 1, 0);
 byLineDefine(G, H, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,GH,DH);
-draw byCircleR.M(M, r1, byyellow, 0, 0, 1);
+draw byCircleR(M, r1, byyellow, 0, 0, 1);
 draw byArbitraryFigure.fI(cr2, byblue, 0, 0);
 byCircleDefineR.M(M, r1, byyellow, 0, 0, 0);
 byCircleDefineR.N(N, r2, byblue, 0, 0, 0);
@@ -5903,7 +5903,7 @@ draw byLine(A, F, byred, 0, 0);
 draw byLine(F, B, byred, 1, 0);
 draw byLine(C, G, byyellow, 0, 0);
 draw byLine(G, D, byyellow, 1, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(F, E, G)(2, 0);
 draw byLabelLineEnd(G, E, 0);
@@ -5979,7 +5979,7 @@ draw byLine(D, E, byred, 0, 0);
 draw byLine(E, A, byblack, 0, 0);
 draw byLine(F, G, byred, 1, 0);
 draw byLine(M, N, byblue, 0, 0);
-draw byCircleR.E(E, r, byblack, 0, 0, 0);
+draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, M, N, F, G)(E);
 draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
@@ -6051,7 +6051,7 @@ draw byLine(F, G, byyellow, 0, 0);
 draw byLine(M, N, blue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byLine(D, A, byblack, 0, 0);
-draw byCircleR.E(E, r, byblack, 0, 0, 0);
+draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, B, C, F, G, M, N)(E);
 draw byLabelLineEnd(K, H, 0);
 draw byLabelLineEnd(H, K, 0);
@@ -6272,7 +6272,7 @@ draw byNamedAngleResized();
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(C, E, byblue, 0, 0);
 draw byLine(C, F, byred, 1, 0);
-draw byCircleR.G(G, r, byred, 0, 0, 0);
+draw byCircleR(G, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, C)(G);
 draw byLabelLineEnd(F, C, 0);
 draw byLabelLineEnd(E, C, 0);
@@ -6315,7 +6315,7 @@ draw byLine(A, C, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 0);
 draw byLine(E, F, byred, 1, 0);
 draw byLine(E, A, byred, 0, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, C)(E);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
 }
@@ -6353,7 +6353,7 @@ draw byLine(E, C, byblack, 0, 1);
 draw byLine(A, B, byblack, 0, 1);
 draw byLine(E, B, byblack, 0, 1);
 draw byLine(A, F, byblack, 0, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, B, C)(E);
 draw byLabelsOnPolygon(B, E, A)(2, 0);
 }
@@ -6393,7 +6393,7 @@ draw byLine(D, F, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 1);
 draw byLine(E, F, byblack, 0, 1);
 draw byLine(D, G, byred, 0, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(D, G, C, F)(E);
 draw byLabelsOnPolygon(G, E, D)(2, 0);
 }
@@ -6437,7 +6437,7 @@ draw byLine(B, A, byblack, 0, 1);
 draw byLine(B, E, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(D, E, byblack, 0, 1);
-draw byCircleR.F(F, r, byblue, 0, 0, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A)(F);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }\drawCurrentPictureInMargin
@@ -6477,7 +6477,7 @@ draw byLine(B, A, byblack, 0, 1);
 draw byLine(B, E, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(D, E, byblack, 0, 1);
-draw byCircleR.F(F, r, byblue, 0, 0, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
 \drawCurrentPictureInMargin
@@ -6519,7 +6519,7 @@ draw byLine(C, D, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(B, D, byblack, 0, 0);
-draw byCircleR.E(E, r, byred, 0, 0, 1/2);
+draw byCircleR(E, r, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -6690,7 +6690,7 @@ byLineDefine(E, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(DF,EF);
 draw byLine(A, B, byblack, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
-draw byArcBE.O(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0);
+draw byArcBE(O, -6/5, 5, r, byblue, 0, 0, 1/2, 0);
 draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelLineEnd(D, F, 0);
 draw byLabelLineEnd(E, F, 0);
@@ -7107,7 +7107,7 @@ draw byLine(A, B, byblack, 0, 1);
 draw byLine(A, C, byblack, 0, 1);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, C, byblack, 0, 0);
-draw byCircleR.E(E, r, byblack, 0, 0, 0);
+draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -7140,7 +7140,7 @@ draw byLine(A, B, byblack, 0, 1);
 draw byLine(B, D, byblack, 0, 1);
 draw byLine(A, C, byblue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -7174,7 +7174,7 @@ draw byLine(A, B, byred, 0, 0);
 draw byLine(B, C, byblue, 0, 0);
 draw byLine(C, D, byblack, 0, 1);
 draw byLine(D, A, byblack, 0, 1);
-draw byCircleR.E(E, r, byblue, 0, 0, 0);
+draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
@@ -7220,7 +7220,7 @@ draw byLine(C, B, byblack, 0, 1);
 draw byLine(D, B, byred, 0, 0);
 draw byLineFull(E, F, byblue, 0, 0)(E, F, 0, 0, 1);
 draw byLine(A, B, byblack, 0, 0);
-draw byCircleR.O(O, r, byred, 0, 0, 0);
+draw byCircleR(O, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(O);
 draw byLabelsOnPolygon(E, F, noPoint)(0, 0);
 }
@@ -7317,7 +7317,7 @@ setAttribute("angle", "Standalone", "givenAngle", 2);
 draw byNamedAngleResized(B);
 draw byLine(A, B, byblack, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
-draw byCircleR.O(O, r, byblue, 0, 0, 0);
+draw byCircleR(O, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A)(O);
 draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
 }
@@ -7358,7 +7358,7 @@ draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
 draw byLine(D, E, byblue, 0, 0);
 draw byLine(E, B, byblue, 1, 0);
-draw byCircleR.E(E, r, byyellow, 0, 0, 0);
+draw byCircleR(E, r, byyellow, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -7389,7 +7389,7 @@ draw byLine(H, D, byblue, 1, 0);
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, H, byred, 1, 0);
 draw byLine(H, C, byblack, 1, 0);
-draw byCircleR.E(E, r, byred, 0, 0, 0);
+draw byCircleR(E, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(B, D, C, A)(E);
 draw byLabelsOnPolygon(D, H, C)(2, 0);
 draw byLabelsOnPolygon(B, E, A)(2, 0);
@@ -7426,7 +7426,7 @@ draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, D, byblue, 1, 0);
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
-draw byCircleR.F(F, r, byblue, 0, 0, 0);
+draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, K, L, A, C)(F);
 draw byLabelsOnPolygon(B, E, K)(2, 0);
 }
@@ -7463,7 +7463,7 @@ draw byLine(F, A, byblack, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
 draw byNamedLineSeq(0)(DB,DC);
-draw byCircleR.F(F, r, byblack, 0, 0, 0);
+draw byCircleR(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(F);
 draw byLabelsOnPolygon(B, D, F, A)(2, 0);
 draw byLabelPoint(C, angle(C-F) - 45, 2);
@@ -7504,7 +7504,7 @@ draw byLine(E, B, byyellow, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, E, byblack, 0, 0);
 draw byNamedLineSeq(0)(DB,DE);
-draw byCircleR.E(E, r, byblack, 0, 0, 0);
+draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(B, D, E, A)(2, 0);
 draw byLabelPoint(C, angle(C-E) + 45, 2);
@@ -7550,7 +7550,7 @@ byLineDefine(E, F, byblue, 1, 0);
 byLineDefine(D, B, byred, 0, 0);
 byLineDefine(D, E, byblue, 0, 0);
 draw byNamedLineSeq(0)(BF,DB,DE,EF);
-draw byCircleR.F(F, r, byblack, 0, 0, 0);
+draw byCircleR(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, E)(F);
 draw byLabelsOnPolygon(E, F, B)(2, 0);
 draw byLabelsOnPolygon(B, D, E)(2, 0);
@@ -7634,7 +7634,7 @@ byLineDefine(B, C, byred, 0, 0);
 byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(1)(DA,CD,BC,AB);
-draw byCircleR.O(O, r, byblack, 0, 0, 1);
+draw byCircleR(O, r, byblack, 0, 0, 1);
 }\drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:IV.III]
 Про прямолинейную фигуру говорят, что она \emph{вписывается} в~круг, когда каждый угол вписываемой фигуры касается окружности.
@@ -7696,7 +7696,7 @@ H = whatever[B, C] = whatever[I, I shifted ((B-C) rotated 90)];
 K = whatever[C, A] = whatever[I, I shifted ((C-A) rotated 90)];
 r := abs(D-I);
 draw byPolygon(G,H,K)(byblue);
-draw byCircleR.I(I, r, byblack, 0, 0, -1);
+draw byCircleR(I, r, byblack, 0, 0, -1);
 }\drawCurrentPictureInMargin[inside]
 Про круг говорят, что он \emph{описывается} около прямолинейной фигуры, если его окружность проходит через все углы фигуры.
 
@@ -7711,7 +7711,7 @@ O := (0, 0);
 A := dir(0)*r;
 B := dir(100)*r;
 draw byLine(A, B, byblack, 0, 0);
-draw byCircleR.O(O, r, byblue, 0, 0, 0);
+draw byCircleR(O, r, byblue, 0, 0, 0);
 }\drawCurrentPictureInMargin[inside]
 Говорят что прямая \emph{вписывается} в~круг, когда ее концы находятся на окружности.
 \stopDefinitionOnlyNumber
@@ -7745,7 +7745,7 @@ draw byLine(B, E, byred, 0, 0);
 draw byLine(E, C, byred, 1, 0);
 draw byLine(A, C, byyellow, 0, 0);
 draw byLine(G, H, byblue, 0, 0);
-draw byCircleR.O(O, r1, byyellow, 0, 0, 0);
+draw byCircleR(O, r1, byyellow, 0, 0, 0);
 draw byCircle.C(C, E, byblue, 0, 0, 0);
 draw byLabelsOnCircle(C, B)(O);
 draw byLabelsOnPolygon(C, A, E)(2, 0);
@@ -7805,7 +7805,7 @@ draw byArbitraryFigure.BAC(B--A--C, byblack, 0, 1);
 draw byArbitraryFigure.BAC(D--E--F--cycle, byblack, 0, 1);
 draw byLine(B, C, byyellow, 0, 0);
 draw byLine(G, H, byred, 0, 0);
-draw byCircleR.O(O, r, byblack, 0, 0, 0);
+draw byCircleR(O, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(O);
 draw byLabelsOnPolygon(D, E, F)(0, 0);
 draw byLabelsOnPolygon(H, G, noPoint)(0, 0);
@@ -7874,7 +7874,7 @@ byLineDefine(M, N, byred, 1, 0);
 draw byLine(G, H, byblack, 0, 0);
 draw byLine(K, C, byred, 0, 0);
 draw byArbitraryFigure.AKB(A--K--B, byblack, 0, 1);
-draw byCircleR.K(K, r, byred, 0, 0, -1);
+draw byCircleR(K, r, byred, 0, 0, -1);
 draw byNamedLineSeq(0)(NL,LM,MN);
 byArbitraryFigureDefine.LAKC(L--A--K--C--cycle, byblack, 0, 1);
 draw byLabelsOnPolygon(L, A, M, B, N, C)(0, 0);
@@ -8034,7 +8034,7 @@ draw byLine(B, C, byblack, 0, 0);
 fi;
 draw byLine(C, E, byred, 0, 0);
 draw byLine(E, A, byred, 1, 0);
-draw byCircleR.F(F, r, byblack, 0, 0, 0);
+draw byCircleR(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(F);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
@@ -8110,7 +8110,7 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(D, A, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DA);
-draw byCircleR.E(E, r, byred, 0, 0, 1);
+draw byCircleR(E, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
 }
@@ -8168,7 +8168,7 @@ byLineDefine(G, H, byred, 0, 0);
 byLineDefine(H, K, byblue, 0, 0);
 byLineDefine(K, F, byyellow, 0, 0);
 draw byNamedLineSeq(0)(KF,HK,GH,FG);
-draw byCircleR.E(E, r, byblue, 0, 0, -1);
+draw byCircleR(E, r, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(H, B, G, A, F, D, K, C)(0, 0);
 draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
@@ -8224,7 +8224,7 @@ byLineDefine(E, D, byblue, 0, 0);
 byLineDefine(D, K, byred, 1, 0);
 byLineDefine(K, C, byred, 0, 0);
 draw byNamedLineSeq(0)(AB,AE,ED,DK,KC);
-draw byCircleR.G(G, r, byyellow, 0, 0, -1);
+draw byCircleR(G, r, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(B, F, A, E, D, K, C, H)(0, 0);
 draw byLabelsOnPolygon(F, G, E)(2, 0);
 }
@@ -8276,7 +8276,7 @@ draw byLine(A, E, byblue, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
 draw byLine(B, E, byblack, 0, 0);
 draw byLine(E, D, byblack, 1, 0);
-draw byCircleR.E(E, r, byblack, 0, 0, 0);
+draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(B, E, A)(2, -1);
 }
@@ -8415,7 +8415,7 @@ byLineDefine(C, D, byblack, 0, 0);
 byLineDefine(D, E, byred, 1, 0);
 byLineDefine(E, A, byyellow, 0, 0);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR.O(O, r, byblue, 0, 0, 1);
+draw byCircleR(O, r, byblue, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(O);
 }
 \drawCurrentPictureInMargin
@@ -8483,7 +8483,7 @@ byLineDefine(C, L, byyellow, 0, 0);
 byLineDefine(L, M, byblack, 0, 0);
 byLineDefine(M, G, byblack, 0, 0);
 draw byNamedLineSeq(0)(GH,HB,BK,KC,CL,LM,MG);
-draw byCircleR.F(F, r2, byred, 0, 0, -1);
+draw byCircleR(F, r2, byred, 0, 0, -1);
 draw byLabelsOnPolygon(M, D, L, C, K, B, H, G)(2, 0);
 draw byLabelsOnPolygon(B, F, D)(2, 0);
 }
@@ -8692,7 +8692,7 @@ byLineDefine(C, D, byred, 0, 0);
 byLineDefine(D, E, byblack, 1, 0);
 byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
-draw byCircleR.F(F, r, byred, 0, 0, 1);
+draw byCircleR(F, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(F);
 draw byLabelsOnPolygon(A, F, E)(2, -1);
 }
@@ -8766,7 +8766,7 @@ draw byLine(D, E, byred, 1, 0);
 draw byLine(E, F, byblue, 1, 0);
 draw byLine(F, A, byblack, 0, 0);
 draw byCircle.D(D, G, byred, 0, 0, 0);
-draw byCircleR.G(G, r, byyellow, 0, 0, 0);
+draw byCircleR(G, r, byyellow, 0, 0, 0);
 byLineDefine(G, C, lineColor.CF, 0, 0);
 byLineDefine(G, D, lineColor.AD, 0, 0);
 byLineDefine(G, E, lineColor.BE, 0, 0);
@@ -8837,7 +8837,7 @@ byLineDefine(C, D, byblack, 0, 1);
 byLineDefine(D, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BF,FG,GH,HA);
 draw byNamedLineSeq(0)(AC,CD,DA);
-draw byCircleR.O(O, r, byblack, 0, 1, 1);
+draw byCircleR(O, r, byblack, 0, 1, 1);
 draw byArc.AB(O, A, B, r, byblack, 0, 0, 1, 0);
 draw byArc.BC(O, B, C, r, byblue, 0, 0, 1, 0);
 draw byArc.CF(O, C, F, r, byred, 0, 0, 1, 0);
