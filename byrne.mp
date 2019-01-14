@@ -1990,15 +1990,15 @@ enddef;
 % Filled figures
 %
 
-vardef byFilledCircleSegment@#(expr o, r, b, e, col) =
+vardef byFilledCircleSegment@#(suffix o)(expr r, b, e, col) =
 if str @# = "":
-    byFilledCircleSegment.aFilledCircleSegment(o, r, b, e, col)
+    byFilledCircleSegment.o(o, r, b, e, col)
 else:
     setAttribute("filledCircleSegment", "Color", str @#, col);
     setAttribute("filledCircleSegment", "Diameter", str @#, 2r);
     setAttribute("filledCircleSegment", "Begin", str @#, b);
     setAttribute("filledCircleSegment", "End", str @#, e);
-    setAttribute("filledCircleSegment", "Center", str @#, o);
+    setAttribute("filledCircleSegment", "CenterName", str @#, str o);
     setAttribute("filledCircleSegment", "Synonym", str @#, str @#);
     byNamedFilledCircleSegment(@#)
 fi
@@ -2016,21 +2016,21 @@ vardef byNamedFilledCircleSegment (text filledCircleSegmentList) =
                         of fullcircle)
                     --cycle)
                     scaled (getAttribute("filledCircleSegment", "Diameter", str csN)*scaleFactor)
-                    shifted (getAttribute("filledCircleSegment", "Center", str csN)*scaleFactor)
+                    shifted (scantokens(getAttribute("filledCircleSegment", "CenterName", str csN))*scaleFactor)
                     withcolor getAttribute("filledCircleSegment", "Color", str csN);
         endfor;
     ) rotated globalRotation
 enddef;
 
-vardef byFilledCircleSector@#(expr o, r, b, e, col) =
+vardef byFilledCircleSector@#(suffix o)(expr r, b, e, col) =
 if str @# = "":
-    byFilledCircleSector.aFilledCircleSector(o, r, b, e, col)
+    byFilledCircleSector.o(o, r, b, e, col)
 else:
     setAttribute("filledCircleSector", "Color", str @#, col);
     setAttribute("filledCircleSector", "Diameter", str @#, 2r);
     setAttribute("filledCircleSector", "Begin", str @#, b);
     setAttribute("filledCircleSector", "End", str @#, e);
-    setAttribute("filledCircleSector", "Center", str @#, o);
+    setAttribute("filledCircleSector", "CenterName", str @#, str o);
     byNamedFilledCircleSector(@#)
 fi
 enddef;
@@ -2038,7 +2038,13 @@ enddef;
 vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     image(
         forsuffixes csN=filledCircleSectorList:
-            fill ((subpath (getAttribute("filledCircleSector", "Begin", str csN), getAttribute("filledCircleSector", "End", str csN)) of fullcircle)-- (0, 0) -- cycle) scaled (getAttribute("filledCircleSector", "Diameter", str csN)*scaleFactor) shifted (getAttribute("filledCircleSector", "Center", str csN)*scaleFactor) withcolor getAttribute("filledCircleSector", "Color", str csN);
+            fill ((subpath
+                    (getAttribute("filledCircleSector", "Begin", str csN),
+                    getAttribute("filledCircleSector", "End", str csN))
+                    of fullcircle) -- (0, 0) -- cycle)
+                        scaled (getAttribute("filledCircleSector", "Diameter", str csN)*scaleFactor)
+                        shifted (scantokens(getAttribute("filledCircleSector", "CenterName", str csN))*scaleFactor)
+                        withcolor getAttribute("filledCircleSector", "Color", str csN);
         endfor;
     ) rotated globalRotation
 enddef;
@@ -3112,7 +3118,7 @@ enddef;
 % along with 'magnitudesymbol' one symbol long 'magnitude' is also defined at the same time.
 vardef byMagnitudeSymbolDefine@#(expr shp, col, sty) =
 if str @# = "":
-    byMagnitudeSymbolDefine.aMagnitudeSymbol(shp, col, sty)
+    byMagnitudeSymbolDefine.scantokens(shp)(shp, col, sty);
 else:
     setAttribute("magnitude", "Color", str @#, col);
     setAttribute("magnitude", "Shape", str @#, shp);
@@ -3195,7 +3201,7 @@ enddef;
 
 vardef byMagnitudeDefine@#(expr al, hor)(text rowsList)(text magnitudeSymbolsList) =
 if str @# = "":
-    byMagnitudeDefine.aMagnitude(al, hor)(rowsList)(magnitudeSymbolsList);
+    errmessage("byMagnitudeDefine needs a name (byMagnitudeDefine.somename...)");
 else:
     setAttribute("magnitude", "Horizontal", str @#, hor);
     setAttribute("magnitude", "Alignment", str @#, al);
