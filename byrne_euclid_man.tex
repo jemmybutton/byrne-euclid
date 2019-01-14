@@ -8,7 +8,7 @@
 \startchapter[title={Introduction}]
 This document describes some of the internals of \MetaPost\ + \ConTeXt\ rendition of Byrne's Euclid.  
 
-Byrne's Euclid is known for its neat interaction between text and graphics. Naive way of making this interaction happen lies through lots of tedious manual work, which is not so tedious nowdays, but still we can hope to get off cheaper. To automate these things we need to set up same neat interaction between what we want to see and what we mean, as we want to have between text and graphics. I. e., when we want to see a picture of a red angle in text, we mean not the color, but some particular angle, that is taken from some particular place, and if angle there changes color from red to blue, angle in text should also do so automatically.
+Byrne's Euclid is known for its neat interaction between text and graphics. Naive way of making this interaction happen lies through lots of tedious manual work, which is not so tedious nowdays, but still we can hope to get off cheaper. To automate these things we need to set up same neat interaction between what we want to see and what we mean, as we want to have between text and graphics. I.~e., when we want to see a picture of a red angle in text, we mean not the color, but some particular angle, that is taken from some particular place, and if angle there changes color from red to blue, angle in text should also do so automatically.
 
 One can think of many ways to achieve this. Among the simplest is introduction of some markup language that can both describe graphical elements and reference them in text, and that's precisely what *TeX and MetaPost pair should be ideal for.
 
@@ -79,18 +79,11 @@ All functions that make straight lines call this one in the end. Returns a pictu
 {\tt sf} — scale factor.
 \stopsubsection
 
-\startsubsection[title={byLineDefineWithName (suffix a, b) (expr col, dp, th) (suffix lineName)}]
-Defines a new line with a given name. Returns nothing.
 
-{\tt a, b} — of suffix type, coordinates of line ends.
+\startsubsection[title={byLineDefine@\#(suffix a, b) (expr col, dp, th)}]
+Defines a new line. Automatically assigned name has a form of {\tt ab}. Returns nothing.
 
-{\tt lineName} — of suffix type, line name.
-
-{\tt col, dp, th} — same as {\tt byLineRender}.
-\stopsubsection
-
-\startsubsection[title={byLineDefine (suffix a, b) (expr col, dp, th)}]
-Defines a new line. Name is assigned automatically. Returns nothing.
+{@\#} — optional name.
 
 {\tt a, b} — of suffix type, coordinates of line ends.
 
@@ -105,34 +98,34 @@ Defines additional attributes for a line with a given name. Returns nothing.
 {\tt c, d, ct, dt, s} — same as {\tt byLineRender}.
 \stopsubsection
 
-\startsubsection[title={byLine (suffix a, b) (expr col, dp, th)}]
-Defines a new line. Name is assigned automatically. Returns a picture of that line.
+\startsubsection[title={byLine@\#(suffix a, b) (expr col, dp, th)}]
+Defines a new line. Automatically assigned name has a form of {\tt ab}. Returns a picture of that line. 
 
-{\tt a, b} — of suffix type, coordinates of line ends.
+{@\#} — optional name.
 
-{\tt col, dp, th} — same as {\tt byLineRender}.
+{\tt a, b, col, dp, th} — same as {\tt byLineDefine}.
 \stopsubsection
 
-\startsubsection[title={byLineFull (suffix a, b) (expr col, dp, th, c, d, ct, dt, s)}]
-Defines a new line with additional attributes. Name is assigned automatically. Returns a picture of that line.
+\startsubsection[title={byLineFull@\#(suffix a, b) (expr col, dp, th, c, d, ct, dt, s)}]
+Defines a new line with additional attributes. Automatically assigned name has a form of {\tt ab}. Returns a picture of that line.
 
-{\tt a, b} — of suffix type, coordinates of line ends.
+{@\#} — optional name.
 
-{\tt col, dp, th, c, d, ct, dt, s} — same as {\tt byLineRender}.
+{\tt a, b, col, dp, th} — same as {\tt byLineDefine}.
+
+{\tt c, d, ct, dt, s} — same as {\tt byLineRender}.
 \stopsubsection
 
 \startsubsection[title={byLineWithName (suffix a, b) (expr col, dp, th) (suffix 
 lineName)}]
-Defines a new line with a given name. Returns a picture of that line.
+Defines a new line with a given name. If labels are turned on, name is used as a label instead of labels on line ends. Returns a picture of that line.
 
-{\tt a, b} — of suffix type, coordinates of line ends.
+{\tt a, b, col, dp, th} — same as {\tt byLineDefine}.
 
 {\tt lineName} — of suffix type, line name.
-
-{\tt col, dp, th} — same as {\tt byLineRender}.
 \stopsubsection
 
-\startsubsection[title={byNamedLineFull(expr c, d, ct, dt, s) (suffix lineName)}]
+\startsubsection[title={byNamedLineFull (expr c, d, ct, dt, s) (suffix lineName)}]
 Produces already defined line with a given name, supplied with additional attributes. Returns a picture of that line.
 
 {\tt lineName} — of suffix type, line name.
@@ -140,13 +133,13 @@ Produces already defined line with a given name, supplied with additional attrib
 {\tt c, d, ct, dt, s} — same as {\tt byLineRender}.
 \stopsubsection
 
-\startsubsection[title={byNamedLine(text linesList)}]
+\startsubsection[title={byNamedLine (text linesList)}]
 Produces a number of already defined lines (separated by comma). Returnes a picture of that lines.
 
 {\tt linesList} — of text type, comma separated line names.
 \stopsubsection
 
-\startsubsection[title={byNamedLineSeq(expr s) (text linesList)}]
+\startsubsection[title={byNamedLineSeq (expr s) (text linesList)}]
 Produces a number of already defined with  appropriate joints for adjacent lines (separated by comma). All the lines can be shifted perpendicularly. Specified line shift is saved. Returnes a picture of that lines.
 
 {\tt s} — of numeric type, as in {\tt byLineRender}, perpendicular line shift, proportional to line thickness,  but s is not passed directly to {\tt byLineRender} (which can result in lines shifted in different directions along the sequence), but adjusted so, that lines are all shifted similarly.
@@ -154,7 +147,7 @@ Produces a number of already defined with  appropriate joints for adjacent lines
 {\tt linesList} — of text type, comma separated line names.
 \stopsubsection
 
-\startsubsection[title={byMarkLine(expr pos, col) (suffix lineName)}]
+\startsubsection[title={byMarkLine (expr pos, col) (suffix lineName)}]
 Produces a tick on a line with a given name. Returns a picture of that tick.
 
 {\tt pos} — of numeric type, position of a tick on a line, 0 to 1.
@@ -164,7 +157,7 @@ Produces a tick on a line with a given name. Returns a picture of that tick.
 {\tt lineName} — of suffix type, line name.
 \stopsubsection
 
-\startsubsection[title={byNamedMarkLine(suffix lineName)}]
+\startsubsection[title={byNamedMarkLine (suffix lineName)}]
 Produces a picture of a tick on a given line. Returns a picture of that tick.
 
 {\tt lineName} — of suffix type, line name.
@@ -182,13 +175,22 @@ Produces a horizontal line with colors and proportions of the given lines. Retur
 \stopsection
 
 \startsection[title={Points}]
-\startsubsection[title={byPointLabelDefine(suffix pointName)(expr t)}]
+\startsubsection[title={byPointLabelDefine (suffix pointName)(expr t)}]
 Defines text label for a point. Returns nothing.
 {\tt pointName} — of suffix type, point name.
 
 {\tt t} — of string type, text to used as point's label.
 \stopsubsection
-\startsubsection[title={byPointMarkDefine(suffix pointName)(expr col, sty)}]
+\startsubsection[title={byPointMarkRender (expr p, col, sty)}]
+Renders a point marker. Returns a picture of that marker.
+
+{\tt p} — of pair type, point coordinates.
+
+{\tt col} — of color type, marker color.
+
+{\tt sty} — of numeric type, marker style (currently not in use).
+\stopsubsection
+\startsubsection[title={byPointMarkDefine (suffix pointName)(expr col, sty)}]
 Defines a new point marker. Returns nothing.
 
 {\tt pointName} — of suffix type, point name to assign marker to.
@@ -197,24 +199,15 @@ Defines a new point marker. Returns nothing.
 
 {\tt sty} — of numeric type, marker style (currently not in use).
 \stopsubsection
-\startsubsection[title={byPointMarkRender (suffix pointName)}]
-Renders a point marker. Returns a picture of that marker.
-
-{\tt pointName} — of suffix type, point name.
-\stopsubsection
-\startsubsection[title={byNamedPointMark (suffix pointName)}]
-Draws a point marker with label if necessary. Returns a picture of that marker.
-
-{\tt pointName} — of suffix type, point name.
-\stopsubsection
 \startsubsection[title={byPointMark (suffix pointName)(expr col, sty)}]
 Defines a new point marker. Returns a picture of that marker.
 
-{\tt pointName} — of suffix type, point name to assign marker to.
+{\tt pointName, col, sty} — same as {\tt byPointMarkDefine}..
+\stopsubsection
+\startsubsection[title={byNamedPointMark (text pointsList)}]
+Draws point markers with labels if necessary. Returns a picture of that marker.
 
-{\tt col} — of color type, marker color.
-
-{\tt sty} — of numeric type, marker style (currently not in use).
+{\tt pointsList} — of text type, comma separated point names.
 \stopsubsection
 \startsubsection[title={byNamedPointLines (suffix pointName)(expr omitLines)}]
 Draws stubs of the lines, adjacent to a given point. Returns a picture of those lines.
@@ -226,7 +219,7 @@ Draws stubs of the lines, adjacent to a given point. Returns a picture of those 
 \stopsection
 
 \startsection[title={Arcs and circles}]
-\startsubsection[title={byArcRender(expr o, b, e, r, col, dp, th, s, et)}]
+\startsubsection[title={byArcRender (expr o, b, e, r, col, dp, th, s, et)}]
 All functions that make arcs and circles call this one in the end. Returns a picture of an arc with given properties.
 
 {\tt o} — of pair type, coordinates of arc center.
@@ -245,23 +238,37 @@ All functions that make arcs and circles call this one in the end. Returns a pic
 
 {\tt et} — of numeric type, type of arc ends, 0 for stumps, 1 for oblique
 \stopsubsection
-\startsubsection[title={byArcBE (expr o, b, e, r, col, dp, th, s, et) (suffix arcName)}]
-Defines a new arc with a given name. Returns a picture of that arc.
+\startsubsection[title={byArcDefineBE@\#(suffix o)(expr b, e, r, col, dp, th, s, et)}]
+Defines a new arc. Automatically assigned name has a form of {\tt o}. Returns nothing.
+
+{@\#} — optional name.
 
 {\tt o, b, e, r, col, dp, th, s, et} — same as {\tt byArcRender}.
-
-{\tt arcName} — of suffix type, arc name.
 \stopsubsection
-\startsubsection[title={byArc (suffix o, b, e) (r, col, dp, th, s, et) (suffix arcName)}]
-Defines a new arc with a given name. Returns a picture of that arc.
+\startsubsection[title={byArcBE@\#(suffix o)(expr b, e, r, col, dp, th, s, et)}]
+Defines a new arc. Automatically assigned name has a form of {\tt o}. Returns a picture of that arc.
+
+{@\#} — optional name.
+
+{\tt o, b, e, r, col, dp, th, s, et} — same as {\tt byArcDefineBE}.
+\stopsubsection
+\startsubsection[title={byArcDefine@\#(suffix o, b, e) (r, col, dp, th, s, et)}]
+Defines a new arc. Automatically assigned name has a form of {\tt boe}. Returns nothing.
+
+{@\#} — optional name.
 
 {\tt b} — of suffix type, point where arc begins.
 
 {\tt e} — of suffix type, point where arc ends.
 
 {\tt o, r, col, dp, th, s, et} — same as {\tt byArcRender}.
+\stopsubsection
+\startsubsection[title={byArc@\#(suffix o, b, e) (r, col, dp, th, s, et)}]
+Defines a new arc. Automatically assigned name has a form of {\tt boe}. Returns a picture of that arc.
 
-{\tt arcName} — of suffix type, arc name.
+{@\#} — optional name.
+
+{\tt b, e, o, r, col, dp, th, s, et} — same as {\tt byArcDefine}.
 \stopsubsection
 \startsubsection[title={byNamedArcExact(text arcslist)}]
 Produces already defined arcs, including {\tt s} and {\tt et} paramters. Returns a picture of that arcs.
@@ -273,39 +280,40 @@ Produces already defined arcs, with {\tt s} and {\tt et} set to 0. Returns a pic
 
 {\tt arcslist} — of text type, comma separated arc names.
 \stopsubsection
-\startsubsection[title={byCircleDefineR (suffix o)(expr r, col, dp, th, s) (suffix circleName)}]
-Defines a new circle with a given name. Returns nothing.
+\startsubsection[title={byCircleDefineR@\#(suffix o)(expr r, col, dp, th, s)}]
+Defines a new circle. Automatically assigned name has a form of {\tt o}. Returns nothing.
 
-{\tt r, col, dp, th, s} — same as {\tt byArcRender}.
+{@\#} — optional name.
 
 {\tt o} — of suffix type, circle center point.
 
-{\tt circleName} — of suffix type, circle name.
-\stopsubsection
-\startsubsection[title={byCircleR (suffix o)(exp r, col, dp, th, s) (suffix circleName)}]
-Defines a new circle with a given name. Returns a picture of that circle.
-
 {\tt r, col, dp, th, s} — same as {\tt byArcRender}.
 
-{\tt o, circleName} — same as {\tt byCircleDefineR}.
 \stopsubsection
-\startsubsection[title={byCircleABC (suffix a, b, c)(expr  col, dp, th, s) (suffix circleName)}]
-Defines a new circle with a given name. Returns a picture of that circle.
+\startsubsection[title={byCircleR@\#(suffix o)(exp r, col, dp, th, s)}]
+Defines a new circle. Automatically assigned name has a form of {\tt o}. Returns a picture of that circle.
 
-{\tt col, dp, th, s} — same as {\tt byArcRender}.
+{@\#} — optional name.
+
+{\tt o, r, col, dp, th, s} — same as {\tt byCircleDefineR}.
+\stopsubsection
+\startsubsection[title={byCircleABC@\#(suffix a, b, c)(expr  col, dp, th, s)}]
+Defines a new circle with a given name. Automatically assigned name has a form of {\tt abc}. Returns a picture of that circle.
+
+{@\#} — optional name.
 
 {\tt a, b, c} — of suffix type, points on circle citcumference.
 
-{\tt o, circleName} — same as {\tt byCircleDefineR}.
+{\tt col, dp, th, s} — same as {\tt byArcRender}.
 \stopsubsection
-\startsubsection[title={byCircle (suffix o, a)(expr  col, dp, th, s) (suffix circleName)}]
-Defines a new circle with a given name. Returns a picture of that circle.
+\startsubsection[title={byCircle@\#(suffix o, a)(expr  col, dp, th, s)}]
+Defines a new circle with a given name. Automatically assigned name has a form of {\tt oa}. Returns a picture of that circle.
+
+{@\#} — optional name.
 
 {\tt col, dp, th, s} — same as {\tt byArcRender}.
 
 {\tt a} — of suffix type, point on circle citcumference.
-
-{\tt o, circleName} — same as {\tt byCircleDefineR}.
 \stopsubsection
 \startsubsection[title={byNamedCircle(text circlesList)}]
 Produces already defined circles, with {\tt s} set to 0. Returns a picture of that circles.
@@ -315,8 +323,10 @@ Produces already defined circles, with {\tt s} set to 0. Returns a picture of th
 \stopsection
 
 \startsection[title={Arbitrary figures}]
-\startsubsection[title={byArbitraryFigureDefine(expr p, col, dp, th) (suffix arbitraryFigureName)}]
-Defines a new arbitrary path with a given name. Returns nothing.
+\startsubsection[title={byArbitraryFigureDefine@\#(expr p, col, dp, th)}]
+Defines a new arbitrary path. Automatically assigned name is {\tt anArbitraryFigure} Returns nothing.
+
+{@\#} — optional name.
 
 {\tt p} — of path type, arbitrary path.
 
@@ -325,11 +335,11 @@ Defines a new arbitrary path with a given name. Returns nothing.
 {\tt dp} — of numeric type, path dashedness. 0 for solid line, 1 for dashed.
 
 {\tt th} — of numeric type, path thickness. 0 for thick line, 1 for thin, 2 for hairline.
-
-{\tt arbitraryFigureName} — of suffix type, figure name.
 \stopsubsection
-\startsubsection[title={byArbitraryFigure(expr p, col, dp, th) (suffix arbitraryFigureName)}]
-Defines a new arbitrary path with a given name. Returns a picture of that path.
+\startsubsection[title={byArbitraryFigure@\#(expr p, col, dp, th)}]
+Defines a new arbitrary path.  Automatically assigned name is {\tt anArbitraryFigure}. Returns a picture of that path.
+
+{@\#} — optional name.
 
 {\tt p, col, dp, th, arbitraryFigureName} — same as {\tt byArbitraryFigureDefine}.
 \stopsubsection
@@ -341,8 +351,10 @@ Produces already defined arbitrary figures. Returns a picture of that figures.
 \stopsection
 
 \startsection[title={Filled figures}]
-\startsubsection[title={byFilledCircleSegment (expr o, r, b, e, col) (suffix filledCircleSegmentName)}]
-Defines a new filled circle segment with a given name. Returns a picture of that segment.
+\startsubsection[title={byFilledCircleSegment@\#(suffix o)(expr r, b, e, col)}]
+Defines a new filled circle segment. Automatically assigned name has a form of {\tt o}. Returns a picture of that segment.
+
+{@\#} — optional name.
 
 {\tt o} — of pair type, coordinates of circle center.
 
@@ -351,16 +363,16 @@ Defines a new filled circle segment with a given name. Returns a picture of that
 {\tt b, e} — of numeric type, ends of a segment, in octants.
 
 {\tt col} — of color type, segment color
-
-{\tt filledCircleSegmentName} — of suffix type, filled circle segment name.
 \stopsubsection
 \startsubsection[title={byNamedFilledCircleSegment(text filledCircleSegmentList)}]
 Produces already defined filled circle segment. Returns a picture of that segment.
 
 {\tt filledCircleSegmentList} — of text type, comma separated circle segment names.
 \stopsubsection
-\startsubsection[title={byFilledCircleSector (expr o, r, b, e, col) (suffix filledCircleSectorName)}]
-Defines a new filled circle sector with a given name. Returns a picture of that sector.
+\startsubsection[title={byFilledCircleSector@\#(suffix o)(expr r, b, e, col)}]
+Defines a new filled circle sector. Automatically assigned name has a form of {\tt o}. Returns a picture of that sector.
+
+{@\#} — optional name.
 
 {\tt o} — of pair type, coordinates of circle center.
 
@@ -369,16 +381,16 @@ Defines a new filled circle sector with a given name. Returns a picture of that 
 {\tt b, e} — of numeric type, ends of a sector, in octants.
 
 {\tt col} — of color type, sector color
-
-{\tt filledCircleSectorName} — of suffix type, filled circle sector name.
 \stopsubsection
 \startsubsection[title={byNamedFilledCircleSector(text filledCircleSectorList)}]
 Produces already defined filled circle sector. Returns a picture of that sector.
 
 {\tt filledCircleSectorList} — of text type, comma separated circle sector names.
 \stopsubsection
-\startsubsection[title={byPolygonWithName(text pointsList)(expr col)(suffix polygonName)}]
-Defines a new filled polygon with a given name. Returns a picture of that polygon.
+\startsubsection[title={byPolygonDefine@\#(text pointsList)(expr col)}]
+Defines a new filled polygon. Automatically assigned name has a form of {\tt abc...}. Returns nothing.
+
+{@\#} — optional name.
 
 {\tt pointsList} — of text type, comma separated point names.
 
@@ -386,8 +398,10 @@ Defines a new filled polygon with a given name. Returns a picture of that polygo
 
 {\tt polygonName} — of suffix type, polygon name.
 \stopsubsection
-\startsubsection[title={byPolygon(text pointsList)(expr col)}]
-Same as {\tt byPolygonWithName}, but name is assigned automatically (in form of {\tt abc...})
+\startsubsection[title={byPolygon@\#(text pointsList)(expr col)}]
+Defines a new filled polygon. Automatically assigned name has a form of {\tt abc...}. Returns a picture of that polygon.
+
+Same as {\tt byPolygonDefine}.
 \stopsubsection
 \startsubsection[title={byNamedPolygon(text polygonsList)}]
 Produces already defined filled polygon. Returns a picture of that polygon.
@@ -397,54 +411,39 @@ Produces already defined filled polygon. Returns a picture of that polygon.
 \stopsection
 
 \startsection[title={Angles}]
-\startsubsection[title={byAngleDefineWithName(suffix a, b, c) (expr col, sty) (suffix angleName)}]
-Defines a new angle with a given name. Returns nothing.
+\startsubsection[title={byAngleDefine@\#(suffix a, b, c) (expr col, sty)}]
+Defines a new angle. Automatically assigned name has a form of {\tt abc}. Returns nothing.
+
+{@\#} — optional name.
 
 {\tt a, b, c} — of suffix type, coordinates of angle points.
 
 {\tt col} — of color type, angle color.
 
 {\tt sty} — of numeric type, angle style, 0 for solid sector, 1 for arc, 2 for dashed arc.
+\stopsubsection
+\startsubsection[title={byAngle@\#(suffix a, b, c) (expr col, sty)}]
+Defines a new angle. Automatically assigned name has a form of {\tt abc}. Returns a picture of that angle.
 
-{\tt angleName} — of suffix type, angle name.
+Dame as {\tt byAngleDefine}.
 \stopsubsection
-\startsubsection[title={byAngleDefine(suffix a, b, c) (expr col, sty)}]
-Same as {\tt byAngleDefineWithName}, but name is assigned automatically (in form of {\tt abc}).
-\stopsubsection
-\startsubsection[title={byAngleWithName(suffix a, b, c) (expr col, sty) (suffix angleName)}]
-Defines a new angle with a given name. Returns a picture of that angle.
+\startsubsection[title={byAngleExtended@\#(suffix a, b, c) (expr col, sty) (text optionalColors)}]
+Defines a new angle with additional colors. Automatically assigned name has a form of {\tt abc}. Returns a picture of that angle.
 
-a, b, c, col, sty, angleName — same as byAngleDefineWithName.
-\stopsubsection
-\startsubsection[title={byAngle(suffix a, b, c) (expr col, sty)}]
-Same as {\tt byAngleWithName}, but name is assigned automatically (in form of {\tt abc}).
-\stopsubsection
-\startsubsection[title={byAngleExtendedWithName(suffix a, b, c) (expr col, sty) (suffix angleName) (text optionalColors)}]
-Defines a new angle with a given name with additional colors. Returns a picture of that angle.
-
-{\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
-
-{\tt a, b, c, col, sty, angleName} — same as {\tt byAngleDefine}.
-\stopsubsection
-\startsubsection[title={byAngleExtended(suffix a, b, c) (expr col, sty) (text optionalColors)}]
-Same as {\tt byAngleExtendedWithName}, but name is assigned automatically (in form of {\tt abc}).
-\stopsubsection
-\startsubsection[title={byAngleDefineExtendedWithName(suffix a, b, c) (expr col, sty) (suffix angleName) (text optionalColors)}]
-Defines a new angle with a given name with additional colors. Returns nothing.
-
-{\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
-
-{\tt a, b, c, col, sty, angleName} — same as {\tt byAngleDefine}.
-\stopsubsection
-\startsubsection[title={byAngleDefineExtended(suffix a, b, c) (expr col, sty) (suffix angleName)}]
-Defines a new angle with a given name with additional colors. Returns nothing.
+{@\#} — optional name.
 
 {\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
 
 {\tt a, b, c, col, sty} — same as {\tt byAngleDefine}.
 \stopsubsection
-\startsubsection[title={byAngleExtended(suffix a, b, c) (expr col, sty) (text optionalColors)}]
-Same as {\tt byAngleExtendedWithName}, but name is assigned automatically (in form of {\tt abc}).
+\startsubsection[title={byAngleDefineExtended@\#(suffix a, b, c) (expr col, sty) (text optionalColors)}]
+Defines a new angle with additional colors. Automatically assigned name has a form of {\tt abc}. Returns nothing.
+
+{@\#} — optional name.
+
+{\tt optionalColors} — of text type, a list of additional colors (currently only affects angles with sty = 1).
+
+{\tt a, b, c, col, sty} — same as {\tt byAngleDefine}.
 \stopsubsection
 \startsubsection[title={byNamedAngle(text anglesList)}]
 Produces already defined angles. Returns a picture of that angles.
@@ -484,16 +483,16 @@ Produces a generic picture of a right angle, like this \drawRightAngle , takes n
 \stopsection
 
 \startsection[title={Magnitudes}]
-\startsubsection[title={byMagnitudeSymbolDefine (expr shp, col, sty) (suffix magnitudeSymbolName)}]
-Defines a new magnitude symbol with a given name. Also defines a magnitude of the same name consisting of one symbol. Returns nothing.
+\startsubsection[title={byMagnitudeSymbolDefine@\#(expr shp, col, sty)}]
+Defines a new magnitude symbol. Also defines a magnitude of the same name consisting of one symbol. Automatically assigned name has a form of {\tt shp}. Returns nothing.
+
+{@\#} — optional name.
 
 {\tt shp} — of string type, shape of magnitude symbol: {\tt "circle", "semicircleUp", "semicircleDown", "sectorDown", "sectorUp", "wedgeDown", "wedgeUp", "square", "halfsquare", "rhombus", "halfrhombusUp", "miniTriangleUp", "miniTriangleDown", "miniSquare", "miniCircle"}.
 
 {\tt col} — of color type, magnitude symbol color.
 
 {\tt sty} — of numeric type, magnitude symbol style, 0 for solid, 1 for outline.
-
-{\tt magnitudeSymbolName} — of suffix type, magnitude symbol name.
 \stopsubsection
 \startsubsection[title={byNamedMagnitudeSymbol (expr n, hor) (suffix magnitudeSymbolName)}]
 Produces already defined magnitude symbol. Returns a picture of magnitude symbol.
@@ -504,10 +503,10 @@ Produces already defined magnitude symbol. Returns a picture of magnitude symbol
 
 {\tt magnitudeSymbolName} — of suffix type, magnitude symbol name.
 \stopsubsection
-\startsubsection[title={byMagnitudeDefine (suffix magnitudeName) (expr al, hor) (text rowsList) (text magnitudeSymbolsList)}]
+\startsubsection[title={byMagnitudeDefine@\#(expr al, hor) (text rowsList) (text magnitudeSymbolsList)}]
 Defines a magnitude with a given name, composited of given symbols. Returns nothing.
 
-{\tt magnitudeName} — of suffix type, magnitude name.
+{@\#} — name.
 
 {\tt al} — of numeric type, magnitude alignment, 0 for center, -1 for left, 1 for right.
 

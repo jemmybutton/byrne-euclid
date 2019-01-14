@@ -1323,7 +1323,7 @@ vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
         pointsToProcess := allPointsList;
     fi;
     forsuffixes i=scantokens(pointsToProcess):
-        if known i:
+        if (known i) or (known pointXYZ.i):
             if attributeExists("point", "XYZ", str i):
                 oxyz := getAttribute("point", "XYZ", str i);
             elseif typeOf(i) = "pair":
@@ -1342,20 +1342,23 @@ vardef byRotatePoints@#(expr xa, ya, za, toRotate)(text pointsList) =
     endfor;
 enddef;
 
-vardef byPointMarkRender (suffix pointName) =
+vardef byPointMarkRender (expr p, col, sty) =
     image(
-        if (getAttribute("point", "Style", str pointName) = 0):
-            fill ((fullcircle scaled pointMarkSize) shifted (pointName scaled scaleFactor)) withcolor getAttribute("point", "Color", str pointName);
+        if (sty = 0):
+            fill ((fullcircle scaled pointMarkSize) shifted (p scaled scaleFactor)) withcolor col;
         fi;
     )
 enddef;
 
-vardef byNamedPointMark (suffix pointName) =
+vardef byNamedPointMark (text pointsList) =
     image(
-        draw byPointMarkRender(pointName);
-        if (autoLabelingMode and textLabels):
-            draw byTextLabel(pointLabel)(str pointName, pointName, 90, textLabelShift);
-        fi;
+        forsuffixes pN=pointsList:
+            appendList(pL, str pN, 1, false);
+            draw byPointMarkRender(pN, getAttribute("point", "Color", str pN), getAttribute("point", "Style", str pN)) rotated globalRotation;
+            if (autoLabelingMode and textLabels):
+                draw byTextLabel(pointLabel)(str pN, pN, 90, textLabelShift);
+            fi;
+        endfor;
     )
 enddef;
 
@@ -3108,7 +3111,7 @@ vardef byNamedRotationArrow (text arrowsList) =
                 drawdblarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
             fi;
         endfor;
-    )
+    ) rotated globalRotation
 enddef;
 
 %
