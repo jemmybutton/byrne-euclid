@@ -20,7 +20,7 @@ input TEX;
 TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}"); %\usepackage{tempora}
 TEXPOST("\end{document}");
 
-%outputformat := "svg";
+outputformat := "eps";
 
 vardef log(expr x, b) =
     (mlog(x)/256)/(mlog(2)/256)
@@ -173,15 +173,23 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
 enddef;
 
 vardef checkIfIntersects (expr pathItself, l, n) =
-    save rv, m, t;
-    numeric rv, t;
+    save rv, m, t, s;
+    numeric rv, t[], s[];
     rv := 0;
-    t := xpart(pathItself firstIntersectionTimes branchOutline[l]);
-    if (xpart((subpath(t + 1/100, length(pathItself)) of pathItself) intersectiontimes branchOutline[l]) >= 0)
-        or (xpart((subpath(1/100, length(pathItself)) of pathItself) intersectiontimes branchOutline[l]) < 0)
-        or (xpart((subpath(1/100, length(pathItself)) of pathItself) intersectiontimes branchPath[l]) >= 0)
-        or (arclength(subpath (0, t) of pathItself) > 3minimalDistance)
-        or (t < 0):
+    t0 := xpart(pathItself firstIntersectionTimes branchOutline[l]);
+    s0 := 1/100;
+    if cycle pathItself:
+        t1 := xpart(reverse(pathItself) firstIntersectionTimes branchOutline[l]);
+        s1 := s0;
+    else:
+        t1 := 0;
+        s1 := 0;
+    fi;
+    if (xpart((subpath(t0 + s0, length(pathItself) - t1 - s1) of pathItself) intersectiontimes branchOutline[l]) >= 0)
+        or (xpart((subpath(s0, length(pathItself) - s1) of pathItself) intersectiontimes branchOutline[l]) < 0)
+        or (xpart((subpath(s0, length(pathItself) - s1) of pathItself) intersectiontimes branchPath[l]) >= 0)
+        or (arclength(subpath (0, t0) of pathItself) > 3minimalDistance)
+        or (t0 < 0):
         rv := rv + 1;
     else:
         for m := 0 step 1 until n:
@@ -261,6 +269,7 @@ def makeAdjacentTiles (expr n) =
                 branchBuds[totalBranchesNumber] := branchBuds[n];
                 branchOrientation[totalBranchesNumber] := branchOrientation[n];
                 branchIsActive[totalBranchesNumber] := 0;
+                branchStyle[totalBranchesNumber] := branchStyle[n];
                 branchIsCloneOf[totalBranchesNumber] := n;
             fi;
         endfor;
@@ -273,12 +282,13 @@ def addBranch (expr p, o, a, sty, cn) =
     if (sty < 0):
         branchMeristem[totalBranchesNumber] := p;
     else:
-        branchMeristem[totalBranchesNumber] := subpath (0, ypart(branchMeristemSpan[sty])) of p;
+        branchMeristem[totalBranchesNumber] := subpath branchMeristemSpan[sty] of p;
     fi;
     branchBuds[totalBranchesNumber] := generateBranchesTemplate(branchMeristem[totalBranchesNumber]);
     branchOutline[totalBranchesNumber] := pathOutline(branchPath[totalBranchesNumber], 1/2);
     branchOrientation[totalBranchesNumber] := o;
     branchIsActive[totalBranchesNumber] := a;
+    branchStyle[totalBranchesNumber] := sty;
     branchIsCloneOf[totalBranchesNumber] := cn;
 enddef;
 
@@ -286,19 +296,27 @@ figNum := 0;
 
 picture currentLetter, cL;
 path branchPath[], branchMeristem[], branchBuds[], branchOutline[], branchTemplate[], candidateBranch;
-numeric branchOrientation[], branchIsCloneOf[], branchIsActive[], candidateBranchOrientation, symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
+numeric branchOrientation[], branchStyle[], branchIsCloneOf[], branchIsActive[], candidateBranchOrientation, symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
 numeric ln[], ll, lc;
 pair branchMeristemSpan[];
 string shuffledNumbers;
 picture lettrineImage;
 
-branchScalePrecision := 1/8mm;
 branchTemplate0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 branchTemplate1 := branchTemplate0 yscaled -1;
 branchMeristemSpan0 := (1/2, length(branchTemplate0) - 2);
 branchTemplate2 := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
 branchTemplate3 := branchTemplate2 yscaled -1;
 branchMeristemSpan1 := (1/2, length(branchTemplate2) - 3);
+branchTemplate4 := (0, 0){dir(90)} .. (-1/2, 1) .. (-1, 1/2) .. (-1/2, 2/3) .. {dir(-90)} cycle;
+branchTemplate5 := (branchTemplate4 rotated 30) yscaled -1;
+branchMeristemSpan2 := (1/5, 1/4);
+branchTemplate6 := (0, 0){dir(90)} .. (-1/2, 1) .. {dir(-90)}(-1, 1/2){dir(60)} .. {dir(-90)} cycle;
+branchTemplate7 := (branchTemplate6 rotated 45) yscaled -1;
+branchMeristemSpan3 := (1/5, 1/4);
+%branchTemplate4 := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
+%branchTemplate5 := branchTemplate4 yscaled -1;
+%branchMeristemSpan2 := (1/2, length(branchTemplate2) - 3);
 
 string lettrinesFile, l, ls[];
 lettrinesFile := "lettrineslist.txt";
@@ -332,12 +350,13 @@ forever:
     outputtemplate := l & decimal(lc) & ".mps";
     beginfig(figNum);
         lettrineImage := image(
+            branchScalePrecision := 1/8mm;
             totalBranchesNumber := -1;
             if ((l <> "plate") and (l <> "tile")):
                 symMode := 0;
-                numberOfIterations := 12;
+                numberOfIterations := 8;
                 minBranchLength[0] := 1/6cm;
-                minimalDistance := 1/25cm;
+                minimalDistance := 1/18cm;
                 budDistance := 1/4mm;
                 addBranch (reverse(unitsquare) scaled lettrineSize, 0, 0, -1, -1);
                 fill branchPath0 withcolor black;
@@ -375,8 +394,6 @@ forever:
                     branchPath2 rotated 180,
                     0, 1, 0, -1);
             elseif (l = "tile"):
-                makeAdjacentTiles(1);
-                makeAdjacentTiles(2);
                 symMode := 2;
                 numberOfIterations := 10;
                 minBranchLength[0] := 1/4cm;
@@ -384,34 +401,61 @@ forever:
                 budDistance := 2/3mm;
                 addBranch (
                     ((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
-                    0, 1, -1, -1);
+                    0, 0, -1, -1);
                 addBranch (
                     (branchTemplate0 rotated uniformdeviate(360)) scaled 6mm,
                     0, 1, 0, -1);
                 addBranch (
                     (branchPath1 scaled 2) rotated 180,
-                    0, 2, 0, 1);
+                    0, 1, 0, 1);
+                makeAdjacentTiles(1);
+                makeAdjacentTiles(2);
             fi;
             minBranchLength1 := 3/2minBranchLength0;
+            minBranchLength2 := 1/2minBranchLength0;
+            minBranchLength3 := 1/2minBranchLength0;
+            boolean firstPart;
+            firstPart := true;
             for nn := 0 step 1 until numberOfIterations:
+                if (nn > 1/2numberOfIterations) and firstPart:
+                    branchScalePrecision := 1/12mm;
+                    firstPart := false;
+                    minimalDistance := 1/20cm;
+                    budDistance := 1/10mm;
+                    for i := 1 step 1 until totalBranchesNumber:
+                        if (branchIsActive[i] = 1):
+                            branchBuds[i] := generateBranchesTemplate(branchMeristem[i]);
+                            branchOutline[i] := pathOutline(branchPath[i], 1/2);
+                        fi;
+                    endfor;
+                fi;
                 shuffledNumbers := "";
                 for i := 0 step 1 until totalBranchesNumber:
                     if ((xpart(urcorner(branchBuds[i])) >= 0) or (ypart(urcorner(branchBuds[i])) >= 0)) and (branchIsActive[i] = 1):
-                        if (uniformdeviate(1) > 1/2):
-                            shuffledNumbers := shuffledNumbers & ", " & decimal(i);
+                        if length(shuffledNumbers) = 0:
+                            shuffledNumbers := decimal(i);
                         else:
-                            shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
+                            if (uniformdeviate(1) > 1/2):
+                                shuffledNumbers := shuffledNumbers & ", " & decimal(i);
+                            else:
+                                shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
+                            fi;
                         fi;
                     fi;
                 endfor;
-                if (length(shuffledNumbers) > 0):
-                    shuffledNumbers := substring(0, length(shuffledNumbers)-1) of shuffledNumbers;
-                fi;
-                for i=scantokens(shuffledNumbers):
-                    if (uniformdeviate(1) > 1/2):
-                        sty := 0;
+                for i = scantokens(shuffledNumbers):
+                    if firstPart:
+                        if (uniformdeviate(1) > 1/2):
+                            sty := 0;
+                        else:
+                            sty := 1;
+                        fi;
                     else:
-                        sty := 1;
+                        if (uniformdeviate(1) > 1/2):
+                            sty := 2;
+                        else:
+                            sty := 3;
+                        fi;
                     fi;
                     candidateBranch := positionBranch(i, totalBranchesNumber, sty);
                     if (arclength(candidateBranch) >= minBranchLength[sty]):
@@ -428,10 +472,17 @@ forever:
             endfor;
             for i := 0 step 1 until totalBranchesNumber:
                 if (branchIsActive[i] > 0):
-                    draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/5mm fi withcolor white;
+                    if branchStyle[i] >= 2:
+                        draw branchPath[i] withpen pencircle scaled 1/12mm withcolor white;
+                        fill branchPath[i] withcolor white;
+                    else:
+                        draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/6mm fi withcolor white;
+                    fi;
                     if (not cycle branchPath[i]):
                         draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm withcolor white;
                     fi;
+                %else:
+                %    draw branchPath[i] withcolor red;
                 fi;
             endfor;
         );
