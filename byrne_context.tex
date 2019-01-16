@@ -114,7 +114,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2018 ed.\,0.7}
+{\tfb 2019 ed.\,0.7}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -2176,9 +2176,9 @@ byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, A, byyellow, 1, 0);
 draw byNamedLineSeq(0)(BC,CA);
 draw byNamedLineSeq(0)(AD,AB,BE);
-draw byLine.L'(LI, LII, byblack, 1, 0);
-draw byLine.L''(LIII, LIV, byred, 1, 0);
-draw byLine.L'''(LV, LVI, byblue, 1, 0);
+draw byLineWithName (LII, LI, byblack, 1, 0)(L');
+draw byLineWithName (LIV, LIII, byred, 1, 0)(L'');
+draw byLineWithName (LVI, LV, byblue, 1, 0)(L''');
 draw byCircle.B(B, E, byred, 0, 0, 0);
 draw byLabelsOnPolygon(D, A, C)(2, 0);
 draw byLabelsOnPolygon(E, B, A)(2, 0);
@@ -11896,8 +11896,8 @@ draw byNamedLineSeq(0)(AB,AG);
 byLineDefine(C, D, byblue, 0, 0);
 byLineDefine(C, H, byred, 0, 0);
 draw byNamedLineSeq(0)(CD,CH);
-draw byLine.E(Ee, Eb, byred, 1, 0);
-draw byLine.F(Fe, Fb, byblack, 1, 0);
+draw byLineWithName(Ee, Eb, byred, 1, 0)(E);
+draw byLineWithName(Fe, Fb, byblack, 1, 0)(F);
 draw byLabelsOnPolygon(F, G, A, B)(0, 0);
 draw byLabelsOnPolygon(E, H, C, D)(0, 0);
 draw byLabelLine(0)(E, F);
@@ -11964,10 +11964,10 @@ draw byPolygon(E,F,G,H)(byyellow);
 byLineDefine(E, F, byblack, 0, 0);
 byLineDefine(E, H, byred, 0, 0);
 draw byNamedLineSeq(0)(EF,EH);
-draw byLine.A(Ab, Ae, byred, 0, 0);
-draw byLine.B(Bb, Be, byblue, 0, 0);
-draw byLine.C(Cb, Ce, byblack, 0, 0);
-draw byLine.D(Db, De, byyellow, 0, 0);
+draw byLineWithName(Ab, Ae, byred, 0, 0)(A);
+draw byLineWithName(Bb, Be, byblue, 0, 0)(B);
+draw byLineWithName(Cb, Ce, byblack, 0, 0)(C);
+draw byLineWithName(Db, De, byyellow, 0, 0)(D);
 draw byLabelLine(0)(A, B, C, D);
 draw byLabelPolygon(1)(ABCD);
 draw byLabelPolygon(1)(EFGH);
@@ -12291,10 +12291,10 @@ draw byPolygon.EF(E,F,Ma,Mb,Mc,Md)(byblue);
 draw byPolygon.GH(G,H,Na,Nb,Nc,Nd)(white);
 draw byLine(A, B, byblack, 0, 0);
 draw byLine(C, D, byblue, 0, 0);
-draw byLine.O(Ob, Oe, byblack, 1, 0);
+draw byLineWithName(Ob, Oe, byblack, 1, 0)(O);
 draw byLine(E, F, byred, 0, 0);
 draw byLine(G, H, byyellow, 0, 0);
-draw byLine.P(Pb, Pe, byred, 1, 0);
+draw byLineWithName(Pb, Pe, byred, 1, 0)(P);
 byPointLabelRemove(Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L);
 draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }

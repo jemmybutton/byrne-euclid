@@ -287,7 +287,11 @@ def addBranch (expr p, o, a, sty, cn) =
     branchBuds[totalBranchesNumber] := generateBranchesTemplate(branchMeristem[totalBranchesNumber]);
     branchOutline[totalBranchesNumber] := pathOutline(branchPath[totalBranchesNumber], 1/2);
     branchOrientation[totalBranchesNumber] := o;
-    branchIsActive[totalBranchesNumber] := a;
+    if branchProductive[sty]:
+        branchIsActive[totalBranchesNumber] := a;
+    else:
+        branchIsActive[totalBranchesNumber] := 2;
+    fi;
     branchStyle[totalBranchesNumber] := sty;
     branchIsCloneOf[totalBranchesNumber] := cn;
 enddef;
@@ -298,25 +302,29 @@ picture currentLetter, cL;
 path branchPath[], branchMeristem[], branchBuds[], branchOutline[], branchTemplate[], candidateBranch;
 numeric branchOrientation[], branchStyle[], branchIsCloneOf[], branchIsActive[], candidateBranchOrientation, symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
 numeric ln[], ll, lc;
+boolean branchProductive[];
 pair branchMeristemSpan[];
 string shuffledNumbers;
 picture lettrineImage;
 
+branchProductive[-1] := true;
 branchTemplate0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 branchTemplate1 := branchTemplate0 yscaled -1;
 branchMeristemSpan0 := (1/2, length(branchTemplate0) - 2);
+branchProductive0 := true;
 branchTemplate2 := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
 branchTemplate3 := branchTemplate2 yscaled -1;
 branchMeristemSpan1 := (1/2, length(branchTemplate2) - 3);
+branchProductive1 := true;
 branchTemplate4 := (0, 0){dir(90)} .. (-1/2, 1) .. (-1, 1/2) .. (-1/2, 2/3) .. {dir(-90)} cycle;
 branchTemplate5 := (branchTemplate4 rotated 30) yscaled -1;
 branchMeristemSpan2 := (1/5, 1/4);
+branchProductive2 := false;
 branchTemplate6 := (0, 0){dir(90)} .. (-1/2, 1) .. {dir(-90)}(-1, 1/2){dir(60)} .. {dir(-90)} cycle;
 branchTemplate7 := (branchTemplate6 rotated 45) yscaled -1;
 branchMeristemSpan3 := (1/5, 1/4);
-%branchTemplate4 := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
-%branchTemplate5 := branchTemplate4 yscaled -1;
-%branchMeristemSpan2 := (1/2, length(branchTemplate2) - 3);
+branchProductive3 := false;
+
 
 string lettrinesFile, l, ls[];
 lettrinesFile := "lettrineslist.txt";
@@ -354,7 +362,7 @@ forever:
             totalBranchesNumber := -1;
             if ((l <> "plate") and (l <> "tile")):
                 symMode := 0;
-                numberOfIterations := 8;
+                numberOfIterations := 9;
                 minBranchLength[0] := 1/6cm;
                 minimalDistance := 1/18cm;
                 budDistance := 1/4mm;
