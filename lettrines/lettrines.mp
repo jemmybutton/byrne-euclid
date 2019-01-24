@@ -70,7 +70,7 @@ vardef pathOutline (expr p, s) =
     outputPath1..(point length(p) of p shifted (unitvector(direction (length(p) - 1/100) of p) scaled minimalDistance))..reverse(subpath(1, length(outputPath2)) of outputPath2)--cycle
 enddef;
 
-vardef findRightSize (expr givenBranchPath, givenBranchOrigin, sty, minSize, maxSize, lDir, branchNumber, totalBranches, i) =
+vardef findRightSize (expr givenBranchPath, stemVec, givenBranchOrigin, sty, minSize, maxSize, lDir, branchNumber, totalBranches, i) =
     save branchToCheck, branchIntersections, rv, s;
     path branchToCheck;
     numeric branchIntersections, rv, s;
@@ -80,13 +80,13 @@ vardef findRightSize (expr givenBranchPath, givenBranchOrigin, sty, minSize, max
     else:
         rv := 0;
     fi;
-    branchToCheck := (givenBranchPath scaled s) shifted givenBranchOrigin;
-    branchIntersections := checkIfIntersects(branchToCheck, branchNumber, totalBranches);
+    branchToCheck := ((givenBranchPath scaled s) shifted givenBranchOrigin) shifted (stemVec scaled (minimalDistance*branchStem[sty]));
+    branchIntersections := checkIfIntersects(branchToCheck, branchNumber, totalBranches, branchStem[sty]);
     if (i > 0) and (maxSize >= minBranchLength[sty]):
         if (branchIntersections = 0):
-            rv := findRightSize(givenBranchPath, givenBranchOrigin, sty, s, maxSize, 1, branchNumber, totalBranches, i - 1);
+            rv := findRightSize(givenBranchPath, stemVec, givenBranchOrigin, sty, s, maxSize, 1, branchNumber, totalBranches, i - 1);
         else:
-            rv := findRightSize(givenBranchPath, givenBranchOrigin, sty, minSize, s, -1, branchNumber, totalBranches, i - 1);
+            rv := findRightSize(givenBranchPath, stemVec, givenBranchOrigin, sty, minSize, s, -1, branchNumber, totalBranches, i - 1);
         fi;
     else:
         if (branchIntersections <> 0):
@@ -101,9 +101,9 @@ vardef findRightSize (expr givenBranchPath, givenBranchOrigin, sty, minSize, max
 enddef;
 
 vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
-    save sproutPath, sproutMaxSize, sproutSize, sproutBaseDirection, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative, sideActive;
+    save sproutPath, sproutMaxSize, sproutSize, sproutBaseDirection, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative, sideActive, stemVec;
     path sproutPath, rp;
-    pair sproutBaseDirection;
+    pair sproutBaseDirection, stemVec;
     numeric sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, startPoint, endPoint, currentBranchOrientationRelative;
     boolean sideActive[];
     sproutSizeOld := 0;
@@ -149,17 +149,21 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
                 fi;
                 if (candidateBranchOrientation = 0):
                     sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) - 90);
+                    stemVec := unitvector(sproutBaseDirection) rotated 90;
                 else:
                     sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) + 90);
+                    stemVec := unitvector(sproutBaseDirection) rotated -90;
                 fi;
-                sproutSize := findRightSize(sproutPath, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, 3minBranchLength[branchStyleIndex], 0, branchNumber, totalBranches, sproutFittingIterations);
+                sproutSize := findRightSize(sproutPath, stemVec, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, 3minBranchLength[branchStyleIndex], 0, branchNumber, totalBranches, sproutFittingIterations);
                 if (arclength(sproutPath scaled sproutSize) <= minBranchLength[branchStyleIndex]):
                     addBud (branchNumber, j, -1, currentBranchOrientationRelative);
                 else:
                     addBud (branchNumber, j, sproutSize, currentBranchOrientationRelative);
                 fi;
                 if (sproutSize > sproutSizeOld):
-                    rp := sproutPath scaled sproutSize shifted (point j of branchMeristem[branchNumber]);
+                    rp := sproutPath scaled sproutSize
+                        shifted (point j of branchMeristem[branchNumber])
+                        shifted (stemVec scaled (minimalDistance*branchStem[branchStyleIndex]));
                     sproutSizeOld := sproutSize;
                     successfulSproutLocation := j;
                 fi;
@@ -172,18 +176,25 @@ vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
     rp
 enddef;
 
-vardef checkIfIntersects (expr pathItself, l, n) =
+vardef checkIfIntersects (expr pathItself, l, n, st) =
     save rv, m, t, s;
     numeric rv, t[], s[];
     rv := 0;
-    t0 := xpart(pathItself firstIntersectionTimes branchOutline[l]);
-    s0 := 1/100;
-    if cycle pathItself:
-        t1 := xpart(reverse(pathItself) firstIntersectionTimes branchOutline[l]);
-        s1 := s0;
+    if (st = 0):
+        t0 := xpart(pathItself firstIntersectionTimes branchOutline[l]);
+        s0 := 1/100;
+        if cycle pathItself:
+            t1 := xpart(reverse(pathItself) firstIntersectionTimes branchOutline[l]);
+            s1 := s0;
+        else:
+            t1 := 0;
+            s1 := 0;
+        fi;
     else:
-        t1 := 0;
-        s1 := 0;
+        t0 := 3/2;
+        s0 := 1/100;
+        t1 := 3/2;
+        s1 := 1/100;
     fi;
     if (xpart((subpath(t0 + s0, length(pathItself) - t1 - s1) of pathItself) intersectiontimes branchOutline[l]) >= 0)
         or (xpart((subpath(s0, length(pathItself) - s1) of pathItself) intersectiontimes branchOutline[l]) < 0)
@@ -307,24 +318,80 @@ pair branchMeristemSpan[];
 string shuffledNumbers;
 picture lettrineImage;
 
+branchStem[-1] := 0;
 branchProductive[-1] := true;
 branchTemplate0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 branchTemplate1 := branchTemplate0 yscaled -1;
 branchMeristemSpan0 := (1/2, length(branchTemplate0) - 2);
+branchStem0 := 0;
 branchProductive0 := true;
 branchTemplate2 := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
 branchTemplate3 := branchTemplate2 yscaled -1;
 branchMeristemSpan1 := (1/2, length(branchTemplate2) - 3);
+branchStem1 := 0;
 branchProductive1 := true;
 branchTemplate4 := (0, 0){dir(90)} .. (-1/2, 1) .. (-1, 1/2) .. (-1/2, 2/3) .. {dir(-90)} cycle;
 branchTemplate5 := (branchTemplate4 rotated 30) yscaled -1;
 branchMeristemSpan2 := (1/5, 1/4);
+branchStem2 := 0;
 branchProductive2 := false;
 branchTemplate6 := (0, 0){dir(90)} .. (-1/2, 1) .. {dir(-90)}(-1, 1/2){dir(60)} .. {dir(-90)} cycle;
 branchTemplate7 := (branchTemplate6 rotated 45) yscaled -1;
 branchMeristemSpan3 := (1/5, 1/4);
+branchStem3 := 0;
 branchProductive3 := false;
+branchTemplate8 := fullcircle shifted (-1/2, 0);
+branchTemplate9 := branchTemplate8 yscaled -1;
+branchMeristemSpan4 := (0, 1/10);
+branchStem4 := 1/2;
+branchProductive4 := false;
 
+vardef branchPic(expr p, o, sty) =
+    save s, a, po, org;
+    numeric s, a;
+    path po;
+    pair org;
+    image(
+        if sty > -1:
+            po := branchTemplate[sty*2+o];
+            org := point 0 of p;
+            s := arclength(p)/arclength(po);
+            a := angle(direction 0 of p) - angle(direction 0 of po);
+        fi;
+        if sty = -1:
+            draw p withpen pensquare scaled 1/3mm withcolor white;
+        elseif (sty = 0) or (sty = 1):
+            draw p withpen pencircle scaled 1/6mm withcolor white;
+            draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm)
+                rotated (if (o=1):-90 else: 90 fi + angle(direction length(p) of p)))
+                shifted point length(p) of p withpen pencircle scaled 1/5mm withcolor white;
+        elseif sty = 2:
+            draw p withpen pencircle scaled 1/12mm withcolor white;
+            fill p withcolor white;
+        elseif sty = 3:
+            draw p withpen pencircle scaled 1/12mm withcolor white;
+            fill p withcolor white;
+        elseif sty = 4:
+            %draw p withpen pencircle scaled 1/6mm withcolor white;
+            fill p withcolor white;
+            fill (((po scaled (s-1/2mm)) rotated a) shifted org) shifted (dir(180+a)*1/4mm) shifted (dir(225)*1/8mm) withcolor black;
+            fill (((po scaled (1/2mm)) rotated a) shifted org) shifted (dir(180+a)*(1/4s)) shifted (dir(45)*(1/8s)) withcolor white;
+            %fill (fullcircle scaled 1/3mm) shifted (point 3 of p) withcolor white;
+        else:
+            draw p withcolor white;
+        fi;
+    )
+enddef;
+
+%if branchStyle[i] >= 2:
+%    draw branchPath[i] withpen pencircle scaled 1/12mm withcolor white;
+%    fill branchPath[i] withcolor white;
+%else:
+%    draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/6mm fi withcolor white;
+%fi;
+%if (not cycle branchPath[i]):
+%    draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm withcolor white;
+%fi;
 
 string lettrinesFile, l, ls[];
 lettrinesFile := "lettrineslist.txt";
@@ -422,6 +489,7 @@ forever:
             minBranchLength1 := 3/2minBranchLength0;
             minBranchLength2 := 1/2minBranchLength0;
             minBranchLength3 := 1/2minBranchLength0;
+            minBranchLength4 := 1/2minBranchLength0;
             boolean firstPart;
             firstPart := true;
             for nn := 0 step 1 until numberOfIterations:
@@ -453,16 +521,18 @@ forever:
                 endfor;
                 for i = scantokens(shuffledNumbers):
                     if firstPart:
-                        if (uniformdeviate(1) > 1/2):
+                        if (uniformdeviate(2) >= 1):
                             sty := 0;
                         else:
                             sty := 1;
                         fi;
                     else:
-                        if (uniformdeviate(1) > 1/2):
+                        if (uniformdeviate(3) >= 2):
                             sty := 2;
-                        else:
+                        elseif (uniformdeviate(2) >= 1):
                             sty := 3;
+                        else:
+                            sty := 4;
                         fi;
                     fi;
                     candidateBranch := positionBranch(i, totalBranchesNumber, sty);
@@ -480,15 +550,7 @@ forever:
             endfor;
             for i := 0 step 1 until totalBranchesNumber:
                 if (branchIsActive[i] > 0):
-                    if branchStyle[i] >= 2:
-                        draw branchPath[i] withpen pencircle scaled 1/12mm withcolor white;
-                        fill branchPath[i] withcolor white;
-                    else:
-                        draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/6mm fi withcolor white;
-                    fi;
-                    if (not cycle branchPath[i]):
-                        draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm withcolor white;
-                    fi;
+                    draw branchPic(branchPath[i], branchOrientation[i], branchStyle[i]);
                 %else:
                 %    draw branchPath[i] withcolor red;
                 fi;
