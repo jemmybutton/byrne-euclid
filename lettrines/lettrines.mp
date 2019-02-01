@@ -308,7 +308,7 @@ enddef;
 vardef findRightSize@#(expr brFlipped, brOrigin, brAngle, brParent, minSize, maxSize) =
     save s, rv, intersects;
     boolean intersects;
-    rv := maxSize + branchSizeResolution;
+    rv := maxSize + 2branchSizeResolution;
     forever:
         rv := rv - 2branchSizeResolution;
         intersects := checkIfIntersects(
@@ -339,11 +339,11 @@ vardef checkIfIntersects(expr brPath, brParent) =
         if cycle brPath:
             s1 := xpart(reverse(brPath) firstIntersectionTimes branchOutline[i]) + 1/10;
         fi;
-        if xpart((subpath (s0, length(brPath) - s1) of brPath)
-                intersectiontimes branchOutline[i]) >= 0:
+        if (arclength(subpath (0, s0) of brPath) > 1/3arclength(brPath))
+            or (arclength(subpath (length(brPath) - s1, length(brPath)) of brPath) > 1/3arclength(brPath)):
             intersects := true;
-        elseif (arclength(subpath (0, s0) of brPath) > 1/2arclength(brPath))
-            or (arclength(subpath (length(brPath) - s1, length(brPath)) of brPath) > 1/2arclength(brPath)):
+        elseif xpart((subpath (s0, length(brPath) - s1) of brPath)
+                intersectiontimes branchOutline[i]) >= 0:
             intersects := true;
         elseif xpart((subpath (1/10, length(brPath) - 1/10) of brPath) intersectiontimes branchPath[i]) > 0:
             intersects := true;
@@ -393,7 +393,7 @@ branchTemplate.curlA := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sin
 branchTemplate.curlA := branchTemplate.curlA rotated 15;
 branchMeristem.curlA0 := subpath (1/2, length(branchTemplate.curlA) - 2) of branchTemplate.curlA;
 branchMeristemOrientation.curlA0 := 1;
-branchMeristem.curlA1 := reverse(subpath (1/2, length(branchTemplate.curlA) - 4) of branchTemplate.curlA);
+branchMeristem.curlA1 := reverse(subpath (1/4, length(branchTemplate.curlA) - 4) of branchTemplate.curlA);
 branchMeristemOrientation.curlA1 := -1;
 branchMeristemCount.curlA := 2;
 branchMinSize.curlA := 2mm;
@@ -406,7 +406,7 @@ branchTemplate.curlB := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sin
 branchTemplate.curlB := branchTemplate.curlB rotated 15;
 branchMeristem.curlB0 := subpath (1/2, length(branchTemplate.curlB) - 3) of branchTemplate.curlB;
 branchMeristemOrientation.curlB0 := 1;
-branchMeristem.curlB1 := reverse(subpath (1/2, length(branchTemplate.curlB) - 6) of branchTemplate.curlB);
+branchMeristem.curlB1 := reverse(subpath (1/4, length(branchTemplate.curlB) - 6) of branchTemplate.curlB);
 branchMeristemOrientation.curlB1 := -1;
 branchMeristemCount.curlB := 2;
 branchMinSize.curlB := 2mm;
@@ -441,7 +441,7 @@ vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
     image(
         if (brType = "curlA") or (brType = "curlB"):
             p0 := makeBranchPath@#(brOrigin, brAngle, brScale, brFlipped);
-            p1 := ((fullcircle  shifted (1/2, 0)) scaled 1/8mm) rotated (angle(direction 0 of reverse(p0)) - 90);
+            p1 := ((fullcircle  shifted (1/2, 0)) scaled 1/5mm) rotated (angle(direction 0 of reverse(p0)) - 90);
             if brFlipped:
                 p1 := p1 rotated 180;
             fi;
@@ -492,35 +492,10 @@ forever:
         endfor;
 
         lettrineImage := image(
-            if (length(lettrineLine) = 1):
-                meristemResolution := 1/2mm;
-                branchSizeResolution := 1/4mm;
-                outlineThickness := 1/2mm;
-                scaleFactor := 1;
-                symMode := 0;
-                fill reverse(unitsquare) scaled lettrineSize withcolor black;
-                addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), true, (0, 0), 0, 1, false, false);
-                addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(1, 2) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(2, 3) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(3, 4) of branchPath0, 1, branchNumber);
-                for i within TEX(lettrineLine):
-                    currentLetter := (glyph (ASCII textpart i) of (fontpart i)) scaled (1/35);
-                    currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
-                    for letterPart within currentLetter:
-                        if (colorpart letterPart) = 0:
-                            fill (pathpart letterPart) withcolor white;
-                        else:
-                            fill (pathpart letterPart) withcolor black;
-                        fi;
-                        addBranch (pathpart letterPart, true, (0, 0), 0, 1, false, false);
-                        addMeristem (pathpart letterPart, 1, branchNumber);
-                    endfor;
-                endfor;
-            elseif (lettrineLine = "plate"):
+            if (lettrineLine = "plate"):
                 meristemResolution := 2/3mm;
                 branchSizeResolution := 1/4mm;
-                outlineThickness := 3/5mm;
+                outlineThickness := 2/5mm;
                 scaleFactor := 1;
                 symMode := 1;
                 fill ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight withcolor black;
@@ -535,7 +510,7 @@ forever:
             elseif (lettrineLine = "tile"):
                 meristemResolution := 2/3mm;
                 branchSizeResolution := 1/4mm;
-                outlineThickness := 3/5mm;
+                outlineThickness := 2/5mm;
                 scaleFactor := 1;
                 symMode := 2;
                 addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
@@ -546,6 +521,33 @@ forever:
                 addBranch.curlA((0,0), true, (0, 0), 180, 3/2cm, false, false);
                 addBranchMeristem;
                 addSymBranches;
+            else:
+                meristemResolution := 1/2mm;
+                branchSizeResolution := 1/6mm;
+                outlineThickness := 1/3mm;
+                scaleFactor := 1;
+                symMode := 0;
+                fill reverse(unitsquare) scaled lettrineSize withcolor black;
+                addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), true, (0, 0), 0, 1, false, false);
+                addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(1, 2) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(2, 3) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(3, 4) of branchPath0, 1, branchNumber);
+                picture texLetter;
+                texLetter := TEX(lettrineLine);
+                for i within texLetter:
+                    currentLetter := (glyph (ASCII textpart i) of (fontpart i)) scaled (1/35);
+                    currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
+                    for letterPart within currentLetter:
+                        if (colorpart letterPart) = 0:
+                            fill (pathpart letterPart) withcolor white;
+                        else:
+                            fill (pathpart letterPart) withcolor black;
+                        fi;
+                        addBranch (pathpart letterPart, true, (0, 0), 0, 1, false, false);
+                        addMeristem (pathpart letterPart, 1, branchNumber);
+                    endfor;
+                endfor;
             fi;
         );
         draw lettrineImage;
