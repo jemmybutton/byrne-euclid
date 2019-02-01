@@ -1,6 +1,6 @@
-%    lettrine-generator 0.0.3
+%    lettrine-generator 0.1.0a
 %    MetaPost lettrines generator
-%    Copyright 2018 Sergey Slyusarev
+%    Copyright 2019 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -17,17 +17,12 @@
 
 input TEX;
 
-TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}"); %\usepackage{tempora}
+TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}");
 TEXPOST("\end{document}");
 
 outputformat := "eps";
 
-vardef log(expr x, b) =
-    (mlog(x)/256)/(mlog(2)/256)
-enddef;
-
-% here we define some measures, common to all images
-numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, borderWidth, minimalDistance, budDistance;
+numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, borderWidth;
 lettrineSize := 3/2cm;
 plateWidth := 76mm;
 plateHeight := 15mm;
@@ -35,7 +30,10 @@ tileWidth := 25mm;
 tileHeight := 25mm;
 borderWidth := 1mm;
 
-% this macro is taken directly from 'fiziko.mp', it simply takes first intersection time from the 'p' point of view
+vardef log(expr x, b) =
+    (mlog(x)/256)/(mlog(2)/256)
+enddef;
+
 primarydef p firstIntersectionTimes q =
 begingroup
     save t;
@@ -52,512 +50,535 @@ begingroup
 endgroup
 enddef;
 
-% creates outline for a path, that determines how close two lines can get
-vardef pathOutline (expr p, s) =
-    save outputPath;
-    path outputPath[];
-    outputPath1 := point 0 of p;
-    outputPath2 := point 0 of p;
-    for i := 0 step s until length(p):
-        if(abs(direction i of p) > 0):
-            outputPath1 := outputPath1 -- (point i of p shifted (unitvector(direction i of p rotated 90) scaled minimalDistance));
-            outputPath2 := outputPath2 -- (point i of p shifted (unitvector(direction i of p rotated -90) scaled minimalDistance));
-        else:
-            outputPath1 := outputPath1 -- (point i of p shifted (unitvector(direction i - 1/100 of p rotated 90) scaled minimalDistance));
-            outputPath2 := outputPath2 -- (point i of p shifted (unitvector(direction i - 1/100 of p rotated -90) scaled minimalDistance));
-        fi;
-    endfor;
-    outputPath1..(point length(p) of p shifted (unitvector(direction (length(p) - 1/100) of p) scaled minimalDistance))..reverse(subpath(1, length(outputPath2)) of outputPath2)--cycle
+vardef pathOutline (expr p, d) =
+    save outlinepen;
+    pen outlinepen;
+    outlinepen = makepen(for i := 0 step 10 until 350: dir(i) scaled d -- endfor cycle);
+    envelope outlinepen of p
 enddef;
 
-vardef findRightSize (expr givenBranchPath, stemVec, givenBranchOrigin, sty, minSize, maxSize, lDir, branchNumber, totalBranches, i) =
-    save branchToCheck, branchIntersections, rv, s;
-    path branchToCheck;
-    numeric branchIntersections, rv, s;
-    s := 1/2[minSize, maxSize];
-    if (minSize > 0):
-        rv := s;
+vardef shuffleNumbers (expr n) =
+    save shuffledNumbers;
+    string shuffledNumbers;
+    shuffledNumbers := "";
+    for i := 0 step 1 until n:
+        if length(shuffledNumbers) = 0:
+            shuffledNumbers := decimal(i);
+        else:
+            if (uniformdeviate(1) > 1/2):
+                shuffledNumbers := shuffledNumbers & ", " & decimal(i);
+            else:
+                shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
+            fi;
+        fi;
+    endfor;
+    shuffledNumbers
+enddef;
+
+string lettrinesFile, lettrineLine, lettrineSymbol[];
+numeric lettrineCount[], lettrine lettrineNumber;
+picture lettrineImage, currentLetter;
+lettrinesFile := "lettrineslist.txt";
+lettrineNumber := 0;
+
+path branchPath[], branchOutline[], meristemPath[];
+pair branchOrigin[];
+string branchType[], meristemType[];
+numeric branchNumber, branchAngle[], branchScale[], meristemOrientation[], meristemParentBranch[];
+boolean branchActive[], branchFlipped[];
+
+vardef makeBranchPath@#(expr brOrigin, brAngle, brScale, brFlipped) =
+    applyBranchTransform(branchTemplate@#, brOrigin, brAngle, brScale, brFlipped)
+enddef;
+
+vardef applyBranchTransform (expr p, brOrigin, brAngle, brScale, brFlipped) =
+    save somePath;
+    path somePath;
+    if brFlipped:
+        somePath := p yscaled -1;
+        if cycle p:
+            somePath := reverse somePath;
+        fi;
+    else:
+        somePath := p;
+    fi;
+    if brScale > 0:
+        somePath := somePath scaled (brScale*scaleFactor);
+    fi;
+    (somePath rotated brAngle) shifted brOrigin
+enddef;
+
+vardef addBranch@#(expr brPath, brActive, brOrigin, brAngle, brScale, brFlipped, postpone) =
+    save brPathToStore;
+    path brPathToStore;
+    if (length(str @#) > 0):
+        branchType[branchNumber + 1] := str @#;
+        brPathToStore := makeBranchPath@#(brOrigin, brAngle, brScale, brFlipped);
+    else:
+        branchType[branchNumber + 1] := "generic";
+        brPathToStore := brPath;
+    fi;
+    branchPath[branchNumber + 1] := brPathToStore;
+    branchOutline[branchNumber + 1] := pathOutline(brPathToStore, outlineThickness);
+    branchActive[branchNumber + 1] := brActive;
+    branchOrigin[branchNumber + 1] := brOrigin;
+    branchAngle[branchNumber + 1] := brAngle;
+    branchScale[branchNumber + 1] := brScale;
+    branchFlipped[branchNumber + 1] := brFlipped;
+    if not postpone:
+        toNextBranch;
+    fi;
+enddef;
+
+vardef toNextBranch =
+    branchNumber := branchNumber + 1;
+enddef;
+
+vardef addMeristem@#(expr mrPath, mrOrientation, mrParentBranch) =
+    meristemNumber := meristemNumber + 1;
+    meristemPath[meristemNumber] := mrPath;
+    meristemOrientation[meristemNumber] := mrOrientation;
+    meristemParentBranch[meristemNumber] := mrParentBranch;
+    if (length(str @#) > 0):
+        meristemType[meristemNumber] := str @#;
+    else:
+        meristemType[meristemNumber] := "generic";
+    fi;
+enddef;
+
+vardef addBranchMeristem =
+    save mrOrientation, mrPath;
+    path mrPath;
+    numeric mrOrientation;
+    for i := 0 step 1 until branchMeristemCount.scantokens(branchType[branchNumber]) - 1:
+        mrOrientation := branchMeristemOrientation.scantokens(branchType[branchNumber])[i];
+        mrPath := branchMeristem.scantokens(branchType[branchNumber])[i];
+        if branchFlipped[branchNumber]:
+            mrOrientation := -mrOrientation;
+            mrPath := mrPath yscaled -1;
+            mrPath := reverse(mrPath);
+        fi;
+        mrPath := mrPath scaled scaleFactor;
+        addMeristem.scantokens(branchType[branchNumber])(
+            ((mrPath
+                scaled branchScale[branchNumber])
+                rotated branchAngle[branchNumber])
+                shifted branchOrigin[branchNumber],
+            mrOrientation,
+            branchNumber);
+    endfor;
+enddef;
+
+vardef addSymBranches =
+    save i, j, brOrigin;
+    pair brOrigin;
+    if symMode = 1:
+        addBranch.scantokens(branchType[branchNumber])(
+            (0, 0),
+            branchActive[branchNumber],
+            branchOrigin[branchNumber] rotated 180,
+            branchAngle[branchNumber] + 180,
+            branchScale[branchNumber],
+            branchFlipped[branchNumber],
+            false);
+    elseif symMode = 2:
+        brOrigin := branchOrigin[branchNumber];
+        for i := -1 step 1 until 1:
+            for j := -1 step 1 until 1:
+                if (i <> 0) or (j <> 0):
+                    addBranch.scantokens(branchType[branchNumber])(
+                        (0, 0),
+                        false,
+                        brOrigin shifted (i*tileWidth, j*tileHeight),
+                        branchAngle[branchNumber],
+                        branchScale[branchNumber],
+                        branchFlipped[branchNumber],
+                        false);
+                fi;
+            endfor;
+        endfor;
+    fi;
+enddef;
+
+vardef addBud@#(expr mrNumber, mrLoc, s, w) =
+    save mrLocTime, l;
+    mrLocTime := floor(mrLoc/meristemResolution);
+    if not known meristemBuds.@#[mrNumber]:
+        meristemBuds.@#[mrNumber] := (branchMaxSize@#, 0);
+        for i := 1 step 1 until floor(arclength(meristemPath[mrNumber])/meristemResolution):
+            meristemBuds.@#[mrNumber] := meristemBuds.@#[mrNumber] -- (branchMaxSize@#, 0);
+        endfor;
+    fi;
+    l := length(meristemBuds.@#[mrNumber]);
+    if l > w + 2:
+        if mrLocTime < w:
+            meristemBuds.@#[mrNumber] :=
+                for i := 1 step 1 until w: (s, 0) -- endfor
+                (subpath (w, l) of meristemBuds.@#[mrNumber]);
+        elseif mrLocTime > l - w:
+            meristemBuds.@#[mrNumber] :=
+                (subpath (0, l - w) of meristemBuds.@#[mrNumber])
+                for i := 1 step 1 until w: -- (s, 0) endfor;
+        else:
+            meristemBuds.@#[mrNumber] :=
+                (subpath (0, mrLocTime - ((w + 1)/2)) of meristemBuds.@#[mrNumber])
+                for i := 1 step 1 until w: -- (s, 0) endfor
+                -- (subpath (mrLocTime + ((w + 1)/2), l) of meristemBuds.@#[mrNumber]);
+        fi;
+    else:
+        meristemBuds.@#[mrNumber] := (s, 0) for i := 1 step 1 until l: -- (s, 0) endfor;
+    fi;
+enddef;
+
+vardef checkBud@#(expr mrNumber, mrLoc) =
+    save mrLocTime, branchExists, rv;
+    boolean branchExists;
+    branchExists := false;
+    if str @# <> "common":
+        if checkBud.common(mrNumber, mrLoc) = 0:
+            branchExists := true;
+        fi;
+    fi;
+    if not branchExists:
+        mrLocTime := floor(mrLoc/meristemResolution);
+        if not known meristemBuds.@#[mrNumber]:
+            rv := branchMaxSize@#;
+        else:
+            rv := xpart(point mrLocTime of meristemBuds.@#[mrNumber]);
+        fi;
     else:
         rv := 0;
     fi;
-    branchToCheck := ((givenBranchPath scaled s) shifted givenBranchOrigin) shifted (stemVec scaled (minimalDistance*branchStem[sty]));
-    branchIntersections := checkIfIntersects(branchToCheck, branchNumber, totalBranches, branchStem[sty]);
-    if (i > 0) and (maxSize >= minBranchLength[sty]):
-        if (branchIntersections = 0):
-            rv := findRightSize(givenBranchPath, stemVec, givenBranchOrigin, sty, s, maxSize, 1, branchNumber, totalBranches, i - 1);
-        else:
-            rv := findRightSize(givenBranchPath, stemVec, givenBranchOrigin, sty, minSize, s, -1, branchNumber, totalBranches, i - 1);
-        fi;
+    rv
+enddef;
+
+vardef checkIfBudsLeft@#(expr mrNumber) =
+    if not known meristemBuds.@#[mrNumber]:
+        true
     else:
-        if (branchIntersections <> 0):
-            if (lDir = 1):
-                rv := 1/2[s, maxSize];
-            elseif (lDir = -1):
-                rv := 1/2[minSize, s];
+        xpart(urcorner(meristemBuds.@#[mrNumber])) >= branchMinSize@#
+    fi
+enddef;
+
+vardef positionBranch@#(expr mrNumber) =
+    save brTemplate, mrTime, brAngle, brOrigin, brSizeUpperLimit, brMaxScale, brMaxScaleLoc, brFlipped;
+    path brTemplate, brCandidatePath;
+    numeric mrTime, brAngle, brScale, brMaxScale, brMaxScaleLoc;
+    pair brOrigin;
+    boolean brFlipped;
+    if meristemOrientation[mrNumber] = 1:
+        brFlipped := true;
+    else:
+        brFlipped := false;
+    fi;
+    brMaxScale := 0;
+    brMaxScaleLoc := 0;
+    if checkIfBudsLeft@#(mrNumber):
+        for i := 0 step meristemResolution until arclength(meristemPath[mrNumber]):
+            brSizeUpperLimit := checkBud@#(mrNumber, i);
+            if (brSizeUpperLimit >= branchMinSize@#) and (brSizeUpperLimit > brMaxScale):
+                mrTime := arctime i of meristemPath[mrNumber];
+                brAngle := 90 + angle(1/2[
+                    direction (mrTime-1/100) of meristemPath[mrNumber],
+                    direction (mrTime+1/100) of meristemPath[mrNumber]]);
+                brOrigin := point mrTime of meristemPath[mrNumber];
+                brScale := findRightSize@#(
+                    brFlipped,
+                    brOrigin,
+                    brAngle,
+                    meristemParentBranch[mrNumber],
+                    branchMinSize@#, brSizeUpperLimit);
+                addBud@#(mrNumber, i, brScale, 1);
+                if brScale > brMaxScale:
+                    addBranch@#((0,0), true, brOrigin, brAngle, brScale, brFlipped, true);
+                    brMaxScale := brScale;
+                    brMaxScaleLoc := i;
+                fi;
             fi;
+        endfor;
+        if (brMaxScale >= branchMinSize@#):
+            toNextBranch;
+            addBud.common(mrNumber, brMaxScaleLoc, 0, 5);
+            addBranchMeristem;
+            addSymBranches;
         fi;
+    fi;
+enddef;
+
+vardef findRightSize@#(expr brFlipped, brOrigin, brAngle, brParent, minSize, maxSize) =
+    save s, rv, intersects;
+    boolean intersects;
+    rv := maxSize + branchSizeResolution;
+    forever:
+        rv := rv - 2branchSizeResolution;
+        intersects := checkIfIntersects(
+            makeBranchPath@#(brOrigin, brAngle, rv, brFlipped),
+            brParent);
+        exitif ((rv < minSize) or (not intersects));
+    endfor;
+    if (not checkIfIntersects(
+        makeBranchPath@#(brOrigin, brAngle, rv + branchSizeResolution, brFlipped),
+        brParent)):
+        rv := rv + branchSizeResolution;
     fi;
     rv
 enddef;
 
-vardef positionBranch (expr branchNumber, totalBranches, branchStyleIndex) =
-    save sproutPath, sproutMaxSize, sproutSize, sproutBaseDirection, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, rp, startPoint, endPoint, currentBranchOrientationRelative, sideActive, stemVec;
-    path sproutPath, rp;
-    pair sproutBaseDirection, stemVec;
-    numeric sproutMaxSize, sproutSize, successfulSproutLocation, sproutFittingIterations, sproutSizeOld, i, j, startPoint, endPoint, currentBranchOrientationRelative;
-    boolean sideActive[];
-    sproutSizeOld := 0;
-    rp := (0, 0);
-    successfulSproutLocation := -1;
-    if (uniformdeviate(10)>5) or (cycle branchPath[branchNumber]):
-        if (branchOrientation[branchNumber] = 0):
-            candidateBranchOrientation := 1;
-        else:
-            candidateBranchOrientation := 0;
-        fi;
-        currentBranchOrientationRelative := 0;
+vardef checkIfIntersects(expr brPath, brParent) =
+    save intersects, s, i, bbCorners, isInsidePath, isInsideOutline;
+    boolean intersects, isInsidePath, isInsideOutline;
+    numeric s[], i;
+    pair bbCorners[];
+    intersects := false;
+    i := brParent;
+    s0 := xpart(brPath firstIntersectionTimes branchOutline[i]) + 1/10;
+    s1 := 0;
+    if s0 < 0:
+        intersects := true;
     else:
-        candidateBranchOrientation := branchOrientation[branchNumber];
-        currentBranchOrientationRelative := 1;
+        if cycle brPath:
+            s1 := xpart(reverse(brPath) firstIntersectionTimes branchOutline[i]) + 1/10;
+        fi;
+        if xpart((subpath (s0, length(brPath) - s1) of brPath)
+                intersectiontimes branchOutline[i]) >= 0:
+            intersects := true;
+        elseif (arclength(subpath (0, s0) of brPath) > 1/2arclength(brPath))
+            or (arclength(subpath (length(brPath) - s1, length(brPath)) of brPath) > 1/2arclength(brPath)):
+            intersects := true;
+        elseif xpart((subpath (1/10, length(brPath) - 1/10) of brPath) intersectiontimes branchPath[i]) > 0:
+            intersects := true;
+        fi;
     fi;
-    sideActive[0] := (xpart(urcorner(branchBuds[branchNumber])) >= 0);
-    sideActive[1] := (ypart(urcorner(branchBuds[branchNumber])) >= 0);
-    if (not sideActive[currentBranchOrientationRelative]) and (not cycle branchPath[branchNumber]):
-        currentBranchOrientationRelative := abs(currentBranchOrientationRelative - 1);
-        candidateBranchOrientation := abs(candidateBranchOrientation - 1);
-    fi;
-    if sideActive[currentBranchOrientationRelative]:
-        startPoint := 0;
-        endPoint := arclength(branchMeristem[branchNumber]);
-        for i := startPoint step budDistance until endPoint:
-            j := (arctime i of branchMeristem[branchNumber]);
-            if (checkBud (branchNumber, j, currentBranchOrientationRelative) = 0)
-                or (checkBud (branchNumber, j, currentBranchOrientationRelative) > sproutSizeOld):
-                if (checkBud (branchNumber, j, currentBranchOrientationRelative) > 0):
-                    sproutMaxSize := checkBud (branchNumber, j, currentBranchOrientationRelative);
-                else:
-                    if cycle branchPath[branchNumber]:
-                        sproutMaxSize := abs(ulcorner(branchPath[branchNumber]) - lrcorner(branchPath[branchNumber]));
-                    else:
-                        sproutMaxSize := 1/2arclength(branchPath[branchNumber]);
+    if not intersects:
+        bbCorners0 := llcorner(brPath);
+        bbCorners1 := urcorner(brPath);
+        i := -1;
+        forever:
+            i := i + 1;
+            exitif (i > branchNumber) or intersects;
+            if (i <> brParent):
+                bbCorners2 := llcorner(branchOutline[i]);
+                bbCorners3 := urcorner(branchOutline[i]);
+                bbCorners4 := llcorner(branchPath[i]);
+                bbCorners5 := urcorner(branchPath[i]);
+                isInsideOutline :=
+                    (not ((xpart(bbCorners0) < xpart(bbCorners2)) and (xpart(bbCorners1) < xpart(bbCorners2))))
+                    and (not ((xpart(bbCorners0) > xpart(bbCorners3)) and (xpart(bbCorners1) > xpart(bbCorners3))))
+                    and (not ((ypart(bbCorners0) < ypart(bbCorners2)) and (ypart(bbCorners1) < ypart(bbCorners2))))
+                    and (not ((ypart(bbCorners0) > ypart(bbCorners3)) and (ypart(bbCorners1) > ypart(bbCorners3))));
+                isInsidePath :=
+                    (not ((xpart(bbCorners0) < xpart(bbCorners4)) and (xpart(bbCorners1) < xpart(bbCorners4))))
+                    and (not ((xpart(bbCorners0) > xpart(bbCorners5)) and (xpart(bbCorners1) > xpart(bbCorners5))))
+                    and (not ((ypart(bbCorners0) < ypart(bbCorners4)) and (ypart(bbCorners1) < ypart(bbCorners4))))
+                    and (not ((ypart(bbCorners0) > ypart(bbCorners5)) and (ypart(bbCorners1) > ypart(bbCorners5))));
+                if isInsideOutline or isInsidePath:
+                    if (xpart(brPath intersectiontimes branchOutline[i]) >= 0):
+                        intersects := true;
+                    elseif (xpart(brPath intersectiontimes branchPath[i]) >= 0):
+                        intersects := true;
                     fi;
                 fi;
-                sproutFittingIterations := log(sproutMaxSize/branchScalePrecision, 2);
-                sproutBaseDirection := direction j of branchMeristem[branchNumber];
-                if sproutBaseDirection = (0, 0):
-                    sproutBaseDirection := 1/2[direction (j-1/100) of branchMeristem[branchNumber], direction (j+1/100) of branchMeristem[branchNumber]];
-                fi;
-                if (candidateBranchOrientation = 0):
-                    sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) - 90);
-                    stemVec := unitvector(sproutBaseDirection) rotated 90;
-                else:
-                    sproutPath := branchTemplate[candidateBranchOrientation + 2branchStyleIndex] rotated (angle(sproutBaseDirection) + 90);
-                    stemVec := unitvector(sproutBaseDirection) rotated -90;
-                fi;
-                sproutSize := findRightSize(sproutPath, stemVec, (point j of branchMeristem[branchNumber]), branchStyleIndex, 0, 3minBranchLength[branchStyleIndex], 0, branchNumber, totalBranches, sproutFittingIterations);
-                if (arclength(sproutPath scaled sproutSize) <= minBranchLength[branchStyleIndex]):
-                    addBud (branchNumber, j, -1, currentBranchOrientationRelative);
-                else:
-                    addBud (branchNumber, j, sproutSize, currentBranchOrientationRelative);
-                fi;
-                if (sproutSize > sproutSizeOld):
-                    rp := sproutPath scaled sproutSize
-                        shifted (point j of branchMeristem[branchNumber])
-                        shifted (stemVec scaled (minimalDistance*branchStem[branchStyleIndex]));
-                    sproutSizeOld := sproutSize;
-                    successfulSproutLocation := j;
-                fi;
-            fi;
-        endfor;
-        if (successfulSproutLocation >= 0):
-            addBud (branchNumber, successfulSproutLocation, -1, currentBranchOrientationRelative);
-        fi;
-    fi;
-    rp
-enddef;
-
-vardef checkIfIntersects (expr pathItself, l, n, st) =
-    save rv, m, t, s;
-    numeric rv, t[], s[];
-    rv := 0;
-    if (st = 0):
-        t0 := xpart(pathItself firstIntersectionTimes branchOutline[l]);
-        s0 := 1/100;
-        if cycle pathItself:
-            t1 := xpart(reverse(pathItself) firstIntersectionTimes branchOutline[l]);
-            s1 := s0;
-        else:
-            t1 := 0;
-            s1 := 0;
-        fi;
-    else:
-        t0 := 3/2;
-        s0 := 1/100;
-        t1 := 3/2;
-        s1 := 1/100;
-    fi;
-    if (xpart((subpath(t0 + s0, length(pathItself) - t1 - s1) of pathItself) intersectiontimes branchOutline[l]) >= 0)
-        or (xpart((subpath(s0, length(pathItself) - s1) of pathItself) intersectiontimes branchOutline[l]) < 0)
-        or (xpart((subpath(s0, length(pathItself) - s1) of pathItself) intersectiontimes branchPath[l]) >= 0)
-        or (arclength(subpath (0, t0) of pathItself) > 3minimalDistance)
-        or (t0 < 0):
-        rv := rv + 1;
-    else:
-        for m := 0 step 1 until n:
-            if (l <> m)
-                and ((xpart(pathItself intersectiontimes branchOutline[m]) >= 0)
-                    or (xpart(pathItself intersectiontimes branchPath[m]) >= 0)):
-                rv := rv + 1;
             fi;
         endfor;
     fi;
-    rv
+    intersects
 enddef;
 
-vardef generateBranchesTemplate (expr p) =
-    save rv;
-    path rv;
-    rv := (0, 0);
-    for i := 1 step 1 until round(arclength(p)/budDistance):
-        rv := rv -- (0, 0);
-    endfor;
-    rv
-enddef;
+% Every type of branches is described here
 
-def addBud (expr pn, l, s, o) =
-    begingroup
-    save rv, loc, p, pnr;
-    path rv;
-    pair p;
-    numeric loc, pnr;
-    if (branchIsCloneOf[pn] >= 0):
-        pnr := branchIsCloneOf[pn];
-    else:
-        pnr := pn;
-    fi;
-    loc := round((arclength(subpath(0, l) of branchMeristem[pnr]))/budDistance);
-    if (o = 0):
-        p := (s, ypart(point loc of branchBuds[pnr]));
-    else:
-        p := (xpart(point loc of branchBuds[pnr]), s);
-    fi;
-    if (loc < length(branchBuds[pnr])) and (loc > 0):
-        rv := (subpath (0, loc-1) of branchBuds[pnr])
-            -- p
-            -- (subpath (loc+1, length(branchBuds[pnr])) of branchBuds[pnr]);
-    elseif (loc <= 0):
-        rv := p
-            -- (subpath (loc+1, length(branchBuds[pnr])) of branchBuds[pnr]);
-    elseif (loc >= length(branchBuds[pnr])):
-        rv := (subpath (0, loc-1) of branchBuds[pnr])
-            -- p;
-    fi;
-    branchBuds[pnr] := rv;
-    branchBuds[pn] := rv;
-    endgroup
-enddef;
+path branchTemplate.curlA, branchMeristem.curlA[];
+numeric branchMeristemOrientation.curlA[],branchMeristemCount.curlA, branchMazSize.curlA;
 
-vardef checkBud (expr pn, l, o) =
-    save rv, loc;
-    numeric rv, loc;
-    loc := round((arclength(subpath(0, l) of branchMeristem[pn]))/budDistance);
-    if (o = 0):
-        rv := xpart(point loc of branchBuds[pn]);
-    else:
-        rv := ypart(point loc of branchBuds[pn]);
-    fi;
-    rv
-enddef;
+branchTemplate.curlA := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
+branchTemplate.curlA := branchTemplate.curlA rotated 15;
+branchMeristem.curlA0 := subpath (1/2, length(branchTemplate.curlA) - 2) of branchTemplate.curlA;
+branchMeristemOrientation.curlA0 := 1;
+branchMeristem.curlA1 := reverse(subpath (1/2, length(branchTemplate.curlA) - 4) of branchTemplate.curlA);
+branchMeristemOrientation.curlA1 := -1;
+branchMeristemCount.curlA := 2;
+branchMinSize.curlA := 2mm;
+branchMaxSize.curlA := 1cm;
 
-def makeAdjacentTiles (expr n) =
-    for xs := -1 step 1 until 1:
-        for ys := -1 step 1 until 1:
-            if (xs <> 0) or (ys <> 0):
-                totalBranchesNumber := totalBranchesNumber + 1;
-                branchPath[totalBranchesNumber] := branchPath[n] shifted (xs*tileWidth, ys*tileHeight);
-                branchMeristem[totalBranchesNumber] := branchMeristem[n] shifted (xs*tileWidth, ys*tileHeight);
-                branchOutline[totalBranchesNumber] := branchOutline[n] shifted (xs*tileWidth, ys*tileHeight);
-                branchBuds[totalBranchesNumber] := branchBuds[n];
-                branchOrientation[totalBranchesNumber] := branchOrientation[n];
-                branchIsActive[totalBranchesNumber] := 0;
-                branchStyle[totalBranchesNumber] := branchStyle[n];
-                branchIsCloneOf[totalBranchesNumber] := n;
-            fi;
-        endfor;
-    endfor;
-enddef;
+path branchTemplate.curlB, branchMeristem.curlB[];
+numeric branchMeristemOrientation.curlB[], branchMeristemCount.curlB, branchMazSize.curlB;
 
-def addBranch (expr p, o, a, sty, cn) =
-    totalBranchesNumber := totalBranchesNumber + 1;
-    branchPath[totalBranchesNumber] := p;
-    if (sty < 0):
-        branchMeristem[totalBranchesNumber] := p;
-    else:
-        branchMeristem[totalBranchesNumber] := subpath branchMeristemSpan[sty] of p;
-    fi;
-    branchBuds[totalBranchesNumber] := generateBranchesTemplate(branchMeristem[totalBranchesNumber]);
-    branchOutline[totalBranchesNumber] := pathOutline(branchPath[totalBranchesNumber], 1/2);
-    branchOrientation[totalBranchesNumber] := o;
-    if branchProductive[sty]:
-        branchIsActive[totalBranchesNumber] := a;
-    else:
-        branchIsActive[totalBranchesNumber] := 2;
-    fi;
-    branchStyle[totalBranchesNumber] := sty;
-    branchIsCloneOf[totalBranchesNumber] := cn;
-enddef;
+branchTemplate.curlB := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
+branchTemplate.curlB := branchTemplate.curlB rotated 15;
+branchMeristem.curlB0 := subpath (1/2, length(branchTemplate.curlB) - 3) of branchTemplate.curlB;
+branchMeristemOrientation.curlB0 := 1;
+branchMeristem.curlB1 := reverse(subpath (1/2, length(branchTemplate.curlB) - 6) of branchTemplate.curlB);
+branchMeristemOrientation.curlB1 := -1;
+branchMeristemCount.curlB := 2;
+branchMinSize.curlB := 2mm;
+branchMaxSize.curlB := 1cm;
 
-figNum := 0;
+path branchTemplate.leafA;
+numeric branchMeristemCount.leafA, branchMinSize.leafA, branchMazSize.leafA;
+branchTemplate.leafA := (0, 0){dir(90)} .. (subpath (2, 7) of (fullcircle scaled 2/3) shifted (-3/4, 2/3)) .. {dir(-90)} cycle;
+branchTemplate.leafA := branchTemplate.leafA rotated 15;
+branchMeristemCount.leafA := 0;
+branchMinSize.leafA := 1/2mm;
+branchMaxSize.leafA := 1/4cm;
 
-picture currentLetter, cL;
-path branchPath[], branchMeristem[], branchBuds[], branchOutline[], branchTemplate[], candidateBranch;
-numeric branchOrientation[], branchStyle[], branchIsCloneOf[], branchIsActive[], candidateBranchOrientation, symMode, numberOfIterations, totalBranchesNumber, branchScalePrecision;
-numeric ln[], ll, lc;
-boolean branchProductive[];
-pair branchMeristemSpan[];
-string shuffledNumbers;
-picture lettrineImage;
+path branchTemplate.leafB;
+numeric branchMeristemCount.leafB, branchMinSize.leafB, branchMazSize.leafB;
+branchTemplate.leafB := (0, 0){dir(90)} .. (subpath (2, 5) of (fullcircle scaled 3/4) shifted (-4/5, 3/4)){dir(60)} .. {dir(-90)} cycle;
+branchTemplate.leafB := branchTemplate.leafB rotated 15;
+branchMeristemCount.leafB := 0;
+branchMinSize.leafB := 1/2mm;
+branchMaxSize.leafB := 1/4cm;
 
-branchStem[-1] := 0;
-branchProductive[-1] := true;
-branchTemplate0 := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
-branchTemplate1 := branchTemplate0 yscaled -1;
-branchMeristemSpan0 := (1/2, length(branchTemplate0) - 2);
-branchStem0 := 0;
-branchProductive0 := true;
-branchTemplate2 := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
-branchTemplate3 := branchTemplate2 yscaled -1;
-branchMeristemSpan1 := (1/2, length(branchTemplate2) - 3);
-branchStem1 := 0;
-branchProductive1 := true;
-branchTemplate4 := (0, 0){dir(90)} .. (-1/2, 1) .. (-1, 1/2) .. (-1/2, 2/3) .. {dir(-90)} cycle;
-branchTemplate5 := (branchTemplate4 rotated 30) yscaled -1;
-branchMeristemSpan2 := (1/5, 1/4);
-branchStem2 := 0;
-branchProductive2 := false;
-branchTemplate6 := (0, 0){dir(90)} .. (-1/2, 1) .. {dir(-90)}(-1, 1/2){dir(60)} .. {dir(-90)} cycle;
-branchTemplate7 := (branchTemplate6 rotated 45) yscaled -1;
-branchMeristemSpan3 := (1/5, 1/4);
-branchStem3 := 0;
-branchProductive3 := false;
-branchTemplate8 := fullcircle shifted (-1/2, 0);
-branchTemplate9 := branchTemplate8 yscaled -1;
-branchMeristemSpan4 := (0, 1/10);
-branchStem4 := 1/2;
-branchProductive4 := false;
+branchMaxSize.common := infinity;
 
-vardef branchPic(expr p, o, sty) =
-    save s, a, po, org;
-    numeric s, a;
-    path po;
-    pair org;
+string branchTypesList;
+branchTypesList := "common, curlA, curlB, leafA, leafB";
+
+vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
+    save brType, p;
+    string brType;
+    path p[];
+    brType = str @#;
     image(
-        if sty > -1:
-            po := branchTemplate[sty*2+o];
-            org := point 0 of p;
-            s := arclength(p)/arclength(po);
-            a := angle(direction 0 of p) - angle(direction 0 of po);
-        fi;
-        if sty = -1:
-            draw p withpen pensquare scaled 1/3mm withcolor white;
-        elseif (sty = 0) or (sty = 1):
-            draw p withpen pencircle scaled 1/6mm withcolor white;
-            draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm)
-                rotated (if (o=1):-90 else: 90 fi + angle(direction length(p) of p)))
-                shifted point length(p) of p withpen pencircle scaled 1/5mm withcolor white;
-        elseif sty = 2:
-            draw p withpen pencircle scaled 1/12mm withcolor white;
-            fill p withcolor white;
-        elseif sty = 3:
-            draw p withpen pencircle scaled 1/12mm withcolor white;
-            fill p withcolor white;
-        elseif sty = 4:
-            %draw p withpen pencircle scaled 1/6mm withcolor white;
-            fill p withcolor white;
-            fill (((po scaled (s-1/2mm)) rotated a) shifted org) shifted (dir(180+a)*1/4mm) shifted (dir(225)*1/8mm) withcolor black;
-            fill (((po scaled (1/2mm)) rotated a) shifted org) shifted (dir(180+a)*(1/4s)) shifted (dir(45)*(1/8s)) withcolor white;
-            %fill (fullcircle scaled 1/3mm) shifted (point 3 of p) withcolor white;
+        if (brType = "curlA") or (brType = "curlB"):
+            p0 := makeBranchPath@#(brOrigin, brAngle, brScale, brFlipped);
+            p1 := ((fullcircle  shifted (1/2, 0)) scaled 1/8mm) rotated (angle(direction 0 of reverse(p0)) - 90);
+            if brFlipped:
+                p1 := p1 rotated 180;
+            fi;
+            draw p1 shifted (point 0 of reverse(p0)) withpen pencircle scaled 1/2pt withcolor white;
+            draw p0 withpen pencircle scaled 1/2pt withcolor white;
+        elseif (brType = "leafA"):
+            p0 := makeBranchPath@#(brOrigin, brAngle, brScale, brFlipped);
+            draw p0 withcolor white withpen pencircle scaled 1/4pt;
+            fill p0 withcolor white;
+            if brScale > 1mm:
+                p1 := applyBranchTransform(
+                    ((fullcircle scaled (3/4brScale*scaleFactor - 1/2mm)) shifted ((-3/4, 2/3) scaled brScale*scaleFactor)) rotated 15,
+                    brOrigin, brAngle, -brScale, brFlipped);
+                fill p1 withcolor black;
+            fi;
+        elseif (brType = "leafB"):
+            p0 := makeBranchPath@#(brOrigin, brAngle, brScale, brFlipped);
+            draw p0 withcolor white withpen pencircle scaled 1/4pt;
+            fill p0 withcolor white;
         else:
-            draw p withcolor white;
+            draw brPath withcolor white withpen pencircle scaled 1/2pt;
         fi;
     )
 enddef;
 
-%if branchStyle[i] >= 2:
-%    draw branchPath[i] withpen pencircle scaled 1/12mm withcolor white;
-%    fill branchPath[i] withcolor white;
-%else:
-%    draw branchPath[i] if (i=0): withpen pensquare scaled 1/3mm else: withpen pencircle scaled 1/6mm fi withcolor white;
-%fi;
-%if (not cycle branchPath[i]):
-%    draw (((fullcircle shifted (1/2, 0)) scaled 1/60cm) rotated (if (branchOrientation[i]=1):-90 else:90 fi + angle(direction length(branchPath[i]) of branchPath[i]))) shifted point length(branchPath[i]) of branchPath[i] withpen pencircle scaled 1/5mm withcolor white;
-%fi;
-
-string lettrinesFile, l, ls[];
-lettrinesFile := "lettrineslist.txt";
-ll := 0;
-
 forever:
-    l := readfrom(lettrinesFile);
-    exitif (l = EOF);
-    lc := 0;
-    if (ll = 0):
-        ls[ll] := l;
-        ln[ll] := 0;
-        ll := ll + 1;
-    else:
-        echk := 0;
-        for i := 0 step 1 until ll - 1:
-            if (l = ls[i]):
-                ln[i] := ln[i] + 1;
-                echk := 1;
-                lc := ln[i];
+    lettrineLine := readfrom(lettrinesFile);
+    exitif (lettrineLine = EOF);
+    lettrineSymbol[lettrineNumber] := lettrineLine;
+    lettrineNumber := lettrineNumber + 1;
+    lettrineCount := 0;
+    if (lettrineNumber > 0):
+        for i := 0 step 1 until lettrineNumber - 1:
+            if (lettrineLine = lettrineSymbol[i]):
+                lettrineCount := lettrineCount + 1;
             fi;
         endfor;
-        if (echk = 0):
-            ls[ll] := l;
-            ln[ll] := 0;
-            lc := 0;
-            ll := ll + 1
-        fi;
     fi;
-    figNum := figNum + 1;
-    outputtemplate := l & decimal(lc) & ".mps";
-    beginfig(figNum);
+    outputtemplate := lettrineLine & decimal(lettrineCount - 1) & ".mps";
+
+    beginfig(lettrineNumber);
+
+        branchNumber := -1;
+        meristemNumber := -1;
+
+        forsuffixes i := scantokens(branchTypesList):
+            path meristemBuds.i[];
+        endfor;
+
         lettrineImage := image(
-            branchScalePrecision := 1/8mm;
-            totalBranchesNumber := -1;
-            if ((l <> "plate") and (l <> "tile")):
+            if (length(lettrineLine) = 1):
+                meristemResolution := 1/2mm;
+                branchSizeResolution := 1/4mm;
+                outlineThickness := 1/2mm;
+                scaleFactor := 1;
                 symMode := 0;
-                numberOfIterations := 9;
-                minBranchLength[0] := 1/6cm;
-                minimalDistance := 1/18cm;
-                budDistance := 1/4mm;
-                addBranch (reverse(unitsquare) scaled lettrineSize, 0, 0, -1, -1);
-                fill branchPath0 withcolor black;
-                addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), 0, 1, -1, -1);
-                currentLetter := TEX(l);
-                for tp within currentLetter:
-                    cL := (glyph (ASCII textpart tp) of (fontpart tp)) scaled (1/35);
-                    cL := cL shifted -1/2[urcorner(cL), llcorner(cL)] shifted (1/2lettrineSize, 1/2lettrineSize);
-                    for item within cL:
-                        if (colorpart item) = 0:
-                            fill (pathpart item) withcolor white;
+                fill reverse(unitsquare) scaled lettrineSize withcolor black;
+                addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), true, (0, 0), 0, 1, false, false);
+                addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(1, 2) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(2, 3) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(3, 4) of branchPath0, 1, branchNumber);
+                for i within TEX(lettrineLine):
+                    currentLetter := (glyph (ASCII textpart i) of (fontpart i)) scaled (1/35);
+                    currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
+                    for letterPart within currentLetter:
+                        if (colorpart letterPart) = 0:
+                            fill (pathpart letterPart) withcolor white;
                         else:
-                            fill (pathpart item) withcolor black;
+                            fill (pathpart letterPart) withcolor black;
                         fi;
-                        addBranch (pathpart item, 0, 1, -1, -1);
+                        addBranch (pathpart letterPart, true, (0, 0), 0, 1, false, false);
+                        addMeristem (pathpart letterPart, 1, branchNumber);
                     endfor;
                 endfor;
-            elseif (l = "plate"):
+            elseif (lettrineLine = "plate"):
+                meristemResolution := 2/3mm;
+                branchSizeResolution := 1/4mm;
+                outlineThickness := 3/5mm;
+                scaleFactor := 1;
                 symMode := 1;
-                numberOfIterations := 12;
-                minBranchLength[0] := 1/5cm;
-                minimalDistance := 1/20cm;
-                budDistance := 2/3mm;
-                addBranch (
-                    ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight,
-                    0, 0, -1, -1);
-                fill branchPath0 withcolor black;
-                addBranch (
-                    ((reverse(unitsquare) shifted (-1/2,-1/2)) xscaled (plateWidth - borderWidth)) yscaled (plateHeight - borderWidth),
-                    0, 1, -1, -1);
-                addBranch (
-                    (branchTemplate0 rotated 15) scaled 18mm,
-                    0, 1, 0, -1);
-                addBranch (
-                    branchPath2 rotated 180,
-                    0, 1, 0, -1);
-            elseif (l = "tile"):
+                fill ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight withcolor black;
+                addBranch (((reverse(unitsquare) shifted (-1/2,-1/2)) xscaled (plateWidth - borderWidth)) yscaled (plateHeight - borderWidth),
+                    true, (0, 0), 0, 1, false, false);
+                addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(1, 3/2) of branchPath0, 1, branchNumber);
+                addMeristem (subpath(3/2, 2) of branchPath0, 1, branchNumber);
+                addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
+                addBranchMeristem;
+                addSymBranches;
+            elseif (lettrineLine = "tile"):
+                meristemResolution := 2/3mm;
+                branchSizeResolution := 1/4mm;
+                outlineThickness := 3/5mm;
+                scaleFactor := 1;
                 symMode := 2;
-                numberOfIterations := 10;
-                minBranchLength[0] := 1/4cm;
-                minimalDistance := 1/20cm;
-                budDistance := 2/3mm;
-                addBranch (
-                    ((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
-                    0, 0, -1, -1);
-                addBranch (
-                    (branchTemplate0 rotated uniformdeviate(360)) scaled 6mm,
-                    0, 1, 0, -1);
-                addBranch (
-                    (branchPath1 scaled 2) rotated 180,
-                    0, 1, 0, 1);
-                makeAdjacentTiles(1);
-                makeAdjacentTiles(2);
+                addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
+                    false, (0, 0), 0, 1, false, false);
+                addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
+                addBranchMeristem;
+                addSymBranches;
+                addBranch.curlA((0,0), true, (0, 0), 180, 3/2cm, false, false);
+                addBranchMeristem;
+                addSymBranches;
             fi;
-            minBranchLength1 := 3/2minBranchLength0;
-            minBranchLength2 := 1/2minBranchLength0;
-            minBranchLength3 := 1/2minBranchLength0;
-            minBranchLength4 := 1/2minBranchLength0;
-            boolean firstPart;
-            firstPart := true;
-            for nn := 0 step 1 until numberOfIterations:
-                if (nn > 1/2numberOfIterations) and firstPart:
-                    branchScalePrecision := 1/12mm;
-                    firstPart := false;
-                    minimalDistance := 1/20cm;
-                    budDistance := 1/10mm;
-                    for i := 1 step 1 until totalBranchesNumber:
-                        if (branchIsActive[i] = 1):
-                            branchBuds[i] := generateBranchesTemplate(branchMeristem[i]);
-                            branchOutline[i] := pathOutline(branchPath[i], 1/2);
-                        fi;
-                    endfor;
-                fi;
-                shuffledNumbers := "";
-                for i := 0 step 1 until totalBranchesNumber:
-                    if ((xpart(urcorner(branchBuds[i])) >= 0) or (ypart(urcorner(branchBuds[i])) >= 0)) and (branchIsActive[i] = 1):
-                        if length(shuffledNumbers) = 0:
-                            shuffledNumbers := decimal(i);
-                        else:
-                            if (uniformdeviate(1) > 1/2):
-                                shuffledNumbers := shuffledNumbers & ", " & decimal(i);
-                            else:
-                                shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
-                            fi;
-                        fi;
-                    fi;
-                endfor;
-                for i = scantokens(shuffledNumbers):
-                    if firstPart:
-                        if (uniformdeviate(2) >= 1):
-                            sty := 0;
-                        else:
-                            sty := 1;
-                        fi;
-                    else:
-                        if (uniformdeviate(3) >= 2):
-                            sty := 2;
-                        elseif (uniformdeviate(2) >= 1):
-                            sty := 3;
-                        else:
-                            sty := 4;
-                        fi;
-                    fi;
-                    candidateBranch := positionBranch(i, totalBranchesNumber, sty);
-                    if (arclength(candidateBranch) >= minBranchLength[sty]):
-                        addBranch (candidateBranch, candidateBranchOrientation, 1, sty, -1);
-                        if(symMode = 1):
-                            x := totalBranchesNumber;
-                            addBranch (candidateBranch rotated 180, candidateBranchOrientation, 2, sty, x);
-                        fi;
-                        if(symMode = 2):
-                            makeAdjacentTiles(totalBranchesNumber);
-                        fi;
-                    fi;
-                endfor;
-            endfor;
-            for i := 0 step 1 until totalBranchesNumber:
-                if (branchIsActive[i] > 0):
-                    draw branchPic(branchPath[i], branchOrientation[i], branchStyle[i]);
-                %else:
-                %    draw branchPath[i] withcolor red;
-                fi;
-            endfor;
         );
-        lettrineImage := lettrineImage shifted -llcorner(lettrineImage);
         draw lettrineImage;
+        for j := 0 step 1 until 2:
+            for i = scantokens shuffleNumbers(meristemNumber):
+                if(uniformdeviate(2) > 1):
+                    positionBranch.curlA(i);
+                else:
+                    positionBranch.curlB(i);
+                fi;
+            endfor;
+        endfor;
+        for j := 0 step 1 until 2:
+            for i = scantokens shuffleNumbers(meristemNumber):
+                if(uniformdeviate(2) > 1):
+                    positionBranch.leafA(i);
+                else:
+                    positionBranch.leafB(i);
+                fi;
+            endfor;
+        endfor;
+        for i := 0 step 1 until branchNumber:
+            if branchActive[i]:
+                draw branchPic.scantokens(branchType[i])
+                    (
+                        branchPath[i],
+                        branchOrigin[i],
+                        branchAngle[i],
+                        branchScale[i],
+                        branchFlipped[i]
+                    );
+            fi;
+        endfor;
     endfig;
 endfor;
 end
