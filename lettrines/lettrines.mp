@@ -88,23 +88,27 @@ numeric branchNumber, branchAngle[], branchScale[], meristemOrientation[], meris
 boolean branchActive[], branchFlipped[];
 
 vardef makeBranchPath@#(expr brOrigin, brAngle, brScale, brFlipped) =
-    applyBranchTransform(branchTemplate@#, brOrigin, brAngle, brScale, brFlipped)
+    applyBranchTransform(branchTemplate@#, brOrigin, brAngle, brScale, brFlipped, stemVector@#)
 enddef;
 
-vardef applyBranchTransform (expr p, brOrigin, brAngle, brScale, brFlipped) =
-    save somePath;
+vardef applyBranchTransform (expr p, brOrigin, brAngle, brScale, brFlipped, brStem) =
+    save somePath, someStem;
     path somePath;
+    pair someStem;
     if brFlipped:
         somePath := p yscaled -1;
         if cycle p:
             somePath := reverse somePath;
         fi;
+        someStem := brStem yscaled -1;
     else:
         somePath := p;
+        someStem := brStem;
     fi;
     if brScale > 0:
         somePath := somePath scaled (brScale*scaleFactor);
     fi;
+    somePath := somePath shifted (someStem*outlineThickness);
     (somePath rotated brAngle) shifted brOrigin
 enddef;
 
@@ -388,7 +392,7 @@ enddef;
 
 path branchTemplate.curlA, branchMeristem.curlA[];
 numeric branchMeristemOrientation.curlA[],branchMeristemCount.curlA, branchMazSize.curlA;
-
+pair stemVector.curlA;
 branchTemplate.curlA := ((1/2,0) for a := 60 step 60 until 360: .. (cosd(a), sind(a)) scaled 1/2(1-a/360) endfor) shifted (-1/2, 0);
 branchTemplate.curlA := branchTemplate.curlA rotated 15;
 branchMeristem.curlA0 := subpath (1/2, length(branchTemplate.curlA) - 2) of branchTemplate.curlA;
@@ -398,10 +402,11 @@ branchMeristemOrientation.curlA1 := -1;
 branchMeristemCount.curlA := 2;
 branchMinSize.curlA := 2mm;
 branchMaxSize.curlA := 1cm;
+stemVector.curlA := (0, 0);
 
 path branchTemplate.curlB, branchMeristem.curlB[];
 numeric branchMeristemOrientation.curlB[], branchMeristemCount.curlB, branchMazSize.curlB;
-
+pair stemVector.curlB;
 branchTemplate.curlB := ((1/2,0) for a := 60 step 60 until 630: .. (cosd(a), sind(a)) scaled 1/2(1-a/540) endfor) shifted (-1/2, 0);
 branchTemplate.curlB := branchTemplate.curlB rotated 15;
 branchMeristem.curlB0 := subpath (1/2, length(branchTemplate.curlB) - 3) of branchTemplate.curlB;
@@ -411,27 +416,41 @@ branchMeristemOrientation.curlB1 := -1;
 branchMeristemCount.curlB := 2;
 branchMinSize.curlB := 2mm;
 branchMaxSize.curlB := 1cm;
+stemVector.curlB := (0, 0);
 
 path branchTemplate.leafA;
 numeric branchMeristemCount.leafA, branchMinSize.leafA, branchMazSize.leafA;
+pair stemVector.leafA;
 branchTemplate.leafA := (0, 0){dir(90)} .. (subpath (2, 7) of (fullcircle scaled 2/3) shifted (-3/4, 2/3)) .. {dir(-90)} cycle;
 branchTemplate.leafA := branchTemplate.leafA rotated 15;
 branchMeristemCount.leafA := 0;
-branchMinSize.leafA := 1/2mm;
-branchMaxSize.leafA := 1/4cm;
+branchMinSize.leafA := 2/3mm;
+branchMaxSize.leafA := 1/6cm;
+stemVector.leafA := (0, 0);
 
 path branchTemplate.leafB;
 numeric branchMeristemCount.leafB, branchMinSize.leafB, branchMazSize.leafB;
+pair stemVector.leafB;
 branchTemplate.leafB := (0, 0){dir(90)} .. (subpath (2, 5) of (fullcircle scaled 3/4) shifted (-4/5, 3/4)){dir(60)} .. {dir(-90)} cycle;
 branchTemplate.leafB := branchTemplate.leafB rotated 15;
 branchMeristemCount.leafB := 0;
-branchMinSize.leafB := 1/2mm;
-branchMaxSize.leafB := 1/4cm;
+branchMinSize.leafB := 2/3mm;
+branchMaxSize.leafB := 1/6cm;
+stemVector.leafB := (0, 0);
+
+path branchTemplate.berryA;
+numeric branchMeristemCount.berryA, branchMinSize.berryA, branchMazSize.berryA;
+pair stemVector.berryA;
+branchTemplate.berryA := fullcircle shifted(-1/2, 0);
+branchMeristemCount.berryA := 0;
+branchMinSize.berryA := 1/2mm;
+branchMaxSize.berryA := 1/4cm;
+stemVector.berryA := (-1, 0);
 
 branchMaxSize.common := infinity;
 
 string branchTypesList;
-branchTypesList := "common, curlA, curlB, leafA, leafB";
+branchTypesList := "common, curlA, curlB, leafA, leafB, berryA";
 
 vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
     save brType, p;
@@ -441,7 +460,7 @@ vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
     image(
         if (brType = "curlA") or (brType = "curlB"):
             p0 := makeBranchPath@#(brOrigin, brAngle, brScale, brFlipped);
-            p1 := ((fullcircle  shifted (1/2, 0)) scaled 1/5mm) rotated (angle(direction 0 of reverse(p0)) - 90);
+            p1 := ((fullcircle shifted (1/2, 0)) scaled 1/2pt) rotated (angle(direction 0 of reverse(p0)) - 90);
             if brFlipped:
                 p1 := p1 rotated 180;
             fi;
@@ -454,7 +473,7 @@ vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
             if brScale > 1mm:
                 p1 := applyBranchTransform(
                     ((fullcircle scaled (3/4brScale*scaleFactor - 1/2mm)) shifted ((-3/4, 2/3) scaled brScale*scaleFactor)) rotated 15,
-                    brOrigin, brAngle, -brScale, brFlipped);
+                    brOrigin, brAngle, -brScale, brFlipped, stemVector@#);
                 fill p1 withcolor black;
             fi;
         elseif (brType = "leafB"):
