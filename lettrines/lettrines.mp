@@ -486,108 +486,10 @@ vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
     )
 enddef;
 
-forever:
-    lettrineLine := readfrom(lettrinesFile);
-    exitif (lettrineLine = EOF);
-    lettrineSymbol[lettrineNumber] := lettrineLine;
-    lettrineNumber := lettrineNumber + 1;
-    lettrineCount := 0;
-    if (lettrineNumber > 0):
-        for i := 0 step 1 until lettrineNumber - 1:
-            if (lettrineLine = lettrineSymbol[i]):
-                lettrineCount := lettrineCount + 1;
-            fi;
-        endfor;
-    fi;
-    outputtemplate := lettrineLine & decimal(lettrineCount - 1) & ".mps";
-
+def makeLettrinePicture (expr fileName) =
+    outputtemplate := fileName;
     beginfig(lettrineNumber);
-
-        branchNumber := -1;
-        meristemNumber := -1;
-
-        forsuffixes i := scantokens(branchTypesList):
-            path meristemBuds.i[];
-        endfor;
-
-        lettrineImage := image(
-            if (lettrineLine = "plate"):
-                meristemResolution := 2/3mm;
-                branchSizeResolution := 1/4mm;
-                outlineThickness := 2/5mm;
-                scaleFactor := 1;
-                symMode := 1;
-                fill ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight withcolor black;
-                addBranch (((reverse(unitsquare) shifted (-1/2,-1/2)) xscaled (plateWidth - borderWidth)) yscaled (plateHeight - borderWidth),
-                    true, (0, 0), 0, 1, false, false);
-                addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(1, 3/2) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(3/2, 2) of branchPath0, 1, branchNumber);
-                addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
-                addBranchMeristem;
-                addSymBranches;
-            elseif (lettrineLine = "tile"):
-                meristemResolution := 2/3mm;
-                branchSizeResolution := 1/4mm;
-                outlineThickness := 2/5mm;
-                scaleFactor := 1;
-                symMode := 2;
-                addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
-                    false, (0, 0), 0, 1, false, false);
-                addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
-                addBranchMeristem;
-                addSymBranches;
-                addBranch.curlA((0,0), true, (0, 0), 180, 3/2cm, false, false);
-                addBranchMeristem;
-                addSymBranches;
-            else:
-                meristemResolution := 1/2mm;
-                branchSizeResolution := 1/6mm;
-                outlineThickness := 1/3mm;
-                scaleFactor := 1;
-                symMode := 0;
-                fill reverse(unitsquare) scaled lettrineSize withcolor black;
-                addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), true, (0, 0), 0, 1, false, false);
-                addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(1, 2) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(2, 3) of branchPath0, 1, branchNumber);
-                addMeristem (subpath(3, 4) of branchPath0, 1, branchNumber);
-                picture texLetter;
-                texLetter := TEX(lettrineLine);
-                for i within texLetter:
-                    currentLetter := (glyph (ASCII textpart i) of (fontpart i)) scaled (1/35);
-                    currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
-                    for letterPart within currentLetter:
-                        if (colorpart letterPart) = 0:
-                            fill (pathpart letterPart) withcolor white;
-                        else:
-                            fill (pathpart letterPart) withcolor black;
-                        fi;
-                        addBranch (pathpart letterPart, true, (0, 0), 0, 1, false, false);
-                        addMeristem (pathpart letterPart, 1, branchNumber);
-                    endfor;
-                endfor;
-            fi;
-        );
         draw lettrineImage;
-        for j := 0 step 1 until 2:
-            for i = scantokens shuffleNumbers(meristemNumber):
-                if(uniformdeviate(2) > 1):
-                    positionBranch.curlA(i);
-                else:
-                    positionBranch.curlB(i);
-                fi;
-            endfor;
-        endfor;
-        for j := 0 step 1 until 2:
-            for i = scantokens shuffleNumbers(meristemNumber):
-                if(uniformdeviate(2) > 1):
-                    positionBranch.leafA(i);
-                else:
-                    positionBranch.leafB(i);
-                fi;
-            endfor;
-        endfor;
         for i := 0 step 1 until branchNumber:
             if branchActive[i]:
                 draw branchPic.scantokens(branchType[i])
@@ -601,5 +503,109 @@ forever:
             fi;
         endfor;
     endfig;
+enddef;
+
+forever:
+    lettrineLine := readfrom(lettrinesFile);
+    exitif (lettrineLine = EOF);
+    lettrineSymbol[lettrineNumber] := lettrineLine;
+    lettrineNumber := lettrineNumber + 1;
+    lettrineCount := 0;
+    if (lettrineNumber > 0):
+        for i := 0 step 1 until lettrineNumber - 1:
+            if (lettrineLine = lettrineSymbol[i]):
+                lettrineCount := lettrineCount + 1;
+            fi;
+        endfor;
+    fi;
+
+    branchNumber := -1;
+    meristemNumber := -1;
+
+    forsuffixes i := scantokens(branchTypesList):
+        path meristemBuds.i[];
+    endfor;
+
+    lettrineImage := image(
+        if (lettrineLine = "plate"):
+            meristemResolution := 2/3mm;
+            branchSizeResolution := 1/4mm;
+            outlineThickness := 2/5mm;
+            scaleFactor := 1;
+            symMode := 1;
+            fill ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight withcolor black;
+            addBranch (((reverse(unitsquare) shifted (-1/2,-1/2)) xscaled (plateWidth - borderWidth)) yscaled (plateHeight - borderWidth),
+                true, (0, 0), 0, 1, false, false);
+            addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
+            addMeristem (subpath(1, 3/2) of branchPath0, 1, branchNumber);
+            addMeristem (subpath(3/2, 2) of branchPath0, 1, branchNumber);
+            addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
+            addBranchMeristem;
+            addSymBranches;
+        elseif (lettrineLine = "tile"):
+            meristemResolution := 2/3mm;
+            branchSizeResolution := 1/4mm;
+            outlineThickness := 2/5mm;
+            scaleFactor := 1;
+            symMode := 2;
+            addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
+                false, (0, 0), 0, 1, false, false);
+            addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
+            addBranchMeristem;
+            addSymBranches;
+            addBranch.curlA((0,0), true, (0, 0), 180, 3/2cm, false, false);
+            addBranchMeristem;
+            addSymBranches;
+        else:
+            meristemResolution := 1/2mm;
+            branchSizeResolution := 1/6mm;
+            outlineThickness := 1/3mm;
+            scaleFactor := 1;
+            symMode := 0;
+            fill reverse(unitsquare) scaled lettrineSize withcolor black;
+            addBranch (reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth), true, (0, 0), 0, 1, false, false);
+            addMeristem (subpath(0, 1) of branchPath0, 1, branchNumber);
+            addMeristem (subpath(1, 2) of branchPath0, 1, branchNumber);
+            addMeristem (subpath(2, 3) of branchPath0, 1, branchNumber);
+            addMeristem (subpath(3, 4) of branchPath0, 1, branchNumber);
+            picture texLetter;
+            texLetter := TEX(lettrineLine);
+            for i within texLetter:
+                currentLetter := (glyph (ASCII textpart i) of (fontpart i)) scaled (1/35);
+                currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
+                for letterPart within currentLetter:
+                    if (colorpart letterPart) = 0:
+                        fill (pathpart letterPart) withcolor white;
+                    else:
+                        fill (pathpart letterPart) withcolor black;
+                    fi;
+                    addBranch (pathpart letterPart, true, (0, 0), 0, 1, false, false);
+                    addMeristem (pathpart letterPart, 1, branchNumber);
+                endfor;
+            endfor;
+        fi;
+    );
+
+    for j := 0 step 1 until 2:
+        for i = scantokens shuffleNumbers(meristemNumber):
+            if(uniformdeviate(2) > 1):
+                positionBranch.curlA(i);
+            else:
+                positionBranch.curlB(i);
+            fi;
+        endfor;
+    endfor;
+    for j := 0 step 1 until 2:
+        for i = scantokens shuffleNumbers(meristemNumber):
+            if(uniformdeviate(2) > 1):
+                positionBranch.leafA(i);
+            else:
+                positionBranch.leafB(i);
+            fi;
+        endfor;
+    endfor;
+
+    makeLettrinePicture(lettrineLine & decimal(lettrineCount - 1) & ".mps");
+
 endfor;
 end
