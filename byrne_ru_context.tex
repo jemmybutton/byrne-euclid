@@ -3792,10 +3792,10 @@ draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 
 Таким образом, про прямоугольный параллелограмм \drawPolygon{ABDC} можно сказать, что он заключен между сторонами \drawUnitLine{AB} и~\drawUnitLine{AC}, что можно записать короче в~виде $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$.
 
-Если смежные стороны равны, т. е. $\drawUnitLine{AB} = \drawUnitLine{AC}$, то $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$, обозначает прямоугольник, заключенный между \drawUnitLine{AB} и~\drawUnitLine{AC}, являющийся квадратом\\
+Если смежные стороны равны, т. е. $\drawUnitLine{AB} = \drawUnitLine{AC}$, то $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$ обозначает прямоугольник, заключенный между \drawUnitLine{AB} и~\drawUnitLine{AC}, являющийся квадратом\\
 и равный $\left\{\eqalign{
 \drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2\cr
-\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2}\right.$
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2\mbox{.}}\right.$
 
 \stopDefinition
 
@@ -3887,8 +3887,8 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalig
 $\drawPolygon{GKDB,KLED,LHCE} =
 \drawPolygon{GKDB} +
 \drawPolygon{KLED} +
-\drawPolygon{LHCE}$\\
-$\drawPolygon{GKDB,KLED,LHCE} = \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB}$\\
+\drawPolygon{LHCE}$,\\
+$\drawPolygon{GKDB,KLED,LHCE} = \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB}$,\\
 $\polygonGKDB = \drawProportionalLine{GK} \cdot \drawProportionalLine{GB}$,
 $\polygonKLED = \drawProportionalLine{KL} \cdot \drawProportionalLine{GB}$,\\
 $\polygonLHCE = \drawProportionalLine{LH} \cdot \drawProportionalLine{GB}$.
@@ -3931,7 +3931,7 @@ $\drawProportionalLine{AC,CB}^2 = \left\{\eqalign{
 \startCenterAlign
 Опишем \drawPolygon[middle][polygonABED]{ACFD,CBEF} \inprop[prop:I.XLVI].
 
-Проведем \drawProportionalLine{CF} параллельную \drawProportionalLine{AD} \inprop[prop:I.XXXI].
+Проведем \drawProportionalLine{CF}, параллельную \drawProportionalLine{AD} \inprop[prop:I.XXXI].
 
 $\polygonABED = \drawProportionalLine{AC,CB}^2$.
 
@@ -3970,9 +3970,9 @@ draw byNamedLineSeq(0)(CD,noLine,DF,DE,EB,BC);
 draw byLabelsOnPolygon(B, C, A, F, D, E)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая линия \drawProportionalLine{DE,DF} как-либо рассечена, то прямоугольник, заключенный между всей прямой и~ее частью, равен квадрату этой части, вместе с~прямоугольником, заключенным между частями.\\
+\problemNP{Е}{сли}{прямая линия \drawProportionalLine{DE,DF} как-либо рассечена, то прямоугольник, заключенный между всей прямой и~ее частью, равен квадрату этой части вместе с~прямоугольником, заключенным между частями.\\
 $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, или \\
-$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.}
+$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$}
 
 \startCenterAlign
 Опишем \drawPolygon{CBED} \inprop[prop:I.XLVI].
@@ -4033,7 +4033,7 @@ draw byLabelsOnPolygon(A, C, B, K, E, F, D, H)(0, 0);
 draw byLabelsOnPolygon(H, G, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DF,FE}, квадрат всей прямой равен квадратам частей, с~дважды взятым прямоугольником, заключенным между частями.\\
+\problemNP{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DF,FE}, квадрат всей прямой равен квадратам частей с~дважды взятым прямоугольником, заключенным между частями.\\
 $\drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{дважды} \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
 }
 
@@ -4072,7 +4072,7 @@ draw byNamedLineFull(G, G, 0, 1, -1)(KB);
 draw byLabelsOnPolygon(A, B, E, D)(0, 0);
 } = \squareFGHD + \drawPolygon{ACGH} + \drawPolygon{GKEF} + \squareKBCG$.
 
-$\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ дважды } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
+$\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ дважды } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$.
 \stopCenterAlign
 
 \qed
@@ -4115,7 +4115,7 @@ draw byLabelsOnPolygon(A, C, D, B, M, F, G, E, L, K)(0, 0);
 draw byLabelsOnPolygon(M, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая \drawProportionalLine{BD,DC,CA} рассечена на равные \drawProportionalLine{BD,DC} \drawProportionalLine{CA} и~неравные \drawProportionalLine{BD} \drawProportionalLine{DC,CA} отрезки, прямоугольник, заключенный между неравными частями, вместе с~квадратом отрезка между сечениями, равен квадрату половины всей прямой. \\
+\problemNP{Е}{сли}{прямая \drawProportionalLine{BD,DC,CA} рассечена на равные \drawProportionalLine{BD,DC} \drawProportionalLine{CA} и~неравные \drawProportionalLine{BD} \drawProportionalLine{DC,CA} отрезки, прямоугольник, заключенный между неравными частями, вместе с~квадратом отрезка между сечениями равен квадрату половины всей прямой. \\
 $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
 }
 
@@ -4136,7 +4136,7 @@ $\therefore \mbox{\inax[ax:I.II] } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawP
 
 $\therefore \mbox{\inax[ax:I.II] } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$.
 
-$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$
+$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
 \stopCenterAlign
 
 \qed
@@ -4180,7 +4180,7 @@ draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(0, 0);
 draw byLabelsOnPolygon(L, H, D)(2, -1);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и~продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и~продленной частью, вместе с~квадратом половины исходной линии, равен квадрату линии, составленной из половины исходной линии и~продленной части.\\
+\problemNP{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и~продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и~продленной частью, вместе с~квадратом половины исходной линии равен квадрату линии, составленной из половины исходной линии и~продленной части.\\
 $\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
 }
 
@@ -4242,7 +4242,7 @@ $\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportion
 }
 
 \startCenterAlign
-Опишем \drawPolygon[middle][squareABED]{DNGH,NEFG,HGCA,GFBC}. \inprop[prop:I.XLVI], проведем \drawProportionalLine{BD} \inpost[post:I.I],\\
+Опишем \drawPolygon[middle][squareABED]{DNGH,NEFG,HGCA,GFBC}. \inprop[prop:I.XLVI], проведем \drawProportionalLine{BD} \inpost[post:I.I]\\
 и $\left\{\eqalign{
 \drawProportionalLine{GN,GC} &\parallel \drawProportionalLine{EB} \cr
 \drawProportionalLine{GH,GF} &\parallel \drawProportionalLine{DN,NE}
@@ -4388,7 +4388,7 @@ draw byLabelsOnPolygon(E, F, B, D, C, A)(0, 0);
 draw byLabelsOnPolygon(C, G, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{прямая рассечена на равные \drawProportionalLine{AC} \drawProportionalLine{CD,DB} и~неравные \drawProportionalLine{AC,CD} \drawProportionalLine{DB} части, квадраты неравных частей вместе вдвое больше квадрата на половине, вместе с~квадратом отрезка между сечениями.\\
+\problemNP{Е}{сли}{прямая рассечена на равные \drawProportionalLine{AC} \drawProportionalLine{CD,DB} и~неравные \drawProportionalLine{AC,CD} \drawProportionalLine{DB} части, квадраты неравных частей вместе вдвое больше квадрата на половине вместе с~квадратом отрезка между сечениями.\\
 $\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 }
 
@@ -4398,8 +4398,8 @@ $\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawPro
 Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EH,HF,FB},\\
 $\drawProportionalLine{FD} \parallel \drawProportionalLine{CG,GE}$, $ \drawProportionalLine{GF} \parallel \drawProportionalLine{CD,DB}$ и~проведем \drawProportionalLine{AF}.
 
-$\drawAngle{A} = \drawAngle{AEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII],
-$\drawAngle{B} = \drawAngle{DFB}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII],
+$\drawAngle{A} = \drawAngle{AEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII],\\
+$\drawAngle{B} = \drawAngle{DFB}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII],\\
 $\therefore \drawAngle{AEC,CEB} = \drawRightAngle$.
 
 $\drawAngle{B} = \drawAngle{CEB} = \drawAngle{EFG} = \drawAngle{DFB}$ (\inpropL[prop:I.V], \inpropL[prop:I.XXIX]).
@@ -4463,7 +4463,7 @@ $\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \draw
 \startCenterAlign
 Сделаем $\drawProportionalLine{CE} \perp \mbox{ и~} = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CB}$.
 
-Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EB,BG},\\
+Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EB,BG}\\
 и $\left\{\eqalign{
 \drawProportionalLine{FD,DG} & \parallel \drawProportionalLine{CE} \cr
 \drawProportionalLine{EF} & \parallel \drawProportionalLine{CB,BD}
@@ -4484,7 +4484,7 @@ $\therefore \drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB
 
 И $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropN[prop:I.XXXIV]).
 
-Тогда, согласно \inprop[prop:I.XLVII]\\
+Тогда, согласно \inprop[prop:I.XLVII],\\
 $\drawUnitLine{AG}^2 = \left\{\eqalign{
 & \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{DG}^2 \mbox{ или } \drawProportionalLine{BD}^2 \cr
 & \left\{\eqalign{
@@ -4528,7 +4528,7 @@ draw byNamedLine(CE,EA,AF,KG);
 draw byLabelsOnPolygon(F, A, E, C, K, D, B, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Д}{анную}{прямую \drawProportionalLine{AH,HB} рассечь так, чтобы прямоугольник, заключенный между всей прямой и~одной из ее частей был равен квадрату другой части.\\
+\problemNP{Д}{анную}{прямую \drawProportionalLine{AH,HB} рассечь так, чтобы прямоугольник, заключенный между всей прямой и~одной из ее частей, был равен квадрату другой части.\\
 $\drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
 }
 
