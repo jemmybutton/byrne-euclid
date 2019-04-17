@@ -170,10 +170,13 @@ enddef;
 vardef byDashPattern (expr l, dp) =
     save d, n;
     numeric d[], n;
-    n := ceiling(l/dpLength[dp]);
-    d1 := 1/3(l/n);
-    d2 := 1/3(l/n);
-    dashpattern (on d1 off d2 on d1)
+    n := ceiling(l/(1/3dpLength[dp]));
+    if (n mod 3) <> 2:
+        n := n - (n mod 3) + 2;
+    fi;
+    d1 := 2(l/n);
+    d2 := l/n;
+    dashpattern (on d1 off d2)
 enddef;
 
 def startTempScale (expr tmpScale) =
@@ -1136,11 +1139,17 @@ vardef byNamedCompoundLineRender (expr cu, pw, sty)(text linesList) =
         forsuffixes lN=linesList:
             correctedLength := (byReturnLineLength(
                 scantokens(getAttribute("line", "EndAName", str lN)),
-                scantokens(getAttribute("line", "EndBName", str lN)))**pwL)*sc;
+                scantokens(getAttribute("line", "EndBName", str lN))
+                    )**pwL)*sc;
             currentPosition1 := currentPosition0 + correctedLength;
             a := (currentPosition0, 0);
             b := (currentPosition1, 0);
-            draw byLineRender(a, b, getAttribute("line", "Color", str lN), getAttribute("line", "Dashed", str lN), getAttribute("line", "Thin", str lN), a, b, 0, 0, 0, scaleFactor);
+            draw byLineRender(
+                a, b,
+                getAttribute("line", "Color", str lN),
+                getAttribute("line", "Dashed", str lN),
+                getAttribute("line", "Thin", str lN),
+                a, b, 0, 0, 0, scaleFactor);
             currentPosition0 := currentPosition1;
             if (i > 2):
                 if (j = 0):
@@ -1524,9 +1533,13 @@ vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
         p0 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
         p1 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor)) shifted (o*scaleFactor);
         p2 := (srCircle scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
-        p3 := ((subpath (b + sign(b-e)*1/16, e + sign(e-b)*1/16) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        p3 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        p4 := ((subpath (b + sign(b-e)*1/16, b) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        p5 := ((subpath (e, e + sign(e-b)*1/16) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
         q := image(
-            draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p1), dp) fi;
+            draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p3), dp) fi;
+            draw p4 withpen pencircle scaled currentLineWidth withcolor col;
+            draw p5 withpen pencircle scaled currentLineWidth withcolor col;
         );
         if mainPictureMode and ghostLines:
             save gP;
@@ -1538,7 +1551,7 @@ vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
                 );
         fi;
         if (et = 0):
-            p4 := p0--(o*scaleFactor)--cycle;
+            p6 := p0--(o*scaleFactor)--cycle;
         else:
             t0 := point 0 of p1;
             t1 := point 0 of reverse(p1);
@@ -1553,9 +1566,9 @@ vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
                     m1 := m1 + i;
                 fi;
             endfor;
-            p4 := (subpath(m0, m1) of p2) -- cycle;
+            p6 := (subpath(m0, m1) of p2) -- cycle;
         fi;
-        clip q to p4;
+        clip q to p6;
         draw q;
     ) rotated globalRotation
 enddef;
@@ -2662,7 +2675,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     fi;
                     if (angleType[i] <> 0):
                         p1 := (ac*scaleFactor);
-                        p2 := ((dir(angleDir[i]) scaled (u * angleScale))) shifted (ac*scaleFactor);
+                        p2 := ((dir(angleDir[i]) scaled (1/2u * angleScale))) shifted p1;
                         lineCol := black;
                         lineDash := 0;
                         lineTh := 1;
