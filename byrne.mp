@@ -649,23 +649,25 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
     bS := b*sf;
     lineStyShift := (0, 0);
     currentLineWidth := lineThickness(th);
-    if (abs(c-a) > 0) and (abs(unitvector(c-a)-unitvector(a-b)) > 1/100):
-        if (ct = 0):
-            cutAngle1 := unitvector(1/2[unitvector(b-a), unitvector(c-a)]);
-        elseif (ct = 1):
-            cutAngle1 := unitvector(1[unitvector(b-a), unitvector(c-a)]);
+    cutAngle1 := unitvector(b-a) rotated -90;
+    if (abs(c-a) > 0):
+        if (abs(unitvector(c-a)-unitvector(a-b)) > 1/100):
+            if (ct = 0):
+                cutAngle1 := unitvector(1/2[unitvector(b-a), unitvector(c-a)]);
+            elseif (ct = 1):
+                cutAngle1 := unitvector(1[unitvector(b-a), unitvector(c-a)]);
+            fi;
         fi;
-    else:
-        cutAngle1 := unitvector(b-a) rotated -90;
     fi;
-    if (abs(d-b) > 0) and (abs(unitvector(d-b)-unitvector(b-a)) > 1/100):
-        if (dt = 0):
-            cutAngle2 := unitvector(1/2[unitvector(a-b), unitvector(d-b)]);
-        elseif (dt = 1):
-            cutAngle2 := unitvector(1[unitvector(a-b), unitvector(d-b)]);
+    cutAngle2 := unitvector(a-b) rotated 90;
+    if (abs(d-b) > 0):
+        if (abs(unitvector(d-b)-unitvector(b-a)) > 1/100):
+            if (dt = 0):
+                cutAngle2 := unitvector(1/2[unitvector(a-b), unitvector(d-b)]);
+            elseif (dt = 1):
+                cutAngle2 := unitvector(1[unitvector(a-b), unitvector(d-b)]);
+            fi;
         fi;
-    else:
-        cutAngle2 := unitvector(a-b) rotated 90;
     fi;
     if (sign(ypart(cutAngle2 rotated -la)) <> sign(ypart(cutAngle1 rotated -la))):
         cutAngle2 := cutAngle2 rotated 180;
@@ -3287,7 +3289,8 @@ enddef;
 %
 
 vardef textLabelRender(expr t) =
-    textext("\tf\ss " & t) scaled 2/5
+    textext("\tf\ss " & t) scaled 2/5   % this one is ConTeXt dependent
+    %btex t etex scaled 2/5             % this one is not
 enddef;
 
 numeric textLabelAvSize;
