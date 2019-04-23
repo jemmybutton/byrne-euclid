@@ -2,11 +2,11 @@ MetaPost + ConTeXt rendition of [Oliver Byrne's "The first six books of the Elem
 
 ![title](https://user-images.githubusercontent.com/7447349/41129584-737480dc-6abb-11e8-8f73-7b9a9afcb38a.png)
 
-This project is not intended to create the exact copy of the original, but rather an attempt to implement all the most important features of it in a way that would allow easy modification and creation of similarly styled geometric proofs.
+This project is not intended to create the exact copy of the original, but rather is an attempt to implement all its most important features in a way that would allow easy modification and creation of similarly styled geometric proofs.
 
 ![comparison](https://user-images.githubusercontent.com/7447349/52147564-2c240580-2678-11e9-9803-01a2b7c970da.png)
 
-This version of the book is made in a way that makes modifications, including translation, quite possible and even not that difficult. As a proof of concept Russian translation is made. Plus, although Byrne's book looks cool as it is, it might be helpful, as Edward Tufte points out, to supplement it with conventional letter designations. So, there's also option for this (it is turned on by default in the Russian translation and can be easily turned on in the English version).
+This version of the book is made in a way that makes modifications, including translation, quite possible and even not that difficult. As a proof of concept Russian translation was made. Plus, although Byrne's book looks cool as it is, it might be helpful, as Edward Tufte points out, to supplement it with conventional letter designations. So, there's also option for that (it is turned on by default in the Russian version and can be easily turned on in the English version).
 
 ![labels](https://user-images.githubusercontent.com/7447349/52147400-a30cce80-2677-11e9-9a2a-3b7f88419c90.png)
 

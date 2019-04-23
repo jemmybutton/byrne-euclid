@@ -107,7 +107,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 
 \vfill\vfill
 
-~\hfill\currentPicture\hfill~
+~\hfill\drawCurrentPicture\hfill~
 
 \vfill\vfill\vfill
 
@@ -3261,7 +3261,7 @@ startAutoLabeling;
 draw byNamedAngleSidesFull(HIJ)();
 stopAutoLabeling;
 }
-\drawCurrentPicture
+\drawCurrentPictureWide
 \problemNP[3]{T}{o}{construct a parallelogram equal to a given triangle
 \drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} and having an angle equal to a given rectilinear angle \drawAngle{I}.}
 
@@ -8159,7 +8159,7 @@ draw byLabelsOnCircle(A)(F);
 draw byLabelPoint(D, angle(D-A)-15, 2);
 draw byLabelsOnPolygon(A, C, D)(2, 0);
 }
-\drawCurrentPicture
+\drawCurrentPictureWide
 \problemNP{T}{o}{construct an isosceles triangle, in which each of the angles at the base shall be double of the vertical angle.}
 
 \startCenterAlign
@@ -10908,7 +10908,7 @@ The altitude of any figure is the straight line drawn from its vertex perpendicu
 
 \vskip \baselineskip
 
-\noindent\ \hfill\reuseMPgraphic{\currentInstance::currentPicture}\hfill\
+\noindent\ \hfill\drawCurrentPicture\hfill\
 \stopDefinitionOnlyNumber
 \stopsupersection
 
@@ -12298,7 +12298,7 @@ draw byLineWithName(Pb, Pe, byred, 1, 0)(P);
 byPointLabelRemove(Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L);
 draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }
-\drawCurrentPicture
+\drawCurrentPictureWide
 \initialIndentation{9}
 \problem{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$), the similar rectilinear figures similarly described on them are also proportional.\\
 And if four similar rectilinear figures, similarly described on four straight lines, be proportional, the straight lines are also proportional.}

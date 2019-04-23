@@ -13,8 +13,8 @@
 \evenpict=\cutspace
 \advance \evenpict by \PcI
 
-\define\drawCurrentPicture{
-	\setbox1\vbox{\currentPicture}
+\define\drawCurrentPictureWide{
+	\setbox1\vbox{\drawCurrentPicture}
 	\newdimen\pictVOffset
 	\pictVOffset=\topmargin
 	\advance\pictVOffset by \pagetotal
@@ -141,11 +141,18 @@
 		{\externalfigure[lettrines/#1.svg][height=1.5cm]\ignorespaces}
 		{\doifelsefile{lettrines/#1.pdf}
 			{\externalfigure[lettrines/#1.pdf][width=1.5cm,height=1.5cm]\ignorespaces}
-			{\ignorespaces
-			\ifx#1\plateName
-					\framed[width=8cm,height=1.5cm,frame=off]{}\ignorespaces
-				\else
-					\framed[width=1.5cm,height=1.5cm]{\tfd #1}\ignorespaces
+			{\ifx#1\plateName\ignorespaces
+					\framed[
+						width=7.59cm,height=1.5cm,
+						frame=off]{}\ignorespaces
+				\else\ignorespaces
+					\framed[
+						width=1.5cm,height=1.5cm,
+						frame=off,
+						background=color,
+						backgroundcolor=black,
+						frameoffset=0cm,
+						foregroundcolor=white]{\tfd #1}\ignorespaces
 				\fi}\ignorespaces}}}
 
 % This one is used standalone, f. e. in the Introduction
@@ -277,9 +284,9 @@
 \def\drawCurrentPictureInMargin{\dosingleempty\drawcurrentpictureinmargin}
 \def\drawcurrentpictureinmargin[#1]{
 	\iffirstargument\ignorespaces
-		\figureInMargin[#1]{\currentPicture}\ignorespaces
+		\figureInMargin[#1]{\drawCurrentPicture}\ignorespaces
 	\else\ignorespaces
-		\figureInMargin{\currentPicture}\ignorespaces
+		\figureInMargin{\drawCurrentPicture}\ignorespaces
 	\fi\ignorespaces
 }
 

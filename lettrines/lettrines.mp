@@ -23,7 +23,7 @@ TEXPOST("\end{document}");
 outputformat := "eps";
 
 numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, borderWidth;
-lettrineSize := 3/2cm;
+lettrineSize := 15mm;
 plateWidth := 76mm;
 plateHeight := 15mm;
 tileWidth := 25mm;
