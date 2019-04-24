@@ -143,16 +143,19 @@
 			{\externalfigure[lettrines/#1.pdf][width=1.5cm,height=1.5cm]\ignorespaces}
 			{\ifx#1\plateName\ignorespaces
 					\framed[
-						width=7.59cm,height=1.5cm,
-						frame=off]{}\ignorespaces
+						width=7.6cm,height=1.5cm,
+						frame=off,
+						background=color,
+						backgroundcolor=black,
+						frameoffset=0cm,
+						foregroundcolor=white]{}\ignorespaces
 				\else\ignorespaces
 					\framed[
 						width=1.5cm,height=1.5cm,
 						frame=off,
 						background=color,
 						backgroundcolor=black,
-						frameoffset=0cm,
-						foregroundcolor=white]{\tfd #1}\ignorespaces
+						foregroundcolor=white]{\vskip-13.5pt\vbox{\tfd #1}}\ignorespaces
 				\fi}\ignorespaces}}}
 
 % This one is used standalone, f. e. in the Introduction
@@ -233,7 +236,7 @@
 
 \def\plateName{plate}
 
-\define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\putLettrine{\plateName}}\hfill\hskip0pt\vskip 5\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
+\define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\hskip-1pt\putLettrine{\plateName}\hskip-1pt}\hfill\hskip0pt\vskip 5\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
 
 \definehead[intro][coupling=part,default=part,incrementnumber=no,placehead=yes]
 \setuphead[intro][alternative=text,command=\bookTitle,header=empty,footer=none,before={},after={}]
