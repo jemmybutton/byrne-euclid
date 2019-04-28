@@ -20,7 +20,7 @@ input TEX;
 TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}");
 TEXPOST("\end{document}");
 
-outputformat := "svg";
+outputformat := "eps";
 
 numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, borderWidth;
 lettrineSize := 15mm;
@@ -611,7 +611,7 @@ forever:
         endfor;
     endfor;
 
-    makeLettrinePicture(lettrineLine & decimal(lettrineCount - 1) & ".svg");
+    makeLettrinePicture(lettrineLine & decimal(lettrineCount - 1) & ".mps");
 
 endfor;
 end
