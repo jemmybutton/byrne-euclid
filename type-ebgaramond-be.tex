@@ -12,15 +12,16 @@
 \definefontfeature
 	[eb-garamond-be-smallcaps]
 	[eb-garamond-be-normal]
-	[smcp=yes,c2sc=yes]         
+	[smcp=yes,c2sc=yes]
 \definefontfeature [eb-garamond-be-mathdigits] [lnum=yes]
 \starttypescriptcollection[ebgaramond-be]
+	\definefontfallback [ebgaramonduprightparenteses] [name:EBGaramond-Regular] [0x00028:0x00029] [force=yes] % Upright parentheses in italics
 	\starttypescript [serif] [ebgaramond-be]
 		\loadfontgoodies[ebgaramond]
 		\setups[font:fallback:serif]
 		\definefontsynonym [Serif] [name:EBGaramond-Regular] [features=eb-garamond-be-normal]
-		\definefontsynonym [SerifItalic] [name:EBGaramond-Italic] [features=eb-garamond-be-normal]
-		\definefontsynonym [SerifBold] [name:EBGaramond-Bold] [features=eb-garamond-be-normal] 
+		\definefontsynonym [SerifItalic] [name:EBGaramond-Italic] [features=eb-garamond-be-normal,fallbacks=ebgaramonduprightparenteses]
+		\definefontsynonym [SerifBold] [name:EBGaramond-Bold] [features=eb-garamond-be-normal]
 		\definefontsynonym [SerifCaps] [Serif] [features=eb-garamond-be-smallcaps]
 	\stoptypescript
 	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Regular*eb-garamond-be-mathdigits] [digitsnormal] [force=yes]
@@ -28,14 +29,14 @@
 	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Regular] [uppercasenormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Italic] [lowercasenormal] [offset=lowercaseitalic,force=yes]
 	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Italic] [0x00068] [offset=0x0210E,force=yes] % due to some spooky quantum effects lowercase italic math h is located here
-	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Italic] [uppercasenormal] [offset=uppercaseitalic,force=yes]	
-	\starttypescript [math] [ebgaramondandbonum] 
+	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Italic] [uppercasenormal] [offset=uppercaseitalic,force=yes]
+	\starttypescript [math] [ebgaramondandbonum]
 		\definefontsynonym [MathRoman] [texgyrebonummath] [features={math,mathextra},fallbacks=ebgaramondmathtext]
-	\stoptypescript	
+	\stoptypescript
 	\starttypescript [ebgaramond-be]
 		\definetypeface[ebgaramond-be] [rm] [serif] [ebgaramond-be] [default] [designsize=auto]
 		\definetypeface[ebgaramond-be] [tt] [mono] [dejavu] [default]
 		\definetypeface[ebgaramond-be] [ss] [sans] [adventor] [default]
 		\definetypeface[ebgaramond-be] [mm] [math] [ebgaramondandbonum] [default]
-	\stoptypescript 
+	\stoptypescript
 \stoptypescriptcollection
