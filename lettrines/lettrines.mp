@@ -20,7 +20,7 @@ input TEX;
 TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}");
 TEXPOST("\end{document}");
 
-outputformat := "eps";
+outputformat := "svg";
 
 numeric lettrineSize, plateWidth, plateHeight, tileWidth, tileHeight, borderWidth;
 lettrineSize := 15mm;
@@ -531,6 +531,8 @@ forever:
             meristemResolution := 2/3mm;
             branchSizeResolution := 1/4mm;
             outlineThickness := 2/5mm;
+            branchIterations := 2;
+            leafIterations := 2;
             scaleFactor := 1;
             symMode := 1;
             fill ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight withcolor black;
@@ -543,9 +545,11 @@ forever:
             addBranchMeristem;
             addSymBranches;
         elseif (lettrineLine = "tile"):
-            meristemResolution := 2/3mm;
-            branchSizeResolution := 1/4mm;
-            outlineThickness := 2/5mm;
+            meristemResolution := 1/2mm;
+            branchSizeResolution := 1/6mm;
+            outlineThickness := 1/3mm;
+            branchIterations := 2;
+            leafIterations := 2;
             scaleFactor := 1;
             symMode := 2;
             addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
@@ -560,6 +564,8 @@ forever:
             meristemResolution := 1/2mm;
             branchSizeResolution := 1/6mm;
             outlineThickness := 1/3mm;
+            branchIterations := 3;
+            leafIterations := 3;
             scaleFactor := 1;
             symMode := 0;
             fill reverse(unitsquare) scaled lettrineSize withcolor black;
@@ -586,7 +592,7 @@ forever:
         fi;
     );
 
-    for j := 0 step 1 until 2:
+    for j := 0 step 1 until branchIterations:
         for i = scantokens shuffleNumbers(meristemNumber):
             if(uniformdeviate(2) > 1):
                 positionBranch.curlA(i);
@@ -595,7 +601,7 @@ forever:
             fi;
         endfor;
     endfor;
-    for j := 0 step 1 until 2:
+    for j := 0 step 1 until leafIterations:
         for i = scantokens shuffleNumbers(meristemNumber):
             if(uniformdeviate(2) > 1):
                 positionBranch.leafA(i);
@@ -605,7 +611,7 @@ forever:
         endfor;
     endfor;
 
-    makeLettrinePicture(lettrineLine & decimal(lettrineCount - 1) & ".mps");
+    makeLettrinePicture(lettrineLine & decimal(lettrineCount - 1) & ".svg");
 
 endfor;
 end

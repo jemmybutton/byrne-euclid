@@ -3288,10 +3288,20 @@ enddef;
 % Text labels
 %
 
-vardef textLabelRender(expr t) =
-    textext("\tf\ss " & t) scaled 2/5   % this one is ConTeXt dependent
-    %btex t etex scaled 2/5             % this one is not
-enddef;
+% If using metafun, use textext
+
+if known metafunversion:
+    vardef textLabelRender(expr t) =
+        textext("\tf\ss " & t) scaled 2/5
+    enddef;
+else:
+    input TEX;
+    TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}");
+    TEXPOST("\end{document}");
+    vardef textLabelRender(expr t) =
+        TEX("\textsf{" & t & "}") scaled 2/5
+    enddef;
+fi;
 
 numeric textLabelAvSize;
 textLabelAvSize := abs(ulcorner(textLabelRender("A")) - llcorner(textLabelRender("A")));
