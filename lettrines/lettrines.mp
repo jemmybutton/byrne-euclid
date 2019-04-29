@@ -529,10 +529,10 @@ forever:
     lettrineImage := image(
         if (lettrineLine = "plate"):
             meristemResolution := 2/3mm;
-            branchSizeResolution := 1/4mm;
+            branchSizeResolution := 1/6mm;
             outlineThickness := 2/5mm;
-            branchIterations := 2;
-            leafIterations := 2;
+            branchIterations := 3;
+            leafIterations := 3;
             scaleFactor := 1;
             symMode := 1;
             fill ((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight withcolor black;
@@ -548,8 +548,8 @@ forever:
             meristemResolution := 1/2mm;
             branchSizeResolution := 1/6mm;
             outlineThickness := 1/3mm;
-            branchIterations := 2;
-            leafIterations := 2;
+            branchIterations := 3;
+            leafIterations := 3;
             scaleFactor := 1;
             symMode := 2;
             addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
@@ -564,8 +564,8 @@ forever:
             meristemResolution := 1/2mm;
             branchSizeResolution := 1/6mm;
             outlineThickness := 1/3mm;
-            branchIterations := 3;
-            leafIterations := 3;
+            branchIterations := 2;
+            leafIterations := 2;
             scaleFactor := 1;
             symMode := 0;
             fill reverse(unitsquare) scaled lettrineSize withcolor black;
