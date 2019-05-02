@@ -1333,9 +1333,9 @@ Similarly we can prove that the remaining angles also, taken together two and tw
 	startTempAngleScale(2);
 	numeric w, h, d;
 	color s;
-	w := 3cm;
-	h := 2cm;
-	d := 2cm;
+	w := 4cm;
+	h := 3cm;
+	d := 3cm;
 	byPair(A, B, D);
 	B := (0, 0);
 	A := (1/2w, h);
@@ -1547,7 +1547,7 @@ Let \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, 
 	Q := 2/3[O, M];
 	h := sqrt(((abs(A-B)/cm)**2) - ((abs(L-O)/(s*cm))**2))*s*cm;
 	byPointXYZDefine.R(xpart(O), ypart(O), h);
-	bySetProjection(-45, 0, -35);
+	bySetProjection(-45, 0, -30);
 	byLineDefine(L, M, byblack, 0, 0);
 	byLineDefine(M, N, byblack, 1, 0);
 	byLineDefine(N, L, byblack, 0, 2);
