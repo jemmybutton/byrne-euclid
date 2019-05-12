@@ -500,6 +500,8 @@ def makeLettrinePicture (expr fileName) =
                         branchScale[i],
                         branchFlipped[i]
                     );
+            %else:
+            %    draw branchPath[i] withcolor red;
             fi;
         endfor;
     endfig;
@@ -554,10 +556,10 @@ forever:
             symMode := 2;
             addBranch (((unitsquare shifted (-1/2,-1/2)) xscaled 2tileWidth) yscaled 2tileHeight,
                 false, (0, 0), 0, 1, false, false);
-            addBranch.curlA((0,0), true, (0, 0), 0, 3/2cm, false, false);
+            addBranch.curlA((0,0), true, (0, 0), 0 + uniformdeviate(360), 3/2cm, false, false);
             addBranchMeristem;
             addSymBranches;
-            addBranch.curlA((0,0), true, (0, 0), 180, 3/2cm, false, false);
+            addBranch.curlA((0,0), true, (0, 0), 180 + branchAngle[1], 3/2cm, false, false);
             addBranchMeristem;
             addSymBranches;
         else:
