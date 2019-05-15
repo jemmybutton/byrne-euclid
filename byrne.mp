@@ -2634,12 +2634,14 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                             if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
-                                if (getAttribute("angle", "Style", str aN) = 0) or ((getAttribute0("angle", "OptionalColor", str aN) <> white) and (getAttribute0("angle", "OptionalColor", str aN) <> bytransparent)):
+                                if (getAttribute("angle", "Style", str aN) = 0)
+                                    or ((getAttribute0("angle", "OptionalColor", str aN) <> white)
+                                        and (getAttribute0("angle", "OptionalColor", str aN) <> bytransparent)):
                                     angleType[i] := 0;
                                 fi;
                             fi;
                         endfor;
-                        if (angleCheck):
+                        if angleCheck:
                             angleNum := angleNum + 1;
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
@@ -2725,7 +2727,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     fi;
                     compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
                 elseif (j <> 0):
-                    errmessage("There are gaps in the compound angle");
+                    errmessage("There are gaps in a compound angle");
                 fi;
             else:
                 errmessage("The angles are not concentric");
