@@ -2324,7 +2324,7 @@ vardef byConstructAngleArc (suffix a, b, c)(expr s) =
     color q[];
     numeric cutTime[];
     d := 1/2[unitvector(a-b),unitvector(c-b)];
-    if (abs(d) = 1):
+    if (abs(d) = 0):
         d := (unitvector(a-c) rotated 90);
     fi;
     if (s = 0):
