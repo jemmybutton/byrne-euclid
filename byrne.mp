@@ -2291,7 +2291,7 @@ else:
         picture q;
         numeric ad;
         boolean ac;
-        p := byConstructAngleArc(a, b, c);
+        p := byConstructAngleArc(a, b, c, 0);
         ad := angle(point (arctime arclength(p)/2 of p) of p);
         if (ypart(unitvector(a-b) rotated -ad)) > 0:
             ac := true;
@@ -2300,6 +2300,7 @@ else:
         fi;
         setAttribute("angle", "Arc", str @#, p);
         setAttribute("angle", "ArcClockwise", str @#, ac);
+        setAttribute("angle", "ArcType", str @#, 0);
         setAttribute("angle", "Val", str @#, 180*arclength(p scaled 2)/pi);
         setAttribute("angle", "AVal", str @#, angle(a-b));
         setAttribute("angle", "CVal", str @#, angle(c-b));
@@ -2316,37 +2317,55 @@ else:
 fi;
 enddef;
 
-vardef byConstructAngleArc (suffix a, b, c) =
-    save p, d, cutTime;
+vardef byConstructAngleArc (suffix a, b, c)(expr s) =
+    save p, d, cutTime, q;
     pair d;
     path p[];
+    color q[];
     numeric cutTime[];
     d := 1/2[unitvector(a-b),unitvector(c-b)];
-    if (abs(d) = 0):
+    if (abs(d) = 1):
         d := (unitvector(a-c) rotated 90);
     fi;
-    p0 := fullcircle;
-    if (attributeExists("point", "XYZ", str a)
-        and attributeExists("point", "XYZ", str b)
-        and attributeExists("point", "XYZ", str c)):
-        p0 := byFullCircleToPlane(
-            getAttribute("point", "XYZ", str a),
-            getAttribute("point", "XYZ", str b),
-            getAttribute("point", "XYZ", str c)
-            );
-    fi;
-    cutTime1 := xpart((p0 scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b]));
-    cutTime2 := xpart((p0 scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]));
-    p1 := subpath (cutTime1, cutTime2) of p0;
-    p2 := subpath (cutTime1 - length(p0), cutTime2) of p0;
-    p3 := subpath (cutTime1 + length(p0), cutTime2) of p0;
-    if (arclength(p2) > arclength(p3)):
-        p4 := p3;
-    else:
-        p4 := p2;
-    fi;
-    if (arclength(p1) < arclength(p4)):
-        p4 := p1;
+    if (s = 0):
+        p0 := fullcircle;
+        if (attributeExists("point", "XYZ", str a)
+            and attributeExists("point", "XYZ", str b)
+            and attributeExists("point", "XYZ", str c)):
+            p0 := byFullCircleToPlane(
+                getAttribute("point", "XYZ", str a),
+                getAttribute("point", "XYZ", str b),
+                getAttribute("point", "XYZ", str c)
+                );
+        fi;
+        cutTime1 := xpart((p0 scaled u) intersectiontimes ((0, 0)--10[(0, 0), a - b]));
+        cutTime2 := xpart((p0 scaled u) intersectiontimes ((0, 0)--10[(0, 0), c - b]));
+        p1 := subpath (cutTime1, cutTime2) of p0;
+        p2 := subpath (cutTime1 - length(p0), cutTime2) of p0;
+        p3 := subpath (cutTime1 + length(p0), cutTime2) of p0;
+        if (arclength(p2) > arclength(p3)):
+            p4 := p3;
+        else:
+            p4 := p2;
+        fi;
+        if (arclength(p1) < arclength(p4)):
+            p4 := p1;
+        fi;
+    elseif (s = 1):
+        if (attributeExists("point", "XYZ", str a)
+            and attributeExists("point", "XYZ", str b)
+            and attributeExists("point", "XYZ", str c)):
+            q1 := unitvectorXYZ(pointXYZ.a - pointXYZ.b) colorrotated projectionAngle;
+            q3 := unitvectorXYZ(pointXYZ.c - pointXYZ.b) colorrotated projectionAngle;
+            q2 := q1 + q3;
+            p4 := 1/2(redpart(q1), greenpart(q1))
+                -- 1/2(redpart(q2), greenpart(q2))
+                -- 1/2(redpart(q3), greenpart(q3));
+        else:
+            p4 := 1/2unitvector(a - b)
+                -- 1/2(unitvector(a - b) + unitvector(c - b))
+                -- 1/2unitvector(c - b);
+        fi;
     fi;
     p4
 enddef;
@@ -2423,7 +2442,8 @@ vardef byNamedAngle (text anglesList) =
             p := byConstructAngleArc(
                 scantokens(getAttribute("angle", "AName", str aN)),
                 scantokens(getAttribute("angle", "BName", str aN)),
-                scantokens(getAttribute("angle", "CName", str aN)));
+                scantokens(getAttribute("angle", "CName", str aN)),
+                getAttribute("angle", "ArcType", str aN));
             q := image(
                 if (getAttribute("angle", "Color", str aN) <> white):
                     if (typeOf(getAttribute("angle", "Style", str aN)) = "numeric"):
@@ -2623,7 +2643,8 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     angleGenArc := byConstructAngleArc(
                         scantokens(getAttribute("angle", "AName", str aN)),
                         scantokens(getAttribute("angle", "BName", str aN)),
-                        scantokens(getAttribute("angle", "CName", str aN)));
+                        scantokens(getAttribute("angle", "CName", str aN)),
+                        getAttribute("angle", "ArcType", str aN));
                     anglePart1 := angle(point 0 of angleGenArc);
                     as1 := sign(ypart((direction 0 of angleGenArc) rotated -anglePart1));
                     anglePart2 := angle(point 0 of reverse(angleGenArc));
@@ -2994,8 +3015,8 @@ vardef byConstructCompoundAngle (expr angleName) =
             if byIsArcClockwise(byConstructAngleArc(
                 scantokens(getAttribute("angle", "AName", str i)),
                 scantokens(getAttribute("angle", "BName", str i)),
-                scantokens(getAttribute("angle", "CName", str i))
-                )):
+                scantokens(getAttribute("angle", "CName", str i)),
+                getAttribute("angle", "ArcType", str i))):
                 cwAName := getAttribute("angle", "CName", str i);
                 cwCName := getAttribute("angle", "AName", str i);
             else:
