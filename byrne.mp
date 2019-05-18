@@ -36,10 +36,11 @@ magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
 rayExtension := 1/3u;
 
-boolean textLabels, ghostLines, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
+boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
 
 textLabels := false;
 ghostLines := true;
+autoRightAngles := false;
 omitDuplicateTextLabels := false;
 textLabelShift := lineWidth;
 autoLabelingMode := false;
@@ -633,6 +634,25 @@ begingroup
         (a1*d2) + (b1*c2) - (c1*b2) + (d1*a2)
     )
 endgroup
+enddef;
+
+vardef isRightAngle (suffix a, b, c) =
+    save d, rv;
+    numeric d;
+    boolean rv;
+    if (attributeExists("point", "XYZ", str a)
+        and attributeExists("point", "XYZ", str b)
+        and attributeExists("point", "XYZ", str c)):
+        d := absXYZ(unitvectorXYZ(a - b) - unitvectorXYZ(c - b));
+    else:
+        d := abs(unitvector(a-b) - unitvector(c-b));
+    fi;
+    if abs(d-sqrt(2)) < 1/1000: % a better criterion is required
+        rv := true;
+    else:
+        rv := false;
+    fi;
+    rv
 enddef;
 
 %
@@ -2286,12 +2306,21 @@ else:
         appendList(pointAnglesList.b, str @#, 1, true);
         appendList(anglePointsList, str b, 1, true);
     fi;
-        save p, q, d, ad, ac;
+        save p, q, d, ad, ac, as;
         path p;
         picture q;
-        numeric ad;
+        numeric ad, at;
         boolean ac;
-        p := byConstructAngleArc(a, b, c, 0);
+        if autoRightAngles:
+            if isRightAngle(a, b, c):
+                at := 1;
+            else:
+                at := 0;
+            fi;
+        else:
+            at := 0;
+        fi;
+        p := byConstructAngleArc(a, b, c, at);
         ad := angle(point (arctime arclength(p)/2 of p) of p);
         if (ypart(unitvector(a-b) rotated -ad)) > 0:
             ac := true;
@@ -2300,7 +2329,7 @@ else:
         fi;
         setAttribute("angle", "Arc", str @#, p);
         setAttribute("angle", "ArcClockwise", str @#, ac);
-        setAttribute("angle", "ArcType", str @#, 0);
+        setAttribute("angle", "ArcType", str @#, at);
         setAttribute("angle", "Val", str @#, 180*arclength(p scaled 2)/pi);
         setAttribute("angle", "AVal", str @#, angle(a-b));
         setAttribute("angle", "CVal", str @#, angle(c-b));
@@ -2655,9 +2684,10 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                             if ((abs(angleDir[i] - anglePart[j]) mod 360) < 1):
                                 angleCount[i] := angleCount[i] + 1;
                                 angleCheck := false;
-                                if (getAttribute("angle", "Style", str aN) = 0)
+                                if ((getAttribute("angle", "Style", str aN) = 0)
                                     or ((getAttribute0("angle", "OptionalColor", str aN) <> white)
-                                        and (getAttribute0("angle", "OptionalColor", str aN) <> bytransparent)):
+                                        and (getAttribute0("angle", "OptionalColor", str aN) <> bytransparent)))
+                                    and (getAttribute("angle", "ArcType", str aN) <> 1):
                                     angleType[i] := 0;
                                 fi;
                             fi;
@@ -2670,7 +2700,8 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                                     and ((getAttribute0("angle", "OptionalColor", str aN) = white)
                                         or (getAttribute0("angle", "OptionalColor", str aN) = bytransparent)))
                                 or ((getAttribute("angle", "Style", str aN) = 0)
-                                    and (getAttribute("angle", "Color", str aN) = white)):
+                                    and (getAttribute("angle", "Color", str aN) = white))
+                                or (getAttribute("angle", "ArcType", str aN) = 1):
                                 angleType[angleNum] := 1;
                             else:
                                 angleType[angleNum] := 0;
@@ -3086,10 +3117,14 @@ pointS := (0, -2u*angleScale);
 pointW := (-2u*angleScale, 0);
 pointO := (0, 0);
 
-byAngleDefine.rightAngleNE (pointN, pointO, pointE)(black, 1);
-byAngleDefine.rightAngleES (pointE, pointO, pointS)(black, 1);
-byAngleDefine.rightAngleSE (pointS, pointO, pointW)(black, 1);
-byAngleDefine.rightAngleWN (pointW, pointO, pointN)(black, 1);
+def byDefineGenericRightAngles =
+    byAngleDefine.rightAngleNE (pointN, pointO, pointE)(black, 1);
+    byAngleDefine.rightAngleES (pointE, pointO, pointS)(black, 1);
+    byAngleDefine.rightAngleSE (pointS, pointO, pointW)(black, 1);
+    byAngleDefine.rightAngleWN (pointW, pointO, pointN)(black, 1);
+enddef;
+
+byDefineGenericRightAngles;
 
 %
 % Arrows
