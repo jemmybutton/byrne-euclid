@@ -429,16 +429,16 @@ begingroup
 endgroup
 enddef;
 
-primarydef colorone dotproduct colortwo =
+primarydef colorone dotprodXYZ colortwo =
 begingroup
     save xp, yp, zp;
     numeric xp[], yp[], zp[];
-    xp1 := (redpart colorone)/cm;
-    yp1 := (greenpart colorone)/cm;
-    zp1 := (bluepart colorone)/cm;
-    xp2 := (redpart colortwo)/cm;
-    yp2 := (greenpart colortwo)/cm;
-    zp2 := (bluepart colortwo)/cm;
+    xp1 := (redpart colorone);
+    yp1 := (greenpart colorone);
+    zp1 := (bluepart colorone);
+    xp2 := (redpart colortwo);
+    yp2 := (greenpart colortwo);
+    zp2 := (bluepart colortwo);
     xp1*xp2 + yp1*yp2 + zp1*zp2
 endgroup
 enddef;
@@ -494,8 +494,8 @@ vardef lineAndPlaneIntersection (expr lineA, lineB, planeA, planeB, planeC) =
     numeric lineD;
     planeNormal := unitvectorXYZ((planeA-planeB) crossproduct (planeC-planeB));
     planeOrigin := planeB;
-    lineD := (planeNormal dotproduct (planeOrigin - lineA))
-            /(planeNormal dotproduct (lineB - lineA));
+    lineD := ((planeNormal/cm) dotprodXYZ ((planeOrigin - lineA)/cm))
+            /((planeNormal/cm) dotprodXYZ ((lineB - lineA)/cm));
     lineA + ((lineB-lineA)*lineD)
 enddef;
 
@@ -643,11 +643,11 @@ vardef isRightAngle (suffix a, b, c) =
     if (attributeExists("point", "XYZ", str a)
         and attributeExists("point", "XYZ", str b)
         and attributeExists("point", "XYZ", str c)):
-        d := absXYZ(unitvectorXYZ(a - b) - unitvectorXYZ(c - b));
+        d := unitvectorXYZ(pointXYZ.a - pointXYZ.b) dotprodXYZ unitvectorXYZ(pointXYZ.c - pointXYZ.b);
     else:
-        d := abs(unitvector(a-b) - unitvector(c-b));
+        d := unitvector(a - b) dotprod unitvector(c - b);
     fi;
-    if abs(d-sqrt(2)) < 1/1000: % a better criterion is required
+    if (d < 1/1000):
         rv := true;
     else:
         rv := false;
@@ -2306,7 +2306,7 @@ else:
         appendList(pointAnglesList.b, str @#, 1, true);
         appendList(anglePointsList, str b, 1, true);
     fi;
-        save p, q, d, ad, ac, as;
+        save p, q, d, ad, ac, at;
         path p;
         picture q;
         numeric ad, at;
