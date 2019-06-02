@@ -1,8 +1,14 @@
 % Figure placement it definitions is messy, below we define all the indentation, figure and lettrine placing stuff.
-\newdimen\LtI
+\newdimen\LettrineSize
+\newdimen\PlateWidth
+\newdimen\PlateHeight
 \newdimen\PcI
 \newdimen\PcH
-\LtI=1.7cm
+\LettrineSize=1.5cm
+\PlateHeight=1.5cm
+\PlateWidth=7.6cm
+\def\LtI{\dimexpr \LettrineSize + 2mm \relax}
+\def\defaultLettrineLines{4}
 \PcI=0.5\textwidth
 \newdimen\oddpict
 \oddpict=\backspace
@@ -70,7 +76,7 @@
 	\iffirstargument
 		\def\ltLines{#1}
 	\else\ignorespaces
-		\def\ltLines{4}
+		\def\ltLines{\defaultLettrineLines}
 	\fi
 	\ifinsideII\resetII\fi
 	\global\insideIItrue
@@ -136,14 +142,18 @@
 	\global\expandafter\advance\csname ltrn#1\endcsname by 1
 \fi
 \doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
-	{\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][size=artbox]\ignorespaces}
+	{\ifx#1\plateName\ignorespaces
+		\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][width=\PlateWidth]\ignorespaces
+	\else\ignorespaces
+		\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][height=\LettrineSize]\ignorespaces
+	\fi}
 	{\doifelsefile{lettrines/#1.svg}
-		{\externalfigure[lettrines/#1.svg][height=1.5cm]\ignorespaces}
+		{\externalfigure[lettrines/#1.svg][height=\LettrineSize]\ignorespaces}
 		{\doifelsefile{lettrines/#1.pdf}
-			{\externalfigure[lettrines/#1.pdf][width=1.5cm,height=1.5cm]\ignorespaces}
+			{\externalfigure[lettrines/#1.pdf][width=\LettrineSize,height=\LettrineSize]\ignorespaces}
 			{\ifx#1\plateName\ignorespaces
 					\framed[
-						width=7.6cm,height=1.5cm,
+						width=\PlateWidth,height=\PlateHeight,
 						frame=off,
 						background=color,
 						backgroundcolor=black,
@@ -151,7 +161,7 @@
 						foregroundcolor=white]{}\ignorespaces
 				\else\ignorespaces
 					\framed[
-						width=1.5cm,height=1.5cm,
+						width=\LettrineSize,height=\LettrineSize,
 						frame=off,
 						background=color,
 						backgroundcolor=black,
