@@ -22,7 +22,7 @@
 		\definefontsynonym [Serif] [name:EBGaramond-Regular] [features=eb-garamond-be-normal]
 		\definefontsynonym [SerifItalic] [name:EBGaramond-Italic] [features=eb-garamond-be-normal,fallbacks=ebgaramonduprightparenteses]
 		\definefontsynonym [SerifBold] [name:EBGaramond-Bold] [features=eb-garamond-be-normal]
-		\definefontsynonym [SerifCaps] [Serif] [features=eb-garamond-be-smallcaps]
+		\definefontsynonym [SerifCaps] [Serif] [features=eb-garamond-be-smallcaps,designsize=auto]
 	\stoptypescript
 	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Regular*eb-garamond-be-mathdigits] [digitsnormal] [force=yes]
 	\definefontfallback [ebgaramondmathtext] [name:EBGaramond-Regular] [lowercasenormal] [force=yes]
@@ -34,7 +34,7 @@
 		\definefontsynonym [MathRoman] [texgyrebonummath] [features={math,mathextra},fallbacks=ebgaramondmathtext]
 	\stoptypescript
 	\starttypescript [ebgaramond-be]
-		\definetypeface[ebgaramond-be] [rm] [serif] [ebgaramond-be] [default] [designsize=auto]
+		\definetypeface[ebgaramond-be] [rm] [serif] [ebgaramond-be] [default]% [designsize=auto] % this breaks italics in smaller sizes and doesn't work well
 		\definetypeface[ebgaramond-be] [tt] [mono] [dejavu] [default]
 		\definetypeface[ebgaramond-be] [ss] [sans] [adventor] [default]
 		\definetypeface[ebgaramond-be] [mm] [math] [ebgaramondandbonum] [default]
