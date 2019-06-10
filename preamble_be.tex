@@ -7,7 +7,8 @@
 \LettrineSize=1.5cm
 \PlateHeight=1.5cm
 \PlateWidth=7.6cm
-\def\LtI{\dimexpr \LettrineSize + 2mm \relax}
+\def\LettrineTotalWidth{\dimexpr \LettrineSize + 2mm \relax}
+\def\LettrineTotalHeight{\dimexpr \LettrineSize + 2mm \relax}
 \def\defaultLettrineLines{4}
 \PcI=0.5\textwidth
 \newdimen\oddpict
@@ -92,15 +93,15 @@
 	\ifodd\pageno
 		\advance \PgI by -\PcI
 		\CmI=\PgI
-		\advance \CmI by -\LtI
+		\advance \CmI by -\LettrineTotalWidth
 		\def\partindent{0cm \PgI}
-		\def\doubleindent{\LtI \CmI}
+		\def\doubleindent{\LettrineTotalWidth \CmI}
 	\else
 		\advance \PgI by -\PcI
 		\CmI=\PcI
-		\advance \CmI by \LtI
+		\advance \CmI by \LettrineTotalWidth
 		\NgI=\PgI
-		\advance \NgI by -\LtI
+		\advance \NgI by -\LettrineTotalWidth
 		\def\partindent{\PcI \PgI}
 		\def\doubleindent{\CmI \NgI}
 	\fi
@@ -172,8 +173,8 @@
 \def\regularLettrine#1{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-3pt}\vskip -15pt}\noindent}
 
 \def\problem#1#2#3{\ignorespaces
-\vskip -\LtI
-\hskip -\LtI \hskip -\parindent \offset[y=0.79\LtI,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt #2\ \it #3} \vskip \baselineskip
+\vskip -\LettrineTotalHeight
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=0.79\LettrineTotalHeight,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt #2\ \it #3} \vskip \baselineskip
 }
 
 \newdimen\vPos
@@ -186,8 +187,8 @@
 \else\ignorespaces
 	\initialIndentation{7}\ignorespaces
 \fi\ignorespaces
-\vskip -\LtI
-\hskip -\LtI \hskip -\parindent \offset[y=0.79\LtI,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
+\vskip -\LettrineTotalHeight
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=0.79\LettrineTotalHeight,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
 \advance\vPos by -\pagetotal
 \advance\vPos by 4\baselineskip
 \ifnum\vPos>0
