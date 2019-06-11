@@ -9,6 +9,7 @@
 \PlateWidth=7.6cm
 \def\LettrineTotalWidth{\dimexpr \LettrineSize + 2mm \relax}
 \def\LettrineTotalHeight{\dimexpr \LettrineSize + 2mm \relax}
+\def\LettrineTotalHeightMinusLine{\dimexpr \LettrineTotalHeight -0.8\baselineskip}
 \def\defaultLettrineLines{4}
 \PcI=0.5\textwidth
 \newdimen\oddpict
@@ -174,7 +175,7 @@
 
 \def\problem#1#2#3{\ignorespaces
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=0.79\LettrineTotalHeight,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt #2\ \it #3} \vskip \baselineskip
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt #2\ \it #3} \vskip \baselineskip
 }
 
 \newdimen\vPos
@@ -188,7 +189,7 @@
 	\initialIndentation{7}\ignorespaces
 \fi\ignorespaces
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=0.79\LettrineTotalHeight,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
 \advance\vPos by -\pagetotal
 \advance\vPos by 4\baselineskip
 \ifnum\vPos>0
