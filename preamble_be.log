@@ -1,0 +1,96 @@
+system          > synctex functionality is enabled (1)!
+
+resolvers       > trees > analyzing 'home:.texmf-config'
+
+resolvers       > trees > analyzing 'home:texmf'
+
+open source     > 1 > 1 > /usr/share/texmf/tex/context/base/cont-yes.mkiv
+
+ConTeXt  ver: 2015.05.18 12:26 MKIV current  fmt: 2018.5.22  int: english/english
+
+system          > 'cont-new.mkiv' loaded
+open source     > 2 > 2 > /usr/share/texmf/tex/context/base/cont-new.mkiv
+close source    > 2 > 2 > /usr/share/texmf/tex/context/base/cont-new.mkiv
+system          > files > jobname 'preamble_be', input './preamble_be', result 'preamble_be'
+fonts           > latin modern fonts are not preloaded
+languages       > language 'en' is active
+open source     > 2 > 3 > /home/jemmybutton/Documents/Byrne's Euclid/preamble_be.tex
+colors          > 'rgb' color space is supported
+colors          > 'cmyk' color space is supported
+system          > command '\noTitle' is already defined
+open source     > 3 > 4 > /usr/share/texmf/tex/context/base/symb-imp-cc.mkiv
+close source    > 3 > 4 > /usr/share/texmf/tex/context/base/symb-imp-cc.mkiv
+fonts           > symbols > library 'cc' loaded
+close source    > 2 > 4 > /home/jemmybutton/Documents/Byrne's Euclid/preamble_be.tex
+system          > invalid \starttext ... \stoptext structure
+fonts           > beware: no fonts are loaded yet, using 'lm mono' in box
+backend         > xmp > using file '/usr/share/texmf/tex/context/base/lpdf-pdx.xml'
+pages           > flushing page
+close source    > 1 > 4 > /usr/share/texmf/tex/context/base/cont-yes.mkiv
+
+system          > structure > start used structure
+
+used structure  > text: preamble_be
+
+system          > structure > stop used structure
+
+
+system          > files > start used files
+
+used file       >    1: filename=cont-yes.mkiv filetype=tex foundname=/usr/share/texmf/tex/context/base/cont-yes.mkiv usedmethod=database
+used file       >    2: filename=publ-imp-default.lua filetype=lua foundname=/usr/share/texmf/tex/context/base/publ-imp-default.lua usedmethod=database
+used file       >    3: filename=cont-new.mkiv filetype=tex foundname=/usr/share/texmf/tex/context/base/cont-new.mkiv usedmethod=database
+used file       >    4: filename=lang-us.lua filetype=lua foundname=/usr/share/texmf/tex/context/patterns/lang-us.lua usedmethod=database
+used file       >    5: filename=/home/jemmybutton/Documents/Byrne's Euclid/preamble_be.tex foundname=/home/jemmybutton/Documents/Byrne's Euclid/preamble_be.tex usedmethod=direct
+used file       >    6: filename=symb-imp-cc.mkiv filetype=tex foundname=/usr/share/texmf/tex/context/base/symb-imp-cc.mkiv usedmethod=database
+used file       >    7: filename=ccicons.otf filetype=otf format=otf foundname=/usr/share/texlive/texmf-dist/fonts/opentype/public/ccicons/ccicons.otf usedmethod=database
+used file       >    8: filename=lmmono10-regular filetype=otf format=otf foundname=/usr/share/texmf/fonts/opentype/public/lm/lmmono10-regular.otf usedmethod=database
+used file       >    9: filename=lpdf-pdx.xml filetype=tex foundname=/usr/share/texmf/tex/context/base/lpdf-pdx.xml usedmethod=database
+
+system          > files > stop used files
+
+
+system          > options > start commandline options
+
+used option     > currentrun="1"
+used option     > directives="system.synctex=1"
+used option     > fulljobname="./preamble_be.tex"
+used option     > input="./preamble_be.tex"
+used option     > kindofrun="1"
+used option     > maxnofruns="9"
+used option     > no-parse-first-line="true"
+used option     > synctex="true"
+
+system          > options > stop commandline options
+
+system          > options > start commandline files
+
+used file       >    1: ./preamble_be.tex
+
+system          > options > stop commandline files
+
+
+mkiv lua stats  > used config file: /usr/share/texmf/web2c/texmfcnf.lua;/usr/share/texlive/texmf-dist/web2c/texmfcnf.lua
+mkiv lua stats  > used cache path: readable: '/var/lib/texmf/luatex-cache/context/b47c3d3cee7cb6c86268d0595268c442' | readable+writable: '/home/jemmybutton/.texmf-var/luatex-cache/context/b47c3d3cee7cb6c86268d0595268c442'
+mkiv lua stats  > synctex tracing: synctex has been enabled (extra log file generated)
+mkiv lua stats  > resource resolver: loadtime 0.124 seconds, 2 scans with scantime 0.012 seconds, 0 shared scans, 9 found files, scanned paths: /home/jemmybutton/.texmf-config /home/jemmybutton/texmf
+mkiv lua stats  > stored bytecode data: 371 modules (0.318 sec), 78 tables (0.008 sec), 449 chunks (0.326 sec)
+mkiv lua stats  > traced context: maxstack: 1132, freed: 0, unreachable: 1132
+mkiv lua stats  > running in nuts mode: yes
+mkiv lua stats  > cleaned up reserved nodes: 44 nodes, 439 lists of 438
+mkiv lua stats  > node memory usage: 1 glue, 1 penalty, 6 attribute, 35 glue_spec, 2 attribute_list, 2 temp
+mkiv lua stats  > node list callback tasks: 6 unique task lists, 5 instances (re)created, 38 calls
+mkiv lua stats  > used backend: pdf (backend for directly generating pdf output)
+mkiv lua stats  > loaded patterns: en::2, load time: 0.000
+mkiv lua stats  > jobdata time: 0.002 seconds saving, 0.001 seconds loading
+mkiv lua stats  > callbacks: 225 direct, 735 indirect, 960 total
+mkiv lua stats  > randomizer: resumed with value 0.64725051664154
+mkiv lua stats  > result saved in file: preamble_be.pdf, compresslevel 3, objectcompresslevel 3
+mkiv lua stats  > loaded fonts: 1 files: lmmono10-regular.otf
+mkiv lua stats  > fonts load time: 0.155 seconds 
+mkiv lua stats  > used platform: linux-64, type: unix, binary subtree: usr
+mkiv lua stats  > luatex banner: this is luatex, version beta-0.80.0 (tex live 2015/debian) (rev 5238)
+mkiv lua stats  > control sequences: 41765 of 65536 + 100000
+mkiv lua stats  > lua properties: engine: lua, used memory: 68 MB (ctx: 67 MB), hash type: lua, hash chars: min(64,40), symbol mask: utf (τεχ)
+mkiv lua stats  > runtime: 1.264 seconds, 1 processed pages, 1 shipped pages, 0.791 pages/second
+
