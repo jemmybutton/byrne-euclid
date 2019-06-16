@@ -3799,7 +3799,7 @@ draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 Если смежные стороны равны, т. е. $\drawUnitLine{AB} = \drawUnitLine{AC}$, то $\drawUnitLine{AB} \cdot \drawUnitLine{AC}$ обозначает прямоугольник, заключенный между \drawUnitLine{AB} и~\drawUnitLine{AC}, являющийся квадратом\\
 и равный $\left\{\eqalign{
 \drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2\cr
-\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AC}^2\mbox{.}}\right.$
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ или } \drawUnitLine{AB}^2\mbox{.}}\right.$
 
 \stopDefinition
 
@@ -4202,7 +4202,7 @@ $\drawPolygon{MHGF} = \drawPolygon{DCLH} = \drawPolygon{CLKA}$ (\inpropL[prop:I.
 $\therefore \drawPolygon{BDHM,DCLH,MHGF} = \drawPolygon{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$.
 
 Но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV],\\
-$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:I.II]).
+$\therefore \squareCBFE = \drawProportionalLine{CB}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:I.II]).
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$.
 \stopCenterAlign
@@ -4363,7 +4363,7 @@ w := 9/2u;
 A := (-1/2w, 0);
 B := (1/2w, 0);
 C := (0, 0);
-D := (1/4w, 0);
+D := (1/5w, 0);
 E := (0, 1/2w);
 F = whatever[E, B] = (xpart(D), whatever);
 G = whatever[E, C] = (whatever, ypart(F));

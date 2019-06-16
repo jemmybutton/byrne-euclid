@@ -3723,7 +3723,7 @@ If the adjacent sides are equal; i.\ e.\ $\drawUnitLine{AB} = \drawUnitLine{AC}$
 
 is equal to $\left\{\eqalign{
 \drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2\cr
-\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2}\right.$
+\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AB}^2}\right.$
 
 \stopDefinition
 
@@ -3802,7 +3802,7 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalig
 is equal to the sum of the rectangles contained by the undivided line, and the several parts of the divided line.}
 
 \startCenterAlign
-Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{GB}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III]); complete the parallelograms, that is to say,
+Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{GB}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III]); complete the parallelograms, that is to say, % improvement: in the original \inpropL[prop:I.II] was referenced instead of \inpropL[prop:I.XI] 
 
 draw $\left\{\eqalign{
 \drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \cr
@@ -4133,7 +4133,7 @@ $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH} = \drawPolygon[bottom]{
 $\therefore \drawPolygon[bottom]{BDHM,DCLH,MHGF} = \drawPolygon[bottom]{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
 
-$\therefore \squareCBFE = \drawProportionalLine{HG,DH}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:I.II])
+$\therefore \squareCBFE = \drawProportionalLine{CB}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ (\conststr, \inaxL[ax:I.II])
 
 $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$.
 \stopCenterAlign
@@ -4288,7 +4288,7 @@ w := 5u;
 A := (-1/2w, 0);
 B := (1/2w, 0);
 C := (0, 0);
-D := (1/4w, 0);
+D := (1/5w, 0);
 E := (0, 1/2w);
 F = whatever[E, B] = (xpart(D), whatever);
 G = whatever[E, C] = (whatever, ypart(F));
