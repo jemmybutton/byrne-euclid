@@ -2510,17 +2510,26 @@ vardef byNamedSolidAngle (text anglesList) =
     )
 enddef;
 
-vardef byProcessAnglesList(text anglesListToProcess)=
-    save processedAnglesList, compoundAngleString;
-    string processedAnglesList, compoundAngleString;
+vardef byProcessAnglesList@#(text anglesListToProcess)=
+    save processedAnglesList, compoundAngleString, splitAnglePoints;
+    string processedAnglesList, compoundAngleString, splitAnglePoints;
     processedAnglesList := "";
+    splitAnglePoints := "";
     forsuffixes aN=anglesListToProcess:
         if attributeExists("angle", "Synonym", str aN):
             appendList(processedAnglesList, str aN, 1, false);
         else:
-            compoundAngleString := byConstructCompoundAngle(str aN);
+            splitAnglePoints := bySplitStringIntoAngles(str aN);
+            if (known aN) and (length(splitAnglePoints) = 0):
+                compoundAngleString := pointAnglesList.aN;
+            else:
+                compoundAngleString := byConstructCompoundAngle(scantokens(splitAnglePoints));
+            fi;
             if compoundAngleString <> "":
                 appendList(processedAnglesList, compoundAngleString, 1, false);
+                if str @# <> "":
+                    appendList(@#, splitAnglePoints, 1, false);
+                fi;
             else:
                 errmessage("Unknown angle: " & str aN);
             fi;
@@ -2606,8 +2615,9 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
     save centerName, uniqueCenter, angleGenArc, angleDir, angleCount, angleType, angleSide, anglePart, angleNum, angleCheck,
         ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse,
         processedAnglesList, processedLinesList,
-        planePoints, threeDMode, projectedCircle, labelVector;
-    string centerName, pointName[], processedAnglesList, processedLinesList;
+        planePoints, threeDMode, projectedCircle, labelVector,
+        enteredAnglePointsList, pointNameToUse;
+    string centerName, pointName[], processedAnglesList, processedLinesList,enteredAnglePointsList, pointNameToUse;
     pair ac, p[], labelVector;
     boolean uniqueCenter, angleCheck, doNotLabelCenter, threeDMode;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
@@ -2618,7 +2628,8 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
     uniqueCenter := true;
     doNotLabelCenter := false;
     scaleToUse := -1;
-    processedAnglesList := byProcessAnglesList(anglesList);
+    enteredAnglePointsList := "";
+    processedAnglesList := byProcessAnglesList.enteredAnglePointsList(anglesList);
     forsuffixes lN=linesList:
         appendList(processedLinesList, str lN, 1, false);
     endfor;
@@ -2797,7 +2808,21 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     else:
                         labelVector := (projectedCircle intersectionpoint ((0, 0) -- dir(angleDir[n[i]])*10)) scaled 2;
                     fi;
-                    draw byTextLabel(pointLabel)(pointName[n[i]],
+                    pointNameToUse := pointName[n[i]];
+                    if length(enteredAnglePointsList) > 0:
+                        show(enteredAnglePointsList);
+                        forsuffixes j = scantokens(enteredAnglePointsList):
+                            if (str j <> centerName):
+                                if ((abs(
+                                    angle(scantokens(pointNameToUse) - scantokens(centerName))
+                                    - angle(j - scantokens(centerName))
+                                    ) mod 360) < 1):
+                                    pointNameToUse := str j;
+                                fi;
+                            fi;
+                        endfor;
+                    fi;
+                    draw byTextLabel(pointLabel)(pointNameToUse,
                         ac + (labelVector*1/2u*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
                 endfor;
                 if not doNotLabelCenter:
@@ -3000,12 +3025,9 @@ vardef sortPointAnglesList (expr anglesListToSort) =
     rv
 enddef;
 
-vardef byConstructCompoundAngle (expr angleName) =
-    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n, angleList, isFirst, isLast, cwA, cwC, cwAName, cwCName, dirA, dirC, rv, threeDMode, notInPlane;
-    string pointA, pointB, pointC, cPointA, cPointB, cPointC, cwAName, cwCName, angleList, rv;
-    boolean isFirst, isLast, threeDMode, notInPlane;
-    pair cwA, cwC, dirA, dirC;
-    angleList := "";
+vardef bySplitStringIntoAngles (expr angleName) =
+    save pointA, pointB, pointC, cPointA, cPointB, cPointC, n;
+    string pointA, pointB, pointC, cPointA, cPointB, cPointC, rv;
     numeric n;
     n := 0;
     for i := 1 step 1 until (length(angleName) - 2):
@@ -3026,7 +3048,7 @@ vardef byConstructCompoundAngle (expr angleName) =
         endfor;
     endfor;
     if (known scantokens(angleName)) and (n = 0):
-        rv := pointAnglesList.scantokens(angleName);
+        rv := "";
     else:
         if n = 0:
             errmessage("Can't find points for angle: " & lineName);
@@ -3034,58 +3056,68 @@ vardef byConstructCompoundAngle (expr angleName) =
         if n > 1:
             errmessage("Ambiguous angle name: " & lineName);
         fi;
-        dirA := scantokens(pointA) - scantokens(pointB);
-        dirC := scantokens(pointC) - scantokens(pointB);
-        threeDMode := false;
-        if byIsPointInSpace(scantokens(pointA), scantokens(pointB), scantokens(pointC)):
-            threeDMode := true;
-        fi;
-        isFirst := false;
-        isLast := false;
-        forsuffixes i=scantokens(pointAnglesList.scantokens(pointB) & ", " & pointAnglesList.scantokens(pointB)):
-            if byIsArcClockwise(byConstructAngleArc(
-                scantokens(getAttribute("angle", "AName", str i)),
-                scantokens(getAttribute("angle", "BName", str i)),
-                scantokens(getAttribute("angle", "CName", str i)),
-                getAttribute("angle", "ArcType", str i))):
-                cwAName := getAttribute("angle", "CName", str i);
-                cwCName := getAttribute("angle", "AName", str i);
-            else:
-                cwAName := getAttribute("angle", "AName", str i);
-                cwCName := getAttribute("angle", "CName", str i);
-            fi;
-            cwA := scantokens(cwAName) - scantokens(getAttribute("angle", "BName", str i));
-            cwC := scantokens(cwCName) - scantokens(getAttribute("angle", "BName", str i));
-            notInPlane := false;
-            if threeDMode:
-                if (not isInPlane(pointXYZ.scantokens(cwAName),
-                    pointXYZ.scantokens(pointA),
-                    pointXYZ.scantokens(pointB),
-                    pointXYZ.scantokens(pointC)))
-                or (not isInPlane(pointXYZ.scantokens(cwCName),
-                    pointXYZ.scantokens(pointA),
-                    pointXYZ.scantokens(pointB),
-                    pointXYZ.scantokens(pointC))):
-                    notInPlane := true;
-                fi;
-            fi;
-            if not notInPlane:
-                if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1) and (not isFirst):
-                    isFirst := true;
-                fi;
-                if isFirst and not isLast:
-                    appendList(angleList, str i, 1, true)
-                fi;
-                if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
-                    isLast := true;
-                fi;
-            fi;
-        endfor;
-        if (not isFirst) or (not isLast):
-            errmessage("Can't construct angle: " & angleName);
-        fi;
-        rv := angleList;
+        rv := pointA & ", " & pointB & ", " & pointC;
     fi;
+    rv
+enddef;
+
+vardef byConstructCompoundAngle (suffix pointA, pointB, pointC) =
+    save angleList, isFirst, isLast, cwA, cwC, cwAName, cwCName, dirA, dirC, rv, threeDMode, notInPlane;
+    string cwAName, cwCName, angleList, rv;
+    boolean isFirst, isLast, threeDMode, notInPlane;
+    pair cwA, cwC, dirA, dirC;
+    angleList := "";
+    dirA := pointA - pointB;
+    dirC := pointC - pointB;
+    threeDMode := false;
+    if byIsPointInSpace(pointA, pointB, pointC):
+        threeDMode := true;
+    fi;
+    isFirst := false;
+    isLast := false;
+    forsuffixes i=scantokens(pointAnglesList.pointB & ", " & pointAnglesList.pointB):
+        if byIsArcClockwise(byConstructAngleArc(
+            scantokens(getAttribute("angle", "AName", str i)),
+            scantokens(getAttribute("angle", "BName", str i)),
+            scantokens(getAttribute("angle", "CName", str i)),
+            getAttribute("angle", "ArcType", str i))):
+            cwAName := getAttribute("angle", "CName", str i);
+            cwCName := getAttribute("angle", "AName", str i);
+        else:
+            cwAName := getAttribute("angle", "AName", str i);
+            cwCName := getAttribute("angle", "CName", str i);
+        fi;
+        cwA := scantokens(cwAName) - scantokens(getAttribute("angle", "BName", str i));
+        cwC := scantokens(cwCName) - scantokens(getAttribute("angle", "BName", str i));
+        notInPlane := false;
+        if threeDMode:
+            if (not isInPlane(pointXYZ.scantokens(cwAName),
+                pointXYZ.pointA,
+                pointXYZ.pointB,
+                pointXYZ.pointC))
+            or (not isInPlane(pointXYZ.scantokens(cwCName),
+                pointXYZ.pointA,
+                pointXYZ.pointB,
+                pointXYZ.pointC)):
+                notInPlane := true;
+            fi;
+        fi;
+        if not notInPlane:
+            if ((abs(angle(dirA) - angle(cwA)) mod 360) < 1) and (not isFirst):
+                isFirst := true;
+            fi;
+            if isFirst and not isLast:
+                appendList(angleList, str i, 1, true)
+            fi;
+            if ((abs(angle(dirC) - angle(cwC)) mod 360) < 1) and isFirst:
+                isLast := true;
+            fi;
+        fi;
+    endfor;
+    if (not isFirst) or (not isLast):
+        errmessage("Can't construct angle: " & angleName);
+    fi;
+    rv := angleList;
     rv
 enddef;
 

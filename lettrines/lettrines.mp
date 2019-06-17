@@ -30,7 +30,7 @@ tileWidth := 25mm;
 tileHeight := 25mm;
 borderWidth := 1mm;
 
-input lettrinessizes.txt;
+input "lettrinessizes.txt";
 
 vardef log(expr x, b) =
     (mlog(x)/256)/(mlog(2)/256)
