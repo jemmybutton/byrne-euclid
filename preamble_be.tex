@@ -135,6 +135,13 @@
 \newwrite \lettrineslist
 \openout \lettrineslist = lettrines/lettrineslist.txt\relax
 
+\def\writeLettrineSizes{
+\newwrite \lettrinessizes
+\openout \lettrinessizes = lettrines/lettrinessizes.txt\relax
+\write \lettrinessizes{lettrineSize := \the\LettrineSize; plateWidth := \the\PlateWidth; plateHeight := \the\PlateHeight;}
+\closeout \lettrineslist}
+\writeLettrineSizes % this one can be used is you choose to change lettrine or vignette sizes elsewhere
+
 \def\putLettrine#1{\ignorespaces
 \write \lettrineslist{#1}\ignorespaces
 \expandafter\ifx\csname ltrn#1\endcsname\relax
@@ -175,8 +182,12 @@
 
 \def\problem#1#2#3{\ignorespaces
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt #2\ \it #3} \vskip \baselineskip
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\ #2\ \it #3} \vskip \baselineskip
 }
+
+%\setbox0\hbox{\ }
+%\newdimen\spaceWd
+%\spaceWd = \wd0
 
 \newdimen\vPos
 \def\problemNP{\dosingleempty\problemnp}
@@ -189,7 +200,7 @@
 	\initialIndentation{7}\ignorespaces
 \fi\ignorespaces
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt #3\ \it #4}\par\ignorespaces
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\ #3\ \it #4}\par\ignorespaces
 \advance\vPos by -\pagetotal
 \advance\vPos by 4\baselineskip
 \ifnum\vPos>0
@@ -276,7 +287,8 @@
 \define[2]\subpropositionTitle{\vbox{\ \hfill #2 \hfill\ }}
 \setuphead[subproposition][alternative=text,command=\subpropositionTitle,distance=0pt,before={\blank[\baselineskip]},after={}]
 
-\definehighlight[emph][style=italic]
+%\definehighlight[emph][style=italic]
+\def\emph#1{{\em #1}}
 
 \setuplines[align=middle]
 
