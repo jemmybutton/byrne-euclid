@@ -276,16 +276,16 @@
   \startbook[ownnumber={\directconvertedcounter{book}\empty},incrementnumber=no,#1][#2]}
 
 \definehead[supersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
-\define[2]\supersectionTitle{\vbox{\ \hfill \tfb #2 \hfill\ }}
-\setuphead[supersection][alternative=text,command=\supersectionTitle,before={\blank[2\baselineskip]},after={}]
+\define[2]\supersectionTitle{\midaligned{\tfb #2}}
+\setuphead[supersection][command=\supersectionTitle,before={\blank[line]},after={\blank[line]}]
 
 \definehead[silentSupersection][coupling=chapter,default=chapter,incrementnumber=no,placehead=yes,page=no]
 \define[2]\noTitle{}
-\setuphead[silentSupersection][alternative=text,command=\noTitle,distance=0pt,before={},after={},inbetween={}]
+\setuphead[silentSupersection][alternative=text,command=\noTitle,before={},after={},inbetween={}]
 
 \definehead[subproposition][subsection]
-\define[2]\subpropositionTitle{\vbox{\ \hfill #2 \hfill\ }}
-\setuphead[subproposition][alternative=text,command=\subpropositionTitle,distance=0pt,before={\blank[\baselineskip]},after={}]
+\define[2]\subpropositionTitle{\midaligned{#2}}
+\setuphead[subproposition][command=\subpropositionTitle,before={\blank[line]},after={\blank[line]}]
 
 %\definehighlight[emph][style=italic]
 \def\emph#1{{\em #1}}
@@ -340,15 +340,15 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 
 \definehead[silentsection][section]
 \define[2]\noTitle{}
-\setuphead[silentsection][alternative=text,command=\noTitle,distance=0pt,before={},after={},inbetween={}]
+\setuphead[silentsection][alternative=text,command=\noTitle,before={},after={},inbetween={}]
 
 \definehead[sectiononlyname][section]
-\define[2]\definitionTitle{\vbox{\ \hfill #2 \hfill\ }}
-\setuphead[sectiononlyname][alternative=text,command=\definitionTitle,distance=0pt,before={\blank[0.5\baselineskip]},after={}]
+\define[2]\definitionTitle{\midaligned{#2}}
+\setuphead[sectiononlyname][command=\definitionTitle,number=no,before={\blank[halfline]},after={\blank[halfline]}]
 
 \definehead[sectiononlynumber][section]
-\define[2]\definitionNumber{\vbox{\ \hfill #1 \hfill\ }}
-\setuphead[sectiononlynumber][alternative=text,command=\definitionNumber,distance=0pt,before={\blank[0.5\baselineskip]},after={}]
+\define[2]\definitionNumber{\midaligned{#1}}
+\setuphead[sectiononlynumber][command=\definitionNumber,before={\blank[quarterline]},after={\blank[quarterline]}]
 
 \definecounter[proposition][way=bypart]
 \define\startProposition{\dodoubleempty\startproposition}

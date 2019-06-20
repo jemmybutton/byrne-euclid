@@ -3115,7 +3115,7 @@ vardef byConstructCompoundAngle (suffix pointA, pointB, pointC) =
         fi;
     endfor;
     if (not isFirst) or (not isLast):
-        errmessage("Can't construct angle: " & angleName);
+        errmessage("Can't construct angle: " & str pointA & str pointB & str pointC);
     fi;
     rv := angleList;
     rv
