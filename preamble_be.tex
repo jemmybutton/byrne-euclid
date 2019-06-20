@@ -73,8 +73,11 @@
 
 \newcount\linesofar
 
+\toks0=\expandafter{\the\everypar}
+
 \def\initialIndentation{\dosingleempty\initialindentation}
 \def\initialindentation[#1]#2{
+	\global\toks0=\expandafter{\the\everypar}
 	\iffirstargument
 		\def\ltLines{#1}
 	\else\ignorespaces
@@ -85,7 +88,6 @@
 	\ \vskip 0pt
  %https://books.google.com/books?id=iDb2BwAAQBAJ&pg=PA107&lpg=PA107&dq=tex+parshape+paragraphs&source=bl&ots=GmFvQnIUr7&sig=oJ-mtVEwOttepWpGi2BABemAMWw&hl=en&sa=X&ved=0ahUKEwjxrbPk-uXKAhVClB4KHSxUBqwQ6AEIQTAF#v=onepage&q=tex%20parshape%20paragraphs&f=false
 	\linesofar=0
-	\global\toks0=\expandafter{\the\everypar}
 	\global\numOfIndLines=#2
 	\def\par{{\endgraf\global\linesofar=\prevgraf}}
 	\everypar={\ifnum\linesofar<\numOfIndLines\prevgraf=\linesofar\else\resetII\fi} %
@@ -136,10 +138,12 @@
 \openout \lettrineslist = lettrines/lettrineslist.txt\relax
 
 \def\writeLettrineSizes{
-\newwrite \lettrinessizes
-\openout \lettrinessizes = lettrines/lettrinessizes.txt\relax
-\write \lettrinessizes{lettrineSize := \the\LettrineSize; plateWidth := \the\PlateWidth; plateHeight := \the\PlateHeight;}
-\closeout \lettrineslist}
+	\newwrite \lettrinessizes
+	\openout \lettrinessizes = lettrines/lettrinessizes.txt\relax
+	\write \lettrinessizes{lettrineSize := \the\LettrineSize; plateWidth := \the\PlateWidth; plateHeight := \the\PlateHeight;}
+	\closeout \lettrinessizes
+}
+
 \writeLettrineSizes % this one can be used is you choose to change lettrine or vignette sizes elsewhere
 
 \def\putLettrine#1{\ignorespaces
@@ -344,7 +348,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 
 \definehead[sectiononlyname][section]
 \define[2]\definitionTitle{\midaligned{#2}}
-\setuphead[sectiononlyname][command=\definitionTitle,number=no,before={\blank[halfline]},after={\blank[halfline]}]
+\setuphead[sectiononlyname][command=\definitionTitle,before={\blank[halfline]},after={\blank[halfline]}]
 
 \definehead[sectiononlynumber][section]
 \define[2]\definitionNumber{\midaligned{#1}}
