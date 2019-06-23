@@ -439,7 +439,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 
 \noindent~\hfill {\tfb \WORD{Начала Eвклида}} \hfill~ % Положение этого заголовка в оригинальной структуре неочевидно
 
-\vskip \baselineskip
+\vskip 0.5\baselineskip
 
 \noindent~\hfill {\tfa \WORD{Книга I}} \hfill~
 
@@ -613,10 +613,10 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 	B := dir(180) scaled r;
 		draw byLine(A, B)(byyellow, 0, 0);
 		draw byCircleR(O, r, byred, 0, 0, 0);
-}
+} \drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:I.XVII]
 \startalignment[last]
-\drawCurrentPictureInMargin[inside] \emph{Диаметр} круга есть прямая линия, проходящая через центр и~ограниченная с~обеих сторон окружностью.
+\emph{Диаметр} круга есть прямая линия, проходящая через центр и~ограниченная с~обеих сторон окружностью.
 \stopalignment
 \stopDefinitionOnlyNumber
 
@@ -630,14 +630,12 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 		draw byLine(A, B)(byblue, 0, 0);
 		draw byArc(O, A, B)(r, byyellow, 0, 0, 0, 0);
 		draw byArc(O, B, A)(r, byyellow, 1, 0, 0, 0);
-}
+} \drawCurrentPictureInMargin[inside]
 \startDefinitionOnlyNumber[reference=def:I.XVIII]
 \startalignment[last]
-\drawCurrentPictureInMargin[inside] \emph{Полукруг} есть фигура, содержащаяся между диаметром и~отсекаемой им частью окружность.
+\emph{Полукруг} есть фигура, содержащаяся между диаметром и~отсекаемой им частью окружность.
 \stopalignment
 \stopDefinitionOnlyNumber
-
-\vfill\pagebreak
 
 \defineNewPicture{
 	pair O, A, B;
@@ -734,6 +732,8 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 \emph{Разносторонним} называется треугольник со всеми неравными сторонами.
 \stopalignment
 \stopDefinitionOnlyNumber
+
+\vfill\pagebreak
 
 \defineNewPicture{
 	pair A, B, C;
@@ -865,7 +865,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 
 \startDefinitionOnlyNumber[reference=def:I.XXXIV]
 \startalignment[last]
-Все прочие четырехугольники называются \emph{неправильными.}
+Прочие четырехугольники называются \emph{неправильными.}
 \stopalignment
 \stopDefinitionOnlyNumber
 
@@ -887,8 +887,6 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 \stopDefinitionOnlyNumber
 \stopsupersection
 
-\vfill\pagebreak
-
 \startsupersection[title={Постулаты}]
 
 \marginNote{Этими тремя положениями описываются разрешенные к~использованию инструменты: \emph{линейка} и~\emph{циркуль}. При этом линейка не имеет делений. А~циркулем нельзя переносить отрезки.}
@@ -908,7 +906,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 \startsupersection[title={Аксиомы}]
 
 \startAxiomOnlyNumber[reference=ax:I.I]
-Равные одному и~тому же величины равны между собой.
+\kerncharacters[-0.005]{Равные одному и~тому же величины равны между собой.}
 \stopAxiomOnlyNumber
 
 \startAxiomOnlyNumber[reference=ax:I.II]
