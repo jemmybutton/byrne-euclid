@@ -1539,7 +1539,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и~$\drawAngle{DCB} = \dr
 pair A, B, C, D;
 A := (0, 0);
 B := A shifted (7/2u, 0);
-D := A shifted (7/4u, 3u);
+D := A shifted (2u, 3u);
 C := 2/3[A, D];
 byAngleDefine(B, A, D, byyellow, 0);
 byAngleDefine(A, B, D, byblack, 0);
@@ -1728,7 +1728,7 @@ $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
 \defineNewPicture{
 pair A, B, C, D;
 A := (0, 3u);
-B := (-7/4u, 0);
+B := (-ypart(A)/sqrt(3), 0); 
 C := B xscaled -1;
 D := 1/2[B, C];
 byAngleDefine(B, A, D, byblue, 0);
@@ -1764,7 +1764,7 @@ $\drawUnitLine{AB} = \drawUnitLine{AC}$, $\drawAngle{BAD} = \drawAngle{CAD}$ (\c
 \defineNewPicture{
 pair A, B, C, D, E, F;
 A := (0, 5/2u);
-B := (-3/2u, 0);
+B := (-ypart(A)/sqrt(3), 0);
 C := B xscaled -1;
 D := 1/2[B, C];
 E := 3/2[D, B];
@@ -1810,7 +1810,7 @@ $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:I.X].
 pair A, B, C, D, E, F;
 path c;
 numeric r, a[];
-A := (0, 3u);
+A := (0, 2u);
 B := (-7/4u, 0);
 C := B xscaled -1;
 D := 1/2[B, C];
@@ -1980,7 +1980,7 @@ $\therefore \drawAngle{BEC} = \drawAngle{AED}$ \inax[ax:I.III].
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G;
 A := (0, 0);
-B := A shifted (3/2u, 7/2u);
+B := A shifted (u, 7/2u);
 C := A shifted (3u, 0);
 D := B shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
@@ -2009,7 +2009,7 @@ draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
 draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[middle]{BE,EC,AC,AB} внешний угол \drawAngleWithSides{FCE} будет больше любого из противолежащих ему внутренних углов \drawAngle{B} или \drawAngle{A}.
+\problemNP[2]{П}{ри}{продолжении стороны треугольника \drawLine[bottom]{BE,EC,AC,AB} внешний угол \drawAngleWithSides{FCE} будет больше любого из противолежащих ему внутренних углов \drawAngle{B} или \drawAngle{A}.
 }
 
 \startCenterAlign
@@ -2072,7 +2072,7 @@ $\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$.
 pair A, B, C, D;
 numeric a;
 A := (0, 0);
-B := A shifted (4u, 2u);
+B := A shifted (5/2u, 2u);
 C := B shifted (-3/2u, 2u);
 D := C shifted (unitvector(A-C) scaled abs(B-C));
 a := angle(B-D);
@@ -2241,9 +2241,9 @@ $\therefore \drawAngle{D} > \drawAngle{C}$.
 numeric r[], d;
 pair A, B, C, D, E, LI, LII, LIII, LIV, LV, LVI;
 path q[];
-r1 := 3/2u;
+r1 := 2u;
 r2 := 4/3u;
-r3 := (2/3)*(r1+r2);
+r3 := (1/2)*(r1+r2);
 d := 1/3u;
 A := (0, 0);
 B := A shifted (r3, 0);
@@ -2371,7 +2371,7 @@ pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (u, -5/2u);
 C := A shifted (-u, -7/2u);
-D := (xpart(C) - 3/2u, ypart(B));
+D := (xpart(C) - u, ypart(B));
 d := (0, -4u);
 E := A shifted d;
 F := B shifted d;
@@ -2472,7 +2472,7 @@ $\therefore \drawAngle{A} > \drawAngle{D}$.
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (3u, 0);
-C := A shifted (2u, 3u);
+C := A shifted (5/2u, 3u);
 d := (0, -4u);
 D := A shifted d;
 E := B shifted d;
@@ -2530,7 +2530,7 @@ pair A, B, C, D, E, F, G, d;
 d := (0, -4u);
 A := (0, 0);
 B := A shifted (3u, 0);
-C := A shifted (1u, 3u);
+C := A shifted (1/2u, 3u);
 D := A shifted d;
 E := B shifted d;
 F := C shifted d;
@@ -2795,8 +2795,8 @@ draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 \defineNewPicture[1/6]{
 pair A, B, C, D, E;
 A := (0, 0);
-B := A shifted (-7/4u, -3u);
-C := A shifted (7/4u, -3u);
+B := A shifted (-1u, -3u);
+C := A shifted (5/2u, -3u);
 D := 4/3[B, A];
 E := A shifted (unitvector(C-B) scaled 3/2u);
 byAngleDefine(D, A, E, byred, 0);
@@ -3044,7 +3044,7 @@ $\therefore \polygonABDC = \polygonEFHG$ \inax[ax:I.I].
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, d[];
 d1 := (3/2u, 0);
-d2 := (3/4u, -5/2u);
+d2 := (1/2u, -5/2u);
 d3 := (-7/4u, -5/2u);
 A := (0, 0);
 B := A shifted d1;
@@ -3100,15 +3100,15 @@ pair A, B, C, D, E, F, G, H, J, I, d[];
 numeric h;
 h := 5/2u;
 d1 := (3/2u, 0);
-d2 := (2/3u, -h);
-d3 := (-8/3u, -h);
-d4 := (-1/2u, -h);
+d2 := (3/4u, -h);
+d3 := (7/3u, h);
+d4 := (-1/4u, -h);
 A := (0, 0);
 B := A shifted d1;
 C := A shifted d2;
 D := C shifted d1;
-E := C shifted -d3;
-F := D shifted -d3;
+E := C shifted d3;
+F := D shifted d3;
 G := E shifted d4;
 H := F shifted d4;
 I := (xpart(A), ypart(C));
@@ -3150,7 +3150,7 @@ $\therefore \polygonBCD = \polygonEGH$ \inax[ax:I.VII].
 pair A, B, C, D, E, F, G;
 A := (0, 0);
 B := A shifted (5/2u, 0);
-C := A shifted (u, -5/2u);
+C := A shifted (3/4u, -5/2u);
 D := C shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
 F := 11/8[C, B];
@@ -3200,11 +3200,11 @@ $\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$.
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, d;
 A := (0, 0);
-B := A shifted (5/2u, 0);
-C := A shifted (-u, -9/4u);
+B := A shifted (3/2u, 0);
+C := A shifted (-3/2u, -9/4u);
 d := (7/4u, 0);
 D := C shifted d;
-E := B shifted (-1/2u, -9/4u);
+E := B shifted (-2/3u, -9/4u);
 F := E shifted d;
 G := 5/4[E, B];
 H := 2[B, G];
@@ -3727,7 +3727,7 @@ pair A, B, C, D;
 numeric d;
 d := 7/4u;
 A := (0, 0);
-B := A shifted (0, 3u);
+B := A shifted (0, 4u);
 C := A shifted (d, 0);
 D := A shifted (-d, 0);
 byAngleDefine(B, A, C, byred, 0);
@@ -3807,7 +3807,7 @@ draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, d[];
 d1 := (3u, 0);
-d2 := (1/2u, 3u);
+d2 := (1/2u, 5/2u);
 A := (0, 0);
 B := A shifted d1;
 C := A shifted d2;
@@ -4789,7 +4789,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	fill (fullcircle scaled 2r3) shifted C withcolor byblue;
 	draw byCircleR(C, r3, byblue, 0, 0, -1/2);
 }\drawCurrentPictureInMargin
-Про круги говорят, что они касаются друг друга, если они встречаясь, не пересекают друг друга.
+Про круги говорят, что они касаются друг друга, если они, встречаясь, не пересекают друг друга.
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.IV]
@@ -4811,7 +4811,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	draw byNamedLineSeq(0)(OE,OF);
 	draw byCircleR(O, r, byblack, 0, 0, 0);
 }\drawCurrentPictureInMargin
-Про прямые говорят, что они равноотстоят от центра круга, если перпендикуляры проведенные к~ним из центра круга равны.
+Про прямые говорят, что они равноотстоят от центра круга, если перпендикуляры, проведенные к~ним из центра круга, равны.
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.V]
@@ -4951,7 +4951,7 @@ $\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB
 	draw byCircleR(O, r2, byblack, 0, 0, 0);
 	draw byFilledCircleSegment(O, r1, 0, 8, byblue);
 }\drawCurrentPictureInMargin
-Круги, имеющие один центр называют концентрическими.
+Круги, имеющие один центр, называют концентрическими.
 \stopDefinitionOnlyNumber
 \stopsupersection
 
@@ -5004,13 +5004,13 @@ draw byLabelsOnCircle(A, B, C, E)(F);
 
 Поскольку в~\drawLine{AG,DG,AD} и~\drawLine{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ (\hypstr и~\indefL[def:I.XV]),\\
 $\drawUnitLine{AD} = \drawUnitLine{DB}$ (\conststr) и~\drawUnitLine{DG} общая обоим,\\
-$\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII], и, сдедовательно, являются прямыми углами.
+$\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \inprop[prop:I.VIII] и, следовательно, являются прямыми углами.
 
-Но $\drawAngle{FDG,GDB} = \drawRightAngle$ (\conststr), $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:I.XI]\\
+Но $\drawAngle{FDG,GDB} = \drawRightAngle$ (\conststr), $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \inax[ax:I.XI],\\
 что невозможно.
 \stopCenterAlign
 
-\noindent Значит, выбранная точка не центр круга, и~так же можно показать, что никакая другая точка, не на \drawUnitLine{EC} не является центром, значит, центр находится на \drawUnitLine{EC}, и, следовательно, точка, где \drawUnitLine{EC} рассекается пополам и~есть центр.
+\noindent Значит, выбранная точка не центр круга, и~так же можно показать, что никакая другая точка не на \drawUnitLine{EC} не является центром, значит, центр находится на \drawUnitLine{EC} и, следовательно, точка, где \drawUnitLine{EC} рассекается пополам, и~есть центр.
 
 \qed
 \stopProposition
@@ -5101,16 +5101,16 @@ draw byLabelsOnPolygon(A, E, C)(2, 0);
 Проведем \drawUnitLine{AE} и~\drawUnitLine{EB} к~центру круга.
 
 В \drawLine[bottom][triangleAEF]{AE,EF,AF} и~\drawLine[bottom][triangleFEB]{EF,EB,FB}\\
-$\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая,\\
+$\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая\\
 и $\drawUnitLine{AF} = \drawUnitLine{FB}$.
 
 $\therefore \drawAngle{AFE} = \drawAngle{EFB}$ \inprop[prop:I.VIII]\\
 и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \indef[def:I.X].
 
-Теперь, пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$.
+Теперь пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$.
 
 Тогда в~ \triangleAEF\ и~\triangleFEB\\
-$\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V]\\
+$\drawAngle{A} = \drawAngle{B}$ \inprop[prop:I.V],\\
 $\drawAngle{AFE} = \drawAngle{EFB}$ (\hypstr)\\
 и $\drawUnitLine{AE} = \drawUnitLine{EB}$.
 
@@ -5147,7 +5147,7 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{в круге две прямые, не проходящие через центр, пересекаются, они не делят друг друга пополам.}
 
-Если одна из прямых проходит через центр, очевидно, она ее не может рассекать пополам другая прямая, не проходящая через центр.
+Если одна из прямых проходит через центр, очевидно, ее не может рассекать пополам другая прямая, не проходящая через центр.
 
 Но если ни одна из прямых \drawUnitLine{AC} или \drawUnitLine{BD} не проходит через центр, проведем \drawUnitLine{EF} из центра к~точке их пересечения.
 
@@ -5170,7 +5170,7 @@ $\therefore$ \drawUnitLine{AC} и~\drawUnitLine{BD} не~делят друг д�
 \stopProposition
 
 \startProposition[title={Предл. V. Теорема},reference=prop:III.V]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair M, N, E, F, G, C;
 numeric r[], s;
 path c[];
@@ -5199,9 +5199,9 @@ draw byLabelsOnPolygon(C, E, F)(2, 0);
 draw byLabelsOnPolygon(C, F, E)(2, -1);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{два круга секут друг друга \drawArc{Ma,Na,Nb,Mb} их центры не совпадают.}
+\problemNP{Е}{сли}{два круга секут друг друга \drawArc{Ma,Na,Nb,Mb}, их центры не совпадают.}
 
-Допустим это возможно, и~два пересекающихся круга имеют общий центр. Из предполагаемого центра проведем \drawUnitLine{CE} к~точке пересечения и~\drawUnitLine{EF,FG} пересекающую окружности.
+Допустим, это возможно, и~два пересекающихся круга имеют общий центр. Из предполагаемого центра проведем \drawUnitLine{CE} к~точке пересечения и~\drawUnitLine{EF,FG}, пересекающую окружности.
 
 \startCenterAlign
 Тогда $\drawUnitLine{CE} = \drawUnitLine{EF}$ \indef[def:I.XV]\\
@@ -5210,7 +5210,7 @@ draw byLabelsOnPolygon(C, F, E)(2, -1);
 $\therefore \drawUnitLine{EF} = \drawUnitLine{EF,FG}$\\
 часть равна целому, что невозможно.
 
-$\therefore$ круги, пересекающиеся в~любой точке не могут иметь общего центра.
+$\therefore$ круги, пересекающиеся в~любой точке, не могут иметь общего центра.
 \stopCenterAlign
 
 \qed
@@ -5254,7 +5254,7 @@ byPointLabelRemove(M, N);
 
 $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$.
 \stopCenterAlign
-\noindent Часть равна целому, что невозможно. Следовательно, выбранная точка не является центром обоих кругов и~таким же образом можно показать, что так же и~никакая другая.
+\noindent Часть равна целому, что невозможно. Следовательно, выбранная точка не является центром обоих кругов и~так же можно показать, что центром не является и~никакая другая точка.
 
 \qed
 \stopProposition
@@ -5288,14 +5288,14 @@ startTempScale(4/9);
 draw byNamedCircle(E);
 draw byLabelPoint(F, 0, 0);
 stopTempScale;
-}, не являющейся центром к~окружности проведены прямые линии
+}, не являющейся центром, к~окружности проведены прямые линии
 $\left\{\vcenter{
 \nointerlineskip\hbox{\drawUnitLine{FA}, \drawUnitLine{FB}}
 \nointerlineskip\hbox{\drawUnitLine{FC}, \drawUnitLine{FD}}
-}\right.$
-наибольшая из них та \drawUnitLine{FA}, что проходит через центр, а~меньшая — та, что является оставшейся частью диаметра \drawUnitLine{FD}. \\
-Из остальных, та \drawUnitLine{FB}, что ближе к~проходящей через центр больше той \drawUnitLine{FC}, что проходит дальше.\\
-Линии \drawUnitLine{FG} и~\drawUnitLine{FB} под равными углами к~линии, проходящей через центр и~по разные стороны от нее равны между собой и~из той же точки нельзя провести третью линию той же длины к~окружности.}
+}\right.$,
+наибольшая из них та \drawUnitLine{FA}, что проходит через центр, а~меньшая~— та, что является оставшейся частью диаметра \drawUnitLine{FD}. \\
+Из остальных та \drawUnitLine{FB}, что ближе к~проходящей через центр, больше той \drawUnitLine{FC}, что проходит дальше.\\
+Линии \drawUnitLine{FG} и~\drawUnitLine{FB} под равными углами к~линии, проходящей через центр, и~по разные стороны от нее равны между собой, и~из той же точки нельзя провести третью линию той же длины к~окружности.}
 
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H;
@@ -5325,11 +5325,11 @@ draw byLabelsOnPolygon(D, F, E, A)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition[title={Часть I}]
-Из центра круга проведем \drawUnitLine{EB} и~\drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX]. Таким же образом можно показать, что \drawUnitLine{EF,AE} больше \drawUnitLine{FC}, или любой другой линии, проведенной из той же точки к~окружности.
+Из центра круга проведем \drawUnitLine{EB} и~\drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:I.XV], $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX]. Таким же образом можно показать, что \drawUnitLine{EF,AE} больше \drawUnitLine{FC} или любой другой линии, проведенной из той же точки к~окружности.
 
-Теперь, согласно \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих. $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:I.III], и~так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к~окружности.
+Теперь согласно \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих. $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:I.III], и~так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к~окружности.
 
-Теперь, в~\drawLine[middle][triangleEFB]{FB,EF,EB} и~\drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, и~$\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] и~так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к~окружности и~проходящей дальше \drawUnitLine{EF,AE}.
+Теперь в~\drawLine[middle][triangleEFB]{FB,EF,EB} и~\drawLine[middle][triangleEFC]{FC,EF,EC} \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$ и~$\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] и~так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к~окружности и~проходящей дальше \drawUnitLine{EF,AE}.
 \stopsubproposition
 
 \defineNewPicture[1/2]{
@@ -5368,16 +5368,16 @@ draw byLabelsOnPolygon(M, E, A)(2, 0);
 
 Если нет, возьмем $\drawUnitLine{FM} = \drawUnitLine{FB}$, проведем \drawUnitLine{EM,MH}.
 
-Тогда в~\drawLine[middle][triangleEFM]{EM,EF,FM} и~\drawLine[middle][triangleEFB]{FB,EF,EB}, \drawUnitLine{EF} общая,\\
+Тогда в~\drawLine[middle][triangleEFM]{EM,EF,FM} и~\drawLine[middle][triangleEFB]{FB,EF,EB} \drawUnitLine{EF} общая,\\
 $\drawAngle{GFE} = \drawAngle{BFE}$ и~$\drawUnitLine{FB} = \drawUnitLine{FM}$.
 
 $\therefore \drawUnitLine{EB} = \drawUnitLine{EM}$ \inprop[prop:I.IV].
 
-$\therefore \drawUnitLine{EB} = \drawUnitLine{EM,MH} = \drawUnitLine{EM}$\\
+$\therefore \drawUnitLine{EB} = \drawUnitLine{EM,MH} = \drawUnitLine{EM}$,\\
 часть равна целому, что невозможно.
 \stopCenterAlign
 
-\noindent $\therefore \drawUnitLine{FB} = \drawUnitLine{FM,MG}$; и~никакая другая линия равная \drawUnitLine{FB}, проведенная из той же точки к~окружности, поскольку, будь она ближе к~проходящей через центр, она была бы больше, а~дальше — меньше.
+\noindent $\therefore \drawUnitLine{FB} = \drawUnitLine{FM,MG}$; и~никакая другая линия, проведенная из той же точки к~окружности, не равна \drawUnitLine{FB}, поскольку, будь она ближе к~проходящей через центр, она была бы больше, а~дальше — меньше.
 \stopsubproposition
 
 \qed
@@ -5411,17 +5411,17 @@ draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(2, 0);
 }
 \drawCurrentPictureInMargin
-Если из точки вне круга провести прямые линии \drawProportionalLine{DM,MA}, \drawProportionalLine{DE} и~\drawProportionalLine{DF} к~окружности, из тех, что падают на вогнутую часть окружности, наибольшей будет та \drawUnitLine{DM,MA}, что проходит через центр, а~та, что ближе к~ней \drawUnitLine{DE} будет длиннее той, что дальше \drawUnitLine{DF}.
+Если из точки вне круга провести прямые линии \drawProportionalLine{DM,MA}, \drawProportionalLine{DE} и~\drawProportionalLine{DF} к~окружности, из тех, что падают на вогнутую часть окружности, наибольшей будет та \drawUnitLine{DM,MA}, что проходит через центр, а~та, что ближе к~ней \drawUnitLine{DE}, будет длиннее той, что дальше \drawUnitLine{DF}.
 
 \startCenterAlign
 Проведем \drawUnitLine{MF} и~\drawUnitLine{ME} к~центру.
 
-Тогда \drawUnitLine{DM,MA} проходящая через центр будет наибольшей,\\
+Тогда \drawUnitLine{DM,MA}, проходящая через центр, будет наибольшей,\\
 поскольку, раз $\drawUnitLine{MA} = \drawUnitLine{ME}$, если к~обеим добавить \drawUnitLine{DM}, $\drawUnitLine{DM,MA} = \drawUnitLine{DM} + \drawUnitLine{ME}$,
 но $> \drawUnitLine{DE}$ \inprop[prop:I.XX],\\
 $\therefore$ \drawUnitLine{DM,MA} больше любой другой линии, проведенной из той же точки к~вогнутой части окружности.
 
-Теперь в~\drawLine{DM,MF,DF} и~\drawLine{DM,ME,DE}, $\drawUnitLine{MF} = \drawUnitLine{ME}$, и~\drawUnitLine{DM} общая,\\
+Теперь в~\drawLine{DM,MF,DF} и~\drawLine{DM,ME,DE} $\drawUnitLine{MF} = \drawUnitLine{ME}$ и~\drawUnitLine{DM} общая,\\
 но $\drawAngle{DMF,FME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \inprop[prop:I.XXIV].
 
 Так же можно показать, что $\drawUnitLine{DE} >$ любой другой линии, более далекой от \drawUnitLine{DM,MA}.
@@ -5455,7 +5455,7 @@ draw byLabelsOnPolygon(H, D, G)(2, 0);
 draw byLabelsOnPolygon(G, M, H)(2, 0);
 }
 \drawCurrentPictureInMargin
-Из линий, падающий на выпуклую часть окружности наименьшей \drawUnitLine{DG} является та, которая при продолжении проходит через центр, а~линия, ближняя к~наименьшей будет меньше дальней.
+Из линий, падающих на выпуклую часть окружности, наименьшей \drawUnitLine{DG} является та, которая при продолжении проходит через центр, а~линия, ближняя к~наименьшей, будет меньше дальней.
 
 \startCenterAlign
 Действительно, поскольку $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DG,GM}$ \inprop[prop:I.XX]\\
@@ -5500,7 +5500,7 @@ draw byLabelsOnPolygon(M, B, G)(2, -2);
 draw byLabelsOnPolygon(M, N, B)(2, -2);
 }
 \drawCurrentPictureInMargin
-Кроме того, линии, образующие равные углы с~проходящей через центр равны между собой, падают ли они на вогнутую или выпуклую часть окружности, и~нельзя провести третьей линии из той же точки той же длины к~окружности.
+Кроме того, линии, образующие равные углы с~проходящей через центр, равны между собой, падают ли они на вогнутую или выпуклую часть окружности, и~нельзя провести третьей линии из той же точки той же длины к~окружности.
 
 \startCenterAlign
 Действительно, пусть $\drawUnitLine{DO,ON} > \drawUnitLine{DH}$.
@@ -5517,11 +5517,11 @@ $\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \inprop[prop:I.IV].
 
 $\therefore \drawUnitLine{BM} = \drawUnitLine{BM,BO}$, что невозможно.
 
-$\therefore \drawUnitLine{DH} \neq \drawUnitLine{DO}$, ни какой либо часть \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \ngtr \drawUnitLine{DH}$.
+$\therefore \drawUnitLine{DH} \neq \drawUnitLine{DO}$ или какой либо части \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \ngtr \drawUnitLine{DH}$.
 
 Так же и~$\drawUnitLine{DH} \ngtr \drawUnitLine{DO,ON}$, они $\therefore  =$ друг другу.
 \stopCenterAlign
-Так же и~любая другая линия, проведенная из той же точки к~окружности, должна будет лежать по одну сторону с~одной из этих линий и~быть ближе или дальше, чем они от линии, проходящей через центр и~не может, следовательно, быть равной им.
+Так же и~любая другая линия, проведенная из той же точки к~окружности, должна будет лежать по одну сторону с~одной из этих линий и~быть ближе или дальше, чем они, от линии, проходящей через центр, и~не может, следовательно, быть равной им.
 
 \qed
 \stopsubproposition
@@ -5550,7 +5550,7 @@ draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{внутри круга \drawCircle[middle]{D} взята точка, из которой к~окружности может быть проведено больше двух равных прямых линии \drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}, эта точка является центром круга.}
+\problemNP{Е}{сли}{внутри круга \drawCircle[middle]{D} взята точка, из которой к~окружности может быть проведено больше двух равных прямых линий \drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}, эта точка является центром круга.}
 
 Действительно, если рассматриваемая точка \drawPointL[middle][DH,DA,DF]{D}, в~которой встречается больше двух равных прямых линий, не центр, то какая-то другая \drawFromCurrentPicture[middle][pointF]{
 startGlobalRotation(-lineAngle.DF);
@@ -5558,7 +5558,7 @@ draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } должна быть центром, проведем между этими двумя точками \drawUnitLine{DF} и~продлим в~обе стороны до окружности.
 
-Теперь, поскольку более чем две равных прямых линии проведено к~окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром прямые линии проведены к~окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а~\drawUnitLine{DC}, которая ближе к~\drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr), что невозможно.
+Теперь, поскольку более чем две равных прямых линии проведено к~окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром, прямые линии проведены к~окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а~\drawUnitLine{DC}, которая ближе к~\drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$, расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr), что невозможно.
 
 То же можно показать для любой другой точки, кроме \drawPointL[middle][DA,DF]{D}, которая, таким образом, должна быть центром круга.
 
@@ -5680,7 +5680,9 @@ draw byLabelsOnCircle(A, H)(M);
 
 В
 \drawFromCurrentPicture{
+startAutoLabeling;
 draw byNamedPolygon(AFG);
+stopAutoLabeling;
 draw byNamedLineFull(A, A, 1, 1, 0)(GF);
 }
 $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \inprop[prop:I.XX],\\
@@ -5688,15 +5690,15 @@ $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \inprop[prop:I.XX
 
 Но $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HD,DG,GF}$.
 
-Вычтем \drawSizedLine{GF} общую обеим,\\
+Вычтем \drawSizedLine{GF}, общую обеим,\\
 получим $\drawSizedLine{AG} > \drawSizedLine{HD,DG}$.
 
 Но $\drawSizedLine{AG} = \drawSizedLine{DG}$, как радиусы \circleN,\\
-и $\therefore \drawSizedLine{DG} > \drawSizedLine{HD,DG}$ часть больше целого, что невозможно.
+и $\therefore \drawSizedLine{DG} > \drawSizedLine{HD,DG}$, часть больше целого, что невозможно.
 
 \stopCenterAlign
 
-Центры, следовательно, расположены так, что линия, соединяющая их не может проходить через какую-либо точку, кроме точки касания.
+Центры, следовательно, расположены так, что линия, соединяющая их, не может проходить через какую-либо точку, кроме точки касания.
 
 \qed
 \stopProposition
@@ -5734,7 +5736,7 @@ draw byLabelsOnPolygon(G, D, D)(2, 0);
 draw byLabelPoint(A, angle(F-A)-45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP[4]{Е}{сли}{два круга \drawCircle{M} и~\drawCircle{N} касаются друг друг извне, прямая \drawUnitLine{FC,CD,DG} соединяющая их центры проходит через точку касания.}
+\problemNP[4]{Е}{сли}{два круга \drawCircle{M} и~\drawCircle{N} касаются друг друг извне, прямая \drawUnitLine{FC,CD,DG}, соединяющая их центры, проходит через точку касания.}
 
 Действительно, если такое возможно, соединим центры с~помощью \drawUnitLine{FC,CD,DG}, не проходящей через точку касания, из точки касания проведем \drawUnitLine{AF} и~\drawUnitLine{AG} к~центрам.
 
@@ -5745,7 +5747,7 @@ $\drawUnitLine{FC} = \drawUnitLine{AF}$ \indef[def:I.XV]\\
 $\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, часть больше целого, что невозможно.
 \stopCenterAlign
 
-Центры, следовательно, расположены так, что линия, соединяющая их не может проходить через какую-либо точку, кроме точки касания.
+Центры, следовательно, расположены так, что линия, соединяющая их, не может проходить через какую-либо точку, кроме точки касания.
 
 \qed
 \stopProposition
@@ -5787,7 +5789,7 @@ draw byLabelsOnPolygon(B, G, H, D)(2, 0);
 
 \startsubproposition[title={Случай I.}]
 \drawCurrentPictureInMargin
-Действительно, если это возможно, пусть \drawCircle{M} и~\drawCircle{N} касаются друг друга внутри в~двух точках, проведем \drawUnitLine{GH} соединяющую их центры, и~продлим до одной из точек касания \inprop[prop:III.XI].
+Действительно, если это возможно, пусть \drawCircle{M} и~\drawCircle{N} касаются друг друга внутри в~двух точках, проведем \drawUnitLine{GH}, соединяющую их центры, и~продлим до одной из точек касания \inprop[prop:III.XI].
 
 \startCenterAlign
 Проведем \drawUnitLine{DH} и~\drawUnitLine{DG}.
@@ -5863,7 +5865,7 @@ draw byLabelsOnPolygon(H, G, C)(0, 0);
 draw byLabelPoint(A, angle(G-A)+45, 3);
 }
 \startsubproposition[title={Случай III.}]\drawCurrentPictureInMargin
-Теперь, если такое возможно, пусть круги \drawCircle{H} и~\drawCircle{G} касаются друг друга снаружи в~двух точках. Проведем \drawUnitLine{HA,AG}, соединяющую центры, и~проходящую через одну из точек касания, проведем также \drawUnitLine{CH} и~\drawUnitLine{CG}.
+Теперь, если такое возможно, пусть круги \drawCircle{H} и~\drawCircle{G} касаются друг друга снаружи в~двух точках. Проведем \drawUnitLine{HA,AG}, соединяющую центры и~проходящую через одну из точек касания, проведем также \drawUnitLine{CH} и~\drawUnitLine{CG}.
 
 \startCenterAlign
 $\drawUnitLine{CH} = \drawUnitLine{HA}$ \indef[def:I.XV]\\
@@ -5913,7 +5915,7 @@ draw byLabelLineEnd(F, E, 0);
 \drawCurrentPictureInMargin
 \problemNP{Р}{авные}{прямые
 $\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AF,FB}}\nointerlineskip\hbox{\drawProportionalLine{CG,GD}}}\right)$
-в круге равноотстоят от центра и~равноотстоящие от центра прямые равны.}
+в круге равноотстоят от центра, и~равноотстоящие от центра прямые равны.}
 
 \startCenterAlign
 Из центра \drawCircle[middle][1/4]{E}\\
@@ -5998,7 +6000,7 @@ $\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DE,EA}$,\\
 $\therefore \drawUnitLine{DE,EA} > \drawUnitLine{MN}$.
 \stopCenterAlign
 
-Теперь покажем, что та прямая что ближе больше той, что дальше.
+Теперь покажем, что та прямая, что ближе, больше той, что дальше.
 
 Пусть это будут \drawUnitLine{MN} и~\drawUnitLine{FG}, расположенные по одну сторону от центра и~не пересекающиеся.
 
@@ -6022,7 +6024,7 @@ stopAutoLabeling;
 $\drawUnitLine{EN} \mbox{ и~} \drawUnitLine{EM} = \drawUnitLine{EG} \mbox{ и~} \drawUnitLine{EF}$,\\
 но $\drawAngle{NEG,GEF,FEM} > \drawAngle{GEF}$.
 
-$\therefore \drawUnitLine{MN} > \drawUnitLine{EF}$ \inprop[prop:I.XXIV]
+$\therefore \drawUnitLine{MN} > \drawUnitLine{EF}$ \inprop[prop:I.XXIV].
 \stopCenterAlign
 \stopsubproposition
 
@@ -6061,16 +6063,16 @@ draw byLabelPoint(L, angle(E-H)-45, 2);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
-Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{GF} расположенные по разные стороны от центра или пересекающиеся. 
+Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{GF}, расположенные по разные стороны от центра или пересекающиеся. 
 
 Проведем из центра\\
 \drawUnitLine{EL,LK} и~$\drawUnitLine{EH} \perp \drawUnitLine{GF} \mbox{ и~} \drawUnitLine{BC}$.
 
-Сделаем $\drawUnitLine{EH} = \drawUnitLine{EL}$,\\
+Сделаем $\drawUnitLine{EH} = \drawUnitLine{EL}$\\
 и проведем $\drawUnitLine{NM} \perp \drawUnitLine{EL,LK}$.
 
 Поскольку \drawUnitLine{BC} и~\drawUnitLine{NM} равноудалены от~центра, $\drawUnitLine{BC} = \drawUnitLine{NM}$ \inprop[prop:III.XIV],\\
-но $\drawUnitLine{NM} > \drawUnitLine{GF}$ (Случай I).
+но $\drawUnitLine{NM} > \drawUnitLine{GF}$ (случай I).
 
 $\therefore \drawUnitLine{BC} > \drawUnitLine{GF}$.
 \stopCenterAlign
@@ -6116,7 +6118,7 @@ draw byLabelsOnPolygon(C, D, B)(2, 0);
 draw byLabelPoint(H, angle(G-H)+45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{рямая}{\drawUnitLine{EK}, проведенная под прямым углом к~диаметру круга \drawUnitLine{BD,DA} проходит вне круга.\\
+\problemNP{П}{рямая}{\drawUnitLine{EK}, проведенная под прямым углом к~диаметру круга \drawUnitLine{BD,DA}, проходит вне круга.\\
 И если любая прямая линия \drawUnitLine{AG} проведена из точки по ту же сторону от перпендикуляра к~точке касания, она сечет круг.}
 
 \startsubproposition[title={Часть I.}]
@@ -6128,7 +6130,7 @@ $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
 и $\therefore$ оба угла острые \inprop[prop:I.XVII],\\
 но $\drawAngle{CAD} = \drawRightAngle$ (\hypstr), что невозможно.
 
-Следовательно \drawUnitLine{AC} проведенная $\perp \drawUnitLine{DA}$ не пересекает окружность в~другом месте.
+Следовательно, \drawUnitLine{AC}, проведенная $\perp \drawUnitLine{DA}$, не пересекает окружность в~другом месте.
 \stopCenterAlign
 \stopsubproposition
 
@@ -6138,9 +6140,9 @@ $\drawAngle{CAD} = \drawAngle{C}$ \inprop[prop:I.V],\\
 \startCenterAlign
 $\drawAngle{DAG,GAE} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ острый угол.
 
-Допустим $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, проведенной из центра круга, должна падать на сторону острого угла \drawAngle{DAG}.
+Допустим, $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, проведенной из центра круга, должна падать на сторону острого угла \drawAngle{DAG}.
 
-$\therefore$ \drawAngle{G}, который должен быть прямым $> \drawAngle{DAG}$.
+$\therefore$ \drawAngle{G}, который должен быть прямым, $> \drawAngle{DAG}$.
 
 $\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$.
 

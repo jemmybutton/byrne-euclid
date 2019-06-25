@@ -1447,7 +1447,7 @@ but $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \
 pair A, B, C, D;
 A := (0, 0);
 B := A shifted (7/2u, 0);
-D := A shifted (7/4u, 3u);
+D := A shifted (2u, 3u);
 C := 2/3[A, D];
 byAngleDefine(B, A, D, byyellow, 0);
 byAngleDefine(A, B, D, byblack, 0);
@@ -1642,7 +1642,7 @@ $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
 \defineNewPicture{
 pair A, B, C, D;
 A := (0, 3u);
-B := (-7/4u, 0);
+B := (-ypart(A)/sqrt(3), 0);
 C := B xscaled -1;
 D := 1/2[B, C];
 byAngleDefine(B, A, D, byblue, 0);
@@ -1678,7 +1678,7 @@ Therefore the given line is bisected.
 \defineNewPicture{
 pair A, B, C, D, E, F;
 A := (0, 5/2u);
-B := (-3/2u, 0);
+B := (-ypart(A)/sqrt(3), 0);
 C := B xscaled -1;
 D := 1/2[B, C];
 E := 3/2[D, B];
@@ -1723,7 +1723,7 @@ $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:I.X].
 pair A, B, C, D, E, F;
 path c;
 numeric r, a[];
-A := (0, 3u);
+A := (0, 2u);
 B := (-7/4u, 0);
 C := B xscaled -1;
 D := 1/2[B, C];
@@ -1890,7 +1890,7 @@ $\drawAngle{CEA} = \drawAngle{DEB}$.
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G;
 A := (0, 0);
-B := A shifted (3/2u, 7/2u);
+B := A shifted (u, 7/2u);
 C := A shifted (3u, 0);
 D := B shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
@@ -1984,7 +1984,7 @@ $\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$,
 pair A, B, C, D;
 numeric a;
 A := (0, 0);
-B := A shifted (4u, 2u);
+B := A shifted (5/2u, 2u);
 C := B shifted (-3/2u, 2u);
 D := C shifted (unitvector(A-C) scaled abs(B-C));
 a := angle(B-D);
@@ -2151,9 +2151,9 @@ $\therefore \drawAngle{D} > \drawAngle{C}$.
 numeric r[], d;
 pair A, B, C, D, E, LI, LII, LIII, LIV, LV, LVI;
 path q[];
-r1 := 3/2u;
+r1 := 2u;
 r2 := 4/3u;
-r3 := (2/3)*(r1+r2);
+r3 := (1/2)*(r1+r2);
 d := 1/3u;
 A := (0, 0);
 B := A shifted (r3, 0);
@@ -2289,7 +2289,7 @@ pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (u, -5/2u);
 C := A shifted (-u, -7/2u);
-D := (xpart(C) - 3/2u, ypart(B));
+D := (xpart(C) - u, ypart(B));
 d := (0, -4u);
 E := A shifted d;
 F := B shifted d;
@@ -2406,7 +2406,7 @@ $\therefore \drawAngle{A} > \drawAngle{D}$.
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (3u, 0);
-C := A shifted (2u, 3u);
+C := A shifted (5/2u, 3u);
 d := (0, -4u);
 D := A shifted d;
 E := B shifted d;
@@ -2465,7 +2465,7 @@ pair A, B, C, D, E, F, G, d;
 d := (0, -4u);
 A := (0, 0);
 B := A shifted (3u, 0);
-C := A shifted (1u, 3u);
+C := A shifted (1/2u, 3u);
 D := A shifted d;
 E := B shifted d;
 F := C shifted d;
@@ -2718,8 +2718,8 @@ then $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF,FD}$ \inprop[prop:I.XXVII]
 \defineNewPicture[1/6]{
 pair A, B, C, D, E;
 A := (0, 0);
-B := A shifted (-7/4u, -3u);
-C := A shifted (7/4u, -3u);
+B := A shifted (-1u, -3u);
+C := A shifted (5/2u, -3u);
 D := 4/3[B, A];
 E := A shifted (unitvector(C-B) scaled 3/2u);
 byAngleDefine(D, A, E, byred, 0);
@@ -2971,7 +2971,7 @@ $\therefore \polygonABDC = \polygonEFHG$ \inax[ax:I.I].
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, d[];
 d1 := (3/2u, 0);
-d2 := (3/4u, -3u);
+d2 := (1/2u, -3u);
 d3 := (-7/4u, -3u);
 A := (0, 0);
 B := A shifted d1;
@@ -3028,15 +3028,15 @@ pair A, B, C, D, E, F, G, H, J, I, d[];
 numeric h;
 h := 3u;
 d1 := (3/2u, 0);
-d2 := (2/3u, -h);
-d3 := (-8/3u, -h);
-d4 := (-1/2u, -h);
+d2 := (3/4u, -h);
+d3 := (7/3u, h);
+d4 := (-1/4u, -h);
 A := (0, 0);
 B := A shifted d1;
 C := A shifted d2;
 D := C shifted d1;
-E := C shifted -d3;
-F := D shifted -d3;
+E := C shifted d3;
+F := D shifted d3;
 G := E shifted d4;
 H := F shifted d4;
 I := (xpart(A), ypart(C));
@@ -3077,7 +3077,7 @@ $\therefore \polygonBCD = \polygonEGH$ \inax[ax:I.VII].
 pair A, B, C, D, E, F, G;
 A := (0, 0);
 B := A shifted (5/2u, 0);
-C := A shifted (u, -5/2u);
+C := A shifted (3/4u, -5/2u);
 D := C shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
 F := 11/8[C, B];
@@ -3124,11 +3124,11 @@ $\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$; and in the same man
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, d;
 A := (0, 0);
-B := A shifted (5/2u, 0);
-C := A shifted (-u, -9/4u);
-d := (2u, 0);
+B := A shifted (3/2u, 0);
+C := A shifted (-3/2u, -9/4u);
+d := (7/4u, 0);
 D := C shifted d;
-E := B shifted (-1/2u, -9/4u);
+E := B shifted (-2/3u, -9/4u);
 F := E shifted d;
 G := 5/4[E, B];
 H := 2[B, G];
@@ -3652,7 +3652,7 @@ pair A, B, C, D;
 numeric d;
 d := 7/4u;
 A := (0, 0);
-B := A shifted (0, 3u);
+B := A shifted (0, 4u);
 C := A shifted (d, 0);
 D := A shifted (-d, 0);
 byAngleDefine(B, A, C, byred, 0);
@@ -3733,7 +3733,7 @@ is equal to $\left\{\eqalign{
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, d[];
 d1 := (3u, 0);
-d2 := (1/2u, 3u);
+d2 := (1/2u, 5/2u);
 A := (0, 0);
 B := A shifted d1;
 C := A shifted d2;
@@ -5509,7 +5509,9 @@ For, if it be possible, let \drawSizedLine{GF} join their centres, and produce i
 \startCenterAlign
 Because in
 \drawFromCurrentPicture{
+startAutoLabeling;
 draw byNamedPolygon(AFG);
+stopAutoLabeling;
 draw byNamedLineFull(A, A, 1, 1, 0)(GF);
 };
 $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \inprop[prop:I.XX],\\
