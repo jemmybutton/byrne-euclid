@@ -2289,7 +2289,7 @@ pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (u, -5/2u);
 C := A shifted (-u, -7/2u);
-D := (xpart(C) - u, ypart(B));
+D := ((fullcircle scaled 2abs(C-A)) shifted A) intersectionpoint (B--B shifted (-2abs(C-A), 0));
 d := (0, -4u);
 E := A shifted d;
 F := B shifted d;
