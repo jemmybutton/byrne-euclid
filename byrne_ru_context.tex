@@ -17,6 +17,7 @@
 	footer=0mm]	
 	
 \setupbodyfont[ebgaramond-be,10pt]
+\setupitaliccorrection[global,always]
 
 \input preamble.tex
 \input preamble_be.tex
@@ -4208,7 +4209,7 @@ $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \d
 \stopProposition
 
 \startProposition[title={Предл. VII. Теорема},reference=prop:II.VII]
-\defineNewPicture[1/4]{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E, F, G, H, N;
 numeric w;
 w := 7/2u;
@@ -8918,20 +8919,20 @@ $\therefore$ дуга, стягиваемая $\drawUnitLine{FC}$, $= \dfrac{1}{
 \startsupersection[title={Аксиомы}]
 
 \startAxiomOnlyNumber[reference=ax:V.I]
-Равнократные или равных величин равны между собой.
+Равнократные равных величин равны между собой.
 
 \startalignment[middle]
 $\eqalign{
 \mbox{Если } A &= B \mbox{, то}\cr
 \mbox{дважды } A &= \mbox{дважды } B \mbox{,}\cr
-\mbox{то есть, }2A &= 2B \mbox{;}\cr
+\mbox{то есть }2A &= 2B \mbox{;}\cr
 3A &= 3B \mbox{;}\cr
 4A &= 4B \mbox{;}\cr
-\mbox{и т. д. } & \mbox{и т. д.}\cr
+& \mbox{и т. д.}\cr
 \mbox{и } \frac{1}{2} A &= \frac{1}{2} B \mbox{;}\cr
 \frac{1}{3} A &= \frac{1}{3} B \mbox{;}\cr
 \frac{1}{4} A &= \frac{1}{4} B \mbox{;}\cr
-\mbox{и т. д. } &\mbox{и т. д. } \cr
+&\mbox{и т. д. } \cr
 }$
 \stopalignment
 \stopAxiomOnlyNumber
@@ -8945,7 +8946,7 @@ $\eqalign{
 \mbox{Тогда } 2A &> 2B \mbox{;}\cr
 3A&> 3B \mbox{;} \cr
 4A &> 4B \mbox{;}\cr
-\mbox{и т. д. } &\mbox{и т. д. } \cr
+&\mbox{и т. д. } \cr
 }$
 \stopalignment
 \stopAxiomOnlyNumber
@@ -8982,15 +8983,16 @@ byMagnitudeDefine.D(0, false)(1)(cd);
 byMagnitudeDefine.E(0, false)(5)(ef);
 byMagnitudeDefine.F(0, false)(1)(ef);
 }
-\problemNP{Е}{сли}{будет несколько величин равнократных каждая каждой такому же количеству других величин, то сколько раз одна из первых будет кратна одной из вторых, столько же раз все первые будут кратны всем вторым.}
+\problemNP{Е}{сли}{будет несколько величин, равнократных каждая каждой такому же количеству других величин, то сколько раз одна из первых будет кратна одной из вторых, столько же раз все первые будут кратны всем вторым.}
 
 \startCenterAlign
-Пусть \drawMagnitude{A} будет столько же раз кратна \drawMagnitude{B},
+Пусть \drawMagnitude{A} будет столько же раз кратна \drawMagnitude{B},\\
 сколько и~\drawMagnitude{C} кратна \drawMagnitude{D},\\
 сколько и~\drawMagnitude{E} кратна \drawMagnitude{F}.\\
 
-Тогда очевидно, что
+Тогда очевидно,
 
+что
 $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{A}}
 \nointerlineskip\hbox{\drawMagnitude{C}}
@@ -9001,11 +9003,11 @@ $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{B}}
 \nointerlineskip\hbox{\drawMagnitude{D}}
 \nointerlineskip\hbox{\drawMagnitude{F}}
-}$
+}$,
 
-сколько и~\drawMagnitude{A} кратна \drawMagnitude{B}.
+сколько и~\drawMagnitude{A} кратна \drawMagnitude{B},
 
-Так как в
+так как в
 $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{A}}
 \nointerlineskip\hbox{\drawMagnitude{C}}
@@ -9022,7 +9024,7 @@ $\vcenter{
 
 То же верно для любого числа величин, что было показано для трех.
 
-$\therefore$ Если будет несколько величин… и~т. д.
+$\therefore$ если будет несколько величин… и~т. д.
 \stopProposition
 
 \vfill\pagebreak
@@ -9046,16 +9048,16 @@ byMagnitudeDefine.F(0, false)(4)(f);
 
 И пусть пятая \drawMagnitude{E} будет столько же раз кратна второй \drawMagnitude{B}, сколько шестая \drawMagnitude{F} четвертой \drawMagnitude{D}.
 
-Тогда очевидно что первая и~пятая вместе
+Тогда очевидно, что первая и~пятая вместе
 $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{A}}
 \nointerlineskip\hbox{\drawMagnitude{E}}
-}$,
+}$
 столько же раз кратны второй \drawMagnitude{B}, сколько третья и~шестая вместе
 $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{C}}
 \nointerlineskip\hbox{\drawMagnitude{F}}
-}$,
+}$
 кратны четвертой \drawMagnitude{D}, поскольку в
 $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{A}}
@@ -9067,7 +9069,7 @@ $\vcenter{
 \nointerlineskip\hbox{\drawMagnitude{F}}
 } =\drawMagnitude{D}$.
 
-$\therefore$ Если первая величина… и~т. д.
+$\therefore$ если первая величина… и~т. д.
 \stopProposition
 
 \vfill\pagebreak
@@ -9085,7 +9087,7 @@ byMagnitudeDefine.D(0, false)(1)(df);
 byMagnitudeDefine.E(0, false)(4, 4, 4, 4)(be);
 byMagnitudeDefine.F(0, false)(4, 4, 4, 4)(df);
 }
-\problemNP{Е}{сли}{первая величина имеет такое же отношение ко второй, какое третья имеет к~четвертой, то и~равнократные к~первой и~третьей к~равнократным второй и~четвертой, взятые в~соответствующем порядке будут иметь то же отношение.}
+\problemNP{Е}{сли}{первая величина имеет такое же отношение ко второй, какое третья имеет к~четвертой, то и~равнократные к~первой и~третьей к~равнократным второй и~четвертой, взятые в~соответствующем порядке, будут иметь то же отношение.}
 
 \startCenterAlign
 Пусть у~\drawMagnitude{A} будет то же отношение к~\drawMagnitude{B}, \\
@@ -9105,7 +9107,7 @@ $\because$ \drawMagnitude{E} содержит \drawMagnitude{A} содержит
 
 Те же соображения применимы во всех случаях.
 
-$\therefore$ Если первая величина… и~т. д.
+$\therefore$ если первая величина… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9127,7 +9129,7 @@ byMagnitudeDefine.Cm(1, false)(2, 3, 4, 5, 6)(c);
 byMagnitudeDefine.Dm(1, false)(2, 3, 4, 5, 6)(d);
 }
 
-Четыре величины, \drawMagnitude{A}, \drawMagnitude{B}, \drawMagnitude{C}, \drawMagnitude{D}, называются пропорциональными, если любые равнократные первой и~третьей, а~также любые равнократные второй и~четвертой в~виде
+Четыре величины \drawMagnitude{A}, \drawMagnitude{B}, \drawMagnitude{C}, \drawMagnitude{D}, называются пропорциональными, если любые равнократные первой и~третьей, а~также любые равнократные второй и~четвертой:
 
 \sepSpace
 
@@ -9145,7 +9147,7 @@ byMagnitudeDefine.Dm(1, false)(2, 3, 4, 5, 6)(d);
 
 \sepSpace
 
-Тогда, взяв любую пару равнократных первой и~третьей и~любую пару равнократных второй и~четвертой,
+\noindent любая пара равнократных первой и~третьей и~любая пара равнократных второй и~четвертой будут:
 
 \startCenterAlign
 если
@@ -9154,7 +9156,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][2]{Bm}$}
 \nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][3]{Bm}$}
 \nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][4]{Bm}$}
-\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][5]{Bm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Am} >, = \mbox{или} < \drawMagnitude[middle][5]{Bm} \mbox{,}$}
 }\right.$
 
 $\vcenter{\hbox{то}}\left\{\vcenter{
@@ -9162,11 +9164,11 @@ $\vcenter{\hbox{то}}\left\{\vcenter{
 \nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][2]{Dm}$}
 \nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][3]{Dm}$}
 \nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][4]{Dm}$}
-\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][5]{Dm}$}
+\nointerlineskip\hbox{$\drawMagnitude[middle][1]{Cm} >, = \mbox{или} < \drawMagnitude[middle][5]{Dm} \mbox{.}$}
 }\right.$
 \stopCenterAlign
 
-Другими словами, если дважды первая величина больше, равна или меньше дважды второй, то дважды третья будет больше равна или меньше дважды четвертой. Или, если дважды первая будет больше равна или меньше трижды второй, дважды третья будет больше, равна или меньше трижды четвертой и~так далее, как обозначено выше.
+Другими словами, если дважды первая величина больше, равна или меньше дважды второй, то дважды третья будет больше, равна или меньше дважды четвертой. Или, если дважды первая будет больше, равна или меньше трижды второй, дважды третья будет больше, равна или меньше трижды четвертой и~так далее, как обозначено выше.
 
 \startCenterAlign
 Если
@@ -9187,7 +9189,7 @@ $\vcenter{\hbox{то}}\left\{\vcenter{
 }\right.$
 \stopCenterAlign
 
-Или же если трижды первая больше, равна или меньше дважды второй, то трижды третья больше, равна или меньше дважды четвертой. Или если трижды первая больше, равна или меньше трижды второй трижды второй, то трижды третья будет больше, равна или меньше трижды четвертой. Или если трижды первая  больше, равна или меньше четырежды второй, то трижды третья будет больше, равна или меньше четырежды четвертой и~так далее. Также
+Или же если трижды первая больше, равна или меньше дважды второй, то трижды третья больше, равна или меньше дважды четвертой. Или если трижды первая больше, равна или меньше трижды второй, то трижды третья будет больше, равна или меньше трижды четвертой. Или если трижды первая  больше, равна или меньше четырежды второй, то трижды третья будет больше, равна или меньше четырежды четвертой и~так далее. Также
 
 \startCenterAlign
 если
@@ -9208,11 +9210,11 @@ $\vcenter{\hbox{то}}\left\{\vcenter{
 }\right.$
 \stopCenterAlign
 
-И так далее, для любых равнократных четырех величин взятых таким образом.
+И так далее, для любых равнократных четырех величин, взятых таким образом.
 
 Евклид излагает это определение следующим образом:
 
-Говорят, что величины находятся в~том же отношении: первая ко второй и~третья к~четвертой, если равнократные первой и~третьей одновременно больше, или одновременно равны, или одновременно меньше равнократных второй и~четвертой каждая каждой при какой бы то ни было кратности, если взять их в~соответственном порядке. % прямо из Мордухай-Болтовского
+\emph{Говорят, что величины находятся в~том же отношении: первая ко второй и~третья к~четвертой, если равнократные первой и~третьей одновременно больше, или одновременно равны, или одновременно меньше равнократных второй и~четвертой каждая каждой при какой бы то ни было кратности, если взять их в~соответственном порядке.} % прямо из Мордухай-Болтовского
 
 В дальнейшем будем выражать это определение в~общем виде так:
 
@@ -9223,7 +9225,7 @@ $\eqalign{
 }$
 \stopCenterAlign
 
-То мы заключаем, что первая величина \drawMagnitude{A}, так же относится ко второй \drawMagnitude{B}, как третья \drawMagnitude{C} к~четвертой \drawMagnitude{D}. Что будет далее записываться так:
+То мы заключаем, что первая величина \drawMagnitude{A} так же относится ко второй \drawMagnitude{B}, как третья \drawMagnitude{C} к~четвертой \drawMagnitude{D}. Что будет далее записываться так:
 
 \startCenterAlign
 $\eqalign{
@@ -9232,15 +9234,15 @@ $\eqalign{
 \mbox{или так: } \dfrac{\drawMagnitude{A}}{\drawMagnitude{B}} &= \dfrac{\drawMagnitude{C}}{\drawMagnitude{D}} \mbox{:} \cr
 }$
 
-и читается как, \\
+и читается как:\\
 \quotation{\drawMagnitude{A} относится к~\drawMagnitude{B}, как \drawMagnitude{C} к~\drawMagnitude{D}.}
 
-И если $\drawMagnitude{A} : \drawMagnitude{B} :: \drawMagnitude{C} : \drawMagnitude{D}$ мы можем заключить, что \\
+И если $\drawMagnitude{A} : \drawMagnitude{B} :: \drawMagnitude{C} : \drawMagnitude{D}$, мы можем заключить, что \\
 если $M \drawMagnitude{A} >, = \mbox{ или } < m \drawMagnitude{B}$, \\
 то $M \drawMagnitude{C} >, = \mbox{ или } < m \drawMagnitude{D}$.
 \stopCenterAlign
 
-То есть, если первая относится ко второй, как третья к~четвертой, то если $M$ раз первая больше, равна или меньше $m$ раз второй, то $M$ раз третья будет больше, равна или меньше $m$ раз четвертой, где $M$ и~$m$ не представляют каких либо конкретных величин, но любую пару величин, также как обозначения, наподобие \drawMagnitude{A}, \drawMagnitude{D}, \drawMagnitude{B}, и~т. п. не более чем представления геометрических величин.
+То есть если первая относится ко второй, как третья к~четвертой, то если $M$ раз первая больше, равна или меньше $m$ раз второй, то $M$ раз третья будет больше, равна или меньше $m$ раз четвертой, где $M$ и~$m$ не представляют каких либо конкретных величин, но любую пару величин, также как обозначения, наподобие \drawMagnitude{A}, \drawMagnitude{D}, \drawMagnitude{B}, и~т. п., не более чем представления геометрических величин.
 
 Учащийся должен крепко понять это определение, прежде чем двигаться далее.
 \stopDefinition
@@ -9262,20 +9264,20 @@ byMagnitudeSymbolDefine.IV("wedgeDown", byblue, 0);
 всякое равнократное $3\drawMagnitude{I}$ и~$3\drawMagnitude{III}$ будет равнократным \drawMagnitude{I} и~\drawMagnitude{III},\\
 и всякое равнократное $2\drawMagnitude{II}$ и~$2\drawMagnitude{IV}$ будет равнократным \drawMagnitude{II} и~\drawMagnitude{IV} \inprop[prop:V.III].
 
-То есть, $M$ раз $3\drawMagnitude{I}$ и~$M$ раз $3\drawMagnitude{III}$\\
+То есть $M$ раз $3\drawMagnitude{I}$ и~$M$ раз $3\drawMagnitude{III}$\\
 равнократны \drawMagnitude{I} и~\drawMagnitude{III},\\
 и $m$ раз $2\drawMagnitude{II}$ и~$m$ раз $2\drawMagnitude{IV}$\\
 равнократны $2\drawMagnitude{II}$ и~$2\drawMagnitude{IV}$.
 
-Но $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (\hypstr)\\
+Но $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$ (\hypstr),\\
 $\therefore$ если $M 3\drawMagnitude{I} <, =, \mbox{ или } > m 2 \drawMagnitude{II}$,\\
-то $M 3\drawMagnitude{III} <, =, \mbox{ или } > m 2 \drawMagnitude{IV}$ \indef[def:V.V]\\
+то $M 3\drawMagnitude{III} <, =, \mbox{ или } > m 2 \drawMagnitude{IV}$ \indef[def:V.V],\\
 и значит $3\drawMagnitude{I} : 2\drawMagnitude{II} :: 3\drawMagnitude{III} : 2\drawMagnitude{IV}$ \indef[def:V.V].
 \stopCenterAlign
 
 Те же соображения работают для любых равнократных первой и~третьей величин и~любых равнократных второй и~четвертой.
 
-$\therefore$ Если первая величина… и~т.  д.
+$\therefore$ если первая величина… и~т.  д.
 \stopProposition
 
 \vfill\pagebreak
@@ -9289,7 +9291,7 @@ byMagnitudeSymbolDefine.d("miniSquare", byred, 0);
 byMagnitudeDefine.I(0, false)(1, 2, 1)(a, a, b);
 byMagnitudeDefine.II(0, false)(1, 1)(c, d);
 }
-\problemNP{Е}{сли}{одна величина столько же раз кратна другой, сколько и~величина отнимаемая от первой кратна к~величине отнимаемой от второй, то остаток будет столько же раз кратен остатку, как целое целому.}
+\problemNP{Е}{сли}{одна величина столько же раз кратна другой, сколько и~величина, отнимаемая от первой, кратна величине, отнимаемой от второй, то остаток будет столько же раз кратен остатку, как целое целому.}
 
 \startCenterAlign
 Пусть $\drawMagnitude{I} = M' \drawMagnitude{II}$\\
@@ -9300,7 +9302,7 @@ $\therefore \drawMagnitude{I} - \drawMagnitude[middle][3]{I} = M' \drawMagnitude
 $\therefore \drawMagnitude[middle][-3]{I} = M' (\drawMagnitude{II} - \drawMagnitude[middle][2]{II})$,\\
 и $\therefore \drawMagnitude[middle][-3]{I} = M' \drawMagnitude[middle][-2]{II}$.
 
-$\therefore$ Если одна величина… и~т. д.
+$\therefore$ если одна величина… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9328,7 +9330,7 @@ byMagnitudeDefine.IV(0, false)(1)(d);
 
 Значит, $(M' - m') \drawMagnitude{II}$ и~$(M' - m') \drawMagnitude{IV}$ равнократны \drawMagnitude{II} и~\drawMagnitude{IV} и~равны \drawMagnitude{II} и~\drawMagnitude{IV}, когда $M' - m' = 1$.
 
-$\therefore$ Если две величины… и~т. д.
+$\therefore$ если две величины… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9363,7 +9365,7 @@ byMagnitudeDefine.dIV(0, false)(2)(d);
 
 Точно так же, если $\drawMagnitude{I} =, \mbox{ или } < \drawMagnitude{II}$, то  $\drawMagnitude{III} =, \mbox{ или } < \drawMagnitude{IV}$.
 
-$\therefore$ Если первая величина… и~т. д.
+$\therefore$ если первая величина… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -9374,7 +9376,7 @@ $\therefore$ Если первая величина… и~т. д.
 \def\varD{\color[byyellow]{D}}
 В геометрии используется понятие \quotation{перевернутое отношение}, когда есть четыре пропорциональных величины, утверждается, что вторая к~первой относится так же, как четвертая к~третьей.
 
-Пусть $\varA : \varB :: \varC : \varD$, тогда, \quotation{перевернув} отношение можно заключить, что $\varB : \varA :: \varD : \varC$
+Пусть $\varA : \varB :: \varC : \varD$, тогда, \quotation{перевернув} отношение, можно заключить, что $\varB : \varA :: \varD : \varC$.
 \stopDefinition
 
 \vfill\pagebreak
@@ -9394,19 +9396,19 @@ byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 
 Если $M \magnitudeI < m \magnitudeII$, то $M \magnitudeIII < m \magnitudeIV$ \indef[def:V.V].
 
-Пусть $M \magnitudeI < m \magnitudeII$, то есть, $m \magnitudeII > M \magnitudeI$,\\
-$\therefore M \magnitudeIII < m \magnitudeIV$, или, $m \magnitudeIV > M \magnitudeIII$.
+Пусть $M \magnitudeI < m \magnitudeII$, то есть $m \magnitudeII > M \magnitudeI$,\\
+$\therefore M \magnitudeIII < m \magnitudeIV$, или $m \magnitudeIV > M \magnitudeIII$.
 
 $\therefore$ если $m \magnitudeII > M \magnitudeI$, то $m \magnitudeIV > M \magnitudeIII$.
 
-Так же можно показать, что,\\
+Так же можно показать, что\\
 если $m \magnitudeII = \mbox{ или } < M \magnitudeI$,\\
 то $m \magnitudeIV =, \mbox{ или } < M \magnitudeIII$.
 
 И, следовательно \indef[def:V.V], мы заключаем,\\
 что $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
 
-$\therefore$ Если четыре величины пропорциональны… и~т. д.
+$\therefore$ если четыре величины пропорциональны… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -9421,7 +9423,7 @@ byMagnitudeSymbolDefine.iii("rhombus", byyellow, 0);
 byMagnitudeDefine.III(0, false)(2, 2)(iii);
 byMagnitudeSymbolDefine.IV("wedgeUp", byred, 0);
 }
-\problemNP{Е}{сли}{первая величина столько же раз кратна второй, или составляет такую же ее часть, как и~третья — четвертой, то первая относится ко второй, как третья к~четвертой.}
+\problemNP{Е}{сли}{первая величина столько же раз кратна второй или составляет такую же ее часть, как и~третья — четвертой, то первая относится ко второй, как третья к~четвертой.}
 
 \startCenterAlign
 Пусть первая величина \drawMagnitude{I} будет столько же раз кратна второй \drawMagnitude{II}, \\
@@ -9431,9 +9433,9 @@ byMagnitudeSymbolDefine.IV("wedgeUp", byred, 0);
 
 Возьмем $M \magnitudeI$, $m \magnitudeII$, $M \magnitudeIII$, $m \magnitudeIV$.
 
-Поскольку \magnitudeI\ столько же раз кратна \magnitudeII \\
+Поскольку \magnitudeI\ столько же раз кратна \magnitudeII, \\
 сколько \magnitudeIII кратна \magnitudeIV\ (\hypstr),\\
-и $M \magnitudeI$ столько же раз кратна \magnitudeI \\
+и $M \magnitudeI$ столько же раз кратна \magnitudeI, \\
 столько $M \magnitudeIII$ кратна \magnitudeIII.
 
 $\therefore$ (предл.),\\
@@ -9443,24 +9445,24 @@ $M \magnitudeI$ столько же раз кратна \magnitudeII \\
 Следовательно, если $M \magnitudeI$ больше раз кратна \magnitudeII, чем $m \magnitudeII$, \\
 то $M \magnitudeIII$ больше раз кратна \magnitudeIV, чем $m \magnitudeIV$.
 
-То есть, если $M \magnitudeI$ больше $m \magnitudeII$, то $M \magnitudeIII$ больше $m \magnitudeIV$.
+То есть если $M \magnitudeI$ больше $m \magnitudeII$, то $M \magnitudeIII$ больше $m \magnitudeIV$.
 
 Так же можно показать, что если $M \magnitudeI$ равна $m \magnitudeII$, то $M \magnitudeIII$ равна $m \magnitudeIV$.
 
-И, в~общем виде, если $M \magnitudeI >, = \mbox{ или } < m \magnitudeII$\\
+И, в~общем виде, если $M \magnitudeI >, = \mbox{ или } < m \magnitudeII$,\\
 то и~$M \magnitudeIII >, = \mbox{ или } < m \magnitudeIV$.
 
 $\therefore$ \indef[def:V.V],\\
 $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
 
-Теперь, пусть \magnitudeII будет такой же частью от \magnitudeI \\
-какая \magnitudeIV\ от \magnitudeIII.
+Теперь пусть \magnitudeII будет такой же частью от \magnitudeI, \\
+какую составляет \magnitudeIV\ от \magnitudeIII.
 
-В этом случай так же $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
+В этом случае так же $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
 
-Поскольку \magnitudeII\ такая же часть от \magnitudeI\ что и~\magnitudeIV\ от \magnitudeIII.
+Поскольку \magnitudeII\ такая же часть от \magnitudeI, что и~\magnitudeIV\ от \magnitudeIII.
 
-Следовательно \magnitudeI\ столько же раз кратна \magnitudeII, \\
+Следовательно, \magnitudeI\ столько же раз кратна \magnitudeII, \\
 сколько \magnitudeIII\ кратна \magnitudeIV.
 
 Следовательно, как и~в предыдущем случае, \\
@@ -9468,7 +9470,7 @@ $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
 
 И $\therefore \magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ \inprop[prop:V.B].\\
 
-$\therefore$ Если первая величина… и~т. д.
+$\therefore$ если первая величина… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -9510,28 +9512,30 @@ byMagnitudeDefine.VI(0, false)(2, 2)(via, vib);
 
 Возьмем  $\magnitudeV = \magnitudeI$.
 
-Сколько раз \magnitudeI\ кратна \magnitudeII\\
+Сколько раз \magnitudeI\ кратна \magnitudeII,\\
 возьмем \magnitudeVI\ столько же раз кратную \magnitudeIV, \\
 тогда, поскольку $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\
-и мы взяли равнократные второй и~четвертой, \magnitudeI\ и~\magnitudeVI,  следовательно \inprop[prop:V.IV]\\
- $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$, но (\conststr),\\
- $\magnitudeI = \magnitudeV \therefore$ \inprop[prop:V.A] $\magnitudeIII = \magnitudeVI$\\
- и~\magnitudeVI\ столько же раз кратна \magnitudeIV\\
+и мы взяли равнократные второй и~четвертой, \magnitudeI\ и~\magnitudeVI,\\ 
+следовательно \inprop[prop:V.IV],\\
+$\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$,\\
+ но (\conststr) $\magnitudeI = \magnitudeV$\\
+ $\therefore$ \inprop[prop:V.A] $\magnitudeIII = \magnitudeVI$\\
+ и~\magnitudeVI\ столько же раз кратна \magnitudeIV,\\
  сколько \magnitudeI\ кратна \magnitudeII.
 
-Теперь, пусть $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$,\\
+Теперь пусть $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$,\\
 а также \magnitudeII\ составляет часть \magnitudeI;\\
 тогда \magnitudeIV\ будет составлять такую же часть \magnitudeIII.
 
 Если перевернуть, $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.B],\\
 но \magnitudeII\ составляет часть \magnitudeI,
-то есть, \magnitudeI\ кратна \magnitudeII.
+то есть \magnitudeI\ кратна \magnitudeII.
 
-$\therefore$ как было показано в~пердыдущем случае, \magnitudeIII\ столько же раз кратна \magnitudeIV,
-то есть, \magnitudeIV\ составляет такую же часть от \magnitudeIII\\
+$\therefore$ как было показано в~пердыдущем случае, \magnitudeIII\ столько же раз кратна \magnitudeIV,\\
+то есть \magnitudeIV\ составляет такую же часть от \magnitudeIII,\\
 какую \magnitudeII\ от \magnitudeI.
 
-$\therefore$ Если первая величина относится ко второй… и~т. д.
+$\therefore$ если первая величина относится ко второй… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -9554,7 +9558,7 @@ byMagnitudeSymbolDefine.III("square", byyellow, 0);
 Поскольку $\magnitudeI = \magnitudeII$,\\
 $\therefore M \magnitudeI = M \magnitudeII$;
 
-$\therefore$ Если $M \magnitudeI >, = \mbox{ или } < m \magnitudeIII$,\\
+$\therefore$ если $M \magnitudeI >, = \mbox{ или } < m \magnitudeIII$,\\
 то $M \magnitudeII >, = \mbox{ или } < m \magnitudeIII$,\\
 и $\therefore \magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ \indef[def:V.V].
 
@@ -9564,7 +9568,7 @@ $\therefore$ Если $M \magnitudeI >, = \mbox{ или } < m \magnitudeIII$,\\
 
 $\therefore \magnitudeIII : \magnitudeI = \magnitudeIII : \magnitudeII$ \indef[def:V.V].
 
-$\therefore$ Равные величины… и~т. д.
+$\therefore$ равные величины… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9586,9 +9590,9 @@ byMagnitudeSymbolDefine.IIIa("square", byblue, 0);
 byMagnitudeSymbolDefine.IVa("rhombus", byyellow, 0);
 }
 
-Когда из равнократных четырех величин (взятых как в~пятом определении), кратное первой больше кратного второй, а~кратное третьей не больше кратного четвертой, то говорят, что первая имеет большее отношение ко второй, чем третья к~четвертой, и~наоборот, говорят что третья имеет к~четвертой меньшее отношение, чем первая ко второй.
+Когда из равнократных четырех величин (взятых как в~пятом определении) кратное первой больше кратного второй, а~кратное третьей не больше кратного четвертой, то говорят, что первая имеет большее отношение ко второй, чем третья к~четвертой, и~наоборот, говорят что третья имеет к~четвертой меньшее отношение, чем первая ко второй.
 
-Если из равнократных четырех величин, наподобие тех, что сравнивались в~пятом определении, мы найдем, что $\drawMagnitude{I} > \drawMagnitude{II}$, но $\drawMagnitude{III} = \mbox{ или } > \drawMagnitude{IV}$, или же мы найдем, некоторая определенная кратность $M'$ первой и~третьей, и~другая кратность $m'$ второй и~четвертой, такие, что $M'$ раз первая величина $> m'$ раз вторая, но $M'$ раз третья $\ngtr m'$ раз четвертой, т. е. $= \mbox{ или } < m'$ раз четвертой, то про первую говоря, что ее отношение к~третьей больше, чем у~третьей к~четвертой, или что третья к~четвертой в~таких обстоятельствах имеет меньшее отношение, чем первая ко второй, однако некоторые другие равнократные могут показать, что четыре величины пропорциональны.
+Если из равнократных четырех величин, наподобие тех, что сравнивались в~пятом определении, мы найдем, что $\drawMagnitude{I} > \drawMagnitude{II}$, но $\drawMagnitude{III} = \mbox{ или } > \drawMagnitude{IV}$, или же мы найдем, некоторую определенную кратность $M'$ первой и~третьей, и~другую кратность $m'$ второй и~четвертой, такие, что $M'$ раз первая величина $> m'$ раз вторая, но $M'$ раз третья $\ngtr m'$ раз четвертой, т. е. $= \mbox{ или } < m'$ раз четвертой, то про первую говорят, что ее отношение к~третьей больше, чем у~третьей к~четвертой, или что третья к~четвертой в~таких обстоятельствах имеет меньшее отношение, чем первая ко второй, однако некоторые другие равнократные могут показать, что четыре величины пропорциональны.
 
 В дальнейшем это определение будет иметь следующий вид:
 
@@ -9597,11 +9601,11 @@ byMagnitudeSymbolDefine.IVa("rhombus", byyellow, 0);
 то $\magnitudeIa : \magnitudeIIa > \magnitudeIIIa : \magnitudeIVa$.
 \stopCenterAlign
 
-В приведенном выражении $M'$ и~$m'$ представляют собой определенные кратности, в~отличие от $M$ и~$m$ в~пятом определении, которые могут быть любыми кратностями. Также нужно иметь в~виду, что \magnitudeIa, \magnitudeIIa, \magnitudeIIIa, и~подобные обозначения, всего лишь представляют геометрические величины.
+В приведенном выражении $M'$ и~$m'$ представляют собой определенные кратности, в~отличие от $M$ и~$m$ в~пятом определении, которые могут быть любыми кратностями. Также нужно иметь в~виду, что \magnitudeIa, \magnitudeIIa, \magnitudeIIIa\ и~подобные обозначения всего лишь представляют геометрические величины.
 
 Арифметически это можно представить так:
 
-Возьмем четыре числа $\color[byred]{8}$, $\color[byblack]{7}$, $\color[byblue]{10}$, и~$\color[byyellow]{9}$.
+Возьмем четыре числа $\color[byred]{8}$, $\color[byblack]{7}$, $\color[byblue]{10}$ и~$\color[byyellow]{9}$.
 
 \startCenterAlign
 
@@ -9643,7 +9647,7 @@ byMagnitudeSymbolDefine.IVa("rhombus", byyellow, 0);
 \protect
 \stopCenterAlign
 
-Среди приведенных кратностей мы найдем что $\color[byred]{16} > \color[byblack]{14}$ и~$\color[byblue]{20} > \color[byyellow]{18}$. То есть дважды первое больше дважды второго и~дважды третье больше дважды четвертого. И~$\color[byred]{16} < \color[byblack]{21}$ и~$\color[byblue]{20} < \color[byyellow]{27}$. То есть дважды первое меньше трижды второго и~дважды третье меньше трижды четвертого. И~среди тех же кратностей мы найдем что $\color[byred]{72} > \color[byblack]{56}$ и~$\color[byblue]{90} > \color[byyellow]{72}$. То есть 9 раз первое больше 8 раз второго и~9 раз третье больше 8 раз четвертого. Можно выбрать много других равнократных, которые будут показывать, что $\color[byred]{8}$, $\color[byblack]{7}$, $\color[byblue]{10}$, и~$\color[byyellow]{9}$ пропорциональны, тогда как они таковыми не являются, поскольку мы можем найти кратное первого $>$ кратного второго, но столько же раз кратное, сколько первого, третьего $\ngtr$ столько же раз кратного, сколько второго, четвертого. Например, 9 раз первое $>$ 10 раз второго, но 9 раз третье $\ngtr$ 10 раз четвертого, то есть $\color[byred]{72} > \color[byblack]{70}$, но $\color[byblue]{90} \ngtr \color[byyellow]{90}$, или 8 раз первое $>$ 9 раз второго, но 8 раз третье $\ngtr$ 9 раз четвертого, то есть $\color[byred]{64} > \color[byblack]{63}$, но $\color[byblue]{80} \ngtr \color[byyellow]{81}$. Когда можно найти такие кратные, говорят, что первое $\color[byred]{(8)}$ имеет ко второму $\color[byblack]{(7)}$ большее отношение, чем третье $\color[byblue]{(10)}$ к~четвертому $\color[byyellow]{(9)}$, и~наоборот, третье $\color[byblue]{(10)}$ имеет к~четвертому $\color[byyellow]{(9)}$ меньшее отношение, чем первое $\color[byred]{(8)}$ ко второму $\color[byblack]{(7)}$.
+Среди приведенных кратностей мы найдем, что $\color[byred]{16} > \color[byblack]{14}$ и~$\color[byblue]{20} > \color[byyellow]{18}$. То есть дважды первое больше дважды второго и~дважды третье больше дважды четвертого. И~$\color[byred]{16} < \color[byblack]{21}$ и~$\color[byblue]{20} < \color[byyellow]{27}$. То есть дважды первое меньше трижды второго и~дважды третье меньше трижды четвертого. И~среди тех же кратностей мы найдем, что $\color[byred]{72} > \color[byblack]{56}$ и~$\color[byblue]{90} > \color[byyellow]{72}$. То есть 9 раз первое больше 8 раз второго и~9 раз третье больше 8 раз четвертого. Можно выбрать много других равнократных, которые будут показывать, что $\color[byred]{8}$, $\color[byblack]{7}$, $\color[byblue]{10}$, и~$\color[byyellow]{9}$ пропорциональны, тогда как они таковыми не являются, поскольку мы можем найти кратное первого $>$ кратного второго, но столько же раз кратное, сколько первого, третьего $\ngtr$ столько же раз кратного, сколько второго, четвертого. Например, 9 раз первое $>$ 10 раз второго, но 9 раз третье $\ngtr$ 10 раз четвертого, то есть $\color[byred]{72} > \color[byblack]{70}$, но $\color[byblue]{90} \ngtr \color[byyellow]{90}$, или 8 раз первое $>$ 9 раз второго, но 8 раз третье $\ngtr$ 9 раз четвертого, то есть $\color[byred]{64} > \color[byblack]{63}$, но $\color[byblue]{80} \ngtr \color[byyellow]{81}$. Когда можно найти такие кратные, говорят, что первое $\color[byred]{(8)}$ имеет ко второму $\color[byblack]{(7)}$ большее отношение, чем третье $\color[byblue]{(10)}$ к~четвертому $\color[byyellow]{(9)}$, и~наоборот, третье $\color[byblue]{(10)}$ имеет к~четвертому $\color[byyellow]{(9)}$ меньшее отношение, чем первое $\color[byred]{(8)}$ ко второму $\color[byblack]{(7)}$.
 \stopDefinition
 
 \vfill\pagebreak
@@ -9659,11 +9663,11 @@ byMagnitudeSymbolDefine.III("circle", byblue, 0);
 \problemNP{И}{з}{неравных величин к~одной и~той же величине большая имеет большее отношение, чем меньшая, и~эта величина имеет большее отношение к~меньшей, чем к~большей.}
 
 \startCenterAlign
-Возьмем две неравных величины \drawMagnitude[bottom]{I} и~\drawMagnitude{II},\\
+Возьмем две неравных величины \drawMagnitude[bottom]{I} и~\drawMagnitude{II}\\
 и какую-либо другую \drawMagnitude{III}.
 \stopCenterAlign
 
-Докажем, что \magnitudeI, большая из двух неравных величин, имеет большее отношение к~\magnitudeIII, чем меньшая \magnitudeII, то есть, $\magnitudeI : \magnitudeIII > \magnitudeII : \magnitudeIII$.
+Докажем, что \magnitudeI, большая из двух неравных величин, имеет большее отношение к~\magnitudeIII, чем меньшая \magnitudeII, то есть $\magnitudeI : \magnitudeIII > \magnitudeII : \magnitudeIII$.
 
 \startCenterAlign
 Возьмем $M' \magnitudeI$, $m' \magnitudeIII$, $M' \magnitudeII$, $m' \magnitudeIII$;\\
@@ -9678,29 +9682,30 @@ $\therefore M' \magnitudeII \ngtr m' \magnitudeIII$,\\
 $\therefore m' \magnitudeIII - \magnitudeIII + \magnitudeIII$ должна быть $< M' \magnitudeIb + M' \magnitudeIa$,
 то есть, $m' \magnitudeIII$ должна быть $< M' \magnitudeI$.
 
-$\therefore M' \magnitudeI > m' \magnitudeIII$, но, как было показано выше, $M' \magnitudeII \ngtr m' \magnitudeIII$, следовательно \indef[def:V.VII]  \magnitudeI\ имеет к~\magnitudeIII\ большее отношение, чем $\magnitudeII : \magnitudeIII$.
+$\therefore M' \magnitudeI > m' \magnitudeIII$, но, как было показано выше,\\
+$M' \magnitudeII \ngtr m' \magnitudeIII$, следовательно \indef[def:V.VII],\\ \magnitudeI\ имеет к~\magnitudeIII\ большее отношение, чем $\magnitudeII : \magnitudeIII$.
 
 Теперь докажем, что у~\magnitudeIII\ большее отношение к~меньшей величине \magnitudeII, чем к~большей \magnitudeI,\\
-или, $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$.
+или $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$.
 
 Возьмем $m' \magnitudeIII$, $M' \magnitudeII$, $m' \magnitudeIII$ и~$M' \magnitudeI$,\\
 как и~в первом случае такие, что\\
 $M' \magnitudeIa$ и~$M' \magnitudeIb$ будут обе $> \magnitudeIII$, и~$m' \magnitudeIII$ будет наименьшим кратным \magnitudeIII, которое становится больше $M' \magnitudeIb = M' \magnitudeII$.
 
 $\therefore m' \magnitudeIII - \magnitudeIII \ngtr M' \magnitudeIb$,\\
-и $\magnitudeIII \ngtr M' \magnitudeIa$, следовательно\\
+и $\magnitudeIII \ngtr M' \magnitudeIa$, следовательно,\\
 $m' \magnitudeIII - \magnitudeIII + \magnitudeIII  < M' \magnitudeIb + M' \magnitudeIa$.
 
 $\therefore m' \magnitudeIII < M' \magnitudeI$, и~$\therefore$ \indef[def:V.VII], \magnitudeIII\ имеет к~\magnitudeII\ большее отношение, чем \magnitudeIII\ к~\magnitudeI.
 
-$\therefore$ Из неравных величин… и~т. д.
+$\therefore$ из неравных величин… и~т. д.
 \stopCenterAlign
 
-Инструмент, использованный в~этом предложении для нахождения среди кратностей величин, взятых как в~пятом определении, таких, при которых певая больше кратной второй, но такая же кратная третьей, как была взята первой, не больше такой же кратной четвертой, какая была взята второй, может быть проиллюстрирована численно так:
+Инструмент, использованный в~этом предложении для нахождения среди кратностей величин, взятых как в~пятом определении, таких, при которых первая больше кратной второй, но такая же кратная третьей, как была взята первой, не больше такой же кратной четвертой, какая была взята второй, может быть проиллюстрирована численно так:
 
 Число $\color[byblack]{9}$ имеет большее отношение к~$\color[byblue]{7}$, чем $\color[byyellow]{8}$ к~$\color[byblue]{7}$, то есть $\color[byblack]{9} : \color[byblue]{7} > \color[byyellow]{8} : \color[byblue]{7}$, или $\color[byred]{8} + \color[byblack]{1} : \color[byblue]{7} > \color[byyellow]{8} : \color[byblue]{7}$.
 
-Кратное $\color[byblack]{1}$, которое первым становится больше $\color[byblue]{7}$ это $8$ раз, следовательно, мы можем умножить первое и~третье на $8$, $9$, $10$ или любое другое число, в~данном случае умножим первое и~третье на $8$ и~получим $\color[byred]{64} + \color[byblack]{8}$ и~$\color[byyellow]{64}$, теперь первое кратное $\color[byblue]{7}$, которое больше $64$ это $10$ раз, теперь, умножая второе и~четвертое на $10$ получим $\color[byblue]{70}$ и~$\color[byblue]{70}$, теперь, расположив эти кратные получим
+Кратное $\color[byblack]{1}$, которое первым становится больше $\color[byblue]{7}$, это $8$ раз, следовательно, мы можем умножить первое и~третье на $8$, $9$, $10$ или любое другое число, в~данном случае умножим первое и~третье на $8$ и~получим $\color[byred]{64} + \color[byblack]{8}$ и~$\color[byyellow]{64}$, теперь первое кратное $\color[byblue]{7}$, которое больше $64$, это $10$ раз, теперь, умножая второе и~четвертое на $10$, получим $\color[byblue]{70}$ и~$\color[byblue]{70}$, теперь, расположив эти кратные, получим
 
 \startCenterAlign
 \unprotect
@@ -9714,19 +9719,19 @@ $\color[byred]{64} + \color[byblack]{8}$ & $\color[byblue]{70}$ & $\color[byyell
 \protect
 \stopCenterAlign
 
-Следовательно $\color[byred]{64} + \color[byblack]{8}$, или $72$ больше чем $\color[byblue]{70}$, но $\color[byyellow]{64}$ не больше чем $\color[byblue]{70}$, $\therefore$ \indef[def:V.VII] $\color[byblack]{9}$ имеет большее отношение к~$\color[byblue]{7}$, чем $\color[byyellow]{8}$ к~$\color[byblue]{7}$.
+Следовательно, $\color[byred]{64} + \color[byblack]{8}$, или $72$, больше, чем $\color[byblue]{70}$, но $\color[byyellow]{64}$ не больше, чем $\color[byblue]{70}$, $\therefore$ \indef[def:V.VII] $\color[byblack]{9}$ имеет большее отношение к~$\color[byblue]{7}$, чем $\color[byyellow]{8}$ к~$\color[byblue]{7}$.
 
 Приведенное выше — всего лишь иллюстрация к~дальнейшему доказательству, так как это свойство можно легко показать как для этих, так и~для других чисел следующим образом: поскольку, если предыдущее содержит последующее большее число раз, чем другое предыдущее содержит свое последующее, или  составленная дробь с~предыдущим в~качестве числителя и~последующим в~качестве знаменателя больше другой дроби, составленной из другого предыдущего в~качестве числителя и~его последующего в~качестве знаменателя, отношение первого предыдущего к~его последующему больше, чем отношение второго предыдущего к~его последующему.
 
-Так, отношение числа $9$ к~числу $7$ больше отношения числа $8$ к~числу $7$, поскольку $\frac{9}{7}$ больше чем $\frac{8}{7}$.
+Так, отношение числа $9$ к~числу $7$ больше отношения числа $8$ к~числу $7$, поскольку $\frac{9}{7}$ больше, чем $\frac{8}{7}$.
 
-Теперь, $17 : 19$ большее отношение, чем $13 : 15$, поскольку $\frac{17}{19} = \frac{17 \times 15}{19 \times 15} = \frac{255}{185}$, и~$\frac{13}{15} = \frac{13 \times 19}{15 \times 19} = \frac{247}{185}$, отсюда очевидно, что $\frac{255}{185}$ больше чем $\frac{247}{185}$, $\therefore \frac{17}{19}$ больше чем $\frac{13}{15}$, и, согласно показанному выше, $17$ имеет к~$19$ большее отношение, чем $13$ к~$15$.
+Теперь $17 : 19$ большее отношение, чем $13 : 15$, поскольку $\frac{17}{19} = \frac{17 \times 15}{19 \times 15} = \frac{255}{185}$, и~$\frac{13}{15} = \frac{13 \times 19}{15 \times 19} = \frac{247}{185}$, отсюда очевидно, что $\frac{255}{185}$ больше, чем $\frac{247}{185}$, $\therefore \frac{17}{19}$ больше, чем $\frac{13}{15}$, и, согласно показанному выше, $17$ имеет к~$19$ большее отношение, чем $13$ к~$15$.
 
 В общем виде это можно выразить так:
 
-Если $\frac{A}{B}$ больше $\frac{C}{D}$, говорят, что $A$ имеет к~$B$ большее отношение, чем $C$ к~$D$. Если $\frac{A}{B}$ равно $\frac{C}{D}$, то $A$ имеет к~$B$ такое же отношение, как $C$ к~$D$. И~если $\frac{A}{B}$ меньше чем $\frac{C}{D}$, говорят, что $A$ имеет к~$B$ меньшее отношение, чем $C$ к~$D$.
+Если $\frac{A}{B}$ больше $\frac{C}{D}$, говорят, что $A$ имеет к~$B$ большее отношение, чем $C$ к~$D$. Если $\frac{A}{B}$ равно $\frac{C}{D}$, то $A$ имеет к~$B$ такое же отношение, как $C$ к~$D$. И~если $\frac{A}{B}$ меньше, чем $\frac{C}{D}$, говорят, что $A$ имеет к~$B$ меньшее отношение, чем $C$ к~$D$.
 
-Учащийся должен в~совершенстве освоить все, до этого предложения, прежде чем двигаться дальше, чтобы хорошо понять последующие предложения этой книги. Так что мы советуем учащемуся медленно перечитать все снова, тщательно осмыслить каждый шаг в~процессе, и~особо предостерегаем от порочной практики полагаться исключительно на память. Следуя этим указаниям, он найдет части, обычно представляющие значительные трудности, совсем несложными, продолжая изучение этой книги.
+Учащийся должен в~совершенстве освоить все до этого предложения, прежде чем двигаться дальше, чтобы хорошо понять последующие предложения этой книги. Так что мы советуем учащемуся медленно перечитать все снова, тщательно осмыслить каждый шаг в~процессе, и~особо предостерегаем от порочной практики полагаться исключительно на память. Следуя этим указаниям, он найдет части, обычно представляющие значительные трудности, совсем несложными, продолжая изучение этой книги.
 \stopProposition
 
 \vfill\pagebreak
@@ -9742,7 +9747,7 @@ byMagnitudeSymbolDefine.III("square", byyellow, 0);
 \startCenterAlign
 Пусть $\drawMagnitude{I} : \drawMagnitude{III} :: \drawMagnitude{II} : \drawMagnitude{III}$, тогда $\magnitudeI = \magnitudeII$.
 
-Поскольку, если нет, пусть $\magnitudeI > \magnitudeII$,\\
+Поскольку если нет, пусть $\magnitudeI > \magnitudeII$,\\
 тогда $\magnitudeI : \magnitudeIII > \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII],
 что невозможно, поскольку противоречит гипотезе.\\
 $\therefore \magnitudeI \ngtr \magnitudeII$.
@@ -9751,20 +9756,20 @@ $\therefore \magnitudeI \ngtr \magnitudeII$.
 $\magnitudeII \ngtr \magnitudeI$,\\
 $\therefore \magnitudeI = \magnitudeII$.
 
-Теперь, пусть $\magnitudeIII : \magnitudeI :: \magnitudeIII : \magnitudeII$,\\
+Теперь пусть $\magnitudeIII : \magnitudeI :: \magnitudeIII : \magnitudeII$,\\
 тогда $\magnitudeI = \magnitudeII$.
 
 Поскольку (перевернув) $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIII$,\\
-следовательно, как и~впервом случае, $\magnitudeI = \magnitudeII$.
+следовательно, как и~в~первом случае, $\magnitudeI = \magnitudeII$.
 
-$\therefore$ Величины, имеющие одинаковое отношение... и~т. д.
+$\therefore$ величины, имеющие одинаковое отношение... и~т. д.
 \stopCenterAlign
 
 Иначе это можно показать так:
 
-Пусть $\color[byyellow]{A} : \color[byblue]{B} = \color[byyellow]{A} : \color[byred]{C}$, тогда $\color[byblue]{B} = \color[byred]{C}$, поскольку, в~виде дробей $\frac{\color[byyellow]{A}}{\color[byblue]{B}} = \frac{\color[byyellow]{A}}{\color[byred]{C}}$, и~числитель одного равен числителю другого, следовательно, знаменатели этих дробей равны, то есть $\color[byblue]{B} = \color[byred]{C}$.
+Пусть $\color[byyellow]{A} : \color[byblue]{B} = \color[byyellow]{A} : \color[byred]{C}$, тогда $\color[byblue]{B} = \color[byred]{C}$, поскольку в~виде дробей $\frac{\color[byyellow]{A}}{\color[byblue]{B}} = \frac{\color[byyellow]{A}}{\color[byred]{C}}$, и~числитель одного равен числителю другого, следовательно, знаменатели этих дробей равны, то есть $\color[byblue]{B} = \color[byred]{C}$.
 
-Теперь, если $\color[byblue]{B} : \color[byyellow]{A} = \color[byred]{C} : \color[byyellow]{A}$, $\color[byblue]{B} = \color[byred]{C}$. Поскольку $\frac{\color[byblue]{B}}{\color[byyellow]{A}} = \frac{\color[byred]{C}}{\color[byyellow]{A}}$, $\color[byblue]{B} \mbox{ должна быть } = \color[byred]{C}$.
+Теперь если $\color[byblue]{B} : \color[byyellow]{A} = \color[byred]{C} : \color[byyellow]{A}$, $\color[byblue]{B} = \color[byred]{C}$. Поскольку $\frac{\color[byblue]{B}}{\color[byyellow]{A}} = \frac{\color[byred]{C}}{\color[byyellow]{A}}$, $\color[byblue]{B} \mbox{ должна быть } = \color[byred]{C}$.
 \stopProposition
 
 \vfill\pagebreak
@@ -9780,24 +9785,25 @@ byMagnitudeSymbolDefine.III("square", byyellow, 0);
 \startCenterAlign
 Пусть $\drawMagnitude{I} : \drawMagnitude{III} > \drawMagnitude{II} : \drawMagnitude{III}$, тогда $\magnitudeI > \magnitudeII$.
 
-Поскольку, если нет, пусть $\magnitudeI = \mbox{ или } < \magnitudeII$,\\
+Поскольку если нет, пусть $\magnitudeI = \mbox{ или } < \magnitudeII$,\\
 тогда $\magnitudeI : \magnitudeIII = \magnitudeII : \magnitudeIII$ \inprop[prop:V.VII]\\
-или $\magnitudeI : \magnitudeIII < \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII] и~(перевернув), что противоречит гипотезе.
+или $\magnitudeI : \magnitudeIII < \magnitudeII : \magnitudeIII$ \inprop[prop:V.VIII] и~(перевернув),\\
+что противоречит гипотезе.
 
 $\therefore \magnitudeI \neq \mbox{ или } < \magnitudeII$,\\
 и $\therefore \magnitudeI \mbox{ должна быть } >\magnitudeII$.
 
-Теперь, пусть $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$,\\
+Теперь пусть $\magnitudeIII : \magnitudeII > \magnitudeIII : \magnitudeI$,\\
 тогда $\magnitudeII < \magnitudeI$.
 
-Поскольку, если нет, $\magnitudeII \mbox{ должна быть } > \mbox{ или } = \magnitudeI$,\\
+Поскольку если нет, $\magnitudeII \mbox{ должна быть } > \mbox{ или } = \magnitudeI$,\\
 тогда $\magnitudeIII : \magnitudeII < \magnitudeIII : \magnitudeI$ \inprop[prop:V.VIII] и~(перевернув),\\
 или $\magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeI$ \inprop[prop:V.VII], что противоречит гипотезе.
 
 $\therefore \magnitudeII \ngtr \mbox{ или } = \magnitudeI$,\\
 и $\therefore \magnitudeII \mbox{ должна быть } < \magnitudeI$.
 
-$\therefore$ Из величин, имеющих… и~т. д.
+$\therefore$ из величин, имеющих… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9824,9 +9830,9 @@ byMagnitudeSymbolDefine.VI("wedgeDown", byyellow, 0);
 то $M \magnitudeIII >, = \mbox{ или } < m \magnitudeIV$ \indef[def:V.V].
 
 $\therefore$ if $M \magnitudeI >, = \mbox{ или } < m \magnitudeII$, $M \magnitudeIII >, = \mbox{ или } < m \magnitudeIV$,\\
-и $\therefore$ \indef[def:V.V] $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
+и $\therefore$ \indef[def:V.V], $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
 
-$\therefore$ Отношения, тождественные между собой… и~т. д.
+$\therefore$ отношения, тождественные между собой… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9865,9 +9871,9 @@ byMagnitudeSymbolDefine.X("miniCircle", byblack, 0);
 то $M \magnitudeI + M \magnitudeIII + M \magnitudeV + M \magnitudeVII + M \magnitudeIX$, или $M (\magnitudeI + \magnitudeIII + \magnitudeV + \magnitudeVII + \magnitudeIX)$ будет больше, чем $m \magnitudeII + m \magnitudeIV + m \magnitudeVI + m \magnitudeVIII + m \magnitudeX$, или $m (\magnitudeII + \magnitudeIV + \magnitudeVI + \magnitudeVIII + \magnitudeX)$.
 \stopCenterAlign
 
-Так же можно показать, что если $M$ раз одно из предыдущих равно или меньше чем $m$ раз одно из последующих, $M$ раз все предыдущие будут равны или меньше, чем $m$ раз все последующие вместе. Следовательно \indef[def:V.V], как одно из предыдущих к~последующему, так и~все предыдущие ко всем последующим вместе.
+Так же можно показать, что если $M$ раз одно из предыдущих равно или меньше, чем $m$ раз одно из последующих, $M$ раз все предыдущие будут равны или меньше, чем $m$ раз все последующие вместе. Следовательно \indef[def:V.V], как одно из предыдущих к~последующему, так и~все предыдущие ко всем последующим вместе.
 
-$\therefore$ Если несколько величин… и~т. д.
+$\therefore$ если несколько величин… и~т. д.
 \stopProposition
 
 \vfill\pagebreak
@@ -9888,13 +9894,13 @@ byMagnitudeSymbolDefine.VI("circle", byblack, 0);
 но $\magnitudeIII : \magnitudeIV > \drawMagnitude{V} : \drawMagnitude{VI}$,\\
 тогда $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$.
 
-Поскольку $\magnitudeIII : \magnitudeIV > \magnitudeV : \magnitudeVI$, есть такие кратные ($M'$ и~$m'$) величин \magnitudeIII\ и~\magnitudeV, и~величин \magnitudeIV\ и~\magnitudeVI,\\
+Поскольку $\magnitudeIII : \magnitudeIV > \magnitudeV : \magnitudeVI$, есть такие кратные ($M'$ и~$m'$) величин \magnitudeIII\ и~\magnitudeV и~величин \magnitudeIV\ и~\magnitudeVI,\\
 что $M' \magnitudeIII > m' \magnitudeIV$,\\
 но $M' \magnitudeV \ngtr m' \magnitudeVI$ \indef[def:V.VII].
 
 Возьмем эти кратные и~возьмем такие же кратные \magnitudeI\ и~\magnitudeII.
 
-$\therefore$ \indef[def:V.V] если $M' \magnitudeI >, =, \mbox{ или } < m' \magnitudeII$,\\
+$\therefore$ \indef[def:V.V], если $M' \magnitudeI >, =, \mbox{ или } < m' \magnitudeII$,\\
 то $M' \magnitudeIII >, =, \mbox{ и~} < m' \magnitudeIV$,\\
 но $M' \magnitudeIII > m' \magnitudeIV$ (\conststr);
 
@@ -9904,7 +9910,7 @@ $\therefore M' \magnitudeI > m' \magnitudeII$,\\
 И, следовательно, \indef[def:V.VII],\\
 $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$.
 
-$\therefore$ Если первая величина ко второй… и~т. д.
+$\therefore$ если первая величина ко второй… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9923,17 +9929,18 @@ byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
 и предположим, что $\magnitudeI > \magnitudeIII$, тогда $\magnitudeII > \magnitudeIV$.
 
-Поскольку $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII], и, согласно гипотезе, $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
+Поскольку $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII]\\
+и, согласно гипотезе, $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$.
 
 $\therefore \magnitudeIII : \magnitudeIV > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII].
 
-$\therefore \magnitudeIV < \magnitudeII$ \inprop[prop:V.X], или $\magnitudeII > \magnitudeIV$.
+$\therefore \magnitudeIV < \magnitudeII$ \inprop[prop:V.X] или $\magnitudeII > \magnitudeIV$.
 
-Теперь, пусть $\magnitudeI = \magnitudeIII$, тогда $\magnitudeII = \magnitudeIV$.
+Теперь пусть $\magnitudeI = \magnitudeIII$, тогда $\magnitudeII = \magnitudeIV$.
 
-Поскольку $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII],\\
+Поскольку $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII]\\
 и $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeIV$ (\hypstr);\\
-$\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI],\\
+$\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI]\\
 и $\therefore \magnitudeII = \magnitudeIV$ \inprop[prop:V.IX].
 
 Теперь же, если $\magnitudeI < \magnitudeIII$, то $\magnitudeII < \magnitudeIV$,\\
@@ -9942,7 +9949,7 @@ $\therefore \magnitudeIII : \magnitudeII = \magnitudeIII : \magnitudeIV$ \inprop
 $\therefore \magnitudeIV > \magnitudeII$, как и~в предыдущем случае,\\
 то есть $\magnitudeII < \magnitudeIV$.
 
-$\therefore$ Если первая величина имеет ко второй… и~т. д.
+$\therefore$ если первая величина имеет ко второй… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9962,15 +9969,15 @@ byMagnitudeSymbolDefine.II("square", byyellow, 0);
 $\eqalign{
 \mbox{Поскольку } \magnitudeI : \magnitudeII &= \magnitudeI : \magnitudeII \cr
 &= \magnitudeI : \magnitudeII \cr
-&= \magnitudeI : \magnitudeII \cr
+&= \magnitudeI : \magnitudeII \mbox{,} \cr
 }$
 
-$\therefore \magnitudeI : \magnitudeII :: 4 \magnitudeI : 4 \magnitudeII$. \inprop[prop:V.XII].
+$\therefore \magnitudeI : \magnitudeII :: 4 \magnitudeI : 4 \magnitudeII$ \inprop[prop:V.XII].
 
 И, поскольку те же рассуждения применимы в~общем, получим:\\
 $\magnitudeI : \magnitudeII :: M' \magnitudeI : M' \magnitudeII$.
 
-$\therefore$ Величины относятся друг к~другу… и~т. д.
+$\therefore$ величины относятся друг к~другу… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -9987,11 +9994,11 @@ byMagnitudeSymbolDefine.IV("square", byblue, 0);
 
 \startCenterAlign
 Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
-тогда \quotation{переставив} отношение можем заключить,\\
+тогда, \quotation{переставив} отношение, можем заключить,\\
 что $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
 \stopCenterAlign
 
-Здесь важно отметить, что величины \magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV\ должны быть однородными, то есть в~таком случае мы должны сравнивать линии с~линиями, поверхности с~поверхностями, тела с~телам и~т. п. Так, учащийся должен хорошо усвоить, что линия с~поверхностью, поверхность с~телом и~другие разнородные величины не могут находиться в~положении предыдущего и~последующего.
+Здесь важно отметить, что величины \magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV\ должны быть однородными, то есть в~таком случае мы должны сравнивать линии с~линиями, поверхности с~поверхностями, тела с~телами и~т. п. Так, учащийся должен хорошо усвоить, что линия с~поверхностью, поверхность с~телом и~другие разнородные величины не могут находиться в~положении предыдущего и~последующего.
 \stopDefinition
 
 \vfill\pagebreak
@@ -10010,7 +10017,7 @@ byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 тогда $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
 
 Поскольку $M \magnitudeI : M \magnitudeII :: \magnitudeI : \magnitudeII$ \inprop[prop:V.XV],\\
-и $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr и~\inpropL[prop:V.XI]),\\
+и $M \magnitudeI : M \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr\ и~\inpropL[prop:V.XI]),\\
 а также $m \magnitudeIII : m \magnitudeIV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XV].
 
 $\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$ \inprop[prop:V.XIV],\\
@@ -10020,7 +10027,7 @@ $\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$ 
 следовательно \indef[def:V.V],\\
  $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
 
- $\therefore$ Если четыре величины… и~т. д.
+ $\therefore$ если четыре величины… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10031,19 +10038,19 @@ $\therefore M \magnitudeI : M \magnitudeII :: m \magnitudeIII : m \magnitudeIV$ 
 \def\varB{\color[byblack]{B}}
 \def\varC{\color[byblue]{C}}
 \def\varD{\color[byyellow]{D}}
-Выделением отношения называют, когда есть четыре пропорциональных величины, и~утверждается, что избыток первой над второй относится ко второй как избыток третьей над четвертой к~четвертой.
+Выделением отношения называют, когда есть четыре пропорциональных величины и~утверждается, что избыток первой над второй относится ко второй, как избыток третьей над четвертой к~четвертой.
 
 \startCenterAlign
 Пусть $\varA : \varB :: \varC : \varD$,\\
-\quotation{выделив} заключим,\\
+\quotation{выделив}, заключим,\\
 что $\varA - \varB : \varB :: \varC - \varD : \varD$.
 \stopCenterAlign
 
-Согласно описанному выше, предполагается, что $\varA$ больше $\varB$ и~$\varC$ больше $\varD$, если бы это было не так и~$\varB$ была бы больше $\varA$, и~$\varD$ больше $\varC$, $\varB$ и~$\varD$ можно было бы взять как предыдущие, а~$\varA$ и~$\varC$ как последующие, \quotation{перевернув} отношение.
+Согласно описанному выше, предполагается, что $\varA$ больше $\varB$ и~$\varC$ больше $\varD$, если бы это было не так и~$\varB$ была бы больше $\varA$ и~$\varD$ больше $\varC$, $\varB$ и~$\varD$ можно было бы взять как предыдущие, а~$\varA$ и~$\varC$ как последующие, \quotation{перевернув} отношение.
 
 \startCenterAlign
 $\varB : \varA :: \varD : \varC$;\\
-тогда \quotation{выделив,} заключим,\\
+тогда, \quotation{выделив}, заключим,\\
 что $\varB - \varA : \varA :: \varD - \varC : \varC$.
 \stopCenterAlign
 \stopDefinition
@@ -10057,18 +10064,17 @@ byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
 byMagnitudeSymbolDefine.III("square", byyellow, 0);
 byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 }
-\problemNP{Е}{сли}{величины пропорциональны присоединенные, то они останутся пропорциональны взятые раздельно, то есть, если две величины взятые вместе относятся к~одной из них также, как две другие взятые вместе к~одной из тех, оставшаяся величина из первых двух будет иметь такое же отношение к~другой такое же отношение, как оставшаяся из вторых к~другой из них.}
+\problemNP{Е}{сли}{величины пропорциональны присоединенные, то они останутся пропорциональны взятые раздельно, то есть если две величины, взятые вместе, относятся к~одной из них так же, как две другие, взятые вместе, к~одной из тех, оставшаяся величина из первых двух будет иметь такое же отношение к~другой, как оставшаяся из вторых к~другой из них.}
 
 \startCenterAlign
 Пусть $\drawMagnitude{I} + \drawMagnitude{II} : \magnitudeII :: \drawMagnitude{III} + \drawMagnitude{IV} : \magnitudeIV$,\\
 тогда $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$.
 
-Возьмем $\magnitudeI > m \magnitudeII$ к~каждой добавим $M \magnitudeII$,\\
+Возьмем $\magnitudeI > m \magnitudeII$, к~каждой добавим $M \magnitudeII$,\\
 тогда получим $M \magnitudeI + M \magnitudeII > m \magnitudeII + M \magnitudeII$,\\
 или $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$,\\
 но, поскольку $\magnitudeI + \magnitudeII: \magnitudeII :: \magnitudeIII + \magnitudeIV: \magnitudeIV$ (\hypstr),\\
-и $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$.
-
+и $M (\magnitudeI + \magnitudeII) > (m + M) \magnitudeII$,\\
 $\therefore M(\magnitudeIII + \magnitudeIV) > (m + M) \magnitudeIV$ \indef[def:V.V].
 
 $\therefore M \magnitudeIII + M \magnitudeIV > m \magnitudeIV + M \magnitudeIV$.
@@ -10079,7 +10085,7 @@ $\therefore M \magnitudeIII > m \magnitudeIV$, вычтя $M \magnitudeIV$ из 
 Так же можно доказать, что если $M \magnitudeI = \mbox{ или } < m \magnitudeII$, то $M \magnitudeIII = \mbox{ или } < m \magnitudeIV$,\\
 и $\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ \indef[def:V.V].
 
-$\therefore$ Если величины пропорциональны составленные… и~т. д.
+$\therefore$ если величины пропорциональны составленные… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10093,18 +10099,18 @@ $\therefore$ Если величины пропорциональны соста
 О присоединении говорят, когда есть четыре пропорциональных величины и~утверждается, что первая вместе со второй относится ко второй, как третья вместе с~четвертой к~четвертой.
 
 \startCenterAlign
-Пусть $\varA : \varB :: \varC : \varD$
+Пусть $\varA : \varB :: \varC : \varD$.
 
-Тогда используя \quotation{присоединение}, заключим,\\
+Тогда, используя \quotation{присоединение}, заключим,\\
 что $\varA + \varB : \varB :: \varC + \varD: \varD$.
 \stopCenterAlign
 
- \quotation{Перевернув} отношение, можем сделать $\varB$ и~$\varD$ первой и~третьей, а~$\varA$ и~$\varC$ которой и~четвертой.
+ \quotation{Перевернув} отношение, можем сделать $\varB$ и~$\varD$ первой и~третьей, а~$\varA$ и~$\varC$ второй и~четвертой.
 
 \startCenterAlign
 $\varB : \varA :: \varD : \varC$.
 
-Тогда, совершив \quotation{присоединение}, заключим\\
+Тогда, совершив \quotation{присоединение}, заключим,\\
 что $\varB + \varA : \varA :: \varD + \varC : \varC$.
 \stopCenterAlign
 \stopDefinition
@@ -10119,7 +10125,7 @@ byMagnitudeSymbolDefine.III("square", byyellow, 0);
 byMagnitudeSymbolDefine.IV("rhombus", byblue, 0);
 byMagnitudeSymbolDefine.V("circle", byblack, 0);
 }
-\problemNP{Е}{сли}{величины пропорциональны выделенные, то они будут пропорциональны и~составленные. То есть, если первая относится ко второй, как третья к~четвертой, то первая и~вторая вместе будут ко второй, как третья и~четвертая вместе к~четвертой.}
+\problemNP{Е}{сли}{величины пропорциональны выделенные, то они будут пропорциональны и~составленные. То есть если первая относится ко второй, как третья к~четвертой, то первая и~вторая вместе будут ко второй, как третья и~четвертая вместе к~четвертой.}
 
 \startCenterAlign
 Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
@@ -10128,7 +10134,7 @@ byMagnitudeSymbolDefine.V("circle", byblack, 0);
 Ведь если нет, то $\magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \drawMagnitude{V} : \magnitudeV$,\\
 полагая, что $\magnitudeV \neq \magnitudeIV$.
 
-$\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeV$ \inprop[prop:V.XVII]\\
+$\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeV$ \inprop[prop:V.XVII],\\
 но $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ (\hypstr).
 
 $\therefore \magnitudeIII : \magnitudeV :: \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XI].
@@ -10141,7 +10147,7 @@ $\therefore \magnitudeV \mbox{ не неравна } \magnitudeIV$;\\
 
 $\therefore \magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \magnitudeIV : \magnitudeIV$.
 
-$\therefore$ Если величины пропорциональны выделенные… и~т. д.
+$\therefore$ если величины пропорциональны выделенные… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10154,7 +10160,7 @@ byMagnitudeSymbolDefine.II("semicircleDown", byblack, 1);
 byMagnitudeSymbolDefine.III("square", byblue, 0);
 byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 }
-\problemNP{Е}{сли}{целая величина относится к~целой так же, как вычтенная из первой к~вычтенной из второй, то и~остаток будет относиться как остатку как целая к~целой.}
+\problemNP{Е}{сли}{целая величина относится к~целой так же, как вычтенная из первой к~вычтенной из второй, то и~остаток будет относиться как остатку, как целая к~целой.}
 
 \startCenterAlign
 Пусть $\drawMagnitude{I} + \drawMagnitude{II} : \drawMagnitude{III} + \drawMagnitude{IV} :: \magnitudeI : \magnitudeIII$,\\
@@ -10170,12 +10176,12 @@ $\therefore \magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (выд�
 
 $\therefore \magnitudeII : \magnitudeIV :: \magnitudeI + \magnitudeII : \magnitudeIII + \magnitudeIV$ \inprop[prop:V.XI].
 
-$\therefore$ Если целая величина относится к~целой… и~т. д.
+$\therefore$ если целая величина относится к~целой… и~т. д.
 \stopCenterAlign
 \stopProposition
 
 \startDefinition[title={Определение XVII},reference=def:V.XVII,ownnumber=17] %у Мордухай-Болтовского это называется «переворачиванием отношения», при том, что уже есть «перевернутое отношение» и~это совсем другое, так что вместо convertendo здесь будет пока «конверсия», чтобы совсем не запутаться.
-О \quotation{конверсии},  говорят, когда есть четыре пропорциональных величины и~утверждается, что первая к~избытку первой над второй относится также, как третья к~избытку третьей над четвертой. См. следующее предложение.
+О \quotation{конверсии} говорят, когда есть четыре пропорциональных величины и~утверждается, что первая к~избытку первой над второй относится так же, как третья к~избытку третьей над четвертой. См. следующее предложение.
 \stopDefinition
 
 \vfill\pagebreak
@@ -10189,25 +10195,25 @@ byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 byMagnitudeDefine.I(0, true)(1, 1)(i, II);
 byMagnitudeDefine.III(0, true)(1, 1)(iii, IV);
 }
-\problemNP{Е}{сли}{четыре величины пропорциональны, они также пропорциональны если совершить конверсию, то есть первая к~избытку над второй относится также как третья к~ее избытку над четвертой.}
+\problemNP{Е}{сли}{четыре величины пропорциональны, они так же пропорциональны, если совершить конверсию, то есть первая к~избытку над второй относится так же как третья к~ее избытку над четвертой.}
 
 \startCenterAlign
 Пусть $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
 тогда $\magnitudeI : \drawMagnitude{i} :: \magnitudeIII : \drawMagnitude{iii}$.
 
 Поскольку $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$;\\
-следовательно $\magnitudei : \magnitudeII :: \magnitudeiii : \magnitudeIV$ (выдел.).
+следовательно, $\magnitudei : \magnitudeII :: \magnitudeiii : \magnitudeIV$ (выдел.).
 
 $\therefore \magnitudeII : \magnitudei :: \magnitudeIV : \magnitudeiii$ (перевер.).
 
 $\therefore \magnitudeI : \magnitudei :: \magnitudeIII : \magnitudeiii$ (конвер.).
 
-$\therefore$ Если четыре величины… и~т. д.
+$\therefore$ если четыре величины… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
 \startDefinition[title={Определение XVIII},reference=def:V.XVIII,ownnumber=18]
-Говорят, \quotation{По равенству}, когда есть более двух величин и~столько же других величин таких, что они пропорциональны, есть брать по две из каждого ряда, и~утверждается, что первая к~последней из первого ряда величин относится так же, как первая к~последней из второго ряда.
+Говорят \quotation{по равенству}, когда есть более двух величин и~столько же других величин таких, что они пропорциональны, есть брать по две из каждого ряда, и~утверждается, что первая к~последней из первого ряда величин относится так же, как первая к~последней из второго ряда.
 \stopDefinition
 
 \vfill\pagebreak
@@ -10225,7 +10231,7 @@ $\therefore$ Если четыре величины… и~т. д.
 \def\varO{\color[byyellow]{O}}
 \def\varP{\color[byblue]{P}}
 \def\varQ{\color[byblue]{Q}}
-Термин \quotation{по равенству} используется сам по себе, когда первая величина относится ко второй из первого ряда как первая ко второй из второго ряда и~когда вторая к~третьей из первого относится как вторая к~третьей из второго и~так далее, и~делается утверждение, такое, как упомянуто в~предыдущем определении.
+Термин \quotation{по равенству} используется сам по себе, когда первая величина относится ко второй из первого ряда, как первая ко второй из второго ряда, и~когда вторая к~третьей из первого относится, как вторая к~третьей из второго, и~так далее, и~делается утверждение, такое, как упомянуто в~предыдущем определении.
 
 \startCenterAlign
 Таким образом, если есть два ряда величин,\\
@@ -10252,15 +10258,15 @@ $\varA, \varB, \varC, \varD, \varE, \varF$, первый,\\
 \def\varO{\color[byblue]{O}}
 \def\varP{\color[byred]{P}}
 \def\varQ{\color[byred]{Q}}
-\quotation{По равенству в~перемешанной пропорции} говорят, когда первая величина ко второй в~первом ряду относится как последняя к~предпоследней во втором ряду, вторая к~третьей в~первом ряду как пред-предпоследняя к~предпоследней во втором, третья к~четвертой в~первом как четвертая с~конца к~пред-предпоследней во втором и~так далее, и~утверждается то же, что и~в \indefL[def:V.XVIII]. Это иллюстрируется в~\inpropL[prop:V.XXIII].
+\quotation{По равенству в~перемешанной пропорции} говорят, когда первая величина ко второй в~первом ряду относится, как последняя к~предпоследней во втором ряду, вторая к~третьей в~первом ряду, как пред-предпоследняя к~предпоследней во втором, третья к~четвертой в~первом, как четвертая с~конца к~пред-предпоследней во втором и~так далее, и~утверждается то же, что и~в \indefL[def:V.XVIII]. Это иллюстрируется в~\inpropL[prop:V.XXIII].
 
 \startCenterAlign
 Так, если есть два ряда величин,\\
-$\varA, \varB, \varC, \varD, \varE, \varF$, первый,\\
-и $\varL, \varM, \varN, \varO, \varP, \varQ$, второй,\\
+$\varA, \varB, \varC, \varD, \varE, \varF$ первый\\
+и $\varL, \varM, \varN, \varO, \varP, \varQ$ второй,\\
 таких, что $\varA : \varB :: \varP : \varQ$, $\varB : \varC :: \varO : \varP$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varM : \varN$, $\varE : \varF :: \varL : \varM$.
 
-Используя понятие \quotation{по равенству в~перемешанной пропорции} мы утверждаем, что $\varA : \varF :: \varL : \varQ$
+Используя понятие \quotation{по равенству в~перемешанной пропорции}, мы утверждаем, что $\varA : \varF :: \varL : \varQ$.
 \stopCenterAlign
 \stopDefinition
 
@@ -10278,15 +10284,16 @@ byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 \problemNP{Е}{сли}{есть три величины и~другие три, которые, взятые попарно, будут иметь те же отношения, то если первая больше третьей, то и~четвертая будет больше шестой, если равны, то равны, а~если меньше, то меньше.}
 
 \startCenterAlign
-Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}, будут первыми тремя величинами,\\
-а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI}, другими тремя,\\
-такими, что $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$, и~$\magnitudeII : \magnitudeIII :: \magnitudeV : \magnitudeVI$.
+Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III} будут первыми тремя величинами,\\
+а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI} другими тремя,\\
+такими, что $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$\\ 
+и~$\magnitudeII : \magnitudeIII :: \magnitudeV : \magnitudeVI$.
 
 Тогда если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
 то $\magnitudeIV >, =, \mbox{ или } < \magnitudeVI$.
 
-Исходя из гипотезы и~переставив получим\\
-$\magnitudeI : \magnitudeIV :: \magnitudeII : \magnitudeV$,\\
+Исходя из гипотезы и~переставив, получим\\
+$\magnitudeI : \magnitudeIV :: \magnitudeII : \magnitudeV$\\
 и $\magnitudeII : \magnitudeV :: \magnitudeIII : \magnitudeVI$.
 
 $\therefore \magnitudeI : \magnitudeIV :: \magnitudeIII : \magnitudeVI$ \inprop[prop:V.XI].
@@ -10294,7 +10301,7 @@ $\therefore \magnitudeI : \magnitudeIV :: \magnitudeIII : \magnitudeVI$ \inprop[
 $\therefore$ если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
 тогда $\magnitudeIV >, =, \mbox{ или } < \magnitudeVI$ \inprop[prop:V.XIV].
 
-$\therefore$ Если есть три величины… и~т. д.
+$\therefore$ если есть три величины… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10312,23 +10319,22 @@ byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 \problemNP{Е}{сли}{есть три величины и~другие три, с~одинаковыми отношениями, если брать по две из каждого ряда, но в~противоположном порядке, тогда, если первая величина больше третьей, четвертая будет больше шестой, если равны, то равны, а~если меньше, то меньше.}
 
 \startCenterAlign
-Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}, будут первыми тремя величинами,\\
-а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI}, другими тремя,\\
-такими, что $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$,\\
+Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III} будут первыми тремя величинами,\\
+а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI} другими тремя,\\
+такими, что $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$\\
 и $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$.
 
 Тогда, если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
 то $\magnitudeIV >, =, \mbox{ или } < \magnitudeVI$.
 
-Допустим $\magnitudeI > \magnitudeIII$,\\
+Допустим, $\magnitudeI > \magnitudeIII$,\\
 тогда, поскольку \magnitudeII\ любая другая величина,\\
 $\magnitudeI : \magnitudeII > \magnitudeIII : \magnitudeII$ \inprop[prop:V.VIII].
 
 Но $\magnitudeV : \magnitudeVI :: \magnitudeI : \magnitudeII$ (\hypstr).
 
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$ \inprop[prop:V.XIII],\\
-и, поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (\hypstr).
-
+и, поскольку $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$ (\hypstr),\\
 $\therefore \magnitudeIII : \magnitudeII :: \magnitudeV : \magnitudeIV$ (перев.),\\
 и было показано, что $\magnitudeV : \magnitudeVI > \magnitudeIII : \magnitudeII$,
 $\therefore \magnitudeV : \magnitudeVI > \magnitudeV : \magnitudeIV$ \inprop[prop:V.XIII].
@@ -10340,22 +10346,21 @@ $\therefore \magnitudeVI < \magnitudeIV$,\\
 Поскольку $\magnitudeI = \magnitudeIII$,\\
 $\magnitudeI : \magnitudeII = \magnitudeIII : \magnitudeII$ \inprop[prop:V.VII].
 
-Но $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (\hypstr),\\
+Но $\magnitudeI : \magnitudeII = \magnitudeV : \magnitudeVI$ (\hypstr)\\
 и $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$ (\hypstr и~перев.).
 
 $\therefore \magnitudeV : \magnitudeVI = \magnitudeV : \magnitudeIV$ \inprop[prop:V.XI].
 
 $\therefore \magnitudeIV = \magnitudeVI$ \inprop[prop:V.IX].
 
-И теперь, пусть $\magnitudeI < \magnitudeIII$, тогда $\magnitudeIV < \magnitudeVI$;\\
+И теперь пусть $\magnitudeI < \magnitudeIII$, тогда $\magnitudeIV < \magnitudeVI$;\\
 поскольку $\magnitudeIII > \magnitudeI$,\\
-и было показано, что $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$,\\
-и $\magnitudeII : \magnitudeI = \magnitudeVI : \magnitudeV$.
-
+и было показано, что $\magnitudeIII : \magnitudeII = \magnitudeV : \magnitudeIV$\\
+и $\magnitudeII : \magnitudeI = \magnitudeVI : \magnitudeV$,\\
 $\therefore$ как в~первом случае $\magnitudeVI > \magnitudeIV$,\\
 то есть $\magnitudeIV < \magnitudeVI$.
 
-$\therefore$  Если есть три величины… и~т. д.
+$\therefore$ если есть три величины… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10378,55 +10383,54 @@ byMagnitudeSymbolDefine.VIa("circle", byblack, 0);
 byMagnitudeSymbolDefine.VIIa("halfsquare", byyellow, 0);
 byMagnitudeSymbolDefine.VIIIa("halfrhombusUp", byred, 0);
 }
-\problemNP{Е}{сли}{есть любое количество величин и~столько же других величин, которые взятые по две из каждого ряда по порядку имеют равные отношения, то первые, первая будут иметь к~последней среди первых величин такое же отношение, как первая к~последней среди вторых.\\
+\problemNP{Е}{сли}{есть любое количество величин и~столько же других величин, которые, взятые по две из каждого ряда по порядку, имеют равные отношения, то первая будeт иметь к~последней среди первых величин такое же отношение, как первая к~последней среди вторых.\\
 Это обычно обозначается словами \quotation{по равенству}.}
 
 \startCenterAlign
-Пусть будут величины \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
+Пусть будут величины \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}\\
 и столько же других величин \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI},\\
 таких, что\\
-$\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$,\\
+$\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$\\
 и $\magnitudeII : \magnitudeIII :: \magnitudeV : \magnitudeVI$,\\
 тогда $\magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeVI$.\\
 \stopCenterAlign
 
-Пусть эти величины и~их равнократные, предыдущих или последующих в~отношениях, расположены так:
+Пусть эти величины, как и равнократные, что предыдущих, что последующих в~отношениях, расположены так:
 
 \startCenterAlign
-$\magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV, \magnitudeV, \magnitudeVI,$\\
-и\\
-$M \magnitudeI, m \magnitudeII, N \magnitudeIII, M \magnitudeIV, m \magnitudeV, N \magnitudeVI,$\\
+$\magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV, \magnitudeV, \magnitudeVI$\\
+и $M \magnitudeI, m \magnitudeII, N \magnitudeIII, M \magnitudeIV, m \magnitudeV, N \magnitudeVI,$\\
 поскольку $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$,\\
 $\therefore M \magnitudeI : m \magnitudeII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV].
 
 По той же причине\\
 $m \magnitudeII : N \magnitudeIII :: m \magnitudeV : N \magnitudeVI$;\\
 и поскольку есть три величины\\
-$M \magnitudeI, m \magnitudeII, N \magnitudeIII$,\\
-и другие три, $M \magnitudeIV, m \magnitudeV, N \magnitudeVI$,\\
-которые взятые по две из каждого ряда имеют равные отношения.
+$M \magnitudeI, m \magnitudeII, N \magnitudeIII$\\
+и другие три $M \magnitudeIV, m \magnitudeV, N \magnitudeVI$,\\
+которые, взятые по две из каждого ряда, имеют равные отношения.
 
-$\therefore$ если $M \magnitudeI >, = \mbox{ или } < N \magnitudeIII$\\
+$\therefore$ если $M \magnitudeI >, = \mbox{ или } < N \magnitudeIII$,\\
 то $M \magnitudeIV >, = \mbox{ или } < N \magnitudeVI$ \inprop[prop:V.XX],\\
 и $\therefore \magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeVI$ \indef[def:V.V].
 
-Теперь, допустим, есть четыре величины \drawMagnitude{Ia}, \drawMagnitude{IIa}, \drawMagnitude{IIIa}, \drawMagnitude{IVa},\\
+Теперь, допустим, есть четыре величины \drawMagnitude{Ia}, \drawMagnitude{IIa}, \drawMagnitude{IIIa}, \drawMagnitude{IVa}\\
 и другие четыре \drawMagnitude{Va}, \drawMagnitude{VIa}, \drawMagnitude{VIIa}, \drawMagnitude{VIIIa},\\
-которые взятые по две из каждого ряда имеют равные отношения\\
+которые, взятые по две из каждого ряда, имеют равные отношения\\
 то есть $\magnitudeIa : \magnitudeIIa :: \magnitudeVa : \magnitudeVIa$,\\
-$\magnitudeIIa : \magnitudeIIIa :: \magnitudeVIa : \magnitudeVIIa$,\\
+$\magnitudeIIa : \magnitudeIIIa :: \magnitudeVIa : \magnitudeVIIa$\\
 и $\magnitudeIIIa : \magnitudeIVa :: \magnitudeVIIa : \magnitudeVIIIa$,\\
 тогда $\magnitudeIa : \magnitudeIVa :: \magnitudeVa : \magnitudeVIIIa$,\\
-поскольку $\magnitudeIa, \magnitudeIIa, \magnitudeIIIa$ это три величины,\\
+поскольку $\magnitudeIa, \magnitudeIIa, \magnitudeIIIa$ это три величины\\
 и $\magnitudeVa, \magnitudeVIa, \magnitudeVIIa$ другие три,\\
-которые взятые по две из каждого ряда имеют равные отношения,\\
-следовательно, как и~в предыдущем случае $\magnitudeIa : \magnitudeIIIa :: \magnitudeVa : \magnitudeVIIa$,\\
+которые, взятые по две из каждого ряда, имеют равные отношения,\\
+следовательно, как и~в предыдущем случае, $\magnitudeIa : \magnitudeIIIa :: \magnitudeVa : \magnitudeVIIa$,\\
 но $\magnitudeIIIa : \magnitudeIVa :: \magnitudeVIIa : \magnitudeVIIIa$.
 
-Значит опять, как в~предыдущем случае $\magnitudeIa : \magnitudeIVa :: \magnitudeVa : \magnitudeVIIIa$,\\
+Значит, опять, как в~предыдущем случае, $\magnitudeIa : \magnitudeIVa :: \magnitudeVa : \magnitudeVIIIa$,\\
 и так далее, сколько есть величин.
 
-$\therefore$ Если есть любое количество величин… и~т. д.
+$\therefore$ если есть любое количество величин… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10443,15 +10447,15 @@ byMagnitudeSymbolDefine.VI("circle", byred, 0);
 byMagnitudeSymbolDefine.VII("halfsquare", byblack, 0);
 byMagnitudeSymbolDefine.VIII("halfrhombusUp", byblack, 0);
 }
-\problemNP{Е}{сли}{есть любое число величин и~столько же других, которые взятые по две в~противоположном порядке имеют равные отношения, первая к~последней из первого ряда будет иметь то же отношение, что и~первая к~последней из второго.\\
+\problemNP{Е}{сли}{есть любое число величин и~столько же других, которые, взятые по две в~противоположном порядке, имеют равные отношения, первая к~последней из первого ряда будет иметь то же отношение, что и~первая к~последней из второго.\\
 Это обычно обозначается словами \quotation{по равенству в~перемешанной пропорции}.}
 
 \startCenterAlign
-Пусть будут величины \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
+Пусть будут величины \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}\\
 и другие три, \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI},\\
-которые, взятые по две в~противоположном порядке имеют равные отношения.
+которые, взятые по две в~противоположном порядке, имеют равные отношения.
 
-То есть $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$,\\
+То есть $\magnitudeI : \magnitudeII :: \magnitudeV : \magnitudeVI$\\
 и $\magnitudeII : \magnitudeIII :: \magnitudeIV : \magnitudeV$,\\
 тогда $\magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeVI$.
 \stopCenterAlign
@@ -10471,32 +10475,32 @@ $\therefore M \magnitudeI : M \magnitudeII :: \magnitudeV : \magnitudeVI$ \inpro
 $\therefore M \magnitudeII : m \magnitudeIII :: M \magnitudeIV : m \magnitudeV$ \inprop[prop:V.IV].
 
 Тогда, поскольку есть три величины\\
-$M \magnitudeI, M \magnitudeII, m \magnitudeII$,\\
+$M \magnitudeI, M \magnitudeII, m \magnitudeII$\\
 и другие три $M \magnitudeIV, m \magnitudeV, m \magnitudeVI$,\\
-которые, взятые по две в~противоположном порядке имеют равные отношения,\\
+которые, взятые по две в~противоположном порядке, имеют равные отношения,\\
 значит, если $M \magnitudeI >, =, \mbox{ или } < m \magnitudeIII$,\\
 то $M \magnitudeIV >, =, \mbox{ или } < m \magnitudeVI$ \inprop[prop:V.XXI],\\
 и $\therefore \magnitudeI : \magnitudeIII :: \magnitudeIV : \magnitudeIV$ \indef[def:V.V].
 
-Теперь, пусть будет четыре величины,\\
+Теперь пусть будет четыре величины,\\
 \magnitudeI, \magnitudeII, \magnitudeIII, \magnitudeIV,\\
 и другие четыре,\\
 \magnitudeV, \magnitudeVI, \drawMagnitude{VII}, \drawMagnitude{VIII},\\
 которые, взятые по две в~противоположном порядке, имеют равные отношения,
-а именно, $\magnitudeI : \magnitudeII :: \magnitudeVII : \magnitudeVIII$,\\
-$\magnitudeII : \magnitudeIII :: \magnitudeVI : \magnitudeVII$,\\
+а именно $\magnitudeI : \magnitudeII :: \magnitudeVII : \magnitudeVIII$,\\
+$\magnitudeII : \magnitudeIII :: \magnitudeVI : \magnitudeVII$\\
 и $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$,\\
 получим $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$.\\
 Поскольку $\magnitudeI, \magnitudeII, \magnitudeIII$ три величины,\\
 и $\magnitudeVI, \magnitudeVII, \magnitudeVIII$, другие три,\\
-которые взятые по две в~противоположном порядке имеют равные отношения,\\
+которые. взятые по две в~противоположном порядке, имеют равные отношения,\\
 значит, как в~первом случае, $\magnitudeI : \magnitudeIII :: \magnitudeVI : \magnitudeVIII$,\\
 но $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$,\\
 значит, опять как в~первом слчае,\\
 $\magnitudeIII : \magnitudeIV :: \magnitudeV : \magnitudeVI$;\\
 и так далее для любого количества величин.
 
-$\therefore$ Если есть любое количество величин… и~т. д.
+$\therefore$ если есть любое количество величин… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10511,7 +10515,7 @@ byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
 byMagnitudeSymbolDefine.VI("circle", byblue, 0);
 }
-\problemNP{Е}{сли}{первая величина ко второй имеет такое же отношение, как третья к~четвертой, а~пятая ко второй, такое же как шестая к~четвертой, то первая и~пятая вместе ко второй будут иметь такое же отношение, как третья с~шестой вместе к~четвертой.}
+\problemNP{Е}{сли}{первая величина ко второй имеет такое же отношение, как третья к~четвертой, а~пятая ко второй, такое же, как шестая к~четвертой, то первая и~пятая вместе ко второй будут иметь такое же отношение, как третья с~шестой вместе к~четвертой.}
 
 \setbox0\vbox{
 \unprotect
@@ -10527,11 +10531,11 @@ byMagnitudeSymbolDefine.VI("circle", byblue, 0);
 }
 \figureInMargin{\box0}
 \startCenterAlign
-Пусть $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$,\\
+Пусть $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\
 и $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$,\\
 то $\magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeIII + \magnitudeVI : \magnitudeIV$.
 
-Поскольку $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (\hypstr),\\
+Поскольку $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$ (\hypstr)\\
 и $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$ (\hypstr и~перев.).
 
 $\therefore \magnitudeV : \magnitudeI :: \magnitudeVI : \magnitudeIII$ \inprop[prop:V.XXII];\\
@@ -10542,7 +10546,7 @@ $\therefore \magnitudeI + \magnitudeV : \magnitudeV :: \magnitudeVI + \magnitude
 
 $\therefore \magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeVI + \magnitudeIII : \magnitudeIV$ \inprop[prop:V.XXII].
 
-$\therefore$ Если первая величина ко второй… и~т. д.
+$\therefore$ если первая величина ко второй… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10558,10 +10562,10 @@ byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 \problemNP{Е}{сли}{четыре величины пропорциональны, то наибольшая и~наименьшая из них вместе больше других двух.}
 
 \startCenterAlign
-Пусть четыре величины $\drawMagnitude{Ia} + \drawMagnitude{III}, \drawMagnitude{IIa} + \drawMagnitude{IV}, \magnitudeIII, \mbox{ и~} \magnitudeIV$, будут пропорциональными.
+Пусть четыре величины $\drawMagnitude{Ia} + \drawMagnitude{III}, \drawMagnitude{IIa} + \drawMagnitude{IV}, \magnitudeIII \mbox{ и~} \magnitudeIV$ будут пропорциональными.
 
 $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,\\
-и пусть $\magnitudeIa + \magnitudeIII$ будет наибольшей из четырех, следовательно, согласно \inpropL[prop:V.A] и~\inpropL[prop:V.XIV], \magnitudeIV\ наименьшей.
+и пусть $\magnitudeIa + \magnitudeIII$ будет наибольшей из четырех, следовательно, согласно \inpropL[prop:V.A] и~\inpropL[prop:V.XIV], \magnitudeIV\ будет наименьшей.
 
 Тогда $\magnitudeIa + \magnitudeIII + \magnitudeIV > \magnitudeIIa + \magnitudeIV + \magnitudeIII$,\\
 поскольку $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$.
@@ -10574,7 +10578,7 @@ $\therefore \magnitudeIa > \magnitudeIIa$ \inprop[prop:V.A].
 К каждой добавим $\magnitudeIII + \magnitudeIV$,\\
 $\therefore \magnitudeIa + \magnitudeIII + \magnitudeIV > \magnitudeIIa + \magnitudeIII + \magnitudeIV$.
 
-$\therefore$ Если четыре величины… и~т. д.
+$\therefore$ если четыре величины… и~т. д.
 \stopCenterAlign
 \stopProposition
 
@@ -10589,7 +10593,7 @@ $\therefore$ Если четыре величины… и~т. д.
 \def\vara{\color[byblue]{a}}
 Когда три величины пропорциональны, говорят, что первая имеет к~третьей двойное отношение первой ко второй.
 
-Например, если $\varA$, $\varB$, $\varC$ пропорциональны, то есть $\varA : \varB :: \varB : \varC$, то говорят, что $\varA$, к~$\varC$ имеет двойное отношение $\varA : \varB$.
+Например, если $\varA$, $\varB$, $\varC$ пропорциональны, то есть $\varA : \varB :: \varB : \varC$, то говорят, что $\varA$ к~$\varC$ имеет двойное отношение $\varA : \varB$.
 
 \startCenterAlign
 Или $\dfrac{\varA}{\varC} = \mbox{ квадрату } \dfrac{\varA}{\varB}$.
@@ -10614,7 +10618,7 @@ $\therefore$ Если четыре величины… и~т. д.
 \def\vara{\color[byblack]{a}}
 Когда четыре величины пропорциональны, говорят, что первая к~четвертой имеет тройное отношение первой ко второй. Таким же образом можно получить четверное отношение и~т. д.
 
-Например, пусть $\varA$, $\varB$, $\varC$, $\varD$, будут пропорциональны, то есть $\varA : \varB :: \varB : \varC :: \varC : \varD$, тогда говорят, что $\varA$ имеет к~$\varD$ тройное отношение $\varA$ к~$\varB$.
+Например, пусть $\varA$, $\varB$, $\varC$, $\varD$ будут пропорциональны, то есть $\varA : \varB :: \varB : \varC :: \varC : \varD$, тогда говорят, что $\varA$ имеет к~$\varD$ тройное отношение $\varA$ к~$\varB$.
 
 \startCenterAlign
 Или $\dfrac{\varA}{\varD} = \mbox{ кубу } \dfrac{\varA}{\varB}$.
@@ -10634,7 +10638,7 @@ $ar^5 : ar^4 :: ar^4 : ar^3 :: ar^3 : ar^2 :: ar^2 : ar :: ar : a$,\\
 тогда отношение $\dfrac{ar^5}{a} = r^5 = \mbox{ пятой степени } \dfrac{ar^5}{ar^4} = r$.
 \stopCenterAlign
 
-Или пусть $a$, $ar$, $ar^2$, $ar^3$, $ar^4$, будут пятью пропорциональными величинами $\dfrac{a}{ar^4} = \dfrac{1}{r^4} = \mbox{ четвертой степени } \dfrac{a}{ar} = \dfrac{1}{r}$.
+Или пусть $a$, $ar$, $ar^2$, $ar^3$, $ar^4$ будут пятью пропорциональными величинами $\dfrac{a}{ar^4} = \dfrac{1}{r^4} =$ четвертой степени $\dfrac{a}{ar} = \dfrac{1}{r}$.
 \stopDefinition
 
 \vfill\pagebreak
@@ -10660,17 +10664,17 @@ $ar^5 : ar^4 :: ar^4 : ar^3 :: ar^3 : ar^2 :: ar^2 : ar :: ar : a$,\\
 ~$\varE\ \varF\ \varG\ \varH\ \varK\ \varL$~\\
 ~$\varM\ \varN$~
 }}
-Когда есть любое количество однородных величин, говорят, что первая имеет к~последней составное отношение из отношения первой ко второй, второй к~третьей, третьей к~четвертой и~так далее до последней величины. Например, если $\varA, \varB, \varC, \varD$ будут четырьмя однородными величинами, можно сказать, что первая $\varA$ имеет к~последней $\varD$ отношение, составленное из отношений  $\varA$ к~$\varB$, $\varB$ к~$\varC$, и~$\varC$ к~$\varD$.
+Когда есть любое количество однородных величин, говорят, что первая имеет к~последней составное отношение из отношения первой ко второй, второй к~третьей, третьей к~четвертой и~так далее до последней величины. Например, если $\varA, \varB, \varC, \varD$ будут четырьмя однородными величинами, можно сказать, что первая $\varA$ имеет к~последней $\varD$ отношение, составленное из отношений  $\varA$ к~$\varB$, $\varB$ к~$\varC$ и~$\varC$ к~$\varD$.
 
-И если $\varA$ к~$\varB$ относится так же, как $\varE$ к~$\varF$, и~$\varB$ к~$\varC$ как $\varG$ к~$\varH$, и~$\varC$ к~$\varD$, в~то же время, как $\varK$ к~ $\varL$, то, по данному определению, можно сказать, что $\varA$ имеет к~$\varD$ составное отношение из отношений таких же, как $\varE$ к~$\varF$, $\varG$ к~$\varH$, и~$\varK$ к~$\varL$.
+И если $\varA$ к~$\varB$ относится так же, как $\varE$ к~$\varF$, и~$\varB$ к~$\varC$ как $\varG$ к~$\varH$, и~$\varC$ к~$\varD$, в~то же время, как $\varK$ к~ $\varL$, то, по данному определению, можно сказать, что $\varA$ имеет к~$\varD$ составное отношение из отношений таких же, как $\varE$ к~$\varF$, $\varG$ к~$\varH$ и~$\varK$ к~$\varL$.
 
 Таким же образом, с~теми же предпосылками, если $\varM$ к~$\varN$ имеет такое же отношение, как $\varA$ к~$\varD$, то для краткости можно сказать, что $\varM$ имеет к~$\varN$ составное отношение из отношений $\varE$ к~$\varF$, $\varG$ к~$\varH$, и~$\varK$ к~$\varL$.
 
-Это определение может быть легче понять воспользовавшись арифметической или алгебраической иллюстрацией, поскольку, в~сущности, отношение, составленное из нескольких отношений, это не более чем отношение, в~котором предыдущее представляет собой произведение предыдущих отношений, из которых составлено составное отношение, а~последующее — произведение последующих.
+Это определение может быть легче понять, воспользовавшись арифметической или алгебраической иллюстрацией, поскольку, в~сущности, отношение, составленное из нескольких отношений, это не более чем отношение, в~котором предыдущее представляет собой произведение предыдущих отношений, из которых составлено составное отношение, а~последующее — произведение последующих.
 
 \startCenterAlign
 Так, отношение, составленное из отношений\\
-$\color[byred]{2} : \color[byred]{3}$, $\color[byyellow]{4} : \color[byyellow]{7}$, $\color[byblue]{6} : \color[byblue]{11}$, $\color[byblack]{2} : \color[byblack]{5}$,\\
+$\color[byred]{2} : \color[byred]{3}$, $\color[byyellow]{4} : \color[byyellow]{7}$, $\color[byblue]{6} : \color[byblue]{11}$, $\color[byblack]{2} : \color[byblack]{5}$\\
 будет отношением $\color[byred]{2} \times \color[byyellow]{4} \times \color[byblue]{6} \times \color[byblack]{2} : \color[byred]{3} \times \color[byyellow]{7} \times \color[byblue]{11} \times \color[byblack]{5}$,\\
 или отношением $96 : 1155$ или $32 : 385$.
 \stopCenterAlign
@@ -10681,7 +10685,7 @@ $\color[byred]{2} : \color[byred]{3}$, $\color[byyellow]{4} : \color[byyellow]{7
 \def\varD{\color[byyellow]{D}}
 \def\varE{\color[byblue]{E}}
 \def\varF{\color[byblue]{F}}
-А среди отношений однородных величин $\varA$, $\varB$, $\varC$, $\varD$, $\varE$, $\varF$, отношение $\varA : \varF$ это отношение, составленное из отношений
+А среди отношений однородных величин $\varA$, $\varB$, $\varC$, $\varD$, $\varE$, $\varF$ отношение $\varA : \varF$ это отношение, составленное из отношений
 
 \startCenterAlign
 $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \varF$;\\
@@ -10703,7 +10707,7 @@ $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \va
 \def\varH{\color[byyellow]{H}}
 \def\varK{\color[byyellow]{K}}
 \def\varL{\color[byblue]{L}}
-\problemNP{О}{тношения,}{составленные из  одних и~тех же отношений одинаковы.}
+\problemNP{О}{тношения,}{составленные из  одних и~тех же отношений, одинаковы.}
 
 \vskip -\baselineskip
 
@@ -10716,31 +10720,29 @@ $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \va
 Пусть $\varA : \varB :: \varF : \varG$, $\varB : \varC :: \varG : \varH$, $\varC : \varD :: \varH : \varK$ и $\varD : \varE :: \varK : \varL$.
 \stopCenterAlign
 
-Тогда отношение составленное из $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, или отношение $\varA : \varE$, будет таким же, как составленное из $\varF : \varG$, $\varG : \varH$, $\varH : \varK$, $\varK : \varL$, или отношение $\varF : \varL$.
+Тогда отношение, составленное из $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, или отношение $\varA : \varE$, будет таким же, как составленное из $\varF : \varG$, $\varG : \varH$, $\varH : \varK$, $\varK : \varL$, или отношение $\varF : \varL$.
 
 \startCenterAlign
-Поскольку $\dfrac{\varA}{\varB} = \dfrac{\varF}{\varG}$, $\dfrac{\varB}{\varC} = \dfrac{\varG}{\varH}$, $\dfrac{\varC}{\varD} = \dfrac{\varH}{\varK}$, и $\dfrac{\varD}{\varE} = \dfrac{\varK}{\varL}$.
-
+Поскольку $\dfrac{\varA}{\varB} = \dfrac{\varF}{\varG}$, $\dfrac{\varB}{\varC} = \dfrac{\varG}{\varH}$, $\dfrac{\varC}{\varD} = \dfrac{\varH}{\varK}$ и $\dfrac{\varD}{\varE} = \dfrac{\varK}{\varL}$,\\
 $\therefore \dfrac{\varA \times \varB \times \varC \times \varD}{\varB \times \varC \times \varD \times \varE} = \dfrac{\varF \times \varG \times \varH \times \varK}{\varG \times \varH \times \varK \times \varL}$,\\
 и $\therefore \dfrac{\varA}{\varE} = \dfrac{\varF}{\varL}$,\\
-или отношение $\varA : \varE$ такое же как $\varF : \varL$.
+или отношение $\varA : \varE$ такое же, как $\varF : \varL$.
 \stopCenterAlign
 
-То же можно показать для любого числа отношений расположенных таким образом.
+То же можно показать для любого числа отношений, расположенных таким образом.
 
 \startCenterAlign
-Теперь, пусть $\varA : \varB :: \varK : \varL$, $\varB : \varC :: \varH : \varK$, $\varC : \varD :: \varG : \varH$ и $\varD : \varE :: \varF : \varG$.
+Теперь пусть $\varA : \varB :: \varK : \varL$, $\varB : \varC :: \varH : \varK$, $\varC : \varD :: \varG : \varH$ и $\varD : \varE :: \varF : \varG$.
 \stopCenterAlign
 
-Тогда отношение, составленное из отношений $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, или отношение $\varA : \varE$, будет таким же, как отношение составленное из отношений $\varK : \varL$, $\varH : \varK$, $\varG : \varH$, $\varF : \varG$, или отношение $\varF : \varL$.
+Тогда отношение, составленное из отношений $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, или отношение $\varA : \varE$, будет таким же, как отношение, составленное из отношений $\varK : \varL$, $\varH : \varK$, $\varG : \varH$, $\varF : \varG$, или отношение $\varF : \varL$.
 
 \startCenterAlign
-Поскольку $\dfrac{\varA}{\varB} = \dfrac{\varK}{\varL}$, $\dfrac{\varB}{\varC} = \dfrac{\varH}{\varK}$, $\dfrac{\varC}{\varD} = \dfrac{\varG}{\varH}$ и $\dfrac{\varD}{\varE} = \dfrac{\varF}{\varG}$.
-
+Поскольку $\dfrac{\varA}{\varB} = \dfrac{\varK}{\varL}$, $\dfrac{\varB}{\varC} = \dfrac{\varH}{\varK}$, $\dfrac{\varC}{\varD} = \dfrac{\varG}{\varH}$ и $\dfrac{\varD}{\varE} = \dfrac{\varF}{\varG}$,\\
 $\therefore \dfrac{\varA \times \varB \times \varC \times \varD}{\varB \times \varC \times \varD \times \varE} = \dfrac{\varK \times \varH \times \varG \times \varF}{\varL \times \varK \times \varH \times \varG}$ и $\therefore \dfrac{\varA}{\varE} = \dfrac{\varF}{\varL}$,\\
 или отношение $\varA : \varE$ такое же как отношение $\varF : \varL$.
 
-$\therefore$ Отношения, составленные… и~т. д.
+$\therefore$ отношения, составленные… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -10765,7 +10767,7 @@ $\therefore$ Отношения, составленные… и~т. д.
 \def\varX{\color[byyellow]{X}}
 \def\varY{\color[byyellow]{Y}}
 \def\varZ{\color[byyellow]{Z}}
-\problemNP{Е}{сли}{несколько отношений такие же, как несколько других отношений, каждое к~каждому, то отношение, составленное из отношений, таких же, как первые, каждое к~каждому, будет таким же, как отношение, составленное из отношений, таких же как вторые, каждое к~каждому.}
+\problemNP{Е}{сли}{несколько отношений такие же, как несколько других отношений, каждое к~каждому, то отношение, составленное из отношений таких же, как первые, каждое к~каждому будет таким же, как отношение, составленное из отношений таких же, как вторые, каждое к~каждому.}
 
 \startCenterAlign
 \unprotect
@@ -10797,13 +10799,13 @@ $\eqalign{
 \mbox{ и~\ } a : b & :: \varV : \varW\cr
 c : d & :: \varW : \varX\cr
 e : f & :: \varX : \varY\cr
-f : h & :: \varY : \varZ\cr
+f : h & :: \varY : \varZ \mbox{,}\cr
 }$ \cr
 }}
 \protect
 \hskip-\wd0\hskip\textwidth\box0
 
-Тогда $\varP : \varT = \varV : \varZ$.
+тогда $\varP : \varT = \varV : \varZ$.
 
 $\eqalign{
 \mbox{ Поскольку } \frac{\varP}{\varQ} = \frac{\varA}{\varB}
@@ -10822,10 +10824,10 @@ $\eqalign{
 \dfrac{\varV \times \varW \times \varX \times \varY}
 	{\varW \times \varX \times \varY \times \varZ}$.
 
-И $\therefore \dfrac{\varP}{\varT} = \dfrac{\varV}{\varZ}$,
+И $\therefore \dfrac{\varP}{\varT} = \dfrac{\varV}{\varZ}$
 или $\varP : \varT = \varV : \varZ$.
 
-$\therefore$ Если несколько отношений… и~т. д.
+$\therefore$ если несколько отношений… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -10846,15 +10848,15 @@ $\therefore$ Если несколько отношений… и~т. д.
 \def\varS{\color[byblue]{S}}
 \def\varT{\color[byblue]{T}}
 \def\varX{\color[byblue]{X}}
-\problemNP{Е}{сли}{отношение, составленное из нескольких отношений будет таким же, как составленное из нескольких других отношений,
+\problemNP{Е}{сли}{отношение, составленное из нескольких отношений, будет таким же, как составленное из нескольких других отношений,
 и если одно из первых отношений или отношение, составленное из нескольких из них,  такое же, как одно из вторых или составленное из вторых,
-тогда составное отношение оставшихся из первых, будет таким же, как отношение составленное из оставшихся вторых.}
+тогда составное отношение оставшихся из первых будет таким же, как отношение, составленное из оставшихся вторых.}
 \figureInMargin{
 \framed[align=middle]{
 ~$\varA\ \varB\ \varC\ \varD\ \varE\ \varF\ \varG\ \varH$~\\
 ~$\varP\ \varQ\ \varR\ \varS\ \varT\ \varX$~\\
 }}
-Пусть $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \varF$, $\varF : \varG$, $\varG : \varH$, будут первыми отношениями и~$\varP : \varQ$, $\varQ : \varR$, $\varR : \varS$, $\varS : \varT$, $\varT : \varX$ вторыми отношениями; также пусть $\varA : \varH$, составленное из первых отношений будет таким же, как $\varP : \varX$, составленное вторых отношений, и~пусть отношение $\varA : \varE$, составленное из отношений $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$ будет таким же, как $\varP : \varR$, составленное из отношений $\varP : \varQ$, $\varQ : \varR$.
+Пусть $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, $\varE : \varF$, $\varF : \varG$, $\varG : \varH$ будут первыми отношениями и~$\varP : \varQ$, $\varQ : \varR$, $\varR : \varS$, $\varS : \varT$, $\varT : \varX$ вторыми отношениями; также пусть $\varA : \varH$, составленное из первых отношений, будет таким же, как $\varP : \varX$, составленное из вторых отношений, и~пусть отношение $\varA : \varE$, составленное из отношений $\varA : \varB$, $\varB : \varC$, $\varC : \varD$, $\varD : \varE$, будет таким же, как $\varP : \varR$, составленное из отношений $\varP : \varQ$, $\varQ : \varR$.
 
 Тогда отношение, составленное из оставшихся отношений, то есть отношение, составленное из отношений $\varE : \varF$, $\varF : \varG$, $\varG : \varH$, то есть отношение $\varE : \varH$, будет таким же, как отношение $\varR : \varX$, составленное из оставшихся отношений $\varR : \varS$, $\varS : \varT$, $\varT : \varX$.
 
@@ -10902,7 +10904,7 @@ $\therefore \dfrac{\varE}{\varH} = \dfrac{\varR}{\varX}$.
 
 $\therefore \varE : \varH = \varR : \varX$.
 
-$\therefore$ Если отношение… и~т. д.
+$\therefore$ если отношение… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 
@@ -10938,7 +10940,7 @@ $\therefore$ Если отношение… и~т. д.
 \def\vare{\color[byblue]{e}}
 \def\varf{\color[byblue]{f}}
 \def\varg{\color[byblue]{g}}
-\problemNP{Е}{сли}{есть любое количество отношений и~любое количество других отношений, такие, что отношение составленное из отношений, таких же, как первые отношения, каждое к~каждому, такое же, как отношение, составленное из отношений, таких же, как вторые, каждое к~каждому, и~если есть отношение, или отношение, составленное из отношений, таких же, как несколько из первых отношений, каждое к~каждому, такое же, как одно из вторых, или отношение, составленное из отношений таких же, каждое к~каждому, как несколько из вторых, то отношение, составленное отношений, таких же, как оставшиеся первые, каждое к~каждому, будет таким же, как отношение, составленное из таких же, как оставшиеся вторые, каждое к~каждому.}
+\problemNP{Е}{сли}{есть любое количество отношений и~любое количество других отношений, такие, что отношение, составленное из отношений таких же, как первые отношения, каждое к~каждому, такое же, как отношение, составленное из отношений таких же, как вторые, каждое к~каждому, и~если есть отношение, или отношение, составленное из отношений таких же, как несколько из первых отношений, каждое к~каждому, такое же, как одно из вторых, или отношение, составленное из отношений таких же, каждое к~каждому, как несколько из вторых, то отношение, составленное из отношений таких же, как оставшиеся первые, каждое к~каждому, будет таким же, как отношение, составленное из таких же, как оставшиеся вторые, каждое к~каждому.}
 
 \vskip 0.5\baselineskip
 
@@ -10957,7 +10959,7 @@ $\varO$ & $\varP$, & $\varQ$ & $\varR$, & $\varS$ & $\varT$, & $\varV$ & $\varW$
 
 \vskip 0.5\baselineskip
 
-Пусть $\varA : \varB$, $\varC : \varD$, $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$, будут первыми отношениями, а~$\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, $\varV : \varW$, $\varX : \varY$, вторыми.
+Пусть $\varA : \varB$, $\varC : \varD$, $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$ будут первыми отношениями, а~$\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, $\varV : \varW$, $\varX : \varY$ вторыми.
 
 \startCenterAlign
 $\eqalign{
@@ -10975,7 +10977,7 @@ $\eqalign{
 
 \startCenterAlign
 $\eqalign{
-\mbox{Также, }
+\mbox{Также }
 \varO : \varP &= h : k ,\cr
 \varQ : \varR &= k : l ,\cr
 \varS : \varT &= l : m ,\cr
@@ -10991,9 +10993,9 @@ $\therefore$ согласно гипотезе,\\
 $\vara : \varg = h : p$.
 \stopCenterAlign
 
-Теперь, пусть отношение, составленное из отношений $\varA : \varB$, $\varC : \varD$, двух первых отношения (или отношения $\vara : \varc$, поскольку $\varA : \varB = \vara : \varb$, и~$\varC : \varD = \varb : \varc$), будет таким же, как отношение $a : d$, состаавленное из отношений $a : b$, $b : c$, $c : d$, таких же, как отношения $\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, три из вторых.
+Теперь пусть отношение, составленное из отношений $\varA : \varB$, $\varC : \varD$, двух первых отношений (или отношения $\vara : \varc$, поскольку $\varA : \varB = \vara : \varb$, и~$\varC : \varD = \varb : \varc$), будет таким же, как отношение $a : d$, состаавленное из отношений $a : b$, $b : c$, $c : d$, таких же, как отношения $\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, три из вторых.
 
-И пусть будут отношения $h : s$, составленное из отношений $h : k$, $k : m$, $m : n$, $n : s$, таких же, как оставшиеся из первых, а~именно $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$, и~отношение $e : g$, составленное из отношения $e : f$ , $f : g$, таких же, как оставшиеся из вторых, а~именно $\varV : \varW$, $\varX : \varY$.  Тогда отношение $h : s$  будет таким же, как отношение $e : g$, или $h : s = e : g$.
+И пусть будет отношение $h : s$, составленное из отношений $h : k$, $k : m$, $m : n$, $n : s$, таких же, как оставшиеся из первых, а~именно $\varE : \varF$, $\varG : \varH$, $\varK : \varL$, $\varM : \varN$, и~отношение $e : g$, составленное из отношений $e : f$ , $f : g$, таких же, как оставшиеся из вторых, а~именно $\varV : \varW$, $\varX : \varY$.  Тогда отношение $h : s$  будет таким же, как отношение $e : g$, или $h : s = e : g$.
 
 \startCenterAlign
 Поскольку $\dfrac
@@ -11078,7 +11080,7 @@ $\therefore \dfrac{h}{s} = \dfrac{e}{g}$.
 
 $\therefore h : s = e : g$.
 
-$\therefore$ Если есть любое количество отношений… и~т. д.
+$\therefore$ если есть любое количество отношений… и~т. д.
 \stopCenterAlign
 \stopPropositionAZ
 \stopBook
