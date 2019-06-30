@@ -2752,7 +2752,7 @@ draw byLabelsOnPolygon(J, H, E)(2, 0);
 
 $\therefore \drawAngle{G} = \drawAngle{H}$.
 
-$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \inprop[prop:I.XXVII].
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \inprop[prop:I.XXVIII]. 
 \stopCenterAlign
 
 \qed
@@ -11220,19 +11220,19 @@ draw byLine(D, Q)(byblack, 0, 0);
 draw byLabelsOnPolygon(A, Q, D, C, B, M)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Т}{реугольники}{и параллелограммы, имеющие одну и~ту же высоту относятся друг к~другу как их основания.}
+\problemNP{Т}{реугольники}{и параллелограммы, имеющие одну и~ту же высоту, относятся друг к~другу, как их основания.}
 
 Пусть у~треугольников \drawPolygon[bottom]{ABC} и~\drawPolygon[bottom]{ACD} общая вершина, а~их основания \drawUnitLine{BC} и~\drawUnitLine{CD} лежат на одной прямой.
 
-Продлим \drawUnitLine{BC,CD} в~обе стороны, возьмем на продолжении со стороны \drawUnitLine{CD} линии равные ей, а~со стороны \drawUnitLine{BC} линии равные ей, и~проведем линии от вершины к~их концам.
+Продлим \drawUnitLine{BC,CD} в~обе стороны, возьмем на продолжении со стороны \drawUnitLine{CD} линии, равные ей, а~со стороны \drawUnitLine{BC} линии, равные ей, и~проведем линии от вершины к~их концам.
 
 Треугольники
 \drawFromCurrentPicture[bottom][trianglesAMC]{
 draw byNamedPolygon(AMN,AOH,AGB,ABC);
 draw byNamedLine(MB,BC);
 draw byLabelsOnPolygon(A, C, M)(0, 0);
-}
-образованные таким образом равны между собой, поскольку равны их основания \inprop[prop:I.XXXVIII].
+},
+образованные таким образом, равны между собой, поскольку равны их основания \inprop[prop:I.XXXVIII].
 
 $\therefore$ \trianglesAMC\ и~его основание соответственно равнократны \polygonABC\ и~его основанию \drawUnitLine{BC}.
 
@@ -11244,13 +11244,13 @@ draw byLabelsOnPolygon(C, A, Q)(0, 0);
 }
 и его основание соответственно равнократны \polygonACD\ и~его основанию \drawUnitLine{CD}.
 
-$\therefore$ если $m$ или $6$ раз \polygonABC\ $>, = \mbox{ или } < n$ или $5$ раз \polygonACD\ то $m$ или $6$ раз \drawUnitLine{BC} $>, = \mbox{ или } < n$ или $5$ раз \drawUnitLine{CD}, $m$ и~$n$ обозначают любые кратные, взятые как в~\indefL[def:V.V]. Хотя мы показали только, что это свойство проявляется, когда $m = 6$ и~$n = 5$, но очевидно, что это свойство работает для любых кратных значений, которые можно придать $m$ и~$n$.
+$\therefore$ если $m$ или $6$ раз \polygonABC\ $>, = \mbox{ или } < n$ или $5$ раз \polygonACD, то $m$ или $6$ раз \drawUnitLine{BC} $>, = \mbox{ или } < n$ или $5$ раз \drawUnitLine{CD}, $m$ и~$n$ обозначают любые кратные, взятые как в~\indefL[def:V.V]. Хотя мы показали только, что это свойство проявляется, когда $m = 6$ и~$n = 5$, но очевидно, что это свойство работает для любых кратных значений, которые можно придать $m$ и~$n$.
 
 \startCenterAlign
-$\therefore \polygonABC\ : \polygonACD\ :: \drawUnitLine{BC} : \drawUnitLine{CD}$ \indef[def:V.V]
+$\therefore \polygonABC\ : \polygonACD\ :: \drawUnitLine{BC} : \drawUnitLine{CD}$ \indef[def:V.V].
 \stopCenterAlign
 
-Параллелограммы с~той же высотой вдвое больше треугольников, на тех же основаниях, и~пропорциональны им (часть I), и, поскольку они вдвое больше, такие параллелограммы относятся как их основания \inprop[prop:V.XV].
+Параллелограммы с~той же высотой вдвое больше треугольников на тех же основаниях и~пропорциональны им (часть I), и, поскольку они вдвое больше, такие параллелограммы относятся, как их основания \inprop[prop:V.XV].
 
 \qed
 \stopProposition
@@ -11352,13 +11352,13 @@ $\left.\eqalign{
 \mbox{ и~} \drawUnitLine{EC} : \drawUnitLine{AE} &:: \triangleCDE\ : \triangleADE \cr
 }\right\}\mbox{ \inprop[prop:VI.I] }$.
 
-Но $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (\hypstr)
+Но $\drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ (\hypstr).
 
 $\therefore \triangleBDE\ : \triangleADE :: \triangleCDE\ : \triangleADE$ \inprop[prop:V.XI].
 
 $\therefore \triangleBDE\ = \triangleCDE$ \inprop[prop:V.IX].
 
-Но они на одном основании \drawUnitLine{BC}, и~по одну его сторону\\
+Но они на одном основании \drawUnitLine{BC} и~по одну его сторону,\\
 и $\therefore \drawUnitLine{DE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXIX].
 \stopCenterAlign
 \stopsubproposition
@@ -11393,13 +11393,13 @@ draw byNamedLineSeq(0)(AE,CE,DC,BD,AB);
 draw byLabelsOnPolygon(B, A, E, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{рямая}{\drawUnitLine{AD}, рассекающая угол треугольника пополам делит противоположную сторону на части \drawUnitLine{BD} и~\drawUnitLine{DC} пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}.\\
-И если прямая \drawUnitLine{AD}, проведенная из любого угла треугольника делит противоположную сторону \drawUnitLine{BD,DC} на части \drawUnitLine{BD} и~\drawUnitLine{DC}, пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}, то она делит угол пополам.}
+\problemNP{П}{рямая}{\drawUnitLine{AD}, рассекающая угол треугольника пополам, делит противоположную сторону на части \drawUnitLine{BD} и~\drawUnitLine{DC}, пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}.\\
+И если прямая \drawUnitLine{AD}, проведенная из любого угла треугольника, делит противоположную сторону \drawUnitLine{BD,DC} на части \drawUnitLine{BD} и~\drawUnitLine{DC}, пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}, то она делит угол пополам.}
 
 \startsubproposition[title={Часть I.}]
 \startCenterAlign
 Проведем $\drawUnitLine{CE} \parallel \drawUnitLine{AD}$, до \drawUnitLine{AE},\\
-тогда, $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX].
+тогда $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX].
 
 $\therefore \drawAngle{DAC} = \drawAngle{E}$; но $\drawAngle{DAC} = \drawAngle{C}$.
 
@@ -11429,8 +11429,7 @@ $\therefore \drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{AB} : \drawUn
 и $\therefore \drawAngle{E} = \drawAngle{C}$ \inprop[prop:I.V].
 
 Но поскольку $\drawUnitLine{AD} \parallel \drawUnitLine{CE}$, $\drawAngle{DAC} = \drawAngle{C}$,\\
-и $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX].
-
+и $\drawAngle{BAD} = \drawAngle{E}$ \inprop[prop:I.XXIX],\\
 $\therefore \drawAngle{C} = \drawAngle{E}$, и~$\drawAngle{BAD} = \drawAngle{DAC}$,\\
 и $\therefore$ \drawUnitLine{AD} делит \drawAngle{BAD,DAC} пополам.
 \stopCenterAlign
@@ -11467,9 +11466,9 @@ draw byNamedLineSeq(0)(AF,DF,DE,EC,BC,AB);
 draw byLabelsOnPolygon(B, A, F, D, E, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{В}{равноугольных}{треугольниках \drawLine[bottom][triangleABC]{CA,BC,AB} и~\drawLine[bottom][triangleCDE]{CD,DE,EC}, стороны при равных углах пропорциональны, а~стороны противолежащие равным углам соответственны.} % In the original "sides which are opposite to the equal angles are homologous", what dos it mean?
+\problemNP[3]{В}{равноугольных}{треугольниках \drawLine[bottom][triangleABC]{CA,BC,AB} и~\drawLine[bottom][triangleCDE]{CD,DE,EC} стороны при равных углах пропорциональны, а~стороны, противолежащие равным углам, соответственны.} % In the original "sides which are opposite to the equal angles are homologous", what dos it mean?
 
-Пусть два треугольника будут расположены так, что стороны \drawUnitLine{BC} и~\drawUnitLine{EC} против равных углов \drawAngle{D} и~ \drawAngle{A} будут смежными и~на одной прямой и~сами треугольники лежат по одну сторону этой прямой, а~равные углы, напротив, не будут смежными, т. е. \drawAngle{DCE} напротив \drawAngle{B}, и~\drawAngle{BCA} напротив \drawAngle{E}.
+Пусть два треугольника будут расположены так, что стороны \drawUnitLine{BC} и~\drawUnitLine{EC} против равных углов \drawAngle{D} и~ \drawAngle{A} будут смежными и~на одной прямой, и~сами треугольники лежат по одну сторону этой прямой, а~равные углы, напротив, не будут смежными, т. е. \drawAngle{DCE} напротив \drawAngle{B} и~\drawAngle{BCA} напротив \drawAngle{E}.
 
 \startCenterAlign
 Проведем \drawUnitLine{AF} и~\drawUnitLine{DF}.
@@ -11499,8 +11498,8 @@ $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{BC} : \drawUnitLine{EC}$
 и переставлением, что\\
 $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{CD} : \drawUnitLine{EC}$,\\
 но уже было доказано, что\\
-$\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EC} : \drawUnitLine{DE}$\\
-и значит, по равенству\\
+$\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EC} : \drawUnitLine{DE}$,\\
+и значит по равенству\\
 $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{CD} : \drawUnitLine{DE}$ \inprop[prop:V.XXII].
 \stopCenterAlign
 
@@ -11549,11 +11548,11 @@ angleScale := 4/5;
 \problemNP{Е}{сли}{у двух треугольников стороны пропорциональны
 $\drawUnitLine{CA} : \drawUnitLine{BC} :: \drawUnitLine{FD} : \drawUnitLine{EF}$
 и
-$\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$
+$\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$,
 то они равноугольны, а~равные углы стягиваются соответственными сторонами.
 }
 \startCenterAlign
-Из концов \drawUnitLine{EF}, проведем \drawUnitLine{FG} и~\drawUnitLine{GE},\\
+Из концов \drawUnitLine{EF} проведем \drawUnitLine{FG} и~\drawUnitLine{GE},\\
 делая $\drawAngle{GEF} = \drawAngle{B}$, $\drawAngle{EFG} = \drawAngle{C}$ \inprop[prop:I.XXIII],\\
 получим $\drawAngle{G} = \drawAngle{A}$ \inprop[prop:I.XXXII].
 
@@ -11566,7 +11565,7 @@ $\therefore \drawUnitLine{DE} : \drawUnitLine{EF} :: \drawUnitLine{GE} : \drawUn
 
 Так же можно показать, что $\drawUnitLine{FD} = \drawUnitLine{FG}$.
 
-$\therefore$ у~двух треугольников с~общим основанием \drawUnitLine{EF} и~равными сторонами,  углы против равных сторон равны, т.~е.
+$\therefore$ у~двух треугольников с~общим основанием \drawUnitLine{EF} и~равными сторонами углы против равных сторон равны, т.~е.
 $\drawAngle{DEF} = \drawAngle{GEF}$ и~$\drawAngle{EFD} = \drawAngle{EFG}$ \inprop[prop:I.VIII].
 
 Но $\drawAngle{GEF} = \drawAngle{B}$ (\conststr) и~$\therefore \drawAngle{DEF} = \drawAngle{B}$.
@@ -11613,7 +11612,7 @@ draw byLabelsOnPolygon(A, B, C)(0, 0);
 draw byLabelsOnPolygon(D, E, F, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{Е}{сли}{у двух треугольников \drawLine[bottom][triangleABC]{AB,BC,CA} и~\drawLine[bottom][triangleDEF]{DE,EF,FD} один угол одного \drawAngle{C} равен одному углу другого \drawAngle{EFD}, и~стороны, при равных углах пропорциональны, то треугольники равноугольны, и~углы против соответственных сторон у~них равны.}
+\problemNP[3]{Е}{сли}{у двух треугольников \drawLine[bottom][triangleABC]{AB,BC,CA} и~\drawLine[bottom][triangleDEF]{DE,EF,FD} один угол одного \drawAngle{C} равен одному углу другого \drawAngle{EFD}, и~стороны при равных углах пропорциональны, то треугольники равноугольны, и~углы против соответственных сторон у~них равны.}
 
 \startCenterAlign
 Из концов \drawUnitLine{FD}, одной из сторон \triangleDEF\ при \drawAngle{EFD}, проведем \drawUnitLine{GD} и~\drawUnitLine{FG},\\
@@ -11673,9 +11672,10 @@ draw byLabelsOnPolygon(D, F, E)(0, 0);
 \problemNP[2]{Е}{сли}{у двух треугольников \drawLine[middle][triangleABC]{CA,BC,AB} и~\drawLine[middle][triangleDEF]{FD,EF,DE} один угол одного \drawAngle{F} равен одному другого \drawAngle{C}, а~стороны при других пропорциональны $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$, причем оставшиеся углы \drawAngle{A} и~\drawAngle{D} либо меньше, либо не меньше прямого угла, то треугольники равноугольны, а~углы между пропорциональными сторонами равны.}
 
 \startCenterAlign
-Для начала допустим, что углы \drawAngle{A} и~\drawAngle{D} оба меньше прямого угла, тогда, если предположить, что \drawAngle{ABG,GBC} и~\drawAngle{E} между пропорциональными сторонами не равны, пусть \drawAngle{ABG,GBC} будет больше и~сделаем $\drawAngle{GBC} = \drawAngle{E}$.
+Для начала допустим, что углы \drawAngle{A} и~\drawAngle{D} оба меньше прямого угла, тогда, если предположить, что \drawAngle{ABG,GBC} и~\drawAngle{E} между пропорциональными сторонами не равны, пусть \drawAngle{ABG,GBC} будет больше, и~сделаем $\drawAngle{GBC} = \drawAngle{E}$.
 
-Поскольку $\drawAngle{C} = \drawAngle{F}$ (\hypstr). и~$\drawAngle{GBC} = \drawAngle{E}$ (\conststr)\\
+Поскольку $\drawAngle{C} = \drawAngle{F}$ (\hypstr)\\
+и~$\drawAngle{GBC} = \drawAngle{E}$ (\conststr),\\
 $\therefore \drawAngle{CGB} = \drawAngle{D}$ \inprop[prop:I.XXXII].
 
 $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \inprop[prop:VI.IV],\\
@@ -11686,12 +11686,11 @@ $\therefore \drawUnitLine{BC} : \drawUnitLine{BG} :: \drawUnitLine{BC} : \drawUn
 $\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \inprop[prop:V.IX],\\
 и $\therefore \drawAngle{A} = \drawAngle{BGA}$ \inprop[prop:I.V].
 
-Но \drawAngle{A} меньше прямого угла (\hypstr)\\
+Но \drawAngle{A} меньше прямого угла (\hypstr),\\
 $\therefore$ \drawAngle{BGA} меньше прямого угла,\\
-и $\therefore$ \drawAngle{CGB} должен быть больше прямого угла \inprop[prop:I.XIII], но он, как было показано $= \drawAngle{D}$ и~значит меньше прямого угла, что невозможно. $\therefore$ \drawAngle{ABG,GBC} и~\drawAngle{E} не неравны.
+и $\therefore$ \drawAngle{CGB} должен быть больше прямого угла \inprop[prop:I.XIII], но он, как было показано, $= \drawAngle{D}$, и~значит меньше прямого угла, что невозможно. $\therefore$ \drawAngle{ABG,GBC} и~\drawAngle{E} не неравны.
 
-$\therefore$ они равны, и~поскольку $\drawAngle{C} = \drawAngle{F}$ (\hypstr).
-
+$\therefore$ они равны, и~поскольку $\drawAngle{C} = \drawAngle{F}$ (\hypstr),\\
 $\therefore \drawAngle{A} = \drawAngle{D}$ \inprop[prop:I.XXXII], и~следовательно треугольники равноугольны.
 \stopCenterAlign
 
@@ -11720,15 +11719,16 @@ draw byLine(A, D, byblack, 0, 0);
 draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{Е}{сли}{из прямого угла в~прямоугольном треугольнике \drawPolygon[bottom][triangleABC]{ABD,ADC} проведен к~противоположной стороне перпендикуляр \drawUnitLine{AD}, треугольники \drawPolygon[bottom][triangleABD]{ABD} и~\drawPolygon[bottom][triangleADC]{ADC}, по сторонам перпендикуляра подобны целому треугольнику и~друг другу.}
+\problemNP[3]{Е}{сли}{из прямого угла в~прямоугольном треугольнике \drawPolygon[bottom][triangleABC]{ABD,ADC} проведен к~противоположной стороне перпендикуляр \drawUnitLine{AD}, треугольники \drawPolygon[bottom][triangleABD]{ABD} и~\drawPolygon[bottom][triangleADC]{ADC} по сторонам перпендикуляра подобны целому треугольнику и~друг другу.}
 
 \startCenterAlign
-Поскольку $\drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:I.XI], и~\drawAngle{B} общий \triangleABC\ и~\triangleABD,\\
+Поскольку $\drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:I.XI]\\
+и~\drawAngle{B} общий \triangleABC\ и~\triangleABD,\\
 $\drawAngle{C} = \drawAngle{DAB}$ \inprop[prop:I.XXXII].
 
-$\therefore$ \triangleABC\ и~\triangleABD\ равноугольны и~значит стороны при равных углах пропорциональны \inprop[prop:VI.IV], и, следовательно, подобны \indef[def:VI.I].
+$\therefore$ \triangleABC\ и~\triangleABD\ равноугольны, и~значит стороны при равных углах пропорциональны \inprop[prop:VI.IV], и значит треугольники подобны \indef[def:VI.I].
 
-Так же можно доказать, что \triangleADC\ подобен \triangleABC, но \triangleABD, как было показано, тоже подобен \triangleABC, $\therefore$ \triangleABD\ и~\triangleADC\ подобны и~всему треугольнику и~друг другу.
+Так же можно доказать, что \triangleADC\ подобен \triangleABC, но \triangleABD, как было показано, тоже подобен \triangleABC, $\therefore$ \triangleABD\ и~\triangleADC\ подобны и~всему треугольнику, и~друг другу.
 \stopCenterAlign
 
 \qed
@@ -11767,12 +11767,12 @@ draw byLabelsOnPolygon(B, F, A, D, C, E)(0, 0);
 
 Продлим \drawSizedLine{AD,DC}, пока вся продленная линия \drawSizedLine{AD,DC,CE} не будет содержать \drawSizedLine{AD} столько раз, какую часть требуется отнять от \drawSizedLine{AF,FB}.
 
-Проведем \drawSizedLine{BE},\\
+Проведем \drawSizedLine{BE}\\
 и проведем $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$.
 
 \drawSizedLine{AF} и~есть требуемая часть \drawSizedLine{AF,FB}.
 
-Поскольку $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$\\
+Поскольку $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$,\\
 $\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DC,CE}$ \inprop[prop:VI.II].
 
 И, присоединив \inprop[prop:V.XVIII],\\
@@ -11829,9 +11829,9 @@ draw byLabelsOnPolygon(A', D', E', C', noPoint)(0, 0);
 \startCenterAlign
 Из любого конца \drawSizedLine{AF,FG,GB} проведем \drawSizedLine{AD,DE,EC} под любым углом.
 
-Возьмем \drawSizedLine{AD}, \drawSizedLine{DE} и~\drawSizedLine{EC} равные \drawSizedLine{A'D'}, \drawSizedLine{D'E'} и~\drawSizedLine{E'C'} соответственно \inprop[prop:I.II].
+Возьмем \drawSizedLine{AD}, \drawSizedLine{DE} и~\drawSizedLine{EC}, равные \drawSizedLine{A'D'}, \drawSizedLine{D'E'} и~\drawSizedLine{E'C'} соответственно \inprop[prop:I.II].
 
-Проведем \drawSizedLine{CB}, и~проведем \drawSizedLine{EG} и~\drawSizedLine{DF} $\parallel$ ей.
+Проведем \drawSizedLine{CB} и~проведем \drawSizedLine{EG} и~\drawSizedLine{DF} $\parallel$ ей.
 
 Поскольку
 $\left\{\vcenter{
@@ -11883,9 +11883,10 @@ draw byLabelsOnPolygon(C', A', noPoint)(0, 0);
 \startCenterAlign
 От любого конца данной линии \drawSizedLine{AB} проведем \drawSizedLine{AC,CE} под углом.
 
-Сделаем $\drawSizedLine{AC} = \drawSizedLine{A'C'}$, и~проведем \drawSizedLine{BC}.
+Сделаем $\drawSizedLine{AC} = \drawSizedLine{A'C'}$\\
+и~проведем \drawSizedLine{BC}.
 
-Сделаем $\drawSizedLine{BD} = \drawSizedLine{A'C'}$,\\
+Сделаем $\drawSizedLine{BD} = \drawSizedLine{A'C'}$\\
 и проведем $\drawSizedLine{DE} \parallel \drawSizedLine{BC}$  \inprop[prop:I.XXXI].
 
 \drawSizedLine{CE} и~есть третья пропорциональная к~\drawSizedLine{AB} и~\drawSizedLine{A'C'}.
@@ -11945,7 +11946,7 @@ $\left\{\vcenter{
 Возьмем $\drawUnitLine{DG} = \drawUnitLine{A}$,\\
 возьмем $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
 возьмем $\drawUnitLine{DH} = \drawUnitLine{C}$,\\
-проведем \drawUnitLine{GH},\\
+проведем \drawUnitLine{GH}\\
 и $\drawUnitLine{EF} \parallel \drawUnitLine{GH}$ \inprop[prop:I.XXXI].
 
 \drawSizedLine{HF} и~есть четвертая пропорциональная.
@@ -12017,7 +12018,7 @@ draw byLabelsOnCircle(D)(O);
 
 Сделаем $\drawSizedLine{AB} = \drawSizedLine{A}$ и~$\drawSizedLine{BC} = \drawSizedLine{B}$.
 
-Рассечем \drawSizedLine{AB,BC} пополам, и~взяв середину за центр и~половину за радиус опишем полукруг
+Рассечем \drawSizedLine{AB,BC} пополам, и, взяв середину за центр и~половину за радиус, опишем полукруг
 \drawFromCurrentPicture[bottom]{
 draw byNamedLineFull(A, C, 0, 0, -1)(AC);
 draw byNamedArc(O);
@@ -12028,9 +12029,8 @@ draw byLabelsOnPolygon(C, A, noPoint)(0, 0);
 
 Проведем \drawUnitLine{AD} и~\drawUnitLine{CD}.
 
-Поскольку \drawAngle{D} прямой угол \inprop[prop:III.XXXI],\\
-и \drawUnitLine{BD} это $\perp$ к~нему с~противной стороны.
-
+Поскольку \drawAngle{D} прямой угол \inprop[prop:III.XXXI]\\
+и \drawUnitLine{BD} это $\perp$ к~нему с~противной стороны,\\
 $\therefore$ \drawUnitLine{BD} и~есть средняя пропорциональная между \drawUnitLine{AB} и~\drawUnitLine{BC} \inprop[prop:VI.VIII],\\
 и $\therefore$ между \drawUnitLine{A} и~\drawUnitLine{B} (\conststr).
 \stopCenterAlign
@@ -12064,13 +12064,13 @@ draw byLine(B, D, byyellow, 0, 0);
 draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{В}{равных}{и равноугольных параллелограммах \drawPolygon{BFAD} и~\drawPolygon{CEBG},  стороны при равных углах взаимно пропорциональны ($\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$). И~равноугольные параллелограммы, у~которых стороны взаимно пропорциональны, равны.}
+\problemNP[3]{В}{равных}{и равноугольных параллелограммах \drawPolygon{BFAD} и~\drawPolygon{CEBG}  стороны при равных углах взаимно пропорциональны ($\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$). И~равноугольные параллелограммы, у~которых стороны взаимно пропорциональны, равны.}
 
 \startCenterAlign
-Пусть \drawUnitLine{BG}, \drawUnitLine{BF}, \drawUnitLine{BD} и~\drawUnitLine{BE}, будут так расположены, что \drawUnitLine{BG,BF} и~\drawUnitLine{BD,BE} составят прямые линии. Что они могут занять такое положение — очевидно (\inpropL[prop:I.XIII], \inpropL[prop:I.XIV], \inpropL[prop:I.XV]).
+Пусть \drawUnitLine{BG}, \drawUnitLine{BF}, \drawUnitLine{BD} и~\drawUnitLine{BE} будут так расположены, что \drawUnitLine{BG,BF} и~\drawUnitLine{BD,BE} составят прямые линии. Что они могут занять такое положение — очевидно (\inpropL[prop:I.XIII], \inpropL[prop:I.XIV], \inpropL[prop:I.XV]).
 
 Достроим \drawPolygon{EHFB}. Поскольку $\drawPolygon{CEBG} = \drawPolygon{BFAD}$,\\
-$\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \inprop[prop:V.VII]\\
+$\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \inprop[prop:V.VII],\\
 $\therefore \drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$ \inprop[prop:VI.I].
 
 При том же построении:\\
@@ -12187,8 +12187,8 @@ draw byLabelsOnPolygon(E, H, C, D)(0, 0);
 draw byLabelLine(0)(E, F);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{четыре прямые пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$, прямоугольник $\drawUnitLine{AB} \times \drawUnitLine{F}$, заключенный между крайними равен прямоугольнику $\drawUnitLine{CD} \times \drawUnitLine{E}$, заключенному между средними.\\
-И если прямоугольник заключенный между крайними равен прямоугольнику, заключенному между средними, четыре прямых пропорциональны.}
+\problemNP{Е}{сли}{четыре прямые пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$, прямоугольник $\drawUnitLine{AB} \times \drawUnitLine{F}$, заключенный между крайними, равен прямоугольнику $\drawUnitLine{CD} \times \drawUnitLine{E}$, заключенному между средними.\\
+И если прямоугольник, заключенный между крайними, равен прямоугольнику, заключенному между средними, четыре прямых пропорциональны.}
 
 \startsubproposition[title={Часть I.}]
 \startCenterAlign
@@ -12197,11 +12197,11 @@ draw byLabelLine(0)(E, F);
 Достроим параллелограммы \drawPolygon{ABFG} и~\drawPolygon{CDEH}.
 
 И поскольку\\
-$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (\hypstr)\\
+$\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ (\hypstr),\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ (\conststr).
 
 $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
-то есть, прямоугольник, заключенный между крайними равен прямоугольнику, заключенному между средними.
+то есть прямоугольник, заключенный между крайними, равен прямоугольнику, заключенному между средними.
 \stopCenterAlign
 \stopsubproposition
 
@@ -12213,9 +12213,9 @@ $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \inprop[prop:VI.XIV],\\
 
 Поскольку $\drawUnitLine{F} = \drawUnitLine{AG}$, $\drawPolygon{ABFG} = \drawPolygon{CDEH}$\\
 и $\drawUnitLine{CH} = \drawUnitLine{E}$,\\
-$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV]ю
+$\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{CH} : \drawUnitLine{AG}$ \inprop[prop:VI.XIV].
 
-Но $\drawUnitLine{CH} = \drawUnitLine{E}$,\\
+Но $\drawUnitLine{CH} = \drawUnitLine{E}$\\
 и $\drawUnitLine{AG} = \drawUnitLine{F}$ (\conststr).
 
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ \inprop[prop:V.VII].
@@ -12261,13 +12261,13 @@ draw byLabelPolygon(1)(ABCD);
 draw byLabelPolygon(1)(EFGH);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{три прямые пропорциональны $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$, прямоугольник заключенный между крайними равен квадрату средней.\\
-И есть прямоугольник заключенный между крайними равен квадрату на средней, то три прямые пропорциональны.}
+\problemNP{Е}{сли}{три прямые пропорциональны $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$, прямоугольник, заключенный между крайними, равен квадрату средней.\\
+И есть прямоугольник, заключенный между крайними, равен квадрату на средней, то три прямые пропорциональны.}
 
 \startsubproposition[title={Часть I.}]
 \startCenterAlign
 $\eqalign{
-\mbox{ Предположим } \drawUnitLine{D} &= \drawUnitLine{B}, \cr
+\mbox{ Предположим, } \drawUnitLine{D} &= \drawUnitLine{B}, \cr
 \mbox{ и~поскольку } \drawUnitLine{A} : \drawUnitLine{B} &:: \drawUnitLine{B} : \drawUnitLine{C}, \cr
 \mbox{ то } \drawUnitLine{A} : \drawUnitLine{B} &:: \drawUnitLine{D} : \drawUnitLine{C}, \cr
 \therefore \drawUnitLine{A} \times \drawUnitLine{C} &= \drawUnitLine{B} \times \drawUnitLine{D} \cr
@@ -12276,16 +12276,16 @@ $\eqalign{
 
 Но $\drawUnitLine{D} = \drawUnitLine{B}$,\\
 $\therefore \drawUnitLine{B} \times \drawUnitLine{D} = \drawUnitLine{B} \times \drawUnitLine{B} \mbox{ или } = \drawUnitLine{B}^2$,\\
-следовательно, если три прямых пропорциональны, прямоугольник, заключенный между крайними равен квадрату средней.
+следовательно, если три прямых пропорциональны, прямоугольник, заключенный между крайними, равен квадрату средней.
 \stopCenterAlign
 \stopsubproposition
 
 \startsubproposition[title={Часть II.}]
 \startCenterAlign
-Допустим $\drawUnitLine{D} = \drawUnitLine{B}$,\\
+Допустим, $\drawUnitLine{D} = \drawUnitLine{B}$,\\
 тогда $\drawUnitLine{A} \times \drawUnitLine{C} = \drawUnitLine{D} \times \drawUnitLine{B}$.
 
-$\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{D} : \drawUnitLine{C}$ \inprop[prop:VI.XVI],\\
+$\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{D} : \drawUnitLine{C}$ \inprop[prop:VI.XVI]\\
 и $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$.
 \stopCenterAlign
 \stopsubproposition
@@ -12372,7 +12372,7 @@ $\drawUnitLine{AG}:\drawUnitLine{GH} :: \drawUnitLine{CF} : \drawUnitLine{FE}$ \
 Тем же способом можно показать, что оставшиеся стороны фигуры пропорциональны.
 
 $\therefore$ \inprop[prop:VI.I]\\
-\polygonAB\ подобна \polygonCD\ и~расположена и~на данной прямой \drawUnitLine{AB}.
+\polygonAB\ подобна \polygonCD\ и~расположена на данной прямой \drawUnitLine{AB}.
 \stopCenterAlign
 
 \qed
@@ -12412,8 +12412,7 @@ draw byLabelsOnPolygon(C, G, B, A)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{П}{одобные}{треугольники \drawPolygon[bottom][triangleDEF]{DEF} и~\drawPolygon[bottom][triangleABC]{ABG,AGC} находятся друг к~другу в~двойном отношении соответственных сторон.}
 
-Пусть \drawAngle{E} и~\drawAngle{B} будут равными углами, и~\drawUnitLine{BG,GC} и~\drawUnitLine{EF} соответственными сторонами подобных треугольников \triangleDEF\ и~\triangleABC\ и~на стороне \drawUnitLine{BG,GC}
-большего из них возьмем третью пропорциональную \drawUnitLine{BG} такую, что
+Пусть \drawAngle{E} и~\drawAngle{B} будут равными углами и~\drawUnitLine{BG,GC} и~\drawUnitLine{EF} соответственными сторонами подобных треугольников \triangleDEF\ и~\triangleABC. На стороне \drawUnitLine{BG,GC} большего из них возьмем третью пропорциональную \drawUnitLine{BG} такую, что
 
 \startCenterAlign
 $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$.
@@ -12426,7 +12425,7 @@ $\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \dra
 Но $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ (\conststr),\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$.
 
-Следовательно $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$, поскольку у~них стороны при равных углах \drawAngle{E} и~\drawAngle{B} взаимно пропорциональны \inprop[prop:VI.XV].
+Следовательно, $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$, поскольку у~них стороны при равных углах \drawAngle{E} и~\drawAngle{B} взаимно пропорциональны \inprop[prop:VI.XV].
 
 $\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \inprop[prop:V.VII].
 
@@ -12434,7 +12433,7 @@ $\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \inprop[
 
 $\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$.
 
-То есть, эти треугольники относятся друг к~другу в~двойном отношении соответственных сторон \drawUnitLine{EF} и~\drawUnitLine{BG,GC} \indef[def:V.XI].
+То есть эти треугольники относятся друг к~другу в~двойном отношении соответственных сторон \drawUnitLine{EF} и~\drawUnitLine{BG,GC} \indef[def:V.XI].
 \stopCenterAlign
 
 \qed
@@ -12489,18 +12488,18 @@ draw byLabelsOnPolygon(F, L, K, H, G)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{П}{одобные}{многоугольники разделяются на равное количество подобных треугольников, каждая пара которых пропорциональна многоугольникам, а~многоугольники находятся друг к~другу в~двойном отношении соответственных сторон.}
 
-Проведя \drawUnitLine{BE}, \drawUnitLine{BD}, \drawUnitLine{GL} и~\drawUnitLine{GK}, разделим многоугольники на треугольники. Поскольку многоугольники подобны, $\drawAngle{C} = \drawAngle{H}$, и~$\drawUnitLine{BC} : \drawUnitLine{CD} :: \drawUnitLine{GH} : \drawUnitLine{HK}$.
+Проведя \drawUnitLine{BE}, \drawUnitLine{BD}, \drawUnitLine{GL} и~\drawUnitLine{GK}, разделим многоугольники на треугольники. Поскольку многоугольники подобны $\drawAngle{C} = \drawAngle{H}$, и~$\drawUnitLine{BC} : \drawUnitLine{CD} :: \drawUnitLine{GH} : \drawUnitLine{HK}$.
 
 \startCenterAlign
 $\therefore$ \drawPolygon{BCD} и~\drawPolygon{GHK} подобны и~$\drawAngle{BDC} = \drawAngle{GKH}$ \inprop[prop:VI.VI],\\
-но $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$, поскольку они являются углами подобных многоугольников. Следовательно остатки \drawAngle{BDE} и~\drawAngle{GKL} равны.
+но $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$, поскольку они являются углами подобных многоугольников. Следовательно, остатки \drawAngle{BDE} и~\drawAngle{GKL} равны.
 
 А значит $\drawUnitLine{BD} : \drawUnitLine{CD} :: \drawUnitLine{GK} : \drawUnitLine{HK}$,\\
 учитывая подобие треугольников,\\
 и $\drawUnitLine{CD} : \drawUnitLine{DE} :: \drawUnitLine{HK} : \drawUnitLine{KL}$,\\
 учитывая подобие многоугольников.
 
-$\therefore \drawUnitLine{BD} : \drawUnitLine{DE} :: \drawUnitLine{GK} : \drawUnitLine{KL}$,\\
+$\therefore \drawUnitLine{BD} : \drawUnitLine{DE} :: \drawUnitLine{GK} : \drawUnitLine{KL}$\\
 по равенству \inprop[prop:V.XXII], и~поскольку пропорциональные стороны заключают равные углы, треугольники \drawPolygon{BDE} и~\drawPolygon{GKL} подобны \inprop[prop:VI.VI].
 
 Так же можно показать, что и~треугольники \drawPolygon{BEA} и~\drawPolygon{GLF} подобны.
@@ -12518,7 +12517,7 @@ $\eqalign{
 }$.
 \stopCenterAlign
 
-И поскольку как относится одно из предыдущих к~одному из последующих, так и~все предыдущие вместе ко всем последующим вместе, подобные треугольники относятся друг к~другу как многоугольники целиком \inprop[prop:V.XII].
+И поскольку как относится одно из предыдущих к~одному из последующих, так и~все предыдущие вместе ко всем последующим вместе, подобные треугольники относятся друг к~другу, как многоугольники целиком \inprop[prop:V.XII].
 
 \startCenterAlign
 Но \drawPolygon{BCD} к~\drawPolygon{GHK} имеет двойное отношение \drawUnitLine{BC} к~\drawUnitLine{GH}.
@@ -12552,7 +12551,7 @@ draw byPolygon.C(Ca,Cb,Cc)(byyellow);
 byPointLabelRemove(Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc);
 }
 \drawCurrentPictureInMargin
-\problemNP{Ф}{игуры}{\drawPolygon[bottom]{A} и~\drawPolygon[bottom]{B} подобные одной фигуре \drawPolygon[bottom]{C} подобны друг другу.}
+\problemNP{Ф}{игуры}{\drawPolygon[bottom]{A} и~\drawPolygon[bottom]{B}, подобные одной фигуре \drawPolygon[bottom]{C}, подобны друг другу.}
 
 Поскольку \polygonA\ и~\polygonC\ подобны, они равноугольны, и~стороны при равных углах у~них  пропорциональны \indef[def:VI.I]. И~поскольку \polygonB\ и~\polygonC\ также подобны, и~стороны при равных углах у~них пропорциональны, \polygonA\ и~\polygonB\ тоже равноугольны и~у них тоже стороны при равных углах пропорциональны \inprop[prop:V.XI], и~значит они тоже подобны.
 
@@ -12601,20 +12600,20 @@ byPointLabelRemove(Ma, Mb, Mc, Md, Na, Nb, Nc, Nd, K, L);
 draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }
 \drawCurrentPictureWide
-\initialIndentation{10}
-\problem{Е}{сли}{четыре прямых пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$, подобные прямолинейные фигуры подобным образом расположенные на них также пропорциональны.\\
+\initialIndentation{9}
+\problem{Е}{сли}{четыре прямых пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$, подобные прямолинейные фигуры, подобным образом расположенные на них, также пропорциональны.\\
 И если четыре подобных прямолинейных фигуры подобно расположены на четырех прямых линиях, то и~линии пропорциональны.}
 
 \startsubproposition[title={Часть I.}]
 \startCenterAlign
 Возьмем \drawUnitLine{O}, третью пропорциональную к~\drawUnitLine{AB} и~\drawUnitLine{CD}, и~\drawUnitLine{P}, третью пропорциональную к~\drawUnitLine{EF} и~\drawUnitLine{GH} \inprop[prop:VI.XI].
 
-Поскольку $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (\hypstr)\\
+Поскольку $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ (\hypstr),\\
 $\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ (\conststr).
 
-$\therefore$ по равенству,\\
+$\therefore$ по равенству\\
 $\drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$,\\
-но $\drawPolygon{AB} : \drawPolygon{CD} :: \drawUnitLine{AB} : \drawUnitLine{O}$ \inprop[prop:VI.XX],\\
+но $\drawPolygon{AB} : \drawPolygon{CD} :: \drawUnitLine{AB} : \drawUnitLine{O}$ \inprop[prop:VI.XX]\\
 и $\drawPolygon{EF} : \drawPolygon{GH} :: \drawUnitLine{EF} : \drawUnitLine{P}$.
 
 $\therefore \drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ \inprop[prop:V.XI].
@@ -12671,16 +12670,16 @@ draw byLabelsOnPolygon(D, A, B, C, E, F, G, H)(0, 0);
 Пусть две стороны при равных углах \drawUnitLine{BC} и~\drawUnitLine{CG} будут расположены так, что образуют одну прямую.
 
 \startCenterAlign
-Поскольку $\drawAngle{BCD} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
+Поскольку $\drawAngle{BCD} + \drawAngle{DCG} = \drawTwoRightAngles$\\
 и $\drawAngle{GCE} = \drawAngle{BCD}$ (\hypstr),\\
 $\drawAngle{GCE} + \drawAngle{DCG} = \drawTwoRightAngles$,\\
 и $\therefore$ \drawUnitLine{CE} и~\drawUnitLine{DC} образуют одну прямую \inprop[prop:I.XIV].
 
 Достроим \drawPolygon[middle]{CDHG}.
 
-Поскольку $\polygonABCD\ : \polygonCDHG\ :: \drawUnitLine{BC} : \drawUnitLine{CG}$ \inprop[prop:VI.I],\\
+Поскольку $\polygonABCD\ : \polygonCDHG\ :: \drawUnitLine{BC} : \drawUnitLine{CG}$ \inprop[prop:VI.I]\\
 и $\polygonCDHG\ : \polygonEFGC\ :: \drawUnitLine{DC} : \drawUnitLine{CE}$ \inprop[prop:VI.I],\\
-\polygonABCD\ имеет к~\polygonEFGC\ отношение, составленное из отношений \drawUnitLine{BC} к~\drawUnitLine{CG}, и~\drawUnitLine{DC} к~\drawUnitLine{CE}.
+\polygonABCD\ имеет к~\polygonEFGC\ отношение, составленное из отношений \drawUnitLine{BC} к~\drawUnitLine{CG} и~\drawUnitLine{DC} к~\drawUnitLine{CE}.
 \stopCenterAlign
 
 \qed
@@ -12743,7 +12742,7 @@ draw byLabelsOnPolygon(G, F, E, A)(0, 0);
 
 \startCenterAlign
 Поскольку у~\parallelogramABCD\ и~\parallelogramAEFG\ есть общий угол, они равноугольны.\\
-Но поскольку $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\
+Но поскольку $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$,\\
 \drawFromCurrentPicture[bottom]{
 startGlobalRotation(180-angle(A-C));
 startAutoLabeling;
@@ -12763,7 +12762,7 @@ stopGlobalRotation;
 $\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{GA,DG} : \drawUnitLine{DK,KC}$,
 а оставшиеся противоположные стороны равны им.
 
-$\therefore$ у~\parallelogramAEFG\ и~\parallelogramABCD\ стороны при равных углах пропорциональны и~значит, они подобны.
+$\therefore$ у~\parallelogramAEFG\ и~\parallelogramABCD\ стороны при равных углах пропорциональны, и~значит они подобны.
 
 Так же можно показать, что параллелограммы \parallelogramABCD\ и~\parallelogramFHCK\ подобны.
 
@@ -12826,10 +12825,10 @@ draw byLabelsOnPolygon(C, F, M, E, L, B, A)(0, 0);
 draw byLabelsOnPolygon(G, K, H)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{П}{остроить}{прямолинейную фигуру подобную данной \hskip -11pt \drawPolygon[middle][triangleABC]{ABC} \hskip -9pt и~равную другой данной \drawPolygon[middle][polygonD]{D}.}
+\problemNP[2]{П}{остроить}{прямолинейную фигуру, подобную данной \hskip -11pt \drawPolygon[middle][triangleABC]{ABC} \hskip -9pt и~равную другой данной \drawPolygon[middle][polygonD]{D}.}
 
 \startCenterAlign
-На \drawUnitLine{BC} опишем $\drawPolygon[middle][polygonBCEL]{BCEL} = \triangleABC$,\\
+На \drawUnitLine{BC} опишем $\drawPolygon[middle][polygonBCEL]{BCEL} = \triangleABC$\\
 и на \drawUnitLine{CE} опишем
 $\drawFromCurrentPicture[middle][polygonCFME]{
 startTempAngleScale(angleScale*1/2);
@@ -12838,12 +12837,12 @@ startAutoLabeling;
 draw byNamedPolygon(CFME);
 stopAutoLabeling;
 stopTempAngleScale;
-} = \polygonD$,\\
+} = \polygonD$\\
 с $\drawAngle{B} = \drawAngle{C}$ \inprop[prop:I.XLV],\\
 и тогда \drawUnitLine{BC} и~\drawUnitLine{CF} будут лежать на одной прямой (\inpropL[prop:I.XXIX], \inpropL[prop:I.XIV]).
 
 Найдем между \drawUnitLine{BC} и~\drawUnitLine{CF} среднюю пропорциональную \drawUnitLine{GH} \inprop[prop:VI.XIII],\\
-и на \drawUnitLine{GH} опишем \drawPolygon[middle][triangleKGH]{KGH}, подобный \triangleABC, и~подобно расположенный.
+и на \drawUnitLine{GH} опишем \drawPolygon[middle][triangleKGH]{KGH},\\ подобный \triangleABC\ и~подобно расположенный.
 
 Тогда $\triangleKGH\ = \polygonD$.
 
@@ -12859,7 +12858,7 @@ $\therefore \triangleABC\ : \triangleKGH\ :: \polygonBCEL\ : \polygonCFME$ \inpr
 и $\therefore \triangleKGH\ = \polygonCFME$ \inprop[prop:V.XIV];\\
 и $\polygonCFME\ = \polygonD$ (\conststr).
 
-И, следовательно, \triangleKGH\ подобный \triangleABC\ вместе с~тем $= \polygonD$.
+И, следовательно, \triangleKGH, подобный \triangleABC, вместе с~тем $= \polygonD$.
 \stopCenterAlign
 
 \qed
@@ -12929,9 +12928,9 @@ draw byNamedArbitraryFigure(AHC);
 draw byLabelsOnPolygon(A, H, C, noPoint)(0, 0);
 stopGlobalRotation;
 }
-будет диагональю \parallelogramABCD\ и~проведем $\drawUnitLine{KH} \parallel \drawUnitLine{AG}$ \inprop[prop:I.XXXI].
+будет диагональю \parallelogramABCD, и~проведем $\drawUnitLine{KH} \parallel \drawUnitLine{AG}$ \inprop[prop:I.XXXI].
 
-Поскольку \drawLine[middle][parallelogramAKHG]{AG,GH,KH,AK} и~\parallelogramABCD\ на одной диагонали \lineAHC, и~\drawAngle{A} уних общий, они подобны \inprop[prop:VI.XXIV].
+Поскольку \drawLine[middle][parallelogramAKHG]{AG,GH,KH,AK} и~\parallelogramABCD\ на одной диагонали \lineAHC\ и~\drawAngle{A} уних общий, они подобны \inprop[prop:VI.XXIV].
 
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
 но $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ (\hypstr).
@@ -12939,7 +12938,7 @@ $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \drawSizedLine{AK,KE}$,\\
 и $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \inprop[prop:V.IX], что невозможно.
 
-$\therefore$ \lineAHC\ не является диагональю \parallelogramABCD\ и~таким же образом можно показать, что диагональю не является никакая другая прямая, кроме \drawUnitLine{AC}.
+$\therefore$ \lineAHC\ не является диагональю \parallelogramABCD, и~таким же образом можно показать, что диагональю не является никакая другая прямая, кроме \drawUnitLine{AC}.
 \stopCenterAlign
 
 \qed
@@ -12980,7 +12979,7 @@ draw byLabelsOnPolygon(H, G, D)(2, 0);
 Тогда $\drawPolygon[middle]{ADGKEF,CDGK} > \drawPolygon[middle]{BCKH,CDGK}$.
 \stopCenterAlign
 
-Поскольку, как уже было показано \inprop[prop:II.V], квадрат половины линии равен прямоугольнику, заключенному между неравными частями вместе с~квадратом на части между серединой и~точкой неравного рассечения. Квадрат описанный на половине линии превосходит, таким образом, прямоугольник, заключенный между неравными частями линии.
+Поскольку, как уже было показано \inprop[prop:II.V], квадрат половины линии равен прямоугольнику, заключенному между неравными частями вместе с~квадратом на части между серединой и~точкой неравного рассечения. Квадрат, описанный на половине линии, превосходит, таким образом, прямоугольник, заключенный между неравными частями линии.
 
 \qed
 \stopProposition
@@ -13017,11 +13016,11 @@ draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 draw byLabelPoint(E, angle(E-D) + 45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP[5]{Р}{азделить}{данную прямую \drawSizedLine{AE,EC,CB} так, чтобы прямоугольник, заключенный между частями был равен данной площади, не превосходящей квадрат половины данной прямой.}
+\problemNP[5]{Р}{азделить}{данную прямую \drawSizedLine{AE,EC,CB} так, чтобы прямоугольник, заключенный между частями, был равен данной площади, не превосходящей квадрат половины данной прямой.}
 
 \startCenterAlign
 Пусть данная площадь будет $=\drawSizedLine{G}^2$.\\
-Рассечем пополам \drawSizedLine{AE,EC,CB}, или сделаем $\drawSizedLine{AE,EC} = \drawSizedLine{CB}$,\\
+Рассечем пополам \drawSizedLine{AE,EC,CB} или сделаем $\drawSizedLine{AE,EC} = \drawSizedLine{CB}$,\\
 и если $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$, то задача решена.
 
 Но если $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
@@ -13074,10 +13073,10 @@ draw byLabelLine(0)(G);
 \problemNP{П}{родлить}{данную прямую \drawSizedLine{AC,CB} так, чтобы прямоугольник, заключенный между прямыми между концами данной линии и~точкой, до которой она продлена, был равен данной площади, то есть квадрату на \drawSizedLine{G}.}
 
 \startCenterAlign
-Сделаем $\drawSizedLine{AC} = \drawSizedLine{CB}$,\\
+Сделаем $\drawSizedLine{AC} = \drawSizedLine{CB}$\\
 и проведем $\drawSizedLine{BD} \perp \drawSizedLine{CB} = \drawSizedLine{G}$,\\
 проведем \drawSizedLine{CD},\\
-и с~\drawSizedLine{CD} в~качестве радиуса, опишем круг, пересекающий продленную \drawSizedLine{AC,CB}.
+и с~\drawSizedLine{CD} в~качестве радиуса опишем круг, пересекающий продленную \drawSizedLine{AC,CB}.
 
 Тогда $\drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{AC,CB}^2$ \inprop[prop:II.VI] $= \drawSizedLine{CD}^2$.
 
@@ -13085,7 +13084,7 @@ draw byLabelLine(0)(G);
 
 $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
 из обеих вычтем $\drawSizedLine{CB}^2$,\\
-и $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$\\
+и $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$,\\
 но $\drawSizedLine{BD} = \drawSizedLine{G}$.
 
 $\therefore \drawSizedLine{BD}^2 = \mbox{ данной площади.}$
@@ -13130,9 +13129,9 @@ draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(0, 0);
 \startCenterAlign
 На \drawProportionalLine{AE,EB} опишем квадрат \drawPolygon[middle][squareABHC]{ACFE,EFHB} \inprop[prop:I.XLVI].
 
-И продлим \drawProportionalLine{CA}, так, что $\drawProportionalLine{CA,AG} \times \drawProportionalLine{AG} = \drawProportionalLine{AE,EB}^2$ \inprop[prop:VI.XXIX].
+И продлим \drawProportionalLine{CA} так, что $\drawProportionalLine{CA,AG} \times \drawProportionalLine{AG} = \drawProportionalLine{AE,EB}^2$ \inprop[prop:VI.XXIX].
 
-Возьмем $\drawProportionalLine{AE} = \drawProportionalLine{AG}$,\\
+Возьмем $\drawProportionalLine{AE} = \drawProportionalLine{AG}$\\
 и проведем $\drawProportionalLine{DE} \parallel \drawProportionalLine{CA,AG}$,\\
 встречающуюся с~$\drawProportionalLine{GD} \parallel \drawProportionalLine{AE,EB}$ \inprop[prop:I.XXXI].
 
@@ -13221,7 +13220,7 @@ stopAutoLabeling;
 stopGlobalRotation;
 } :: \drawProportionalLine{BD,DC} : \drawProportionalLine{BD}$ \inprop[prop:VI.XX].
 
-Значит $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BD,DC} :: \figAB\ + \figCA\ : \figBC$.
+Значит, $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BD,DC} :: \figAB\ + \figCA\ : \figBC$.
 
 Но $\drawProportionalLine{DC} + \drawProportionalLine{BD} = \drawProportionalLine{BD,DC}$.
 
@@ -13280,18 +13279,18 @@ draw byNamedAngle(D, DCE);
 draw byNamedLineSeq(0)(EDt,CEt,DCt);
 draw byLabelsOnPolygon(C, D, E)(0, 0);
 stopTempAngleScale;
-},
-две стороны пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ и~расположены они так, что касаются углом и~соответственные стороны параллельны, то оставшиеся стороны \drawUnitLine{BC} и~\drawUnitLine{CE} лежат на одной прямой.}
+}
+две стороны пропорциональны $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ и~расположены они так, что касаются углом, и~соответственные стороны параллельны, то оставшиеся стороны \drawUnitLine{BC} и~\drawUnitLine{CE} лежат на одной прямой.}
 
 \startCenterAlign
 Поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$,\\
 $\drawAngle{A} = \drawAngle{ACD}$ \inprop[prop:I.XXIX].
 
 И поскольку $\drawUnitLine{CA} \parallel \drawUnitLine{ED}$,\\
-$\drawAngle{ACD} = \drawAngle{D}$ \inprop[prop:I.XXIX].
+$\drawAngle{ACD} = \drawAngle{D}$ \inprop[prop:I.XXIX],\\
+$\therefore \drawAngle{A} = \drawAngle{D}$.
 
-$\therefore \drawAngle{A} = \drawAngle{D}$;\\
-и поскольку $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (\hypstr),\\
+И поскольку $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$ (\hypstr),\\
 треугольники равноугольны \inprop[prop:VI.VI].
 
 $\therefore \drawAngle{B} = \drawAngle{DCE}$.
@@ -13368,7 +13367,7 @@ draw byLabelsOnPolygon(B, G, L)(2, 0);
 draw byLabelsOnPolygon(E, H, N)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{В}{равных}{кругах \drawCircle[middle][1/4]{G} и~\drawCircle[middle][1/4]{H} углы,что в~центре, что на окружности, относятся друг к~другу как дуги, на которых они стоят $\drawAngle{BC} : \drawAngle{EF} ::
+\problemNP[3]{В}{равных}{кругах \drawCircle[middle][1/4]{G} и~\drawCircle[middle][1/4]{H} углы что в~центре, что на окружности относятся друг к~другу, как дуги, на которых они стоят $\drawAngle{BC} : \drawAngle{EF} ::
 \drawFromCurrentPicture[middle][arcBC]{
 startGlobalRotation(180-angle(B-C));
 startAutoLabeling;
@@ -13397,7 +13396,7 @@ startAutoLabeling;
 draw byNamedArc(KL);
 stopAutoLabeling;
 stopGlobalRotation;
-}, и~т. д. каждая $= \arcBC$, и~также на окружности \circleH\ возьмем любое количество дуг
+} и~т. д., каждая $= \arcBC$, и~также на окружности \circleH\ возьмем любое количество дуг
 \drawFromCurrentPicture[middle][arcFM]{
 startGlobalRotation(180-angle(F-M));
 startAutoLabeling;
@@ -13411,9 +13410,9 @@ startAutoLabeling;
 draw byNamedArc(MN);
 stopAutoLabeling;
 stopGlobalRotation;
-}, и~т. д. каждая $= \arcEF$, проведем радиусы к~концам равных дуг.
+} и~т. д., каждая $= \arcEF$, проведем радиусы к~концам равных дуг.
 
-Поскольку дуги \arcBC, \arcCK, \arcKL, и~т. д. равны, углы \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, и~т. д. также равны \inprop[prop:III.XXVII]. $\therefore$ \drawAngle{BC,CK,KL} столько же раз кратен \drawAngle{BC}, сколько \drawFromCurrentPicture[middle][arcBL]{
+Поскольку дуги \arcBC, \arcCK, \arcKL\ и~т. д. равны, углы \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL} и~т. д. также равны \inprop[prop:III.XXVII]. $\therefore$ \drawAngle{BC,CK,KL} столько же раз кратен \drawAngle{BC}, сколько \drawFromCurrentPicture[middle][arcBL]{
 startGlobalRotation(180-angle(B-L));
 startAutoLabeling;
 draw byNamedArc(BC,CK,KL);
@@ -13430,13 +13429,13 @@ stopGlobalRotation;
 
 \startCenterAlign
 Тогда очевидно \inprop[prop:III.XXVII],\\
-что если \drawAngle{BC,CK,KL} (или если $m$ раз \drawAngle{BC}) $>, =, < \drawAngle{EF,FM,MN}$ (или $n$ раз \drawAngle{EF})\\
+что если \drawAngle{BC,CK,KL} (или если $m$ раз \drawAngle{BC}) $>, =, < \drawAngle{EF,FM,MN}$ (или $n$ раз \drawAngle{EF}),\\
 то \arcBL (или $m$ раз \arcBC) $>, =, < \arcEN$ (или $n$ раз \arcEF).
 \stopCenterAlign
 
-$\therefore \drawAngle{BC} : \drawAngle{EF} :: \arcBC\ : \arcEF$ \indef[def:V.V], или углы в~центре относятся так же, как дуги, на которых они стоят, но углы на окружности вдвое меньше углов в~центре \inprop[prop:III.XX] и~относятся так же \inprop[prop:V.XV], и~следовательно так же, как дуги, на которых они стоят.
+$\therefore \drawAngle{BC} : \drawAngle{EF} :: \arcBC\ : \arcEF$ \indef[def:V.V], или углы в~центре относятся так же, как дуги, на которых они стоят, но углы на окружности вдвое меньше углов в~центре \inprop[prop:III.XX] и~относятся так же \inprop[prop:V.XV], и, следовательно, так же, как дуги, на которых они стоят.
 
-Очевидно, что секторы в~равных кругах и~на равных дугах равны (\inpropL[prop:I.IV], \inpropN[prop:III.XXIV], \inpropN[prop:III.XXVII], и~\indefL[def:III.IX]). Значит, если выше углы заменить на секторы, получим доказательство второй части, то есть, что в~равных кругах секторы относятся друг к~другу как дуги, на которых они стоят.
+Очевидно, что секторы в~равных кругах и~на равных дугах равны (\inpropL[prop:I.IV], \inpropN[prop:III.XXIV], \inpropN[prop:III.XXVII], и~\indefL[def:III.IX]). Значит, если выше углы заменить на секторы, получим доказательство второй части, то есть что в~равных кругах секторы относятся друг к~другу, как дуги, на которых они стоят.
 
 \qed
 \stopProposition
@@ -13471,28 +13470,28 @@ draw byLabelsOnPolygon(C, D, B, A, E)(2, 0);
 draw byLabelsOnPolygon(E, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{Е}{сли}{прямая линия \drawSizedLine{DC} рассекая пополам внешний угол \drawAngle{DCB,FCD} треугольника \drawFromCurrentPicture[bottom]{
+\problemNP[2]{Е}{сли}{прямая линия \drawSizedLine{DC}, рассекая пополам внешний угол \drawAngle{DCB,FCD} треугольника \drawFromCurrentPicture[bottom]{
 startTempScale(1/2);
 startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
 stopAutoLabeling;
 stopTempScale;
-} встречается в~продолжением стороны треугольника \drawSizedLine{AB}, то вся сторона с~продолжением \drawSizedLine{AB,BD} и~ее внешняя часть \drawSizedLine{BD} будут пропорциональны сторонам \drawSizedLine{AE,EC} и~\drawSizedLine{BC}, между которыми заключен угол, смежный с~рассекаемым внешним.}
+}, встречается с~продолжением стороны треугольника \drawSizedLine{AB}, то вся сторона с~продолжением \drawSizedLine{AB,BD} и~ее внешняя часть \drawSizedLine{BD} будут пропорциональны сторонам \drawSizedLine{AE,EC} и~\drawSizedLine{BC}, между которыми заключен угол, смежный с~рассекаемым внешним.}
 
 \startCenterAlign
 Действительно, если провести $\drawSizedLine{BE} \parallel \drawSizedLine{DC}$,\\
 $\eqalign{
-\mbox{то } \drawAngle{DCB} &= \drawAngle{EBC} \mbox{, \inprop[prop:I.XXIX];}\cr
-& = \drawAngle{FCD} \mbox{, (\hypstr),}\cr
-& = \drawAngle{E} \mbox{, \inprop[prop:I.XXIX].}
+\mbox{то } \drawAngle{DCB} &= \drawAngle{EBC} \mbox{ \inprop[prop:I.XXIX];}\cr
+& = \drawAngle{FCD} \mbox{ (\hypstr),}\cr
+& = \drawAngle{E} \mbox{ \inprop[prop:I.XXIX].}
 }$
 
-И $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$, \inprop[prop:I.VI],\\
+И $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$ \inprop[prop:I.VI]\\
 и $\drawSizedLine{AE,EC} : \drawSizedLine{BC} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \inprop[prop:V.VII].
 
 Но также $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \inprop[prop:VI.II].
 
-И следовательно $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{BC}$ \inprop[prop:V.XI].
+И, следовательно, $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{BC}$ \inprop[prop:V.XI].
 \stopCenterAlign
 
 \qed
@@ -13528,7 +13527,7 @@ draw byLabelsOnCircle(A, B, C, E)(O);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{угол треугольника рассекается пополам прямой линией, которая также сечет его основания, прямоугольник заключенный между сторонами треугольника равен прямоугольнику, заключенному между частями основания, вместе с~квадратом прямой, рассекающей угол.}
+\problemNP{Е}{сли}{угол треугольника рассекается пополам прямой линией, которая также сечет его основания, прямоугольник, заключенный между сторонами треугольника, равен прямоугольнику, заключенному между частями основания, вместе с~квадратом прямой, рассекающей угол.}
 
 \startCenterAlign
 Проведем \drawSizedLine{AD}, делая $\drawAngle{CAE} = \drawAngle{EAB}$,\\
@@ -13537,9 +13536,8 @@ draw byLabelsOnPolygon(B, D, A)(2, 0);
 Около \drawLine[bottom]{CA,DC,BD,AB} опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V],\\
 продлим \drawSizedLine{AD} до окружности и~проведем \drawSizedLine{CE}.
 
-Поскольку $\drawAngle{CAE} = \drawAngle{EAB}$ (\hypstr),\\
-и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI].
-
+Поскольку $\drawAngle{CAE} = \drawAngle{EAB}$ (\hypstr)\\
+и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI],\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} и~\drawLine[middle]{CA,CE,DE,AD} равноугольны \inprop[prop:I.XXXII].
 
 $\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \inprop[prop:VI.IV].
@@ -13585,17 +13583,16 @@ draw byLabelsOnCircle(A, B, C, E)(O);
 draw byLabelsOnPolygon(C, D, B)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{Е}{сли}{из любого угла треугольника провести прямую перпендикулярную основанию, прямоугольник, заключенный между сторонами треугольника будет равен прямоугольнику, заключенному между перпендикуляром и~диаметром круга, описанного около треугольника.}
+\problemNP{Е}{сли}{из любого угла треугольника провести прямую, перпендикулярную основанию, прямоугольник, заключенный между сторонами треугольника, будет равен прямоугольнику, заключенному между перпендикуляром и~диаметром круга, описанного около треугольника.}
 
 \startCenterAlign
 Из угла \drawAngle{A} треугольника \drawLine[bottom]{CA,DC,BD,AB}\\
 проведем $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
-тогда $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ диаметр описанного круга.
+тогда $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times \mbox{ диаметр описанного круга}$.
 
-Опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], проведем диаметр \drawUnitLine{AE}, и~проведем \drawUnitLine{CE},\\
-тогда, поскольку $\drawAngle{D} = \drawAngle{BCA,ECB}$ (\conststr и~\inpropL[prop:III.XXXI]),
-и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI].
-
+Опишем \drawCircle[middle][1/4]{O} \inprop[prop:IV.V], проведем диаметр \drawUnitLine{AE} и~проведем \drawUnitLine{CE},\\
+тогда, поскольку $\drawAngle{D} = \drawAngle{BCA,ECB}$ (\conststr\ и~\inpropL[prop:III.XXXI])\\
+и $\drawAngle{B} = \drawAngle{E}$ \inprop[prop:III.XXI],\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} равноуголен с~\drawLine[middle]{CA,CE,AE} \inprop[prop:VI.IV].
 
 $\therefore \drawUnitLine{AB} : \drawUnitLine{AD} :: \drawUnitLine{AE} : \drawUnitLine{CA}$.
@@ -13642,7 +13639,7 @@ draw byLabelsOnCircle(A, B, C, D)(O);
 draw byLabelsOnPolygon(D, E, B)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[5]{П}{рямоугольник,}{заключенный между диагоналями четырехугольника, вписанного в~круг равен прямоугольникам, заключенным между противоположными сторонами вместе взятым.}
+\problemNP[5]{П}{рямоугольник,}{заключенный между диагоналями четырехугольника, вписанного в~круг, равен прямоугольникам, заключенным между противоположными сторонами, вместе взятым.}
 
 \startCenterAlign
 Пусть \offsetPicture{15pt}{15pt}{\drawLine{DA,CD,BC,AB}} будет любым четырехугольником, вписанным в~\drawCircle[middle][1/6]{O}.
@@ -13650,7 +13647,7 @@ draw byLabelsOnPolygon(D, E, B)(2, 0);
 Проведем \drawUnitLine{BE,ED} и~\drawUnitLine{AC}, тогда $\drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 
 Сделаем $\drawAngle{EAB} = \drawAngle{DAC}$ \inprop[prop:I.XXIII],\\
-$\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$, и~$\drawAngle{BCA} = \drawAngle{D}$ \inprop[prop:III.XXI].
+$\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$ и~$\drawAngle{BCA} = \drawAngle{D}$ \inprop[prop:III.XXI].
 
 $\therefore \drawUnitLine[0.8cm]{DA} : \drawUnitLine[0.8cm]{ED} :: \drawUnitLine[0.8cm]{AC} : \drawUnitLine[0.8cm]{BC}$ \inprop[prop:VI.IV],\\
 и $\therefore \drawUnitLine[0.75cm]{ED} \times \drawUnitLine[0.75cm]{AC} = \drawUnitLine[0.75cm]{DA} \times \drawUnitLine[0.75cm]{BC}$ \inprop[prop:VI.XVI].
