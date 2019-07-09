@@ -1095,15 +1095,15 @@ $\therefore \drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
 	byLineDefine(F, O, byblack, 0, 2);
 	byLineDefine(O, E, byblack, 1, 2);
 	bySetProjection(-60, 0, -30);
-	draw byPolygon.planeMN(M, M', N, N')(-byred);
+	draw byPolygon.planeMN(M, M', N, N')(byredN);
 	draw byPolygon.planeDOEB(D, O, E, B)(byyellow);
 	draw byNamedLine(OD);
 	draw byNamedLineSeq(0)(FD,DB,EB);
-	draw byPolygon.planeKL(K, K', L, L')(-byyellow);
+	draw byPolygon.planeKL(K, K', L, L')(byyellowN);
 	draw byPolygon.planeFCAO(F, C, A, O)(byred);
 	draw byNamedLine(AO);
 	draw byNamedLineSeq(0)(CF,FO,OE,AE,CA);
-	draw byPolygon.planeGH(G, G', H, H')(-byblue);
+	draw byPolygon.planeGH(G, G', H, H')(byblueN);
 	draw byLabelsOnPolygon(M, K, G, G', H, L, N, N')(0, 0);
 	draw byLabelsOnPolygon(D, F, C, A, E, B)(0, 0);
 	draw byLabelsOnPolygon(E, O, D)(2, 0);

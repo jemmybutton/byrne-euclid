@@ -62,12 +62,25 @@ vardef arcsind primary x = angle((1+-+x,x)) enddef;
 
 vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
-color byred, byblue, byyellow, byblack, bygrey, bytransparent, byDefaultAngleOptionalColor;
+color byred, byblue, byyellow, byblack, bygrey,
+    byredN, byblueN, byyellowN, byblackN, bygreyN,
+    outlineColor.byredN, outlineColor.byblueN, outlineColor.byyellowN, outlineColor.byblackN, outlineColor.bygreyN,
+    bytransparent, byDefaultAngleOptionalColor;
 byred := (.85, .3, .1);
 byblue := (.15, .35, .6);
 byyellow := (.95, .7, 0.1);
 byblack := black;
 bygrey := (.8, .8, .8);
+byredN := white;
+byblueN := white;
+byyellowN := white;
+byblackN := white;
+bygreyN := white;
+outlineColor.byredN := byred;
+outlineColor.byblueN := byblue;
+outlineColor.byyellowN := byyellow;
+outlineColor.byblackN := byblack;
+outlineColor.bygreyN := bygrey;
 bytransparent := 0.99white;
 
 byDefaultAngleOptionalColor := white;
@@ -78,6 +91,53 @@ vardef sign (expr x) =
     if x > 0: 1 fi
     if x < 0: -1 fi
     if x = 0: 1 fi
+enddef;
+
+vardef colorLightness (expr col) =
+save r, g, b;
+    if color col:
+        r := redpart(col);
+        g := greenpart(col);
+        b := bluepart(col);
+    elseif cmykcolor col:
+        r := (1 - cyanpart(col)) * (1 - blackpart(col));
+        g := (1 - magentapart(col)) * (1 - blackpart(col));
+        b := (1 - yellowpart(col)) * (1 - blackpart(col));
+    fi;
+    (0.2126*r) + (0.7152*g) + (0.0722*b) % from here https://en.wikipedia.org/wiki/Relative_luminance but it doesn't work this way; to be corrected
+enddef;
+
+vardef isWhite (expr col) =
+    if (colorLightness(col) = 1): % arbitrary value
+        true
+    else:
+        false
+    fi
+enddef;
+
+vardef isLight (expr col) =
+    if (colorLightness(col) > 0.95): % arbitrary value
+        true
+    else:
+        false
+    fi
+enddef;
+
+vardef defineColor@#(expr col) =
+    if (typeOf(col) = "color"):
+        color @#;
+    else:
+        cmykcolor @#;
+    fi;
+    @# := col;
+enddef;
+
+vardef selectOutlineColor@# =
+    if (typeOf(outlineColor.@#) = "color") or (typeOf(outlineColor.@#) = "cmykcolor"):
+        outlineColor.@#
+    else:
+        black
+    fi
 enddef;
 
 vardef cycleval (expr v, l) =
@@ -101,12 +161,12 @@ vardef typeOf (expr v) =
     determinedType := "undefined";
     if (boolean v):
         determinedType := "boolean";
+    elseif (cmykcolor v):
+        determinedType := "cmykcolor";
     elseif (color v):
         determinedType := "color";
     elseif (rgbcolor v):
-        determinedType := "cmykcolor";
-    elseif (cmykcolor v):
-        determinedType := "color";
+        determinedType := "rgbcolor";
     elseif (numeric v):
         determinedType := "numeric";
     elseif (pair v):
@@ -647,7 +707,7 @@ vardef isRightAngle (suffix a, b, c) =
     else:
         d := unitvector(a - b) dotprod unitvector(c - b);
     fi;
-    if (d < 1/1000):
+    if (abs(d) < 1/1000):
         rv := true;
     else:
         rv := false;
@@ -2087,7 +2147,7 @@ vardef byNamedFilledCircleSector (text filledCircleSectorList) =
     ) rotated globalRotation
 enddef;
 
-vardef byPolygonDefine@#(text pointsList)(expr col) =
+vardef byPolygonDefine@#(text pointsList)(suffix col) =
 if str @# = "":
     byPolygonDefine.scantokens(byPolygonName(pointsList))(pointsList)(col);
 else:
@@ -2102,6 +2162,7 @@ else:
         appendList(pL, str pN, -tn, false);
     endfor;
     setAttribute("polygon", "Color", str @#, col);
+    setAttribute("polygon", "ColorName", str @#, str col);
     setAttribute("polygon", "Transparency", str @#, 1);
     setAttribute("polygon", "PointsList", str @#, pL);
     setAttribute("polygon", "Synonym", str @#, str @#);
@@ -2112,7 +2173,7 @@ vardef byPolygonPathFromList (expr pointsList) =
     forsuffixes pN=scantokens(pointsList): pN -- endfor cycle
 enddef;
 
-vardef byPolygon@#(text pointsList)(expr col) =
+vardef byPolygon@#(text pointsList)(suffix col) =
 if str @# = "":
     byPolygon.scantokens(byPolygonName(pointsList))(pointsList)(col)
 else:
@@ -2134,19 +2195,15 @@ enddef;
 vardef byNamedPolygon (text polygonsList) =
     save polyPath, polyCol, polyTransp, polyGhost;
     path polyPath;
-    color polyCol;
     numeric polyTransp;
     picture polyGhost;
     image(
         draw image(
             forsuffixes pN=polygonsList:
                 polyPath := byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor;
-                polyCol := getAttribute("polygon", "Color", str pN);
+                defineColor.polyCol(getAttribute("polygon", "Color", str pN));
                 polyTransp := getAttribute("polygon", "Transparency", str pN);
-                if (polyCol <> white)
-                    and ((redpart(polyCol) >= 0)
-                        and (greenpart(polyCol) >= 0)
-                        and(bluepart(polyCol) >= 0)):
+                if (not isWhite(polyCol)):
                     fill polyPath
                         withcolor
                             if polyTransp = 1:
@@ -2156,27 +2213,19 @@ vardef byNamedPolygon (text polygonsList) =
                             fi;
                 fi;
                 polyGhost := image(
-                    if (polyCol <> white)
-                        and ((redpart(polyCol) >= 0)
-                            and (greenpart(polyCol) >= 0)
-                            and(bluepart(polyCol) >= 0)):
+                    if (not isLight(polyCol)):
                         draw ghostPicture;
                     fi;
-                    if ((redpart(polyCol) >= 0)
-                        and (greenpart(polyCol) >= 0)
-                        and(bluepart(polyCol) >= 0)):
-                        draw polyPath withcolor polyCol withpen pencircle scaled 2lineWidth;
-                    else:
-                        draw polyPath withcolor white withpen pencircle scaled 2lineWidth;
-                    fi;
+                    draw polyPath
+                        withcolor polyCol
+                        withpen pencircle scaled 2lineWidth;
                     );
                 clip polyGhost to polyPath;
                 draw polyGhost;
-                if (polyCol = white)
-                    or ((redpart(polyCol) < 0)
-                        or (greenpart(polyCol) < 0)
-                        or (bluepart(polyCol) < 0)):
-                    draw (byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor) withcolor (polyCol*-1) withpen pencircle scaled lineWidthThin;
+                if (isLight(polyCol)):
+                    draw (byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor)
+                        withcolor selectOutlineColor.scantokens(getAttribute("polygon", "ColorName", str pN))
+                        withpen pencircle scaled lineWidthThin;
                 fi;
                 if mainPictureMode and ghostLines:
                     save gP;
@@ -2622,7 +2671,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
     boolean uniqueCenter, angleCheck, doNotLabelCenter, threeDMode;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
     path angleGenArc, compoundAnglePath, compoundAngleArc, projectedCircle;
-    color lineCol, planePoints[];
+    color planePoints[];
     picture outputImage;
     centerName := "";
     uniqueCenter := true;
@@ -2708,10 +2757,10 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                             angleDir[angleNum] := anglePart[j];
                             angleSide[angleNum] := as[j];
                             if ((getAttribute("angle", "Style", str aN) <> 0)
-                                    and ((getAttribute0("angle", "OptionalColor", str aN) = white)
+                                    and (isWhite(getAttribute0("angle", "OptionalColor", str aN))
                                         or (getAttribute0("angle", "OptionalColor", str aN) = bytransparent)))
                                 or ((getAttribute("angle", "Style", str aN) = 0)
-                                    and (getAttribute("angle", "Color", str aN) = white))
+                                    and isWhite(getAttribute("angle", "Color", str aN)))
                                 or (getAttribute("angle", "ArcType", str aN) = 1):
                                 angleType[angleNum] := 1;
                             else:
@@ -2743,7 +2792,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     if (angleType[i] <> 0):
                         p1 := (ac*scaleFactor);
                         p2 := ((dir(angleDir[i]) scaled (1/2u * angleScale))) shifted p1;
-                        lineCol := black;
+                        defineColor.lineCol(black);
                         lineDash := 0;
                         lineTh := 1;
                         forsuffixes lN=scantokens(processedLinesList):
@@ -2752,7 +2801,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                                         scantokens(getAttribute("line", "EndBName", str lN))
                                         - scantokens(getAttribute("line", "EndAName", str lN)))
                                         - angleDir[i]) < 1):
-                                    lineCol := getAttribute("line", "Color", str lN);
+                                    defineColor.lineCol(getAttribute("line", "Color", str lN));
                                     lineDash := getAttribute("line", "Dashed", str lN);
                                     lineTh := getAttribute("line", "Thin", str lN);
                                 fi;
@@ -2761,7 +2810,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                                         scantokens(getAttribute("line", "EndAName", str lN))
                                         - scantokens(getAttribute("line", "EndBName", str lN)))
                                         - angleDir[i]) < 1):
-                                    lineCol := getAttribute("line", "Color", str lN);
+                                    defineColor.lineCol(getAttribute("line", "Color", str lN));
                                     lineDash := getAttribute("line", "Dashed", str lN);
                                     lineTh := getAttribute("line", "Thin", str lN);
                                 fi;
