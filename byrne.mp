@@ -326,7 +326,7 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
         boolean valueExists;
         valueExists := false;
         if omitDuplicates:
-            valueExists := isInList (valueToAdd, listName)
+            valueExists := isInList (valueToAdd, listName);
         fi;
         if not valueExists:
             if (whereToAdd = 1):
