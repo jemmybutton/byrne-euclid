@@ -2151,20 +2151,23 @@ vardef byPolygonDefine@#(text pointsList)(suffix col) =
 if str @# = "":
     byPolygonDefine.scantokens(byPolygonName(pointsList))(pointsList)(col);
 else:
-    save pL, p, tn;
+    save pL, pLraw, p, tn;
     path p;
-    string pL;
+    string pL, pLraw;
     numeric tn;
     pL := "";
+    pLraw := "";
     p := forsuffixes pN=pointsList: pN -- endfor cycle;
     tn := turningnumber(p);
     forsuffixes pN=pointsList:
         appendList(pL, str pN, -tn, false);
+        appendList(pLraw, str pN, 1, false);
     endfor;
     setAttribute("polygon", "Color", str @#, col);
     setAttribute("polygon", "ColorName", str @#, str col);
     setAttribute("polygon", "Transparency", str @#, 1);
     setAttribute("polygon", "PointsList", str @#, pL);
+    setAttribute("polygon", "PointsListRaw", str @#, pLraw);
     setAttribute("polygon", "Synonym", str @#, str @#);
 fi;
 enddef;
@@ -2193,36 +2196,49 @@ vardef byPolygonName(text pointsList) =
 enddef;
 
 vardef byNamedPolygon (text polygonsList) =
-    save polyPath, polyCol, polyTransp, polyGhost;
+    save polyPath, polyCol, polyTransp, polyGhost, shadingFunctionExists;
     path polyPath;
     numeric polyTransp;
     picture polyGhost;
+    boolean shadingFunctionExists;
     image(
         draw image(
             forsuffixes pN=polygonsList:
                 polyPath := byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor;
                 defineColor.polyCol(getAttribute("polygon", "Color", str pN));
                 polyTransp := getAttribute("polygon", "Transparency", str pN);
+                if known shadingFor.scantokens(getAttribute("polygon", "ColorName", str pN)):
+                    shadingFunctionExists := true;
+                else:
+                    shadingFunctionExists := false;
+                fi;
                 if (not isWhite(polyCol)):
-                    fill polyPath
-                        withcolor
-                            if polyTransp = 1:
-                                polyCol
-                            else:
-                                transparent(1, polyTransp, polyCol)
-                            fi;
+                    if not shadingFunctionExists:
+                        fill polyPath
+                            withcolor
+                                if polyTransp = 1:
+                                    polyCol
+                                else:
+                                    transparent(1, polyTransp, polyCol)
+                                fi;
+                    else:
+                        shadingFunction.scantokens(getAttribute("polygon", "ColorName", str pN))
+                            (polyPath, polyCol)(scantokens(getAttribute("polygon", "PointsListRaw", str pN)));
+                    fi;
                 fi;
                 polyGhost := image(
                     if (not isLight(polyCol)):
                         draw ghostPicture;
                     fi;
-                    draw polyPath
-                        withcolor polyCol
-                        withpen pencircle scaled 2lineWidth;
+                    if not shadingFunctionExists:
+                        draw polyPath
+                            withcolor polyCol
+                            withpen pencircle scaled 2lineWidth;
+                    fi;
                     );
                 clip polyGhost to polyPath;
                 draw polyGhost;
-                if (isLight(polyCol)):
+                if (isLight(polyCol)) and not shadingFunctionExists:
                     draw (byPolygonPathFromList(getAttribute("polygon", "PointsList", str pN)) scaled scaleFactor)
                         withcolor selectOutlineColor.scantokens(getAttribute("polygon", "ColorName", str pN))
                         withpen pencircle scaled lineWidthThin;
