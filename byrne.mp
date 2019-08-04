@@ -1,7 +1,7 @@
-%    byrne-euclid 0.2.0
+%    byrne-euclid 0.2.1
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
-%    Copyright 2018 Sergey Slyusarev
+%    Copyright 2019 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -538,7 +538,14 @@ vardef isInPlane (expr colPoint, colPlaneA, colPlaneB, colPlaneC) =
 enddef;
 
 vardef unitvectorXYZ (expr somecolor) =
-    somecolor/absXYZ(somecolor)
+    save vecLength;
+    numeric vecLength;
+    vecLength := absXYZ(somecolor);
+    if (vecLength > 0):
+        somecolor/vecLength
+    else:
+        errmessage("Can't construct a unit vector from a zero-length vector");
+    fi
 enddef;
 
 vardef absXYZ (expr somecolor) =
@@ -2227,10 +2234,10 @@ vardef byNamedPolygon (text polygonsList) =
                     fi;
                 fi;
                 polyGhost := image(
-                    if (not isLight(polyCol)):
-                        draw ghostPicture;
-                    fi;
                     if not shadingFunctionExists:
+                        if (not isLight(polyCol)):
+                            draw ghostPicture;
+                        fi;
                         draw polyPath
                             withcolor polyCol
                             withpen pencircle scaled 2lineWidth;
