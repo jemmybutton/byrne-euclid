@@ -30,9 +30,9 @@
 	\else\ignorespaces
 		\global\def\sfB{defaultScaleFactor}\ignorespaces
 	\fi\ignorespaces
+	\undefineList\ignorespaces
+	\def\undefineList{}\ignorespaces
 	\ifCreateNewInstanceForPicture\ignorespaces
-		\undefineList\ignorespaces
-		\def\undefineList{}\ignorespaces
 		\global\advance \mpInst by 1\ignorespaces
 		\global\def\currentInstance{\the\mpInst}\ignorespaces
 		\defineMPinstance[\currentInstance]\ignorespaces
