@@ -3234,6 +3234,12 @@ byDefineGenericRightAngles;
 % Arrows
 %
 
+def commonArrowSettings =
+    save ahlength, ahangle;
+    ahlength := 7pt;
+    ahangle := 30;
+enddef;
+
 vardef byRotationArrowDefine@#(suffix axisA, axisB, pointA) (expr ang, col, sty) =
 if str @# = "":
     byRotationArrowDefine.scantokens(str axisA & str axisB & str pointA)(axisA, axisB, pointA) (ang, col, sty);
@@ -3265,12 +3271,11 @@ vardef byGenerateRotationArrowPath (expr axisA, axisB, pointA, ang) =
 enddef;
 
 vardef byNamedRotationArrow (text arrowsList) =
-    save arrowPath, arrowPoint, arrowStyle, ahlength, ahangle;
+    save arrowPath, arrowPoint, arrowStyle;
     path arrowPath;
     color arrowPoint;
     numeric arrowStyle;
-    ahlength := 7pt;
-    ahangle := 30;
+    commonArrowSettings;
     image(
         forsuffixes aN=arrowsList:
             arrowPath := byGenerateRotationArrowPath(
@@ -3281,11 +3286,65 @@ vardef byNamedRotationArrow (text arrowsList) =
                 ) scaled scaleFactor;
             arrowStyle := getAttribute("rotationarrow", "Style", str aN);
             if arrowStyle = 0:
-                arrowPath := subpath (0, (arctime (arclength(arrowPath) - 1/2ahlength) of arrowPath)) of arrowPath;
+                arrowPath := subpath (0, (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
                 drawarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
             else:
-                arrowPath := subpath ((arctime 1/2ahlength of arrowPath), (arctime (arclength(arrowPath) - 1/2ahlength) of arrowPath)) of arrowPath;
+                arrowPath := subpath ((arctime ahlength of arrowPath), (arctime (arclength(arrowPath) - ahlength) of arrowPath)) of arrowPath;
                 drawdblarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("rotationarrow", "Color", str aN);
+            fi;
+        endfor;
+    ) rotated globalRotation
+enddef;
+
+
+vardef byFlatArrowDefine@#(suffix pointA, pointB) (expr col, sty, typ) =
+if str @# = "":
+    byFlatArrowDefine.scantokens(str pointA & str pointB)(pointA, pointB) (col, sty, typ);
+else:
+    setAttribute("flatarrow", "PointA", str @#, pointA);
+    setAttribute("flatarrow", "PointB", str @#, pointB);
+    setAttribute("flatarrow", "PointAName", str @#, str pointA);
+    setAttribute("flatarrow", "PointBName", str @#, str pointB);
+    setAttribute("flatarrow", "Type", str @#, typ);
+    setAttribute("flatarrow", "Color", str @#, col);
+    setAttribute("flatarrow", "Style", str @#, sty);
+    setAttribute("flatarrow", "Synonym", str @#, str @#);
+fi;
+enddef;
+
+vardef byNamedFlatArrow (text arrowsList) =
+    save arrowPath, arrowStyle, arrowPoint;
+    path arrowPath;
+    numeric arrowStyle;
+    pair arrowPoint[];
+    commonArrowSettings;
+    image(
+        forsuffixes aN=arrowsList:
+            arrowType := getAttribute("flatarrow", "Type", str aN);
+            arrowStyle := getAttribute("flatarrow", "Style", str aN);
+            arrowPoint1 := scantokens(getAttribute("flatarrow", "PointAName", str aN));
+            arrowPoint2 := scantokens(getAttribute("flatarrow", "PointBName", str aN));
+            if arrowType = 0:
+                arrowPath := arrowPoint1 -- arrowPoint2;
+            elseif arrowType = 1:
+                arrowPath := arrowPoint1
+                    .. 1/2[arrowPoint1, arrowPoint2]
+                        shifted (((arrowPoint2 - arrowPoint1) scaled 1/8) rotated 90)
+                    .. arrowPoint2;
+            fi;
+            arrowPath := arrowPath scaled scaleFactor;
+            if arrowStyle = 0:
+                arrowPath := subpath (
+                    0,
+                    arctime (arclength(arrowPath) - ahlength) of arrowPath
+                    ) of arrowPath;
+                drawarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("flatarrow", "Color", str aN);
+            else:
+                arrowPath := subpath (
+                    arctime ahlength of arrowPath,
+                    arctime (arclength(arrowPath) - ahlength) of arrowPath
+                    ) of arrowPath;
+                drawdblarrow arrowPath withpen (pencircle scaled lineWidthThin) withcolor getAttribute("flatarrow", "Color", str aN);
             fi;
         endfor;
     ) rotated globalRotation

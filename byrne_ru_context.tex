@@ -3310,7 +3310,7 @@ pair A, B, C, D, E, F, G, H, I, J, d[];
 A := (0, 0);
 d1 := (8/5u, 0);
 B := A shifted d1;
-C := B shifted (2u, 0);
+C := B shifted (3/2u, 0);
 D := A shifted (u, -13/5u);
 E := D shifted d1;
 F := (B--E) intersectionpoint (D--C);
@@ -3707,9 +3707,10 @@ stopTempAngleScale;
 }
 $ \inprop[prop:I.IV].
 
-Теперь, поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$,\\
-$\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ дважды } \polygonBLC$\\
-и $\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ дважды } \polygonAFC$ \inprop[prop:I.XLI].
+Теперь, поскольку $\drawUnitLine{AB} \parallel \drawUnitLine{CF}$ \inprop[prop:I.XIV],\\
+$\drawPolygon[middle][polygonACFG]{LAGF,CLF} = \mbox{ дважды } \polygonBLC$ \inprop[prop:I.XLI]\\
+И поскольку $\drawUnitLine{AK} \parallel \drawUnitLine{CI}$ (\conststr.),\\
+$\drawPolygon[middle][polygonJMCK]{JMIK,MCI} = \mbox{ дважды } \polygonAFC$ \inprop[prop:I.XLI].
 
 $\therefore \polygonACFG = \polygonJMCK$ \inax[ax:I.VI].
 
