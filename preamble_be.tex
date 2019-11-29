@@ -1,14 +1,16 @@
 % Figure placement it definitions is messy, below we define all the indentation, figure and lettrine placing stuff.
 \newdimen\LettrineSize
+\newdimen\LettrinePadding
 \newdimen\PlateWidth
 \newdimen\PlateHeight
 \newdimen\PcI
 \newdimen\PcH
 \LettrineSize=1.5cm
+\LettrinePadding=2mm
 \PlateHeight=1.5cm
 \PlateWidth=7.6cm
-\def\LettrineTotalWidth{\dimexpr \LettrineSize + 2mm \relax}
-\def\LettrineTotalHeight{\dimexpr \LettrineSize + 2mm \relax}
+\def\LettrineTotalWidth{\dimexpr \LettrineSize + \LettrinePadding \relax}
+\def\LettrineTotalHeight{\dimexpr \LettrineSize + \LettrinePadding \relax}
 \def\LettrineTotalHeightMinusLine{\dimexpr \LettrineTotalHeight -0.8\baselineskip}
 \def\defaultLettrineLines{4}
 \PcI=0.5\textwidth
@@ -184,22 +186,22 @@
 
 % This thing removes space between an initial and the letter after it, if no space is needed
 \startluacode
-   userdata = userdata or {}
-   function userdata.spaceFirst (str)
+   formatting = formatting or {}
+   function formatting.dedent (str)
     if string.sub(str, 0, 1) ==  " " then
       tex.print(str)
     else
-      tex.print("\\hskip -3pt " .. str)
+      tex.print("\\,\\hskip -\\LettrinePadding " .. str)
     end
   end
 \stopluacode
 
 % This one is used standalone, f. e. in the Introduction
-\def\regularLettrine#1#2{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-4pt}\vskip -15pt}\noindent{\sc\ctxlua{userdata.spaceFirst([==[#2]==])}}}
+\def\regularLettrine#1#2{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-4pt}\vskip -15pt}\noindent{\sc\ctxlua{formatting.dedent([==[#2]==])}}}
 
 \def\problem#1#2#3{\ignorespaces
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip 5pt\ctxlua{userdata.spaceFirst([==[#2]==])}\ \it #3} \vskip \baselineskip
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip\LettrinePadding \ctxlua{formatting.dedent([==[#2]==])}\ \it #3} \vskip \baselineskip
 }
 
 %\setbox0\hbox{\ }
@@ -217,7 +219,7 @@
 	\initialIndentation{7}\ignorespaces
 \fi\ignorespaces
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip 5pt\ctxlua{userdata.spaceFirst([==[#3]==])}\ \it #4}\par\ignorespaces
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip \LettrinePadding\ctxlua{formatting.dedent([==[#3]==])}\ \it #4}\par\ignorespaces
 \advance\vPos by -\pagetotal
 \advance\vPos by 4\baselineskip
 \ifnum\vPos>0
