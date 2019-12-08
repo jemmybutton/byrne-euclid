@@ -20,6 +20,6 @@ MetaPost library (byrne.mp) and lettrines generator (lettrines.mp) are licensed 
 
 To build the book from command line run `context byrne_context.tex` within the book directory. To generate lettrines run `mpost lettrines.mp` within `\lettrines` directory.
 
-Tested with TeXLive 2015 on Ubuntu 16.04
-
 See releases for prepared .pdf
+
+[![Build Status](https://travis-ci.org/jemmybutton/byrne-euclid.svg?branch=master)](https://travis-ci.org/jemmybutton/byrne-euclid)
