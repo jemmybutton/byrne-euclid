@@ -1,0 +1,6 @@
+sudo: required
+dist: bionic
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-full
+script:
+- context --nonstopmode byrne_context.tex
