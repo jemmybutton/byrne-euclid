@@ -1,7 +1,6 @@
 sudo: required
 dist: bionic
 before_install:
-- sudo apt-get -qq update && sudo apt-get install -y texlive-full
-- mtxrun --script font --reload --force
+- sudo apt-get -qq update && sudo apt-get install -y texlive-full fonts-texgyre
 script:
 - context --nonstopmode byrne_context.tex
