@@ -1,6 +1,17 @@
 sudo: required
 dist: bionic
 before_install:
-- sudo apt-get -qq update && sudo apt-get install -y texlive-full fonts-texgyre
+  - sudo apt-get -qq update && sudo apt-get install -y texlive-full fonts-texgyre
 script:
-- context --nonstopmode byrne_context.tex
+  - context --nonstopmode byrne_context.tex
+before_deploy:
+  - git config --local user.name "jemmybutton"
+  - git tag "Current"
+deploy:
+  provider: releases
+  token: $GITHUB_KEY
+  file:
+  - byrne_context.pdf
+  name: Current
+  skip_cleanup: true
+  overwrite: true
