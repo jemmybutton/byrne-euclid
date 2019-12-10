@@ -9,7 +9,7 @@ before_deploy:
   - git tag "Current"
 deploy:
   provider: releases
-  api_key: $GITHUB_KEY
+  api_key: $GITHUB_TOKEN
   file:
   - byrne_context.pdf
   name: Current
