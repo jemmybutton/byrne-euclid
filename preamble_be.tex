@@ -148,6 +148,8 @@
 
 \writeLettrineSizes % this one can be used is you choose to change lettrine or vignette sizes elsewhere
 
+\def\putzero{0}
+
 \def\putLettrine#1{\ignorespaces
 \write \lettrineslist{#1}\ignorespaces
 \expandafter\ifx\csname ltrn#1\endcsname\relax
@@ -156,12 +158,18 @@
 \else
 	\global\expandafter\advance\csname ltrn#1\endcsname by 1
 \fi
-\doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
-	{\ifx#1\plateName\ignorespaces
-		\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][width=\PlateWidth]\ignorespaces
-	\else\ignorespaces
-		\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][height=\LettrineSize]\ignorespaces
-	\fi}
+\doifelsefile{lettrines/#1\putzero.mps}
+	{\doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
+		{\ifx#1\plateName\ignorespaces
+			\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][width=\PlateWidth]\ignorespaces
+		\else\ignorespaces
+			\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][height=\LettrineSize]\ignorespaces
+		\fi}
+		{\ifx#1\plateName\ignorespaces
+			\externalfigure[lettrines/#1\putzero.mps][width=\PlateWidth]\ignorespaces
+		\else\ignorespaces
+			\externalfigure[lettrines/#1\putzero.mps][height=\LettrineSize]\ignorespaces
+		\fi}}
 	{\doifelsefile{lettrines/#1.svg}
 		{\externalfigure[lettrines/#1.svg][height=\LettrineSize]\ignorespaces}
 		{\doifelsefile{lettrines/#1.pdf}
