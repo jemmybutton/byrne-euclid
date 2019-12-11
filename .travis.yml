@@ -7,7 +7,7 @@ script:
   - context --nonstopmode byrne_ru_context.tex
 before_deploy:
   - git config --local user.name "jemmybutton"
-  - git tag -f -a "Current"
+  - git tag "Current" --force
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
