@@ -3,10 +3,14 @@ dist: bionic
 before_install:
   - sudo apt-get -qq update && sudo apt-get install -y texlive-full fonts-texgyre
 script:
+  - cd lettrines
+  - mpost lettrines.mp
+  - cd ..
   - context --nonstopmode byrne_context.tex
   - context --nonstopmode byrne_ru_context.tex
 before_deploy:
   - git config --local user.name "jemmybutton"
+  - git push --delete origin Current
   - git tag "Current" --force
 deploy:
   provider: releases
