@@ -7,8 +7,6 @@ script:
   - context --nonstopmode byrne_ru_context.tex
 before_deploy:
   - git config --local user.name "jemmybutton"
-  - git push origin :Current
-  - git push origin --delete "Current"
   - git tag -f -a "Current"
 deploy:
   provider: releases
