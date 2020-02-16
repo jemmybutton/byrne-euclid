@@ -1,0 +1,11 @@
+*.mps
+*.mpx
+*.pdf
+referencegraph.txt
+
+# ConTeXt build files
+byrne_context.log
+byrne_context.tuc
+
+lettrines/lettrines.log
+lettrines/mptextmp.mp
