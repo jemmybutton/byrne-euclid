@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jemmybutton/byrne-euclid.svg?branch=master)](https://travis-ci.org/jemmybutton/byrne-euclid)
+
 MetaPost + ConTeXt rendition of [Oliver Byrne's "The first six books of the
 Elements of
 Euclid"](https://en.wikipedia.org/wiki/Oliver_Byrne_(mathematician)#Byrne.27s_Euclid)
@@ -37,6 +39,3 @@ book directory. To generate lettrines run `mpost lettrines.mp` within
 `\lettrines` directory.
 
 See releases for prepared .pdf
-
-[![Build
-Status](https://travis-ci.org/jemmybutton/byrne-euclid.svg?branch=master)](https://travis-ci.org/jemmybutton/byrne-euclid)
