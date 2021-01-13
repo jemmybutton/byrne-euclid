@@ -3,7 +3,7 @@
 \newdimen\LettrinePadding
 \newdimen\PlateWidth
 \newdimen\PlateHeight
-\newdimen\PcI
+\newdimen\pictureIndent
 \newdimen\PcH
 \LettrineSize=1.5cm
 \LettrinePadding=2mm
@@ -13,35 +13,35 @@
 \def\LettrineTotalHeight{\dimexpr \LettrineSize + \LettrinePadding \relax}
 \def\LettrineTotalHeightMinusLine{\dimexpr \LettrineTotalHeight -0.8\baselineskip}
 \def\defaultLettrineLines{4}
-\PcI=0.5\textwidth
+\pictureIndent=0.5\textwidth
 \newdimen\oddpict
 \oddpict=\backspace
 \advance \oddpict by \textwidth
-\advance \oddpict by -\PcI
+\advance \oddpict by -\pictureIndent
 
 \newdimen\evenpict
 \evenpict=\cutspace
-\advance \evenpict by \PcI
+\advance \evenpict by \pictureIndent
 
 \define\drawCurrentPictureWide{
 	\setbox1\vbox{\drawCurrentPicture}
 	\newdimen\pictVOffset
 	\pictVOffset=\topmargin
 	\advance\pictVOffset by \pagetotal
-	\PcI=\wd1
+	\pictureIndent=\wd1
 	\PcH=\ht1
 	\advance\PcH by \pagetotal
-	\advance \PcI by 1cm
-	\advance \PcI by -\cutspace
+	\advance \pictureIndent by 1cm
+	\advance \pictureIndent by -\cutspace
 	\ifodd\pageno
 		\oddpict=\backspace
 		\advance \oddpict by \makeupwidth
-		\advance \oddpict by -\PcI
+		\advance \oddpict by -\pictureIndent
 		\definelayer[curpic]
 			[x=\oddpict,y=\pictVOffset,width=\textwidth,height=\textheight]
 	\else
 		\evenpict=\cutspace
-		\advance \evenpict by \PcI
+		\advance \evenpict by \pictureIndent
 		\definelayer[curpic]
 			[x=0cm,y=\pictVOffset,width=\evenpict,height=\textheight]
 	\fi
@@ -56,12 +56,13 @@
 \dTB=\PcH
 \advance\dTB by -\pagetotal
 \vskip \dTB
-\resetII
+\resetInitialIndentation
 }
 
-\newdimen\CmI
-\newdimen\PgI
-\newdimen\NgI
+\newdimen\pictureWithLettrineLineLength
+\newdimen\pictureWithLettrineIndent
+\newdimen\pictureOnlyLineLength
+\newdimen\pictureWithLettrineLineLength
 \newcount\Y
 \newcount\Yy
 \newcount\X
@@ -71,7 +72,7 @@
 \newif\ifinsideII
 \insideIIfalse
 
-\def\resetII{\parshape=0\global\numOfIndLines=0\global\def\par{\endgraf}\everypar=\expandafter{\the\toks0}\global\insideIIfalse}
+\def\resetInitialIndentation{\parshape=0\global\numOfIndLines=0\global\def\par{\endgraf}\everypar=\expandafter{\the\toks0}\global\insideIIfalse}
 
 \newcount\linesofar
 
@@ -81,39 +82,48 @@
 \def\initialindentation[#1]#2{
 	\global\toks0=\expandafter{\the\everypar}
 	\iffirstargument
-		\def\ltLines{#1}
+		\def\lettrineLines{#1}
 	\else\ignorespaces
-		\def\ltLines{\defaultLettrineLines}
+		\def\lettrineLines{\defaultLettrineLines}
 	\fi
-	\ifinsideII\resetII\fi
+	\ifinsideII\resetInitialIndentation\fi
 	\global\insideIItrue
 	\ \vskip 0pt
  %https://books.google.com/books?id=iDb2BwAAQBAJ&pg=PA107&lpg=PA107&dq=tex+parshape+paragraphs&source=bl&ots=GmFvQnIUr7&sig=oJ-mtVEwOttepWpGi2BABemAMWw&hl=en&sa=X&ved=0ahUKEwjxrbPk-uXKAhVClB4KHSxUBqwQ6AEIQTAF#v=onepage&q=tex%20parshape%20paragraphs&f=false
 	\linesofar=0
 	\global\numOfIndLines=#2
 	\def\par{{\endgraf\global\linesofar=\prevgraf}}
-	\everypar={\ifnum\linesofar<\numOfIndLines\prevgraf=\linesofar\else\resetII\fi} %
-	\PgI=\textwidth
-	\NgI=\textwidth
+	\everypar={\ifnum\linesofar<\numOfIndLines\prevgraf=\linesofar\else\resetInitialIndentation\fi} %
+	\pictureOnlyLineLength=\textwidth
+	\pictureWithLettrineLineLength=\textwidth
+	\advance \pictureOnlyLineLength by -\pictureIndent
 	\ifodd\pageno
-		\advance \PgI by -\PcI
-		\CmI=\PgI
-		\advance \CmI by -\LettrineTotalWidth
-		\def\partindent{0cm \PgI}
-		\def\doubleindent{\LettrineTotalWidth \CmI}
+		\pictureWithLettrineLineLength=\pictureOnlyLineLength
+		\advance \pictureWithLettrineLineLength by -\LettrineTotalWidth
+		\def\partindent{0cm \pictureOnlyLineLength}
+		\ifnum\textdirection=0
+			\def\doubleindent{\LettrineTotalWidth \pictureWithLettrineLineLength}
+		\fi
+		\ifnum\textdirection=1
+			\def\doubleindent{0cm \pictureWithLettrineLineLength}
+		\fi
 	\else
-		\advance \PgI by -\PcI
-		\CmI=\PcI
-		\advance \CmI by \LettrineTotalWidth
-		\NgI=\PgI
-		\advance \NgI by -\LettrineTotalWidth
-		\def\partindent{\PcI \PgI}
-		\def\doubleindent{\CmI \NgI}
+		\pictureWithLettrineIndent=\pictureIndent
+		\advance \pictureWithLettrineIndent by \LettrineTotalWidth
+		\pictureWithLettrineLineLength=\pictureOnlyLineLength
+		\advance \pictureWithLettrineLineLength by -\LettrineTotalWidth
+		\def\partindent{\pictureIndent \pictureOnlyLineLength}
+		\ifnum\textdirection=0
+			\def\doubleindent{\pictureWithLettrineIndent \pictureWithLettrineLineLength}
+		\fi
+		\ifnum\textdirection=1
+			\def\doubleindent{0cm \pictureWithLettrineLineLength}
+		\fi
 	\fi
 	\def\preinitindent{}
-	\Yy=\ltLines
+	\Yy=\lettrineLines
 	\advance \Yy by 1 
-	\Y=\ltLines
+	\Y=\lettrineLines
 	\loop 
 	\expandafter\def\expandafter\preinitindent\expandafter{\preinitindent\doubleindent}
 	\advance \Y by -1 
@@ -122,7 +132,7 @@
 	\def\initindent{\preinitindent}
 	\global\X=#2
 	\ifnum \X>\Yy
-		\advance \X by -\ltLines 
+		\advance \X by -\lettrineLines 
 		\loop 
 			\expandafter\def\expandafter\initindent\expandafter{\initindent\partindent}
 		\advance \X by -1 
@@ -219,7 +229,7 @@
 \newdimen\vPos
 \def\problemNP{\dosingleempty\problemnp}
 \def\problemnp[#1]#2#3#4{\ignorespaces
-\PcI=0cm\ignorespaces
+\pictureIndent=0cm\ignorespaces
 \vPos=\pagetotal\ignorespaces
 \iffirstargument\ignorespaces
 	\initialIndentation[#1]{7}\ignorespaces
@@ -234,7 +244,7 @@
 \vskip \vPos\ignorespaces
 \fi
 \vskip 0.5\baselineskip
-\resetII}
+\resetInitialIndentation}
 
 
 \def\qedstr{Q. E. D.}
@@ -288,7 +298,7 @@
 
 \def\plateName{plate}
 
-\define[2]\bookTitle{\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\hskip-1pt\putLettrine{\plateName}\hskip-1pt}\hfill\hskip0pt\vskip 5\baselineskip~\hfill\hbox{\tfd #2}\hfill~}}
+\define[2]\bookTitle{\begingroup\lefttoright\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\hskip-1pt\putLettrine{\plateName}\hskip-1pt}\hfill\hskip0pt\vskip 5\baselineskip~\hfill\hbox{\tfd #2}\hfill~}\endgroup}
 
 \definehead[intro][coupling=part,default=part,incrementnumber=no,placehead=yes]
 \setuphead[intro][alternative=text,command=\bookTitle,header=empty,footer=none,before={},after={}]
@@ -313,7 +323,7 @@
 
 \definehead[subproposition][subsection]
 \define[2]\subpropositionTitle{\midaligned{#2}}
-\setuphead[subproposition][command=\subpropositionTitle,before={\resetII\blank[line]},after={\blank[line]}]
+\setuphead[subproposition][command=\subpropositionTitle,before={\resetInitialIndentation\blank[line]},after={\blank[line]}]
 
 %\definehighlight[emph][style=italic]
 \def\emph#1{{\em #1}}
@@ -357,7 +367,7 @@
 \def\sepSpace{\vskip 0.75\baselineskip}
 
 \definestartstop[CenterAlign][
-before={\resetII\startalignment[middle]\setupwhitespace[big]},
+before={\resetInitialIndentation\startalignment[middle]\setupwhitespace[big]},
 after={\stopalignment\vskip 0.5\baselineskip}]
 
 % http://tex.stackexchange.com/questions/326108/parallel-section-numberings-in-context
