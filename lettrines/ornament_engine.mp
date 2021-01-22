@@ -516,7 +516,9 @@ vardef branchPic@#(expr brPath, brOrigin, brAngle, brScale, brFlipped) =
             draw p0 withcolor ornamentForegroundColor withpen pencircle scaled 1/4pt;
             fill p0 withcolor ornamentForegroundColor;
         else:
-            draw brPath withcolor ornamentForegroundColor withpen pencircle scaled 1/2pt;
+            if(length(brPath) > 0):
+                draw brPath withcolor ornamentForegroundColor withpen pencircle scaled 1/2;
+            fi;
         fi;
     )
 enddef;
@@ -529,22 +531,20 @@ enddef;
 %
 
 def pictureToBranches (expr seedPicture) =
-    image(
-        for particularPath within seedPicture:
-          if not filled particularPath:
-              addBranch (pathpart particularPath, redpart(colorpart particularPath) = 1, (0, 0), 0, 1, false, false);
-              if (greenpart(colorpart particularPath) = 1):
-                  addMeristem (pathpart particularPath, 1, branchNumber);
-              fi;
-          else:
-              if (redpart(colorpart particularPath) = 1):
-                  fill pathpart particularPath withcolor ornamentForegroundColor;
-              else:
-                  fill pathpart particularPath withcolor ornamentBackgroundColor;
-              fi;
+    for particularPath within seedPicture:
+      if not filled particularPath:
+          addBranch (pathpart particularPath, redpart(colorpart particularPath) = 1, (0, 0), 0, 1, false, false);
+          if (greenpart(colorpart particularPath) = 1):
+              addMeristem (pathpart particularPath, 1, branchNumber);
           fi;
-        endfor;
-    )
+      %else:
+      %    if (redpart(colorpart particularPath) = 1):
+      %        fill pathPartBranch withcolor ornamentForegroundColor;
+      %    else:
+      %        fill pathPartBranch withcolor ornamentBackgroundColor;
+      %    fi;
+      fi;
+    endfor;
 enddef;
 
 vardef produceOrnamentImage(expr seedPicture, ornScaleFactor, bgColor, fgColor, symMode, branchIterations, leafIterations) =
@@ -565,7 +565,7 @@ save ornamentScaleFactor, ornamentImage;
     endfor;
 
     picture ornamentImage;
-    ornamentImage := pictureToBranches(seedPicture);
+    pictureToBranches(seedPicture);
 
     for j := 0 step 1 until branchIterations:
         for i = scantokens shuffleNumbers(meristemNumber):
@@ -585,8 +585,17 @@ save ornamentScaleFactor, ornamentImage;
             fi;
         endfor;
     endfor;
+
     image(
-        draw ornamentImage;
+        for particularPath within seedPicture:
+            if filled particularPath:
+                if (redpart(colorpart particularPath) = 1):
+                    fill pathpart particularPath withcolor ornamentForegroundColor;
+                else:
+                    fill pathpart particularPath withcolor ornamentBackgroundColor;
+                fi;
+            fi;
+        endfor;
         for i := 0 step 1 until branchNumber:
             if branchActive[i]:
                 draw branchPic.scantokens(branchType[i])
