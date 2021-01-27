@@ -62,6 +62,33 @@ vardef arcsind primary x = angle((1+-+x,x)) enddef;
 
 vardef arccosd primary x = angle((x,1+-+x)) enddef;
 
+vardef pathToString (expr p) =
+save outputString, endpoint, i;
+    string outputString;
+    outputString :=
+        "(" & decimal(xpart(point 0 of p)) & ", " & decimal(ypart(point 0 of p)) & ")"
+        & ".. controls (" & decimal(xpart(postcontrol 0 of p)) & ", " & decimal(ypart(postcontrol 0 of p)) & ") and "
+        & "(" & decimal(xpart(precontrol 1 of p)) & ", " & decimal(ypart(precontrol 1 of p)) & ")";
+    if (cycle p):
+        endpoint := length(p) - 1;
+    else:
+        endpoint := length(p);
+    fi;
+    for i := 1 step 1 until endpoint:
+        outputString := outputString
+            & ".. (" & decimal(xpart(point i of p)) & ", " & decimal(ypart(point i of p)) & ")";
+        if ((i < length(p)) or (cycle p)):
+            outputString := outputString
+                & ".. controls (" & decimal(xpart(postcontrol i of p)) & ", " & decimal(ypart(postcontrol i of p)) & ") and "
+                & "(" & decimal(xpart(precontrol i + 1 of p)) & ", " & decimal(ypart(precontrol i + 1 of p)) & ")";
+        fi;
+    endfor;
+    if (cycle p):
+        outputString := outputString & " .. cycle";
+    fi;
+    outputString
+enddef;
+
 color byred, byblue, byyellow, byblack, bygrey,
     byredN, byblueN, byyellowN, byblackN, bygreyN,
     outlineColor.byredN, outlineColor.byblueN, outlineColor.byyellowN, outlineColor.byblackN, outlineColor.bygreyN,
@@ -764,16 +791,17 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
     lineBleeding :=
         ((point 0 of lineItself) shifted (unitvector((point 0 of lineItself) - (point 1 of lineItself)) scaled dpLength[dp])) --
         lineItself -- ((point 1 of lineItself) shifted (unitvector((point 1 of lineItself) - (point 0 of lineItself)) scaled dpLength[dp]));
+    lineStyShift := (linePerp scaled (1/2currentLineWidth*s));
     p := image(
-        lineStyShift := (linePerp scaled (1/2currentLineWidth*s));
+        pickup  pencircle scaled currentLineWidth;
         if (dp > 0):
-            draw (lineItself shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor white;
-            draw (lineItself shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col
+            draw (lineItself shifted lineStyShift) withcolor white;
+            draw (lineItself shifted lineStyShift) withcolor col
                 dashed byDashPattern(arclength(lineItself), dp);
-            draw (subpath(0, 1) of lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
-            draw (subpath(2, 3) of lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
+            draw (subpath(0, 1) of lineBleeding shifted lineStyShift) withcolor col;
+            draw (subpath(2, 3) of lineBleeding shifted lineStyShift) withcolor col;
         else:
-            draw (lineBleeding shifted lineStyShift) withpen pencircle scaled currentLineWidth withcolor col;
+            draw (lineBleeding shifted lineStyShift) withcolor col;
         fi;
         if (th < 0):
             draw (lineBleeding shifted (lineStyShift + (linePerp scaled 1/4currentLineWidth))) withpen pencircle scaled 1/2currentLineWidth withcolor black;

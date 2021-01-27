@@ -193,12 +193,30 @@
 						frameoffset=0cm,
 						foregroundcolor=white]{}\ignorespaces
 				\else\ignorespaces
-					\framed[
-						width=\LettrineSize,height=\LettrineSize,
-						frame=off,
-						background=color,
-						backgroundcolor=black,
-						foregroundcolor=white]{\vskip-13.5pt\vbox{\tfd #1}}\ignorespaces
+					\startMPcode
+						input byrne.mp;
+						picture p;
+						path lettrineFrame, lettrineBG;
+						lettrineBG := reverse(fullsquare) scaled (\the\LettrineSize);
+						lettrineFrame := reverse(fullsquare) scaled (\the\LettrineSize - 2pt);
+						fill lettrineBG withcolor black;
+						draw lettrineFrame withcolor white;
+						p := outlinetext("#1") scaled 3;
+						p := p shifted -1/2[ulcorner(p), lrcorner(p)];
+						draw p withcolor white;
+						string pictureContents;
+						pictureContents := "path givenOutline[];";
+						pictureContents := pictureContents & "givenOutline0 := " & pathToString(lettrineBG) & "; ";
+						pictureContents := pictureContents & "givenOutline1 := " & pathToString(lettrineFrame) & "; ";
+						j := 1;
+						for i within p:
+							j := j + 1;
+							pictureContents := pictureContents & "givenOutline" & decimal(j) & " := " & pathToString(pathpart i) & "; ";
+						endfor;
+						pictureContents := pictureContents & "numeric totalLines; totalLines := " & decimal(j) & ";";
+						write pictureContents to "lettrines/lettrine_#1.mp";
+						write EOF to "lettrines/lettrine_#1.mp";
+					\stopMPcode\ignorespaces
 				\fi}\ignorespaces}}}
 				
 

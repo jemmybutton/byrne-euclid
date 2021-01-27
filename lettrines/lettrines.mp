@@ -76,8 +76,7 @@ forever:
             fill plateFrame1 withcolor (0, 0, 0);
             draw (0, 0) withcolor (0, 1, 0);
             draw subpath (0, 1) of plateFrame2 withcolor (1, 1, 0);
-            draw subpath (1, 3/2) of plateFrame2 withcolor (1, 1, 0);
-            draw subpath (3/2, 2) of plateFrame2 withcolor (1, 1, 0);
+            draw subpath (1, 2) of plateFrame2 withcolor (1, 1, 0);
             draw subpath (2, 4) of plateFrame2 withcolor (1, 0, 0);
         );
     elseif (lettrineLine = "tile"):
@@ -92,26 +91,43 @@ forever:
         lfIterations := 2;
         symMode := 0;
         lettrinePicture := image(
-            path lettrineFrame[];
-            lettrineFrame1 := reverse(unitsquare) scaled lettrineSize;
-            lettrineFrame2 := reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth);
-            fill lettrineFrame1 withcolor (0, 0, 0);
-            draw subpath(0, 1) of lettrineFrame2 withcolor (1, 1, 0);
-            draw subpath(1, 2) of lettrineFrame2 withcolor (1, 1, 0);
-            draw subpath(2, 3) of lettrineFrame2 withcolor (1, 1, 0);
-            draw subpath(3, 4) of lettrineFrame2 withcolor (1, 1, 0);
-            for i within TEX(lettrineLine):
-                currentLetter := (glyph (ASCII textpart i) of (fontpart i)) scaled (1/35);
-                currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
-                for letterPart within currentLetter:
-                    draw pathpart letterPart withcolor (1, 1, 0);
-                    if (colorpart letterPart) = 0:
-                        fill pathpart letterPart withcolor (1, 1, 0);
-                    else:
-                        fill pathpart letterPart withcolor (0, 0, 0);
-                    fi;
-                endfor;
-            endfor;
+          %  path lettrineFrame[];
+          %  lettrineFrame1 := reverse(unitsquare) scaled lettrineSize;
+          %  lettrineFrame2 := reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth);
+          %  fill lettrineFrame1 withcolor (0, 0, 0);
+          %  draw subpath(0, 1) of lettrineFrame2 withcolor (1, 1, 0);
+          %  draw subpath(1, 2) of lettrineFrame2 withcolor (1, 1, 0);
+          %  draw subpath(2, 3) of lettrineFrame2 withcolor (1, 1, 0);
+          %  draw subpath(3, 4) of lettrineFrame2 withcolor (1, 1, 0);
+          %  for i within TEX(lettrineLine):
+          %      for j := 0 upto length(textpart i)-1:
+          %          currentLetter := (glyph (ASCII substring(j, j+1) of (textpart i)) of (fontpart i)) scaled (1/35);
+          %          currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
+          %          for letterPart within currentLetter:
+          %              if (arclength(pathpart letterPart) > 0):
+          %                  if (colorpart letterPart) = 0:
+          %                      fill pathpart letterPart withcolor (1, 0, 0);
+          %                  else:
+          %                      fill pathpart letterPart withcolor (0, 0, 0);
+          %                  fi;
+          %                  draw pathpart letterPart withcolor (1, 1, 0);
+          %              fi;
+          %          endfor;
+          %      endfor;
+          %  endfor;
+          scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
+          closefrom("lettrine_" & lettrineLine & ".mp");
+          fill givenOutline0 withcolor (0,0,0);
+          for i := 1 step 1 until totalLines:
+              draw givenOutline[i] withcolor (1,1,0);
+              if (i > 1) and (cycle (givenOutline[i])):
+                  if (turningnumber (givenOutline[i]) > 0):
+                      fill givenOutline[i] withcolor (1,0,0);
+                  else:
+                      fill givenOutline[i] withcolor (0,0,0);
+                  fi;
+              fi;
+          endfor;
         );
     fi;
 

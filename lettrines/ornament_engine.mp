@@ -55,10 +55,13 @@ endgroup
 enddef;
 
 vardef pathOutline (expr p, d) =
-    save outlinepen;
+    interim linecap := rounded;
+    save outlinepen, uncycledpath;
+    path uncycledpath, rv;
+    uncycledpath := subpath (0, length(p)) of p;
     pen outlinepen;
     outlinepen = makepen(for i := 0 step 10 until 350: dir(i) scaled d -- endfor cycle);
-    envelope outlinepen of p
+    envelope outlinepen of uncycledpath
 enddef;
 
 vardef shuffleNumbers (expr n) =
@@ -231,9 +234,8 @@ vardef addSymBranches =
         fi;
 enddef;
 
-vardef addBud@#(expr mrNumber, mrLoc, s, w) =
-    save mrLocTime, l;
-    mrLocTime := floor(mrLoc/(meristemResolution*ornamentScaleFactor));
+vardef addBud@#(expr mrNumber, mrLocTime, s, w) =
+    save l;
     if not known meristemBuds.@#[mrNumber]:
         meristemBuds.@#[mrNumber] := (branchMaxSize@# * ornamentScaleFactor, 0);
         for i := 1 step 1 until floor(arclength(meristemPath[mrNumber])/(meristemResolution*ornamentScaleFactor)):
@@ -261,17 +263,16 @@ vardef addBud@#(expr mrNumber, mrLoc, s, w) =
     fi;
 enddef;
 
-vardef checkBud@#(expr mrNumber, mrLoc) =
-    save mrLocTime, branchExists, rv;
+vardef checkBud@#(expr mrNumber, mrLocTime) =
+    save branchExists, rv;
     boolean branchExists;
     branchExists := false;
     if str @# <> "common":
-        if checkBud.common(mrNumber, mrLoc) = 0:
+        if checkBud.common(mrNumber, mrLocTime) = 0:
             branchExists := true;
         fi;
     fi;
     if not branchExists:
-        mrLocTime := floor(mrLoc/(meristemResolution*ornamentScaleFactor));
         if not known meristemBuds.@#[mrNumber]:
             if (branchMaxSize@# < infinity):
                 rv := branchMaxSize@# * ornamentScaleFactor;
@@ -296,10 +297,10 @@ vardef checkIfBudsLeft@#(expr mrNumber) =
 enddef;
 
 vardef positionBranch@#(expr mrNumber) =
-    save brTemplate, mrTime, brAngle, brOrigin, brSizeUpperLimit, brMaxScale, brMaxScaleLoc, brFlipped;
+    save brTemplate, mrTime, budTime, brAngle, brOrigin, brSizeUpperLimit, brMaxScale, brMaxScaleLoc, brFlipped, directionVector;
     path brTemplate, brCandidatePath;
-    numeric mrTime, brAngle, brScale, brMaxScale, brMaxScaleLoc;
-    pair brOrigin;
+    numeric mrTime, budTime, brAngle, brScale, brMaxScale, brMaxScaleLoc;
+    pair brOrigin, directionVector;
     boolean brFlipped;
     if meristemOrientation[mrNumber] = 1:
         brFlipped := true;
@@ -309,14 +310,20 @@ vardef positionBranch@#(expr mrNumber) =
     brMaxScale := 0;
     brMaxScaleLoc := 0;
     if checkIfBudsLeft@#(mrNumber):
-        for i := 0 step (meristemResolution*ornamentScaleFactor) until arclength(meristemPath[mrNumber]):
-            brSizeUpperLimit := checkBud@#(mrNumber, i);
+        for budTime := 0 step 1 until floor(arclength(meristemPath[mrNumber])/(meristemResolution*ornamentScaleFactor)):
+            brSizeUpperLimit := checkBud@#(mrNumber, budTime);
             if (brSizeUpperLimit >= branchMinSize@# * ornamentScaleFactor) and (brSizeUpperLimit > brMaxScale):
-                mrTime := arctime i of meristemPath[mrNumber];
+                mrTime := arctime ((meristemResolution*ornamentScaleFactor)*budTime) of meristemPath[mrNumber];
                 if (arclength(meristemPath[mrNumber]) > 0):
-                    brAngle := 90 + angle(1/2[
+                    directionVector := 1/2[
                         direction (mrTime-1/100) of meristemPath[mrNumber],
-                        direction (mrTime+1/100) of meristemPath[mrNumber]]);
+                        direction (mrTime+1/100) of meristemPath[mrNumber]];
+                    if (directionVector = (0, 0)):
+                        directionVector := 1/2[
+                            direction (mrTime-101/100) of meristemPath[mrNumber],
+                            direction (mrTime+101/100) of meristemPath[mrNumber]];
+                    fi;
+                    brAngle := 90 + angle(directionVector);
                 else:
                     brAngle := uniformdeviate(360);
                 fi;
@@ -327,17 +334,17 @@ vardef positionBranch@#(expr mrNumber) =
                     brAngle,
                     meristemParentBranch[mrNumber],
                     branchMinSize@# * ornamentScaleFactor, brSizeUpperLimit);
-                addBud@#(mrNumber, i, brScale, 1);
+                addBud@#(mrNumber, budTime, brScale, 1);
                 if brScale > brMaxScale:
                     addBranch@#((0,0), true, brOrigin, brAngle, brScale, brFlipped, true);
                     brMaxScale := brScale;
-                    brMaxScaleLoc := i;
+                    brMaxScaleLocTime := budTime;
                 fi;
             fi;
         endfor;
         if (brMaxScale >= branchMinSize@# * ornamentScaleFactor):
             toNextBranch;
-            addBud.common(mrNumber, brMaxScaleLoc, 0, 5);
+            addBud.common(mrNumber, brMaxScaleLocTime, 0, 5);
             addBranchMeristem;
             addSymBranches;
         fi;
@@ -398,24 +405,30 @@ vardef checkIfIntersects(expr brPath, brParent) =
             if (i <> brParent):
                 bbCorners2 := llcorner(branchOutline[i]);
                 bbCorners3 := urcorner(branchOutline[i]);
-                bbCorners4 := llcorner(branchPath[i]);
-                bbCorners5 := urcorner(branchPath[i]);
                 isInsideOutline :=
                     (not ((xpart(bbCorners0) < xpart(bbCorners2)) and (xpart(bbCorners1) < xpart(bbCorners2))))
                     and (not ((xpart(bbCorners0) > xpart(bbCorners3)) and (xpart(bbCorners1) > xpart(bbCorners3))))
                     and (not ((ypart(bbCorners0) < ypart(bbCorners2)) and (ypart(bbCorners1) < ypart(bbCorners2))))
                     and (not ((ypart(bbCorners0) > ypart(bbCorners3)) and (ypart(bbCorners1) > ypart(bbCorners3))));
-                isInsidePath :=
-                    (not ((xpart(bbCorners0) < xpart(bbCorners4)) and (xpart(bbCorners1) < xpart(bbCorners4))))
-                    and (not ((xpart(bbCorners0) > xpart(bbCorners5)) and (xpart(bbCorners1) > xpart(bbCorners5))))
-                    and (not ((ypart(bbCorners0) < ypart(bbCorners4)) and (ypart(bbCorners1) < ypart(bbCorners4))))
-                    and (not ((ypart(bbCorners0) > ypart(bbCorners5)) and (ypart(bbCorners1) > ypart(bbCorners5))));
-                if isInsideOutline or isInsidePath:
+                if isInsideOutline:
                     if (xpart(brPath intersectiontimes branchOutline[i]) >= 0):
                         intersects := true;
-                    elseif (xpart(brPath intersectiontimes branchPath[i]) >= 0):
-                        intersects := true;
+                    %elseif (xpart(brPath intersectiontimes branchPath[i]) >= 0):
+                    %    intersects := true;
                     fi;
+                %else:
+                %    bbCorners4 := llcorner(branchPath[i]);
+                %    bbCorners5 := urcorner(branchPath[i]);
+                %    isInsidePath :=
+                %        (not ((xpart(bbCorners0) < xpart(bbCorners4)) and (xpart(bbCorners1) < xpart(bbCorners4))))
+                %        and (not ((xpart(bbCorners0) > xpart(bbCorners5)) and (xpart(bbCorners1) > xpart(bbCorners5))))
+                %        and (not ((ypart(bbCorners0) < ypart(bbCorners4)) and (ypart(bbCorners1) < ypart(bbCorners4))))
+                %        and (not ((ypart(bbCorners0) > ypart(bbCorners5)) and (ypart(bbCorners1) > ypart(bbCorners5))));
+                %    if isInsidePath:
+                %        if (xpart(brPath intersectiontimes branchPath[i]) >= 0):
+                %            intersects := true;
+                %        fi;
+                %    fi;
                 fi;
             fi;
         endfor;
@@ -537,12 +550,6 @@ def pictureToBranches (expr seedPicture) =
           if (greenpart(colorpart particularPath) = 1):
               addMeristem (pathpart particularPath, 1, branchNumber);
           fi;
-      %else:
-      %    if (redpart(colorpart particularPath) = 1):
-      %        fill pathPartBranch withcolor ornamentForegroundColor;
-      %    else:
-      %        fill pathPartBranch withcolor ornamentBackgroundColor;
-      %    fi;
       fi;
     endfor;
 enddef;
