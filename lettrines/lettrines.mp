@@ -15,32 +15,19 @@
 %    You should have received a copy of the GNU General Public License
 %    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-input TEX;
-
-TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}");
-TEXPOST("\end{document}");
+input ornament_engine;
 
 outputformat := "eps";
-
-numeric lettrineSize, plateWidth, plateHeight, borderWidth;
-lettrineSize := 15mm;
-plateWidth := 76mm;
-plateHeight := 15mm;
-borderWidth := 1mm;
 
 color lettrineBGcolor, lettrineFGcolor;
 lettrineBGcolor := black;
 lettrineFGcolor := white;
-
-input "lettrinessizes.txt";
 
 string lettrinesFile, lettrineLine, lettrineSymbol[];
 numeric lettrineCount[], lettrineNumber;
 picture lettrineImage, currentLetter;
 lettrinesFile := "lettrineslist.txt";
 lettrineNumber := 0;
-
-input ornament_engine;
 
 def writeOutPicture (expr fileName, lettrinePicture) =
     outputtemplate := fileName;
@@ -70,14 +57,22 @@ forever:
         lfIterations := 4;
         symMode := 1;
         lettrinePicture := image(
-            path plateFrame[];
-            plateFrame1 := reverse((unitsquare shifted (-1/2,-1/2)) xscaled plateWidth) yscaled plateHeight;
-            plateFrame2 := ((reverse(unitsquare) shifted (-1/2,-1/2)) xscaled (plateWidth - borderWidth)) yscaled (plateHeight - borderWidth);
-            fill plateFrame1 withcolor (0, 0, 0);
-            draw (0, 0) withcolor (0, 1, 0);
-            draw subpath (0, 1) of plateFrame2 withcolor (1, 1, 0);
-            draw subpath (1, 2) of plateFrame2 withcolor (1, 1, 0);
-            draw subpath (2, 4) of plateFrame2 withcolor (1, 0, 0);
+            scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
+            closefrom("lettrine_" & lettrineLine & ".mp");
+            fill givenOutline0 withcolor (0,0,0);
+            draw subpath (0,1) of givenOutline1 withcolor (1,1,0);
+            draw subpath (1,2) of givenOutline1 withcolor (1,1,0);
+            draw subpath (2,4) of givenOutline1 withcolor (1,0,0);
+            for i := 2 step 1 until totalLines:
+                draw givenOutline[i] withcolor (1,1,0);
+                if cycle givenOutline[i]:
+                    if (turningnumber (givenOutline[i]) > 0):
+                        fill givenOutline[i] withcolor (1,0,0);
+                    else:
+                        fill givenOutline[i] withcolor (0,0,0);
+                    fi;
+                fi;
+            endfor;
         );
     elseif (lettrineLine = "tile"):
         brIterations := 3;
@@ -91,47 +86,23 @@ forever:
         lfIterations := 2;
         symMode := 0;
         lettrinePicture := image(
-          %  path lettrineFrame[];
-          %  lettrineFrame1 := reverse(unitsquare) scaled lettrineSize;
-          %  lettrineFrame2 := reverse(unitsquare) scaled (lettrineSize - borderWidth) shifted (1/2borderWidth, 1/2borderWidth);
-          %  fill lettrineFrame1 withcolor (0, 0, 0);
-          %  draw subpath(0, 1) of lettrineFrame2 withcolor (1, 1, 0);
-          %  draw subpath(1, 2) of lettrineFrame2 withcolor (1, 1, 0);
-          %  draw subpath(2, 3) of lettrineFrame2 withcolor (1, 1, 0);
-          %  draw subpath(3, 4) of lettrineFrame2 withcolor (1, 1, 0);
-          %  for i within TEX(lettrineLine):
-          %      for j := 0 upto length(textpart i)-1:
-          %          currentLetter := (glyph (ASCII substring(j, j+1) of (textpart i)) of (fontpart i)) scaled (1/35);
-          %          currentLetter := currentLetter shifted -1/2[urcorner(currentLetter), llcorner(currentLetter)] shifted (1/2lettrineSize, 1/2lettrineSize);
-          %          for letterPart within currentLetter:
-          %              if (arclength(pathpart letterPart) > 0):
-          %                  if (colorpart letterPart) = 0:
-          %                      fill pathpart letterPart withcolor (1, 0, 0);
-          %                  else:
-          %                      fill pathpart letterPart withcolor (0, 0, 0);
-          %                  fi;
-          %                  draw pathpart letterPart withcolor (1, 1, 0);
-          %              fi;
-          %          endfor;
-          %      endfor;
-          %  endfor;
-          scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
-          closefrom("lettrine_" & lettrineLine & ".mp");
-          fill givenOutline0 withcolor (0,0,0);
-          draw subpath (0,1) of givenOutline1 withcolor (1,1,0);
-          draw subpath (1,2) of givenOutline1 withcolor (1,1,0);
-          draw subpath (2,3) of givenOutline1 withcolor (1,1,0);
-          draw subpath (3,4) of givenOutline1 withcolor (1,1,0);
-          for i := 2 step 1 until totalLines:
-              draw givenOutline[i] withcolor (1,1,0);
-              if cycle givenOutline[i]:
-                  if (turningnumber (givenOutline[i]) > 0):
-                      fill givenOutline[i] withcolor (1,0,0);
-                  else:
-                      fill givenOutline[i] withcolor (0,0,0);
-                  fi;
-              fi;
-          endfor;
+            scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
+            closefrom("lettrine_" & lettrineLine & ".mp");
+            fill givenOutline0 withcolor (0,0,0);
+            draw subpath (0,1) of givenOutline1 withcolor (1,1,0);
+            draw subpath (1,2) of givenOutline1 withcolor (1,1,0);
+            draw subpath (2,3) of givenOutline1 withcolor (1,1,0);
+            draw subpath (3,4) of givenOutline1 withcolor (1,1,0);
+            for i := 2 step 1 until totalLines:
+                draw givenOutline[i] withcolor (1,1,0);
+                if cycle givenOutline[i]:
+                    if (turningnumber (givenOutline[i]) > 0):
+                        fill givenOutline[i] withcolor (1,0,0);
+                    else:
+                        fill givenOutline[i] withcolor (0,0,0);
+                    fi;
+                fi;
+            endfor;
         );
     fi;
 

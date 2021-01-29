@@ -1,1 +1,0 @@
-lettrineSize := 42.67912pt; plateWidth := 216.2411pt; plateHeight := 42.67912pt;
