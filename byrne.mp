@@ -65,26 +65,31 @@ vardef arccosd primary x = angle((x,1+-+x)) enddef;
 vardef pathToString (expr p) =
 save outputString, endpoint, i;
     string outputString;
-    outputString :=
-        "(" & decimal(xpart(point 0 of p)) & ", " & decimal(ypart(point 0 of p)) & ")"
-        & ".. controls (" & decimal(xpart(postcontrol 0 of p)) & ", " & decimal(ypart(postcontrol 0 of p)) & ") and "
-        & "(" & decimal(xpart(precontrol 1 of p)) & ", " & decimal(ypart(precontrol 1 of p)) & ")";
-    if (cycle p):
-        endpoint := length(p) - 1;
-    else:
-        endpoint := length(p);
-    fi;
-    for i := 1 step 1 until endpoint:
-        outputString := outputString
-            & ".. (" & decimal(xpart(point i of p)) & ", " & decimal(ypart(point i of p)) & ")";
-        if ((i < length(p)) or (cycle p)):
-            outputString := outputString
-                & ".. controls (" & decimal(xpart(postcontrol i of p)) & ", " & decimal(ypart(postcontrol i of p)) & ") and "
-                & "(" & decimal(xpart(precontrol i + 1 of p)) & ", " & decimal(ypart(precontrol i + 1 of p)) & ")";
+    if (length(p) > 0):
+        outputString :=
+            "(" & decimal(xpart(point 0 of p)) & ", " & decimal(ypart(point 0 of p)) & ")"
+            & ".. controls (" & decimal(xpart(postcontrol 0 of p)) & ", " & decimal(ypart(postcontrol 0 of p)) & ") and "
+            & "(" & decimal(xpart(precontrol 1 of p)) & ", " & decimal(ypart(precontrol 1 of p)) & ")";
+        if (cycle p):
+            endpoint := length(p) - 1;
+        else:
+            endpoint := length(p);
         fi;
-    endfor;
-    if (cycle p):
-        outputString := outputString & " .. cycle";
+        for i := 1 step 1 until endpoint:
+            outputString := outputString
+                & ".. (" & decimal(xpart(point i of p)) & ", " & decimal(ypart(point i of p)) & ")";
+            if ((i < length(p)) or (cycle p)):
+                outputString := outputString
+                    & ".. controls (" & decimal(xpart(postcontrol i of p)) & ", " & decimal(ypart(postcontrol i of p)) & ") and "
+                    & "(" & decimal(xpart(precontrol i + 1 of p)) & ", " & decimal(ypart(precontrol i + 1 of p)) & ")";
+            fi;
+        endfor;
+        if (cycle p):
+            outputString := outputString & " .. cycle";
+        fi;
+    else:
+        outputString :=
+            "(" & decimal(xpart(point 0 of p)) & ", " & decimal(ypart(point 0 of p)) & ")";
     fi;
     outputString
 enddef;
