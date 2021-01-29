@@ -195,21 +195,23 @@
 				\else\ignorespaces
 					\startMPcode
 						input byrne.mp;
-						picture p;
+						picture lettrineOutline, lettrinePicture;
 						path lettrineFrame, lettrineBG;
 						lettrineBG := reverse(fullsquare) scaled (\the\LettrineSize);
 						lettrineFrame := reverse(fullsquare) scaled (\the\LettrineSize - 2pt);
 						fill lettrineBG withcolor black;
 						draw lettrineFrame withcolor white;
-						p := outlinetext("#1") scaled 3;
-						p := p shifted -1/2[ulcorner(p), lrcorner(p)];
-						draw p withcolor white;
+						lettrineOutline := outlinetext("#1") scaled 3;
+						lettrineOutline := lettrineOutline shifted -1/2[ulcorner(lettrineOutline), lrcorner(lettrineOutline)];
+						lettrinePicture := textext("#1") scaled 3;
+						lettrinePicture := lettrinePicture shifted -1/2[ulcorner(lettrinePicture), lrcorner(lettrinePicture)];
+						draw lettrinePicture withcolor white;
 						string pictureContents;
 						pictureContents := "path givenOutline[];";
 						pictureContents := pictureContents & "givenOutline0 := " & pathToString(lettrineBG) & "; ";
 						pictureContents := pictureContents & "givenOutline1 := " & pathToString(lettrineFrame) & "; ";
 						j := 1;
-						for i within p:
+						for i within lettrineOutline:
 							j := j + 1;
 							pictureContents := pictureContents & "givenOutline" & decimal(j) & " := " & pathToString(pathpart i) & "; ";
 						endfor;

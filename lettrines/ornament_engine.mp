@@ -64,22 +64,38 @@ vardef pathOutline (expr p, d) =
     envelope outlinepen of uncycledpath
 enddef;
 
+vardef formNumbersString (expr n) =
+save i;
+    "0" for i := 1 step 1 until n: & ", " & decimal(i) endfor
+enddef;
+
 vardef shuffleNumbers (expr n) =
-    save shuffledNumbers;
-    string shuffledNumbers;
+save residualNumbers, updatedResidualNumbers, shuffledNumbers, randomPick, i, j, k;
+    string residualNumbers, updatedResidualNumbers, shuffledNumbers;
+    numeric randomPick, i, j, k;
+    residualNumbers := formNumbersString(n);
     shuffledNumbers := "";
-    for i := 0 step 1 until n:
-        if length(shuffledNumbers) = 0:
-            shuffledNumbers := decimal(i);
-        else:
-            if (uniformdeviate(1) > 1/2):
-                shuffledNumbers := shuffledNumbers & ", " & decimal(i);
+    for j := n step -1 until 1:
+        randomPick := round(uniformdeviate(j));
+        k := 0;
+        updatedResidualNumbers := "";
+        for i = scantokens(residualNumbers):
+            k := k + 1;
+            if (k <> randomPick):
+                if (length(updatedResidualNumbers) > 0):
+                    updatedResidualNumbers := updatedResidualNumbers & ", ";
+                fi;
+                updatedResidualNumbers := updatedResidualNumbers & decimal(i);
             else:
-                shuffledNumbers := decimal(i) & ", " & shuffledNumbers;
+                if (length(shuffledNumbers) > 0):
+                    shuffledNumbers := shuffledNumbers & ", ";
+                fi;
+                shuffledNumbers := shuffledNumbers & decimal(i);
             fi;
-        fi;
+        endfor;
+        residualNumbers := updatedResidualNumbers;
     endfor;
-    shuffledNumbers
+    residualNumbers & ", " & shuffledNumbers
 enddef;
 
 %
@@ -88,7 +104,7 @@ enddef;
 
 path branchPath[], branchOutline[], meristemPath[];
 pair branchOrigin[];
-string branchType[], meristemType[];
+string branchType[], meristemType[], meristemOrder[];
 numeric branchNumber, branchAngle[], branchScale[], meristemOrientation[], meristemParentBranch[];
 boolean branchActive[], branchFlipped[];
 
@@ -148,6 +164,7 @@ vardef addMeristem@#(expr mrPath, mrOrientation, mrParentBranch) =
     meristemPath[meristemNumber] := mrPath;
     meristemOrientation[meristemNumber] := mrOrientation;
     meristemParentBranch[meristemNumber] := mrParentBranch;
+    meristemOrder[meristemNumber] := shuffleNumbers(floor(arclength(meristemPath[meristemNumber])/(meristemResolution*ornamentScaleFactor)));
     if (length(str @#) > 0):
         meristemType[meristemNumber] := str @#;
     else:
@@ -296,6 +313,58 @@ vardef checkIfBudsLeft@#(expr mrNumber) =
     fi
 enddef;
 
+vardef sortBuds@#(expr mrNumber, budsList) =
+save pivot, i, preList, postList, nPre, nPost, isSorted, budValue, lastValue, rv;
+    numeric pivot, budValue, lastValue, nPre, nPost;
+    string preList, postList, rv;
+    boolean isSorted;
+    isSorted := true;
+    preList := "";
+    postList := "";
+    nPre := 0;
+    nPost := 0;
+    lastValue := infinity;
+    for i = scantokens(budsList):
+        budValue := checkBud@#(mrNumber, i);
+        if (unknown pivot):
+            pivot := budValue;
+        fi;
+        if (budValue < pivot):
+            if (length(postList) > 0):
+                postList :=  ", " & postList;
+            fi;
+            postList := decimal(i) & postList;
+            nPost := nPost + 1;
+        elseif (budValue > pivot):
+            if (length(preList) > 0):
+                preList := ", " & preList;
+            fi;
+            preList := decimal(i) & preList;
+            nPre := nPre + 1;
+        else:
+            if (length(preList) > 0):
+                preList := preList & ", ";
+            fi;
+            preList := preList & decimal(i);
+            nPre := nPre + 1;
+        fi;
+        if (budValue > lastValue):
+            isSorted := false;
+        fi;
+        lastValue := budValue;
+    endfor;
+    if isSorted:
+        rv := budsList;
+    else:
+        if ((nPre > 0) and (nPost > 0)):
+            rv := sortBuds@#(mrNumber, preList) & ", " & sortBuds@#(mrNumber, postList);
+        else:
+            rv := sortBuds@#(mrNumber, preList & postList);
+        fi;
+    fi;
+    rv
+enddef;
+
 vardef positionBranch@#(expr mrNumber) =
     save brTemplate, mrTime, budTime, brAngle, brOrigin, brSizeUpperLimit, brMaxScale, brMaxScaleLoc, brFlipped, directionVector;
     path brTemplate, brCandidatePath;
@@ -310,7 +379,7 @@ vardef positionBranch@#(expr mrNumber) =
     brMaxScale := 0;
     brMaxScaleLoc := 0;
     if checkIfBudsLeft@#(mrNumber):
-        for budTime := 0 step 1 until floor(arclength(meristemPath[mrNumber])/(meristemResolution*ornamentScaleFactor)):
+        for budTime = scantokens(sortBuds@#(mrNumber, meristemOrder[mrNumber])):
             brSizeUpperLimit := checkBud@#(mrNumber, budTime);
             if (brSizeUpperLimit >= branchMinSize@# * ornamentScaleFactor) and (brSizeUpperLimit > brMaxScale):
                 mrTime := arctime ((meristemResolution*ornamentScaleFactor)*budTime) of meristemPath[mrNumber];
@@ -342,6 +411,7 @@ vardef positionBranch@#(expr mrNumber) =
                 fi;
             fi;
         endfor;
+        meristemOrder[mrNumber] := sortBuds@#(mrNumber, meristemOrder[mrNumber]);
         if (brMaxScale >= branchMinSize@# * ornamentScaleFactor):
             toNextBranch;
             addBud.common(mrNumber, brMaxScaleLocTime, 0, 5);

@@ -66,8 +66,8 @@ forever:
     picture lettrinePicture;
 
     if (lettrineLine = "plate"):
-        brIterations := 3;
-        lfIterations := 3;
+        brIterations := 4;
+        lfIterations := 4;
         symMode := 1;
         lettrinePicture := image(
             path plateFrame[];
@@ -118,9 +118,13 @@ forever:
           scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
           closefrom("lettrine_" & lettrineLine & ".mp");
           fill givenOutline0 withcolor (0,0,0);
-          for i := 1 step 1 until totalLines:
+          draw subpath (0,1) of givenOutline1 withcolor (1,1,0);
+          draw subpath (1,2) of givenOutline1 withcolor (1,1,0);
+          draw subpath (2,3) of givenOutline1 withcolor (1,1,0);
+          draw subpath (3,4) of givenOutline1 withcolor (1,1,0);
+          for i := 2 step 1 until totalLines:
               draw givenOutline[i] withcolor (1,1,0);
-              if (i > 1) and (cycle (givenOutline[i])):
+              if cycle givenOutline[i]:
                   if (turningnumber (givenOutline[i]) > 0):
                       fill givenOutline[i] withcolor (1,0,0);
                   else:
