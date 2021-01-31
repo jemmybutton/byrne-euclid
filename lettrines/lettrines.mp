@@ -1,6 +1,6 @@
-%    lettrine-generator 0.1.0a
+%    lettrine-generator 0.2.0a
 %    MetaPost lettrines generator
-%    Copyright 2020 Sergey Slyusarev
+%    Copyright 2021 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -53,8 +53,8 @@ forever:
     picture lettrinePicture;
 
     if (lettrineLine = "plate"):
-        brIterations := 4;
-        lfIterations := 4;
+        brIterations := 3;
+        lfIterations := 2;
         symMode := 1;
         lettrinePicture := image(
             scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
@@ -76,7 +76,7 @@ forever:
         );
     elseif (lettrineLine = "tile"):
         brIterations := 3;
-        lfIterations := 3;
+        lfIterations := 2;
         symMode := 2;
         lettrinePicture := image(
             draw (0, 0) withcolor (0, 1, 0);

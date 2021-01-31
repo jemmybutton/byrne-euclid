@@ -1,6 +1,6 @@
-%    ornament_engine 0.1.0a
+%    ornament_engine 0.2.0a
 %    MetaPost ornaments generator
-%    Copyright 2020 Sergey Slyusarev
+%    Copyright 2021 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -441,8 +441,8 @@ vardef findRightSize@#(expr brFlipped, brOrigin, brAngle, brParent, minSize, max
 enddef;
 
 vardef checkIfIntersects(expr brPath, brParent) =
-    save intersects, s, i, bbCorners, isInsidePath, isInsideOutline;
-    boolean intersects, isInsidePath, isInsideOutline;
+    save intersects, s, i, bbCorners, isInsideOutline;
+    boolean intersects, isInsideOutline;
     numeric s[], i;
     pair bbCorners[];
     intersects := false;
@@ -483,22 +483,9 @@ vardef checkIfIntersects(expr brPath, brParent) =
                 if isInsideOutline:
                     if (xpart(brPath intersectiontimes branchOutline[i]) >= 0):
                         intersects := true;
-                    %elseif (xpart(brPath intersectiontimes branchPath[i]) >= 0):
-                    %    intersects := true;
+                    elseif (xpart(brPath intersectiontimes branchPath[i]) >= 0):
+                        intersects := true;
                     fi;
-                %else:
-                %    bbCorners4 := llcorner(branchPath[i]);
-                %    bbCorners5 := urcorner(branchPath[i]);
-                %    isInsidePath :=
-                %        (not ((xpart(bbCorners0) < xpart(bbCorners4)) and (xpart(bbCorners1) < xpart(bbCorners4))))
-                %        and (not ((xpart(bbCorners0) > xpart(bbCorners5)) and (xpart(bbCorners1) > xpart(bbCorners5))))
-                %        and (not ((ypart(bbCorners0) < ypart(bbCorners4)) and (ypart(bbCorners1) < ypart(bbCorners4))))
-                %        and (not ((ypart(bbCorners0) > ypart(bbCorners5)) and (ypart(bbCorners1) > ypart(bbCorners5))));
-                %    if isInsidePath:
-                %        if (xpart(brPath intersectiontimes branchPath[i]) >= 0):
-                %            intersects := true;
-                %        fi;
-                %    fi;
                 fi;
             fi;
         endfor;
