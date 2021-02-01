@@ -60,8 +60,7 @@ forever:
             scantokens(readfrom("lettrine_" & lettrineLine & ".mp"));
             closefrom("lettrine_" & lettrineLine & ".mp");
             fill givenOutline0 withcolor (0,0,0);
-            draw subpath (0,1) of givenOutline1 withcolor (1,1,0);
-            draw subpath (1,2) of givenOutline1 withcolor (1,1,0);
+            draw subpath (0,2) of givenOutline1 withcolor (1,1,0);
             draw subpath (2,4) of givenOutline1 withcolor (1,0,0);
             for i := 2 step 1 until totalLines:
                 draw givenOutline[i] withcolor (1,1,0);

@@ -601,14 +601,31 @@ enddef;
 %
 
 def pictureToBranches (expr seedPicture) =
+begingroup
+save pathToMakeBranch, numberOfParts, i, minSize;
+    path pathToMakeBranch[];
+    numeric numberOfParts, minSize;
+    minSize := 20meristemResolution * ornamentScaleFactor;
     for particularPath within seedPicture:
-      if not filled particularPath:
-          addBranch (pathpart particularPath, redpart(colorpart particularPath) = 1, (0, 0), 0, 1, false, false);
-          if (greenpart(colorpart particularPath) = 1):
-              addMeristem (pathpart particularPath, 1, branchNumber);
-          fi;
-      fi;
+        if not filled particularPath:
+            pathToMakeBranch0 := pathpart particularPath;
+            numberOfParts := ceiling(arclength(pathToMakeBranch0) / minSize);
+            if (numberOfParts = 0):
+                numberOfParts := 1;
+            fi;
+            for i := 1 step 1 until numberOfParts:
+                pathToMakeBranch1 := subpath (
+                    (arctime ((i - 1) * arclength(pathToMakeBranch0)/numberOfParts) of pathToMakeBranch0),
+                    (arctime (i * arclength(pathToMakeBranch0)/numberOfParts) of pathToMakeBranch0)
+                    ) of pathToMakeBranch0;
+                addBranch (pathToMakeBranch1, redpart(colorpart particularPath) = 1, (0, 0), 0, 1, false, false);
+                if (greenpart(colorpart particularPath) = 1):
+                    addMeristem (pathToMakeBranch1, 1, branchNumber);
+                fi;
+            endfor;
+        fi;
     endfor;
+endgroup
 enddef;
 
 vardef produceOrnamentImage(expr seedPicture, ornScaleFactor, bgColor, fgColor, symMode, branchIterations, leafIterations) =
