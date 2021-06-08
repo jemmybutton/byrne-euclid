@@ -33,18 +33,18 @@
 	\advance\PcH by \pagetotal
 	\advance \pictureIndent by 1cm
 	\advance \pictureIndent by -\cutspace
-	\ifodd\pageno
+	\doifoddpageelse{
 		\oddpict=\backspace
 		\advance \oddpict by \makeupwidth
 		\advance \oddpict by -\pictureIndent
 		\definelayer[curpic]
 			[x=\oddpict,y=\pictVOffset,width=\textwidth,height=\textheight]
-	\else
+	}{
 		\evenpict=\cutspace
 		\advance \evenpict by \pictureIndent
 		\definelayer[curpic]
 			[x=0cm,y=\pictVOffset,width=\evenpict,height=\textheight]
-	\fi
+	}
 	\setlayer[curpic][voffset=0.5cm]{\hskip 0.5cm\box1\hskip 0.5cm}
 	\setupbackgrounds[page][background=curpic]
 }
@@ -97,7 +97,7 @@
 	\pictureOnlyLineLength=\textwidth
 	\pictureWithLettrineLineLength=\textwidth
 	\advance \pictureOnlyLineLength by -\pictureIndent
-	\ifodd\pageno
+	\doifoddpageelse{
 		\pictureWithLettrineLineLength=\pictureOnlyLineLength
 		\advance \pictureWithLettrineLineLength by -\LettrineTotalWidth
 		\def\partindent{0cm \pictureOnlyLineLength}
@@ -107,7 +107,7 @@
 		\ifnum\textdirection=1
 			\def\doubleindent{0cm \pictureWithLettrineLineLength}
 		\fi
-	\else
+	}{
 		\pictureWithLettrineIndent=\pictureIndent
 		\advance \pictureWithLettrineIndent by \LettrineTotalWidth
 		\pictureWithLettrineLineLength=\pictureOnlyLineLength
@@ -119,7 +119,7 @@
 		\ifnum\textdirection=1
 			\def\doubleindent{0cm \pictureWithLettrineLineLength}
 		\fi
-	\fi
+	}
 	\def\preinitindent{}
 	\Yy=\lettrineLines
 	\advance \Yy by 1 
