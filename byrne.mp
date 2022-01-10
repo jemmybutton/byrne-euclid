@@ -3329,7 +3329,6 @@ vardef byNamedRotationArrow (text arrowsList) =
     ) rotated globalRotation
 enddef;
 
-
 vardef byFlatArrowDefine@#(suffix pointA, pointB) (expr col, sty, typ) =
 if str @# = "":
     byFlatArrowDefine.scantokens(str pointA & str pointB)(pointA, pointB) (col, sty, typ);
@@ -3382,6 +3381,32 @@ vardef byNamedFlatArrow (text arrowsList) =
         endfor;
     ) rotated globalRotation
 enddef;
+
+%
+% Spheres
+%
+
+%vardef bySphereDefine@#(expr ox, oy, oz, r) =
+%if str @# = "":
+%    errmessage("bySphereDefine needs a name (bySphereDefine.somename...)");
+%else:
+%    if mainPictureMode:
+%        appendList(allSpheresList, str @#, 1, true);
+%    fi;
+%    setAttribute("sphere", "XYZ", str @#, (ox, oy, oz));
+%    setAttribute("sphere", "radius", str @#, r);
+%fi;
+%enddef;
+%
+%vardef byNamedSphere (test spheresList) =
+%    image(
+%        forsuffixes cN=spheresList:
+%        endfor;
+%        )
+%enddef;
+%
+%vardef byFindSpheresIntersection (text spheresList) =
+%enddef;
 
 %
 % Magnitudes

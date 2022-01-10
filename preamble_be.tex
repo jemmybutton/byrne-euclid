@@ -83,7 +83,7 @@
 	\global\toks0=\expandafter{\the\everypar}
 	\iffirstargument
 		\def\lettrineLines{#1}
-	\else\ignorespaces
+	\else%
 		\def\lettrineLines{\defaultLettrineLines}
 	\fi
 	\ifinsideII\resetInitialIndentation\fi
@@ -151,8 +151,8 @@
 
 \def\putzero{0}
 
-\def\putLettrine#1{\ignorespaces
-\write \lettrineslist{#1}\ignorespaces
+\def\putLettrine#1{%
+\write \lettrineslist{#1}%
 \expandafter\ifx\csname ltrn#1\endcsname\relax
 	\global\expandafter\newcount\csname ltrn#1\endcsname\relax
 	\global\csname ltrn#1\endcsname 0
@@ -160,22 +160,23 @@
 	\global\expandafter\advance\csname ltrn#1\endcsname by 1
 \fi
 \doifelsefile{lettrines/#1\putzero.mps}
-	{\doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
-		{\ifx#1\plateName\ignorespaces
-			\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][width=\PlateWidth]\ignorespaces
-		\else\ignorespaces
-			\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][height=\LettrineSize]\ignorespaces
+	{\textdirection 0 \doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
+		{\ifx#1\plateName%
+			\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][width=\PlateWidth]%
+		\else%
+			\externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][height=\LettrineSize]%
 		\fi}
-		{\ifx#1\plateName\ignorespaces
-			\externalfigure[lettrines/#1\putzero.mps][width=\PlateWidth]\ignorespaces
-		\else\ignorespaces
-			\externalfigure[lettrines/#1\putzero.mps][height=\LettrineSize]\ignorespaces
+		{\ifx#1\plateName%
+			\externalfigure[lettrines/#1\putzero.mps][width=\PlateWidth]%
+		\else%
+			\externalfigure[lettrines/#1\putzero.mps][height=\LettrineSize]%
 		\fi}}
 	{\doifelsefile{lettrines/#1.svg}
-		{\externalfigure[lettrines/#1.svg][height=\LettrineSize]\ignorespaces}
+		{\externalfigure[lettrines/#1.svg][height=\LettrineSize]%
+}
 		{\doifelsefile{lettrines/#1.pdf}
-			{\externalfigure[lettrines/#1.pdf][width=\LettrineSize,height=\LettrineSize]\ignorespaces}
-			{\ifx#1\plateName\ignorespaces
+			{\externalfigure[lettrines/#1.pdf][width=\LettrineSize,height=\LettrineSize]}
+			{\ifx#1\plateName%
 					\startMPcode
 						input byrne.mp;
 						path plateBG, plateFrame;
@@ -191,8 +192,8 @@
 						pictureContents := pictureContents & "numeric totalLines; totalLines := 2;";
 						write pictureContents to "lettrines/lettrine_#1.mp";
 						write EOF to "lettrines/lettrine_#1.mp";
-					\stopMPcode\ignorespaces
-				\else\ignorespaces
+					\stopMPcode%
+				\else%
 					\startMPcode
 						input byrne.mp;
 						picture lettrineOutline, lettrinePicture;
@@ -218,8 +219,8 @@
 						pictureContents := pictureContents & "numeric totalLines; totalLines := " & decimal(j) & ";";
 						write pictureContents to "lettrines/lettrine_#1.mp";
 						write EOF to "lettrines/lettrine_#1.mp";
-					\stopMPcode\ignorespaces
-				\fi}\ignorespaces}}}
+					\stopMPcode%
+				\fi}}}}
 				
 
 % This thing removes space between an initial and the letter after it, if no space is needed
@@ -237,7 +238,7 @@
 % This one is used standalone, f. e. in the Introduction
 \def\regularLettrine#1#2{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-4pt}\vskip -10pt}\noindent{\sc\ctxlua{formatting.dedent([==[#2]==])}}}
 
-\def\problem#1#2#3{\ignorespaces
+\def\problem#1#2#3{%
 \vskip -\LettrineTotalHeight
 \hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#1}}}{\sc\hskip\LettrinePadding \ctxlua{formatting.dedent([==[#2]==])}\ \it #3} \vskip \baselineskip
 }
@@ -248,20 +249,20 @@
 
 \newdimen\vPos
 \def\problemNP{\dosingleempty\problemnp}
-\def\problemnp[#1]#2#3#4{\ignorespaces
-\pictureIndent=0cm\ignorespaces
-\vPos=\pagetotal\ignorespaces
-\iffirstargument\ignorespaces
-	\initialIndentation[#1]{7}\ignorespaces
-\else\ignorespaces
-	\initialIndentation{7}\ignorespaces
-\fi\ignorespaces
+\def\problemnp[#1]#2#3#4{%
+\pictureIndent=0cm%
+\vPos=\pagetotal%
+\iffirstargument%
+	\initialIndentation[#1]{7}%
+\else%
+	\initialIndentation{7}%
+\fi%
 \vskip -\LettrineTotalHeight
-\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip \LettrinePadding\ctxlua{formatting.dedent([==[#3]==])}\ \it #4}\par\ignorespaces
+\hskip -\LettrineTotalWidth \hskip -\parindent \offset[y=\LettrineTotalHeightMinusLine,x=0pt]{\hbox{\putLettrine{#2}}}{\sc\hskip \LettrinePadding\ctxlua{formatting.dedent([==[#3]==])}\ \it #4}\par%
 \advance\vPos by -\pagetotal
 \advance\vPos by 4\baselineskip
 \ifnum\vPos>0
-\vskip \vPos\ignorespaces
+\vskip \vPos%
 \fi
 \vskip 0.5\baselineskip
 \resetInitialIndentation}
@@ -359,21 +360,21 @@
 \def\marginNote#1{\inouter{~\hfill\framed[frame=off,location=top,width=4cm,align=flushleft,bodyfont=8pt]{#1}\hfill~}}
 
 \def\figureInMargin{\dosingleempty\figureinmargin}
-\def\figureinmargin[#1]#2{\ignorespaces
-	\iffirstargument\ignorespaces
-		\signalrightpage\inouter{~\doifrightpageelse{}{\hfill}\framed[frame=off,location=top]{#2}\doifrightpageelse{\hfill}{}~}\ignorespaces
-	\else\ignorespaces
-		\inouter{~\hfill\framed[frame=off,location=top]{#2}\hfill~}\ignorespaces
-	\fi\ignorespaces
+\def\figureinmargin[#1]#2{%
+	\iffirstargument%
+		\signalrightpage\inouter{~\doifrightpageelse{}{\hfill}\framed[frame=off,location=top]{#2}\doifrightpageelse{\hfill}{}~}%
+	\else%
+		\inouter{~\hfill\framed[frame=off,location=top]{#2}\hfill~}%
+	\fi%
 }
 
 \def\drawCurrentPictureInMargin{\dosingleempty\drawcurrentpictureinmargin}
 \def\drawcurrentpictureinmargin[#1]{
-	\iffirstargument\ignorespaces
-		\figureInMargin[#1]{\drawCurrentPicture}\ignorespaces
-	\else\ignorespaces
-		\figureInMargin{\drawCurrentPicture}\ignorespaces
-	\fi\ignorespaces
+	\iffirstargument%
+		\figureInMargin[#1]{\drawCurrentPicture}%
+	\else%
+		\figureInMargin{\drawCurrentPicture}%
+	\fi%
 }
 
 \def\symb#1{\noindent{#1}\emspace}

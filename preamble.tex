@@ -19,24 +19,24 @@
 \CreateNewInstanceForPicturetrue
 
 \def\defineNewPicture{\dodoubleempty\definenewpicture}
-\def\definenewpicture[#1][#2]#3{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\sfA{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\sfA{1/3}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
-		\global\def\sfB{#2}\ignorespaces
-	\else\ignorespaces
-		\global\def\sfB{defaultScaleFactor}\ignorespaces
-	\fi\ignorespaces
-	\undefineList\ignorespaces
-	\def\undefineList{}\ignorespaces
-	\ifCreateNewInstanceForPicture\ignorespaces
-		\global\advance \mpInst by 1\ignorespaces
-		\global\def\currentInstance{\the\mpInst}\ignorespaces
-		\defineMPinstance[\currentInstance]\ignorespaces
-	\fi\ignorespaces
+\def\definenewpicture[#1][#2]#3{%
+	\iffirstargument%
+		\global\def\sfA{#1}%
+	\else%
+		\global\def\sfA{1/3}%
+	\fi%
+	\ifsecondargument%
+		\global\def\sfB{#2}%
+	\else%
+		\global\def\sfB{defaultScaleFactor}%
+	\fi%
+	\undefineList%
+	\def\undefineList{}%
+	\ifCreateNewInstanceForPicture%
+		\global\advance \mpInst by 1%
+		\global\def\currentInstance{\the\mpInst}%
+		\defineMPinstance[\currentInstance]%
+	\fi%
 	\startreusableMPgraphic{\currentInstance::currentPicture}
 		\ifCreateNewInstanceForPicture input byrne; \fi
 		\mpPre
@@ -50,20 +50,21 @@
 		generateLineSynonyms;
 		stopMainPictureMode;
 		\mpPost
-	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}\global\addToUndefineList{#2}\ignorespaces}
+	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}\global\addToUndefineList{#2}
+}
 	
 \def\defineNewPictureBasedOnOld{\dodoubleempty\definenewpicturebasedonold}
-\def\definenewpicturebasedonold[#1][#2]#3{\ignorespaces
+\def\definenewpicturebasedonold[#1][#2]#3{%
 	\CreateNewInstanceForPicturefalse
-	\ifsecondargument\ignorespaces
-		\defineNewPicture[#1][#2]{#3}\ignorespaces
-	\else\ignorespaces
-		\iffirstargument\ignorespaces
-			\defineNewPicture[#1]{#3}\ignorespaces
-		\else\ignorespaces
+	\ifsecondargument%
+		\defineNewPicture[#1][#2]{#3}%
+	\else%
+		\iffirstargument%
+			\defineNewPicture[#1]{#3}%
+		\else%
 			\defineNewPicture{#3}
-		\fi\ignorespaces
-	\fi\ignorespaces
+		\fi%
+	\fi%
 	\CreateNewInstanceForPicturetrue
 	}
 
@@ -73,7 +74,7 @@
 % \addToUndefineList. \undefineList is thus generated command, that, once executed,
 % undefines everything that was appended to it with \addToUndefineList.
 
-\def\unmarkPictAsReady#1{\expandafter\let\csname #1\endcsname\relax}
+\def\unmarkPictAsReady#1{\expandafter\let\csname #1\endcsname\undefined}
 
 \def\addToUndefineList#1{\expandafter\def\expandafter\undefineList\expandafter{\undefineList \unmarkPictAsReady{#1}}}
 
@@ -91,32 +92,32 @@
 % if one wants to define multiple inline pictures in one place.
 % Whenever everything is defined, \drawDefinedPicture macro is called for
 \def\drawFromCurrentPicture{\dodoubleempty\drawfromcurrentpicture}
-\def\drawfromcurrentpicture[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\dfcpl{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\dfcpl{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
-		\expandafter\ifx\csname #2\endcsname\relax\ignorespaces
-			\defineFromCurrentPicture{\dfcpl}{#2}{#3}\ignorespaces
-			\global\addToUndefineList{#2}\ignorespaces
-		\else\ignorespaces
-			\global\def\lastPict{#2}\ignorespaces
-		\fi\ignorespaces
-	\else\ignorespaces
-		\defineFromCurrentPicture{\dfcpl}{lastPicture}{#3}\ignorespaces
-	\fi\ignorespaces
+\def\drawfromcurrentpicture[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\dfcpl{#1}%
+	\else%
+		\global\def\dfcpl{middle}%
+	\fi%
+	\ifsecondargument%
+		\expandafter\ifx\csname #2\endcsname\relax%
+			\defineFromCurrentPicture{\dfcpl}{#2}{#3}%
+			\global\addToUndefineList{#2}%
+		\else%
+			\global\def\lastPict{#2}%
+		\fi%
+	\else%
+		\defineFromCurrentPicture{\dfcpl}{lastPicture}{#3}%
+	\fi%
 \csname\lastPict\endcsname}}
 
-\def\defineFromCurrentPicture#1#2#3{\ignorespaces
+\def\defineFromCurrentPicture#1#2#3{%
 		\startreusableMPgraphic{\currentInstance::#2}
 			startOffspringPictureMode;
 			linecap := butt;
 			#3
 			stopOffspringPictureMode;
-		\stopreusableMPgraphic\ignorespaces
-\global\def\lastPict{#2}\ignorespaces
+		\stopreusableMPgraphic%
+\global\def\lastPict{#2}%
 \global\expandafter\edef\csname\lastPict\endcsname{{\noexpand\drawDefinedPicture{\expandafter\lastPict}{\expandafter#1}}}}
 
 % \drawDefinedPicture draws defined and named picture, aligned as needed and,
@@ -134,30 +135,30 @@
 
 \newdimen\midht
 \newdimen\middp
-\def\drawDefinedPicture#1#2{{\ignorespaces
-	\setbox0\vbox{\reuseMPgraphic{\currentInstance::#1}}\ignorespaces
-	\ifdim\ht0<\baselineskip\advance\pictOffsetTop by 1pt\advance\pictOffsetBottom by 1pt\fi\ignorespaces
-	\setbox0\vbox{\vskip2pt\vskip-\pictOffsetTop\box0\vskip2pt\vskip-\pictOffsetBottom}\ignorespaces
-	\def\tmpmiddle{middle}\ignorespaces
-	\def\tmpalignment{#2}\ignorespaces
-	\ifx\tmpalignment\tmpmiddle\ignorespaces
+\def\drawDefinedPicture#1#2{{%
+	\setbox0\vbox{\reuseMPgraphic{\currentInstance::#1}}%
+	\ifdim\ht0<\baselineskip\advance\pictOffsetTop by 1pt\advance\pictOffsetBottom by 1pt\fi%
+	\setbox0\vbox{\vskip2pt\vskip-\pictOffsetTop\box0\vskip2pt\vskip-\pictOffsetBottom}%
+	\def\tmpmiddle{middle}%
+	\def\tmpalignment{#2}%
+	\ifx\tmpalignment\tmpmiddle%
 		\middp=0.5\ht0
 		\midht=0.5\ht0
 		\advance\middp by -3pt
 		\advance\midht by 3pt
-	\else\ignorespaces
+	\else%
 		\middp=0pt
 		\midht=\ht0
 		\advance\middp by 3pt
 		\advance\midht by -3pt
-	\fi\ignorespaces
+	\fi%
 	\advance\middp by 0.5\pictOffsetTop
 	\advance\midht by -0.5\pictOffsetTop
 	\advance\middp by -0.5\pictOffsetBottom
 	\advance\midht by 0.5\pictOffsetBottom
 	\dp0=\middp
 	\ht0=\midht
-	\nobreak\hskip0pt\nobreak\,\nobreak\box0\,\ignorespaces
+	\nobreak\hskip0pt\nobreak\,\nobreak\box0\,%
 }}
 
 
@@ -165,63 +166,69 @@
 \def\drawCurrentPicture{\reuseMPgraphic{\currentInstance::currentPicture}}
 
 \def\drawUnitLine{\dosingleempty\drawunitline}
-\def\drawunitline[#1]#2{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][uline#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 0)(#2);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[middle][uline#2]{startAutoLabeling;draw byNamedCompoundLine(1cm, 0)(#2);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawunitline[#1]#2{{%
+	\iffirstargument%
+		\drawFromCurrentPicture[middle][uline#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 0)(#2);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[middle][uline#2]{startAutoLabeling;draw byNamedCompoundLine(1cm, 0)(#2);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{startAutoLabeling;draw byNamedCompoundLine(1cm, 1)(#1);stopAutoLabeling;}}
 
 \def\drawSizedLine{\dosingleempty\drawsizedline}
-\def\drawsizedline[#1]#2{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][linesized#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 2)(#2);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundLine(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawsizedline[#1]#2{{%
+	\iffirstargument%
+		\drawFromCurrentPicture[middle][linesized#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 2)(#2);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundLine(2cm, 2)(#2);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawUnitRay{\dosingleempty\drawunitray}
-\def\drawunitray[#1]#2{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][uray#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 0)(#2);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[middle][uray#2]{startAutoLabeling;draw byNamedCompoundRay(1cm, 0)(#2);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawunitray[#1]#2{{%
+	\iffirstargument%
+		\drawFromCurrentPicture[middle][uray#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 0)(#2);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[middle][uray#2]{startAutoLabeling;draw byNamedCompoundRay(1cm, 0)(#2);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawProportionalRay#1{\drawFromCurrentPicture[middle][rayprop#1]{startAutoLabeling;draw byNamedCompoundRay(1cm, 1)(#1);stopAutoLabeling;}}
 
 \def\drawSizedRay{\dosingleempty\drawsizedray}
-\def\drawsizedray[#1]#2{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][raysized#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 2)(#2);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[middle][raysized#2]{startAutoLabeling;draw byNamedCompoundRay(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawsizedray[#1]#2{{%
+	\iffirstargument%
+		\drawFromCurrentPicture[middle][raysized#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 2)(#2);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[middle][raysized#2]{startAutoLabeling;draw byNamedCompoundRay(2cm, 2)(#2);stopAutoLabeling;}%
+	\fi%
+}}
 	
 \def\drawUnitIndLine{\dosingleempty\drawunitindline}
-\def\drawunitindline[#1]#2{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][uindline#2#1]{startAutoLabeling;draw byNamedCompoundIndLine(#1, 0)(#2);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[middle][uindline#2]{startAutoLabeling;draw byNamedCompoundIndLine(1cm, 0)(#2);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawunitindline[#1]#2{{%
+	\iffirstargument%
+		\drawFromCurrentPicture[middle][uindline#2#1]{startAutoLabeling;draw byNamedCompoundIndLine(#1, 0)(#2);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[middle][uindline#2]{startAutoLabeling;draw byNamedCompoundIndLine(1cm, 0)(#2);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawProportionalIndLine#1{\drawFromCurrentPicture[middle][lineindprop#1]{startAutoLabeling;draw byNamedCompoundIndLine(1cm, 1)(#1);stopAutoLabeling;}}
 
 \def\drawSizedIndLine{\dosingleempty\drawsizedindline}
-\def\drawsizedindline[#1]#2{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\drawFromCurrentPicture[middle][lineindsized#2#1]{startAutoLabeling;draw byNamedCompoundIndLine(#1, 2)(#2);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[middle][lineindsized#2]{startAutoLabeling;draw byNamedCompoundIndLine(2cm, 2)(#2);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawsizedindline[#1]#2{{%
+	\iffirstargument%
+		\drawFromCurrentPicture[middle][lineindsized#2#1]{startAutoLabeling;draw byNamedCompoundIndLine(#1, 2)(#2);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[middle][lineindsized#2]{startAutoLabeling;draw byNamedCompoundIndLine(2cm, 2)(#2);stopAutoLabeling;}%
+	\fi%
+}}
 	
-\def\drawTwoRightAngles{\ignorespaces
+\def\drawTwoRightAngles{%
 \drawFromCurrentPicture[middle][tworightangles]{draw twoRightAngles;}}
 	
-\def\drawRightAngle{\ignorespaces
+\def\drawRightAngle{%
 \drawFromCurrentPicture[middle][onerightangle]{draw rightAngle;}}
 
 \def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{startAutoLabeling;draw byNamedAngleWithDummySides(#1);stopAutoLabeling;}}
@@ -229,93 +236,99 @@
 \def\drawAngleWithSides#1{\drawFromCurrentPicture[middle][anglewithsides#1]{startAutoLabeling;draw byNamedAngleSides(#1)();stopAutoLabeling;}}
 
 \def\drawPolygon{\dodoubleempty\drawpolygon}
-\def\drawpolygon[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\plal{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\plal{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedPolygon(#3);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][polygon#3]{startAutoLabeling;draw byNamedPolygon(#3);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawpolygon[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
+		\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedPolygon(#3);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[\plal][polygon#3]{startAutoLabeling;draw byNamedPolygon(#3);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawCircle{\dodoubleempty\drawcircle}
-\def\drawcircle[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\plal{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\plal{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
+\def\drawcircle[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
 		\drawFromCurrentPicture[\plal][circle#3]{
 		startAutoLabeling;
 		startTempScale(#2);
 		draw byNamedCircle(#3);
 		stopTempScale;
 		stopAutoLabeling;
-		}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][circle#3]{startAutoLabeling;draw byNamedCircle(#3);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+		}%
+	\else%
+		\drawFromCurrentPicture[\plal][circle#3]{startAutoLabeling;draw byNamedCircle(#3);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawArc{\dodoubleempty\drawarc}
-\def\drawarc[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\plal{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\plal{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
+\def\drawarc[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
 		\drawFromCurrentPicture[\plal][arc#3]{
 		startAutoLabeling;
 		startTempScale(#2);
 		draw byNamedArc(#3);
 		stopTempScale;
 		stopAutoLabeling;
-		}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][arc#3]{startAutoLabeling;draw byNamedArc(#3);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+		}%
+	\else%
+		\drawFromCurrentPicture[\plal][arc#3]{startAutoLabeling;draw byNamedArc(#3);stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawLine{\dodoubleempty\drawline}
-\def\drawline[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\plal{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\plal{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawline[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
+		\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}%
+	\fi%
+}}
 	
 \def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointMark(#1); stopAutoLabeling;}}
 
 \def\drawPointL{\dodoubleempty\drawpointl}
-\def\drawpointl[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\plal{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\plal{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][pointl#3-#2]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawpointl[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
+		\drawFromCurrentPicture[\plal][pointl#3-#2]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;}%
+	\fi%
+}}
 
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
-\def\drawmagnitude[#1][#2]#3{{\ignorespaces
-	\iffirstargument\ignorespaces
-		\global\def\plal{#1}\ignorespaces
-	\else\ignorespaces
-		\global\def\plal{middle}\ignorespaces
-	\fi\ignorespaces
-	\ifsecondargument\ignorespaces
-		\drawFromCurrentPicture[\plal][magnitude#2#3]{startAutoLabeling;draw byNamedMagnitude(#2)(#3);stopAutoLabeling;}\ignorespaces
-	\else\ignorespaces
-		\drawFromCurrentPicture[\plal][magnitude#3]{startAutoLabeling;draw byNamedMagnitude(0)(#3);stopAutoLabeling;}\ignorespaces
-	\fi\ignorespaces}}
+\def\drawmagnitude[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
+		\drawFromCurrentPicture[\plal][magnitude#2#3]{startAutoLabeling;draw byNamedMagnitude(#2)(#3);stopAutoLabeling;}%
+	\else%
+		\drawFromCurrentPicture[\plal][magnitude#3]{startAutoLabeling;draw byNamedMagnitude(0)(#3);stopAutoLabeling;}%
+	\fi%
+}}
