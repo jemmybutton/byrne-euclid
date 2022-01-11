@@ -14,7 +14,7 @@
 	header=5mm,
 	headerdistance=8mm,
 	topspace=10mm,
-	footer=0mm]	
+	footer=0mm]
 
 \setupbodyfont[ebgaramond-be,10pt]
 \setupitaliccorrection[global,always]
@@ -114,7 +114,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2020 ed.\,0.8a}
+{\tfb 2022 ed.\,0.8a}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -138,7 +138,7 @@ draw byLabelsOnPolygon(A, J, C)(2, -1);
 
 \startintro[title={Introduction}]
 
-\regularLettrine{T}{he} \kerncharacters[0.005]{arts and sciences have become so extensive, that to facilitate their acquirement is of as much importance as to extend their boundaries. Illustration, if it does not shorten the time of study, will at least make it more agreeable. This Work has a greater aim than mere illustration; we do not introduce colors for the purpose of entertainment, or to amuse \emph{by certain combinations of tint and form}, % don't know where this is from 
+\regularLettrine{T}{he} \kerncharacters[0.005]{arts and sciences have become so extensive, that to facilitate their acquirement is of as much importance as to extend their boundaries. Illustration, if it does not shorten the time of study, will at least make it more agreeable. This Work has a greater aim than mere illustration; we do not introduce colors for the purpose of entertainment, or to amuse \emph{by certain combinations of tint and form}, % don't know where this is from
 but to assist the mind in its researches after truth, to increase the facilities of introduction, and to diffuse permanent knowledge. If we wanted authorities to prove the importance and usefulness of geometry, we might quote every philosopher since the day of Plato. Among the Greeks, in ancient, as in the school of Pestalozzi and others in recent times, geometry was adopted as the best gymnastic of the mind. In fact, Euclid's Elements have become, by common consent, the basis of mathematical science all over the civilized globe. But this will not appear extraordinary, if we consider that this sublime science is not only better calculated than any other to call forth the spirit of inquiry, to elevate the mind, and to strengthen the reasoning faculties, but also it forms the best introduction to most of the useful and important vocations of human life. Arithmetic, land-surveying, hydrostatics, pneumatics, optics, physical astronomy, \&c.\ are all dependent on the propositions of geometry.}
 
 \kerncharacters[0.005]{Much however depends on the first communication of any science to a learner, though the best and most easy methods are seldom adopted. Propositions are placed before a student, who though having a sufficient understanding, is told just as much about them on entering at the very threshold of the science, as given him a prepossession most unfavorable to his future study of this delightful subject; or \quotation{the formalities and paraphernalia of rigour are so ostentatiously put forward, as almost to hide the reality. Endless and perplexing repetitions, which do not confer greater exactitude on the reasoning, render the demonstrations involved and obscure, and conceal from the view of the student the consecution of evidence.} % quotation seems to be from The First Six Books of the Elements of Euclid by Dionysius Lardner https://books.google.ru/books?id=YnkAAAAAMAAJ
@@ -470,7 +470,7 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 	B := (2/3u, 2/3u);
 	C := (u, ypart(A));
 		byAngleDefine(B, A, C, byyellow, 0);
-		draw byNamedAngleResized();	
+		draw byNamedAngleResized();
 		byLineDefine(A, B, byblue, 0, 0);
 		byLineDefine(A, C, byred, 0, 0);
 		draw byNamedLineSeq(0)(AC,AB);
@@ -489,7 +489,7 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 	D := (-u, 0);
 		byAngleDefine(B, A, C, byblack, 1);
 		byAngleDefine(D, A, C, byblack, 1);
-		draw byNamedAngleResized();	
+		draw byNamedAngleResized();
 		draw byLine(D, B, byblack, 0, 0);
 		draw byLine(A, C, byblack, 0, 0);
 }
@@ -505,7 +505,7 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 	B := (-2/3u, 2/3u);
 	C := (u, ypart(A));
 		byAngleDefine(B, A, C, byred, 0);
-		draw byNamedAngleResized();	
+		draw byNamedAngleResized();
 		byLineDefine(A, B, byyellow, 0, 0);
 		byLineDefine(A, C, byblue, 0, 0);
 		draw byNamedLineSeq(0)(AC,AB);
@@ -523,7 +523,7 @@ An obtuse angle is an angle greater than a right angle
 	B := (2/3u, 2/3u);
 	C := (u, ypart(A));
 		byAngleDefine(B, A, C, byblue, 0);
-		draw byNamedAngleResized();	
+		draw byNamedAngleResized();
 		byLineDefine(A, B, byyellow, 0, 0);
 		byLineDefine(A, C, byred, 0, 0);
 		draw byNamedLineSeq(0)(AC,AB);
@@ -938,7 +938,7 @@ All right angles are equal.
 	H = whatever[C, D] = whatever[E, F];
 		byAngleDefine(B, G, E, byred, 0);
 		byAngleDefine(D, H, F, byyellow, 0);
-		draw byNamedAngleResized();	
+		draw byNamedAngleResized();
 		draw byLine(A, B, byblue, 0, 0);
 		draw byLine(C, D, byred, 0, 0);
 		draw byLine(E, F, byblack, 0, 0);
@@ -1204,7 +1204,7 @@ draw byNamedCircle(A);
 draw byLabelLineEnd(A, B, 0);
 draw byLabelLineEnd(B, A, 1);
 }} and \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
-draw byNamedLine(AB); 
+draw byNamedLine(AB);
 draw byNamedCircle(B);
 draw byLabelLineEnd(A, B, 1);
 draw byLabelLineEnd(B, A, 0);
@@ -1240,7 +1240,7 @@ E := (D -- 10[D, B]) intersectionpoint P1;
 F := (D -- 10[D, A]) intersectionpoint P2;
 byLineDefine(A, B, byblack, 1, 0);
 byLineDefine(B, C, byblack, 0, 0);
-byLineDefine(B, D, byred, 0, 0); 
+byLineDefine(B, D, byred, 0, 0);
 byLineDefine(D, A, byred, 0, 0); % improvement: change style of either BD or DA
 byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
@@ -1273,16 +1273,16 @@ stopAutoLabeling;
 produce \drawUnitLine{BD} \inpost[post:I.II],\\
 describe
 \drawFromCurrentPicture{
-draw byNamedLine (BC); 
-draw byNamedCircle(B); 
-draw byLabelLineEnd(B, C, 0); 
+draw byNamedLine (BC);
+draw byNamedCircle(B);
+draw byLabelLineEnd(B, C, 0);
 draw byLabelLineEnd(C, B, 0);
 }
 \inpost[post:I.III], and
 \drawFromCurrentPicture{
 draw byNamedLine (BD, BE);
 draw byNamedCircle(A);
-draw byLabelLineEnd(D, E, 0); 
+draw byLabelLineEnd(D, E, 0);
 draw byLabelLineEnd(E, D, 1);
 }
 \inpost[post:I.III];\\
@@ -1329,9 +1329,9 @@ draw byLabelsOnPolygon(E, F)(0, 0);
 
 \startCenterAlign
 Draw $\drawUnitLine{AD} = \drawUnitLine{EF}$ \inprop[prop:I.II];\\
-describe 
+describe
 \drawFromCurrentPicture{
-draw byNamedLine (AD); 
+draw byNamedLine (AD);
 draw byNamedCircle(A);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(A, D, 0);
@@ -1635,7 +1635,7 @@ draw \drawUnitLine{BC}, upon which describe \drawLine{CD,DB,BC} \inprop[prop:I.I
 draw \drawUnitLine{AD}.
 
 $\because \drawUnitLine{AB} = \drawUnitLine{CA}$ (\conststr)\\ %Because
-and \drawUnitLine{AD} common to the two triangles\\  % what triangles? 
+and \drawUnitLine{AD} common to the two triangles\\  % what triangles?
 and $\drawUnitLine{CD} = \drawUnitLine{DB}$ (\conststr),
 
 $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
@@ -3172,7 +3172,7 @@ draw byNamedLineFull(B, B, 1, 1, 0)(EF);
 
 \startCenterAlign
 If \drawSizedLine{AB} which joins the vertices of triangles be not $\parallel \drawSizedLine{CD,DE,EF}$,\\
-draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI],\\ 
+draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \inprop[prop:I.XXXI],\\
 meeting \drawSizedLine{EH}.\\
 Draw \drawSizedLine{FG}.
 
@@ -3403,7 +3403,7 @@ but $\polygonAHEF = \polygonJKL$ (\conststr)
 
 $\therefore \polygonEGDI = \polygonJKL$;
 
-and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and \conststr). % improvement: proposition 19 in the original seems to be a typo 
+and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ (\inpropL[prop:I.XXIX] and \conststr). % improvement: proposition 19 in the original seems to be a typo
 \stopCenterAlign
 
 \qed
@@ -3808,7 +3808,7 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{\eqalig
 is equal to the sum of the rectangles contained by the undivided line, and the several parts of the divided line.}
 
 \startCenterAlign
-Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{GB}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III]); complete the parallelograms, that is to say, % improvement: in the original \inpropL[prop:I.II] was referenced instead of \inpropL[prop:I.XI] 
+Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{GB}$ (\inpropL[prop:I.XI], \inpropL[prop:I.III]); complete the parallelograms, that is to say, % improvement: in the original \inpropL[prop:I.II] was referenced instead of \inpropL[prop:I.XI]
 
 draw $\left\{\eqalign{
 \drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \cr
@@ -4508,8 +4508,8 @@ add $\drawProportionalLine{DB}^2$ to both\\
 $\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \inprop[prop:I.XLVII]\\
 $= 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \left\{\eqalign{
 &\drawProportionalLine{AD}^2 \cr
-&\drawProportionalLine{DB}^2 
-}\right\}$ or\\ 
+&\drawProportionalLine{DB}^2
+}\right\}$ or\\
 $+ \drawProportionalLine{BA}^2$ \inprop[prop:I.XLVII]. % original presentation is not very clear. this is meant to be AD^2 + DB^2 which is, by I.XLVII = BA^2
 
 $\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$: hence $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ by $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$.
@@ -4749,7 +4749,7 @@ A segment of a circle is the figure contained by a straight line and the part of
 \stopDefinitionOnlyNumber
 
 \startDefinitionOnlyNumber[reference=def:III.VII]
-An angle of a segment is that contained by a straight line and a circumference of a circle. 
+An angle of a segment is that contained by a straight line and a circumference of a circle.
 \stopDefinitionOnlyNumber
 
 % improvement: originally, seventh definition was missing
@@ -5505,7 +5505,7 @@ byPointLabelDefine(N, "G");
 draw byCircle.M(M, A, byblack, 0, 0, 0);
 draw byCircle.N(N, A, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
-draw byLabelsOnPolygon(A, D, N)(2, -1); 
+draw byLabelsOnPolygon(A, D, N)(2, -1);
 draw byLabelsOnCircle(A, H)(M);
 }
 \drawCurrentPictureInMargin
@@ -7698,16 +7698,16 @@ byAngleDefine(B, K, C, byblue, 0);
 byAngleDefine(M, L, N, byred, 0);
 byAngleDefine(D, F, E, byred, 0);
 byAngleDefine(L, N, M, byblack, 1);
-byAngleDefine(F, E, D, byblack, 1); 
-byAngleDefineExtended(N, M, L, byblack, 3)(byblue, byred); 
-byAngleDefineExtended(E, D, F, byblack, 3)(byblue, byred); 
+byAngleDefine(F, E, D, byblack, 1);
+byAngleDefineExtended(N, M, L, byblack, 3)(byblue, byred);
+byAngleDefineExtended(E, D, F, byblack, 3)(byblue, byred);
 byAngleDefine(K, A, L, byblack, 0);
 byAngleDefine(L, C, K, byblack, 0);
 draw byNamedAngleResized();
 draw byArbitraryFigure.FDE(F--D--E, byblack, 0, 1);
 byLineDefine(N, L, byblue, 0, 0);
 byLineDefine(L, M, byyellow, 0, 0);
-byLineDefine(M, N, byred, 1, 0); 
+byLineDefine(M, N, byred, 1, 0);
 draw byLine(G, H, byblack, 0, 0);
 draw byLine(K, C, byred, 0, 0);
 draw byArbitraryFigure.AKB(A--K--B, byblack, 0, 1);
@@ -7833,7 +7833,7 @@ In like manner, it may be shown also that $\drawUnitLine{GD} = \drawUnitLine{FD}
 $\therefore \drawUnitLine{FD} = \drawUnitLine{ED} = \drawUnitLine{GD}$;
 \stopCenterAlign
 
-hence with any one of these lines as radius, describe \drawCircle[middle][1/2]{D} and it will pass through the extremities of the other two; and the sides of the given triangle, being perpendicular to the three radii at their extremities, touch the circle \inprop[prop:III.XVI], which is therefore inscribed in the given triangle. 
+hence with any one of these lines as radius, describe \drawCircle[middle][1/2]{D} and it will pass through the extremities of the other two; and the sides of the given triangle, being perpendicular to the three radii at their extremities, touch the circle \inprop[prop:III.XVI], which is therefore inscribed in the given triangle.
 
 \qed
 \stopProposition
@@ -9984,9 +9984,9 @@ $\therefore$ If four magnitudes, \&c.
 
 \startCenterAlign
 Thus, if there be two ranks of magnitudes,\\
-$\varA, \varB, \varC, \varD, \varE, \varF$, the first rank, 
-and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second, 
-such that $\varA : \varB :: \varL : \varM$, $\varB : \varC :: \varM : \varB$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varO : \varP$, $\varE : \varF :: \varP : \varQ$;\\ 
+$\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,
+and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,
+such that $\varA : \varB :: \varL : \varM$, $\varB : \varC :: \varM : \varB$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varO : \varP$, $\varE : \varF :: \varP : \varQ$;\\
 we infer by the term \quotation{ex~\ae quali} that $\varA : \varF :: \varL : \varQ$
 \stopCenterAlign
 \stopDefinition
@@ -10008,8 +10008,8 @@ we infer by the term \quotation{ex~\ae quali} that $\varA : \varF :: \varL : \va
 
 \startCenterAlign
 Thus, if there be two ranks of magnitudes,\\
-$\varA, \varB, \varC, \varD, \varE, \varF$, the first rank, 
-and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second, 
+$\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,
+and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,
 such that $\varA : \varB :: \varP : \varQ$, $\varB : \varC :: \varO : \varP$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varM : \varN$, $\varE : \varF :: \varL : \varM$;\\
 the term \quotation{ex \ae quali in proportione perturbatâ seu inordinatâ} infers that $\varA : \varF :: \varL : \varQ$
 \stopCenterAlign
@@ -10390,7 +10390,7 @@ Or, let $a$, $ar$, $ar^2$, $ar^3$, $ar^4$, be five magnitudes in continued propo
 \def\varN{\color[byyellow]{N}}
 To know a compound ratio :—
 
-When there are any number of magnitudes of the same kind, the first is said to have to the last of them the ratio compounded of the ratio which the first has to the second, and of the ratio which the second has to the third, and of the ratio which the third has to the fourth; and so on, unto the last magnitude. 
+When there are any number of magnitudes of the same kind, the first is said to have to the last of them the ratio compounded of the ratio which the first has to the second, and of the ratio which the second has to the third, and of the ratio which the third has to the fourth; and so on, unto the last magnitude.
 
 \figureInMargin{
 \framed[align=middle]{
@@ -11423,7 +11423,7 @@ $\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \inprop[prop:V.IX],\\
 and $\therefore \drawAngle{A} = \drawAngle{BGA}$ \inprop[prop:I.V].
 
 But \drawAngle{A} is less than a right angle (\hypstr)\\
-$\therefore$ \drawAngle{BGA} is less than a right angle;\\ 
+$\therefore$ \drawAngle{BGA} is less than a right angle;\\
 and $\therefore$ \drawAngle{CGB} must be greater than a right angle \inprop[prop:I.XIII], but it has been proven $= \drawAngle{D}$ and therefore less than a right angle, which is absurd. $\therefore$ \drawAngle{ABG,GBC} and \drawAngle{E} are not unequal;
 
 $\therefore$ they are equal, and since $\drawAngle{C} = \drawAngle{F}$ (\hypstr)\\

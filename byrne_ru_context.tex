@@ -14,8 +14,8 @@
 	header=5mm,
 	headerdistance=8mm,
 	topspace=10mm,
-	footer=0mm]	
-	
+	footer=0mm]
+
 \setupbodyfont[ebgaramond-be,10pt]
 \setupitaliccorrection[global,always]
 
@@ -121,7 +121,7 @@ byLineStylize (C, C, 1, 0, -1) (BLb);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2020 изд.\,0.5a}
+{\tfb 2022 изд.\,0.5a}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -1143,7 +1143,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
 
 $A : B :: C : D$, $A : B = C : D$, или $\dfrac{A}{B} = \dfrac{C}{D}$.
 
-Это равенство или одинаковость отношений читается: 
+Это равенство или одинаковость отношений читается:
 
 \emph{как A к~B, так и~C к~D;} или \emph{A к~B, как C к~D.}
 
@@ -1284,7 +1284,7 @@ C := (-2u, -1/3u);
 a := angle(B-C);
 forsuffixes i := A, B, C:
 	i := i rotated -a;
-endfor; 
+endfor;
 r1 := abs(A-B);
 D := (fullcircle scaled 2r1 shifted A) intersectionpoint (fullcircle scaled 2r1 shifted B);
 r2 := abs(B-C);
@@ -1436,15 +1436,15 @@ draw byLabelsOnPolygon(B, A, C)(0, -1);
 \problemNP{Е}{сли}{два треугольника имеют по две стороны, равные каждая каждой ($\drawUnitLine{AB} = \drawUnitLine{DE}$ и~$\drawUnitLine{CA} = \drawUnitLine{FD}$), и~по равному углу ($\drawAngle{A} = \drawAngle{D}$), содержащемуся между равными прямыми, то они будут иметь и~основание, равное основанию ($\drawUnitLine{BC} = \drawUnitLine{EF}$), и~один треугольник будет равен другому, и~остальные углы, стягиваемые равными сторонами, будут равны каждый каждому ($\drawAngle{B} = \drawAngle{E}$ и~$\drawAngle{C} = \drawAngle{F}$).}
 
 \startCenterAlign
-Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов, \drawAngle{A} или \drawAngle{D}, совпадает с~вершиной другого\\ 
+Представим, что два треугольника расположены таким образом, что вершина одного из двух равных углов, \drawAngle{A} или \drawAngle{D}, совпадает с~вершиной другого\\
 и~\drawUnitLine{AB} совпадает с~\drawUnitLine{DE}.
 
 Тогда \drawUnitLine{CA} при наложении совпадет с~\drawUnitLine{FD}.
 
-$\therefore$ \drawUnitLine{BC} совпадает с~\drawUnitLine{EF},\\ 
+$\therefore$ \drawUnitLine{BC} совпадает с~\drawUnitLine{EF},\\
 или же две прямые будут содержать пространство, что невозможно \inax[ax:I.X].
 
-$\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$,\\ 
+$\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$,\\
 $\drawAngle{B} = \drawAngle{E}$ и~$\drawAngle{C} = \drawAngle{F}$.
 
 $\therefore$ треугольники \drawLine{CA,BC,AB} и~\drawLine{FD,EF,DE}\\ совпадают при наложении.
@@ -1674,7 +1674,7 @@ draw byLabelsOnPolygon(F, E, D)(0, 0);
 \problemNP{Е}{сли}{у двух треугольников по две попарно равных стороны ($\drawUnitLine{CA} = \drawUnitLine{FD}$ и~$\drawUnitLine{AB} = \drawUnitLine{DE}$), а~также равные основания ($\drawUnitLine{BC} = \drawUnitLine{EF}$), то углы \drawAngle{A} и~\drawAngle{D}, заключенные между равными сторонами, равны.}
 
 \startCenterAlign
-Если совместить равные основания \drawUnitLine{BC} и~\drawUnitLine{EF} так, чтобы треугольники находились по одну сторону,\\ 
+Если совместить равные основания \drawUnitLine{BC} и~\drawUnitLine{EF} так, чтобы треугольники находились по одну сторону,\\
 а~их равные стороны \drawUnitLine{AB} и~\drawUnitLine{DE}, \drawUnitLine{CA} и~\drawUnitLine{FD} были смежными,\\
 вершина одного будет совпадать с~вершиной другого \inprop[prop:I.VII].
 
@@ -1734,7 +1734,7 @@ $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \inprop[prop:I.VIII].
 \defineNewPicture{
 pair A, B, C, D;
 A := (0, 3u);
-B := (-ypart(A)/sqrt(3), 0); 
+B := (-ypart(A)/sqrt(3), 0);
 C := B xscaled -1;
 D := 1/2[B, C];
 byAngleDefine(B, A, D, byblue, 0);
@@ -2021,7 +2021,7 @@ draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 \startCenterAlign
 Сделаем $\drawUnitLine{BE} = \drawUnitLine{EC}$ \inprop[prop:I.X],\\
 проведем \drawUnitLine{AE} и~продлим до $\drawUnitLine{ED} = \drawUnitLine{AE}$,\\
-проведем \drawUnitLine{CD}. 
+проведем \drawUnitLine{CD}.
 
 В~\drawLine{BE,AE,AB} и~\drawLine{EC,ED,CD}\\
 $\drawUnitLine{BE} = \drawUnitLine{EC}$, $\drawAngle{AEB} = \drawAngle{DEC}$ \inprop[prop:I.XV]\\
@@ -2458,7 +2458,7 @@ draw byLabelsOnPolygon(D, E, F)(0, 0);
 $\drawAngle{A} =\mbox{, } > \mbox{ или } < \drawAngle{D}$.
 
 \drawAngle{A} не равен \drawAngle{D},\\
-поскольку если $\drawAngle{A} = \drawAngle{D}$,\\ 
+поскольку если $\drawAngle{A} = \drawAngle{D}$,\\
 то $\drawUnitLine{CB} = \drawUnitLine{FE}$ \inprop[prop:I.IV],\\
 что противоречит гипотезе.
 
@@ -2705,7 +2705,7 @@ draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 $\therefore \drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXVII]\\
 и $\therefore$ две пересекающихся прямых параллельны одной и~той же прямой, что невозможно \inax[ax:I.XII].
 
-А значит, \drawAngle{IEA,HEI} и~\drawAngle{GFD} не являются неравными,\\ 
+А значит, \drawAngle{IEA,HEI} и~\drawAngle{GFD} не являются неравными,\\
 то есть они равны $\drawAngle{IEA,HEI} = \drawAngle{GEB}$ \inprop[prop:I.XV].
 
 $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, внешний угол равен внутреннему, противолежащему с~той же стороны:\\
@@ -2756,7 +2756,7 @@ draw byLabelsOnPolygon(J, H, E)(2, 0);
 
 $\therefore \drawAngle{G} = \drawAngle{H}$.
 
-$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \inprop[prop:I.XXVIII]. 
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \inprop[prop:I.XXVIII].
 \stopCenterAlign
 
 \qed
@@ -3192,7 +3192,7 @@ $\polygonADC =
 
 $\therefore \polygonBDC = \polygonFDC$, часть равна целому, что невозможно.
 
-$\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$. 
+$\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$.
 
 И~таким же образом можно показать, что никакая другая линия, кроме \drawUnitLine{AB},\\
 не $\parallel \drawUnitLine{CD}$; $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
@@ -4593,7 +4593,7 @@ $\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportiona
 Но $\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \inprop[prop:I.XLVII],\\
 и $\drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BA}^2$ \inprop[prop:I.XLVII].
 
-$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$. 
+$\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$.
 
 Значит, $ \drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$ на $2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$.
 \stopCenterAlign
@@ -4646,7 +4646,7 @@ $\drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cd
 тогда  \inprop[prop:II.VII]\\
 $\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2$.
 
-К каждой добавим $\drawSizedLine{AD}^2$,\\ 
+К каждой добавим $\drawSizedLine{AD}^2$,\\
 тогда $\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 + \drawSizedLine{AD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2 + \drawSizedLine{AD}^2$.
 
 $\therefore$ \inprop[prop:I.XLVII]
@@ -5954,7 +5954,7 @@ $\therefore \drawProportionalLine{EF} = \drawProportionalLine{EG}$.
 $\drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2 = \drawProportionalLine{AF}^2 + \drawProportionalLine{EF}^2$,\\
 но $\drawProportionalLine{EG}^2 = \drawProportionalLine{EF}^2$.
 
-$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\ 
+$\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
 и~удвоенные $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$ тоже равны.
 \stopCenterAlign
 
@@ -6069,7 +6069,7 @@ draw byLabelPoint(L, angle(E-H)-45, 2);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
-Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{GF}, расположенные по разные стороны от центра или пересекающиеся. 
+Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{GF}, расположенные по разные стороны от центра или пересекающиеся.
 
 Проведем из центра\\
 \drawUnitLine{EL,LK} и~$\drawUnitLine{EH} \perp \drawUnitLine{GF} \mbox{ и~} \drawUnitLine{BC}$.
@@ -6205,7 +6205,7 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \startCenterAlign
 Но если точка \drawPointL[middle][FB]{A} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
 и проведем $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
-опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\\ 
+опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\\
 с~радиусом $= \drawUnitLine{DE,AD}$,\\
 проведем \drawUnitLine{BE,FB} к~центру из точки, где \drawUnitLine{FD} падает на окружность \circleEII,\\
 проведем $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ из точки, где та сечет \circleEI.
@@ -8057,7 +8057,7 @@ proptmp(100, 200, -30, (0, 0));
 Сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$\\
 и~$\drawUnitLine{CE} = \drawUnitLine{EA}$ \inprop[prop:I.X].
 
-Из точек рассечения проведем\\ 
+Из точек рассечения проведем\\
 \drawUnitLine{DF} и~\drawUnitLine{EF} $\perp$ \drawUnitLine{AD} и~\drawUnitLine{CE} \inprop[prop:I.XI],\\
 из точки их пересечения проведем\\
 \drawUnitLine{BF}, \drawUnitLine{AF} и~\drawUnitLine{CF}\\
@@ -8124,7 +8124,7 @@ draw byLabelsOnPolygon(C, E, B)(2, 0);
 \problemNP{В}{ данный}{круг \drawCircle{E} вписать квадрат.}
 
 \startCenterAlign
-Проведем два диаметра круга $\perp$ друг другу,\\ 
+Проведем два диаметра круга $\perp$ друг другу,\\
 проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{DA} и~\drawUnitLine{CD},\\
 тогда \drawLine[middle][squareABCD]{DA,CD,BC,AB} квадрат.
 
@@ -8859,7 +8859,7 @@ startAutoLabeling;
 draw byNamedArc(AB,BC);
 stopAutoLabeling;
 stopGlobalRotation;
-} 
+}
 = \dfrac{1}{3} = \dfrac{5}{15} \drawCircle[middle][1/5]{O}$.
 
 Дуга $\drawFromCurrentPicture{
@@ -8868,7 +8868,7 @@ startAutoLabeling;
 draw byNamedArc(AB,BC,CF);
 stopAutoLabeling;
 stopGlobalRotation;
-} 
+}
 = \dfrac{2}{5} = \dfrac{6}{15} \drawCircle[middle][1/5]{O}$.
 
 Их разность $
@@ -9325,7 +9325,7 @@ byMagnitudeDefine.IV(0, false)(1)(d);
 \problemNP[5]{Е}{сли}{две величины равнократны двум другим, и~если равнократные последним отняты от первых двух, то остатки будут либо равны вторым, либо будут им равнократны.}
 
 \startCenterAlign
-Пусть $\drawMagnitude{I} = M'\drawMagnitude{II}$\\ 
+Пусть $\drawMagnitude{I} = M'\drawMagnitude{II}$\\
 и~$\drawMagnitude{III} = M'\drawMagnitude{IV}$.
 
 Тогда $\drawMagnitude{I} - m'\drawMagnitude{II} = M'\drawMagnitude{II} - m'\drawMagnitude{II} = (M' - m') \drawMagnitude{II}$\\
@@ -9518,7 +9518,7 @@ byMagnitudeDefine.VI(0, false)(2, 2)(via, vib);
 Сколько раз \magnitudeI\ кратна \magnitudeII,\\
 возьмем \magnitudeVI\ столько же раз кратную \magnitudeIV, \\
 тогда, поскольку $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$\\
-и мы взяли равнократные второй и~четвертой, \magnitudeI\ и~\magnitudeVI,\\ 
+и мы взяли равнократные второй и~четвертой, \magnitudeI\ и~\magnitudeVI,\\
 следовательно \inprop[prop:V.IV],\\
 $\magnitudeI : \magnitudeV :: \magnitudeIII : \magnitudeVI$,\\
  но (\conststr) $\magnitudeI = \magnitudeV$\\
@@ -10289,7 +10289,7 @@ byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 \startCenterAlign
 Пусть \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III} будут первыми тремя величинами,\\
 а \drawMagnitude{IV}, \drawMagnitude{V}, \drawMagnitude{VI} другими тремя,\\
-такими, что $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$\\ 
+такими, что $\magnitudeI : \magnitudeII :: \magnitudeIV : \magnitudeV$\\
 и~$\magnitudeII : \magnitudeIII :: \magnitudeV : \magnitudeVI$.
 
 Тогда если $\magnitudeI >, =, \mbox{ или } < \magnitudeIII$,\\
@@ -10992,7 +10992,7 @@ $\eqalign{
 Тогда отношение $h : p$ будет составлено из отношений $h : k$, $k : l$, $l : m$, $m : n$, $n : p$, таких же, как $\varO : \varP$, $\varQ : \varR$, $\varS : \varT$, $\varV : \varW$, $\varX : \varY$, каждое к~каждому.
 
 \startCenterAlign
-$\therefore$ согласно гипотезе,\\ 
+$\therefore$ согласно гипотезе,\\
 $\vara : \varg = h : p$.
 \stopCenterAlign
 
@@ -11061,7 +11061,7 @@ $\therefore
 И $\dfrac
 {\varc \times \vard \times \vare \times \varf}
 {\vard \times \vare \times \varf \times \varg}
-=$\\ 
+=$\\
 $\dfrac
 {h \times k \times l \times m \times n}
 {k \times l \times m \times n \times p}$ (\hypstr).

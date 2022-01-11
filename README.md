@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jemmybutton/byrne-euclid.svg?branch=master)](https://travis-ci.org/jemmybutton/byrne-euclid)
+[![Build Status](https://app.travis-ci.com/jemmybutton/byrne-euclid.svg?branch=master)](https://app.travis-ci.com/jemmybutton/byrne-euclid)
 
 MetaPost + ConTeXt rendition of [Oliver Byrne's "The first six books of the
 Elements of

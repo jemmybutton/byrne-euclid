@@ -1,7 +1,7 @@
 %    byrne-euclid 0.2.1
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
-%    Copyright 2019 Sergey Slyusarev
+%    Copyright 2022 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
