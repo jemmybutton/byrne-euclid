@@ -1,5 +1,3 @@
-[![Build Status](https://app.travis-ci.com/jemmybutton/byrne-euclid.svg?branch=master)](https://app.travis-ci.com/jemmybutton/byrne-euclid)
-
 MetaPost + ConTeXt rendition of [Oliver Byrne's "The first six books of the
 Elements of
 Euclid"](https://en.wikipedia.org/wiki/Oliver_Byrne_(mathematician)#Byrne.27s_Euclid)
@@ -40,4 +38,6 @@ book directory. To generate lettrines run `mpost lettrines.mp` within
 
 See releases for prepared .pdf . Be aware: "current" release my be glitchy,
 since the version of TeX Live on Travis CI machine is different from the one
-the project is being developed on.
+the project is being developed on. Since Travis CI doesn't provide free plan
+anymore, "current" releases are no longer produced until a different system
+is found.

@@ -2707,6 +2707,7 @@ vardef byAngleMDashedLine (expr angleArc, angleColor)(suffix angleOptionalColors
             fill (p--(0,0)--cycle) withcolor angleOptionalColors[0];
         fi;
         draw p withpen pencircle scaled lineWidth withcolor angleColor dashed byDashPattern(arclength(p), 1);
+        draw (0,0); % draws nothing. for some reason dashing seems to "leak" without this.
     )
 enddef;
 
