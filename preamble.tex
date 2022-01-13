@@ -18,6 +18,8 @@
 \newif\ifCreateNewInstanceForPicture
 \CreateNewInstanceForPicturetrue
 
+\def\textsf#1{\tf\ss #1} % Used within byrne.mp, for compatibility with LaTeX
+
 \def\defineNewPicture{\dodoubleempty\definenewpicture}
 \def\definenewpicture[#1][#2]#3{%
 	\iffirstargument%

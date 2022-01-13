@@ -101,8 +101,8 @@ byLineDefine.BCb(B, C, byblack, 0, 0);
 byLineStylize (L, L, 0, 1, -1) (BCb);
 byLineDefine.BLb(L, B, byblack, 0, 0);
 byLineStylize (C, C, 1, 0, -1) (BLb);
-draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
-draw byLabelsOnPolygon(A, J, C)(2, -1);
+draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, -1);
+draw byLabelsOnPolygon(A, J, C)(2, 1);
 }
 
 \vfill\vfill
@@ -1192,7 +1192,7 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 		draw byNamedLineSeq(1)(AB,CA,BC);
 		draw byCircle.A(A, B, byblue, 0, 0, 1/2);
 		draw byCircle.B(B, A, byred, 0, 0, 1/2);
-		draw byLabelsOnPolygon(A, C, B)(0, -1);
+		draw byLabelsOnPolygon(A, C, B)(0, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{O}{n}{a given finite straight line (\drawUnitLine{AB}) to describe an equilateral triangle.}
@@ -1248,8 +1248,8 @@ draw byNamedLineSeq(0)(AB,BC);
 draw byNamedLineSeq(0)(BE,BD,DA,AF);
 draw byCircle.A(D, E, byred, 0, 0, 1/2);
 draw byCircle.B(B, C, byblue, 0, 0, -1/2);
-draw byLabelsOnPolygon(E, D, A, F)(2, -1);
-draw byLabelsOnPolygon(E, B, C)(2, -1);
+draw byLabelsOnPolygon(E, D, A, F)(2, 1);
+draw byLabelsOnPolygon(E, B, C)(2, 1);
 draw byLabelsOnCircle(C)(B);
 draw byLabelsOnCircle(E, F)(A);
 }
@@ -1318,7 +1318,7 @@ byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
 draw byCircle.A(A, D, byblue, 0, 0, 0);
-draw byLabelsOnPolygon(B, A, D)(2, -1);
+draw byLabelsOnPolygon(B, A, D)(2, 1);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 draw byLabelPoint(B, angle(B-A) + 45, 2);
@@ -1374,7 +1374,7 @@ byLineDefine(E, F, byblack, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
 draw byNamedLineSeq(0)(FD,EF,DE);
 draw byLabelsOnPolygon(F, E, D)(0, 0);
-draw byLabelsOnPolygon(B, A, C)(0, -1);
+draw byLabelsOnPolygon(B, A, C)(0, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, (\drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD}) and the angles (\drawAngle{A} and \drawAngle{D}) contained by those equal sides also equal; then their bases or their sides (\drawUnitLine{BC} and \drawUnitLine{EF}) are also equal: and the remaining angles opposite to equal sides are respectively equal ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$): and the triangles are equal in every respect.}
@@ -3606,8 +3606,8 @@ byLineDefine.BCb(B, C, byblack, 0, 0);
 byLineStylize (L, L, 0, 1, -1) (BCb);
 byLineDefine.BLb(L, B, byblack, 0, 0);
 byLineStylize (C, C, 1, 0, -1) (BLb);
-draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
-draw byLabelsOnPolygon(A, J, C)(2, -1);
+draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, -1);
+draw byLabelsOnPolygon(A, J, C)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP[4]{I}{n}{a right angled triangle \drawLine[bottom][triangleABC]{CA,BC,AB} the square on the hypotenuse \drawUnitLine{BC} is equal to the sum of the squares of the sides (\drawUnitLine{CA} and \drawUnitLine{AB}).}
@@ -3627,14 +3627,14 @@ $\therefore
 draw byNamedPolygon(MCI);
 draw byNamedAngle(ACB);
 draw byNamedLine(CAb,AMb);
-draw byLabelsOnPolygon(I,A,C)(1, 1);
+draw byLabelsOnPolygon(I,A,C)(1, -1);
 }
 =
 \drawFromCurrentPicture[middle][polygonBLC]{
 draw byNamedPolygon(CLF);
 draw byNamedAngle(ACB);
 draw byNamedLine(BCb,BLb);
-draw byLabelsOnPolygon(B,F,C)(1, 1);
+draw byLabelsOnPolygon(B,F,C)(1, -1);
 }
 $.
 
@@ -4119,7 +4119,7 @@ byLineDefine(K, L, byyellow, 0, 0);
 byLineDefine(L, E, byblack, 1, 0);
 draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
 draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(0, 0);
-draw byLabelsOnPolygon(L, H, D)(2, -1);
+draw byLabelsOnPolygon(L, H, D)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{a straight line be bisected \drawProportionalLine{DC,CA} and produced to any point \drawProportionalLine{BD,DC,CA}, the rectangle contained by the whole line so increased, and the part produced, together with the square of half the line, is equal to the square of the line made up of the half, and the produced part.\\
@@ -4890,7 +4890,7 @@ draw byNamedLineSeq(0)(AG,BG);
 draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(A, G, B)(0, 0);
 draw byLabelsOnPolygon(E, D, A)(2, 0);
-draw byLabelsOnPolygon(E, F, C)(2, -4);
+draw byLabelsOnPolygon(E, F, C)(2, 4);
 draw byLabelLineEnd(E, C, 0);
 draw byLabelLineEnd(C, E, 0);
 }
@@ -4980,7 +4980,7 @@ byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
-draw byLabelsOnPolygon(D, F, A)(2, -2);
+draw byLabelsOnPolygon(D, F, A)(2, 2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -5080,7 +5080,7 @@ draw byArcBE.Mb(M, 4, 8, r1, byred, 0, 0, 0, 0);
 draw byLabelLineEnd(C, E, 0);
 draw byLabelLineEnd(G, E, 0);
 draw byLabelsOnPolygon(C, E, F)(2, 0);
-draw byLabelsOnPolygon(C, F, E)(2, -1);
+draw byLabelsOnPolygon(C, F, E)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two circles intersect \drawArc{Ma,Na,Nb,Mb}, they have not the same centre.}
@@ -5299,9 +5299,9 @@ byLineDefine(D, G, byblack, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(DG,DH);
 draw byCircle.M(M, G, byblack, 0, 0, 0);
-draw byLabelsOnPolygon(K, H, M)(2, -2);
-draw byLabelsOnPolygon(G, K, M)(2, -2);
-draw byLabelsOnPolygon(D, G, K)(2, -2);
+draw byLabelsOnPolygon(K, H, M)(2, 2);
+draw byLabelsOnPolygon(G, K, M)(2, 2);
+draw byLabelsOnPolygon(D, G, K)(2, 2);
 draw byLabelsOnPolygon(H, D, G)(2, 0);
 draw byLabelsOnPolygon(G, M, H)(2, 0);
 }
@@ -5347,9 +5347,9 @@ draw byNamedLineSeq(0)(DH,DO,NM);
 draw byCircle.M(M, H, byblack, 0, 0, 0);
 draw byLabelsOnPolygon(H, D, O, N)(2, 0);
 draw byLabelsOnPolygon(N, M, H)(2, 0);
-draw byLabelsOnPolygon(G, H, M)(2, -2);
-draw byLabelsOnPolygon(M, B, G)(2, -2);
-draw byLabelsOnPolygon(M, N, B)(2, -2);
+draw byLabelsOnPolygon(G, H, M)(2, 2);
+draw byLabelsOnPolygon(M, B, G)(2, 2);
+draw byLabelsOnPolygon(M, N, B)(2, 2);
 }
 \drawCurrentPictureInMargin
 Also the lines making equal angles with that which passes through the centre are equal, whether falling on the concave or convex circumference; and no third line can be drawn equal to them from the same point to the circumference.
@@ -5505,7 +5505,7 @@ byPointLabelDefine(N, "G");
 draw byCircle.M(M, A, byblack, 0, 0, 0);
 draw byCircle.N(N, A, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
-draw byLabelsOnPolygon(A, D, N)(2, -1);
+draw byLabelsOnPolygon(A, D, N)(2, 1);
 draw byLabelsOnCircle(A, H)(M);
 }
 \drawCurrentPictureInMargin
@@ -5941,7 +5941,7 @@ draw byLine(D, A, byblack, 0, 0);
 draw byLineFull(E, K, byyellow, 0, 0)(E, K, 0, 0, -1);
 draw byCircle.D(D, A, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C)(D);
-draw byLabelsOnPolygon(E, A, K, noPoint)(0, -1);
+draw byLabelsOnPolygon(E, A, K, noPoint)(0, 1);
 draw byLabelsOnPolygon(F, G, A)(2, 0);
 draw byLabelsOnPolygon(C, D, B)(2, 0);
 draw byLabelPoint(H, angle(G-H)+45, 2);
@@ -7140,7 +7140,7 @@ draw byLine(A, B, byblack, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
 draw byCircleR(O, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A)(O);
-draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
+draw byLabelsOnPolygon(E, B, F, noPoint)(0, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{cut off from a given circle \drawCircle{O} a segment which shall contain an angle equal to a given angle \drawAngle{givenAngle}.}
@@ -7573,7 +7573,7 @@ draw byCircleR(O, r1, byyellow, 0, 0, 0);
 draw byCircle.C(C, E, byblue, 0, 0, 0);
 draw byLabelsOnCircle(C, B)(O);
 draw byLabelsOnPolygon(C, A, E)(2, 0);
-draw byLabelsOnPolygon(C, E, A)(2, -1);
+draw byLabelsOnPolygon(C, E, A)(2, 1);
 draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
@@ -8107,7 +8107,7 @@ draw byLine(B, E, byblack, 0, 0);
 draw byLine(E, D, byblack, 1, 0);
 draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
-draw byLabelsOnPolygon(B, E, A)(2, -1);
+draw byLabelsOnPolygon(B, E, A)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe a circle about a given square \drawPolygon{ACD,ABC}.}
@@ -8405,7 +8405,7 @@ byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
 draw byCircle.F(F, H, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(C, H, B, A, E, D, K)(0, 0);
-draw byLabelsOnPolygon(E, F, D)(2, -2);
+draw byLabelsOnPolygon(E, F, D)(2, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{inscribe a circle in a given equiangular and equilateral pentagon.}
@@ -8512,7 +8512,7 @@ byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
 draw byCircleR(F, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(F);
-draw byLabelsOnPolygon(A, F, E)(2, -1);
+draw byLabelsOnPolygon(A, F, E)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{describe a circle about a given equilateral and equiangular pentagon.}

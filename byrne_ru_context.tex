@@ -1242,7 +1242,7 @@ draw byNamedLineSeq(0)(AD,BD);
 		draw byNamedLineSeq(1)(AB,CA,BC);
 		draw byCircle.A(A, B, byblue, 0, 0, 1/2);
 		draw byCircle.B(B, A, byred, 0, 0, 1/2);
-		draw byLabelsOnPolygon(A, C, B)(0, -1);
+		draw byLabelsOnPolygon(A, C, B)(0, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{Н}{а}{данной ограниченной прямой \drawUnitLine{AB} построить равносторонний треугольник.}
@@ -1303,8 +1303,8 @@ draw byNamedLineSeq(0)(AB,BC);
 draw byNamedLineSeq(0)(BE,BD,DA,AF);
 draw byCircle.A(D, E, byred, 0, 0, 1/2);
 draw byCircle.B(B, C, byblue, 0, 0, -1/2);
-draw byLabelsOnPolygon(E, D, A, F)(2, -1);
-draw byLabelsOnPolygon(E, B, C)(2, -1);
+draw byLabelsOnPolygon(E, D, A, F)(2, 1);
+draw byLabelsOnPolygon(E, B, C)(2, 1);
 draw byLabelsOnCircle(C)(B);
 draw byLabelsOnCircle(E, F)(A);
 }
@@ -1372,7 +1372,7 @@ byLineDefine(A, D, byred, 0, 0);
 draw byNamedLineSeq(0)(BC,AB,AD);
 draw byLine(E, F, byblue, 0, 0);
 draw byCircle.A(A, D, byblue, 0, 0, 0);
-draw byLabelsOnPolygon(B, A, D)(2, -1);
+draw byLabelsOnPolygon(B, A, D)(2, 1);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 draw byLabelPoint(B, angle(B-A) + 45, 2);
@@ -1430,7 +1430,7 @@ byLineDefine(E, F, byblack, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
 draw byNamedLineSeq(0)(FD,EF,DE);
 draw byLabelsOnPolygon(F, E, D)(0, 0);
-draw byLabelsOnPolygon(B, A, C)(0, -1);
+draw byLabelsOnPolygon(B, A, C)(0, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{два треугольника имеют по две стороны, равные каждая каждой ($\drawUnitLine{AB} = \drawUnitLine{DE}$ и~$\drawUnitLine{CA} = \drawUnitLine{FD}$), и~по равному углу ($\drawAngle{A} = \drawAngle{D}$), содержащемуся между равными прямыми, то они будут иметь и~основание, равное основанию ($\drawUnitLine{BC} = \drawUnitLine{EF}$), и~один треугольник будет равен другому, и~остальные углы, стягиваемые равными сторонами, будут равны каждый каждому ($\drawAngle{B} = \drawAngle{E}$ и~$\drawAngle{C} = \drawAngle{F}$).}
@@ -3672,8 +3672,8 @@ byLineDefine.BCb(B, C, byblack, 0, 0);
 byLineStylize (L, L, 0, 1, -1) (BCb);
 byLineDefine.BLb(L, B, byblack, 0, 0);
 byLineStylize (C, C, 1, 0, -1) (BLb);
-draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, 1);
-draw byLabelsOnPolygon(A, J, C)(2, -1);
+draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, -1);
+draw byLabelsOnPolygon(A, J, C)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{В}{ прямоугольном}{треугольнике \drawLine[bottom][triangleABC]{CA,BC,AB} квадрат гипотенузы \drawUnitLine{BC} равен сумме квадратов катетов \drawUnitLine{CA} и~\drawUnitLine{AB}.}
@@ -3697,7 +3697,7 @@ startTempAngleScale(2/3);
 draw byNamedPolygon(MCI);
 draw byNamedAngle(ACB,BCI);
 draw byNamedLine(CAb,AMb);
-draw byLabelsOnPolygon(I,A,C)(1, 1);
+draw byLabelsOnPolygon(I,A,C)(1, -1);
 stopTempAngleScale;
 }
 =
@@ -3706,7 +3706,7 @@ startTempAngleScale(2/3);
 draw byNamedPolygon(CLF);
 draw byNamedAngle(ACB,FCA);
 draw byNamedLine(BCb,BLb);
-draw byLabelsOnPolygon(B,F,C)(1, 1);
+draw byLabelsOnPolygon(B,F,C)(1, -1);
 stopTempAngleScale;
 }
 $ \inprop[prop:I.IV].
@@ -4184,7 +4184,7 @@ byLineDefine(K, L, byyellow, 0, 0);
 byLineDefine(L, E, byblack, 1, 0);
 draw byNamedLineSeq(-1)(BD,DC,CA,AK,KL,LM,CL,LE,EB);
 draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(0, 0);
-draw byLabelsOnPolygon(L, H, D)(2, -1);
+draw byLabelsOnPolygon(L, H, D)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и~продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и~продленной частью, вместе с~квадратом половины исходной линии равен квадрату линии, составленной из половины исходной линии и~продленной части.\\
@@ -4994,7 +4994,7 @@ draw byNamedLineSeq(0)(AG,BG);
 draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnPolygon(A, G, B)(2, 0);
 draw byLabelsOnPolygon(E, D, A)(2, 0);
-draw byLabelsOnPolygon(E, F, C)(2, -4);
+draw byLabelsOnPolygon(E, F, C)(2, 4);
 draw byLabelsOnCircle(A, B, C, E)(F);
 }
 \drawCurrentPictureInMargin
@@ -5097,7 +5097,7 @@ byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
-draw byLabelsOnPolygon(D, F, A)(2, -2);
+draw byLabelsOnPolygon(D, F, A)(2, 2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
@@ -5202,7 +5202,7 @@ draw byArcBE.Mb(M, 4, 8, r1, byred, 0, 0, 0, 0);
 draw byLabelLineEnd(C, E, 0);
 draw byLabelLineEnd(G, E, 0);
 draw byLabelsOnPolygon(C, E, F)(2, 0);
-draw byLabelsOnPolygon(C, F, E)(2, -1);
+draw byLabelsOnPolygon(C, F, E)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{два круга секут друг друга \drawArc{Ma,Na,Nb,Mb}, их центры не совпадают.}
@@ -5454,9 +5454,9 @@ byLineDefine(D, G, byblack, 1, 0);
 byLineDefine(D, H, byblue, 1, 0);
 draw byNamedLineSeq(0)(DG,DH);
 draw byCircle.M(M, G, byblack, 0, 0, 0);
-draw byLabelsOnPolygon(K, H, M)(2, -2);
-draw byLabelsOnPolygon(G, K, M)(2, -2);
-draw byLabelsOnPolygon(D, G, K)(2, -2);
+draw byLabelsOnPolygon(K, H, M)(2, 2);
+draw byLabelsOnPolygon(G, K, M)(2, 2);
+draw byLabelsOnPolygon(D, G, K)(2, 2);
 draw byLabelsOnPolygon(H, D, G)(2, 0);
 draw byLabelsOnPolygon(G, M, H)(2, 0);
 }
@@ -5501,9 +5501,9 @@ draw byNamedLineSeq(0)(DH,DO,NM);
 draw byCircle.M(M, H, byblack, 0, 0, 0);
 draw byLabelsOnPolygon(H, D, O, N)(2, 0);
 draw byLabelsOnPolygon(N, M, H)(2, 0);
-draw byLabelsOnPolygon(G, H, M)(2, -2);
-draw byLabelsOnPolygon(M, B, G)(2, -2);
-draw byLabelsOnPolygon(M, N, B)(2, -2);
+draw byLabelsOnPolygon(G, H, M)(2, 2);
+draw byLabelsOnPolygon(M, B, G)(2, 2);
+draw byLabelsOnPolygon(M, N, B)(2, 2);
 }
 \drawCurrentPictureInMargin
 Кроме того, линии, образующие равные углы с~проходящей через центр, равны между собой, падают ли они на вогнутую или выпуклую часть окружности, и~нельзя провести третьей линии из той же точки той же длины к~окружности.
@@ -5672,7 +5672,7 @@ byPointLabelDefine(N, "G");
 draw byCircle.M(M, A, byblack, 0, 0, 0);
 draw byCircle.N(N, A, byblue, 0, 0, -1);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
-draw byLabelsOnPolygon(A, D, N)(2, -1);
+draw byLabelsOnPolygon(A, D, N)(2, 1);
 draw byLabelsOnCircle(A, H)(M);
 }
 \drawCurrentPictureInMargin
@@ -6118,7 +6118,7 @@ draw byLine(D, A, byblack, 0, 0);
 draw byLineFull(E, K, byyellow, 0, 0)(E, K, 0, 0, -1);
 draw byCircle.D(D, A, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C)(D);
-draw byLabelsOnPolygon(E, A, K, noPoint)(0, -1);
+draw byLabelsOnPolygon(E, A, K, noPoint)(0, 1);
 draw byLabelsOnPolygon(F, G, A)(2, 0);
 draw byLabelsOnPolygon(C, D, B)(2, 0);
 draw byLabelPoint(H, angle(G-H)+45, 2);
@@ -7326,7 +7326,7 @@ draw byLine(A, B, byblack, 0, 0);
 draw byLineFull(E,F, byred, 0, 0)(E, F, 0, 0, -1);
 draw byCircleR(O, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A)(O);
-draw byLabelsOnPolygon(E, B, F, noPoint)(0, -2);
+draw byLabelsOnPolygon(E, B, F, noPoint)(0, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{О}{т}{данного круга \drawCircle{O} отсечь сегмент, вмещающий данный прямолинейный угол \drawAngle{givenAngle}.}
@@ -7756,7 +7756,7 @@ draw byCircleR(O, r1, byyellow, 0, 0, 0);
 draw byCircle.C(C, E, byblue, 0, 0, 0);
 draw byLabelsOnCircle(C, B)(O);
 draw byLabelsOnPolygon(C, A, E)(2, 0);
-draw byLabelsOnPolygon(C, E, A)(2, -1);
+draw byLabelsOnPolygon(C, E, A)(2, 1);
 draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
@@ -8284,7 +8284,7 @@ draw byLine(B, E, byblack, 0, 0);
 draw byLine(E, D, byblack, 1, 0);
 draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
-draw byLabelsOnPolygon(B, E, A)(2, -1);
+draw byLabelsOnPolygon(B, E, A)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного квадрата \drawPolygon{ACD,ABC} описать круг.}
@@ -8594,7 +8594,7 @@ byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BH,HC,CK,KD,DE,EA);
 draw byCircle.F(F, H, byyellow, 0, 0, -1);
 draw byLabelsOnPolygon(C, H, B, A, E, D, K)(0, 0);
-draw byLabelsOnPolygon(E, F, D)(2, -2);
+draw byLabelsOnPolygon(E, F, D)(2, 2);
 }
 \drawCurrentPictureInMargin
 \problemNP{В}{ данный}{равноугольный и~равносторонний пятиугольник вписать круг.}
@@ -8699,7 +8699,7 @@ byLineDefine(E, A, byblack, 0, 1);
 draw byNamedLineSeq(0)(AB,BC,CD,DE,EA);
 draw byCircleR(F, r, byred, 0, 0, 1);
 draw byLabelsOnCircle(A, B, C, D, E)(F);
-draw byLabelsOnPolygon(A, F, E)(2, -1);
+draw byLabelsOnPolygon(A, F, E)(2, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{О}{коло}{данного равностороннего и~равноугольного пятиугольника описать круг.}

@@ -1,7 +1,7 @@
-%    byrne-euclid 0.2.1
+%    byrne-euclid 0.2.2
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
-%    Copyright 2022 Sergey Slyusarev
+%    Copyright 2019 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -1083,7 +1083,7 @@ vardef byNamedLineSeq (expr s)(text linesListRaw) =
     )
 enddef;
 
-vardef byMarkLine (expr pos, col)(suffix lineName) =
+vardef byMarkLine(expr pos, col)(suffix lineName) =
     setAttribute("mark", "Position", str lineName, pos);
     setAttribute("mark", "Color", str lineName, col);
     byNamedMarkLine(lineName)
@@ -2699,7 +2699,7 @@ vardef byAngleMThinLine (expr angleArc, angleColor)(suffix angleOptionalColors) 
 enddef;
 
 vardef byAngleMDashedLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
-    save p;
+    save p, q;
     path p;
     p := angleArc scaled ((u*angleScale) - lineWidth);
     image(
@@ -3572,7 +3572,7 @@ enddef;
 
 if known metafunversion:
     vardef textLabelRender(expr t) =
-        textext("\tf\ss " & t) scaled 2/5
+        textext("\textsf{" & t & "}") scaled 2/5
     enddef;
 else:
     input TEX;
@@ -3798,5 +3798,5 @@ vardef byLabelAngleCompensate (expr a, b, c, s) =
     else:
         ins := 0;
     fi;
-    (((abs(sind(ang)) + abs(cosd(ang)/abs(sind(ang))))*(lineWidth*(1/2-1/2s)))/2) + ins
+    (((abs(sind(ang)) + abs(cosd(ang)/abs(sind(ang))))*(lineWidth*(1/2+1/2s)))/2) + ins
 enddef;
