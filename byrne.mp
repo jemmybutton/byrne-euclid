@@ -1,7 +1,7 @@
 %    byrne-euclid 0.2.2
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
-%    Copyright 2019 Sergey Slyusarev
+%    Copyright 2022 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -27,14 +27,14 @@ lineWidth := 2pt;
 lineWidthThin := 1pt;
 lineWidthHair := 1/2pt;
 pointMarkSize := 4pt;
-pointLinesScale := 1/2u;
+pointLinesSize := 1/2cm;
 defaultScaleFactor := 1;
 angleScale := 1;
 globalRotation := 0;
 magnitudeScale := 5/18;
 magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
-rayExtension := 1/3u;
+rayExtension := 1/3cm;
 
 boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
 
@@ -282,10 +282,10 @@ def stopTempScale =
     endgroup
 enddef;
 
-def startTempAngleScale (expr tmpScale) =
+def startTempAngleScale (expr tmpAngleScale) =
     begingroup
         save angleScale;
-        angleScale := tmpScale;
+        angleScale := tmpAngleScale;
 enddef;
 
 def stopTempAngleScale =
@@ -335,12 +335,12 @@ def startMainPictureMode =
         mainPictureMode := true;
 enddef;
 
-picture ghostPicture;
-ghostPicture := image();
-
 def stopMainPictureMode =
     endgroup
 enddef;
+
+picture ghostPicture;
+ghostPicture := image();
 
 %
 % This section is devoted to lists
@@ -1532,14 +1532,14 @@ boolean omitLine[];
             distantEnds[n] :=
                 scantokens(getAttribute("line", "EndAName", str i))
                 + (unitvector(scantokens(getAttribute("line", "EndBName", str i))
-                    - scantokens(getAttribute("line", "EndAName", str i))) scaled (pointLinesScale/scaleFactor)
+                    - scantokens(getAttribute("line", "EndAName", str i))) scaled (pointLinesSize/scaleFactor)
                     );
             pointNames[n] := getAttribute("line", "EndBName", str i);
         else:
             distantEnds[n] :=
                 scantokens(getAttribute("line", "EndBName", str i))
                 + (unitvector(scantokens(getAttribute("line", "EndAName", str i))
-                    - scantokens(getAttribute("line", "EndBName", str i))) scaled (pointLinesScale/scaleFactor)
+                    - scantokens(getAttribute("line", "EndBName", str i))) scaled (pointLinesSize/scaleFactor)
                     );
             pointNames[n] := getAttribute("line", "EndAName", str i);
         fi;
@@ -2295,7 +2295,7 @@ vardef byNamedPolygon (text polygonsList) =
             endfor;
             ) rotated globalRotation;
         if (autoLabelingMode):
-            draw byLabelPolygon(1)(polygonsList);
+            draw byLabelPolygon(-1)(polygonsList);
         fi;
     )
 enddef;

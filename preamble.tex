@@ -181,9 +181,9 @@
 \def\drawSizedLine{\dosingleempty\drawsizedline}
 \def\drawsizedline[#1]#2{{%
 	\iffirstargument%
-		\drawFromCurrentPicture[middle][linesized#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 2)(#2);stopAutoLabeling;}%
+		\drawFromCurrentPicture[middle][sline#2#1]{startAutoLabeling;draw byNamedCompoundLine(#1, 2)(#2);stopAutoLabeling;}%
 	\else%
-		\drawFromCurrentPicture[middle][linesized#2]{startAutoLabeling;draw byNamedCompoundLine(2cm, 2)(#2);stopAutoLabeling;}%
+		\drawFromCurrentPicture[middle][sline#2]{startAutoLabeling;draw byNamedCompoundLine(2cm, 2)(#2);stopAutoLabeling;}%
 	\fi%
 }}
 
@@ -201,9 +201,9 @@
 \def\drawSizedRay{\dosingleempty\drawsizedray}
 \def\drawsizedray[#1]#2{{%
 	\iffirstargument%
-		\drawFromCurrentPicture[middle][raysized#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 2)(#2);stopAutoLabeling;}%
+		\drawFromCurrentPicture[middle][sray#2#1]{startAutoLabeling;draw byNamedCompoundRay(#1, 2)(#2);stopAutoLabeling;}%
 	\else%
-		\drawFromCurrentPicture[middle][raysized#2]{startAutoLabeling;draw byNamedCompoundRay(2cm, 2)(#2);stopAutoLabeling;}%
+		\drawFromCurrentPicture[middle][sray#2]{startAutoLabeling;draw byNamedCompoundRay(2cm, 2)(#2);stopAutoLabeling;}%
 	\fi%
 }}
 	
@@ -227,12 +227,12 @@
 	\fi%
 }}
 	
-\def\drawTwoRightAngles{%
-\drawFromCurrentPicture[middle][tworightangles]{draw twoRightAngles;}}
-	
 \def\drawRightAngle{%
 \drawFromCurrentPicture[middle][onerightangle]{draw rightAngle;}}
 
+\def\drawTwoRightAngles{%
+\drawFromCurrentPicture[middle][tworightangles]{draw twoRightAngles;}}
+	
 \def\drawAngle#1{\drawFromCurrentPicture[middle][angle#1]{startAutoLabeling;draw byNamedAngleWithDummySides(#1);stopAutoLabeling;}}
 
 \def\drawAngleWithSides#1{\drawFromCurrentPicture[middle][anglewithsides#1]{startAutoLabeling;draw byNamedAngleSides(#1)();stopAutoLabeling;}}
