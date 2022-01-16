@@ -1476,6 +1476,9 @@ vardef byPointMarkRender (expr p, col, sty) =
     image(
         if (sty = 0):
             fill ((fullcircle scaled pointMarkSize) shifted (p scaled scaleFactor)) withcolor col;
+        elseif (sty = 1):
+            fill ((fullcircle scaled pointMarkSize) shifted (p scaled scaleFactor)) withcolor white;
+            draw ((fullcircle scaled pointMarkSize) shifted (p scaled scaleFactor)) withcolor col withpen pencircle scaled lineWidthHair;
         fi;
     )
 enddef;

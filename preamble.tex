@@ -177,7 +177,7 @@
 	\fi%
 }}
 
-\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][lineprop#1]{startAutoLabeling;draw byNamedCompoundLine(1cm, 1)(#1);stopAutoLabeling;}}
+\def\drawProportionalLine#1{\drawFromCurrentPicture[middle][pline#1]{startAutoLabeling;draw byNamedCompoundLine(1cm, 1)(#1);stopAutoLabeling;}}
 
 \def\drawSizedLine{\dosingleempty\drawsizedline}
 \def\drawsizedline[#1]#2{{%
@@ -316,7 +316,7 @@
 		\global\def\plal{middle}%
 	\fi%
 	\ifsecondargument%
-		\drawFromCurrentPicture[\plal][pointl#3-#2]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}%
+		\drawFromCurrentPicture[\plal][pointl#3Minus#2]{startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;}%
 	\else%
 		\drawFromCurrentPicture[\plal][pointl#3]{startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;}%
 	\fi%
