@@ -1545,7 +1545,7 @@ $\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и~$\drawAngle{DCB} = \dr
 pair A, B, C, D;
 A := (0, 0);
 B := A shifted (7/2u, 0);
-D := A shifted (2u, 3u);
+D := 1/2[A,B] shifted (0, 3u);
 C := 2/3[A, D];
 byAngleDefine(B, A, D, byyellow, 0);
 byAngleDefine(A, B, D, byblack, 0);
@@ -2041,9 +2041,9 @@ $\therefore \drawAngleWithSides{FCE} > \drawAngle{B}$.
 \defineNewPicture[1/4]{
 pair A, B, C, D;
 A := (0, 0);
-B := A shifted (3/2u, 5/2u);
-C := A shifted (9/4u, 0);
-D := C shifted (u, 0);
+B := A shifted (2u, 5/2u);
+C := A shifted (5/2u, 0);
+D := C shifted (3/4u, 0);
 byAngleDefine(B, A, C, byblue, 0);
 byAngleDefine(A, B, C, byblack, 0);
 byAngleDefine(A, C, B, byred, 0);
