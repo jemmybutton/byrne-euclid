@@ -1486,10 +1486,12 @@ enddef;
 vardef byNamedPointMark (text pointsList) =
     image(
         forsuffixes pN=pointsList:
-            appendList(pL, str pN, 1, false);
-            draw byPointMarkRender(pN, getAttribute("point", "Color", str pN), getAttribute("point", "Style", str pN)) rotated globalRotation;
-            if (autoLabelingMode and textLabels):
-                draw byTextLabel(pointLabel)(str pN, pN, 90, textLabelShift);
+            if (attributeExists("point", "Color", str pN)):
+                appendList(pL, str pN, 1, false);
+                draw byPointMarkRender(pN, getAttribute("point", "Color", str pN), getAttribute("point", "Style", str pN)) rotated globalRotation;
+                if (autoLabelingMode and textLabels):
+                    draw byTextLabel(pointLabel)(str pN, pN, 90, textLabelShift);
+                fi;
             fi;
         endfor;
     )
@@ -1902,12 +1904,20 @@ else:
 fi
 enddef;
 
+vardef byCircleDefine@#(suffix o, a)(expr col, dp, th, s) =
+if str @# = "":
+    byCircleDefine.scantokens(str o & str a)(o, a)(col, dp, th, s)
+else:
+    byCircleDefineR.@#(o, abs(a-o), col, dp, th, s);
+    setAttribute("circle", "AName", str @#, str a);
+fi;
+enddef;
+
 vardef byCircle@#(suffix o, a)(expr col, dp, th, s) =
 if str @# = "":
     byCircle.scantokens(str o & str a)(o, a)(col, dp, th, s)
 else:
-    byCircleDefineR.@#(o, abs(a-o), col, dp, th, s);
-    setAttribute("circle", "AName", str @#, str a);
+    byCircleDefine.@#(o, a, col, dp, th, s);
     byNamedCircle(@#)
 fi
 enddef;
@@ -1948,8 +1958,8 @@ vardef byFindCircleCenterABC (suffix a, b, c) =
         rvInSpace := byFindCircleCenterABCinSpace(pointXYZ.a, pointXYZ.b, pointXYZ.c) colorrotated projectionAngle;
         rv := (redpart(rvInSpace), greenpart(rvInSpace));
     else:
-        rv = whatever[1/2[a, b], 1/2[a, b] shifted ((a-b) rotated 90)]
-            = whatever[1/2[b, c], 1/2[b, c] shifted ((b-c) rotated 90)];
+        rv = whatever[1/2[a, b], 1/2[a, b] + ((a - b) rotated 90)]
+            = whatever[1/2[b, c], 1/2[b, c] + ((b - c) rotated 90)];
     fi;
     rv
 enddef;
@@ -1975,7 +1985,7 @@ vardef byReturnCircleCenter (expr circleName) =
             scantokens(getAttribute("circle", "CName", circleName))
             )
     else:
-        getAttribute("circle", "Center", str cN)
+        getAttribute("circle", "Center", circleName)
     fi
 enddef;
 
