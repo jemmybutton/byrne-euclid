@@ -1704,10 +1704,10 @@ draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point (\drawPointL[middle][AD]{D}), in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
+\problemNP{F}{rom}{a given point (\drawPoint[middle][AD]{D}), in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
 
 \startCenterAlign
-Take any point (\drawPointL[middle][CA]{C}) in the given line,\\
+Take any point (\drawPoint[middle][CA]{C}) in the given line,\\
 cut off $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD} and it shall be perpendicular to the given line.
@@ -1758,10 +1758,10 @@ draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line (\drawUnitLine[1.2cm]{DB,CD}) from a~given point (\drawPointL{A}) without.}
+\problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line (\drawUnitLine[1.2cm]{DB,CD}) from a~given point (\drawPoint{A}) without.}
 
 \startCenterAlign
-With the given point \drawPointL{A} as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}. % improvement: the distance mentioned here seems not to be in the original drawing, it should either be drawn, or not be referenced graphically as DB
+With the given point \drawPoint{A} as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}. % improvement: the distance mentioned here seems not to be in the original drawing, it should either be drawn, or not be referenced graphically as DB
 
 Make $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.X],\\
 draw \drawUnitLine{AB}, \drawUnitLine{CA} and \drawUnitLine{AD},\\
@@ -2130,7 +2130,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{I}{f}{from any point (\drawPointL[middle][DE]{D}) within a triangle \drawLine[bottom]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the other two sides, but must contain a greater angle.}
+\problemNP[2]{I}{f}{from any point (\drawPoint[middle][DE]{D}) within a triangle \drawLine[bottom]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the other two sides, but must contain a greater angle.}
 
 \startCenterAlign
 Produce \drawSizedLine{AD},\\
@@ -2263,7 +2263,7 @@ draw byLabelsOnPolygon(D, B, A, C, E)(2, 0);
 draw byLabelsOnPolygon(noPoint,J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{t}{a given point (\drawPointL{F}) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
+\problemNP{A}{t}{a given point (\drawPoint{F}) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
 
 Draw \drawUnitLine{BC} between any two points in the legs of the given angle.
 
@@ -2708,10 +2708,10 @@ draw byLine(F, D, byblue, 0, 0);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point \drawPointL[middle][EB]{E} to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
+\problemNP{F}{rom}{a given point \drawPoint[middle][EB]{E} to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
 
 \startCenterAlign
-Draw \drawUnitLine{EF} from the point \drawPointL[middle][EB]{E} to any point  \drawPointL[middle][CF]{F} in \drawUnitLine{CF,FD},
+Draw \drawUnitLine{EF} from the point \drawPoint[middle][EB]{E} to any point  \drawPoint[middle][CF]{F} in \drawUnitLine{CF,FD},
 
 make $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII],
 
@@ -2747,7 +2747,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 \problemNP[3]{I}{f}{any side (\drawUnitLine{AB}) of a triangle be produced, the external angle (\drawAngle{DAE,EAC}) is equal to the sum of the two internal and opposite angles (\drawAngle{B} and \drawAngle{C}), and the three internal angles of any triangle taken together are equal to two right angles.}
 
 \startCenterAlign
-Through the point \drawPointL[middle][AD,AE]{A} draw\\
+Through the point \drawPoint[middle][AD,AE]{A} draw\\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 
 Then $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXIX],
@@ -5400,15 +5400,15 @@ draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP[5]{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
 
-For if it be supposed that the point \drawPointL[middle][DH,DA,DF]{D} in which more than two equal straight lines meet is not the centre, some other point \drawFromCurrentPicture[middle][pointF]{
+For if it be supposed that the point \drawPoint[middle][DH,DA,DF]{D} in which more than two equal straight lines meet is not the centre, some other point \drawFromCurrentPicture[middle][pointF]{
 startGlobalRotation(-lineAngle.DF);
 draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
 
-Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawPointL[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr) which is absurd.
+Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawPoint[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \inprop[prop:III.VIII]; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr) which is absurd.
 
-The same may be demonstrated of any other point, different from \drawPointL[middle][DA,DF]{D}, which must be the centre of the circle.
+The same may be demonstrated of any other point, different from \drawPoint[middle][DA,DF]{D}, which must be the centre of the circle.
 
 \qed
 \stopProposition
@@ -6024,9 +6024,9 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \drawCurrentPictureInMargin
 \problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/5]{EI} from a given point, either in or outside of its circumference.}
 
-If a given point be in the circumference, as at \drawPointL[middle][FB]{B}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be the required tangent \inprop[prop:III.XVI].
+If a given point be in the circumference, as at \drawPoint[middle][FB]{B}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be the required tangent \inprop[prop:III.XVI].
 
-But if the given point \drawPointL[middle][FB]{A} be outside of the circumference,
+But if the given point \drawPoint[middle][FB]{A} be outside of the circumference,
 
 \startCenterAlign
 draw \drawUnitLine{DE,AD} from it to the centre, cutting \circleEI;\\

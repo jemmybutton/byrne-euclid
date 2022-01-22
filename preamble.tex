@@ -322,6 +322,25 @@
 	\fi%
 }}
 
+\def\drawPoint{\dodoubleempty\drawpoint}
+\def\drawpoint[#1][#2]#3{{%
+	\iffirstargument%
+		\global\def\plal{#1}%
+	\else%
+		\global\def\plal{middle}%
+	\fi%
+	\ifsecondargument%
+		\drawFromCurrentPicture[\plal][pointl#3Minus#2]{
+		startAutoLabeling; draw byNamedPointLines(#3,"#2"); stopAutoLabeling;
+		draw byNamedPointMark(#3);
+		}%
+	\else%
+		\drawFromCurrentPicture[\plal][pointl#3]{
+		startAutoLabeling; draw byNamedPointLines(#3,""); stopAutoLabeling;
+		draw byNamedPointMark(#3);}%
+	\fi%
+}}
+
 \def\drawMagnitude{\dodoubleempty\drawmagnitude}
 \def\drawmagnitude[#1][#2]#3{{%
 	\iffirstargument%

@@ -1790,10 +1790,10 @@ draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{И}{з}{данной точки \drawPointL[middle][AD]{D} на данной прямой \drawUnitLine{DB,CD} построить перпендикуляр.}
+\problemNP{И}{з}{данной точки \drawPoint[middle][AD]{D} на данной прямой \drawUnitLine{DB,CD} построить перпендикуляр.}
 
 \startCenterAlign
-Возьмем любую точку \drawPointL[middle][CA]{C} на данной прямой,\\
+Возьмем любую точку \drawPoint[middle][CA]{C} на данной прямой,\\
 отсечем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 построим \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 проведем \drawUnitLine{AD}, и~она будет перпендикуляром к~данной прямой.
@@ -1846,10 +1846,10 @@ draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{ровести}{перпендикуляр к~данной неограниченной прямой \drawUnitLine{DB,CD} из данной не находящейся на ней точки \drawPointL{A}.}
+\problemNP{П}{ровести}{перпендикуляр к~данной неограниченной прямой \drawUnitLine{DB,CD} из данной не находящейся на ней точки \drawPoint{A}.}
 
 \startCenterAlign
-Взяв данную точку \drawPointL{A} в~качестве центра по одну сторону прямой и~любое расстояние, позволяющее достигнуть другой стороны, построим \drawArc{O}.
+Взяв данную точку \drawPoint{A} в~качестве центра по одну сторону прямой и~любое расстояние, позволяющее достигнуть другой стороны, построим \drawArc{O}.
 
 Возьмем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.X],\\
 проведем \drawUnitLine{AB}, \drawUnitLine{CA} и~\drawUnitLine{AD}.
@@ -2220,7 +2220,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{Е}{сли}{из любой точки \drawPointL[middle][DE]{D} внутри треугольника \drawLine[bottom]{CA,EC,BE,AB} провести прямые линии к~концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника и~будут заключать больший угол.}
+\problemNP[2]{Е}{сли}{из любой точки \drawPoint[middle][DE]{D} внутри треугольника \drawLine[bottom]{CA,EC,BE,AB} провести прямые линии к~концам стороны \drawSizedLine{AB}, эти прямые  вместе меньше двух других сторон треугольника и~будут заключать больший угол.}
 
 \startCenterAlign
 Продлим \drawSizedLine{AD},\\
@@ -2355,7 +2355,7 @@ draw byLabelsOnPolygon(D, B, A, C, E)(2, 0);
 draw byLabelsOnPolygon(noPoint, J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{ри}{данной точке \drawPointL{F} на данной прямой \drawUnitLine{FG,GJ} построить угол, равный данному прямолинейному углу \drawAngle{A}.}
+\problemNP{П}{ри}{данной точке \drawPoint{F} на данной прямой \drawUnitLine{FG,GJ} построить угол, равный данному прямолинейному углу \drawAngle{A}.}
 
 Проведем \drawUnitLine{BC} между любыми двумя точками на сторонах данного угла.
 
@@ -2783,10 +2783,10 @@ draw byLine(F, D, byblue, 0, 0);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{П}{ровести}{через данную точку \drawPointL[middle][EB]{E} прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
+\problemNP{П}{ровести}{через данную точку \drawPoint[middle][EB]{E} прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
 
 \startCenterAlign
-Проведем \drawUnitLine{EF} из точки \drawPointL[middle][EB]{E}  к~любой точке \drawPointL[middle][CF]{F} на \drawUnitLine{CF,FD}.
+Проведем \drawUnitLine{EF} из точки \drawPoint[middle][EB]{E}  к~любой точке \drawPoint[middle][CF]{F} на \drawUnitLine{CF,FD}.
 
 Сделаем $\drawAngle{E} = \drawAngle{F}$ \inprop[prop:I.XXIII].
 
@@ -2822,7 +2822,7 @@ draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 \problemNP[2]{П}{о}{продлении любой стороны треугольника \drawUnitLine{AB} внешний угол \drawAngle{DAE,EAC} равен сумме двух внутренних и~противолежащих \drawAngle{B} и~\drawAngle{C}, а~три внутренних угла треугольника вместе равны двум прямым углам.}
 
 \startCenterAlign
-Через точку \drawPointL[middle][AD,AE]{A} проведем \\
+Через точку \drawPoint[middle][AD,AE]{A} проведем \\
 $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \inprop[prop:I.XXXI].
 
 Тогда $\left\{\eqalign{\drawAngle{DAE} &= \drawAngle{B}\cr \drawAngle{EAC} &= \drawAngle{C}\cr}\right\}$ \inprop[prop:I.XXIX].
@@ -5558,15 +5558,15 @@ draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{Е}{сли}{внутри круга \drawCircle[middle]{D} взята точка, из которой к~окружности может быть проведено больше двух равных прямых линий \drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}, эта точка является центром круга.}
 
-Действительно, если рассматриваемая точка \drawPointL[middle][DH,DA,DF]{D}, в~которой встречается больше двух равных прямых линий, не центр, то какая-то другая \drawFromCurrentPicture[middle][pointF]{
+Действительно, если рассматриваемая точка \drawPoint[middle][DH,DA,DF]{D}, в~которой встречается больше двух равных прямых линий, не центр, то какая-то другая \drawFromCurrentPicture[middle][pointF]{
 startGlobalRotation(-lineAngle.DF);
 draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } должна быть центром, проведем между этими двумя точками \drawUnitLine{DF} и~продлим в~обе стороны до окружности.
 
-Теперь, поскольку более чем две равных прямых линии проведено к~окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром, прямые линии проведены к~окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а~\drawUnitLine{DC}, которая ближе к~\drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$, расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr), что невозможно.
+Теперь, поскольку более чем две равных прямых линии проведено к~окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPoint[middle][DA,DF]{D}, не являющейся центром, прямые линии проведены к~окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а~\drawUnitLine{DC}, которая ближе к~\drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$, расположенной дальше \inprop[prop:III.VIII], но $\drawUnitLine{DC} = \drawUnitLine{DB}$ (\hypstr), что невозможно.
 
-То же можно показать для любой другой точки, кроме \drawPointL[middle][DA,DF]{D}, которая, таким образом, должна быть центром круга.
+То же можно показать для любой другой точки, кроме \drawPoint[middle][DA,DF]{D}, которая, таким образом, должна быть центром круга.
 
 \qed
 \stopProposition
@@ -6200,10 +6200,10 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 \drawCurrentPictureInMargin
 \problemNP{П}{ровести}{касательную к~данному кругу \drawCircle[middle][1/5]{EI} из данной точки.}
 
-Если данная точка \drawPointL[middle][FB]{B} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и~будет искомой касательной \inprop[prop:III.XVI].
+Если данная точка \drawPoint[middle][FB]{B} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и~будет искомой касательной \inprop[prop:III.XVI].
 
 \startCenterAlign
-Но если точка \drawPointL[middle][FB]{A} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
+Но если точка \drawPoint[middle][FB]{A} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
 и проведем $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
 опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\\
 с~радиусом $= \drawUnitLine{DE,AD}$,\\
