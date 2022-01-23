@@ -1052,7 +1052,7 @@ vardef byNamedLineSeq (expr s)(text linesListRaw) =
                         fi;
                     fi;
                     lShift[j] := s*prp;
-                    draw byNamedLineFull(scantokens(c), scantokens(d), 0, 0, s*sign(prp))(scantokens(lName[j]));
+                    draw byNamedLineFull(scantokens(c), scantokens(d), 0, 0, -s*sign(prp))(scantokens(lName[j]));
                 else:
                     prp := -2;
                 fi;
@@ -1073,7 +1073,7 @@ vardef byNamedLineSeq (expr s)(text linesListRaw) =
                 draw byNamedLineFull(
                     scantokens(getAttribute("line", "EndAName", str lN)),
                     scantokens(getAttribute("line", "EndBName", str lN)),
-                    0, 0, s)(lN);
+                    0, 0, -s)(lN);
                 if (textLabels and autoLabelingMode):
                     draw byLabelsOnPolygon(scantokens (getAttribute("line", "EndAName", str lN) & ", " & getAttribute("line", "EndBName", str lN)))(1, s);
                 fi;
@@ -2915,11 +2915,13 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
             fi;
         stopTempAngleScale;
     );
-    clip outputImage to compoundAnglePath;
+    if (known compoundAnglePath):
+        clip outputImage to compoundAnglePath;
+    fi;
     image(
         startTempAngleScale(scaleToUse);
             draw outputImage rotated globalRotation;
-            if (textLabels and autoLabelingMode) and (j=2):
+            if (textLabels and autoLabelingMode) and (j=2) and (known compoundAnglePath):
                 for i=1,2:
                     if not threeDMode:
                         labelVector := dir(angleDir[n[i]]);

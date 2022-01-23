@@ -1663,7 +1663,7 @@ Let the straight lines  \drawUnitLine{AB},  \drawUnitLine{LO} be set out, and le
 	byLineDefine(C', A', byblack, 0, 2);
 	byArcDefine.O(O', B', A')(1/2l, byblue, 0, 0, 0, 0);
 	draw byAngle(A', C', B', byblack, 2);
-	draw byNamedLineSeq(-1)(A'B',B'C',C'A');
+	draw byNamedLineSeq(1)(A'B',B'C',C'A');
 	draw byNamedArc(O);
 	draw byLabelsOnPolygon(A', C', B')(0, 0);
 }
