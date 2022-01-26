@@ -793,8 +793,8 @@ vardef byLineRender (expr a, b, col, dp, th, c, d, ct, dt, s, sf) =
     lineItself := (a--b) scaled sf;
     linePerp := unitvector((point 0 of lineItself)-(point 1 of lineItself)) rotated 90;
     lineBleeding :=
-        ((point 0 of lineItself) shifted (unitvector((point 0 of lineItself) - (point 1 of lineItself)) scaled dpLength[dp])) --
-        lineItself -- ((point 1 of lineItself) shifted (unitvector((point 1 of lineItself) - (point 0 of lineItself)) scaled dpLength[dp]));
+        ((point 0 of lineItself) shifted (unitvector((point 0 of lineItself) - (point 1 of lineItself)) scaled 2dpLength[dp])) --
+        lineItself -- ((point 1 of lineItself) shifted (unitvector((point 1 of lineItself) - (point 0 of lineItself)) scaled 2dpLength[dp]));
     lineStyShift := (linePerp scaled (1/2currentLineWidth*s));
     p := image(
         pickup  pencircle scaled currentLineWidth;
@@ -1490,7 +1490,7 @@ vardef byNamedPointMark (text pointsList) =
                 appendList(pL, str pN, 1, false);
                 draw byPointMarkRender(pN, getAttribute("point", "Color", str pN), getAttribute("point", "Style", str pN)) rotated globalRotation;
                 if (autoLabelingMode and textLabels):
-                    draw byTextLabel(pointLabel)(str pN, pN, 90, textLabelShift);
+                    draw byTextLabel(pointLabel)(str pN, pN, 90, 1/2pointMarkSize + textLabelShift);
                 fi;
             fi;
         endfor;
@@ -1507,11 +1507,12 @@ enddef;
 vardef byNamedPointLines (suffix pointName)(expr omitLines) =
 save linesList, lineNames, pointNames, distantEnd, distantEnds, n, no, distL, maxDist, maxDistEndA, maxDistEndB, a, angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB, safeLine;
 string linesList, lineNames[], pointNames[];
-linesList := pointLinesList.pointName;
 pair distantEnd, distantEnds[];
 numeric n, no, distL, maxDist, maxDistEndA, maxDistEndB, a[], angleL, minAngle, maxAngle, minAngleEndB, maxAngleEndA, maxAngleEndB, safeLine;
 picture labelImage, linesImage;
 boolean omitLine[];
+if known pointLinesList.pointName:
+    linesList := pointLinesList.pointName;
     n := 0;
     no := 0;
     maxDist := 0;
@@ -1615,6 +1616,10 @@ boolean omitLine[];
             fi;
             );
     fi;
+else:
+    labelImage := image();
+    linesImage := image();
+fi;
     image(
         draw labelImage;
         % this thing is intended to make the overall picture symmetrical
@@ -2461,6 +2466,10 @@ else:
         setAttribute("angle", "Standalone", str @#, 0);
         setAttribute("angle", "Synonym", str @#, str @#);
 fi;
+enddef;
+
+vardef byConsiderAngleRight(suffix angleName) =
+    setAttribute("angle", "ArcType", str angleName, 1);
 enddef;
 
 vardef byConstructAngleArc (suffix a, b, c)(expr s) =
