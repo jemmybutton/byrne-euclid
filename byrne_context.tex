@@ -2284,9 +2284,9 @@ byAngleMacroName[3] := "byAngleMArcs";
 vardef byAngleMArcs (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p;
     path p;
-    p := angleArc scaled ((u*angleScale) - lineWidthThin);
+    p := angleArc scaled ((angleSize*angleScale) - lineWidthThin);
     image(
-        for i := 1 step -1/floor((u*angleScale)/2mm) until (2mm/(u*angleScale)):
+        for i := 1 step -1/floor((angleSize*angleScale)/2mm) until (2mm/(angleSize*angleScale)):
             draw (p scaled i) withpen pencircle scaled lineWidthThin withcolor angleColor;
         endfor;
     )
@@ -7666,9 +7666,9 @@ byAngleMacroName[3] := "byAngleMSectors";
 vardef byAngleMSectors (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p;
     path p[];
-    p1 := (subpath(0, arctime (1/3arclength(angleArc)) of angleArc) of angleArc) scaled (u*angleScale);
-    p2 := (subpath(arctime (1/3arclength(angleArc)) of angleArc, arctime(2/3arclength(angleArc)) of angleArc) of angleArc) scaled (u*angleScale);
-    p3 := (subpath(arctime (2/3arclength(angleArc)) of angleArc, length(angleArc)) of angleArc) scaled (u*angleScale);
+    p1 := (subpath(0, arctime (1/3arclength(angleArc)) of angleArc) of angleArc) scaled (angleSize*angleScale);
+    p2 := (subpath(arctime (1/3arclength(angleArc)) of angleArc, arctime(2/3arclength(angleArc)) of angleArc) of angleArc) scaled (angleSize*angleScale);
+    p3 := (subpath(arctime (2/3arclength(angleArc)) of angleArc, length(angleArc)) of angleArc) scaled (angleSize*angleScale);
     image(
         fill ((0, 0)--p1--cycle) withcolor angleOptionalColors[0];
         fill ((0, 0)--p2--cycle) withcolor angleColor;
@@ -9334,7 +9334,7 @@ $\therefore$ Equal magnitudes, \&c.
 
 \startDefinition[title={Definition VII.}, reference=def:V.VII,ownnumber=7]
 \defineNewPicture{
-magnitudeScale := 2/9;
+magnitudeScale := 4/5;
 byMagnitudeSymbolDefine.i("circle", byred, 0);
 byMagnitudeSymbolDefine.ii("square", byyellow, 0);
 byMagnitudeSymbolDefine.iii("rhombus", byblue, 0);

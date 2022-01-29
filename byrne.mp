@@ -28,9 +28,11 @@ lineWidthHair := 1/2pt;
 pointMarkSize := 4pt;
 pointLinesSize := 1/2cm;
 defaultScaleFactor := 1;
+angleSize := 1cm;
 angleScale := 1;
 globalRotation := 0;
-magnitudeScale := 5/18;
+magnitudeSize := 5/18cm;
+magnitudeScale := 1;
 magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
 rayExtension := 1/3cm;
@@ -118,6 +120,36 @@ byDefaultAngleOptionalColor := white;
 
 linecap := butt;
 
+vardef typeOf (expr v) =
+    save determinedType;
+    string determinedType;
+    determinedType := "undefined";
+    if (boolean v):
+        determinedType := "boolean";
+    elseif (cmykcolor v):
+        determinedType := "cmykcolor";
+    elseif (color v):
+        determinedType := "color";
+    elseif (rgbcolor v):
+        determinedType := "rgbcolor";
+    elseif (numeric v):
+        determinedType := "numeric";
+    elseif (pair v):
+        determinedType := "pair";
+    elseif (path v):
+        determinedType := "path";
+    elseif (pen v):
+        determinedType := "pen";
+    elseif (picture v):
+        determinedType := "picture";
+    elseif (string v):
+        determinedType := "string";
+    elseif (transform v):
+        determinedType := "transform";
+    fi;
+    determinedType
+enddef;
+
 vardef sign (expr x) =
     if x > 0: 1 fi
     if x < 0: -1 fi
@@ -171,6 +203,25 @@ vardef selectOutlineColor@# =
     fi
 enddef;
 
+defineColor.oiBlack((0, 0, 0));
+defineColor.oiOrange((0.9,0.6,0));
+defineColor.oiSkyBlue((0.35,0.7,0.9));
+defineColor.oiGreen((0,0.6,0.5));
+defineColor.oiYellow((0.95,0.9,0.25));
+defineColor.oiBlue((0,0.45,0.7));
+defineColor.oiVermillion((0.8,0.4,0));
+defineColor.oiPurple((0.8,0.6,0.7));
+
+% CMYK variants
+%defineColor.oiBlack((0,0,0,1));
+%defineColor.oiOrange((0,0.5,1,0));
+%defineColor.oiSkyBlue((0.8,0,0,0));
+%defineColor.oiGreen((0.97,0,0.75,0));
+%defineColor.oiYellow((0.1,0.05,0.9,0));
+%defineColor.oiBlue((1,0.5,0,0));
+%defineColor.oiVermillion((0,0.8,1,0));
+%defineColor.oiPurple((0.1,0.7,0,0));
+
 vardef cycleval (expr v, l) =
     save rv;
     numeric rv;
@@ -184,36 +235,6 @@ vardef cycleval (expr v, l) =
         rv := 0;
     fi;
     rv
-enddef;
-
-vardef typeOf (expr v) =
-    save determinedType;
-    string determinedType;
-    determinedType := "undefined";
-    if (boolean v):
-        determinedType := "boolean";
-    elseif (cmykcolor v):
-        determinedType := "cmykcolor";
-    elseif (color v):
-        determinedType := "color";
-    elseif (rgbcolor v):
-        determinedType := "rgbcolor";
-    elseif (numeric v):
-        determinedType := "numeric";
-    elseif (pair v):
-        determinedType := "pair";
-    elseif (path v):
-        determinedType := "path";
-    elseif (pen v):
-        determinedType := "pen";
-    elseif (picture v):
-        determinedType := "picture";
-    elseif (string v):
-        determinedType := "string";
-    elseif (transform v):
-        determinedType := "transform";
-    fi;
-    determinedType
 enddef;
 
 vardef angleOpticalScale (expr v) =
@@ -2493,8 +2514,8 @@ vardef byConstructAngleArc (suffix a, b, c)(expr s) =
                 getAttribute("point", "XYZ", str c)
                 );
         fi;
-        cutTime1 := xpart((p0 scaled cm) intersectiontimes ((0, 0)--10[(0, 0), a - b]));
-        cutTime2 := xpart((p0 scaled cm) intersectiontimes ((0, 0)--10[(0, 0), c - b]));
+        cutTime1 := xpart((p0 scaled angleSize) intersectiontimes ((0, 0)--(unitvector(a - b) scaled 2angleSize)));
+        cutTime2 := xpart((p0 scaled angleSize) intersectiontimes ((0, 0)--(unitvector(c - b) scaled 2angleSize)));
         p1 := subpath (cutTime1, cutTime2) of p0;
         p2 := subpath (cutTime1 - length(p0), cutTime2) of p0;
         p3 := subpath (cutTime1 + length(p0), cutTime2) of p0;
@@ -2610,8 +2631,8 @@ vardef byNamedAngle (text anglesList) =
                     draw byAngleMWhite(p, 0, 0);
                 fi;
                 if solidAngleMode and (textLabels and autoLabelingMode):
-                    draw (p scaled (1/3angleScale*cm))--(0,0)--cycle withcolor white;
-                    fill (p scaled (1/3angleScale*cm))--(0,0)--cycle withcolor white;
+                    draw (p scaled (1/3angleScale*angleSize))--(0,0)--cycle withcolor white;
+                    fill (p scaled (1/3angleScale*angleSize))--(0,0)--cycle withcolor white;
                 fi;
             );
             draw (q shifted (scantokens(getAttribute("angle", "BName", str aN)) scaled scaleFactor)) rotated globalRotation;
@@ -2674,7 +2695,7 @@ byAngleMacroName[2] := "byAngleMDashedLine";
 vardef byAngleMWhite (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p;
     path p;
-    p := angleArc scaled ((angleScale*cm) - lineWidthThin);
+    p := angleArc scaled ((angleScale*angleSize) - lineWidthThin);
     image(
         fill ((0, 0)--p--cycle) withcolor white;
         draw p withpen pencircle scaled lineWidthThin withcolor black;
@@ -2684,7 +2705,7 @@ enddef;
 vardef byAngleMSolid (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p;
     path p;
-    p := angleArc scaled (angleScale*cm);
+    p := angleArc scaled (angleScale*angleSize);
     image(
         fill ((0, 0)--p--cycle) withcolor angleColor;
     )
@@ -2694,9 +2715,9 @@ vardef byAngleMLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p, rv;
     path p[];
     picture rv;
-    p0 := angleArc scaled ((angleScale*cm) - lineWidth);
+    p0 := angleArc scaled ((angleScale*angleSize) - lineWidth);
     p1 := (0, 0)--p0--cycle;
-    p2 := (0, 0)--(angleArc scaled (angleScale*cm))--cycle;
+    p2 := (0, 0)--(angleArc scaled (angleScale*angleSize))--cycle;
     rv := image(
         if (angleOptionalColors[0] <> bytransparent):
             fill p2 withcolor angleOptionalColors[0];
@@ -2710,7 +2731,7 @@ enddef;
 vardef byAngleMThinLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p;
     path p;
-    p := angleArc scaled ((angleScale*cm) - lineWidthThin);
+    p := angleArc scaled ((angleScale*angleSize) - lineWidthThin);
     image(
         if (angleOptionalColors[0] <> bytransparent):
             fill ((0, 0)--p--cycle) withcolor angleOptionalColors[0];
@@ -2722,7 +2743,7 @@ enddef;
 vardef byAngleMDashedLine (expr angleArc, angleColor)(suffix angleOptionalColors) =
     save p, q;
     path p;
-    p := angleArc scaled ((angleScale*cm) - lineWidth);
+    p := angleArc scaled ((angleScale*angleSize) - lineWidth);
     image(
         if (angleOptionalColors[0] <> bytransparent):
             fill (p--(0,0)--cycle) withcolor angleOptionalColors[0];
@@ -2869,7 +2890,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     fi;
                     if (angleType[i] <> 0):
                         p1 := (ac*scaleFactor);
-                        p2 := ((dir(angleDir[i]) scaled (1/2cm * angleScale))) shifted p1;
+                        p2 := ((dir(angleDir[i]) scaled (1/2angleSize * angleScale))) shifted p1;
                         defineColor.lineCol(black);
                         lineDash := 0;
                         lineTh := 1;
@@ -2911,9 +2932,9 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                     fi;
                     if (b > e): b := b - length(projectedCircle); fi;
                     if (angleSide[n[1]] > angleSide[n[2]]):
-                        compoundAngleArc := ((subpath (b, e) of projectedCircle) scaled (angleScale*cm)) shifted (ac*scaleFactor);
+                        compoundAngleArc := ((subpath (b, e) of projectedCircle) scaled (angleScale*angleSize)) shifted (ac*scaleFactor);
                     else:
-                        compoundAngleArc := ((subpath (b + 8, e) of projectedCircle) scaled (angleScale*cm)) shifted (ac*scaleFactor);
+                        compoundAngleArc := ((subpath (b + 8, e) of projectedCircle) scaled (angleScale*angleSize)) shifted (ac*scaleFactor);
                     fi;
                     compoundAnglePath := compoundAngleArc -- (ac*scaleFactor) -- cycle;
                 elseif (j <> 0):
@@ -2952,7 +2973,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                         endfor;
                     fi;
                     draw byTextLabel(pointLabel)(pointNameToUse,
-                        ac + (labelVector*1/2cm*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
+                        ac + (labelVector*1/2angleSize*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
                 endfor;
                 if not doNotLabelCenter:
                     draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
@@ -3272,10 +3293,10 @@ enddef;
 
 % Angles we often need
 pair pointN, pointE, pointS, pointW, pointO;
-pointN := (0, 2cm*angleScale);
-pointE := (2cm*angleScale, 0);
-pointS := (0, -2cm*angleScale);
-pointW := (-2cm*angleScale, 0);
+pointN := (0, 2angleSize*angleScale);
+pointE := (2angleSize*angleScale, 0);
+pointS := (0, -2angleSize*angleScale);
+pointW := (-2angleSize*angleScale, 0);
 pointO := (0, 0);
 
 def byDefineGenericRightAngles =
@@ -3461,42 +3482,42 @@ vardef byNamedMagnitudeSymbol (expr n, hor)(suffix magnitudeSymbolName) =
     p := (0, 0);
     magnitudeSizeCor := 1;
     if (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "circle"):
-        p := fullcircle scaled (magnitudeScale*cm);
+        p := fullcircle scaled (magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "semicircleUp"):
-        p := ((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (magnitudeScale*cm);
+        p := ((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "semicircleDown"):
-        p := (((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) yscaled -1) scaled (magnitudeScale*cm);
+        p := (((subpath (0, 4) of fullcircle) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) yscaled -1) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "sectorDown"):
-        p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (magnitudeScale*cm);
+        p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "sectorUp"):
-        p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (magnitudeScale*cm) yscaled -1;
+        p := ((subpath (0, 4) of fullcircle) -- (0, -1/2) -- cycle) scaled (magnitudeScale*magnitudeSize) yscaled -1;
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "wedgeUp"):
-        p := (((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) yscaled -1) scaled (magnitudeScale*cm);
+        p := (((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) yscaled -1) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "wedgeDown"):
-        p := ((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) scaled (magnitudeScale*cm);
+        p := ((1/2, 0) -- (1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (0, -1/2) -- cycle) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "square"):
-        p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (magnitudeScale*cm);
+        p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, -1/2) -- (1/2, -1/2) -- cycle) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "halfsquare"):
-        p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (magnitudeScale*cm);
+        p := ((1/2, 1/2) -- (-1/2, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "rhombus"):
-        p := ((0, 1/2) -- (-1/2, 0) -- (0, -1/2) -- (1/2, 0) -- cycle) scaled (magnitudeScale*cm);
+        p := ((0, 1/2) -- (-1/2, 0) -- (0, -1/2) -- (1/2, 0) -- cycle) scaled (magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "halfrhombusUp"):
-        p := ((0, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (magnitudeScale*cm);
+        p := ((0, 1/2) -- (-1/2, 0) -- (1/2, 0) -- cycle) scaled (magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniTriangleUp"):
-        p := ((-1/4, -1/4) -- (1/4, -1/4)  -- (0, 1/4) -- cycle) scaled (magnitudeScale*cm);
+        p := ((-1/4, -1/4) -- (1/4, -1/4)  -- (0, 1/4) -- cycle) scaled (magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniTriangleDown"):
-        p := ((-1/4, 1/4) -- (1/4, 1/4)  -- (0, -1/4) -- cycle) scaled (magnitudeScale*cm);
+        p := ((-1/4, 1/4) -- (1/4, 1/4)  -- (0, -1/4) -- cycle) scaled (magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniSquare"):
-        p := ((-1/4, -1/4) -- (1/4, -1/4) -- (1/4, 1/4) -- (-1/4, 1/4) -- cycle) scaled (magnitudeScale*cm);
+        p := ((-1/4, -1/4) -- (1/4, -1/4) -- (1/4, 1/4) -- (-1/4, 1/4) -- cycle) scaled (magnitudeScale*magnitudeSize);
     elseif (getAttribute("magnitude", "Shape", str magnitudeSymbolName) = "miniCircle"):
-        p := fullcircle scaled (1/2magnitudeScale*cm);
+        p := fullcircle scaled (1/2magnitudeScale*magnitudeSize);
         magnitudeSizeCor := 8/7;
     fi;
     if (hor):
