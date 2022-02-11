@@ -2504,7 +2504,7 @@ vardef byConstructAngleArc (suffix a, b, c)(expr s) =
         d := (unitvector(a-c) rotated 90);
     fi;
     if (s = 0):
-        p0 := fullcircle;
+        p0 := fullcircle rotated -angle(a-b);
         if (attributeExists("point", "XYZ", str a)
             and attributeExists("point", "XYZ", str b)
             and attributeExists("point", "XYZ", str c)):
@@ -3299,14 +3299,20 @@ pointS := (0, -2angleSize*angleScale);
 pointW := (-2angleSize*angleScale, 0);
 pointO := (0, 0);
 
-def byDefineGenericRightAngles =
+vardef byDefineGenericRightAngles(expr angleInsteadOfArc) =
     byAngleDefine.rightAngleNE (pointN, pointO, pointE)(black, 1);
     byAngleDefine.rightAngleES (pointE, pointO, pointS)(black, 1);
-    byAngleDefine.rightAngleSE (pointS, pointO, pointW)(black, 1);
+    byAngleDefine.rightAngleSW (pointS, pointO, pointW)(black, 1);
     byAngleDefine.rightAngleWN (pointW, pointO, pointN)(black, 1);
+    if (angleInsteadOfArc):
+        byConsiderAngleRight(rightAngleNE);
+        byConsiderAngleRight(rightAngleES);
+        byConsiderAngleRight(rightAngleSW);
+        byConsiderAngleRight(rightAngleWN);
+    fi;
 enddef;
 
-byDefineGenericRightAngles;
+byDefineGenericRightAngles(false);
 
 %
 % Arrows
