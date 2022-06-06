@@ -22,8 +22,8 @@
 \input preamble.tex
 \input preamble_be.tex
 
-% to turn text labels on uncomment next line
- % \def\mpPre{textLabels := true;}
+% in this version text labels are turned on
+ \def\mpPre{textLabels := true;}
 
 \starttext
 
@@ -114,7 +114,7 @@ draw byLabelsOnPolygon(A, J, C)(2, 1);
 {\tfa github.com/jemmybutton}
 \vskip 0.25\baselineskip
 
-{\tfb 2022 ed.\,0.8a}
+{\tfb 2022 ed.\,0.8a-L}
 \vskip \baselineskip
 
 \symbol[cc][cc] \symbol[cc][by] \symbol[cc][sa]
@@ -210,7 +210,6 @@ In order to give a better idea of this system, and of advantages gained by its a
 \item $\drawAngle{B} > \drawAngle{A} \mbox{ or } > \drawAngle{C}$. \\ The yellow angle is greater than either the red or blue angle.
 \item $\drawAngle{A} \mbox{ or } \drawAngle{C} < \drawAngle{B}$. \\ Either the red or blue angle is less that the yellow angle.
 \item $\drawAngle{B} - \drawAngle{C} = \drawAngle{A}$. \\ In other terms, the yellow angle made less be the blue angle equal red angle. %\mbox{ minus }
-\pagebreak
 \item $\drawUnitLine{CA}^2 = \drawUnitLine{AB}^2 + \drawUnitLine{BC}^2$. \\ That is, the square of the yellow line is equal to the sum of the squares of the blue and red lines.
 \stopitemize
 
@@ -477,7 +476,7 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 }
 \startDefinitionOnlyNumber[reference=def:I.IX]
 \startalignment[last]
-\drawCurrentPictureInMargin[inside] A plane rectilinear angle is the inclination of two straight lines to one another, which meet together, but are not in the same straight line.
+\drawCurrentPictureInMargin[insideshift] A plane rectilinear angle is the inclination of two straight lines to one another, which meet together, but are not in the same straight line.
 \stopalignment
 \stopDefinitionOnlyNumber
 
@@ -877,6 +876,8 @@ Let it be granted that a circle may be described with any centre at any distance
 \stopPostulateOnlyNumber
 \stopsupersection
 
+\vfill\pagebreak
+
 \startsupersection[title={Axioms}]
 
 \startAxiomOnlyNumber[reference=ax:I.I]
@@ -1195,7 +1196,7 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 		draw byLabelsOnPolygon(A, C, B)(0, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{O}{n}{a given finite straight line (\drawUnitLine{AB}) to describe an equilateral triangle.}
+\problemNP{O}{n}{a given finite straight line \drawUnitLine{AB} to describe an equilateral triangle.}
 
 \startCenterAlign
 Describe \offsetPicture{15pt}{0pt}{\drawFromCurrentPicture{
@@ -1240,7 +1241,7 @@ E := (D -- 10[D, B]) intersectionpoint P1;
 F := (D -- 10[D, A]) intersectionpoint P2;
 byLineDefine(A, B, byblack, 1, 0);
 byLineDefine(B, C, byblack, 0, 0);
-byLineDefine(B, D, byred, 0, 0);
+byLineDefine(B, D, byred, 1, 0);
 byLineDefine(D, A, byred, 0, 0); % improvement: change style of either BD or DA
 byLineDefine(B, E, byyellow, 0, 0);
 byLineDefine(A, F, byblue, 0, 0);
@@ -1254,11 +1255,11 @@ draw byLabelsOnCircle(C)(B);
 draw byLabelsOnCircle(E, F)(A);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point (\drawFromCurrentPicture[middle][pointA]{
+\problemNP{F}{rom}{a given point \drawFromCurrentPicture[middle][pointA]{
 startGlobalRotation(-lineAngle.DA);
 draw byNamedPointLines(A,"AB");
 stopGlobalRotation;
-}), to draw a straight line equal to a given straight line (\drawUnitLine{BC}).}
+}, to draw a straight line equal to a given straight line \drawUnitLine{BC}.}
 
 \startCenterAlign
 Draw \drawUnitLine{AB} \inpost[post:I.I], describe \drawFromCurrentPicture[bottom]{
@@ -1325,7 +1326,7 @@ draw byLabelPoint(B, angle(B-A) + 45, 2);
 draw byLabelsOnPolygon(E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{the greater (\drawUnitLine{AB,BC}) of two given straight lines, to cut off a part equal to the less (\drawUnitLine{EF}).}
+\problemNP{F}{rom}{the greater \drawUnitLine{AB,BC} of two given straight lines, to cut off a part equal to the less \drawUnitLine{EF}.}
 
 \startCenterAlign
 Draw $\drawUnitLine{AD} = \drawUnitLine{EF}$ \inprop[prop:I.II];\\
@@ -1377,7 +1378,7 @@ draw byLabelsOnPolygon(F, E, D)(0, 0);
 draw byLabelsOnPolygon(B, A, C)(0, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, (\drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD}) and the angles (\drawAngle{A} and \drawAngle{D}) contained by those equal sides also equal; then their bases or their sides (\drawUnitLine{BC} and \drawUnitLine{EF}) are also equal: and the remaining angles opposite to equal sides are respectively equal ($\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$): and the triangles are equal in every respect.}
+\problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, \drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD} and the angles \drawAngle{A} and \drawAngle{D} contained by those equal sides also equal; then their bases or their sides \drawUnitLine{BC} and \drawUnitLine{EF} are also equal: and the remaining angles opposite to equal sides are respectively equal $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$: and the triangles are equal in every respect.}
 
 Let two triangles be conceived, to be so placed, that the vertex of the one of the equal angles, \drawAngle{A} or \drawAngle{D}; shall fall upon that of the other, and \drawUnitLine{AB} to coincide with \drawUnitLine{DE}, then will \drawUnitLine{CA} coincide with \drawUnitLine{FD} if applied: consequently \drawUnitLine{BC} will coincide with \drawUnitLine{EF}, or two straight lines will enclose a space, which is impossible \inax[ax:I.X], therefore $\drawUnitLine{BC} = \drawUnitLine{EF}$, $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$, and as the triangles \drawLine{CA,BC,AB} and \drawLine{FD,EF,DE} coincide, when applied, they are equal in every respect.
 
@@ -1468,7 +1469,7 @@ draw byNamedLineSeq(0)(CA,CD,BD,AB);
 draw byLabelsOnPolygon(A, C, D, B)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{any triangle (\drawLine[bottom][triangleABD]{CA,CD,BD,AB}) if two angles (\drawAngle{A} and \drawAngle{B}) are equal, the sides (\drawUnitLine{CA,CD} and \drawUnitLine{BD}) opposite to them are also equal.}
+\problemNP{I}{n}{any triangle \drawLine[bottom][triangleABD]{CA,CD,BD,AB} if two angles \drawAngle{A} and \drawAngle{B} are equal, the sides \drawUnitLine{CA,CD} and \drawUnitLine{BD} opposite to them are also equal.}
 
 For if the sides be not equal, let one of them \drawUnitLine{CA,CD} be greater than the other \drawUnitLine{BD}, and from it to cut off $\drawUnitLine{CA} = \drawUnitLine{BD}$ \inprop[prop:I.III], draw \drawUnitLine{BC}.
 
@@ -1529,7 +1530,7 @@ draw byLabelsOnPolygon(A, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, A)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{O}{n}{the same base (\drawUnitLine{AB}), and on the same side of it there cannot be two triangles having their conterminous sides (\drawUnitLine{CA} and \drawUnitLine{DA}, \drawUnitLine{BC} and \drawUnitLine{BD}) at both extremities of the base, equal to each other.}
+\problemNP{O}{n}{the same base \drawUnitLine{AB}, and on the same side of it there cannot be two triangles having their conterminous sides \drawUnitLine{CA} and \drawUnitLine{DA}, \drawUnitLine{BC} and \drawUnitLine{BD} at both extremities of the base, equal to each other.}
 
 When two triangles stand on the same base, and on the same side of it, the vertex of the one shall either fall outside of the other triangle, or within it; or, lastly, on one of its sides.
 
@@ -1563,7 +1564,7 @@ D := A shifted d;
 E := B shifted d;
 F := C shifted d;
 byAngleDefine(F, D, E, byblack, 0);
-byAngleDefine(C, A, B, byblack, 0);
+byAngleDefine(C, A, B, byyellow, 0);
 draw byNamedAngleResized();
 byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, byblack, 0, 0);
@@ -1577,21 +1578,7 @@ draw byLabelsOnPolygon(C, B, A)(0, 0);
 draw byLabelsOnPolygon(F, E, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other ($\drawUnitLine{CA} = \drawUnitLine{FD}$ and $\drawUnitLine{AB} = \drawUnitLine{DE}$) and also their bases ($\drawUnitLine{BC} = \drawUnitLine{EF}$), equal; then the angles
-(\drawFromCurrentPicture{
-startAutoLabeling;
-startGlobalRotation(-getAttribute("angle","Direction","A"));
-draw byNamedAngleWithDummySides(A);
-stopGlobalRotation;
-stopAutoLabeling;
-} and
-\drawFromCurrentPicture{
-startAutoLabeling;
-startGlobalRotation(-getAttribute("angle","Direction","D"));
-draw byNamedAngleWithDummySides(D);
-stopGlobalRotation;
-stopAutoLabeling;
-}) contained by their equal sides are also equal.}
+\problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other $\drawUnitLine{CA} = \drawUnitLine{FD}$ and $\drawUnitLine{AB} = \drawUnitLine{DE}$ and also their bases $\drawUnitLine{BC} = \drawUnitLine{EF}$, equal; then the angles \drawAngle{A} and \drawAngle{D} contained by their equal sides are also equal.}
 
 If the equal bases \drawUnitLine{BC} and \drawUnitLine{EF} be conceived to be placed one upon the other, so that the triangles shall lie at the same side of them, and that the equal sides \drawUnitLine{AB} and \drawUnitLine{DE}, \drawUnitLine{CA} and \drawUnitLine{FD} be conterminous, the vertex of the one must fall on the vertex of the other; for to suppose them not coincident would contradict the last proposition.
 
@@ -1626,7 +1613,7 @@ draw byNamedLineSeq(0)(BE,AB,CA,CF);
 draw byLabelsOnPolygon(D, B, A, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{bisect a given rectilinear angle (\drawAngle{BAD,CAD}).}
+\problemNP{T}{o}{bisect a given rectilinear angle \drawAngle{BAD,CAD}.}
 
 \startCenterAlign
 Take $\drawUnitLine{AB} = \drawUnitLine{CA}$ \inprop[prop:I.III]
@@ -1704,10 +1691,10 @@ draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point (\drawPointL[middle][AD]{D}), in a given straight line (\drawUnitLine[3/2cm]{DB,CD}), to draw a perpendicular.}
+\problemNP{F}{rom}{a given point \drawPointL[middle][AD]{D}, in a given straight line \drawUnitLine[3/2cm]{DB,CD}, to draw a perpendicular.}
 
 \startCenterAlign
-Take any point (\drawPointL[middle][CA]{C}) in the given line,\\
+Take any point \drawPointL[middle][CA]{C} in the given line,\\
 cut off $\drawUnitLine{DB} = \drawUnitLine{CD}$ \inprop[prop:I.III],\\
 construct \drawLine[bottom]{AB,CA,CD,DB} \inprop[prop:I.I],\\
 draw \drawUnitLine{AD} and it shall be perpendicular to the given line.
@@ -1758,7 +1745,7 @@ draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line (\drawUnitLine[1.2cm]{DB,CD}) from a~given point (\drawPointL{A}) without.}
+\problemNP{T}{o}{draw a straight line perpendicular to a given indefinite straight line \drawUnitLine[1.2cm]{DB,CD} from a~given point \drawPointL{A} without.}
 
 \startCenterAlign
 With the given point \drawPointL{A} as centre, at one side of the line, and any distance \drawUnitLine{DB} capable of extending to the other side, describe \drawArc{O}. % improvement: the distance mentioned here seems not to be in the original drawing, it should either be drawn, or not be referenced graphically as DB
@@ -1799,7 +1786,7 @@ draw byLabelLineEnd(E, D, 0);
 draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{W}{hen}{a straight line (\drawUnitLine{ED}) standing upon another straight line (\drawUnitLine{BC}) makes angles with it; they are either two right angles or together equal to two right angles.}
+\problemNP{W}{hen}{a straight line \drawUnitLine{ED} standing upon another straight line \drawUnitLine{BC} makes angles with it; they are either two right angles or together equal to two right angles.}
 
 \startCenterAlign
 If \drawUnitLine{ED} be $\perp$ to \drawUnitLine{BC} then,\\
@@ -1839,7 +1826,7 @@ draw byLabelsOnPolygon(C, B, noPoint)(4, 0);
 draw byLabelLineEnd(A, D, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two straight lines (\drawUnitLine{BD} and \drawUnitLine{DC}), meeting a third straight line (\drawUnitLine{AD}), at the same point, and at opposite sides of it, make with it adjacent angles (\offsetPicture{0pt}{15pt}{\drawAngle{BDA}} and \drawAngle{CDA}) equal to two right angles; these straight lines lie in one continuous straight line.}
+\problemNP{I}{f}{two straight lines \drawUnitLine{BD} and \drawUnitLine{DC}, meeting a third straight line \drawUnitLine{AD}, at the same point, and at opposite sides of it, make with it adjacent angles \offsetPicture{0pt}{15pt}{\drawAngle{BDA}} and \drawAngle{CDA} equal to two right angles; these straight lines lie in one continuous straight line.}
 
 \startCenterAlign
 For, if possible let \drawUnitLine{ED}, and not \drawUnitLine{DC},\\
@@ -1876,7 +1863,7 @@ draw byLabelPoint(B, lineAngle.AB + 90, 1);
 draw byLabelPoint(D, lineAngle.CD - 90, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two right lines (\drawUnitLine{AB} and \drawUnitLine{CD}) intersect one another, the vertical angles \drawAngle{BEC} and \drawAngle{AED}, \drawAngle{CEA} and \drawAngle{DEB} are equal.}
+\problemNP{I}{f}{two right lines \drawUnitLine{AB} and \drawUnitLine{CD} intersect one another, the vertical angles \drawAngle{BEC} and \drawAngle{AED}, \drawAngle{CEA} and \drawAngle{DEB} are equal.}
 
 \startCenterAlign
 $\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ % Here and in the next line should be a link to prop I.XIII
@@ -1896,7 +1883,7 @@ $\drawAngle{CEA} = \drawAngle{DEB}$.
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G;
 A := (0, 0);
-B := A shifted (u, 7/2u);
+B := A shifted (u, 3u);
 C := A shifted (3u, 0);
 D := B shifted (3u, 0);
 E = whatever[A, D] = whatever[B, C];
@@ -1925,11 +1912,11 @@ draw byLabelsOnPolygon(F, A, B, E, D, C)(2, 0);
 draw byLabelsOnPolygon(F, C, G, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a side of a triangle (\drawLine[bottom]{BE,EC,AC,AB}) is produced, the external angle (\drawFromCurrentPicture[middle][anglesECDpDCF]{
+\problemNP{I}{f}{a side of a triangle \drawLine[bottom]{BE,EC,AC,AB} is produced, the external angle \drawFromCurrentPicture[middle][anglesECDpDCF]{
 startAutoLabeling;
 draw byNamedAngleSides(ECD,DCF)(CF);
 stopAutoLabeling;
-}) is greater than either of the internal remote angles (\drawAngle{B} or \drawAngle{A}).
+} is greater than either of the internal remote angles \drawAngle{B} or \drawAngle{A}.
 }
 
 \startCenterAlign
@@ -2043,7 +2030,7 @@ draw byNamedLineSeq(0)(CA,BC,AB);
 draw byLabelsOnPolygon(B, A, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less.}
+\problemNP[5]{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less.}
 
 \startCenterAlign
 If \drawUnitLine{BC} be not greater than \drawUnitLine{CA} then must\\
@@ -2084,7 +2071,7 @@ draw byNamedLineSeq(0)(DA,CD,BC,AB);
 draw byLabelsOnPolygon(D, C, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{ny}{two sides \drawUnitLine{DA} and \drawUnitLine{BD} of a triangle \drawLine[bottom]{DA,BD,AB} taken together are greater than the third side (\drawUnitLine{AB}).}
+\problemNP{A}{ny}{two sides \drawUnitLine{DA} and \drawUnitLine{BD} of a triangle \drawLine[bottom]{DA,BD,AB} taken together are greater than the third side \drawUnitLine{AB}.}
 
 \startCenterAlign
 Produce \drawUnitLine{DA}, and\\
@@ -2130,7 +2117,7 @@ draw byLabelsOnPolygon(A, C, E, B)(0, 0);
 draw byLabelsOnPolygon(A, D, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{I}{f}{from any point (\drawPointL[middle][DE]{D}) within a triangle \drawLine[bottom]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side (\drawSizedLine{AB}), these lines must be together less than the other two sides, but must contain a greater angle.}
+\problemNP[2]{I}{f}{from any point \drawPointL[middle][DE]{D} within a triangle \drawLine[middle]{CA,EC,BE,AB} straight lines be drawn to the extremities of one side \drawSizedLine{AB}, these lines must be together less than the other two sides, but must contain a greater angle.}
 
 \startCenterAlign
 Produce \drawSizedLine{AD},\\
@@ -2263,7 +2250,7 @@ draw byLabelsOnPolygon(D, B, A, C, E)(2, 0);
 draw byLabelsOnPolygon(noPoint,J, G, F, H, G)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{t}{a given point (\drawPointL{F}) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
+\problemNP{A}{t}{a given point \drawPointL{F} in a given straight line \drawUnitLine{FG,GJ}, to make an angle equal to a given rectilinear angle \drawAngle{A}.}
 
 Draw \drawUnitLine{BC} between any two points in the legs of the given angle.
 
@@ -2323,23 +2310,23 @@ draw byLabelsOnPolygon(D, A, B, C)(0, 0);
 draw byLabelsOnPolygon(G, E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other (\drawUnitLine{AB} to \drawUnitLine{EF} and \drawUnitLine{AD} to \drawUnitLine{GE}), and if one of the angles
-(\drawFromCurrentPicture[bottom]{
+\problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other \drawUnitLine{AB} to \drawUnitLine{EF} and \drawUnitLine{AD} to \drawUnitLine{GE}, and if one of the angles
+\drawFromCurrentPicture[middle]{
 startAutoLabeling;
 draw byNamedAngleSides(BAC,CAD)(AB,CA,AD);
 stopAutoLabeling;
-})
+}
 contained by the equal sides be greater than the other
-(\drawFromCurrentPicture[bottom][angleFEG]{
+\drawFromCurrentPicture[middle][angleFEG]{
 startAutoLabeling;
 draw byNamedAngleSides(FEG)(EF, GE);
 stopAutoLabeling;
-}),
-the side (\drawUnitLine{DB}) which is opposite to the greater angle is greater than the side (\drawUnitLine{FG}) which is opposite to the less angle.
+},
+the side \drawUnitLine{DB} which is opposite to the greater angle is greater than the side \drawUnitLine{FG} which is opposite to the less angle.
 }
 
 \startCenterAlign
-Make $\drawFromCurrentPicture[bottom][angleBAC]{
+Make $\drawFromCurrentPicture[middle][angleBAC]{
 startAutoLabeling;
 draw byNamedAngleSides(BAC)(AB, CA);
 stopAutoLabeling;
@@ -2387,7 +2374,7 @@ draw byLabelsOnPolygon(A, B, C)(0, 0);
 draw byLabelsOnPolygon(D, E, F)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles have two sides (\drawUnitLine[0.7cm]{AB} and \drawUnitLine[0.7cm]{CA}) of the one respectively equal to two sides (\drawUnitLine{DE} and \drawUnitLine{FD}) of the other, but their bases unequal, the angle subtended by the greater base (\drawUnitLine{BC}) of the one, must be greater than the angle subtended by the less base (\drawUnitLine{EF}) of the other.}
+\problemNP{I}{f}{two triangles have two sides \drawUnitLine[0.7cm]{AB} and \drawUnitLine[0.7cm]{CA} of the one respectively equal to two sides \drawUnitLine{DE} and \drawUnitLine{FD} of the other, but their bases unequal, the angle subtended by the greater base \drawUnitLine{BC} of the one, must be greater than the angle subtended by the less base \drawUnitLine{EF} of the other.}
 
 \startCenterAlign
 $\drawAngle{A} =\mbox{, } > \mbox{ or } < \drawAngle{D}$
@@ -2408,7 +2395,7 @@ $\therefore \drawAngle{A} > \drawAngle{D}$.
 \stopProposition
 
 \startProposition[title={Prop XXVI. Theor.}, reference=prop:I.XXVI]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := A shifted (3u, 0);
@@ -2440,7 +2427,7 @@ draw byNamedLineSeq(0)(GD,FG,EF,DE);
 draw byLabelsOnPolygon(C, B, A)(0, 0);
 draw byLabelsOnPolygon(D, G, F, E)(0, 0);
 }
-\problemNP{I}{f}{two triangles have two angles of the one respectively equal to two angles of the other ($\drawAngle{A} = \drawAngle{D}$ and $\drawAngle{B} = \drawAngle{GED,FEG}$), and a side of the one equal to a side of the other similarly placed with respect to the equal angles, the remaining sides and angles are respectively equal to one another.}
+\problemNP[3]{I}{f}{two triangles have two angles of the one respectively equal to two angles of the other $\drawAngle{A} = \drawAngle{D}$ and $\drawAngle{B} = \drawAngle{GED,FEG}$, and a side of the one equal to a side of the other similarly placed with respect to the equal angles, the remaining sides and angles are respectively equal to one another.}
 \drawCurrentPictureInMargin
 \startsubproposition[title={Case I.}]
 \startCenterAlign
@@ -2448,14 +2435,12 @@ Let \drawUnitLine{AB} and \drawUnitLine{DE} which lie between the equal angles b
 then $\drawUnitLine{CA} = \drawUnitLine{GD,FG}$.
 
 For if it be possible, let one of them \drawUnitLine{GD,FG} be greater than the other;\\
-make $\drawUnitLine{CA} = \drawUnitLine{GD}$, draw \drawUnitLine{EG}.
-
+make $\drawUnitLine{CA} = \drawUnitLine{GD}$, draw \drawUnitLine{EG}.\\
 In \drawLine[bottom]{CA,BC,AB} and
 \drawLine[bottom]{GD,EG,DE} we have\\
 $\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
 $\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
-but $\drawAngle{B} = \drawAngle{GED,FEG}$ (\hypstr)
-
+but $\drawAngle{B} = \drawAngle{GED,FEG}$ (\hypstr)\\
 and therefore $\drawAngle{GED} = \drawAngle{GED,FEG}$, which is absurd;\\
 hence neither of the sides \drawUnitLine{CA} and \drawUnitLine{GD,FG} is greater than the other;\\
 and $\therefore$ they are equal;
@@ -2464,9 +2449,7 @@ $\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$, and $\drawAngle{C} = \drawAn
 \stopCenterAlign
 \stopsubproposition
 
-\vfill\pagebreak
-
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, d;
 d := (0, -4u);
 A := (0, 0);
@@ -2500,8 +2483,7 @@ draw byLabelsOnPolygon(D, F, E, G)(0, 0);
 \startsubproposition[title={Case II.}]
 \startCenterAlign
 Again, let $\drawUnitLine{CA} = \drawUnitLine{FD}$, which lie opposite the equal angles \drawAngle{B} and \drawAngle{E}.\\
-If it be possible, let $\drawUnitLine{DG,GE} > \drawUnitLine{AB}$, then take $\drawUnitLine{DG} = \drawUnitLine{AB}$, draw \drawUnitLine{FG}.
-
+If it be possible, let $\drawUnitLine{DG,GE} > \drawUnitLine{AB}$, then take $\drawUnitLine{DG} = \drawUnitLine{AB}$, draw \drawUnitLine{FG}.\\
 Then in \drawLine[bottom]{CA,BC,AB} and \drawLine[bottom]{FD,FG,DG} we have $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ and $\drawAngle{A} = \drawAngle{D}$,
 
 $\therefore \drawAngle{B} = \drawAngle{G}$ \inprop[prop:I.IV]\\
@@ -2545,7 +2527,7 @@ draw byLabelsOnPolygon(G, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line (\drawUnitLine{GH}) meeting two other straight lines (\drawUnitLine{CD} and \drawUnitLine{AB}) makes with them the alternate angles (\drawAngle{CFG} and \drawAngle{HEB}; \drawAngle{GFD} and \drawAngle{AEH}) equal, these two straight lines are parallel.}
+\problemNP[3]{I}{f}{a straight line \drawUnitLine{GH} meeting two other straight lines \drawUnitLine{CD} and \drawUnitLine{AB} makes with them the alternate angles \drawAngle{CFG} and \drawAngle{HEB}; \drawAngle{GFD} and \drawAngle{AEH} equal, these two straight lines are parallel.}
 
 If \drawUnitLine{CD} be not parallel to \drawUnitLine{AB} they shall meet when produced.
 
@@ -2581,7 +2563,7 @@ draw byLabelsOnPolygon(G, E, B)(2, 0);
 draw byLabelsOnPolygon(H, F, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{a straight line (\drawUnitLine{GH}), cutting two other straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFG}$ or $\drawAngle{BEG} = \drawAngle{GFD}$), or if it makes the two internal angles at the same side (\drawAngle{GFD} and \drawAngle{HEB}, or \drawAngle{CFG} and \drawAngle{AEH}) together equal to two right angles, those two straight lines are parallel.}
+\problemNP{I}{f}{a straight line \drawUnitLine{GH}, cutting two other straight lines \drawUnitLine{AB} and \drawUnitLine{CD}, makes the external equal to the internal and opposite angle, at the same side of the cutting line (namely $\drawAngle{GEA} = \drawAngle{CFG}$ or $\drawAngle{BEG} = \drawAngle{GFD}$), or if it makes the two internal angles at the same side \drawAngle{GFD} and \drawAngle{HEB}, or \drawAngle{CFG} and \drawAngle{AEH} together equal to two right angles, those two straight lines are parallel.}
 
 \startCenterAlign
 First, if $\drawAngle{GEA} = \drawAngle{CFG}$, then $\drawAngle{GEA} = \drawAngle{HEB}$ \inprop[prop:I.XV],\\
@@ -2632,7 +2614,7 @@ draw byLabelPoint(I, lineAngle.IE - 90, 1);
 draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{ straight}{line (\drawUnitLine{GH}) falling on two parallel straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), makes the alternate angles equal to one another; and also the external equal to the internal and opposite angle on the same side; and the two internal angles on the same side together equal to two right angles.}
+\problemNP{A}{ straight}{line \drawUnitLine{GH} falling on two parallel straight lines \drawUnitLine{AB} and \drawUnitLine{CD}, makes the alternate angles equal to one another; and also the external equal to the internal and opposite angle on the same side; and the two internal angles on the same side together equal to two right angles.}
 
 For if the alternate angles \drawAngle{IEA,HEI} and \drawAngle{GFD} be not equal, draw \drawUnitLine{IE}, making $\drawAngle{HEI} = \drawAngle{GFD}$ \inprop[prop:I.XXIII].
 
@@ -2672,7 +2654,7 @@ draw byLabelsOnPolygon(J, I, C)(2, 0);
 draw byLabelsOnPolygon(J, H, E)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{S}{traight}{lines (\drawUnitLine{AB} and \drawUnitLine{EF}) which are parallel to the same straight line (\drawUnitLine{CD}), are parallel to one another.}
+\problemNP{S}{traight}{lines \drawUnitLine{AB} and \drawUnitLine{EF} which are parallel to the same straight line \drawUnitLine{CD}, are parallel to one another.}
 
 \startCenterAlign
 Let \drawUnitLine{JK} intersect $\left\{\vcenter{\nointerlineskip\hbox{\drawUnitLine{AB}}\nointerlineskip\hbox{\drawUnitLine{CD}}\nointerlineskip\hbox{\drawUnitLine{EF}}}\right\}$;
@@ -2708,7 +2690,7 @@ draw byLine(F, D, byblue, 0, 0);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given point \drawPointL[middle][EB]{E} to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
+\problemNP{F}{rom}{a given point \drawPointL[middle][EB]{E} to draw a straight line parallel to a given straight line \drawUnitLine{CF,FD}.}
 
 \startCenterAlign
 Draw \drawUnitLine{EF} from the point \drawPointL[middle][EB]{E} to any point  \drawPointL[middle][CF]{F} in \drawUnitLine{CF,FD},
@@ -2744,7 +2726,7 @@ draw byNamedLineSeq(0)(CA,noLine,AD,AB,BC);
 draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{f}{any side (\drawUnitLine{AB}) of a triangle be produced, the external angle (\drawAngle{DAE,EAC}) is equal to the sum of the two internal and opposite angles (\drawAngle{B} and \drawAngle{C}), and the three internal angles of any triangle taken together are equal to two right angles.}
+\problemNP[2]{I}{f}{any side \drawUnitLine{AB} of a triangle be produced, the external angle \drawAngle{DAE,EAC} is equal to the sum of the two internal and opposite angles \drawAngle{B} and \drawAngle{C}, and the three internal angles of any triangle taken together are equal to two right angles.}
 
 \startCenterAlign
 Through the point \drawPointL[middle][AD,AE]{A} draw\\
@@ -2784,7 +2766,7 @@ draw byNamedLineSeq(0)(AB,BD,CD,AC);
 draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{S}{traight}{lines (\drawUnitLine{AC} and \drawUnitLine{BD}) which join the adjacent extremities of two equal and parallel straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), are themselves equal and parallel.}
+\problemNP[5]{S}{traight}{lines \drawUnitLine{AC} and \drawUnitLine{BD} which join the adjacent extremities of two equal and parallel straight lines \drawUnitLine{AB} and \drawUnitLine{CD}, are themselves equal and parallel.}
 
 \startCenterAlign
 Draw \drawUnitLine{AD} the diagonal.
@@ -2826,7 +2808,7 @@ draw byNamedLineSeq(0)(AB,BD,CD,AC);
 draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{he}{opposite sides and angles of any parallelogram are equal, and the diagonal (\drawUnitLine{AD}) divides it into two equal parts.}
+\problemNP{T}{he}{opposite sides and angles of any parallelogram are equal, and the diagonal \drawUnitLine{AD} divides it into two equal parts.}
 
 \startCenterAlign
 Since $\left\{\eqalign{\drawAngle{BAD} &= \drawAngle{CDA}\cr\drawAngle{DAC} &= \drawAngle{ADB}\cr}\right\}$ \inprop[prop:I.XXIX]
@@ -2923,7 +2905,7 @@ $\therefore \drawPolygon{ABGC, CDG} = \drawPolygon{EFDG, CDG}$.
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, J, I, d[];
 numeric h;
-h := 3u;
+h := 5/2u;
 d1 := (3/2u, 0);
 d2 := (2/3u, -h);
 d3 := (-8/3u, -h);
@@ -2953,7 +2935,7 @@ draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 draw byLabelsOnPolygon(E, F, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{P}{arallelograms}{(\drawPolygon[bottom][polygonABDC]{ABIC, CDI}~and~\drawPolygon[bottom][polygonEFHG]{EFJ, JFHG}) on equal bases, and between the same parallels, are equal.}
+\problemNP{P}{arallelograms}{\drawPolygon[bottom][polygonABDC]{ABIC, CDI}~and~\drawPolygon[bottom][polygonEFHG]{EFJ, JFHG} on equal bases, and between the same parallels, are equal.}
 
 \startCenterAlign
 Draw \drawUnitLine{CE} and \drawUnitLine{DF}\\
@@ -2979,8 +2961,8 @@ $\therefore \polygonABDC = \polygonEFHG$ \inax[ax:I.I].
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, d[];
 d1 := (3/2u, 0);
-d2 := (1/2u, -3u);
-d3 := (-7/4u, -3u);
+d2 := (1/2u, -5/2u);
+d3 := (-7/4u, -5/2u);
 A := (0, 0);
 B := A shifted d1;
 C := A shifted d2;
@@ -3008,7 +2990,7 @@ draw byLabelsOnPolygon(F, D, C, A)(2, 0);
 \drawCurrentPictureInMargin
 \problemNP{T}{riangles}{
 \drawPolygon[bottom][polygonBCD]{BCG, CDG} and~\drawPolygon[bottom][polygonCDE]{DGE, CDG}
-on the same base (\drawUnitLine{CD}) and between the same parallels are equal.
+on the same base \drawUnitLine{CD} and between the same parallels are equal.
 }
 
 \startCenterAlign
@@ -3064,7 +3046,7 @@ draw byLabelsOnPolygon(A, B, E, F, noPoint)(0, 0);
 draw byLabelsOnPolygon(H, G, D, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{riangles}{(\drawPolygon[bottom][polygonBCD]{BCD} and \drawPolygon[bottom][polygonEGH]{EGH}) on equal bases and between the same parallels are equal.}
+\problemNP{T}{riangles}{\drawPolygon[bottom][polygonBCD]{BCD} and \drawPolygon[bottom][polygonEGH]{EGH} on equal bases and between the same parallels are equal.}
 
 \startCenterAlign
 $\left.\eqalign{\mbox{Draw } \drawUnitLine{AC} &\parallel \drawUnitLine{BD}\cr
@@ -3108,7 +3090,7 @@ draw byLabelsOnPolygon(A, F, G, noPoint)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{triangles
 \drawPolygon[bottom][polygonADC]{AEC, ECD} and~\drawPolygon[bottom][polygonBDC]{BED, ECD}
-on the same base (\drawUnitLine{CD}) and on the same side of it, are between the same parallels.}
+on the same base \drawUnitLine{CD} and on the same side of it, are between the same parallels.}
 
 \startCenterAlign
 If \drawUnitLine{AB}, which joins the vertices of the triangles, be not $\parallel \drawUnitLine{CD}$, draw $\drawUnitLine{AF} \parallel \drawUnitLine{CD}$ \inprop[prop:I.XXXI], meeting \drawUnitLine{CG}.
@@ -3157,7 +3139,7 @@ draw byLabelsOnPolygon(A, G, H, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{triangles
-(\drawFromCurrentPicture[bottom][polygonACD]{
+\drawFromCurrentPicture[bottom][polygonACD]{
 startAutoLabeling;
 draw byNamedPolygon (ACD);
 stopAutoLabeling;
@@ -3169,7 +3151,7 @@ startAutoLabeling;
 draw byNamedPolygon (BEF);
 stopAutoLabeling;
 draw byNamedLineFull(B, B, 1, 1, 0)(EF);
-}) on equal bases, and on the same side, are between the same parallels.}
+} on equal bases, and on the same side, are between the same parallels.}
 
 \startCenterAlign
 If \drawSizedLine{AB} which joins the vertices of triangles be not $\parallel \drawSizedLine{CD,DE,EF}$,\\
@@ -3216,7 +3198,7 @@ draw byLineFull(D, E, byblack, 0, 0)(A, C, 1, 1, 0);
 draw byLabelsOnPolygon(E, D, A, B, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{f}{a parallelogram
+\problemNP[2]{I}{f}{a parallelogram
 \drawPolygon[bottom][polygonABED]{ABFG,GFE,AGD,DEG}
 and a triangle
 \drawPolygon[bottom][polygonCED]{GFE,DEG,CFE}
@@ -3270,7 +3252,7 @@ draw byNamedAngleSidesFull(HIJ)();
 stopAutoLabeling;
 }
 \drawCurrentPictureWide
-\problemNP[3]{T}{o}{construct a parallelogram equal to a given triangle
+\problemNP[2]{T}{o}{construct a parallelogram equal to a given triangle
 \drawPolygon[bottom][polygonCDG]{DEF,CFE,ECG} and having an angle equal to a given rectilinear angle \drawAngle{I}.}
 
 \startCenterAlign
@@ -3389,7 +3371,7 @@ draw byNamedAngleSidesFull(MNO)();
 stopAutoLabeling;
 }
 \drawCurrentPictureInMargin
-\problemNP[4]{T}{o}{a given straight line (\drawUnitLine{EG}) to apply a parallelogram equal to a given triangle (\drawPolygon[middle][polygonJKL]{JKL}), and having an angle equal to a given rectilinear angle (\drawAngle{N}).}
+\problemNP[3]{T}{o}{a given straight line \drawUnitLine{EG} to apply a parallelogram equal to a given triangle \drawPolygon[middle][polygonJKL]{JKL}, and having an angle equal to a given rectilinear angle \drawAngle{N}.}
 
 \startCenterAlign
 Make $\drawPolygon[middle][polygonAHEF]{AHEF} = \polygonJKL$ with $\drawAngle{F} = \drawAngle{N}$ \inprop[prop:I.XLII]\\
@@ -3470,22 +3452,19 @@ draw byNamedAngleSidesFull(NOP)();
 stopAutoLabeling;
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{T}{o}{construct a parallelogram equal to a given rectilinear figure (\drawPolygon[middle][polygonABCDE]{ABC,ACD,ADE}) and having an angle equal to a given rectilinear angle (\drawAngle{O}).}
+\problemNP[2]{T}{o}{construct a parallelogram equal to a given rectilinear figure \drawPolygon[middle][polygonABCDE]{ABC,ACD,ADE} and having an angle equal to a given rectilinear angle \drawAngle{O}.}
 
 \startCenterAlign
 Draw \drawUnitLine{AD} and \drawUnitLine{AC} dividing the rectilinear figure into triangles.
 
 Construct $\drawPolygon{FGIH} = \drawPolygon{ADE}$\\
-having $\drawAngle{I} = \drawAngle{O}$ \inprop[prop:I.XLII]
-
+having $\drawAngle{I} = \drawAngle{O}$ \inprop[prop:I.XLII]\\
 to \drawUnitLine{GI} apply $\drawPolygon{GJKI} = \drawPolygon{ACD}$\\
-having $\drawAngle{K} = \drawAngle{O}$ \inprop[prop:I.XLIV]
-
+having $\drawAngle{K} = \drawAngle{O}$ \inprop[prop:I.XLIV]\\
 to \drawUnitLine{JK} apply $\drawPolygon{JLMK} = \drawPolygon{ABC}$\\
 having $\drawAngle{M} = \drawAngle{O}$ \inprop[prop:I.XLIV]
 
-$\therefore \drawPolygon[middle][polygonFLMH]{FGIH,GJKI,JLMK} = \polygonABCDE$
-
+$\therefore \drawPolygon[middle][polygonFLMH]{FGIH,GJKI,JLMK} = \polygonABCDE$\\
 and \polygonFLMH is a parallelogram. (\inpropL[prop:I.XXIX], \inpropN[prop:I.XIV], \inpropN[prop:I.XXX])\\
 having $\drawAngle{M} = \drawAngle{O}$.
 \stopCenterAlign
@@ -3515,7 +3494,7 @@ draw byNamedLineSeq(0)(AB,BD,DC,CA);
 draw byLabelsOnPolygon(A, B, D, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{U}{pon}{a given straight line (\drawUnitLine{DC}) to construct a square.}
+\problemNP{U}{pon}{a given straight line \drawUnitLine{DC} to construct a square.}
 
 \startCenterAlign
 Draw $\drawUnitLine{CA} \perp \mbox{ and } = \drawUnitLine{DC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])
@@ -3611,7 +3590,7 @@ draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, -1);
 draw byLabelsOnPolygon(A, J, C)(2, 1);
 }
 \drawCurrentPictureInMargin
-\problemNP[4]{I}{n}{a right angled triangle \drawLine[bottom][triangleABC]{CA,BC,AB} the square on the hypotenuse \drawUnitLine{BC} is equal to the sum of the squares of the sides (\drawUnitLine{CA} and \drawUnitLine{AB}).}
+\problemNP[4]{I}{n}{a right angled triangle \drawLine[bottom][triangleABC]{CA,BC,AB} the square on the hypotenuse \drawUnitLine{BC} is equal to the sum of the squares of the sides \drawUnitLine{CA} and \drawUnitLine{AB}.}
 
 \startCenterAlign
 On \drawUnitLine{BC}, \drawUnitLine{CA}, \drawUnitLine{AB} describe squares, \inprop[prop:I.XLVI]
@@ -3675,7 +3654,7 @@ draw byNamedLineSeq(0)(AC,AD,BD,BC);
 draw byLabelsOnPolygon(D, B, C, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{the square of one side (\drawUnitLine{BC}) of a triangle is equal to the squares of the other two sides (\drawUnitLine{AB} and \drawUnitLine{AC}), the angle (\drawAngle{BAC}) subtended by that side is a right angle.} % improvement: DAB sould be BAC https://github.com/jemmybutton/byrne-euclid/issues/31#issuecomment-350511743
+\problemNP[3]{I}{f}{the square of one side \drawUnitLine{BC} of a triangle is equal to the squares of the other two sides \drawUnitLine{AB} and \drawUnitLine{AC}, the angle \drawAngle{BAC} subtended by that side is a right angle.} % improvement: DAB sould be BAC https://github.com/jemmybutton/byrne-euclid/issues/31#issuecomment-350511743
 
 \startCenterAlign
 Draw $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ and $= \drawUnitLine{AC}$ (\inpropL[prop:I.XI], \inpropN[prop:I.III])\\
@@ -4061,20 +4040,17 @@ $\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportiona
 }
 
 \startCenterAlign
-Describe \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI],\\
-draw \drawProportionalLine{EB}\\
+Describe \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \inprop[prop:I.XLVI], draw \drawProportionalLine{EB}\\
 and $\left\{\eqalign{
 \drawProportionalLine{DH,HG} & \parallel \drawProportionalLine{CL,LE} \cr
 \drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \cr
 \drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}
 }\right\}$ \inprop[prop:I.XXXI]
 
-$\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI]\\
-$\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]
+$\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \inprop[prop:I.XXXVI], $\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \inprop[prop:I.XLIII]
 
 $\therefore \mbox{\inax[ax:I.II] } \drawPolygon{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
-but $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]
-
+but $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \inprop[prop:II.IV]\\
 and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ (\conststr)
 
 $\therefore \mbox{\inax[ax:I.II] } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$
@@ -4149,7 +4125,7 @@ $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \d
 \stopProposition
 
 \startProposition[title={Prop. VII. theor.},reference=prop:II.VII]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, H, N;
 numeric w;
 w := 7/2u;
@@ -4184,7 +4160,8 @@ $\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportion
 }
 
 \startCenterAlign
-Describe \drawPolygon[bottom][squareABED]{DNGH,NEFG,HGCA,GFBC} \inprop[prop:I.XLVI], draw \drawProportionalLine{BD} \inpost[post:I.I],\\
+Describe \drawPolygon[bottom][squareABED]{DNGH,NEFG,HGCA,GFBC} \inprop[prop:I.XLVI], draw \drawProportionalLine{BD} \inpost[post:I.I],
+
 and $\left\{\eqalign{
 \drawProportionalLine{GN,GC} &\parallel \drawProportionalLine{EB} \cr
 \drawProportionalLine{GH,GF} &\parallel \drawProportionalLine{DN,NE}
@@ -4291,7 +4268,7 @@ $\therefore \drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H;
 numeric w;
-w := 5u;
+w := 19/4u;
 A := (-1/2w, 0);
 B := (1/2w, 0);
 C := (0, 0);
@@ -4355,7 +4332,7 @@ $\therefore \drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cd
 \stopProposition
 
 \startProposition[title={Prop. X. theor.},reference=prop:II.X]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G;
 numeric w;
 w := 7/2u;
@@ -4395,12 +4372,12 @@ $\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \draw
 }
 
 \startCenterAlign
-Make $\drawProportionalLine{CE} \perp \mbox{ and } = \mbox{ to } \drawProportionalLine{AC} \mbox{ or } \drawProportionalLine{CB}$,\\
-draw \drawProportionalLine{AE} and \drawProportionalLine{EB,BG},\\
-and $\left\{\eqalign{
+Make $\drawProportionalLine{CE} \perp \mbox{ and } = \mbox{ to } \drawProportionalLine{AC} \mbox{ or } \drawProportionalLine{CB}$, 
+draw\drawProportionalLine{AE} and \drawProportionalLine{EB,BG}, 
+and~$\left\{\eqalign{
 \drawProportionalLine{FD,DG} & \parallel \drawProportionalLine{CE} \cr
 \drawProportionalLine{EF} & \parallel \drawProportionalLine{CB,BD}
-}\right\}$ \inprop[prop:I.XXXI]\\
+}\right\}$~\inprop[prop:I.XXXI]
 draw \drawProportionalLine{AG} also.
 
 $\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $=$ half a right angle \inprop[prop:I.XXXII]\\
@@ -4411,9 +4388,7 @@ $\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAn
 half a right angle (\inpropL[prop:I.V], \inpropL[prop:I.XXXII], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV]),\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
 and $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropL[prop:I.XXXIV]).
 
-Hence by \inprop[prop:I.XLVII]
-
-$\drawProportionalLine{AG}^2 = \left\{\eqalign{
+Hence by \inprop[prop:I.XLVII] $\drawProportionalLine{AG}^2 = \left\{\eqalign{
 & \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{DG}^2 \mbox{ or } \drawProportionalLine{BD}^2 \cr
 & \left\{\eqalign{
 & + \drawProportionalLine{AE}^2 = 2 \cdot \drawProportionalLine{AC}^2 \cr
@@ -4562,16 +4537,14 @@ $\drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLi
 \startCenterAlign
 First, suppose the perpendicular to fall within the triangle, then \inprop[prop:II.VII]\\
 $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2$,\\
-add to each $\drawProportionalLine{AD}^2$ then,\\
-$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 + \drawProportionalLine{AD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 + \drawProportionalLine{AD}^2$\\
+add to each $\drawProportionalLine{AD}^2$ then, $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 + \drawProportionalLine{AD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 + \drawProportionalLine{AD}^2$\\
 $\therefore$ \inprop[prop:I.XLVII]\\
 $\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{CA}^2$,\\
 and $\therefore \drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$
 
 Next suppose the perpendicular to fall without the triangle, then \inprop[prop:II.VII]\\
 $\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2$,\\
-add to each $\drawProportionalLine{HE}^2$ then\\
-$\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 + \drawProportionalLine{HE}^2= 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2 + \drawProportionalLine{HE}^2$\\
+add to each $\drawProportionalLine{HE}^2$ then $\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 + \drawProportionalLine{HE}^2= 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2 + \drawProportionalLine{HE}^2$\\
 $\therefore$ \inprop[prop:I.XLVII]\\
 $\drawProportionalLine{EF} + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG}^2 + \drawProportionalLine{EG}^2$,\\
 $\therefore \drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ by $2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG}$.
@@ -4985,7 +4958,7 @@ draw byLabelsOnPolygon(D, F, A)(2, 2);
 draw byLabelsOnPolygon(A, E, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{f}{a straight line (\drawUnitLine{EF}) drawn through the centre of a circle \drawCircle[middle][1/6]{E} bisect a chord (\drawUnitLine{AF,FB}) which does not pass through the centre, it is perpendicular to it; or, if perpendicular to it, it bisects it.}
+\problemNP[3]{I}{f}{a straight line \drawUnitLine{EF} drawn through the centre of a circle \drawCircle[middle][1/6]{E} bisect a chord \drawUnitLine{AF,FB} which does not pass through the centre, it is perpendicular to it; or, if perpendicular to it, it bisects it.}
 
 \startCenterAlign
 Draw \drawUnitLine{AE} and \drawUnitLine{EB} to the centre of the circle.
@@ -5196,7 +5169,7 @@ label.top(\sometxt{Fig. 2}, (0, r));
 ) shifted d;
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{f}{from any point within a circle \drawFromCurrentPicture{
+\problemNP[2]{I}{f}{from any point within a circle \drawFromCurrentPicture{
 startTempScale(1/3);
 draw byNamedCircle(E);
 draw byLabelPoint(F, 0, 0);
@@ -5206,9 +5179,9 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawUnitLine{EF,AE}}
 \nointerlineskip\hbox{\drawUnitLine{FB}}
 \nointerlineskip\hbox{\drawUnitLine{FC}}}\right.$
-are drawn to the circumference; the greatest of those lines is that (\drawUnitLine{EF,AE}) which passes through the centre, and the least is the remaining part (\drawUnitLine{FD}) of the diameter.\\
-Of the others, that (\drawUnitLine{FB}) which is nearer to the line passing through the centre, is greater than that (\drawUnitLine{FC}) which is more remote.\\
-Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
+are drawn to the circumference; the greatest of those lines is that \drawUnitLine{EF,AE} which passes through the centre, and the least is the remaining part \drawUnitLine{FD} of the diameter.\\
+Of the others, that \drawUnitLine{FB} which is nearer to the line passing through the centre, is greater than that \drawUnitLine{FC} which is more remote.\\
+Fig. 2. The two lines \drawUnitLine{FM,MK} and \drawUnitLine{FG} which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
 
 \startsubproposition[title={Figure I.}]
 To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:I.III], and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
@@ -5267,7 +5240,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawProportionalLine{DM,MA}}
 \nointerlineskip\hbox{\drawProportionalLine{DE}}
 \nointerlineskip\hbox{\drawProportionalLine{DF}}}\right\}$
-are drawn to the circumference; of those falling upon the concave circumference the greatest is that (\drawUnitLine{DM,MA}) which passes through the centre, and the line (\drawUnitLine{DE}) which is nearer the greatest is greater than that (\drawUnitLine{DF}) which is more remote.
+are drawn to the circumference; of those falling upon the concave circumference the greatest is that \drawUnitLine{DM,MA} which passes through the centre, and the line \drawUnitLine{DE} which is nearer the greatest is greater than that \drawUnitLine{DF} which is more remote.
 
 \startCenterAlign
 Draw \drawUnitLine{MF} and \drawUnitLine{ME} to the centre.\\
@@ -5308,7 +5281,7 @@ draw byLabelsOnPolygon(H, D, G)(2, 0);
 draw byLabelsOnPolygon(G, M, H)(2, 0);
 }
 \drawCurrentPictureInMargin
-Of those lines falling on the convex circumference the least is that (\drawUnitLine{DG}) which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
+Of those lines falling on the convex circumference the least is that \drawUnitLine{DG} which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
 
 \startCenterAlign
 For, since $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DG,GM}$ \inprop[prop:I.XX]\\
@@ -5400,7 +5373,7 @@ draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[5]{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines (\drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC}) can be drawn to the circumference, that point must be the centre of the circle.}
+\problemNP[5]{I}{f}{a point be taken within a circle \drawCircle[middle]{D}, from which more than two equal straight lines \drawUnitLine{DA}, \drawUnitLine{DB}, \drawUnitLine{DC} can be drawn to the circumference, that point must be the centre of the circle.}
 
 For if it be supposed that the point \drawPointL[middle][DH,DA,DF]{D} in which more than two equal straight lines meet is not the centre, some other point \drawFromCurrentPicture[middle][pointF]{
 startGlobalRotation(-lineAngle.DF);
@@ -5814,10 +5787,8 @@ draw byLabelsOnPolygon(A, E, D)(2, 0);
 }
 \drawCurrentPictureInMargin
 \startCenterAlign
-The diameter \drawUnitLine{DE,EA} is $>$ any line \drawUnitLine{MN}.
-
-For draw \drawUnitLine{EN} and \drawUnitLine{EM}.
-
+The diameter \drawUnitLine{DE,EA} is $>$ any line \drawUnitLine{MN}.\\
+For draw \drawUnitLine{EN} and \drawUnitLine{EM}.\\
 Then $\drawUnitLine{EM} = \drawUnitLine{EA}$\\
 and $\drawUnitLine{EN} = \drawUnitLine{DE}$,\\
 $\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DE,EA}$\\
@@ -5988,7 +5959,7 @@ but $\drawUnitLine{DH} = \drawUnitLine{DA}$,
 \stopProposition
 
 \startProposition[title={Prop. XVII. prob.},reference=prop:III.XVII]
-\defineNewPicture[1/2]{
+\defineNewPicture{
 pair A, B, D, E, F;
 numeric r[], a;
 path cr[];
@@ -6024,7 +5995,7 @@ draw byLabelPoint(D, angle(A-E)+45, 2);
 draw byLabelPoint(B, angle(F-E)-45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/5]{EI} from a given point, either in or outside of its circumference.}
+\problemNP{T}{o}{draw a tangent to a given circle \drawCircle[middle][1/6]{EI} from a given point, either in or outside of its circumference.}
 
 If a given point be in the circumference, as at \drawPointL[middle][FB]{B}, it is plain that the straight line $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ the radius, will be the required tangent \inprop[prop:III.XVI].
 
@@ -6207,8 +6178,6 @@ $\therefore \drawAngle{BEF,CEF} = \mbox{ twice } \drawAngle{BAF,CAF}$.
 \stopCenterAlign
 \stopsubproposition
 
-\vfill\pagebreak
-
 \defineNewPicture{
 pair E, C, F, G, D;
 r := 7/4u;
@@ -6358,7 +6327,7 @@ draw byCircleR(E, r, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{he}{opposite angles \drawAngle{DAC,CAB} and \drawAngle{BCA,ACD}, \drawAngle{CDB,BDA} and \drawAngle{ABD,DBC} of any quadrilateral figure inscribed in a circle, are together equal to two right angles.}
+\problemNP[2]{T}{he}{opposite angles \drawAngle{DAC,CAB} and \drawAngle{BCA,ACD}, \drawAngle{CDB,BDA} and \drawAngle{ABD,DBC} of any quadrilateral figure inscribed in a circle, are together equal to two right angles.}
 
 \startCenterAlign
 Draw \drawUnitLine{AC} and \drawUnitLine{BD} the diagonals;\\
@@ -6482,7 +6451,7 @@ draw byNamedFilledCircleSegment(N);
 draw byNamedLine(CD);
 draw byNamedArcExact(N);
 draw byLabelsOnPolygon(D, C, noPoint)(0, 0);
-}, of circles upon equal straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}) are each equal to the other.}
+}, of circles upon equal straight lines \drawUnitLine{AB} and \drawUnitLine{CD} are each equal to the other.}
 
 \startCenterAlign
 For, if
@@ -6707,7 +6676,7 @@ draw byLabelsOnPolygon(B, G, C)(2, 0);
 draw byLabelsOnPolygon(E, H, F)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{n}{equal circles \drawCircle[middle][1/3]{G} and \drawCircle[middle][1/3]{H} the angles \drawAngle{BAK} and \drawAngle{D} which stand upon equal arches are equal, whether they be at the centres or at the circumferences.}
+\problemNP[2]{I}{n}{equal circles \drawCircle[middle][1/3]{G} and \drawCircle[middle][1/3]{H} the angles \drawAngle{BAK} and \drawAngle{D} which stand upon equal arches are equal, whether they be at the centres or at the circumferences.}
 
 \startCenterAlign
 For if it be possible, let one of them\\
@@ -7579,7 +7548,7 @@ draw byLabelsOnPolygon(C, E, A)(2, 1);
 draw byLabelsOnPolygon(G, H, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{a given circle \drawCircle{O} to place a straight line, equal to a given straight line (\drawUnitLine{GH}), not greater than the diameter of the circle.}
+\problemNP{I}{n}{a given circle \drawCircle{O} to place a straight line, equal to a given straight line \drawUnitLine{GH}, not greater than the diameter of the circle.}
 
 \startCenterAlign
 Draw \drawUnitLine{EC,BE}, the diameter of \circleO;\\
@@ -7971,7 +7940,7 @@ and since the adjacent sides and angles of the parallelogram \squareABCD\ are eq
 \stopProposition
 
 \startProposition[title={Prop. VII. prob.},reference=prop:IV.VII]
-\defineNewPicture[1/4]{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E, F, G, H, K;
 numeric r;
 r := 7/4u;
@@ -8483,7 +8452,7 @@ Describe \drawCircle[middle][1/5]{F} with any one of the perpendiculars as radiu
 \stopProposition
 
 \startProposition[title={Prop. XIV. prob.},reference=prop:IV.XIV]
-\defineNewPicture[1/2]{
+\defineNewPicture{
 pair A, B, C, D, E, F;
 numeric r;
 r := 9/4u;
@@ -11132,8 +11101,8 @@ draw byNamedLineSeq(0)(AE,CE,DC,BD,AB);
 draw byLabelsOnPolygon(B, A, E, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{A}{ right}{line (\drawUnitLine{AD}) bisecting the angle of a triangle, divides the opposite side into segments (\drawUnitLine{BD}, \drawUnitLine{DC}) proportional to the conterminous sides (\drawUnitLine{AB}, \drawUnitLine{CA}).\\
-And if a straight line (\drawUnitLine{AD}) drawn from any angle of a triangle divide the opposite side (\drawUnitLine{BD,DC}) into segments (\drawUnitLine{BD}, \drawUnitLine{DC}) proportional to the conterminous sides (\drawUnitLine{AB}, \drawUnitLine{CA}), it bisects the angle.}
+\problemNP{A}{ right}{line \drawUnitLine{AD} bisecting the angle of a triangle, divides the opposite side into segments \drawUnitLine{BD}, \drawUnitLine{DC} proportional to the conterminous sides \drawUnitLine{AB}, \drawUnitLine{CA}.\\
+And if a straight line \drawUnitLine{AD} drawn from any angle of a triangle divide the opposite side \drawUnitLine{BD,DC} into segments \drawUnitLine{BD}, \drawUnitLine{DC} proportional to the conterminous sides \drawUnitLine{AB}, \drawUnitLine{CA}, it bisects the angle.}
 
 \startsubproposition[title={Part I.}]
 \startCenterAlign
@@ -11174,7 +11143,7 @@ and $\therefore$ \drawUnitLine{AD} bisects \drawAngle{BAD,DAC}.
 \stopProposition
 
 \startProposition[title={Prop. IV. theor.},reference=prop:VI.IV]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F;
 B := (0, 0);
 A := (5/4u, u);
@@ -11202,9 +11171,9 @@ draw byLabelsOnPolygon(B, A, F, D, E, C)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{n}{equiangular triangles
-(\drawLine[bottom][triangleABC]{CA,BC,AB}
+\drawLine[bottom][triangleABC]{CA,BC,AB}
 and
-\drawLine[bottom][triangleCDE]{CD,DE,EC})
+\drawLine[bottom][triangleCDE]{CD,DE,EC}
 the sides about the equal angles are proportional, and the sides which are opposite to the equal angles are homologous.
 }
 
@@ -11285,14 +11254,14 @@ draw byLabelsOnPolygon(E, D, F, G)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have their sides proportional
-($\drawUnitLine{CA} : \drawUnitLine{BC} :: \drawUnitLine{FD} : \drawUnitLine{EF}$)
+$\drawUnitLine[0.75cm]{CA} : \drawUnitLine[0.75cm]{BC} :: \drawUnitLine[0.75cm]{FD} : \drawUnitLine[0.75cm]{EF}$
 and
-($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$)
+$\drawUnitLine[0.75cm]{BC} : \drawUnitLine[0.75cm]{AB} :: \drawUnitLine[0.75cm]{EF} : \drawUnitLine[0.75cm]{DE}$
 they are equiangular, and the equal angles are subtended by the homologous sides.
 }
 \startCenterAlign
-From the extremities of \drawUnitLine{EF}, draw \drawUnitLine{FG} and \drawUnitLine{GE}, making\\
-$\drawAngle{GEF} = \drawAngle{B}$, $\drawAngle{EFG} = \drawAngle{C}$ \inprop[prop:I.XXIII];\\
+From the extremities of \drawUnitLine[0.5cm]{EF}, draw \drawUnitLine[0.5cm]{FG} and \drawUnitLine[0.5cm]{GE},\\ 
+making $\drawAngle{GEF} = \drawAngle{B}$, $\drawAngle{EFG} = \drawAngle{C}$ \inprop[prop:I.XXIII];\\
 and consequently $\drawAngle{G} = \drawAngle{A}$ \inprop[prop:I.XXXII],\\
 and since the triangles are equiangular,\\
 $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{GE} : \drawUnitLine{EF}$ \inprop[prop:VI.IV];\\
@@ -11302,7 +11271,7 @@ and consequently $\drawUnitLine{DE} = \drawUnitLine{GE}$ \inprop[prop:V.IX].
 In like manner it may be shown that\\
 $\drawUnitLine{FD} = \drawUnitLine{FG}$.
 
-Therefore, the two triangles having a common base \drawUnitLine{EF}, and their sides equal, have also equal angles opposite to equal sides, i.\ e.\\
+Therefore, the two triangles having a common base \drawUnitLine{EF}, and their sides equal, have also equal angles opposite to equal sides, i.\ e.
 $\drawAngle{DEF} = \drawAngle{GEF}$ and $\drawAngle{EFD} = \drawAngle{EFG}$ \inprop[prop:I.VIII].\\
 but $\drawAngle{GEF} = \drawAngle{B}$ (\conststr) and $\therefore \drawAngle{DEF} = \drawAngle{B}$;\\
 for the same reason $\drawAngle{EFD} = \drawAngle{C}$,\\
@@ -11349,7 +11318,7 @@ draw byLabelsOnPolygon(A, B, C)(0, 0);
 draw byLabelsOnPolygon(D, E, F, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{AB,BC,CA} and \drawLine[bottom][triangleDEF]{DE,EF,FD}) have one angle (\drawAngle{C}) of the one, equal to one angle (\drawAngle{EFD}) of the other, and the sides about the equal angles proportional, the triangles shall be equiangular, and have those angles equal which the homologous sides subtend.}
+\problemNP[3]{I}{f}{two triangles \drawLine[bottom][triangleABC]{AB,BC,CA} and \drawLine[bottom][triangleDEF]{DE,EF,FD} have one angle \drawAngle{C} of the one, equal to one angle \drawAngle{EFD} of the other, and the sides about the equal angles proportional, the triangles shall be equiangular, and have those angles equal which the homologous sides subtend.}
 
 \startCenterAlign
 From the extremities of \drawUnitLine{FD}, one of the sides of \triangleDEF, about \drawAngle{EFD},\\
@@ -11375,7 +11344,7 @@ and $\therefore$ \triangleABC\ and \triangleDEF\ are equiangular, with their equ
 \stopProposition
 
 \startProposition[title={Prop. VII. theor.},reference=prop:VI.VII]
-\defineNewPicture[1/4]{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E, F, G, d;
 A := (0, 0);
 B := (3u, -1/2u);
@@ -11409,7 +11378,7 @@ draw byLabelsOnPolygon(A, G, C, B)(0, 0);
 draw byLabelsOnPolygon(D, F, E)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{two triangles (\drawLine[bottom][triangleABC]{CA,BC,AB} and \drawLine[bottom][triangleDEF]{FD,EF,DE}) have one angle in each equal (\drawAngle{F} equal to \drawAngle{C}), the sides about two other angles ($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$), and each of the remaining angles (\drawAngle{A} and \drawAngle{D}) either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
+\problemNP[3]{I}{f}{two triangles \drawLine[triangleABC]{CA,BC,AB} and \drawLine[triangleDEF]{FD,EF,DE} have one angle in each equal \drawAngle{F} equal to \drawAngle{C}, the sides about two other angles $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$, and each of the remaining angles \drawAngle{A} and \drawAngle{D} either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
 
 \startCenterAlign
 First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides, are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
@@ -11457,7 +11426,7 @@ draw byLine(A, D, byblack, 0, 0);
 draw byLabelsOnPolygon(B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{n}{a right angled tiangle (\drawPolygon[bottom][triangleABC]{ABD,ADC}), if a perpendicular (\drawUnitLine{AD}) be drawn from the right angle to the opposite side, the triangles (\drawPolygon[bottom][triangleABD]{ABD}, \drawPolygon[bottom][triangleADC]{ADC}) on each side of it are similar to the whole triangle and to each other.}
+\problemNP{I}{n}{a right angled tiangle \drawPolygon[bottom][triangleABC]{ABD,ADC}, if a perpendicular \drawUnitLine{AD} be drawn from the right angle to the opposite side, the triangles \drawPolygon[bottom][triangleABD]{ABD}, \drawPolygon[bottom][triangleADC]{ADC} on each side of it are similar to the whole triangle and to each other.}
 
 \startCenterAlign
 $\because \drawAngle{DAB,CAD} = \drawAngle{D}$ \inax[ax:I.XI],\\
@@ -11499,7 +11468,7 @@ endfor;
 draw byLabelsOnPolygon(B, F, A, D, C, E)(0, 0); % improvement: drawing in the original seemed to be wrong, fixed here
 }
 \drawCurrentPictureInMargin
-\problemNP{F}{rom}{a given straight line (\drawSizedLine{AF,FB}) to cut off any required part.}
+\problemNP{F}{rom}{a given straight line \drawSizedLine{AF,FB} to cut off any required part.}
 
 \startCenterAlign
 From either extremity of the given line draw \drawSizedLine{AD,DC} making any angle with \drawSizedLine{AF,FB};\\
@@ -11561,7 +11530,7 @@ draw byLabelsOnPolygon(E, C, noPoint)(2, 0);
 draw byLabelsOnPolygon(A', D', E', C', noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{divide a given straight line (\drawSizedLine{AF,FG,GB}) similarly to a given divided line (\drawSizedLine{A'D',D'E',E'C'}).}
+\problemNP{T}{o}{divide a given straight line \drawSizedLine{AF,FG,GB} similarly to a given divided line \drawSizedLine{A'D',D'E',E'C'}.}
 
 \startCenterAlign
 From either extremity of the given line \drawSizedLine{AF,FG,GB} draw \drawSizedLine{AD,DE,EC} making any angle;
@@ -11615,7 +11584,7 @@ draw byLabelsOnPolygon(E, C, A, B, D)(0, 0);
 draw byLabelsOnPolygon(C', A', noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{find a third proportional to two given straight lines (\drawSizedLine{A'C'} and \drawSizedLine{AB}).}
+\problemNP{T}{o}{find a third proportional to two given straight lines \drawSizedLine{A'C'} and \drawSizedLine{AB}.}
 
 \startCenterAlign
 At either extremity of the given line \drawSizedLine{AB} draw \drawSizedLine{AC,CE} making an angle;\\
@@ -11791,7 +11760,7 @@ draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{E}{qual}{parallelograms \drawPolygon{BFAD} and \drawPolygon{CEBG}, which have one angle in each equal, have the sides about the equal angles reciprocally proportional\\
-($\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$)\\
+$\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$\\
 And parallelograms which have one angle in each equal, and the sides about them reciprocally proportional, are equal.}
 
 \startCenterAlign
@@ -11841,8 +11810,8 @@ draw byNamedLineSeq(0)(noLine,AE,BA,BD,DA,AC);
 draw byLabelsOnPolygon(A, E, D, B, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{E}{qual}{triangles, which have one angle in each equal ($\drawAngle{DAE} = \drawAngle{BAC}$), have the sides about the equal angles reciprocally proportional\\
-($\drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$)\\
+\problemNP[3]{E}{qual}{triangles, which have one angle in each equal $\drawAngle{DAE} = \drawAngle{BAC}$, have the sides about the equal angles reciprocally proportional\\
+$\drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$\\
 And two triangles which have an angle of the one equal to an angle of the other, and the sides about the equal angles reciprocally proportional, are equal.}
 
 \startsubproposition[title={I.}]
@@ -11916,7 +11885,7 @@ draw byLabelsOnPolygon(E, H, C, D)(0, 0);
 draw byLabelLine(0)(E, F);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$) the rectangle ($\drawUnitLine{AB} \times \drawUnitLine{F}$) contained by the extremes, is equal to the rectangle ($\drawUnitLine{CD} \times \drawUnitLine{E}$) contained by the means.\\
+\problemNP{I}{f}{four straight lines be proportional $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ the rectangle $\drawUnitLine{AB} \times \drawUnitLine{F}$ contained by the extremes, is equal to the rectangle $\drawUnitLine{CD} \times \drawUnitLine{E}$ contained by the means.\\
 And if the rectangle contained by the extremes be equal to the rectangle contained by the means, the four straight lines are proportional.}
 
 \startsubproposition[title={Part I.}]
@@ -11986,7 +11955,7 @@ draw byLabelPolygon(1)(ABCD);
 draw byLabelPolygon(1)(EFGH);
 }
 \drawCurrentPictureInMargin
-\problemNP[4]{I}{f}{three striaght lines be proportional ($\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$) the rectangle under the extremes is equal to the square of the mean.\\
+\problemNP[4]{I}{f}{three striaght lines be proportional $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$ the rectangle under the extremes is equal to the square of the mean.\\
 And if the rectangle under the extremes be equal to the square of the mean, the three straight lines are proportional.}
 
 \startsubproposition[title={Part I.}]
@@ -12069,7 +12038,7 @@ draw byLabelsOnPolygon(F, E, L, D, C)(0, 0);
 draw byLabelsOnPolygon(G, H, K, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{O}{n}{a given straight line (\drawUnitLine{AB}) to construct a rectilinear figure similar to a given one (\drawPolygon[middle][polygonCD]{DCF,DFE,DEL}) and similarly placed.}
+\problemNP{O}{n}{a given straight line \drawUnitLine{AB} to construct a rectilinear figure similar to a given one \drawPolygon[middle][polygonCD]{DCF,DFE,DEL} and similarly placed.}
 
 \startCenterAlign
 Resolve the given figure into triangles by drawing the lines \drawUnitLine{DF} and \drawUnitLine{DE}.
@@ -12134,7 +12103,7 @@ draw byLabelsOnPolygon(F, E, D)(0, 0);
 draw byLabelsOnPolygon(C, G, B, A)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{S}{imilar}{triangles (\drawPolygon[bottom][triangleDEF]{DEF} and \drawPolygon[bottom][triangleABC]{ABG,AGC}) are to one another in the duplicate ratio of their homologous sides.}
+\problemNP{S}{imilar}{triangles \drawPolygon[bottom][triangleDEF]{DEF} and \drawPolygon[bottom][triangleABC]{ABG,AGC} are to one another in the duplicate ratio of their homologous sides.}
 
 Let \drawAngle{E} and \drawAngle{B} be equal angles, and \drawUnitLine{BG,GC} and \drawUnitLine{EF} homologous sides of the similar triangles \triangleDEF\ and \triangleABC\ and on \drawUnitLine{BG,GC} the greater of these lines take \drawUnitLine{BG} a third proportional, so that
 \startCenterAlign
@@ -12263,7 +12232,7 @@ draw byPolygon.C(Ca,Cb,Cc)(byyellow);
 byPointLabelRemove(Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc);
 }
 \drawCurrentPictureInMargin
-\problemNP{R}{ectilinear}{figures (\drawPolygon[bottom]{A} and \drawPolygon[bottom]{B}) which are similar to the same figure (\drawPolygon[bottom]{C}) are similar also to each other.}
+\problemNP{R}{ectilinear}{figures \drawPolygon[bottom]{A} and \drawPolygon[bottom]{B} which are similar to the same figure \drawPolygon[bottom]{C} are similar also to each other.}
 
 Since \polygonA\ and \polygonC\ are similar, they are equiangular, and have the sides about the equal angles proportional \indef[def:VI.I]; and since the figures \polygonB\ and \polygonC\ are also similar, they are equiangular, and have the sides about the equal angles proportional; therefore \polygonA\ and \polygonB\ are also equiangular, and have the sides about the equal angles proportional \inprop[prop:V.XI], and are therefore similar.
 
@@ -12313,7 +12282,7 @@ draw byLabelLine(1)(AB,CD,EF,GH,O,P);
 }
 \drawCurrentPictureWide
 \initialIndentation{9}
-\problem{I}{f}{four straight lines be proportional ($\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$), the similar rectilinear figures similarly described on them are also proportional.\\
+\problem{I}{f}{four straight lines be proportional $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$, the similar rectilinear figures similarly described on them are also proportional.\\
 And if four similar rectilinear figures, similarly described on four straight lines, be proportional, the straight lines are also proportional.}
 
 \startsubproposition[title={Part I.}]
@@ -12351,7 +12320,7 @@ and $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \dr
 \stopProposition
 
 \startProposition[title={Prop. XXIII. theor.},reference=prop:VI.XXIII]
-\defineNewPicture[1/2]{
+\defineNewPicture{
 pair A, B, C, D, E, F, G ,H, d[];
 d1 := (u, 0);
 d2 := d1 scaled -2;
@@ -12379,7 +12348,7 @@ draw byLine(C, G, byyellow, 0, 0);
 draw byLabelsOnPolygon(D, A, B, C, E, F, G, H)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{E}{quiangular}{parallelograms (\drawPolygon[bottom]{ABCD} and \drawPolygon[bottom]{EFGC}) are to one another in a ratio compounded of the ratios of their sides.}
+\problemNP[3]{E}{quiangular}{parallelograms \drawPolygon[bottom]{ABCD} and \drawPolygon[bottom]{EFGC} are to one another in a ratio compounded of the ratios of their sides.}
 
 Let two of the sides \drawUnitLine{BC} and \drawUnitLine{CG} about the equal angles be placed so that they may form one straight line.
 
@@ -12400,7 +12369,7 @@ and $\polygonCDHG\ : \polygonEFGC\ :: \drawUnitLine{DC} : \drawUnitLine{CE}$ \in
 \stopProposition
 
 \startProposition[title={Prop. XXIV. theor.},reference=prop:VI.XXIV]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, H, K, d[];
 numeric s;
 d1 := (3u, 0);
@@ -12538,7 +12507,7 @@ draw byLabelsOnPolygon(C, F, M, E, L, B, A)(0, 0);
 draw byLabelsOnPolygon(G, K, H)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{T}{o}{describe a rectilinear figure, which shall be similar to a given rectilinear figure (\drawPolygon[bottom][triangleABC]{ABC}), and equal to another (\drawPolygon[middle][polygonD]{D}).}
+\problemNP[3]{T}{o}{describe a rectilinear figure, which shall be similar to a given rectilinear figure \drawPolygon[bottom][triangleABC]{ABC}, and equal to another \drawPolygon[middle][polygonD]{D}.}
 
 \startCenterAlign
 Upon \drawUnitLine{BC} describe $\drawPolygon[bottom][polygonBCEL]{BCEL} = \triangleABC$,\\
@@ -12615,8 +12584,8 @@ draw byLabelsOnPolygon(K, H, A)(2, 0);
 draw byLabelsOnPolygon(E, F, A)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{I}{f}{similar and similarly posited parallelograms
-(\drawFromCurrentPicture[bottom][parallelogramAEFG]{
+\problemNP[2]{I}{f}{similar and similarly posited parallelograms
+\drawFromCurrentPicture[bottom][parallelogramAEFG]{
 draw byNamedPolygon(FHKE);
 draw byNamedLine(KAt,AGt,GHt);
 draw byLabelsOnPolygon(A, G, F, E)(0, 0);
@@ -12627,7 +12596,7 @@ draw byNamedPolygon(GDCBEF);
 draw byNamedLine(EAt,AC);
 draw byNamedLineFull(E, F, 0, 1, 1)(AGt);
 draw byLabelsOnPolygon(A, D, C, B)(0, 0);
-})
+}
 have a common angle, they are about the same diagonal.}
 
 \startCenterAlign
@@ -12725,7 +12694,7 @@ draw byLabelsOnPolygon(A, B, noPoint)(0, 0);
 draw byLabelPoint(E, angle(E-D) + 45, 2);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{divide a given straight line (\drawSizedLine{AE,EC,CB}) so that the rectangle contained by its segments may be equal to a given area, not exceeding the square of half the line.}
+\problemNP{T}{o}{divide a given straight line \drawSizedLine{AE,EC,CB} so that the rectangle contained by its segments may be equal to a given area, not exceeding the square of half the line.}
 
 \startCenterAlign
 Let the given area be $=\drawSizedLine{G}^2$.
@@ -12781,7 +12750,7 @@ draw byLabelsOnPolygon(F, B, C, A, noPoint)(0, 0);
 draw byLabelLine(0)(G);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{produce a given straight line (\drawSizedLine{AC,CB}), so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i.\ e.\ equal to the square on \drawSizedLine{G}.}
+\problemNP{T}{o}{produce a given straight line \drawSizedLine{AC,CB}, so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i.\ e.\ equal to the square on \drawSizedLine{G}.}
 
 \startCenterAlign
 Make $\drawSizedLine{AC} = \drawSizedLine{CB}$,\\
@@ -12804,7 +12773,7 @@ $\therefore \drawSizedLine{BD}^2 = \mbox{ the given area.}$
 \stopProposition
 
 \startProposition[title={Prop. XXX. prob.},reference=prop:VI.XXX]
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, H;
 numeric w;
 w := 3u;
@@ -12834,7 +12803,7 @@ byLineStylize(G, E, 0, 1, -1)(DEt);
 draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP{T}{o}{cut a given finite straight line (\drawProportionalLine{AE,EB}) in extreme and mean ratio.}
+\problemNP{T}{o}{cut a given finite straight line \drawProportionalLine{AE,EB} in extreme and mean ratio.}
 
 \startCenterAlign
 On \drawProportionalLine{AE,EB} describe the square \drawPolygon[middle][squareABHC]{ACFE,EFHB} \inprop[prop:I.XLVI];\\
@@ -12893,7 +12862,7 @@ draw byLabelsOnPolygon(B, F, E, A, L, K, C, H, G)(0, 0);
 draw byLabelsOnPolygon(A, D, C)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle (\drawLine[bottom]{CA,DC,BD,AB}), the figure described on the side (\drawProportionalLine{BD,DC}) subtending the right angle is equal to the sum of the figures on the other sides.}
+\problemNP[3]{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle \drawLine[bottom]{CA,DC,BD,AB}, the figure described on the side \drawProportionalLine{BD,DC} subtending the right angle is equal to the sum of the figures on the other sides.}
 
 \startCenterAlign
 From the right angle draw \drawProportionalLine{AD} perpendicular to \drawProportionalLine{BD,DC};\\
@@ -12965,7 +12934,7 @@ draw byLabelsOnPolygon(E, C, B, A, C, D)(0, 0);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles
-(\drawFromCurrentPicture[bottom]{
+\drawFromCurrentPicture[bottom]{
 startTempAngleScale(angleScale*3/5);
 draw byNamedAngle(A, B, BCA);
 draw byNamedLineSeq(0)(CAt,BCt,ABt);
@@ -12979,8 +12948,8 @@ draw byNamedAngle(D, DCE);
 draw byNamedLineSeq(0)(EDt,CEt,DCt);
 draw byLabelsOnPolygon(C, D, E)(0, 0);
 stopTempAngleScale;
-}),
-have two sides proportional ($\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$), and be so placed at an angle that the homologous sides are parallel, the remaining sides (\drawUnitLine{BC} and \drawUnitLine{CE}) form one right line.}
+},
+have two sides proportional $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{DC} : \drawUnitLine{ED}$, and be so placed at an angle that the homologous sides are parallel, the remaining sides \drawUnitLine{BC} and \drawUnitLine{CE} form one right line.}
 
 \startCenterAlign
 Since $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$,\\
@@ -13064,7 +13033,7 @@ draw byLabelsOnPolygon(B, G, L)(2, 0);
 draw byLabelsOnPolygon(E, H, N)(2, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[3]{I}{n}{equal circles (\drawCircle[middle][1/4]{G}, \drawCircle[middle][1/4]{H}), angles, whether at the centre or circumference, are in the same ratio to one another as the arcs on which they stand ($\drawAngle{BC} : \drawAngle{EF} ::
+\problemNP[3]{I}{n}{equal circles \drawCircle[middle][1/4]{G}, \drawCircle[middle][1/4]{H}, angles, whether at the centre or circumference, are in the same ratio to one another as the arcs on which they stand $\drawAngle{BC} : \drawAngle{EF} ::
 \drawFromCurrentPicture[middle][arcBC]{
 startGlobalRotation(180-angle(B-C));
 startAutoLabeling;
@@ -13077,7 +13046,7 @@ startAutoLabeling;
 draw byNamedArc(EF);
 stopAutoLabeling;
 stopGlobalRotation;
-}$); so also are sectors.}
+}$; so also are sectors.}
 
 Take in the circumference of \circleG\ any number of arcs
 \drawFromCurrentPicture[middle][arcCK]{
@@ -13163,13 +13132,13 @@ draw byLabelsOnPolygon(C, D, B, A, E)(2, 0);
 draw byLabelsOnPolygon(E, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{I}{f}{the right line (\drawSizedLine{DC}) bisecting an external angle \drawAngle{DCB,FCD} of the triangle \drawFromCurrentPicture[bottom]{
+\problemNP[2]{I}{f}{the right line \drawSizedLine{DC} bisecting an external angle \drawAngle{DCB,FCD} of the triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/2);
 startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
 stopAutoLabeling;
 stopTempScale;
-} meet the opposite side (\drawSizedLine{AB}) produced, that whole produced side (\drawSizedLine{AB,BD}), and its external segment (\drawSizedLine{BD}) will be proportional to the sides (\drawSizedLine{AE,EC} and \drawSizedLine{BC}), which contain the angle adjacent to the external bisected angle.}
+} meet the opposite side \drawSizedLine{AB} produced, that whole produced side \drawSizedLine{AB,BD}, and its external segment \drawSizedLine{BD} will be proportional to the sides \drawSizedLine{AE,EC} and \drawSizedLine{BC}, which contain the angle adjacent to the external bisected angle.}
 
 \startCenterAlign
 For if \drawSizedLine{BE} be drawn $\parallel \drawSizedLine{DC}$,\\
@@ -13289,7 +13258,7 @@ and $\therefore \drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \
 \stopPropositionAZ
 
 \startPropositionAZ[title={Prop. D. theor.},reference=prop:VI.D]
-\defineNewPicture[1/4]{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E, O;
 numeric r, a[];
 a1 := 110;
@@ -13327,7 +13296,7 @@ draw byLabelsOnPolygon(D, E, B)(2, 0);
 \problemNP[4]{T}{he}{rectangle contained by the diagonals of a quadrilateral figure inscribed in a circle, is equal to both the rectangles contained by its opposite sides.}
 
 \startCenterAlign
-Let \drawLine{DA,CD,BC,AB} be any quadrilateral figure inscribed in \drawCircle[middle][1/5]{O};\\
+Let  \offsetPicture{0pt}{15pt}{\drawLine{DA,CD,BC,AB}} be any quadrilateral figure inscribed in \drawCircle[middle][1/5]{O};\\
 and draw \drawUnitLine{BE,ED} and \drawUnitLine{AC};\\
 then $\drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 

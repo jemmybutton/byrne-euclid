@@ -362,7 +362,7 @@
 \def\figureInMargin{\dosingleempty\figureinmargin}
 \def\figureinmargin[#1]#2{%
 	\iffirstargument%
-		\signalrightpage\inouter{~\doifrightpageelse{}{\hfill}\framed[frame=off,location=top]{#2}\doifrightpageelse{\hfill}{}~}%
+		\signalrightpage\inouter{~\doifrightpageelse{\hskip 0.5cm}{\hfill}\framed[frame=off,location=top]{#2}\doifrightpageelse{\hfill}{\hskip 0.5cm}~}%
 	\else%
 		\inouter{~\hfill\framed[frame=off,location=top]{#2}\hfill~}%
 	\fi%
