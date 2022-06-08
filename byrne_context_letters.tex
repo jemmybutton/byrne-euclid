@@ -1281,7 +1281,7 @@ draw byLabelLineEnd(C, B, 0);
 }
 \inpost[post:I.III], and
 \drawFromCurrentPicture{
-draw byNamedLine (BD, BE);
+draw byNamedLineSeq(0)(BD, BE);
 draw byNamedCircle(A);
 draw byLabelLineEnd(D, E, 0);
 draw byLabelLineEnd(E, D, 1);
@@ -1366,9 +1366,9 @@ byLineDefine(A, B, byred, 0, 0);
 byLineDefine(B, C, byblack, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(CA,BC,AB);
-byAngleDefine(E, D, F, byyellow, 0);
-byAngleDefine(D, E, F, byblue, 0);
-byAngleDefine(E, F, D, byred, 0);
+byAngleDefine(E, D, F, byyellow, 1);
+byAngleDefine(D, E, F, byblue, 1);
+byAngleDefine(E, F, D, byred, 1);
 draw byNamedAngleResized(EDF, DEF, EFD);
 byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, byblack, 0, 1);
@@ -1683,10 +1683,11 @@ draw byLine(A, D, byyellow, 0, 0);
 byLineDefine(A, B, byblue, 0, 0);
 byLineDefine(C, A, byblue, 0, 0);
 draw byNamedLineSeq(0)(AB,CA);
-draw byLine(D, B, byblack, 0, 0);
-draw byLine(B, E, byblack, 1, 0);
-draw byLine(C, D, byred, 0, 0);
-draw byLine(F, C, byred, 1, 0);
+byLineDefine(D, B, byblack, 0, 0);
+byLineDefine(B, E, byblack, 1, 0);
+byLineDefine(C, D, byred, 0, 0);
+byLineDefine(F, C, byred, 1, 0);
+draw byNamedLineSeq(0)(BE,DB,CD,FC);
 draw byLabelsOnPolygon(F, C, D, B, E)(2, 0);
 draw byLabelsOnPolygon(B, A, C)(2, 0);
 }
@@ -1736,10 +1737,12 @@ draw byNamedLineSeq(0)(AB,CA);
 draw byArc.O(A, B, C)(r, byred, 0, 0, 0, 0);
 draw byArcBE.Ol(A, a2-1/4, a2, r, byred, 1, 0, 0, 0);
 draw byArcBE.Or(A, a1, a1+1/4, r, byred, 1, 0, 0, 0);
-draw byLine(D, B, byblack, 0, 0);
-draw byLine(B, E, byblack, 1, 0);
-draw byLine(C, D, byyellow, 0, 0);
-draw byLine(F, C, byyellow, 1, 0);
+byLineDefine(D, B, byblack, 0, 0);
+byLineDefine(B, E, byblack, 1, 0);
+byLineDefine(C, D, byyellow, 0, 0);
+byLineDefine(F, C, byyellow, 1, 0);
+draw byNamedLineSeq(1)(BE, DB, CD,FC);
+draw byLabelsOnPolygon(B, A, C)(2, 0);
 draw byLabelLineEnd(B, A, 0);
 draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
@@ -1758,9 +1761,9 @@ For \inprop[prop:I.VIII] since $\drawUnitLine{DB} = \drawUnitLine{CD}$ (\constst
 \drawUnitLine{AD} common to both,\\ % to both what? obviously DBA and DAC
 and $\drawUnitLine{AB} = \drawUnitLine{CA}$ \indef[def:I.XV],
 
-$\therefore \drawAngle{ADB} = \drawAngle{CDA}$, and
+$\therefore \drawAngle{ADB} = \drawAngle{CDA}$,
 
-$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:I.X].
+and $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \indef[def:I.X].
 \stopCenterAlign
 
 \qed
@@ -2683,10 +2686,12 @@ byAngleDefine(F, E, A, byyellow, 0);
 byAngleDefine(E, F, D, byred, 0);
 draw byNamedAngleResized();
 draw byLine(E, F, byblack, 0, 0);
-draw byLine(A, E, byred, 0, 0);
-draw byLine(E, B, byred, 1, 0);
-draw byLine(C, F, byblue, 0, 0);
-draw byLine(F, D, byblue, 0, 0);
+byLineDefine(A, E, byred, 0, 0);
+byLineDefine(E, B, byred, 1, 0);
+byLineDefine(C, F, byblue, 0, 0);
+byLineDefine(F, D, byblue, 0, 0);
+draw byNamedLineSeq(0)(AE, EB);
+draw byNamedLineSeq(0)(CF, FD);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(0, 0);
 }
 \drawCurrentPictureInMargin
@@ -3143,14 +3148,14 @@ draw byLabelsOnPolygon(A, G, H, noPoint)(0, 0);
 startAutoLabeling;
 draw byNamedPolygon (ACD);
 stopAutoLabeling;
-draw byNamedLineFull(A, A, 1, 1, 0)(CD);
+draw byNamedLineFull(A, A, 1, 1,  0, 0)(CD);
 }
 and
 \drawFromCurrentPicture[bottom][polygonBEF]{
 startAutoLabeling;
 draw byNamedPolygon (BEF);
 stopAutoLabeling;
-draw byNamedLineFull(B, B, 1, 1, 0)(EF);
+draw byNamedLineFull(B, B, 1, 1,  0, 0)(EF);
 } on equal bases, and on the same side, are between the same parallels.}
 
 \startCenterAlign
@@ -3165,7 +3170,7 @@ $\polygonACD =
 startAutoLabeling;
 draw byNamedPolygon (BEF, GBF);
 stopAutoLabeling;
-draw byNamedLineFull(G, G, 1, 1, 0)(EF);
+draw byNamedLineFull(G, G, 1, 1,  0, 0)(EF);
 }$ but $\polygonACD = \polygonBEF$
 
 $\therefore \polygonBEF = \polygonGEF$, a part equal to the whole, which is absurd.
@@ -3969,15 +3974,15 @@ $\therefore \drawAngle{FDG} = \drawAngle{FGD}$
 
 $\therefore$ by (\inpropL[prop:I.VI], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV])\\ $\drawFromCurrentPicture[bottom][squareFGHD]{
 draw byNamedPolygon(DHG);
-draw byNamedLineFull(G, G, 1, 0, -1)(DF);
-draw byNamedLineFull(D, D, 0, 1, -1)(FG);
+draw byNamedLineFull(G, G, 1, 0,  0, -1)(DF);
+draw byNamedLineFull(D, D, 0, 1,  0, -1)(FG);
 draw byLabelsOnPolygon(D, H, G, F)(0, 0);
 } \mbox{ is a square } = \drawProportionalLine{DF}^2$.
 
 For the same reasons \drawFromCurrentPicture[bottom][squareKBCG]{
 draw byNamedPolygon(GBC);
-draw byNamedLineFull(B, B, 1, 0, -1)(GK);
-draw byNamedLineFull(G, G, 0, 1, -1)(KB);
+draw byNamedLineFull(B, B, 1, 0,  0, -1)(GK);
+draw byNamedLineFull(G, G, 0, 1,  0, -1)(KB);
 draw byLabelsOnPolygon(G, C, B, K)(0, 0);
 } is a square $= \drawProportionalLine{GK}^2$,
 
@@ -3985,10 +3990,10 @@ $\drawPolygon[bottom]{ACGH} = \drawPolygon[middle]{GKEF} = \drawProportionalLine
 
 But $\drawFromCurrentPicture[bottom][squareABEDf]{
 draw byNamedPolygon(GBC,DHG,ACGH,GKEF);
-draw byNamedLineFull(G, G, 1, 0, -1)(DF);
-draw byNamedLineFull(D, D, 0, 1, -1)(FG);
-draw byNamedLineFull(B, B, 1, 0, -1)(GK);
-draw byNamedLineFull(G, G, 0, 1, -1)(KB);
+draw byNamedLineFull(G, G, 1, 0,  0, -1)(DF);
+draw byNamedLineFull(D, D, 0, 1,  0, -1)(FG);
+draw byNamedLineFull(B, B, 1, 0,  0, -1)(GK);
+draw byNamedLineFull(G, G, 0, 1,  0, -1)(KB);
 draw byLabelsOnPolygon(A, B, E, D)(0, 0);
 } = \squareFGHD + \drawPolygon{ACGH} + \drawPolygon{GKEF} + \squareKBCG$,
 
@@ -4287,8 +4292,9 @@ draw byNamedAngleResized();
 draw byLine(A, F, byblack, 0, 0);
 draw byLine(F, D, byred, 1, 0);
 draw byLine(G, F, byyellow, 0, -1);
-draw byLine(C, G, byblue, 0, 0);
-draw byLine(G, E, byblue, 1, 0);
+byLineDefine(C, G, byblue, 0, 0);
+byLineDefine(G, E, byblue, 1, 0);
+draw byNamedLineSeq(0)(CG, GE);
 byLineDefine(A, C, byblue, 0, 0);
 byLineDefine(C, D, byyellow, 0, 0);
 byLineDefine(D, B, byred, 0, 0);
@@ -4355,8 +4361,9 @@ draw byLine(C, E, byred, 0, -1);
 draw byLine(A, C, byred, 0, 0);
 draw byLine(C, B, byyellow, 0, 0);
 draw byLine(B, D, byblue, 0, 0);
-draw byLine(E, B, byblack, 0, 0);
-draw byLine(B, G, byblack, 1, 0);
+byLineDefine(E, B, byblack, 0, 0);
+byLineDefine(B, G, byblack, 1, 0);
+draw byNamedLineSeq(0)(EB,BG);
 byLineDefine(E, F, byyellow, 1, 0);
 byLineDefine(F, D, byred, 0, 0);
 byLineDefine(D, G, byred, 1, 0);
@@ -4418,7 +4425,7 @@ K = whatever[G, H] = whatever[C, D];
 draw byPolygon(A,H,K,C)(byyellow);
 draw byPolygon(H,B,D,K)(byblue);
 draw byPolygon(A,H,G,F)(byblue);
-byLineDefine(K, G, byblack, 1, 0);
+draw byLine(K, G, byblack, 1, 0);
 byLineDefine(A, H, byred, 0, 0);
 byLineDefine(H, B, byred, 1, 0);
 byLineDefine(B, E, byblack, 0, 0);
@@ -4426,7 +4433,7 @@ byLineDefine(C, E, byblue, 1, 0);
 byLineDefine(E, A, byblue, 0, 0);
 byLineDefine(A, F, byyellow, 0, 0);
 draw byNamedLineSeq(-1)(BE,HB,AH);
-draw byNamedLine(CE,EA,AF,KG);
+draw byNamedLineSeq(0)(CE,EA,AF);
 draw byLabelsOnPolygon(F, A, E, C, K, D, B, H, G)(0, 0);
 }
 \drawCurrentPictureInMargin
@@ -4616,7 +4623,7 @@ take $\drawSizedLine{FE,EG} = \drawSizedLine{GB}$ \inprop[prop:I.X].
 Describe
 \drawFromCurrentPicture[bottom]{
 startTempScale(1/3);
-draw byNamedLineFull(B, F, 0, 0, 1)(BF);
+draw byNamedLineFull(B, F, 0, 0,  0, 1)(BF);
 startAutoLabeling;
 draw byNamedArc(G);
 stopAutoLabeling;
@@ -4947,8 +4954,9 @@ draw byNamedAngleResized();
 draw byLine(C, E, byblack, 1, 0);
 draw byLine(E, F, byblack, 0, 0);
 draw byLine(F, D, byblack, 1, 0);
-draw byLine(A, F, byred, 0, 0);
-draw byLine(F, B, byred, 1, 0);
+byLineDefine(A, F, byred, 0, 0);
+byLineDefine(F, B, byred, 1, 0);
+draw byNamedLineSeq(0)(AF,FB);
 byLineDefine(A, E, byyellow, 0, 0);
 byLineDefine(E, B, byblue, 0, 0);
 draw byNamedLineSeq(0)(AE,EB);
@@ -5119,7 +5127,48 @@ $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 
 \startProposition[title={Prop. VII. theor.},reference=prop:III.VII]
 \defineNewPicture[1/2]{
-pair A, B, C, D, E, F, G, H, K, M, N, d;
+pair A, B, C, D, E, F, G, H;
+numeric r;
+r := 2u;
+E := (0, 0);
+A := E shifted (dir(90)*r);
+D := E shifted (dir(-90)*r);
+F := 2/3[E, D];
+B := E shifted (dir(90-70)*r);
+C := E shifted (dir(-5)*r);
+H := E shifted (dir(-170)*r);
+G := E shifted (dir(90+70)*r);
+byAngleDefine(A, F, G, byblack, 0);
+byAngleDefine(A, F, B, byyellow, 0);
+draw byNamedAngleResized();
+draw byLine(F, B, byred, 0, 0);
+draw byLine(F, C, byblue, 0, 0);
+draw byLine(F, G, byblue, 1, 0);
+byLineDefine(F, A, byblack, 0, 0);
+byLineDefine(F, D, byyellow, 0, 0);
+draw byNamedLineSeq(0)(FA,FD);
+draw byCircleR(E, r, byblue, 0, 0, 0);
+draw byLabelsOnCircle(A, B, C, D, G)(E);
+draw byLabelsOnPolygon(D, F, G)(2, 0);
+draw byLabelsOnPolygon(F, E, A)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problemNP[2]{I}{f}{from any point within a circle \drawFromCurrentPicture{
+startTempScale(1/3);
+draw byNamedCircle(E);
+draw byLabelPoint(F, 0, 0);
+stopTempScale;
+} which is not the centre, lines
+$\left\{\vcenter{
+\nointerlineskip\hbox{\drawUnitLine[0.7cm]{FA}, \drawUnitLine[0.7cm]{FB}}
+\nointerlineskip\hbox{\drawUnitLine[0.7cm]{FC}, \drawUnitLine[0.7cm]{FD}}
+}\right.$
+are drawn to the circumference; the greatest of those lines is that \drawUnitLine{AF} which passes through the centre, and the least is the remaining part \drawUnitLine{FD} of the diameter.\\
+Of the others, that \drawUnitLine{FB} which is nearer to the line passing through the centre, is greater than that \drawUnitLine{FC} which is more remote.\\
+The two lines \drawUnitLine{FG} and \drawUnitLine{FB} which make equal angles \drawAngle{AFG} and \drawAngle{AFB} with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
+
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H;
 numeric r;
 r := 2u;
 E := (0, 0);
@@ -5130,77 +5179,75 @@ B := E shifted (dir(20)*r);
 C := E shifted (dir(-5)*r);
 G := E shifted (dir(15)*r);
 H := E shifted (dir(-170)*r);
-K := E shifted (dir(175)*r);
-M = whatever[E, H] = whatever[F, K];
-N := D;
 byAngleDefine(B, E, C, byblack, 0);
 byAngleDefine(C, E, F, byyellow, 0);
-draw byNamedAngleResized(BEC, CEF);
+draw byNamedAngleResized();
 draw byLine(F, B, byred, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
 draw byLine(F, C, byblue, 0, 0);
 draw byLine(E, B, byred, 1, 0);
-draw byLine(A, E, byblack, 1, 0);
-draw byLine(E, F, byblack, 0, 0);
-draw byLine(F, D, byyellow, 0, 0);
+byLineDefine(A, E, byblack, 1, 0);
+byLineDefine(E, F, byblack, 0, 0);
+byLineDefine(F, D, byyellow, 0, 0);
+draw byNamedLineSeq(0)(AE, EF, FD);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(D, F, E, A)(2, 0);
-label.top(\sometxt{Fig. 1}, (0, r));
-d := (0, -2r -u);
-draw image(
-byAngleDefine(G, F, E, byyellow, 0);
-byAngleDefine(K, F, E, byred, 0);
-draw byNamedAngleResized(GFE,KFE);
-draw byLine(F, G, byred, 0, 0);
-draw byLine(E, G, byred, 1, 0);
+}
+\drawCurrentPictureInMargin
+\startsubproposition[title={Figure I.}]
+To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:I.XV] $\drawUnitLine{AF} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. 
+
+Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:I.III], and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. 
+
+Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{AE}.
+\stopsubproposition
+
+\defineNewPicture[1/2]{
+pair A, B, C, D, E, F, G, H, M;
+numeric r;
+r := 2u;
+E := (0, 0);
+A := E shifted (dir(90)*r);
+D := E shifted (dir(-90)*r);
+F := 2/3[E, D];
+B := E shifted (dir(90-70)*r);
+H := E shifted (dir(-170)*r);
+G := E shifted (dir(90+70)*r);
+M = whatever[E, H] = whatever[F, G];
+byAngleDefine(B, F, E, byyellow, 0);
+byAngleDefine(G, F, E, byred, 0);
+draw byNamedAngleResized();
+draw byLine(F, B, byred, 0, 0);
+draw byLine(E, B, byred, 1, 0);
 draw byLine(E, M, byyellow, 0, 0);
 draw byLine(M, H, byyellow, 1, 0);
 draw byLine(F, M, byblue, 0, 0);
-draw byLine(M, K, byblue, 1, 0);
-draw byLine(A, E, byblack, 1, 0);
-draw byLine(E, F, byblack, 0, 0);
-draw byLine(F, N, byblack, 0, 0);
+draw byLine(M, G, byblue, 1, 0);
+byLineDefine(A, E, byblack, 1, 0);
+byLineDefine(E, F, byblack, 0, 0);
+byLineDefine(F, D, byblack, 0, 0);
+draw byNamedLineSeq(0)(AE, EF, FD);
 draw byCircleR(E, r, byblue, 0, 0, 0);
-draw byLabelsOnCircle(G, K, H)(E);
+draw byLabelsOnCircle(B, G, H)(E);
 draw byLabelsOnPolygon(D, F, M, H)(2, 0);
 draw byLabelsOnPolygon(M, E, A)(2, 0);
-label.top(\sometxt{Fig. 2}, (0, r));
-) shifted d;
 }
 \drawCurrentPictureInMargin
-\problemNP[2]{I}{f}{from any point within a circle \drawFromCurrentPicture{
-startTempScale(1/3);
-draw byNamedCircle(E);
-draw byLabelPoint(F, 0, 0);
-stopTempScale;
-} which is not the centre, lines
-$\left\{\vcenter{
-\nointerlineskip\hbox{\drawUnitLine{EF,AE}}
-\nointerlineskip\hbox{\drawUnitLine{FB}}
-\nointerlineskip\hbox{\drawUnitLine{FC}}}\right.$
-are drawn to the circumference; the greatest of those lines is that \drawUnitLine{EF,AE} which passes through the centre, and the least is the remaining part \drawUnitLine{FD} of the diameter.\\
-Of the others, that \drawUnitLine{FB} which is nearer to the line passing through the centre, is greater than that \drawUnitLine{FC} which is more remote.\\
-Fig. 2. The two lines \drawUnitLine{FM,MK} and \drawUnitLine{FG} which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
-
-\startsubproposition[title={Figure I.}]
-To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \indef[def:I.XV] $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \inprop[prop:I.XX] in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \inprop[prop:I.XX] $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \inax[ax:I.III], and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} > \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \inprop[prop:I.XXIV] and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
-\stopsubproposition
-
 \startsubproposition[title={Figure II.}]
 \startCenterAlign
-If $\drawAngle{KFE} = \drawAngle{GFE}$ then $\drawUnitLine{FM,MK} = \drawUnitLine{FG}$,\\
-if not take $\drawUnitLine{FM} = \drawUnitLine{FG}$ draw \drawUnitLine{EM,MH}\\
-then in \drawLine[middle][triangleEFM]{EM,EF,FM} and \drawLine[middle][triangleEFG]{FG,EF,EG}, \drawUnitLine{EF} common,\\
-$\drawAngle{KFE} = \drawAngle{GFE}$ and $\drawUnitLine{FG} = \drawUnitLine{FM}$
+If $\drawAngle{GFE} = \drawAngle{BFE}$ then $\drawUnitLine{FG} = \drawUnitLine{FB}$,\\
+if not take $\drawUnitLine{FM} = \drawUnitLine{FB}$ draw \drawUnitLine{EH}\\
+then in \drawLine[middle][triangleEFM]{EM,EF,FM} and \drawLine[middle][triangleEFG]{FB,EF,EB}, \drawUnitLine{EF} common,\\
+$\drawAngle{GFE} = \drawAngle{BFE}$ and $\drawUnitLine{FB} = \drawUnitLine{FM}$
 
-$\therefore \drawUnitLine{EG} = \drawUnitLine{EM}$ \inprop[prop:I.IV]
+$\therefore \drawUnitLine{EB} = \drawUnitLine{EM}$ \inprop[prop:I.IV]
 
-$\therefore \drawUnitLine{EG} = \drawUnitLine{EM,MH} = \drawUnitLine{EM}$\\
+$\therefore \drawUnitLine{EB} = \drawUnitLine{EH} = \drawUnitLine{EM}$\\
 a part equal to the whole, which is absurd:
 \stopCenterAlign
 
-\noindent $\therefore \drawUnitLine{FG} = \drawUnitLine{FM,MK}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
+\noindent $\therefore \drawUnitLine{FG} = \drawUnitLine{FB}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
 
 \stopsubproposition
 
@@ -5224,12 +5271,12 @@ byAngleDefine(D, M, F, byyellow, 0);
 byAngleDefine(F, M, E, byblack, 0);
 draw byNamedAngleResized();
 draw byLine(D, E, byred, 0, 0);
-draw byLine(M, A, byblack, 1, 0);
 draw byLine(M, E, byred, 1, 0);
 draw byLine(M, F, byblue, 1, 0);
+byLineDefine(M, A, byblack, 1, 0);
 byLineDefine(D, M, byblack, 0, 0);
 byLineDefine(D, F, byblue, 0, 0);
-draw byNamedLineSeq(0)(DM,DF);
+draw byNamedLineSeq(0)(MA, DM,DF);
 draw byCircle.M(M, E, byblack, 0, 0, 0);
 draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(2, 0);
@@ -5365,9 +5412,10 @@ F := 2/4[D, L];
 draw byLine(D, A, byyellow, 1, 0);
 draw byLine(D, B, byyellow, 0, 0);
 draw byLine(D, C, byblue, 0, 0);
-draw byLine(D, F, byblack, 0, 0);
-draw byLine(F, L, byred, 1, 0);
-draw byLine(D, H, byred, 0, 0);
+byLineDefine(D, F, byblack, 0, 0);
+byLineDefine(F, L, byred, 1, 0);
+byLineDefine(D, H, byred, 0, 0);
+draw byNamedLineSeq(0)(DH, DF, FL);
 draw byCircle.D(D, A, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, H, L)(D);
 draw byLabelsOnPolygon(A, D, F, L)(2, 0);
@@ -5471,10 +5519,11 @@ K := cr1 intersectionpoint (F--10[G, F]);
 draw byPolygon(A,F,G)(byyellow);
 draw byLine(A, G, byred, 0, 0);
 draw byLine(A, F, byblue, 1, 0);
-draw byLine(H, D, byyellow, 0, 0);
-draw byLine(D, G, byyellow, 1, 0);
-draw byLine(G, F, byblack, 0, 0);
-draw byLine(F, K, byblue, 0, 0);
+byLineDefine(H, D, byyellow, 0, 0);
+byLineDefine(D, G, byyellow, 1, 0);
+byLineDefine(G, F, byblack, 0, 0);
+byLineDefine(F, K, byblue, 0, 0);
+draw byNamedLineSeq(0)(HD, DG, GF, FK);
 byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
 draw byCircle.M(M, A, byblack, 0, 0, 0);
@@ -5494,7 +5543,7 @@ Because in
 startAutoLabeling;
 draw byNamedPolygon(AFG);
 stopAutoLabeling;
-draw byNamedLineFull(A, A, 1, 1, 0)(GF);
+draw byNamedLineFull(A, A, 1, 1,  0, 0)(GF);
 };
 $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \inprop[prop:I.XX],\\
 and $\drawSizedLine{AF} = \drawSizedLine{HD,DG,GF}$ as they are radii of \circleM,\\
@@ -6118,8 +6167,9 @@ byAngleDefine(E, C, A, byred, 0);
 draw byNamedAngleResized();
 draw byLine(A, C, byblack, 0, 1);
 draw byLine(E, C, byblack, 0, 0);
-draw byLine(E, F, byred, 1, 0);
-draw byLine(E, A, byred, 0, 0);
+byLineDefine(E, F, byred, 1, 0);
+byLineDefine(E, A, byred, 0, 0);
+draw byNamedLineSeq(0)(EF,EA);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, C)(E);
 draw byLabelsOnPolygon(F, E, A)(2, 0);
@@ -7053,8 +7103,9 @@ byAngleDefine(G, B, A, byred, 0);
 draw byNamedAngleResized(EAK,BAE,DAB,GBA);
 draw byLine(A, B, byblack, 0, 0);
 draw byLine(G, B, byyellow, 0, 0);
-draw byLine(A, G, byblue, 0, 0);
-draw byLine(G, E, byblue, 1, 0);
+byLineDefine(A, G, byblue, 0, 0);
+byLineDefine(G, E, byblue, 1, 0);
+draw byNamedLineSeq(0)(AG,GE);
 draw byLineFull(K, D, byred, 0, 0)(K, D, 0, 0, 1);
 draw byCircle.G(G, B, byblue, 0, 0, 0);
 byAngleDefine.givenRight(E, A, K, byblack, 1);
@@ -7148,8 +7199,9 @@ C := (dir(50 + 180)*r) shifted E;
 D := (dir(100 + 180)*r) shifted E;
 draw byLine(A, E, byblack, 0, 0);
 draw byLine(E, C, byblack, 1, 0);
-draw byLine(D, E, byblue, 0, 0);
-draw byLine(E, B, byblue, 1, 0);
+byLineDefine(D, E, byblue, 0, 0);
+byLineDefine(E, B, byblue, 1, 0);
+draw byNamedLineSeq(0)(DE, EB);
 draw byCircleR(E, r, byyellow, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(C, E, B)(2, 0);
@@ -7178,9 +7230,10 @@ draw byLine(D, E, byred, 0, 0);
 draw byLine(E, B, byyellow, 0, 0);
 draw byLine(B, H, byblue, 0, 0);
 draw byLine(H, D, byblue, 1, 0);
-draw byLine(A, E, byblack, 0, 0);
-draw byLine(E, H, byred, 1, 0);
-draw byLine(H, C, byblack, 1, 0);
+byLineDefine(A, E, byblack, 0, 0);
+byLineDefine(E, H, byred, 1, 0);
+byLineDefine(H, C, byblack, 1, 0);
+draw byNamedLineSeq(0)(AE,EH,HC);
 draw byCircleR(E, r, byred, 0, 0, 0);
 draw byLabelsOnCircle(B, D, C, A)(E);
 draw byLabelsOnPolygon(D, H, C)(2, 0);
@@ -7215,8 +7268,9 @@ draw byLine(K, E, byred, 1, 0);
 draw byLine(E, L, byred, 0, 0);
 draw byLine(B, E, byblue, 0, 0);
 draw byLine(E, D, byblue, 1, 0);
-draw byLine(A, E, byblack, 0, 0);
-draw byLine(E, C, byblack, 1, 0);
+byLineDefine(A, E, byblack, 0, 0);
+byLineDefine(E, C, byblack, 1, 0);
+draw byNamedLineSeq(0)(AE,EC);
 draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, K, L, A, C)(F);
 draw byLabelsOnPolygon(B, E, K)(2, 0);
@@ -7250,11 +7304,11 @@ A := (dir(angle(D-F) + 180))*r;
 cr2 := ((fullcircle scaled abs(D-F)) rotated angle(D-F)) shifted 1/2[D, F];
 B := cr1 intersectionpoint (subpath (0, 4) of cr2);
 draw byLine(B, F, byyellow, 0, 0);
-draw byLine(C, F, byred, 1, 0);
-draw byLine(F, A, byblack, 0, 0);
+byLineDefine(C, F, byred, 1, 0);
+byLineDefine(F, A, byblack, 0, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
-draw byNamedLineSeq(0)(DB,DC);
+draw byNamedLineSeq(0)(DB, DC, CF, FA);
 draw byCircleR(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(F);
 draw byLabelsOnPolygon(B, D, F, A)(2, 0);
@@ -7288,15 +7342,15 @@ A := (dir(angle(D-E) + 120))*r;
 C := cr1 intersectionpoint (A--D);
 cr2 := ((fullcircle scaled abs(D-E)) rotated angle(D-E)) shifted 1/2[D, E];
 B := cr1 intersectionpoint (subpath (0, 4) of cr2);
-draw byLine(E, A, byyellow, 1, 0);
 draw byLine(E, B, byyellow, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byred, 1, 0);
 draw byLine(E, B, byyellow, 0, 0);
+byLineDefine(E, A, byyellow, 1, 0);
 byLineDefine(D, B, byblue, 0, 0);
 byLineDefine(D, E, byblack, 0, 0);
-draw byNamedLineSeq(0)(DB,DE);
+draw byNamedLineSeq(0)(DB,DE,EA);
 draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B)(E);
 draw byLabelsOnPolygon(B, D, E, A)(2, 0);
@@ -7827,8 +7881,9 @@ draw byNamedAngleResized();
 draw byLine(D, F, byyellow, 0, 0);
 draw byLine(E, F, byyellow, 1, 0);
 draw byLine(A, F, byblack, 1, 0);
-draw byLine(A, D, byblue, 0, 0);
-draw byLine(D, B, byblue, 1, 0);
+byLineDefine(A, D, byblue, 0, 0);
+byLineDefine(D, B, byblue, 1, 0);
+draw byNamedLineSeq(0)(AD,DB);
 if (sind(b)<>-sind(c)):
 byLineDefine(B, F, byblack, 0, 0);
 byLineDefine(C, F, byblack, 0, 1);
@@ -7837,8 +7892,9 @@ draw byLine(B, C, byred, 0, 0);
 else:
 draw byLine(B, C, byblack, 0, 0);
 fi;
-draw byLine(C, E, byred, 0, 0);
-draw byLine(E, A, byred, 1, 0);
+byLineDefine(C, E, byred, 0, 0);
+byLineDefine(E, A, byred, 1, 0);
+draw byNamedLineSeq(0)(CE,EA);
 draw byCircleR(F, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(F);
 draw byLabelsOnPolygon(B, D, A)(2, 0);
@@ -7900,10 +7956,11 @@ byAngleDefine(C, D, A, byblack, 0);
 byAngleDefine(A, E, B, byblue, 0);
 byAngleDefine(D, E, A, byred, 0);
 draw byNamedAngleResized();
-draw byLine(B, E, byred, 1, 0);
-draw byLine(D, E, byblue, 1, 0);
 draw byLine(A, E, byblack, 1, 0);
 draw byLine(C, E, byblack, 0, 1);
+byLineDefine(B, E, byred, 1, 0);
+byLineDefine(D, E, byblue, 1, 0);
+draw byNamedLineSeq(0)(BE, DE);
 byLineDefine(A, B, byblack, 0, 0);
 byLineDefine(B, C, byyellow, 0, 0);
 byLineDefine(C, D, byblue, 0, 0);
@@ -8074,8 +8131,9 @@ byAngleDefine(E, B, C, byblue, 0);
 draw byNamedAngleResized();
 draw byLine(A, E, byblue, 0, 0);
 draw byLine(E, C, byblue, 1, 0);
-draw byLine(B, E, byblack, 0, 0);
-draw byLine(E, D, byblack, 1, 0);
+byLineDefine(B, E, byblack, 0, 0);
+byLineDefine(E, D, byblack, 1, 0);
+draw byNamedLineSeq(0)(BE, ED);
 draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(B, E, A)(2, 1);
@@ -11715,7 +11773,7 @@ Draw any straight line \drawSizedLine{AB,BC},\\
 make $\drawSizedLine{AB} = \drawSizedLine{A}$ and $\drawSizedLine{BC} = \drawSizedLine{B}$;\\
 bisect \drawSizedLine{AB,BC}; and from the point of bisection as a centre, and half line as a radius, describe a semicircle
 \drawFromCurrentPicture[bottom]{
-draw byNamedLineFull(A, C, 0, 0, -1)(AC);
+draw byNamedLineFull(A, C, 0, 0,  0, -1)(AC);
 draw byNamedArc(O);
 draw byLabelsOnPolygon(C, A, noPoint)(0, 0);
 },\\
@@ -12492,8 +12550,9 @@ draw byPolygon(C,F,M,E)(white);
 byAngleDefine(F, C, E, byyellow, 0);
 draw byNamedAngleResized(FCE);
 draw byLine(C, E, byred, 0, 0);
-draw byLine(B, C, byyellow, 0, 0);
-draw byLine(C, F, byblack, 1, 0);
+byLineDefine(B, C, byyellow, 0, 0);
+byLineDefine(C, F, byblack, 1, 0);
+draw byNamedLineSeq(0)(BC, CF);
 pair K, G, H;
 numeric s;
 s := (a/(abs(B-C)*abs(B-L)))**(1/2);
@@ -12594,7 +12653,7 @@ and
 \drawFromCurrentPicture[bottom][parallelogramABCD]{
 draw byNamedPolygon(GDCBEF);
 draw byNamedLine(EAt,AC);
-draw byNamedLineFull(E, F, 0, 1, 1)(AGt);
+draw byNamedLineFull(E, F, 0, 1,  0, 1)(AGt);
 draw byLabelsOnPolygon(A, D, C, B)(0, 0);
 }
 have a common angle, they are about the same diagonal.}
@@ -12679,9 +12738,10 @@ byLineDefine(D, E, byyellow, 0, 0);
 byLineDefine(D, C, byred, 0, 0);
 byLineDefine(C, F, byblack, 1, 0);
 draw byNamedLineSeq(0)(CF,DC,DE);
-draw byLine(A, E, byred, 1, 0);
-draw byLine(E, C, byblue, 0, 0);
-draw byLine(C, B, byblue, 1, 0);
+byLineDefine(A, E, byred, 1, 0);
+byLineDefine(E, C, byblue, 0, 0);
+byLineDefine(C, B, byblue, 1, 0);
+draw byNamedLineSeq(0)(AE, EC, CB);
 draw byArcBE.a(D, -1/2, -4 + 1/2, r, byred, 0, 0, 0, 0);
 d := (0, 2u);
 G := A shifted d;
@@ -12740,10 +12800,11 @@ F := C shifted (abs(C-D), 0);
 draw byLine.G(H, G, byblack, 0, 0);
 draw byLineFull(C, D, byred, 0, 0)(B, D, 1, 0, 0);
 draw byLine(B, D, byred, 1, 0);
-draw byLineFull(E, A, byyellow, 1, 0)(E, A, 0, 0, -1);
-draw byLineFull(A, C, byblue, 0, 0)(A, C, 0, 0, -1);
-draw byLineFull(C, B, byblue, 1, 0)(C, B, 0, 0, -1);
-draw byLineFull(B, F, byyellow, 0, 0)(B, F, 0, 0, -1);
+byLineDefine(E, A, byyellow, 1, 0);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(C, B, byblue, 1, 0);
+byLineDefine(B, F, byyellow, 0, 0);
+draw byNamedLineSeq(1)(EA, AC, CB, BF);
 draw byArcBE.a(C, 0, 4, abs(C-D), byred, 0, 0, 0, 0);
 draw byLabelsOnCircle(D)(a);
 draw byLabelsOnPolygon(F, B, C, A, noPoint)(0, 0);
@@ -13178,8 +13239,9 @@ draw byLine(A, B, byblue, 0, 0);
 draw byLine(B, D, byred, 1, 0);
 draw byLine(D, C, byred, 0, 0);
 draw byLine(C, A, byblack, 0, 0);
-draw byLine(A, D, byyellow, 0, 0);
-draw byLine(D, E, byyellow, 1, 0);
+byLineDefine(A, D, byyellow, 0, 0);
+byLineDefine(D, E, byyellow, 1, 0);
+draw byNamedLineSeq(0)(AD, DE);
 draw byLine(C, E, byblue, 1, 0);
 draw byCircleABC.O(A, B, C, byyellow, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, E)(O);
@@ -13230,8 +13292,9 @@ draw byLine(A, E, byblue, 0, 0);
 draw byLine(C, E, byblack, 0, 0);
 draw byLine(A, D, byyellow, 1, 0);
 draw byLine(A, B, byblue, 1, 0);
-draw byLine(B, D, byred, 1, 0);
-draw byLine(D, C, byred, 0, 0);
+byLineDefine(B, D, byred, 1, 0);
+byLineDefine(D, C, byred, 0, 0);
+draw byNamedLineSeq(0)(BD, DC);
 draw byLine(C, A, byyellow, 0, 0);
 draw byCircleABC.O(A, B, C, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, E)(O);
@@ -13282,8 +13345,9 @@ byAngleDefine(D, A, C, byred, 0);
 draw byNamedAngleResized();
 draw byLine(A, E, byyellow, 1, 0);
 draw byLine(A, C, byblue, 0, 0);
-draw byLine(B, E, byred, 1, 0);
-draw byLine(E, D, byred, 0, 0);
+byLineDefine(B, E, byred, 1, 0);
+byLineDefine(E, D, byred, 0, 0);
+draw byNamedLineSeq(0)(BE, ED);
 draw byLine(A, B, byblack, 1, 0);
 draw byLine(B, C, byblue, 1, 0);
 draw byLine(C, D, byblack, 0, 0);
