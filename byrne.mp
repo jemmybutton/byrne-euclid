@@ -1,4 +1,4 @@
-%    byrne-euclid 0.2.2
+%    byrne-euclid 0.2.3
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
 %    Copyright 2022 Sergey Slyusarev
@@ -1742,7 +1742,7 @@ vardef byCirclePathGenerate (expr sr, pv) =
     circPath
 enddef;
 
-vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
+vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, dpt, s, et) =
     save p, q, m, t, currentLineWidth, srCircle;
     path p[], srCircle;
     picture q;
@@ -1753,14 +1753,15 @@ vardef byArcRender (expr o, b, e, r, sr, pv, col, dp, th, s, et) =
     image(
         srCircle := byCirclePathGenerate(sr, pv);
         currentLineWidth := lineThickness(th);
-        p0 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
+        p0 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + 2lineWidth*s + lineWidth)) shifted (o*scaleFactor);
         p1 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor)) shifted (o*scaleFactor);
-        p2 := (srCircle scaled (r*scaleFactor + lineWidth*s + lineWidth)) shifted (o*scaleFactor);
-        p3 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
-        p4 := ((subpath (b + sign(b-e)*1/16, b) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
-        p5 := ((subpath (e, e + sign(e-b)*1/16) of srCircle) scaled (r*scaleFactor + lineWidth*s)) shifted (o*scaleFactor);
+        p2 := (srCircle scaled (r*scaleFactor + 2lineWidth*s + lineWidth)) shifted (o*scaleFactor);
+        p3 := ((subpath (b, e) of srCircle) scaled (r*scaleFactor + 2lineWidth*s)) shifted (o*scaleFactor);
+        p4 := ((subpath (b + sign(b-e)*1/16, b) of srCircle) scaled (r*scaleFactor + 2lineWidth*s)) shifted (o*scaleFactor);
+        p5 := ((subpath (e, e + sign(e-b)*1/16) of srCircle) scaled (r*scaleFactor + 2lineWidth*s)) shifted (o*scaleFactor);
         q := image(
-            draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p3), dp, 0) fi;
+            draw p3 withpen pencircle scaled currentLineWidth withcolor white;
+            draw p3 withpen pencircle scaled currentLineWidth withcolor col if (dp > 0): dashed byDashPattern(arclength(p3), dp, dpt) fi;
             draw p4 withpen pencircle scaled currentLineWidth withcolor col;
             draw p5 withpen pencircle scaled currentLineWidth withcolor col;
         );
@@ -1854,6 +1855,64 @@ else:
 fi
 enddef;
 
+vardef byNamedArcSeq (expr s)(text arcslist) =
+    save i, j, arcC, arcD, dpt, dashStreak;
+    numeric i, j, arcD, dpt[], dashStreak;
+    string arcC;
+    dashStreak := 0;
+    image(
+    i := 0;
+    forsuffixes aNi=arcslist:
+        j := 0;
+        dpt[i] := 0;
+        if getAttribute("arc", "Dashed", str aNi) > 0:
+            forsuffixes aNj=arcslist:
+                if (i <> j)
+                    and (getAttribute("arc", "CenterName", str aNi) = getAttribute("arc", "CenterName", str aNj))
+                    and (getAttribute("arc", "Diameter", str aNi) = getAttribute("arc", "Diameter", str aNj)):
+                    if (abs(
+                            (point getAttribute("arc", "Begin", str aNi) of fullcircle) -
+                            (point getAttribute("arc", "End", str aNj) of fullcircle)
+                            ) < 1/100):
+                        dpt[i] := dpt[i] + 2;
+                    fi;
+                    if (abs(
+                            (point getAttribute("arc", "End", str aNi) of fullcircle) -
+                            (point getAttribute("arc", "Begin", str aNj) of fullcircle)
+                            ) < 1/100):
+                        if getAttribute("arc", "Dashed", str aNj) = 0:
+                            dpt[i] := dpt[i] + 1;
+                        fi;
+                    fi;
+                fi;
+                j := j + 1;
+            endfor;
+        fi;
+        i := i + 1;
+    endfor;
+    i := 0;
+    forsuffixes aN=arcslist:
+        draw byArcRender(
+            scantokens(getAttribute("arc", "CenterName", str aN)),
+            getAttribute("arc", "Begin", str aN),
+            getAttribute("arc", "End", str aN),
+            getAttribute("arc", "Diameter", str aN),
+            getAttribute("arc", "SpaceRotation", str aN),
+            getAttribute("arc", "PlaneVector", str aN),
+            getAttribute("arc", "Color", str aN),
+            getAttribute("arc", "Dashed", str aN),
+            getAttribute("arc", "Thin", str aN),
+            dpt[i],
+            s,
+            getAttribute("arc", "EndType", str aN));
+        i := i + 1;
+    endfor;
+    if (autoLabelingMode):
+        draw byNamedArcLabel(arcslist);
+    fi;
+    )
+enddef;
+
 vardef byNamedArcExact (text arcslist) =
     image(
         forsuffixes aN=arcslist:
@@ -1867,6 +1926,7 @@ vardef byNamedArcExact (text arcslist) =
                 getAttribute("arc", "Color", str aN),
                 getAttribute("arc", "Dashed", str aN),
                 getAttribute("arc", "Thin", str aN),
+                0,
                 getAttribute("arc", "Shift", str aN),
                 getAttribute("arc", "EndType", str aN));
         endfor;
@@ -1888,7 +1948,7 @@ vardef byNamedArc (text arcslist) =
                 getAttribute("arc", "PlaneVector", str aN),
                 getAttribute("arc", "Color", str aN),
                 getAttribute("arc", "Dashed", str aN),
-                getAttribute("arc", "Thin", str aN), 0, 0);
+                getAttribute("arc", "Thin", str aN), 0, 0, 0);
         endfor;
         if (autoLabelingMode):
             draw byNamedArcLabel(arcslist);
@@ -2100,6 +2160,7 @@ vardef byNamedCircle (text circlesList) =
                 getAttribute("circle", "Color", str cN),
                 getAttribute("circle", "Dashed", str cN),
                 getAttribute("circle", "Thin", str cN),
+                0,
                 getAttribute("circle", "Shift", str cN), 0);
             if (textLabels and autoLabelingMode):
                 if (getAttribute("circle", "CenterName", str cN) <> ""):

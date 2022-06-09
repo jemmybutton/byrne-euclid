@@ -101,8 +101,8 @@ byLineDefine.BCb(B, C, byblack, 0, 0);
 byLineStylize (L, L, 0, 1, -1) (BCb);
 byLineDefine.BLb(L, B, byblack, 0, 0);
 byLineStylize (C, C, 1, 0, -1) (BLb);
-draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, -1);
-draw byLabelsOnPolygon(A, J, C)(2, 1);
+%draw byLabelsOnPolygon(B, E, D, A, G, F, C, I, K, H)(0, -1);
+%draw byLabelsOnPolygon(A, J, C)(2, 1);
 }
 
 \vfill\vfill
@@ -924,6 +924,8 @@ Two straight lines cannot include a space.
 All right angles are equal.
 \stopAxiomOnlyNumber
 
+\pagebreak
+
 \startAxiomOnlyNumber[reference=ax:I.XII]
 \defineNewPicture{
 	pair A, B, C, D, E, F, G, H;
@@ -1373,9 +1375,9 @@ draw byNamedAngleResized(EDF, DEF, EFD);
 byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, byblack, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
-draw byNamedLineSeq(0)(FD,EF,DE);
-draw byLabelsOnPolygon(F, E, D)(0, 0);
-draw byLabelsOnPolygon(B, A, C)(0, 1);
+%draw byNamedLineSeq(0)(FD,EF,DE);
+%draw byLabelsOnPolygon(F, E, D)(0, 0);
+%draw byLabelsOnPolygon(B, A, C)(0, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, \drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD} and the angles \drawAngle{A} and \drawAngle{D} contained by those equal sides also equal; then their bases or their sides \drawUnitLine{BC} and \drawUnitLine{EF} are also equal: and the remaining angles opposite to equal sides are respectively equal $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$: and the triangles are equal in every respect.}
@@ -3245,12 +3247,13 @@ byAngleDefine(B, E, D, byblue, 0);
 byAngleDefine(H, I, J, byyellow, 0);
 setAttribute("angle", "Standalone", "HIJ", 1);
 draw byNamedAngleResized();
-draw byLine(A, D, byred, 1, 0);
 draw byLine(B, E, byred, 0, 0);
-draw byLine(C, E, byyellow, 0, 0);
-draw byLine(A, C, byblue, 0, 0);
-draw byLine(D, E, byblack, 0, 0);
-draw byLine(E, G, byblack, 1, 0);
+byLineDefine(A, D, byred, 1, 0);
+byLineDefine(C, E, byyellow, 0, 0);
+byLineDefine(A, C, byblue, 0, 0);
+byLineDefine(D, E, byblack, 0, 0);
+byLineDefine(E, G, byblack, 1, 0);
+draw byNamedLineSeq(0)(CE,AC,AD,DE,EG,noLine);
 draw byLabelsOnPolygon(G, E, D, A, B, C)(0, 0);
 startAutoLabeling;
 draw byNamedAngleSidesFull(HIJ)();
@@ -3914,7 +3917,7 @@ In a similar manner it may be readily shown that $\drawProportionalLine{DE,DF} \
 \stopProposition
 
 \startProposition[title={Prop. IV. theor.},reference=prop:II.IV]
-\defineNewPicture[1/4]{
+\defineNewPicture[1/5]{
 pair A, B, C, D, E, F, G, H, K;
 numeric w;
 w := 9/2u;
@@ -3967,9 +3970,7 @@ and $\left\{\eqalign{
 \drawProportionalLine{FG,CG} &\parallel \drawProportionalLine{EK,KB} \cr
 \drawProportionalLine{HG,GK} &\parallel \drawProportionalLine{DF,FE}
 }\right\}$ \inprop[prop:I.XXXI]\\
-$\drawAngle{GBK} = \drawAngle{FDG}$ \inprop[prop:I.V],\\
-$\drawAngle{GBK} = \drawAngle{FGD}$ \inprop[prop:I.XXIX],
-
+$\drawAngle{GBK} = \drawAngle{FDG}$ \inprop[prop:I.V], $\drawAngle{GBK} = \drawAngle{FGD}$ \inprop[prop:I.XXIX],\\
 $\therefore \drawAngle{FDG} = \drawAngle{FGD}$
 
 $\therefore$ by (\inpropL[prop:I.VI], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV])\\ $\drawFromCurrentPicture[bottom][squareFGHD]{
@@ -3986,7 +3987,7 @@ draw byNamedLineFull(G, G, 0, 1,  0, -1)(KB);
 draw byLabelsOnPolygon(G, C, B, K)(0, 0);
 } is a square $= \drawProportionalLine{GK}^2$,
 
-$\drawPolygon[bottom]{ACGH} = \drawPolygon[middle]{GKEF} = \drawProportionalLine{DF} \cdot \drawProportionalLine{GK}$ \inprop[prop:I.XLIII]
+$\drawPolygon[bottom]{ACGH} = \drawPolygon[bottom]{GKEF} = \drawProportionalLine{DF} \cdot \drawProportionalLine{GK}$ \inprop[prop:I.XLIII]
 
 But $\drawFromCurrentPicture[bottom][squareABEDf]{
 draw byNamedPolygon(GBC,DHG,ACGH,GKEF);
@@ -5749,18 +5750,20 @@ C := (dir(90+20)*r) shifted E;
 D := (dir(90+130)*r) shifted E;
 F = whatever[A, B] = whatever[E, E shifted ((A-B) rotated 90)];
 G = whatever[C, D] = whatever[E, E shifted ((C-D) rotated 90)];
-byAngleDefine.F(E, F, A, byyellow, 0);
-byAngleDefine.G(E, G, C, byblack, 1);
+byAngleDefine(E, F, A, byyellow, 0);
+byAngleDefine(E, G, C, byblack, 1);
 draw byNamedAngleResized();
 draw byLine(E, A, byblack, 0, 0);
 draw byLine(E, C, byblue, 0, 0);
 byLineDefine(E, F, byblack, 1, 0);
 byLineDefine(E, G, byblue, 1, 0);
 draw byNamedLineSeq(0)(EF,EG);
-draw byLine(A, F, byred, 0, 0);
-draw byLine(F, B, byred, 1, 0);
-draw byLine(C, G, byyellow, 0, 0);
-draw byLine(G, D, byyellow, 1, 0);
+byLineDefine(A, F, byred, 0, 0);
+byLineDefine(F, B, byred, 1, 0);
+draw byNamedLineSeq(0)(AF, FB);
+byLineDefine(C, G, byyellow, 0, 0);
+byLineDefine(G, D, byyellow, 1, 0);
+draw byNamedLineSeq(0)(CG, GD);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 draw byLabelsOnPolygon(F, E, G)(2, 0);
@@ -6705,9 +6708,10 @@ byLineDefine(G, B, byblack, 0, 1);
 byLineDefine(G, C, byblack, 0, 1);
 draw byNamedLineSeq(0)(GB,GC);
 draw byLine(G, K, byblack, 0, 1);
-draw byArc.G(G, C, B, r, byred, 0, 0, 0, 0);
-draw byArc.GbI(G, B, K, r, byblack, 0, 0, 0, 0);
-draw byArc.GbII(G, K, C, r, byred, 1, 0, 0, 0);
+byArcDefine.G(G, C, B, r, byred, 0, 0, 0, 0);
+byArcDefine.GbI(G, B, K, r, byblack, 0, 0, 0, 0);
+byArcDefine.GbII(G, K, C, r, byred, 1, 0, 0, 0);
+draw byNamedArcSeq(0)(G, GbI, GbII);
 byCircleDefineR(G, r, byred, 0, 0, 0);
 byAngleDefine(E, D, F, byred, 0);
 byAngleDefine(E, H, F, byred, 0);
@@ -6717,8 +6721,9 @@ draw byLine(D, E, byblack, 0, 1);
 byLineDefine(H, E, byblack, 0, 1);
 byLineDefine(H, F, byblack, 0, 1);
 draw byNamedLineSeq(0)(HE,HF);
-draw byArc.H(H, F, E, r, byblue, 0, 0, 0, 0);
-draw byArc.Hb(H, E, F, r, byblack, 1, 0, 0, 0);
+byArcDefine.H(H, F, E, r, byblue, 0, 0, 0, 0);
+byArcDefine.Hb(H, E, F, r, byblack, 1, 0, 0, 0);
+draw byNamedArcSeq(0)(H, Hb);
 byCircleDefineR(H, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, K)(G);
 draw byLabelsOnCircle(D, E, F)(H);
@@ -6889,10 +6894,12 @@ draw byNamedAngleResized();
 draw byLine(D, A, byblue, 0, 0);
 draw byLine(D, C, byyellow, 0, 0);
 draw byLine(D, B, byblue, 1, 0);
-draw byLine(A, C, byblack, 0, 0);
-draw byLine(C, B, byblack, 1, 0);
-draw byArc.Er(E, B, D, r, byred, 1, 0, 0, 0);
-draw byArc.El(E, D, A, r, byred, 0, 0, 0, 0);
+byLineDefine(A, C, byblack, 0, 0);
+byLineDefine(C, B, byblack, 1, 0);
+draw byNamedLineSeq(0)(AC, CB);
+byArcDefine.Er(E, B, D, r, byred, 1, 0, 0, 0);
+byArcDefine.El(E, D, A, r, byred, 0, 0, 0, 0);
+draw byNamedArcSeq(0)(Er,El);
 draw byLabelsOnCircle(A, B, D)(Er);
 draw byLabelLineEnd(C, D, 0);
 }
@@ -12848,13 +12855,14 @@ E = whatever[D, D shifted (0, 1)] = whatever[A, B];
 F = whatever[C, H] = whatever[D, E];
 draw byPolygon(A,C,F,E)(byyellow);
 draw byPolygon(E,F,H,B)(byblue);
-draw byLine(A, E, byred, 0, 0);
-draw byLine(E, B, byred, 1, 0);
+byLineDefine(A, E, byred, 0, 0);
+byLineDefine(E, B, byred, 1, 0);
+draw byNamedLineSeq(1)(AE, EB);
 byLineDefine(C, A, byblue, 0, 0);
 byLineDefine(A, G, byblue, 1, 0);
 byLineDefine(G, D, byyellow, 0, 0);
 byLineDefine(D, E, byblack, 0, 0);
-draw byNamedLineSeq(0)(CA,DE,GD,AG);
+draw byNamedLineSeq(0)(CA, DE, GD, AG);
 byLineDefine.AGt(A, G, byblack, 0, 1);
 byLineStylize(A, D, 1, 0, -1)(AGt);
 byLineDefine.GDt(G, D, byblack, 0, 1);
@@ -13060,10 +13068,11 @@ draw byLine(G, K, byblack, 0, 1);
 byLineDefine(G, B, byblack, 0, 1);
 byLineDefine(G, L, byblack, 0, 1);
 draw byNamedLineSeq(0)(GB,GL);
-draw byArc.LB(G, L, B, r, byred, 0, 0, 0, 0);
-draw byArc.BC(G, B, C, r, byblack, 0, 0, 0, 0);
-draw byArc.CK(G, C, K, r, byred, 0, 0, 0, 0);
-draw byArc.KL(G, K, L, r, byblue, 0, 0, 0, 0);
+byArcDefine.LB(G, L, B, r, byred, 0, 0, 0, 0);
+byArcDefine.BC(G, B, C, r, byblack, 0, 0, 0, 0);
+byArcDefine.CK(G, C, K, r, byred, 0, 0, 0, 0);
+byArcDefine.KL(G, K, L, r, byblue, 0, 0, 0, 0);
+draw byNamedArcSeq(0)(LB, BC, CK, KL);
 byCircleDefineR(G, r, byred, 0, 0, 0);
 H := (0, -1/2u - 2r);
 D := (dir(aa)*r) shifted H;
@@ -13083,10 +13092,11 @@ draw byLine(H, M, byblack, 0, 1);
 byLineDefine(H, E, byblack, 0, 1);
 byLineDefine(H, N, byblack, 0, 1);
 draw byNamedLineSeq(0)(HE,HN);
-draw byArc.NE(H, N, E, r, byblue, 0, 0, 0, 0);
-draw byArc.EF(H, E, F, r, byyellow, 1, 0, 0, 0);
-draw byArc.FM(H, F, M, r, byred, 1, 0, 0, 0);
-draw byArc.MN(H, M, N, r, byblue, 1, 0, 0, 0);
+byArcDefine.NE(H, N, E, r, byblue, 0, 0, 0, 0);
+byArcDefine.EF(H, E, F, r, byyellow, 1, 0, 0, 0);
+byArcDefine.FM(H, F, M, r, byred, 1, 0, 0, 0);
+byArcDefine.MN(H, M, N, r, byblue, 1, 0, 0, 0);
+draw byNamedArcSeq(0)(NE, EF, FM, MN);
 byCircleDefineR(H, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, C, K, L)(G);
 draw byLabelsOnCircle(E, F, M, N)(H);
@@ -13141,11 +13151,15 @@ stopGlobalRotation;
 
 The since the arcs \arcBC, \arcCK, \arcKL, \&c.\ are all equal, the angles \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, \&c.\ are also equal \inprop[prop:III.XXVII]; $\therefore$ \drawAngle{BC,CK,KL} is the same multiple of \drawAngle{BC} which the arc \drawFromCurrentPicture[middle][arcBL]{
 startGlobalRotation(180-angle(B-L));
-draw byNamedArc(BC,CK,KL);
+startAutoLabeling;
+draw byNamedArcSeq(0)(BC,CK,KL);
+stopAutoLabeling;
 stopGlobalRotation;
 } is of \arcBC; and in the same manner \drawAngle{EF,FM,MN} is the same multiple of \drawAngle{EF}, which the arc \drawFromCurrentPicture[middle][arcEN]{
 startGlobalRotation(180-angle(E-N));
-draw byNamedArc(EF,FM,MN);
+startAutoLabeling;
+draw byNamedArcSeq(0)(EF,FM,MN);
+stopAutoLabeling;
 stopGlobalRotation;
 } is of the arc \arcEF.
 
