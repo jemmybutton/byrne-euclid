@@ -54,6 +54,7 @@ solidAngleMode := false;
 numeric dpLength[];
 dpLength0 := 2lineWidth;
 dpLength1 := 2lineWidth;
+dpLength2 := 3/2lineWidth;
 
 vardef sin primary x = (sind(x*radian)) enddef;
 

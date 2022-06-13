@@ -1375,9 +1375,9 @@ draw byNamedAngleResized(EDF, DEF, EFD);
 byLineDefine(D, E, byred, 0, 1);
 byLineDefine(E, F, byblack, 0, 1);
 byLineDefine(F, D, byblue, 0, 1);
-%draw byNamedLineSeq(0)(FD,EF,DE);
-%draw byLabelsOnPolygon(F, E, D)(0, 0);
-%draw byLabelsOnPolygon(B, A, C)(0, 1);
+draw byNamedLineSeq(0)(FD,EF,DE);
+draw byLabelsOnPolygon(F, E, D)(0, 0);
+draw byLabelsOnPolygon(B, A, C)(0, 1);
 }
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles have two sides of the one respectively equal to two sides of the other, \drawUnitLine{AB} to \drawUnitLine{DE} and \drawUnitLine{CA} to \drawUnitLine{FD} and the angles \drawAngle{A} and \drawAngle{D} contained by those equal sides also equal; then their bases or their sides \drawUnitLine{BC} and \drawUnitLine{EF} are also equal: and the remaining angles opposite to equal sides are respectively equal $\drawAngle{B} = \drawAngle{E}$ and $\drawAngle{C} = \drawAngle{F}$: and the triangles are equal in every respect.}
@@ -1871,11 +1871,11 @@ draw byLabelPoint(D, lineAngle.CD - 90, 1);
 \problemNP{I}{f}{two right lines \drawUnitLine{AB} and \drawUnitLine{CD} intersect one another, the vertical angles \drawAngle{BEC} and \drawAngle{AED}, \drawAngle{CEA} and \drawAngle{DEB} are equal.}
 
 \startCenterAlign
-$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ % Here and in the next line should be a link to prop I.XIII
+$\drawAngle{BEC} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII] % Here and in the next line should be a link to prop I.XIII
 
-$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$ %
+$\drawAngle{AED} + \drawAngle{CEA} = \drawTwoRightAngles$ \inprop[prop:I.XIII] %
 
-$\therefore \drawAngle{BEC} = \drawAngle{AED}$. % And this is according to \inax[ax:I.III]
+$\therefore \drawAngle{BEC} = \drawAngle{AED}$ \inax[ax:I.III]. % And this is according to \inax[ax:I.III]
 
 In the same manner it may be shown that\\
 $\drawAngle{CEA} = \drawAngle{DEB}$.
@@ -2035,7 +2035,7 @@ draw byNamedLineSeq(0)(CA,BC,AB);
 draw byLabelsOnPolygon(B, A, C)(0, 0);
 }
 \drawCurrentPictureInMargin
-\problemNP[5]{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less.}
+\problemNP[3]{I}{f}{in any triangle \drawLine[bottom]{CA,BC,AB} one angle \drawAngle{A} be greater than another \drawAngle{B} the side \drawUnitLine{BC} which is opposite to the greater angle, is greater than the side \drawUnitLine{CA} opposite the less.}
 
 \startCenterAlign
 If \drawUnitLine{BC} be not greater than \drawUnitLine{CA} then must\\
@@ -4301,7 +4301,7 @@ byLineDefine(C, D, byyellow, 0, 0);
 byLineDefine(D, B, byred, 0, 0);
 byLineDefine(F, B, byyellow, 1, 0);
 byLineDefine(H, F, byblack, 0, 0);
-byLineDefine(E, H, byblack, 1, 0);
+byLineDefine(E, H, byblack, 2, 0);
 byLineDefine(A, E, byblack, 1, 0);
 draw byNamedLineSeq(0)(AC,CD,DB,FB,HF,EH,AE);
 draw byLabelsOnPolygon(E, F, B, D, C, A)(0, 0);
@@ -4388,12 +4388,11 @@ and~$\left\{\eqalign{
 }\right\}$~\inprop[prop:I.XXXI]
 draw \drawProportionalLine{AG} also.
 
-$\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $=$ half a right angle \inprop[prop:I.XXXII]\\
-$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $=$ half a right angle \inprop[prop:I.XXXII]\\
-$\therefore \drawAngle{CEA,BEC} = $ a right angle.
+$\drawAngle{A} = \drawAngle{CEA}$ \inprop[prop:I.V] $=  \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
+$\drawAngle{CBE} = \drawAngle{BEC}$ \inprop[prop:I.V] $= \frac{1}{2}\drawRightAngle$ \inprop[prop:I.XXXII]\\
+$\therefore \drawAngle{CEA,BEC} = \drawRightAngle$.
 
-$\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} =$\\
-half a right angle (\inpropL[prop:I.V], \inpropL[prop:I.XXXII], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV]),\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
+$\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} = \frac{1}{2}\drawRightAngle$ (\inpropL[prop:I.V], \inpropL[prop:I.XXXII], \inpropL[prop:I.XXIX], \inpropL[prop:I.XXXIV]),\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
 and $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, (\inpropL[prop:I.VI], \inpropL[prop:I.XXXIV]).
 
 Hence by \inprop[prop:I.XLVII] $\drawProportionalLine{AG}^2 = \left\{\eqalign{
@@ -5527,10 +5526,10 @@ byLineDefine(F, K, byblue, 0, 0);
 draw byNamedLineSeq(0)(HD, DG, GF, FK);
 byPointLabelDefine(M, "F");
 byPointLabelDefine(N, "G");
-draw byCircle.M(M, A, byblack, 0, 0, 0);
-draw byCircle.N(N, A, byblue, 0, 0, -1);
+draw byCircle.M(M, A, byblack, 0, 0, 0.5);
+draw byCircle.N(N, A, byblue, 0, 0, -0.5);
 draw byLabelsOnPolygon(K, F, G, D)(2, 0);
-draw byLabelsOnPolygon(A, D, N)(2, 1);
+draw byLabelsOnPolygon(A, D, N)(2, 0);
 draw byLabelsOnCircle(A, H)(M);
 }
 \drawCurrentPictureInMargin
@@ -5637,7 +5636,7 @@ byLineDefine(D, H, byred, 0, 0);
 byLineDefine(B, G, byblue, 1, 0);
 byLineDefine(G, H, byblue, 0, 0);
 draw byNamedLineSeq(0)(BG,GH,DH);
-draw byCircleR(M, r1, byyellow, 0, 0, 1);
+draw byCircleR(M, r1, byyellow, 0, 0, 0.5);
 draw byArbitraryFigure.fI(cr2, byblue, 0, 0);
 byCircleDefineR(M, r1, byyellow, 0, 0, 0);
 byCircleDefineR(N, r2, byblue, 0, 0, 0);
@@ -5907,10 +5906,9 @@ draw byLine(E, L, byyellow, 1, 0);
 draw byLine(L, K, byred, 1, 0);
 draw byLine(E, H, byblue, 1, 0);
 draw byLine(F, G, byyellow, 0, 0);
-draw byLine(M, N, blue, 0, 0);
+draw byLine(M, N, byblue, 0, 0);
 draw byLine(B, C, byred, 0, 0);
 draw byLine(D, A, byblack, 0, 0);
-draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, D, B, C, F, G, M, N)(E);
 draw byLabelLineEnd(K, H, 0);
@@ -6891,15 +6889,15 @@ C := 1/2[A, B];
 byAngleDefine(A, C, D, byblue, 0);
 byAngleDefine(D, C, B, byred, 0);
 draw byNamedAngleResized();
-draw byLine(D, A, byblue, 0, 0);
 draw byLine(D, C, byyellow, 0, 0);
-draw byLine(D, B, byblue, 1, 0);
+byLineDefine(D, A, byblue, 0, 0);
+byLineDefine(D, B, byblue, 1, 0);
 byLineDefine(A, C, byblack, 0, 0);
 byLineDefine(C, B, byblack, 1, 0);
-draw byNamedLineSeq(0)(AC, CB);
+draw byNamedLineSeq(0)(AC, CB, DB, DA);
 byArcDefine.Er(E, B, D, r, byred, 1, 0, 0, 0);
 byArcDefine.El(E, D, A, r, byred, 0, 0, 0, 0);
-draw byNamedArcSeq(0)(Er,El);
+draw byNamedArcSeq(0.5)(Er,El);
 draw byLabelsOnCircle(A, B, D)(Er);
 draw byLabelLineEnd(C, D, 0);
 }
@@ -13004,11 +13002,13 @@ draw byLabelsOnPolygon(E, C, B, A, C, D)(0, 0);
 \drawCurrentPictureInMargin
 \problemNP{I}{f}{two triangles
 \drawFromCurrentPicture[bottom]{
+startTempScale(2/5);
 startTempAngleScale(angleScale*3/5);
 draw byNamedAngle(A, B, BCA);
 draw byNamedLineSeq(0)(CAt,BCt,ABt);
 draw byLabelsOnPolygon(C, B, A)(0, 0);
 stopTempAngleScale;
+stopTempScale;
 }
 and
 \drawFromCurrentPicture[bottom]{

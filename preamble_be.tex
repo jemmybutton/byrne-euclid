@@ -418,14 +418,14 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startproposition[#1][#2]{%
   \incrementcounter[proposition]%
   \startsilentsection[ownnumber={\directconvertedcounter{proposition}\empty},
-    incrementnumber=no,#1][#2]\setCurrentSection\preSectionCommand}
+    incrementnumber=no,#1][#2]\setCurrentSection}
     
 \define\startVerboseProposition{\dodoubleempty\startverboseproposition}
 \define\stopVerboseProposition{\postSectionCommand\stopsectiononlyname}
 \def\startverboseproposition[#1][#2]{%
   \incrementcounter[proposition]%
   \startsectiononlyname[ownnumber={\directconvertedcounter{proposition}\empty},
-    incrementnumber=no,#1][#2]\setCurrentSection\preSectionCommand}
+    incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[propositionaz][way=bypart,numberconversion=Characters]
 \define\startPropositionAZ{\dodoubleempty\startpropositionaz}
@@ -433,7 +433,7 @@ after={\stopalignment\vskip 0.5\baselineskip}]
 \def\startpropositionaz[#1][#2]{%
   \incrementcounter[propositionaz]%
   \startsilentsection[ownnumber={\directconvertedcounter{propositionaz}\empty},
-    incrementnumber=no,#1][#2]\setCurrentSection\preSectionCommand}
+    incrementnumber=no,#1][#2]\setCurrentSection}
 
 \definecounter[definition][way=bypart]
 \define\startDefinition{\dodoubleempty\startdefinition}
