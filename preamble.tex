@@ -77,7 +77,7 @@
 % \addToUndefineList. \undefineList is thus generated command, that, once executed,
 % undefines everything that was appended to it with \addToUndefineList.
 
-\def\unmarkPictAsReady#1{\expandafter\let\csname #1\endcsname\undefined}
+\def\unmarkPictAsReady#1{\global\expandafter\let\csname #1\endcsname\undefined}
 
 \def\addToUndefineList#1{\expandafter\def\expandafter\undefineList\expandafter{\undefineList \unmarkPictAsReady{#1}}}
 
@@ -283,12 +283,12 @@
 		\drawFromCurrentPicture[\plal][arc#3]{
 		startAutoLabeling;
 		startTempScale(#2);
-		draw byNamedArc(#3);
+		draw byNamedArcSeq(0)(#3);
 		stopTempScale;
 		stopAutoLabeling;
 		}%
 	\else%
-		\drawFromCurrentPicture[\plal][arc#3]{startAutoLabeling;draw byNamedArc(#3);stopAutoLabeling;}%
+		\drawFromCurrentPicture[\plal][arc#3]{startAutoLabeling;draw byNamedArcSeq(0)(#3);stopAutoLabeling;}%
 	\fi%
 }}
 
