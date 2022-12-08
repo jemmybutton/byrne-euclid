@@ -151,10 +151,16 @@ vardef typeOf (expr v) =
     determinedType
 enddef;
 
-vardef sign (expr x) =
-    if x > 0: 1 fi
-    if x < 0: -1 fi
-    if x = 0: 1 fi
+vardef sign@#(expr x) =
+    if str @# != "mindZero":
+        if x > 0: 1 fi
+        if x < 0: -1 fi
+        if x = 0: 1 fi
+    else:
+        if x > 0: 1 fi
+        if x < 0: -1 fi
+        if x = 0: 0 fi
+    fi
 enddef;
 
 vardef colorLightness (expr col) =
@@ -2967,9 +2973,9 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                         scantokens(getAttribute("angle", "CName", str aN)),
                         getAttribute("angle", "ArcType", str aN));
                     anglePart1 := angle(point 0 of angleGenArc);
-                    as1 := sign(ypart((direction 0 of angleGenArc) rotated -anglePart1));
+                    as1 := sign.mindZero(ypart((direction 0 of angleGenArc) rotated -anglePart1));
                     anglePart2 := angle(point 0 of reverse(angleGenArc));
-                    as2 := sign(ypart((direction 0 of reverse(angleGenArc)) rotated -anglePart2));
+                    as2 := sign.mindZero(ypart((direction 0 of reverse(angleGenArc)) rotated -anglePart2));
                     for j=1,2:
                         angleCheck := true;
                         for i := 1 step 1 until angleNum:
@@ -3109,7 +3115,7 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                         ac + (labelVector*1/2angleSize*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
                 endfor;
                 if not doNotLabelCenter:
-                    draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime(1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
+                    draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime (1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
                 fi;
             fi;
         stopTempAngleScale;
