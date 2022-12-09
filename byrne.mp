@@ -152,7 +152,7 @@ vardef typeOf (expr v) =
 enddef;
 
 vardef sign@#(expr x) =
-    if str @# != "mindZero":
+    if str @# <> "mindZero":
         if x > 0: 1 fi
         if x < 0: -1 fi
         if x = 0: 1 fi
@@ -2900,12 +2900,12 @@ enddef;
 % to angle outline.
 vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
     save centerName, uniqueCenter, angleGenArc, angleDir, angleCount, angleType, angleSide, anglePart, angleNum, angleCheck,
-        ac, as, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse,
+        ac, as, ad, p, n, compoundAnglePath, compoundAngleArc, b, e, outputImage, lineCol, lineTh, lineDash, pointName, scaleToUse,
         processedAnglesList, processedLinesList,
         planePoints, threeDMode, projectedCircle, labelVector,
         enteredAnglePointsList, pointNameToUse;
     string centerName, pointName[], processedAnglesList, processedLinesList,enteredAnglePointsList, pointNameToUse;
-    pair ac, p[], labelVector;
+    pair ac, ad[], p[], labelVector;
     boolean uniqueCenter, angleCheck, doNotLabelCenter, threeDMode;
     numeric angleDir[], angleCount[], angleType[], angleSide[], angleNum, anglePart[], as[], n[], b, e, lineTh, lineDash, scaleToUse;
     path angleGenArc, compoundAnglePath, compoundAngleArc, projectedCircle;
@@ -2973,9 +2973,17 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                         scantokens(getAttribute("angle", "CName", str aN)),
                         getAttribute("angle", "ArcType", str aN));
                     anglePart1 := angle(point 0 of angleGenArc);
-                    as1 := sign.mindZero(ypart((direction 0 of angleGenArc) rotated -anglePart1));
+                    ad1 := direction 0 of (angleGenArc rotated -anglePart1);
+                    if (ad1 = (0, 0)):
+                        ad1 := direction 1 of (angleGenArc rotated -anglePart1);
+                    fi;
+                    as1 := sign(ypart(ad1));
                     anglePart2 := angle(point 0 of reverse(angleGenArc));
-                    as2 := sign.mindZero(ypart((direction 0 of reverse(angleGenArc)) rotated -anglePart2));
+                    ad2 := direction 0 of (reverse(angleGenArc) rotated -anglePart2);
+                    if (ad2 = (0, 0)):
+                        ad2 := direction 1 of (reverse(angleGenArc) rotated -anglePart2);
+                    fi;
+                    as2 := sign(ypart(ad2));
                     for j=1,2:
                         angleCheck := true;
                         for i := 1 step 1 until angleNum:
