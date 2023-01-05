@@ -3119,14 +3119,22 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
                             fi;
                         endfor;
                     fi;
-                    draw byTextLabel(pointLabel)(pointNameToUse,
-                        ac + (labelVector*1/2angleSize*angleScale)/scaleFactor, angleDir[n[i]], textLabelShift);
+					draw byLabelAngleSide(scantokens(centerName), scantokens(pointNameToUse));
                 endfor;
                 if not doNotLabelCenter:
                     draw byTextLabel(pointLabel)(centerName, ac, angle((point (arctime (1/2arclength(compoundAngleArc)) of compoundAngleArc) of compoundAngleArc) shifted (-ac*scaleFactor)) + 180, textLabelShift);
                 fi;
             fi;
         stopTempAngleScale;
+    )
+enddef;
+
+vardef byLabelAngleSide(suffix centerPoint, targetPoint) =
+    image(
+        if (textLabels):
+            draw byTextLabel(pointLabel)(str targetPoint,
+                        centerPoint + (unitvector(targetPoint-centerPoint)*1/2angleSize*angleScale)/scaleFactor, angle(targetPoint - centerPoint), textLabelShift);
+        fi;
     )
 enddef;
 
