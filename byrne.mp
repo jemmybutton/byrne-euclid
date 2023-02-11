@@ -142,6 +142,9 @@ outlineColor.byblackN := byblack;
 outlineColor.bygreyN := bygrey;
 bytransparent := 0.99white;
 
+cmykcolor bylabelcolor;
+bylabelcolor := (0, 0, 0, 1);
+
 byDefaultAngleOptionalColor := white;
 
 linecap := butt;
@@ -3802,14 +3805,14 @@ enddef;
 
 if known metafunversion:
     vardef textLabelRender(expr t) =
-        textext("\textsf{" & t & "}") scaled 2/5
+        textext("\pointlabel{" & t & "}") scaled 2/5
     enddef;
 else:
     input TEX;
-    TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\begin{document}");
+    TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\def\pointlabel#1{\textsf{#1}}\begin{document}");
     TEXPOST("\end{document}");
     vardef textLabelRender(expr t) =
-        TEX("\textsf{" & t & "}") scaled 2/5
+        TEX("\pointlabel{" & t & "}") scaled 2/5
     enddef;
 fi;
 
@@ -3835,7 +3838,10 @@ vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
             labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
         fi;
         labelItself := image(
-            draw labelItself shifted ((p scaled scaleFactor) rotated globalRotation) shifted (dir(a+globalRotation)*d);
+            draw labelItself 
+				shifted ((p scaled scaleFactor) rotated globalRotation) 
+				shifted (dir(a+globalRotation)*d)
+				withcolor bylabelcolor;
         );
     else:
         labelItself := image();

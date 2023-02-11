@@ -15,6 +15,8 @@
 \def\mpPre{}
 \def\mpPost{}
 
+\def\pointlabel#1{\textsf{#1}}
+
 \newif\ifCreateNewInstanceForPicture
 \CreateNewInstanceForPicturetrue
 
@@ -51,8 +53,7 @@
 		generateLineSynonyms;
 		stopMainPictureMode;
 		\mpPost
-	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}
-}
+	\stopreusableMPgraphic\ignorespaces\setbox0\vbox{\reuseMPgraphic{\currentInstance::currentPicture}}}
 	
 \def\defineNewPictureBasedOnOld{\dodoubleempty\definenewpicturebasedonold}
 \def\definenewpicturebasedonold[#1][#2]#3{%
