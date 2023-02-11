@@ -36,6 +36,7 @@ magnitudeScale := 1;
 magnitudeGap := 3/2lineWidth;
 markLength := 3lineWidth;
 rayExtension := 1/3cm;
+textLabelScaleFactor := 2/5;
 
 %
 % Some symbolic constants for better readability
@@ -3805,14 +3806,14 @@ enddef;
 
 if known metafunversion:
     vardef textLabelRender(expr t) =
-        textext("\pointlabel{" & t & "}") scaled 2/5
+        textext("\pointlabel{" & t & "}") scaled textLabelScaleFactor
     enddef;
 else:
     input TEX;
     TEXPRE("%&latex" & char(10) & "\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[russian]{babel}\def\pointlabel#1{\textsf{#1}}\begin{document}");
     TEXPOST("\end{document}");
     vardef textLabelRender(expr t) =
-        TEX("\pointlabel{" & t & "}") scaled 2/5
+        TEX("\pointlabel{" & t & "}") scaled textLabelScaleFactor
     enddef;
 fi;
 
