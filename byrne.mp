@@ -1047,6 +1047,20 @@ vardef byNamedLine (text linesList) =
     )
 enddef;
 
+vardef byNamedLineIgnoreEndTypes (text linesList) =
+    image(
+        forsuffixes lN=linesList:
+            draw byNamedLineFull(
+                scantokens(getAttribute("line", "EndAName", str lN)),
+                scantokens(getAttribute("line", "EndBName", str lN)),
+                0,
+                0,
+                0,
+                0)(lN);
+        endfor;
+    )
+enddef;
+
 vardef byNamedLineSeq (expr s)(text linesListRaw) =
     save lAname, lBname, lShift, lName, i, j, k, l, m, n, c, d, prp, dpt, dashStreak, pointNames, linesList;
     string lAname[], lBname[], lName[], c, d, pointNames, linesList;
@@ -3859,6 +3873,10 @@ vardef byLabelPoint(suffix p)(expr a, d) =
 enddef;
 
 vardef byLabelLine(expr d)(text linesList) =
+	byLabelLineFull(d, ALL_LABELS)(linesList)
+enddef;
+
+vardef byLabelLineFull(expr d, sty)(text linesList) =
     save a;
     numeric a;
     if (d = 0):
@@ -3875,16 +3893,20 @@ vardef byLabelLine(expr d)(text linesList) =
                         scantokens(getAttribute("line", "EndBName", str lN))],
                     getAttribute("line", "Angle", str lN) + a, textLabelShift);
             else:
-                draw byTextLabel(pointLabel)(
-                    getAttribute("line", "EndAName", str lN),
-                    scantokens(getAttribute("line", "EndAName", str lN)),
-                    getAttribute("line", "Angle", str lN) + a,
-                    textLabelShift);
-                draw byTextLabel(pointLabel)(
-                    getAttribute("line", "EndBName", str lN),
-                    scantokens(getAttribute("line", "EndBName", str lN)),
-                    getAttribute("line", "Angle", str lN) + a,
-                    textLabelShift);
+				if (sty = ALL_LABELS) or (sty = OMIT_LAST_LABEL):
+					draw byTextLabel(pointLabel)(
+						getAttribute("line", "EndAName", str lN),
+						scantokens(getAttribute("line", "EndAName", str lN)),
+						getAttribute("line", "Angle", str lN) + a,
+						textLabelShift);
+				fi;
+				if (sty = ALL_LABELS) or (sty = OMIT_FIRST_LABEL):
+					draw byTextLabel(pointLabel)(
+						getAttribute("line", "EndBName", str lN),
+						scantokens(getAttribute("line", "EndBName", str lN)),
+						getAttribute("line", "Angle", str lN) + a,
+						textLabelShift);
+				fi;
             fi;
         endfor;
         fi;
