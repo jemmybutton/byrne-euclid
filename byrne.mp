@@ -63,7 +63,7 @@ HAIR_WIDTH := 2;
 % Some common settings
 %
 
-boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode;
+boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode, omitSpaceRotation;
 
 textLabels := false;
 ghostLines := true;
@@ -72,6 +72,7 @@ omitDuplicateTextLabels := false;
 textLabelShift := lineWidth;
 autoLabelingMode := false;
 mainPictureMode := false;
+omitSpaceRotation := false;
 
 boolean solidAngleMode;
 
@@ -667,11 +668,15 @@ vardef lineAndPlaneIntersection (expr lineA, lineB, planeA, planeB, planeC) =
     save planeNormal, planeOrigin, lineD;
     color planeNormal, planeOrigin;
     numeric lineD;
-    planeNormal := unitvectorXYZ((planeA-planeB) crossproduct (planeC-planeB));
+    planeNormal := normalToPlane(planeA, planeB, planeC);
     planeOrigin := planeB;
     lineD := ((planeNormal/cm) dotprodXYZ ((planeOrigin - lineA)/cm))
             /((planeNormal/cm) dotprodXYZ ((lineB - lineA)/cm));
     lineA + ((lineB-lineA)*lineD)
+enddef;
+
+vardef normalToPlane (expr planeA, planeB, planeC) =
+	unitvectorXYZ((planeA-planeB) crossproduct (planeC-planeB))
 enddef;
 
 vardef spaceRotated (suffix somepath)(expr someangle) =
@@ -1571,6 +1576,19 @@ vardef byIsPointInSpace (text pointNames) =
     endfor)
 enddef;
 
+vardef projectPointIfInSpace(expr pointValue) =
+save rv, projPoint;
+pair rv;
+	if (typeOf(pointValue) = "color"):
+		color projPoint;
+		projPoint := pointValue colorrotated projectionAngle;
+		rv := (redpart(projPoint), greenpart(projPoint));
+	else:
+		rv := pointValue;
+	fi;
+	rv
+enddef;
+
 % in order to automatically project points they need to be added
 % to allPointsList list.
 vardef byPair (text pointsList) =
@@ -1782,13 +1800,15 @@ vardef byCirclePathGenerate (expr sr, pv) =
     numeric xang, yang;
     pair xp;
     circPath := fullcircle;
-    xp := (bluepart(pv), greenpart(pv));
-    xang := angle(xp);
-    pvt := (redpart(pv), ypart(xp rotated -xang), xpart(xp rotated -xang));
-    yang := angle((bluepart(pvt), redpart(pvt)));
-    circPath := spaceRotated(circPath)((-xang, yang, 0)); % plane vector to angles conversion should eventually go somewhere
-    circPath := spaceRotated(circPath)(sr);
-    circPath := spaceRotated(circPath)(projectionAngle);
+	if (not omitSpaceRotation):
+		xp := (bluepart(pv), greenpart(pv));
+		xang := angle(xp);
+		pvt := (redpart(pv), ypart(xp rotated -xang), xpart(xp rotated -xang));
+		yang := angle((bluepart(pvt), redpart(pvt)));
+		circPath := spaceRotated(circPath)((-xang, yang, 0)); % plane vector to angles conversion should eventually go somewhere
+		circPath := spaceRotated(circPath)(sr);
+		circPath := spaceRotated(circPath)(projectionAngle);
+	fi;
     circPath
 enddef;
 
@@ -2129,9 +2149,9 @@ else:
 fi
 enddef;
 
-vardef byCircleABC@#(suffix a, b, c)(expr col, dp, th, s) =
+vardef byCircleABCDefine@#(suffix a, b, c)(expr col, dp, th, s) =
 if str @# = "":
-    byCircleABC.scantokens(str a & str b & str c)(a, b, c)(col, dp, th, s)
+    byCircleABCDefine.scantokens(str a & str b & str c)(a, b, c)(col, dp, th, s)
 else:
     save o, r;
     pair o;
@@ -2152,7 +2172,15 @@ else:
         pv := unitvectorXYZ((pointXYZ.a - pointXYZ.b) crossproduct (pointXYZ.c - pointXYZ.b));
         setAttribute("circle", "PlaneVector", str @#, pv);
     fi;
-    byNamedCircle(@#)
+fi;
+enddef;
+
+vardef byCircleABC@#(suffix a, b, c)(expr col, dp, th, s) =
+if str @# = "":
+    byCircleABC.scantokens(str a & str b & str c)(a, b, c)(col, dp, th, s)
+else:
+	byCircleABCDefine@#(a, b, c)(col, dp, th, s);
+	byNamedCircle(@#)
 fi
 enddef;
 
@@ -2192,7 +2220,7 @@ vardef byReturnCircleCenter (expr circleName) =
             scantokens(getAttribute("circle", "CName", circleName))
             )
     else:
-        getAttribute("circle", "Center", circleName)
+        projectPointIfInSpace(getAttribute("circle", "Center", circleName))
     fi
 enddef;
 
@@ -3635,25 +3663,66 @@ enddef;
 % Spheres
 %
 
-%vardef bySphereDefine@#(expr ox, oy, oz, r) =
-%if str @# = "":
-%    errmessage("bySphereDefine needs a name (bySphereDefine.somename...)");
-%else:
-%    if mainPictureMode:
-%        appendList(allSpheresList, str @#, 1, true);
-%    fi;
-%    setAttribute("sphere", "XYZ", str @#, (ox, oy, oz));
-%    setAttribute("sphere", "radius", str @#, r);
-%fi;
-%enddef;
-%
-%vardef byNamedSphere (test spheresList) =
-%    image(
-%        forsuffixes cN=spheresList:
-%        endfor;
-%        )
-%enddef;
-%
+vardef bySphereDefine@#(suffix o)(expr r, col, dp, th, s) =
+if str @# = "":
+    errmessage("bySphereDefine needs a name (bySphereDefine.somename...)");
+else:
+    %if mainPictureMode:
+    %    appendList(allSpheresList, str @#, 1, true);
+    %fi;
+	setAttribute("sphere", "CenterName", str @#, str o);
+    setAttribute("sphere", "Radius", str @#, r);
+    setAttribute("sphere", "Diameter", str @#, 2r);
+	setAttribute("sphere", "Color", str @#, col);
+    setAttribute("sphere", "Dashed", str @#, dp);
+    setAttribute("sphere", "Thin", str @#, th);
+    setAttribute("sphere", "Shift", str @#, s);
+fi;
+enddef;
+
+vardef byNamedSphere (text spheresList) =
+save omitSpaceRotation;
+boolean omitSpaceRotation;
+omitSpaceRotation := true;
+    image(
+        forsuffixes cN=spheresList:
+			draw byArcRender (
+				scantokens(getAttribute("sphere", "CenterName", str cN)), 0, 8,
+				getAttribute("sphere", "Diameter", str cN),
+				(0,0,0),
+				(0,0,1),
+				getAttribute("sphere", "Color", str cN),
+				getAttribute("sphere", "Dashed", str cN),
+				getAttribute("sphere", "Thin", str cN),
+				0,
+				getAttribute("sphere", "Shift", str cN), 0);
+			if (textLabels and autoLabelingMode):
+			fi;
+        endfor;
+        )
+enddef;
+
+vardef bySpherePlaneIntersectionDefine@#(suffix sphName, planeA, planeB, planeC)(expr col, dp, th, s) =
+if str @# = "":
+    errmessage("bySpherePlaneIntersectionDefine needs a name (bySpherePlaneIntersectionDefine.somename...)");
+else:
+	save sphCenterPoint, sphRadius, sectCenter, sectRadius, sectPlaneVector, distToIntersection;
+	color sphCenterPoint, sectionCenter,sectionPlaneVector;
+	numeric sectionRadius, sphRadius;
+		sphCenterPoint := pointXYZ.scantokens(getAttribute("sphere", "CenterName", str sphName));
+		sphRadius := getAttribute("sphere", "Radius", str sphName);
+		sectionCenter := lineAndPlaneIntersection(sphCenterPoint, sphCenterPoint + normalToPlane(pointXYZ.planeA, pointXYZ.planeB, pointXYZ.planeC), pointXYZ.planeA, pointXYZ.planeB, pointXYZ.planeC);
+		distToIntersection := absXYZ(sectionCenter-sphCenterPoint);
+		if (distToIntersection > sphRadius):
+			errmessage("Sphere " & str sphName & " and plane " & str planeA & str planeB & str planeC & " don't seem to intersect");
+		fi;
+		sectionRadius := sqrt(1-(distToIntersection/sphRadius)**2)*sphRadius;
+		byCircleDefineFree.@#(sectionCenter, sectionRadius, col, dp, th, s);
+		sectionPlaneVector := unitvectorXYZ((pointXYZ.planeA - pointXYZ.planeB) crossproduct (pointXYZ.planeC - pointXYZ.planeB));
+		setAttribute("circle", "PlaneVector", str @#, sectionPlaneVector);
+fi;
+enddef;
+
 %vardef byFindSpheresIntersection (text spheresList) =
 %enddef;
 
@@ -3925,7 +3994,7 @@ vardef byLabelCircle(expr l, cn) =
     save o, d;
     pair o;
     numeric d;
-    o := getAttribute("circle", "Center", cn);
+    o := projectPointIfInSpace(getAttribute("circle", "Center", cn));
     d := lineThickness(getAttribute("circle", "Thin", cn))*(1/2-1/2getAttribute("circle", "Shift", cn));
     byTextLabel(pointLabel)(l, scantokens(l), angle(o - scantokens(l)), textLabelShift + d)
 enddef;

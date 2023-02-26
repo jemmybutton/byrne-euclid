@@ -1,11 +1,13 @@
 % Figure placement it definitions is messy, below we define all the indentation, figure and lettrine placing stuff.
 \newdimen\LettrineSize
+\newcount\LettrineScale
 \newdimen\LettrinePadding
 \newdimen\PlateWidth
 \newdimen\PlateHeight
 \newdimen\pictureIndent
 \newdimen\PcH
 \LettrineSize=1.5cm
+\LettrineScale=300
 \LettrinePadding=2mm
 \PlateHeight=1.5cm
 \PlateWidth=7.6cm
@@ -202,9 +204,9 @@
 						lettrineFrame := reverse(fullsquare) scaled (\the\LettrineSize - 2pt);
 						fill lettrineBG withcolor black;
 						draw lettrineFrame withcolor white;
-						lettrineOutline := outlinetext("#1") scaled 3;
+						lettrineOutline := outlinetext("#1") scaled \the\LettrineScale/100;
 						lettrineOutline := lettrineOutline shifted -1/2[ulcorner(lettrineOutline), lrcorner(lettrineOutline)];
-						lettrinePicture := textext("#1") scaled 3;
+						lettrinePicture := textext("#1") scaled \the\LettrineScale/100;
 						lettrinePicture := lettrinePicture shifted -1/2[ulcorner(lettrinePicture), lrcorner(lettrinePicture)];
 						draw lettrinePicture withcolor white;
 						string pictureContents;
