@@ -36,8 +36,5 @@ To build the book from command line run `context byrne_context.tex` within the
 book directory. To generate lettrines run `mpost lettrines.mp` within
 `\lettrines` directory.
 
-See releases for prepared .pdf . Be aware: "current" release my be glitchy,
-since the version of TeX Live on Travis CI machine is different from the one
-the project is being developed on. Since Travis CI doesn't provide free plan
-anymore, "current" releases are no longer produced until a different system
-is found.
+See releases for prepared .pdfs. See Actions for fresher pdfs (unless
+they are expired).
