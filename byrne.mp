@@ -3201,10 +3201,18 @@ vardef byNamedAngleSidesFull (text anglesList)(text linesList)=
 enddef;
 
 vardef byLabelAngleSide(suffix centerPoint, targetPoint) =
+	save labelVector;
+	pair labelVector;
     image(
         if (textLabels):
+			if (attributeExists("point", "XYZ", str centerPoint)
+				and attributeExists("point", "XYZ", str targetPoint)):
+				labelVector := projectPointIfInSpace(unitvectorXYZ(pointXYZ.targetPoint - pointXYZ.centerPoint));
+			else:
+				labelVector := unitvector(targetPoint-centerPoint);
+			fi;
             draw byTextLabel(pointLabel)(str targetPoint,
-                        centerPoint + (unitvector(targetPoint-centerPoint)*1/2angleSize*angleScale)/scaleFactor, angle(targetPoint - centerPoint), textLabelShift);
+                        centerPoint + (labelVector*1/2angleSize*angleScale)/scaleFactor, angle(targetPoint - centerPoint), textLabelShift);
         fi;
     )
 enddef;
