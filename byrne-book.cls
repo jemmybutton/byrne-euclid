@@ -39,6 +39,10 @@
 
 \def\mpPre{u:=1cm;}
 
+\DeclareOption{letters}{\def\mpPre{u:=1cm; textLabels := true;}}
+
+\ProcessOptions\relax
+
 \newdimen\LettrineSize
 \newcount\LettrineScale
 \newdimen\LettrinePadding

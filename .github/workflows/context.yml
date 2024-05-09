@@ -27,12 +27,12 @@ jobs:
         working-directory: lettrines
 
       - name: Build English pdf
-        run: context --nonstopmode byrne_context.tex
+        run: lualatex -interaction=nonstopmode byrne-en-latex.tex
 
       - name: Build Russian pdf
-        run: context --nonstopmode byrne_ru_context.tex
+        run: lualatex -interaction=nonstopmode byrne-ru-latex.tex
 
       - uses: actions/upload-artifact@v3
         with:
           name: pdfs
-          path: byrne*context.pdf
+          path: byrne*latex.pdf
