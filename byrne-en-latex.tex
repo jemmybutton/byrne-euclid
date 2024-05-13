@@ -1,5 +1,5 @@
 \documentclass{byrne-book}
-
+%\usepackage{lua-visual-debug}
 \usepackage[british]{babel}
 
 \begin{document}
@@ -25,6 +25,7 @@
 %{\uppercase{SURVEYOR OF HER MAJESTY'S SETTLEMENTS IN THE FALKLAND ISLANDS AND AUTHOR OF NUMEROUS MATHEMATICAL WORKS}}
 
 \defineNewPicture{
+textLabels := false;
 scaleFactor := 7/6;
 angleScale := 4/3;
 pair A, B, C, D, E, F, G, H, I, J, K, L, M, d[];
@@ -125,6 +126,7 @@ Such is the expedition of this enticing mode of communicating knowledge, that th
 
 In order to give a better idea of this system, and of advantages gained by its adoption, let us take a right angled triangle, and express some of its properties both by colours and the method generally employed.
 
+\vfill\pagebreak
 
 \defineNewPicture{
 	pair A, B, C;
@@ -144,9 +146,9 @@ In order to give a better idea of this system, and of advantages gained by its a
 		label.lft(btex A etex, A);
 	angleScale := 4/5;
 }
-\drawCurrentPictureInMargin
+
 \begin{center}
-\emph{Some of the properties of the right angled triangle ABC, expressed by the method generally employed:}
+\drawCurrentPictureInMargin \emph{Some of the properties of the right angled triangle ABC, expressed by the method generally employed:}
 \end{center}
 
 \vskip 0.5\baselineskip
@@ -673,10 +675,9 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 		byLineDefine(A, C, byblue, SOLID_LINE, REGULAR_WIDTH);
 		draw byNamedLineSeq(0)(AC,AB);
 }
-\drawCurrentPictureInMargin[inside]
 \startdefinition{}\label{def:I.XI}
 \begin{center}
-An obtuse angle is an angle greater than a right angle
+\drawCurrentPictureInMargin[inside] An obtuse angle is an angle greater than a right angle
 \end{center}
 
 
@@ -691,10 +692,9 @@ An obtuse angle is an angle greater than a right angle
 		byLineDefine(A, C, byred, SOLID_LINE, REGULAR_WIDTH);
 		draw byNamedLineSeq(0)(AC,AB);
 }
-\drawCurrentPictureInMargin[inside]
 \startdefinition{}\label{def:I.XII}
 \begin{center}
-An acute angle is an angle less than a right angle.
+\drawCurrentPictureInMargin[inside] An acute angle is an angle less than a right angle.
 \end{center}
 
 
@@ -818,7 +818,7 @@ A triangle is a rectilinear figure included by three sides.
 }
 \startdefinition{}\label{def:I.XXII}
 \begin{center}
-A quadrilateral figure is one which is bounded by four sides. The straight lines \drawUnitLine{AD} and \drawUnitLine{CB} connecting the vertices of the opposite angles of a quadrilateral figure, are called its diagonals. \drawCurrentPictureInMargin[inside]
+\drawCurrentPictureInMargin[inside] A quadrilateral figure is one which is bounded by four sides. The straight lines \drawUnitLine{AD} and \drawUnitLine{CB} connecting the vertices of the opposite angles of a quadrilateral figure, are called its diagonals. 
 \end{center}
 
 
@@ -838,9 +838,9 @@ A polygon is a rectilinear figure bounded by more than four sides.
 		byLineDefine(C, A, byyellow, SOLID_LINE, REGULAR_WIDTH);
 		draw byNamedLineSeq(0)(AB,BC,CA);
 }
-\drawCurrentPictureInMargin[inside]\startdefinition{}\label{def:I.XXIV}
+\startdefinition{}\label{def:I.XXIV}
 \begin{center}
-A triangle whose sides are equal, is said to be equilateral.
+\drawCurrentPictureInMargin[inside] A triangle whose sides are equal, is said to be equilateral.
 \end{center}
 
 
@@ -876,9 +876,9 @@ A scalene triangle is one which has no two sides equal.
 		byLineDefine(C, A, byblue, SOLID_LINE, REGULAR_WIDTH);
 		draw byNamedLineSeq(0)(AB,BC,CA);
 }
-\drawCurrentPictureInMargin[inside]\startdefinition{}\label{def:I.XXVII}
+\startdefinition{}\label{def:I.XXVII}
 \begin{center}
-A right angled triangle is that which has a right angle.
+\drawCurrentPictureInMargin[inside]A right angled triangle is that which has a right angle.
 \end{center}
 
 
@@ -4751,8 +4751,6 @@ Right lines are said to be equally distant from the centre of a circle when the 
 And the straight line on which the greater perpendicular falls is said to be farther from the centre.
 
 
-\vfill\pagebreak
-
 \startdefinition{}\label{def:III.VI}
 \defineNewPicture{
 	pair A, B;
@@ -6158,6 +6156,7 @@ Therefore the assumed point is not the centre; and in the same manner it can be 
 \starttheorem{Prop. XX. theor.}\label{prop:III.XX}
 \problem[4]{T}{he}{angle at the centre of a circle is double the angle at the circumference, when they have the same part of the circumference for their base.}\unskip
 
+\startsubproposition{Figure I.}
 \defineNewPicture{
 pair A, E, F, C;
 r := 7/4u;
@@ -6179,7 +6178,6 @@ draw byLabelsOnCircle(F, A, C)(E);
 draw byLabelsOnPolygon(F, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\startsubproposition{Figure I.}
 \begin{center}
 Let the centre of the circle be on \drawUnitLine{EF,EA}\\
 a side of \drawAngle{CAF}.
@@ -6192,6 +6190,7 @@ or $\drawAngle{CEF} = \mbox{ twice } \drawAngle{CAF}$ \bycref{prop:I.XXXII}.
 \end{center}
 
 
+\startsubproposition{Figure II.}
 \defineNewPicture{
 pair A, E, F, C, B;
 r := 7/4u;
@@ -6217,7 +6216,6 @@ draw byLabelsOnCircle(F, A, B, C)(E);
 draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\startsubproposition{Figure II.}
 \begin{center}
 Let the centre be within \drawAngle{BAF,CAF}, the angle at the circumference;
 
@@ -6234,6 +6232,7 @@ $\therefore \drawAngle{BEF,CEF} = \mbox{ twice } \drawAngle{BAF,CAF}$.
 
 \vfill\pagebreak
 
+\startsubproposition{Figure III.}
 \defineNewPicture{
 pair E, C, F, G, D;
 r := 7/4u;
@@ -6256,9 +6255,7 @@ draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(D, G, C, F)(E);
 draw byLabelsOnPolygon(G, E, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
-\startsubproposition{Figure III.}
-\begin{center}
+\drawCurrentPictureInMargin\begin{center}
 Let the centre be without \drawAngle{FDC}\\
 and draw \drawUnitLine{DG}, the diameter.
 
@@ -6300,8 +6297,8 @@ draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A)(F);
 draw byLabelsOnPolygon(B, F, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Figure I.}
+\drawCurrentPictureInMargin
 Let the segment be greater than a semicircle, and draw \drawUnitLine{DF} and \drawUnitLine{BF} to the centre.
 
 \begin{center}
@@ -6340,8 +6337,8 @@ draw byLine(D, E, byblack, SOLID_LINE, THIN_WIDTH);
 draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Figure II.}
+\drawCurrentPictureInMargin
 Let the segment be a semicircle, or less than a semicircle, draw \drawUnitLine{GA} the diameter, also draw \drawUnitLine{GE}.
 
 \begin{center}
@@ -6969,8 +6966,8 @@ draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(E);
 draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
+\startsubproposition{Figure I.}
 \drawCurrentPictureInMargin
-\startsubproposition{Figure I.}\vskip -1.5\baselineskip
 \begin{center}
 The angle \drawAngle{EAB,CAE} in a semicircle is a right angle.
 
@@ -7000,8 +6997,8 @@ draw byLine(B, C, byred, SOLID_LINE, REGULAR_WIDTH);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
+\startsubproposition{Figure II.}
 \drawCurrentPictureInMargin
-\startsubproposition{Figure II.}\vskip -1.5\baselineskip
 \begin{center}
 The angle \drawAngle{BAD} in a segment greater than a semicircle is acute
 
@@ -7029,8 +7026,8 @@ draw byLine(D, A, byblack, SOLID_LINE, THIN_WIDTH);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
+\startsubproposition{Figure III.}
 \drawCurrentPictureInMargin
-\startsubproposition{Figure III.}\vskip -1.5\baselineskip
 \begin{center}
 The angle \drawAngle{D} in a segment less than a semicircle is obtuse.
 
@@ -7221,8 +7218,8 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{AE,EC}}
 \nointerlineskip\hbox{\drawSizedLine{DE,EB}}}\right\}$
 in a circle intersect each other, the rectangle contained by the segments of the one is equal to the rectangle contained by the segments of the other.}
-\drawCurrentPictureInMargin
 \startsubproposition{Figure I.}
+\drawCurrentPictureInMargin
 If the given right lines pass through the centre, they are bisected in the point of intersection, hence the rectangles under their segments are squares of their halves, and therefore equal.
 
 
@@ -7249,8 +7246,8 @@ draw byLabelsOnCircle(B, D, C, A)(E);
 draw byLabelsOnPolygon(D, H, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Figure II.}
+\drawCurrentPictureInMargin
 \begin{center}
 Let \drawSizedLine{HC,EH,AE} pass through the centre, and \drawSizedLine{BH,HD} not; draw \drawSizedLine{EB} and \drawSizedLine{DE}.
 
@@ -7285,8 +7282,8 @@ draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, K, L, A, C)(F);
 draw byLabelsOnPolygon(B, E, K)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Figure III.}
+\drawCurrentPictureInMargin
 Let neither of the given lines pass through the centre, draw through their intersection a diameter \drawSizedLine{KE,EL},
 
 \begin{center}
@@ -7436,9 +7433,7 @@ and $\therefore$ \drawSizedLine{DB} is a tangent to the circle \bycref{prop:III.
 \end{center}
 
 \qed
-
-
-
+ 
 \part{Book IV}
 
 \chapter*{Definitions}
@@ -7467,7 +7462,7 @@ A rectilinear figure is said to be \emph{inscribed in} another, when all the ang
 \startdefinition{}\label{def:IV.II}
 A figure is said to be \emph{described about} another figure, when all the sides of the circumscribed figure pass through the angular points of the other figure.
 
-
+\startdefinition{}\label{def:IV.III}
 \defineNewPicture{
 angleScale := 3/4;
 pair A, B, C, D, O;
@@ -7489,11 +7484,11 @@ byLineDefine(C, D, byred, SOLID_LINE, REGULAR_WIDTH);
 byLineDefine(D, A, byred, SOLID_LINE, REGULAR_WIDTH);
 draw byNamedLineSeq(-1)(DA,CD,BC,AB);
 draw byCircleR(O, r, byblack, 0, 0, 1);
-}\drawCurrentPictureInMargin[inside]
-\startdefinition{}\label{def:IV.III}
+}
+\drawCurrentPictureInMargin[inside]
 A rectilinear figure is said to be \emph{inscribed in} a circle, when the vertex of each angle of the figure is in the circumference of the circle.
 
-
+\startdefinition{}\label{def:IV.IV}
 \defineNewPicture{
 pair A, B, C, D, O;
 numeric r;
@@ -7507,11 +7502,7 @@ draw byPolygon(A,B,C,D)(byred);
 draw byArbitraryFigure.ABCDo(A--B--C--D--cycle, byred, 0, 0);
 draw byFilledCircleSector(O, r, 0, 8, white);
 }\drawCurrentPictureInMargin[inside]
-\startdefinition{}\label{def:IV.IV}
 A rectilinear figure is said to be \emph{circumscribed about} a circle, when each of its sides is a tangent to the circle.
-
-
-\vfill\pagebreak
 
 \startdefinition{}\label{def:IV.V}
 \defineNewPicture{
@@ -8776,9 +8767,6 @@ $\begin{aligned}
 $
 \end{center}
 
-
-\pagebreak
-
 \startaxiom{}\label{ax:V.III}
 That magnitude, of which a multiple is greater than the same multiple of another, is greater than the other.
 
@@ -9511,11 +9499,13 @@ The multiple of $\textcolor{byblack}{1}$, which first becomes greater than $\tex
 %\ \hfill\vbox{
 %\offinterlineskip\lineskip3pt
 %\halign{\hfil # \hfil & \hfil # \hfil & \hfil # \hfil & \hfil # \hfil\\
+{\renewcommand{\arraystretch}{0.75}
 \begin{tabular}{c c c c}
 {\footnotesize 8 times} & {\footnotesize 10 times} & {\footnotesize 8 times} & {\footnotesize 10 times} \\
 {\footnotesize the first} & {\footnotesize the second} & {\footnotesize the third} & {\footnotesize the fourth} \\
 $\textcolor{byred}{64} + \textcolor{byblack}{8}$ & $\textcolor{byblue}{70}$ & $\textcolor{byyellow}{64}$ & $\textcolor{byblue}{70}$ \\
 \end{tabular}
+}
 %}}\hfill\
 %\protect
 \end{center}
@@ -10097,6 +10087,7 @@ byMagnitudeSymbolDefine.V("sectorUp", byred, 1);
 byMagnitudeSymbolDefine.VI("circle", byyellow, 0);
 }
 \problem{I}{f}{there be three magnitudes, and other three which have the same ratio, taken two and two, but in a cross order; then if the first magnitude be greater than the third, the fourth shall be greater than the sixth; and if equal, equal, and if less, less.}
+\unskip
 
 \begin{center}
 Let \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III}, be the first three magnitudes,\\
@@ -10302,7 +10293,9 @@ byMagnitudeSymbolDefine.VI("circle", byblue, 0);
 \end{tabular}
 %}}\hfill\
 %\protect
+\end{center}
 
+\begin{center}
 Let $\magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$,\\
 and $\magnitudeV : \magnitudeII :: \magnitudeVI : \magnitudeIV$,\\
 then $\magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeIII + \magnitudeVI : \magnitudeIV$.
@@ -10336,7 +10329,7 @@ byMagnitudeSymbolDefine.IV("rhombus", byyellow, 0);
 \begin{center}
 Let four magnitudes, $\drawMagnitude{Ia} + \drawMagnitude{III}, \drawMagnitude{IIa} + \drawMagnitude{IV}, \magnitudeIII, \mbox{ and } \magnitudeIV$, of the same kind, be proportionals, that is to say,\\
 $\magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$,\\
-and let $\magnitudeIa + \magnitudeIII$ be the greatest of the four, and consequently by \bycref{prop:V.A} and \bycref{prop:V.XIV}, \magnitudeIV\ is the least;\\
+and let $\magnitudeIa + \magnitudeIII$ be the greatest of the four, and consequently by \bycref{prop:V.A,prop:V.XIV}, \magnitudeIV\ is the least;\\
 then will $\magnitudeIa + \magnitudeIII + \magnitudeIV \mbox{ be } > \magnitudeIIa + \magnitudeIV + \magnitudeIII$;\\
 $\because \magnitudeIa + \magnitudeIII : \magnitudeIIa + \magnitudeIV :: \magnitudeIII : \magnitudeIV$, %because
 
@@ -10957,11 +10950,9 @@ draw byLine(D, H)(byred, DASHED_LINE, REGULAR_WIDTH);
 }
 The altitude of any figure is the straight line drawn from its vertex perpendicular to its base, or the base produced.
 
-\vskip \baselineskip
+\vskip\baselineskip
 
 \noindent\ \hfill\drawCurrentPicture\hfill\
-
-
 
 \vfill\pagebreak
 
@@ -11248,7 +11239,7 @@ and
 the sides about the equal angles are proportional, and the sides which are opposite to the equal angles are homologous.
 }
 
-Let the equiangular triangles be so placed that two sides \drawUnitLine{BC}, \drawUnitLine{EC} opposite to equal angles \drawAngle{D} and \drawAngle{A} may be conterminous, and in the same straight line; and that the triangles lying at the same side of that straight line; and that the triangles lying at the same side of that straight line, may have the equal angles not conterminous, i.\ e.\ \drawAngle{DCE} opposite to \drawAngle{B}, and \drawAngle{BCA} to \drawAngle{E}.
+Let the equiangular triangles be so placed that two sides \drawUnitLine[0.5cm]{BC}, \drawUnitLine[0.5cm]{EC} opposite to equal angles \drawAngle{D} and \drawAngle{A} may be conterminous, and in the same straight line; and that the triangles lying at the same side of that straight line; and that the triangles lying at the same side of that straight line, may have the equal angles not conterminous, i.\ e.\ \drawAngle{DCE} opposite to \drawAngle{B}, and \drawAngle{BCA} to \drawAngle{E}.
 
 \begin{center}
 Draw \drawUnitLine{AF} and \drawUnitLine{DF}.
@@ -12060,7 +12051,7 @@ and $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$
 
 
 \startproblem{Prop. XVIII. prob.}\label{prop:VI.XVIII}
-\defineNewPicture{
+\defineNewPicture[1/4]{
 pair C, D, E, F, L, d;
 C := (0, 0);
 D := (3/2u, 0);

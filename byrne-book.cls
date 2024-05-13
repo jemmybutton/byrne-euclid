@@ -169,7 +169,7 @@
     if string.sub(str, 0, 1) ==  " " then
       tex.print(str)
     else
-      tex.print("\\,\\hskip -\\LettrinePadding " .. str)
+      tex.print("\\,\\hskip -0.5\\LettrinePadding " .. str)
     end
   end
 }
@@ -196,7 +196,7 @@
 \ifnum\vPos>0%
 \vskip \vPos%
 \fi%
-\vskip 0.5\baselineskip%
+%\vskip 0.5\baselineskip%
 \resetInitialIndentation%
 }
 
@@ -300,10 +300,10 @@
 	\def\tmpmiddle{center}%
 	\def\tmpinside{inside}%
 	\ifx\tmpalignment\tmpmiddle%
-	\marginpar{~\hfill\drawCurrentPicture\hfill~}%
+	\marginnote{~\hfill\drawCurrentPicture\hfill~}%
 	\fi%
 	\ifx\tmpalignment\tmpinside%
-	\marginpar{\ifthenelse{\isodd{\thepage}}{}{~\hfill}\drawCurrentPicture\ifthenelse{\isodd{\thepage}}{\hfill~}{}}%
+	\marginnote{~\drawCurrentPicture~}%
 	\fi%
 }
 
@@ -347,17 +347,17 @@
 % Redefining parts
 %
 
-\def\@beginpart{\noindent\putLettrine{\plateName}\vskip3\baselineskip}
+\def\@beginpart{~\vskip-2\baselineskip\noindent\putLettrine{\plateName}\vskip3\baselineskip}
 \def\@parttextstyle#1{\noindent{~\hfill{\Large #1}\hfill~}}
-\def\@endpart{\vskip2\baselineskip}
+\def\@endpart{\vskip\baselineskip}
 
 \def\@part[#1]#2{%
-    \ifnum \c@secnumdepth >-2\relax
+    \ifnum \c@secnumdepth >-2\relax%
       \refstepcounter{part}%
       \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-    \else
+    \else%
       \addcontentsline{toc}{part}{#1}%
-    \fi
+    \fi%
     \markboth{}{}%
     \@beginpart%
     \@parttextstyle{\bookString\ \thepart}%
@@ -367,6 +367,17 @@
     \@beginpart%
     \@parttextstyle{#1}%
     \@endpart}
+
+\renewcommand\part{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+  \thispagestyle{plain}%
+    %\@tempswafalse
+  %\null\vfil
+  \secdef\@part\@spart}
     
 %
 % Redefining chapters
@@ -381,9 +392,9 @@
                     \@afterindentfalse
                     \secdef\@chapter\@schapter}
 
-\def\@beginchapter{\removelastskip\vskip3\baselineskip}
+\def\@beginchapter{\removelastskip\vskip2\baselineskip}
 \def\@chaptertextstyle#1{\noindent{~\hfill{\Large #1}\hfill~}}
-\def\@endchapter{\vskip2\baselineskip}
+\def\@endchapter{\vskip\baselineskip}
 
 \def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
                        \if@mainmatter
@@ -458,15 +469,6 @@
 \renewcommand\theconstruction {\conststr}
 \renewcommand\thehypothesis {\hypstr}
 \renewcommand\thesubproposition {}
-%\newcommand{\axiommark}[1]{\global\edef\hiddensectionmark{\expandafter#1}}%
-%\newcommand{\definitionmark}[1]{\global\edef\hiddensectionmark{\expandafter#1}}%
-%\newcommand{\definitionAZmark}[1]{\global\edef\hiddensectionmark{\expandafter#1}}%
-%\newcommand{\postulatemark}[1]{\global\edef\hiddensectionmark{\expandafter#1}}%
-%\newcommand{\propositionmark}[1]{\global\edef\hiddensectionmark{\expandafter#1}}%
-%\newcommand{\propositionAZmark}[1]{\global\edef\hiddensectionmark{\expandafter#1}}%
-%\newcommand{\subpropositionmark}[1]{}%\global\edef\hiddensectionmark{\expandafter#1}}%
-
-%\def\hiddensectionmark{}
 
 \newcommand{\axiommark}[1]{\markboth{#1}{#1}}%
 \newcommand{\definitionmark}[1]{\markboth{#1}{#1}}%
@@ -474,11 +476,11 @@
 \newcommand{\postulatemark}[1]{\markboth{#1}{#1}}%
 \newcommand{\propositionmark}[1]{\markboth{#1}{#1}}%
 \newcommand{\propositionAZmark}[1]{\markboth{#1}{#1}}%
-\newcommand{\subpropositionmark}[1]{}%\global\edef\hiddensectionmark{\expandafter#1}}%
+\newcommand{\subpropositionmark}[1]{}
 
 \newcommand\startaxiom{\@startsection{axiom}{1}{\z@}%
-                                   {\baselineskip}%
-                                   {\baselineskip}%
+                                   {0.5\baselineskip}%
+                                   {0.25\baselineskip}%
                                    {\large\centering}}
 
 \newcommand\startdefinition[2][-1]{%
@@ -487,8 +489,8 @@
 			\addtocounter{definition}{-1}%
 			\fi%
 			\@startsection{definition}{1}{\z@}%
-                                   {\baselineskip}%
-                                   {\baselineskip}%
+                                   {0.5\baselineskip}%
+                                   {0.25\baselineskip}%
                                    {\large\centering}%
                                    {#2}}
 
@@ -504,8 +506,8 @@
                                    {#2}}
 
 \newcommand\startpostulate{\@startsection{postulate}{1}{\z@}%
-                                   {\baselineskip}%
-                                   {\baselineskip}%
+                                   {0.5\baselineskip}%
+                                   {0.25\baselineskip}%
                                    {\large\centering}}
 
 %\newcommand\startproblem{\@startsection{proposition}{1}{\z@}%
@@ -579,6 +581,9 @@
 %
 
 \newcommand\bycref[1]{(\cref{#1})}
+\newcommand\charspacing[2]{\addfontfeature{LetterSpace=#1} #2 \addfontfeature{LetterSpace=0}}
+
+\emergencystretch 3em 
 
 %
 % Localizables
@@ -598,8 +603,10 @@
 
 \crefname{axiom}{\inaxstr}{\inaxstr}
 \crefname{definition}{\indefstr}{\indefstr}
+\crefname{definitionAZ}{\indefstr}{\indefstr}
 \crefname{postulate}{\inpoststr}{\inpoststr}
 \crefname{proposition}{\inpropstr}{\inpropstr}
+\crefname{propositionAZ}{\inpropstr}{\inpropstr}
 \crefname{construction}{}{}
 \crefname{hypothesis}{}{}
 
