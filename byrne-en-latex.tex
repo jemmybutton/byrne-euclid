@@ -7,20 +7,17 @@
 \thispagestyle{empty}
 
 \begin{center}
+\Large \uppercase{The first six books of}
 
-{\Large \uppercase{The first six books of}}
-
-\vskip 0.5\baselineskip
-
-{\LARGE \uppercase{The elements of Euclid}}
+\LARGE \uppercase{The elements of Euclid}
 
 \vskip 0.5\baselineskip
 
-{\uppercase{in which coloured diagrams and symbols are used instead of letters for the greater ease of learners}}
+\normalsize \uppercase{in which coloured diagrams and symbols are used instead of letters for the greater ease of learners}
 
 \vskip 0.75\baselineskip
 
-{\Large \uppercase{By Oliver Byrne}}
+\Large \uppercase{By Oliver Byrne}
 
 %{\uppercase{SURVEYOR OF HER MAJESTY'S SETTLEMENTS IN THE FALKLAND ISLANDS AND AUTHOR OF NUMEROUS MATHEMATICAL WORKS}}
 
@@ -87,29 +84,29 @@ draw byLabelsOnPolygon(A, J, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 
 \vfill\vfill\vfill
 
-{\large github.com/jemmybutton}
+\large github.com/jemmybutton
 \vskip 0.25\baselineskip
 
-{\Large 2024 ed.\,0.8-latex-alpha}
+\Large 2024 ed.\,0.8-latex-alpha
 \vskip \baselineskip
 
 \ccbysa 
 \vskip 0.25\baselineskip
 
-{\footnotesize This rendition of Oliver Byrne's \emph{The first six books of the Elements of Euclid} is made by Slyusarev Sergey and  is distributed under CC-BY-SA 4.0 license}
+\footnotesize This rendition of Oliver Byrne's \emph{The first six books of the Elements of Euclid} is made by Slyusarev Sergey and  is distributed under CC-BY-SA~4.0 license
 
 \vskip -\baselineskip
 
+\normalsize
 \end{center}
 \pagebreak
 
 \part*{Introduction}
 
-
 \regularLettrine{T}{he} arts and sciences have become so extensive, that to facilitate their acquirement is of as much importance as to extend their boundaries. Illustration, if it does not shorten the time of study, will at least make it more agreeable. This Work has a greater aim than mere illustration; we do not introduce colors for the purpose of entertainment, or to amuse \emph{by certain combinations of tint and form}, % don't know where this is from
 but to assist the mind in its researches after truth, to increase the facilities of introduction, and to diffuse permanent knowledge. If we wanted authorities to prove the importance and usefulness of geometry, we might quote every philosopher since the day of Plato. Among the Greeks, in ancient, as in the school of Pestalozzi and others in recent times, geometry was adopted as the best gymnastic of the mind. In fact, Euclid's Elements have become, by common consent, the basis of mathematical science all over the civilized globe. But this will not appear extraordinary, if we consider that this sublime science is not only better calculated than any other to call forth the spirit of inquiry, to elevate the mind, and to strengthen the reasoning faculties, but also it forms the best introduction to most of the useful and important vocations of human life. Arithmetic, land-surveying, hydrostatics, pneumatics, optics, physical astronomy, \&c.\ are all dependent on the propositions of geometry.
 
-Much however depends on the first communication of any science to a learner, though the best and most easy methods are seldom adopted. Propositions are placed before a student, who though having a sufficient understanding, is told just as much about them on entering at the very threshold of the science, as given him a prepossession most unfavorable to his future study of this delightful subject; or \quotation{the formalities and paraphernalia of rigour are so ostentatiously put forward, as almost to hide the reality. Endless and perplexing repetitions, which do not confer greater exactitude on the reasoning, render the demonstrations involved and obscure, and conceal from the view of the student the consecution of evidence.} % quotation seems to be from The First Six Books of the Elements of Euclid by Dionysius Lardner https://books.google.ru/books?id=YnkAAAAAMAAJ
+Much however depends on the first communication of any science to a learner, though the best and most easy methods are seldom adopted. Propositions are placed before a student, who though having a sufficient understanding, is told just as much about them on entering at the very threshold of the science, as given him a prepossession most unfavorable to his future study of this delightful subject; or \enquote{the formalities and paraphernalia of rigour are so ostentatiously put forward, as almost to hide the reality. Endless and perplexing repetitions, which do not confer greater exactitude on the reasoning, render the demonstrations involved and obscure, and conceal from the view of the student the consecution of evidence.} % quotation seems to be from The First Six Books of the Elements of Euclid by Dionysius Lardner https://books.google.ru/books?id=YnkAAAAAMAAJ
 Thus an aversion is created in the mind of the pupil, and a subject so calculated to improve the reasoning powers, and give the habit of close thinking, is degraded by a dry and rigid course of instruction into an uninteresting exercise of the memory. To rise the curiosity, and to awaken the listless and dormant powers of younger minds should be the aim of every teacher; but where examples of excellence are wanting, the attempts to attain it are but few, while eminence excites attention and produces imitation. The object of this Work is to introduce a method of teaching geometry, which has been much approved of by many scientific men in this country, as well as in France and America. The plan here adopted forcibly appeals to the eye, the most sensitive and the most comprehensive of our external organs, and its pre-eminence to imprint its subject on the mind is supported by the incontrovertible maxim expressed in the well known words of Horace:—
 
 \begin{center}
@@ -216,7 +213,6 @@ We shall here define a point a line, and a surface, and demonstrate a propositio
 
 A point is that which has position, but not magnitude; or a point is position only, abstracted from the consideration of length, breadth, and thickness. Perhaps the following description is better calculated to explain the nature of mathematical point to those who have not acquired the idea, than the above specious definition.
 
-
 \defineNewPicture{
 	angleScale := 2;
 	pair O, A, B, C;
@@ -316,11 +312,10 @@ label.rt(btex B etex, B);
 label.lft(btex E etex, E);
 label.rt(btex D etex, D);
 }
-\drawCurrentPictureInMargin
 In an isosceles triangle ABC, the internal angles at the base ABC, ACB are equal, and when the sides AB, AC are produced, the external angles at the base BCE, CBD are also equal.
 
 \begin{center}
-Produce \drawUnitLine{AB} and \drawUnitLine{AC},\\
+\drawCurrentPictureInMargin Produce \drawUnitLine{AB} and \drawUnitLine{AC},\\
 make $\drawUnitLine{BD} = \drawUnitLine{CE}$, draw \drawUnitLine{BE} and \drawUnitLine{CD}.\\
 In
 \drawFromCurrentPicture{
@@ -362,12 +357,11 @@ In the triangles DAC and EAB the sides DA and AC are respectively equal to EA an
 
 \qedNB
 
-Our object in this place being to introduce system rather than to teach any particular set of propositions, we have therefore selected the foregoing out of the regular course. For schools and other public places of instruction, dyed chalks will answer to describe the diagrams, \&c.\ for private use coloured pencils will be found very convenient.
+\charspacing{-2}{Our object in this place being to introduce system rather than to teach any particular set of propositions, we have therefore selected the foregoing out of the regular course. For schools and other public places of instruction, dyed chalks will answer to describe the diagrams, \&c.\ for private use coloured pencils will be found very convenient.}
 
 We are happy to find that the Elements of Mathematics now forms a considerable part of every sound female education, therefore we call the attention to those interested or engaged in the education of ladies to this very attractive mode of communicating knowledge, and to the succeeding work for its future developement.
 
 We shall for the present conclude by observing, as the senses of sight and hearing can be so forcibly and instantaneously addressed alike with one thousand as with one, \emph{the million} might be taught geometry and other branches of mathematics with great ease, this would advance the purpose of education more than any thing \emph{might} be named, for it would teach the people how to think, and not what to think; it is in this particular the great error of education originates.
-
 
 \chapter*{Elucidations}
 
@@ -418,17 +412,17 @@ Angles might properly be considered as a fourth species of magnitude. Angular ma
 		label.llft(btex E etex, E);
 }
 \drawCurrentPictureInMargin
-An angle is often designated by a single letter when its legs are the only lines which meet together at its vertex. Thus the red and blue lines form the yellow angle, which in other systems would be called angle A. But when more than two lines meet in the same point, it was necessary by former methods, in order to avoid confusion, to employ three letters to designate an angle about that point, the letter which marked the vertex of the angle being always placed in the middle. Thus the black and red lines meeting together at C, form the blue angle, and has been usually denominated the angle FCD or DCF. The lines FC and CD are the legs of the angle; the point C is its vertex. In like manner the black angle would be designated the angle DCB or BCD. The red and blue angles added together, or the angle HCF added to FCD, make the angle HCD; and so of other angles.
+\charspacing{-2}{An angle is often designated by a single letter when its legs are the only lines which meet together at its vertex. Thus the red and blue lines form the yellow angle, which in other systems would be called angle A. But when more than two lines meet in the same point, it was necessary by former methods, in order to avoid confusion, to employ three letters to designate an angle about that point, the letter which marked the vertex of the angle being always placed in the middle. Thus the black and red lines meeting together at C, form the blue angle, and has been usually denominated the angle FCD or DCF. The lines FC and CD are the legs of the angle; the point C is its vertex. In like manner the black angle would be designated the angle DCB or BCD. The red and blue angles added together, or the angle HCF added to FCD, make the angle HCD; and so of other angles.}
 
 When the legs of an angle are produced or prolonged beyond its vertex, the angles made by them on both sides of the vertex are said to be \emph{vertically opposite} to each other: thus the red and yellow angles are said to be vertically opposite angles.
 
-\emph{Superposition} is the process by which one magnitude may be conceived to be placed upon another, so as exactly to cover it, or so that every part of each shall exactly coincide.
+\charspacing{-2}{\emph{Superposition} is the process by which one magnitude may be conceived to be placed upon another, so as exactly to cover it, or so that every part of each shall exactly coincide.}
 
 A line is said to be \emph{produced}, when it is extended, prolonged, or it has length increased, and the increase of length which it receives is called \emph{produced part}, or its \emph{production}.
 
 The entire length of the line or lines which enclose a figure, is called its \emph{perimeter}. The first six books of Euclid treat of plain figures only. A line drawn from the centre of a circle to its circumference, is called a \emph{radius}. That side of a right angled triangle, which is opposite to the right angle, is called the \emph{hypotenuse}. An oblong is defined in the second book, and called a \emph{rectangle}. All lines which are considered in the first six books of the Elements are supposed to be in the same plane.
 
-The \emph{straight-edge} and \emph{compasses} are the only instruments, the use of which is permitted in Euclid, or plain Geometry. To declare this restriction is the object of the \emph{postulates.}
+\charspacing{-3}{The \emph{straight-edge} and \emph{compasses} are the only instruments, the use of which is permitted in Euclid, or plain Geometry. To declare this restriction is the object of the \emph{postulates.}}
 
 The \emph{Axioms} of geometry are certain general propositions, the truth of which is taken to be self-evident and incapable of being established by demonstration.
 
@@ -454,8 +448,7 @@ A \emph{Corollary} is an inference deduced immediately from a proposition.
 
 A \emph{Scholium} is a note or observation on a proposition not containing an inference of sufficient importance to entitle it to the name of \emph{corollary}.
 
-A \emph{Lemma} is a proposition merely introduced for the purpose of establishing some more important proposition.
-
+\charspacing{-2}{A \emph{Lemma} is a proposition merely introduced for the purpose of establishing some more important proposition.}
 
 \chapter*{Symbols and abbreviations}
 
@@ -490,7 +483,7 @@ expresses the word \emph{therefore}.
  is read \emph{minus} (\emph{less}), signifies subtraction; and when placed between two quantities denotes that the latter is taken from the former.
 
 \symb{$\times$}
- this sign expresses the product of two or more numbers when placed between them in arithmetic and algebra; but in geometry it is generally used to express a \emph{rectangle}, when placed between \quotation{two straight lines which contain one of its right angles.} A \emph{rectangle} may also be represented by placing a point between two of its conterminous sides.
+ this sign expresses the product of two or more numbers when placed between them in arithmetic and algebra; but in geometry it is generally used to express a \emph{rectangle}, when placed between \enquote{two straight lines which contain one of its right angles.} A \emph{rectangle} may also be represented by placing a point between two of its conterminous sides.
 
 \symb{$:\ ::\ :$}
  expresses an \emph{analogy} or \emph{proportion}; thus if A, B, C and D represent four magnitudes, and A has to B the same ratio that C has to D, the proportion is thus briefly written
@@ -530,7 +523,6 @@ or A is to B, as C is to D.
 
 \symb{\drawTwoRightAngles}
  signifies \emph{two right angles}.
-
 
 \defineNewPicture{
 	pair A, B, C, D;
@@ -576,9 +568,7 @@ In the same manner twice the square of, is expressed by $2 \cdot \drawUnitLine{A
 \symb{\qedstr}
 signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 
-
 \part{Book I}
-
 
 \chapter*{Definitions}
 
@@ -587,42 +577,35 @@ signifies \emph{Quod erat demonstrandum}. Which was to be demonstrated.
 A \emph{point} is that which has no parts.
 \end{center}
 
-
 \startdefinition{}\label{def:I.II}
 \begin{center}
 A \emph{line} is length without breadth.
 \end{center}
-
 
 \startdefinition{}\label{def:I.III}
 \begin{center}
 The extremities of a line are points.
 \end{center}
 
-
 \startdefinition{}\label{def:I.IV}
 \begin{center}
 The straight or right line is that which lies evenly between its extremities.
 \end{center}
-
 
 \startdefinition{}\label{def:I.V}
 \begin{center}
 A surface is that which has length and breadth only.
 \end{center}
 
-
 \startdefinition{}\label{def:I.VI}
 \begin{center}
 The extremities of a surface are lines.
 \end{center}
 
-
 \startdefinition{}\label{def:I.VII}
 \begin{center}
 A plane surface is that which lies evenly between its extremities.
 \end{center}
-
 
 \startdefinition{}\label{def:I.VIII}
 \begin{center}
@@ -645,7 +628,6 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 \drawCurrentPictureInMargin[inside] A plane rectilinear angle is the inclination of two straight lines to one another, which meet together, but are not in the same straight line.
 \end{center}
 
-
 \defineNewPicture{
 	pair A, B, C, D;
 	A := (0, 0);
@@ -663,7 +645,6 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 \drawCurrentPictureInMargin[inside] When one straight line standing on another straight line makes the adjacent angles equal, each of these angles is called a \emph{right angle}, and each of these lines is said to be \emph{perpendicular} to one another.
 \end{center}
 
-
 \defineNewPicture{
 	pair A, B, C;
 	A := (0, 0);
@@ -679,7 +660,6 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 \begin{center}
 \drawCurrentPictureInMargin[inside] An obtuse angle is an angle greater than a right angle
 \end{center}
-
 
 \defineNewPicture{
 	pair A, B, C;
@@ -697,18 +677,15 @@ A plane angle is the inclination of two lines to one another, in a plane, which 
 \drawCurrentPictureInMargin[inside] An acute angle is an angle less than a right angle.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XIII}
 \begin{center}
 A term or boundary is the extremity of any thing.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XIV}
 \begin{center}
 A figure is a surface enclosed on all sides by a line or lines.
 \end{center}
-
 
 \defineNewPicture{
 	pair O, A, B, C, D, E;
@@ -731,12 +708,10 @@ A figure is a surface enclosed on all sides by a line or lines.
 \drawCurrentPictureInMargin[inside] A circle is a plane figure, bounded by one continued line, called its circumference or periphery; and having a certain point within it, from which all straight lines drawn to its circumference are equal.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XVI}
 \begin{center}
 This point (from which the equal lines are drawn) is called the centre of the circle.
 \end{center}
-
 
 \defineNewPicture{
 	pair O, A, B;
@@ -769,7 +744,6 @@ This point (from which the equal lines are drawn) is called the centre of the ci
 \drawCurrentPictureInMargin[inside] A semicircle is the figure contained by the diameter, and the part of the circle cut off by the diameter.
 \end{center}
 
-
 \defineNewPicture{
 	pair O, A, B;
 	path P;
@@ -788,18 +762,15 @@ This point (from which the equal lines are drawn) is called the centre of the ci
 \drawCurrentPictureInMargin[inside] A segment of a circle is a figure contained by straight line and the part of the circumference which it cuts off.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XX}
 \begin{center}
 A figure contained by straight lines only, is called a rectilinear figure.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XXI}
 \begin{center}
 A triangle is a rectilinear figure included by three sides.
 \end{center}
-
 
 \defineNewPicture{
 	pair A, B, C, D;
@@ -821,12 +792,10 @@ A triangle is a rectilinear figure included by three sides.
 \drawCurrentPictureInMargin[inside] A quadrilateral figure is one which is bounded by four sides. The straight lines \drawUnitLine{AD} and \drawUnitLine{CB} connecting the vertices of the opposite angles of a quadrilateral figure, are called its diagonals. 
 \end{center}
 
-
 \startdefinition{}\label{def:I.XXIII}
 \begin{center}
 A polygon is a rectilinear figure bounded by more than four sides.
 \end{center}
-
 
 \defineNewPicture{
 	pair A, B, C;
@@ -843,7 +812,6 @@ A polygon is a rectilinear figure bounded by more than four sides.
 \drawCurrentPictureInMargin[inside] A triangle whose sides are equal, is said to be equilateral.
 \end{center}
 
-
 \defineNewPicture{
 	pair A, B, C;
 	A := dir(-60) scaled 1/2u;
@@ -859,12 +827,10 @@ A polygon is a rectilinear figure bounded by more than four sides.
 \drawCurrentPictureInMargin[inside] A triangle which has only two sides equal is called an isosceles triangles.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XXVI}
 \begin{center}
 A scalene triangle is one which has no two sides equal.
 \end{center}
-
 
 \defineNewPicture{
 	pair A, B, C;
@@ -880,7 +846,6 @@ A scalene triangle is one which has no two sides equal.
 \begin{center}
 \drawCurrentPictureInMargin[inside]A right angled triangle is that which has a right angle.
 \end{center}
-
 
 \vskip \baselineskip
 
@@ -899,7 +864,6 @@ A scalene triangle is one which has no two sides equal.
 \drawCurrentPictureInMargin[inside] An obtuse angled triangle is that which has an obtuse angle.
 \end{center}
 
-
 \defineNewPicture{
 	pair A, B, C;
 	A := (0, 0);
@@ -914,7 +878,6 @@ A scalene triangle is one which has no two sides equal.
 \begin{center}
 \drawCurrentPictureInMargin[inside] An acute angled triangle is that which has three acute angles.
 \end{center}
-
 
 \defineNewPicture{
 	pair A, B, C, D;
@@ -935,7 +898,6 @@ A scalene triangle is one which has no two sides equal.
 \drawCurrentPictureInMargin[inside] Of four-sided figures, a square is that which has all its sides equal, and all its angles right angles.
 \end{center}
 
-
 \defineNewPicture{
 	pair A, B, C, D;
 	numeric s;
@@ -954,7 +916,6 @@ A scalene triangle is one which has no two sides equal.
 \begin{center}
 \drawCurrentPictureInMargin[inside] A rhombus is that which has all its sides equal, but its angles are not right angles.
 \end{center}
-
 
 \defineNewPicture{
 	pair A,B,C,D;
@@ -975,7 +936,6 @@ A scalene triangle is one which has no two sides equal.
 \drawCurrentPictureInMargin[inside] An oblong is that which has all its angles right angles, but has not all its sides equal.
 \end{center}
 
-
 \defineNewPicture{
 	pair A, B, C, D;
 	numeric s;
@@ -995,12 +955,10 @@ A scalene triangle is one which has no two sides equal.
 \drawCurrentPictureInMargin[inside] A rhomboid is that which has its opposite sides equal to one another, but all its sides are not equal nor its angles right angles.
 \end{center}
 
-
 \startdefinition{}\label{def:I.XXXIV}
 \begin{center}
 All other quadrilateral figures are called trapeziums.
 \end{center}
-
 
 \defineNewPicture{
 	pair A, B, C, D;
@@ -1034,46 +992,35 @@ Let it be granted that a circle may be described with any centre at any distance
 \startaxiom{}\label{ax:I.I}
 Magnitudes which are equal to the same are equal to each other.
 
-
 \startaxiom{}\label{ax:I.II}
 If equals be added to equals the sums will be equal.
-
 
 \startaxiom{}\label{ax:I.III}
 If equals be taken away from equals the remainders will be equal.
 
-
 \startaxiom{}\label{ax:I.IV}
 If equals be added to unequals the sums will be unequal.
-
 
 \startaxiom{}\label{ax:I.V}
 If equals be taken away from unequals the remainders will be unequal.
 
-
 \startaxiom{}\label{ax:I.VI}
 The doubles of the same or equal magnitudes are equal.
-
 
 \startaxiom{}\label{ax:I.VII}
 The halves of the same or equal magnitudes are equal.
 
-
 \startaxiom{}\label{ax:I.VIII}
 The magnitudes which coincide with one another, or exactly fill the same space, are equal.
-
 
 \startaxiom{}\label{ax:I.IX}
 The whole is greater than its part.
 
-
 \startaxiom{}\label{ax:I.X}
 Two straight lines cannot include a space.
 
-
 \startaxiom{}\label{ax:I.XI}
 All right angles are equal.
-
 
 \startaxiom{}\label{ax:I.XII}
 \defineNewPicture{
@@ -1100,7 +1047,6 @@ All right angles are equal.
 }
 \drawCurrentPictureInMargin[inside]
 If two straight lines $\left(\vcenter{\nointerlineskip\hbox{\drawUnitLine{AB}}\nointerlineskip\hbox{\drawUnitLine{CD}}}\right)$ meet a third straight line (\drawUnitLine{EF}) so as to make the two interior angles (\drawAngle{H} and \drawAngle{G}) on the same side less than two straight angles, these two straight lines will meet if they be produced on that side on which the angles are less than two right angles.
-
 
 The twelfth axiom may be expressed in any of the following ways:
 \begin{enumerate}
@@ -1381,7 +1327,6 @@ but $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \
 
 \qed
 
-
 \starttheorem{Prop VI. Theor.}\label{prop:I.VI}
 \defineNewPicture[1/4]{
 pair A, B, C, D;
@@ -1418,7 +1363,6 @@ hence they are equal.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop VII. Theor.}\label{prop:I.VII}
 \defineNewPicture{
@@ -1493,7 +1437,6 @@ $\left.
 
 \qed
 
-
 \starttheorem{Prop VIII. Theor.}\label{prop:I.VIII}
 \defineNewPicture{
 pair A, B, C, D, E, F, d;
@@ -1541,7 +1484,6 @@ Therefore sides \drawUnitLine{AB} and \drawUnitLine{CA}, being coincident with \
 
 \qed
 
-
 \startproblem{Prop IX. Prob.}\label{prop:I.IX}
 \defineNewPicture{
 pair A, B, C, D, E, F;
@@ -1584,7 +1526,6 @@ $\therefore \drawAngle{BAD} = \drawAngle{CAD}$ \bycref{prop:I.VIII}.
 \end{center}
 
 \qed
-
 
 \startproblem{Prop X. Prob.}\label{prop:I.X}
 \defineNewPicture{
@@ -1665,7 +1606,6 @@ $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \bycref{def:I.X}.
 
 \qed
 
-
 \startproblem{Prop XII. Prob.}\label{prop:I.XII}
 \defineNewPicture{
 pair A, B, C, D, E, F;
@@ -1722,7 +1662,6 @@ $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \bycref{def:I.X}.
 
 \qed
 
-
 \starttheorem{Prop XIII. Theor.}\label{prop:I.XIII}
 \defineNewPicture{
 pair A, B, C, D, E;
@@ -1761,7 +1700,6 @@ $= \drawAngle{ADB,EDA} + \drawAngle{CDE} = \drawTwoRightAngles$.
 
 \qed
 
-
 \starttheorem{Prop XIV. Theor.}\label{prop:I.XIV}
 \defineNewPicture[1/4]{
 pair A, B, C, D, E;
@@ -1799,7 +1737,6 @@ $\therefore \drawUnitLine{ED}$ is not the continuation of \drawUnitLine{BD}, and
 
 \qed
 
-
 \starttheorem{Prop XV. Theor.}\label{prop:I.XV}
 \defineNewPicture{
 pair A, B, C, D, E;
@@ -1834,7 +1771,6 @@ $\drawAngle{CEA} = \drawAngle{DEB}$.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XVI. Theor.}\label{prop:I.XVI}
 \defineNewPicture[1/4]{
@@ -1892,7 +1828,6 @@ and therefore \anglesECDpDCF\ which is $= \drawAngle{GCA}$ is $> \drawAngle{A}$.
 
 \qed
 
-
 \starttheorem{Prop XVII. Theor.}\label{prop:I.XVII}
 \defineNewPicture{
 pair A, B, C, D;
@@ -1927,7 +1862,6 @@ $\therefore \drawAngle{ACB} + \drawAngle{A} < \drawTwoRightAngles$,
 \noindent and in the same manner it may be shown that any other two angles of the triangle taken together are less than two right angles.
 
 \qed
-
 
 \starttheorem{Prop XVIII. Theor.}\label{prop:I.XVIII}
 \defineNewPicture[1/4]{
@@ -1970,7 +1904,6 @@ is $\drawAngle{DBC,ABD} > \drawAngle{A}$.
 
 \qed
 
-
 \starttheorem{Prop XIX. Theor.}\label{prop:I.XIX}
 \defineNewPicture[1/4]{
 pair A, B, C;
@@ -2005,7 +1938,6 @@ $\therefore \drawUnitLine{BC} > \drawUnitLine{CA}$.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XX. Theor.}\label{prop:I.XX}
 \defineNewPicture{
@@ -2046,7 +1978,6 @@ and $\therefore \drawUnitLine{DA} + \drawUnitLine{BD} > \drawUnitLine{AB}$.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XXI. Theor.}\label{prop:I.XXI}
 \defineNewPicture[1/5]{
@@ -2094,7 +2025,6 @@ $\therefore \drawAngle{D} > \drawAngle{C}$.
 \end{center}
 
 \qed
-
 
 \startproblem{Prop XXII. Prob.}\label{prop:I.XXII}
 \defineNewPicture[1/2]{
@@ -2179,7 +2109,6 @@ $\left.
 
 \qed
 
-
 \startproblem{Prop XXIII. Prob.}\label{prop:I.XXIII}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, J, d;
@@ -2224,7 +2153,6 @@ Then $\drawAngle{A} = \drawAngle{F}$ \bycref{prop:I.VIII}.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XXIV. Theor.}\label{prop:I.XXIV}
 \defineNewPicture{
@@ -2309,7 +2237,6 @@ $\therefore \drawUnitLine{DB} > \drawUnitLine{FG}$.
 
 \qed
 
-
 \starttheorem{Prop XXV. Theor.}\label{prop:I.XXV}
 \defineNewPicture{
 pair A, B, C, D, E, F, d;
@@ -2353,7 +2280,6 @@ $\therefore \drawAngle{A} > \drawAngle{D}$.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XXVI. Theor.}\label{prop:I.XXVI}
 \defineNewPicture{
@@ -2461,7 +2387,6 @@ Consequently, neither of the sides \drawUnitLine{AB} or \drawUnitLine{DG,GE} is 
 
 \qed
 
-
 \starttheorem{Prop XXVII. Theor.}\label{prop:I.XXVII}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, d;
@@ -2498,7 +2423,6 @@ If \drawUnitLine{CD} be not parallel to \drawUnitLine{AB} they shall meet when p
 If it be possible, let those lines be not parallel, but meet when produced; then the external angle \drawAngle{HEB} is greater than \drawAngle{CFG} \bycref{prop:I.XVI}, but they are also equal \bycref{\hypref}, which is absurd: in the same manner it may be shown that they cannot meet on the other side; $\therefore$ they are parallel.
 
 \qed
-
 
 \starttheorem{Prop XXVIII. Theor.}\label{prop:I.XXVIII}
 \defineNewPicture{
@@ -2544,7 +2468,6 @@ $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \bycref{prop:I.XXVII}
 
 \qed
 
-
 \starttheorem{Prop XXIX. Theor.}\label{prop:I.XXIX}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, I, J, d[];
@@ -2587,7 +2510,6 @@ Therefore $\drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \bycref{prop:I.XXVI
 Hence \drawAngle{IEA,HEI} and \drawAngle{GFD} are not unequal, that is, they are equal: $\drawAngle{IEA,HEI} = \drawAngle{GEB}$ \bycref{prop:I.XV}; $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, the external angle equal to the internal and opposite on the same side: if \drawAngle{BEH} be added to both, then $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{BEH,GEB} = \drawTwoRightAngles$ \bycref{prop:I.XIII}. That is to say, the two internal angles at the same side of the cutting line are equal to two right angles.
 
 \qed
-
 
 \starttheorem{Prop XXX. Theor.}\label{prop:I.XXX}
 \defineNewPicture{
@@ -2632,7 +2554,6 @@ $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{EF}$ \bycref{prop:I.XXVIII
 
 \qed
 
-
 \startproblem{Prop XXXI. Prob.}\label{prop:I.XXXI}
 \defineNewPicture[1/6]{
 pair A, B, C, D, E, F, d;
@@ -2667,7 +2588,6 @@ then $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF,FD}$ \bycref{prop:I.XXVII}
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XXXII. Theor.}\label{prop:I.XXXII}
 \defineNewPicture[1/6]{
@@ -2713,7 +2633,6 @@ $\drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{DAE,EAC,CAB} = \dr
 
 \qed
 
-
 \starttheorem{Prop XXXIII. Theor.}\label{prop:I.XXXIII}
 \defineNewPicture[1/4]{
 pair A, B, C, D, d[];
@@ -2752,7 +2671,6 @@ and $\therefore \drawUnitLine{AC} \parallel \drawUnitLine{BD}$ \bycref{prop:I.XX
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XXXIV. Theor.}\label{prop:I.XXXIV}
 \defineNewPicture{
@@ -2804,7 +2722,6 @@ and $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \bycref{ax:I.II}.
 Therefore the opposite sides and angles of the parallelogram are equal: and as the triangles \drawLine{AD,CD,AC} and \drawLine{AB,BD,AD} are equal in every respect \bycref{prop:I.IV}, the diagonal divides the parallelogram into two equal parts.
 
 \qed
-
 
 \starttheorem{Prop XXXV. Theor.}\label{prop:I.XXXV}
 \defineNewPicture{
@@ -2885,7 +2802,6 @@ $\therefore \drawPolygon{ABGC, CDG} = \drawPolygon{EFDG, CDG}$.
 
 \qed
 
-
 \starttheorem{Prop XXXVI. Theor.}\label{prop:I.XXXVI}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, J, I, d[];
@@ -2940,7 +2856,6 @@ $\therefore \polygonABDC = \polygonEFHG$ \bycref{ax:I.I}.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XXXVII. Theor.}\label{prop:I.XXXVII}
 \defineNewPicture{
@@ -3004,7 +2919,6 @@ $\therefore \polygonBCD = \polygonCDE$.
 
 \qed
 
-
 \starttheorem{Prop XXXVIII. Theor.}\label{prop:I.XXXVIII}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, J, I, d[];
@@ -3058,7 +2972,6 @@ $\therefore \polygonBCD = \polygonEGH$ \bycref{ax:I.VII}.
 
 \qed
 
-
 \starttheorem{Prop XXXIX. Theor.}\label{prop:I.XXXIX}
 \defineNewPicture{
 pair A, B, C, D, E, F, G;
@@ -3105,7 +3018,6 @@ $\therefore \drawUnitLine{AF} \nparallel \drawUnitLine{CD}$; and in the same man
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XL. Theor.}\label{prop:I.XL}
 \defineNewPicture{
@@ -3172,7 +3084,6 @@ $\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CD,DE,EF}$: and in the 
 
 \qed
 
-
 \starttheorem{Prop XLI. Theor.}\label{prop:I.XLI}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, d;
@@ -3212,7 +3123,6 @@ $\therefore \polygonABED = \mbox{ twice } \polygonCED$.
 \end{center}
 
 \qed
-
 
 \startproblem{Prop XLII. Prob.}\label{prop:I.XLII}
 \defineNewPicture{
@@ -3276,7 +3186,6 @@ $\therefore \polygonABED = \polygonCDG$.
 
 \qed
 
-
 \starttheorem{Prop XLIII. Theor.}\label{prop:I.XLIII}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, I, d[];
@@ -3318,7 +3227,6 @@ $\therefore \polygonFCIE = \polygonHBGE$ \bycref{ax:I.III}.
 \end{center}
 
 \qed
-
 
 \startproblem{Prop XLIV. Prob.}\label{prop:I.XLIV}
 \defineNewPicture{
@@ -3393,7 +3301,6 @@ and $\drawAngle{F} = \drawAngle{E} =\drawAngle{I} = \drawAngle{N}$ \bycref{prop:
 \end{center}
 
 \qed
-
 
 \startproblem{Prop XLV. Prob.}\label{prop:I.XLV}
 \defineNewPicture{
@@ -3477,7 +3384,6 @@ having $\drawAngle{M} = \drawAngle{O}$.
 
 \qed
 
-
 \startproblem{Prop XLVI. Prob.}\label{prop:I.XLVI}
 \defineNewPicture{
 pair A, B, C, D;
@@ -3526,7 +3432,6 @@ And $\therefore \polygonABDC$ is a square \bycref{def:I.XXX}. % improvement: in 
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop XLVII. Theor.}\label{prop:I.XLVII}
 \defineNewPicture[1/2]{
@@ -3638,7 +3543,6 @@ hence $\drawPolygon[middle][polygonABEDpACFG]{ABED,LAGF,CLF} = \drawPolygon[midd
 
 \qed
 
-
 \starttheorem{Prop XLVIII. Theor.}\label{prop:I.XLVIII}
 \defineNewPicture{
 pair A, B, C, D;
@@ -3685,7 +3589,6 @@ consequently \drawAngle{BAC} is a right angle.
 
 \qed
 
-
 \part{Book II}
 
 \startdefinition{Definition I}\label{def:II.I}
@@ -3717,7 +3620,6 @@ is equal to $\left\{
 		\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AC}^2\\
 		\drawUnitLine{AB} \cdot \drawUnitLine{AC}&\mbox{ or } \drawUnitLine{AB}^2\\
 	\end{aligned}\right.$
-
 
 \vfill\pagebreak
 
@@ -3825,7 +3727,6 @@ $\therefore \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \dr
 
 \qed
 
-
 \starttheorem{Prop. II. theor.}\label{prop:II.II}
 \defineNewPicture{
 pair A, B, C, D, E, F;
@@ -3875,7 +3776,6 @@ $\therefore \drawProportionalLine{AC,CB}^2 = \drawProportionalLine{AC,CB} \cdot 
 
 \qed
 
-
 \starttheorem{Prop. III. theor.}\label{prop:II.III}
 \defineNewPicture{
 pair A, B, C, D, E, F;
@@ -3918,7 +3818,6 @@ In a similar manner it may be readily shown that $\drawProportionalLine{DE,DF} \
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. IV. theor.}\label{prop:II.IV}
 \defineNewPicture[1/4]{
@@ -4011,7 +3910,6 @@ $\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \draw
 
 \qed
 
-
 \starttheorem{Prop. V. theor.}\label{prop:II.V}
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, H, K, L, M;
@@ -4079,7 +3977,6 @@ $\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \draw
 
 \qed
 
-
 \starttheorem{Prop. VI. theor.}\label{prop:II.VI}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, K, L, M;
@@ -4144,7 +4041,6 @@ $\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \d
 
 \qed
 
-
 \starttheorem{Prop. VII. theor.}\label{prop:II.VII}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, N;
@@ -4199,7 +4095,6 @@ $\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportion
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. VIII. theor.}\label{prop:II.VIII}
 \defineNewPicture{
@@ -4290,7 +4185,6 @@ $\therefore \drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH
 
 \qed
 
-
 \starttheorem{Prop. IX. theor.}\label{prop:II.IX}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H;
@@ -4360,7 +4254,6 @@ $\therefore \drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cd
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. X. theor.}\label{prop:II.X}
 \defineNewPicture{
@@ -4440,7 +4333,6 @@ $\therefore \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 
 
 \qed
 
-
 \startproblem{Prop. XI. prob.}\label{prop:II.XI}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, K;
@@ -4492,7 +4384,6 @@ $\therefore \drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \draw
 
 \qed
 
-
 \starttheorem{Prop. XII. theor.}\label{prop:II.XII}
 \defineNewPicture{
 pair A, B, C, D;
@@ -4534,7 +4425,6 @@ $\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdo
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XIII. theor.}\label{prop:II.XIII}
 \defineNewPicture[1/4]{
@@ -4595,7 +4485,6 @@ $\therefore \drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawPro
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XIV. prob.}\label{prop:II.XIV}
 \defineNewPicture[1/3]{
@@ -4681,15 +4570,12 @@ $\therefore \drawSizedLine{HE}^2 = \drawPolygon{BCDE} = \drawPolygon{abcdef}$.
 
 \qed
 
-
-
 \part{Book III}
 
 \chapter*{Definitions}
 
 \startdefinition{}\label{def:III.I}
 Equal circles are those whose diameters are equal.
-
 
 \startdefinition{}\label{def:III.II}
 \defineNewPicture{
@@ -4703,7 +4589,6 @@ Equal circles are those whose diameters are equal.
 	draw byLine(A, B, byblack, SOLID_LINE, REGULAR_WIDTH);
 }\drawCurrentPictureInMargin
 A right line is said to touch a circle when it meets the circle, and being produced does not cut it.
-
 
 \startdefinition{}\label{def:III.III}
 \defineNewPicture{
@@ -4723,7 +4608,6 @@ A right line is said to touch a circle when it meets the circle, and being produ
 	draw byCircleR(C, r3, byblue, 0, 0, -1/2);
 }\drawCurrentPictureInMargin
 Circles are said to touch one another which meet, but do not cut one another.
-
 
 \startdefinition{}\label{def:III.IV}
 \defineNewPicture{
@@ -4746,10 +4630,8 @@ Circles are said to touch one another which meet, but do not cut one another.
 }\drawCurrentPictureInMargin
 Right lines are said to be equally distant from the centre of a circle when the perpendiculars drawn to them from the centre are equal.
 
-
 \startdefinition{}\label{def:III.V}
 And the straight line on which the greater perpendicular falls is said to be farther from the centre.
-
 
 \startdefinition{}\label{def:III.VI}
 \defineNewPicture{
@@ -4763,10 +4645,8 @@ And the straight line on which the greater perpendicular falls is said to be far
 }\drawCurrentPictureInMargin
 A segment of a circle is the figure contained by a straight line and the part of the circumference it cuts off.
 
-
 \startdefinition{}\label{def:III.VII}
 An angle of a segment is that contained by a straight line and a circumference of a circle.
-
 
 % improvement: originally, seventh definition was missing
 
@@ -4794,7 +4674,6 @@ An angle of a segment is that contained by a straight line and a circumference o
 }\drawCurrentPictureInMargin
 An angle in a segment is the angle contained by two straight lines drawn from any point in the circumference of the segment to the extremities of the straight line which is the base of the segment.
 
-
 \startdefinition{}\label{def:III.IX}
 \defineNewPicture{
 	pair O, A, B, C;
@@ -4815,7 +4694,6 @@ An angle in a segment is the angle contained by two straight lines drawn from an
 }\drawCurrentPictureInMargin
 An angle is said to stand on the part of the circumference, or the arch, intercepted between the right lines that contain the angle.
 
-
 \startdefinition{}\label{def:III.X}
 \defineNewPicture{
 	pair O;
@@ -4828,7 +4706,6 @@ An angle is said to stand on the part of the circumference, or the arch, interce
 	draw byArcBE(O, e, b + 8, r, byblack, 0, 0, -1, 0);
 }\drawCurrentPictureInMargin
 A sector of a circle is the figure contained by two radii and the arch between them.
-
 
 \startdefinition{}\label{def:III.XI}
 \defineNewPicture{
@@ -4853,7 +4730,6 @@ A sector of a circle is the figure contained by two radii and the arch between t
 }\drawCurrentPictureInMargin
 Similar segments of circles are those which contain equal angles.
 
-
 \startdefinition{}\label{def:III.XII}
 \defineNewPicture{
 	pair O;
@@ -4868,8 +4744,6 @@ Similar segments of circles are those which contain equal angles.
 	draw byFilledCircleSegment(O, r1, 0, 8, byblue);
 }\drawCurrentPictureInMargin
 Circles which have the same centre are called \emph{concentric circles}.
-
-
 
 % improvement: this last definition was not marked as definition in Byrne's book, and is not present in conventional editions of the Elements, but since it sort of is, let it be
 
@@ -4921,7 +4795,6 @@ Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triang
 
 \qed
 
-
 \starttheorem{Prop. II. theor.}\label{prop:III.II}
 \defineNewPicture{
 pair A, B, D, E, F;
@@ -4968,7 +4841,6 @@ $\therefore$ every point in \drawSizedLine{AB} lies within the circle.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. III. theor.}\label{prop:III.III}
 \defineNewPicture[1/2]{
@@ -5025,7 +4897,6 @@ and $\therefore \drawUnitLine{EF}$ bisects \drawUnitLine{AF,FB}.
 
 \qed
 
-
 \starttheorem{Prop. IV. theor.}\label{prop:III.IV}
 \defineNewPicture{
 pair A, B, C, D, E, F;
@@ -5068,7 +4939,6 @@ $\therefore$ \drawUnitLine{AC} and \drawUnitLine{BD} do not bisect one another.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. V. theor.}\label{prop:III.V}
 \defineNewPicture{
@@ -5116,7 +4986,6 @@ $\therefore$ circles supposed to intersect in any point cannot have the same cen
 
 \qed
 
-
 \starttheorem{Prop. VI. theor.}\label{prop:III.VI}
 \defineNewPicture[1/4]{
 pair M, N, B, C, E, F;
@@ -5158,7 +5027,6 @@ $\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
 \noindent a part equal to the whole, which is absurd; therefore the assumed point is not the centre of both circles, and in the same manner it can be demonstrated that no other point is.
 
 \qed
-
 
 \starttheorem{Prop. VII. theor.}\label{prop:III.VII}
 \defineNewPicture[1/2]{
@@ -5232,7 +5100,6 @@ Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make eq
 \startsubproposition{Figure I.}
 To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \bycref{def:I.XV} $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \bycref{prop:I.XX} in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \bycref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \bycref{ax:I.III}, and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \bycref{prop:I.XXIV} and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
 
-
 \startsubproposition{Figure II.}
 \begin{center}
 If $\drawAngle{KFE} = \drawAngle{GFE}$ then $\drawUnitLine{FM,MK} = \drawUnitLine{FG}$,\\
@@ -5248,10 +5115,7 @@ a part equal to the whole, which is absurd:
 
 \noindent $\therefore \drawUnitLine{FG} = \drawUnitLine{FM,MK}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
 
-
-
 \qed
-
 
 \starttheorem{Prop. VIII. theor.}\label{prop:III.VIII}
 \problem{T}{he}{original text of this proposition is here divided into three parts.}
@@ -5299,7 +5163,6 @@ but $\drawAngle{DMF,FME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \dr
 and in like manner \drawUnitLine{DE} may be shown $>$ than any other line more remote from \drawUnitLine{DM,MA}.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{II.}
@@ -5339,7 +5202,6 @@ and $\drawUnitLine{HM} = \drawUnitLine{KM}$,
 
 $\therefore \drawUnitLine{DK} < \drawUnitLine{DH}$. And so of others.
 \end{center}
-
 
 \startsubproposition{III.}
 \defineNewPicture{
@@ -5394,8 +5256,6 @@ And any other line drawn from the same point to the circumference must lie at th
 
 \qed
 
-
-
 \starttheorem{Prop. IX. theor.}\label{prop:III.IX}
 \defineNewPicture[1/4]{
 pair D, A, B, C, F, L, H;
@@ -5433,7 +5293,6 @@ Then since more than two equal straight lines are drawn from a point which is no
 The same may be demonstrated of any other point, different from \drawPointL[middle][DA,DF]{D}, which must be the centre of the circle.
 
 \qed
-
 
 \starttheorem{Prop. X. theor.}\label{prop:III.X}
 \defineNewPicture[1/5]{
@@ -5497,7 +5356,6 @@ $\therefore$ the assumed point is not the centre of \circlePI , and $\therefore$
 
 \qed
 
-
 \starttheorem{Prop. XI. theor.}\label{prop:III.XI}
 \defineNewPicture[1/2]{
 pair M, N, A, D, F, G, H, K;
@@ -5558,7 +5416,6 @@ The centres are not therefore so placed, that a line joining them can pass throu
 
 \qed
 
-
 \starttheorem{Prop. XII. theor.}\label{prop:III.XII}
 \defineNewPicture[1/4]{
 pair M, N, A, C, D, F, G;
@@ -5608,7 +5465,6 @@ a part greater than the whole, which is absurd.
 The centres are not therefore so placed, that the line joining them can pass through any point but the point of contact.
 
 \qed
-
 
 \starttheorem{Prop. XIII. theor.}\label{prop:III.XIII}
 \problem{O}{ne}{circle cannot touch another, either externally or internally, in more points than one}
@@ -5662,7 +5518,6 @@ but $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} > \drawUnitLine{DH}$ \bycr
 which is absurd.
 \end{center}
 
-
 \defineNewPicture{
 pair P, Q, A, C;
 numeric r[], t[];
@@ -5688,7 +5543,6 @@ draw byArcBE.QII(Q, t5, t6, r1, byblack, 0, 0, 0, 0);
 }
 \startsubproposition{Figure II.}\drawCurrentPictureInMargin
 But if the points of contact be the extremities of the right line joining the centres, this straight line must be bisected in two different points for the two centres; because it is the diameter of both circles, which is absurd.
-
 
 \vfill\pagebreak
 
@@ -5730,11 +5584,9 @@ $\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HA,AG}$;
 but $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HA,AG}$ \bycref{prop:I.XX}, which is absurd.
 \end{center}
 
-
 There is therefore no case in which two circles can touch one another in two points.
 
 \qed
-
 
 \starttheorem{Prop. XIV. theor.}\label{prop:III.XIV}
 \defineNewPicture{
@@ -5802,7 +5654,6 @@ and the doubles of these \drawProportionalLine{AF,FB} and \drawProportionalLine{
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XV. theor.}\label{prop:III.XV}
 \problem{T}{he}{diameter is the greatest straight line in a circle: and, of all others, that which is nearest to the centre is greater than the more remote.}
@@ -5883,7 +5734,6 @@ but $\drawAngle{NEG,GEF,FEM} > \drawAngle{GEF}$,
 $\therefore \drawUnitLine{MN} > \drawUnitLine{EF}$ \bycref{prop:I.XXIV}
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{Figure II.}
@@ -5930,9 +5780,7 @@ but $\drawUnitLine{MN} > \drawUnitLine{FG}$ \bycref{prop:III.XV},
 $\therefore \drawUnitLine{BC} > \drawUnitLine{FG}$.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XVI. theor.}\label{prop:III.XVI}
 \defineNewPicture[1/5]{
@@ -5987,7 +5835,6 @@ but $\drawAngle{CAD} = \drawRightAngle$ \bycref{\hypref}, which is absurd,
 therefore \drawUnitLine{AC} drawn $\perp \drawUnitLine{DA}$ does not meet the circle again.
 \end{center}
 
-
 \startsubproposition{Part II.}
 Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be drawn from a point \drawFromCurrentPicture{draw byNamedPointLines(G,"GF");} between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
 
@@ -6005,9 +5852,7 @@ but $\drawUnitLine{DH} = \drawUnitLine{DA}$,
 
 \noindent and $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, a part greater than the whole, which is absurd. Therefore the point does not fall outside the circle, and therefore the straight line \drawUnitLine{AG} cuts the circle.
 
-
 \qed
-
 
 \startproblem{Prop. XVII. prob.}\label{prop:III.XVII}
 \defineNewPicture[1/2]{
@@ -6068,7 +5913,6 @@ $\therefore \drawUnitLine{FD}$ is a tangent to \circleEI.
 
 \qed
 
-
 \starttheorem{Prop. XVIII. theor.}\label{prop:III.XVIII}
 \defineNewPicture{
 pair B, C, D, F, G;
@@ -6113,7 +5957,6 @@ $\therefore \drawUnitLine{FB,BG}$ is not $\perp \drawUnitLine{CD}$;
 
 \qed
 
-
 \starttheorem{Prop. XIX. theor.}\label{prop:III.XIX}
 \defineNewPicture{
 pair A, C, E, F, G;
@@ -6152,7 +5995,6 @@ Therefore the assumed point is not the centre; and in the same manner it can be 
 
 \qed
 
-
 \starttheorem{Prop. XX. theor.}\label{prop:III.XX}
 \problem[4]{T}{he}{angle at the centre of a circle is double the angle at the circumference, when they have the same part of the circumference for their base.}\unskip
 
@@ -6188,7 +6030,6 @@ $\drawAngle{CAF} = \drawAngle{C}$ \bycref{prop:I.V}.
 But $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
 or $\drawAngle{CEF} = \mbox{ twice } \drawAngle{CAF}$ \bycref{prop:I.XXXII}.
 \end{center}
-
 
 \startsubproposition{Figure II.}
 \defineNewPicture{
@@ -6229,7 +6070,6 @@ and $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
 $\therefore \drawAngle{BEF,CEF} = \mbox{ twice } \drawAngle{BAF,CAF}$.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{Figure III.}
@@ -6265,9 +6105,7 @@ and $\drawAngle{GEF} = \mbox{ twice } \drawAngle{GDF}$ (case I.);
 $\therefore \drawAngle{FEC} = \mbox{ twice } \drawAngle{FDC}$.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XXI. theor.}\label{prop:III.XXI}
 \problem{T}{he}{angles in the same segment of a circle are equal.}
@@ -6306,7 +6144,6 @@ $\drawAngle{F} = \mbox{ twice } \drawAngle{A} \mbox{ or twice } = \drawAngle{E}$
 
 $\therefore \drawAngle{A} = \drawAngle{E}$
 \end{center}
-
 
 \defineNewPicture{
 pair A, B, D, E, F, G;
@@ -6347,9 +6184,7 @@ $\drawAngle{BAG} = \drawAngle{BEG}$ and $\drawAngle{GAD} = \drawAngle{GED}$ (cas
 $\therefore \drawAngle{BAG,GAD} = \drawAngle{BEG,GED}$.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XXII. theor.}\label{prop:III.XXII}
 \defineNewPicture{
@@ -6396,7 +6231,6 @@ $\drawAngle{CDB,BDA} + \drawAngle{ABD,DBC} = \drawTwoRightAngles$.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XXIII. theor.}\label{prop:III.XXIII}
 \defineNewPicture{
@@ -6463,7 +6297,6 @@ therefore no point in either of the segments falls without the other, and theref
 
 \qed
 
-
 \starttheorem{Prop. XXIV. theor.}\label{prop:III.XXIV}
 \defineNewPicture{
 pair A, B, C, D, M, N, d;
@@ -6528,7 +6361,6 @@ $\because \drawUnitLine{CD} = \drawUnitLine{AB}$,\\ %because
 
 \qed
 
-
 \startproblem{Prop. XXV. prob.}\label{prop:III.XXV}
 \defineNewPicture{
 pair A, B, C, D, E, F, O;
@@ -6566,7 +6398,6 @@ where they meet is the centre of the circle.
 Because \drawUnitLine{BC} terminated in the circle is bisected perpendicularly by \drawUnitLine{EF}, it passes through the centre \bycref{prop:III.I}, likewise \drawUnitLine{DF} passes through the centre, therefore the centre is in the intersection of these perpendiculars.
 
 \qed
-
 
 \starttheorem{Prop. XXVI. theor.}\label{prop:III.XXVI}
 \defineNewPicture{
@@ -6674,7 +6505,6 @@ But if the given equal angles be at the circumference, it is evident that the an
 
 \qed
 
-
 \starttheorem{Prop. XXVII. theor.}\label{prop:III.XXVII}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, K, d;
@@ -6750,7 +6580,6 @@ and $\therefore$ they are equal.
 
 \qed
 
-
 \starttheorem{Prop. XXVIII. theor.}\label{prop:III.XXVIII}
 \defineNewPicture[1/2]{
 pair A, B, D, E, K, L, d;
@@ -6811,7 +6640,6 @@ and $\therefore \drawArc[bottom][1/3]{K} = \drawArc[bottom][1/3]{L}$ \bycref{ax:
 
 \qed
 
-
 \starttheorem{Prop. XXIX. theor.}\label{prop:III.XXIX}
 \defineNewPicture[1/2]{
 pair A, B, D, E, K, L, d;
@@ -6871,7 +6699,6 @@ but these are the chords subtending the equal arcs.
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XXX. prob.}\label{prop:III.XXX}
 \defineNewPicture{
@@ -6940,7 +6767,6 @@ and therefore the given arc is bisected.
 
 \qed
 
-
 \starttheorem{Prop. XXXI. theor.}\label{prop:III.XXXI}
 \problem{I}{n}{a circle the angle in a semicircle is a right angle, the angle in a segment greater than a semicircle is acute, and the angle in a segment less than a semicircle is obtuse.}
 
@@ -6976,7 +6802,6 @@ $\drawAngle{B}=\drawAngle{EAB}$ and $\drawAngle{C} = \drawAngle{CAE}$ \bycref{pr
 $\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ the half of } \drawTwoRightAngles= \drawRightAngle$ \bycref{prop:I.XXXII}
 \end{center}
 
-
 \defineNewPicture{
 pair A, B, C, E, D;
 numeric r;
@@ -7005,7 +6830,6 @@ The angle \drawAngle{BAD} in a segment greater than a semicircle is acute
 Draw \drawUnitLine{BC} the diameter, and \drawUnitLine{AC}\\
 $\therefore \drawAngle{BAD,DAC} = \mbox{ a right angle}$, $\therefore$ \drawAngle{BAD} is acute.
 \end{center}
-
 
 \defineNewPicture{
 pair A, B, C, E, D;
@@ -7036,9 +6860,7 @@ $\because \drawAngle{B} + \drawAngle{D} = \drawTwoRightAngles$ \bycref{prop:III.
 but $\drawAngle{B} < \drawRightAngle$ (figure II.), $\therefore$ \drawAngle{D} is obtuse.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XXXII. theor.}\label{prop:III.XXXII}
 \defineNewPicture{
@@ -7090,7 +6912,6 @@ $\therefore \drawAngle{DBE} = \drawAngle{C}$, \bycref{ax:I.III}, which is the an
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XXXIII. prob.}\label{prop:III.XXXIII}
 \defineNewPicture{
@@ -7147,7 +6968,6 @@ $\therefore$ \drawUnitLine{AB} divides the circle into two segments capable of c
 
 \qed
 
-
 \startproblem{Prop. XXXIV. prob.}\label{prop:III.XXXIV}
 \defineNewPicture{
 pair A, B, F, E, O;
@@ -7193,7 +7013,6 @@ but $\drawAngle{B} = \drawAngle{givenAngle}$ \bycref{\constref}.
 
 \qed
 
-
 \starttheorem{Prop. XXXV. theor.}\label{prop:III.XXXV}
 \defineNewPicture{
 pair A, B, C, D, E;
@@ -7221,7 +7040,6 @@ in a circle intersect each other, the rectangle contained by the segments of the
 \startsubproposition{Figure I.}
 \drawCurrentPictureInMargin
 If the given right lines pass through the centre, they are bisected in the point of intersection, hence the rectangles under their segments are squares of their halves, and therefore equal.
-
 
 \defineNewPicture{
 pair A, B, C, D, E, H;
@@ -7255,7 +7073,6 @@ Then $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EB}^2 - \dra
 
 $\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EH,AE} \times \drawSizedLine{AE}$ \bycref{prop:II.V}.
 \end{center}
-
 
 \defineNewPicture{
 pair A, B, C, D, E, F, K, L;
@@ -7293,9 +7110,7 @@ also $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{AE} \times \
 $\therefore \drawSizedLine{BE} \times \drawSizedLine{ED} = \drawSizedLine{AE} \times \drawSizedLine{EC}$.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XXXVI. theor.}\label{prop:III.XXXVI}
 \defineNewPicture{
@@ -7336,7 +7151,6 @@ or $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{CF}^2$, %\mb
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{FA,CF,DC} \times \drawSizedLine{DC}$ \bycref{prop:II.VI}.
 \end{center}
 
-
 \defineNewPicture{
 pair A, B, C, D, E, F;
 numeric r;
@@ -7376,9 +7190,7 @@ that is, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2
 $\therefore \drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \bycref{prop:III.XVIII}.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XXXVII. theor.}\label{prop:III.XXXVII}
 \defineNewPicture{
@@ -7458,7 +7270,6 @@ draw byNamedLineSeq(1)(AB,BC,CD,DA);
 }\drawCurrentPictureInMargin[inside]
 A rectilinear figure is said to be \emph{inscribed in} another, when all the angular points of the inscribed figure are on the sides of the figure in which it is said to be inscribed.
 
-
 \startdefinition{}\label{def:IV.II}
 A figure is said to be \emph{described about} another figure, when all the sides of the circumscribed figure pass through the angular points of the other figure.
 
@@ -7523,8 +7334,6 @@ draw byFilledCircleSector(O, r2, 0, 8, white);
 }\drawCurrentPictureInMargin[inside]
 A circle is said to be \emph{inscribed in} a rectilinear figure, when each side of the figure is a tangent to the circle.
 
-
-
 \startdefinition{}\label{def:IV.VI}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, K, I;
@@ -7551,7 +7360,6 @@ A circle is said to be \emph{circumscribed about} a rectilinear figure, when the
 
 \drawPolygon{GHK} is circumscribed.
 
-
 \startdefinition{}\label{def:IV.VII}
 \defineNewPicture{
 pair A, B, O;
@@ -7565,13 +7373,11 @@ draw byCircleR(O, r, byblue, 0, 0, 0);
 }\drawCurrentPictureInMargin[inside]
 A straight line is said to be \emph{inscribed in} a circle, when its extremities are in the circumference.
 
-
 \vskip 1cm
 
 The Fourth Book of the Elements is devoted to the solution of problems, chiefly relating to the inscription and circumscription of regular polygons and circles.
 
 A regular polygon is one whose angles and sides are equal.
-
 
 \vfill\pagebreak
 
@@ -7621,7 +7427,6 @@ For $\drawUnitLine{AC} = \drawUnitLine{EC} = \drawUnitLine{GH}$ \bycref{prop:I.X
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. II. prob.}\label{prop:IV.II}
 \defineNewPicture{
@@ -7684,7 +7489,6 @@ $\therefore \drawAngle{BAC} = \drawAngle{D}$ \bycref{prop:I.XXXII},
 \noindent and therefore the triangle inscribed in the circle is equiangular to the given one.
 
 \qed
-
 
 \startproblem{Prop. III. prob.}\label{prop:IV.III}
 \defineNewPicture[3/5]{
@@ -7784,7 +7588,6 @@ and therefore the triangle circumscribed about the given circle is equiangular t
 
 \qed
 
-
 \startproblem{Prop. IV. prob.}\label{prop:IV.IV}
 \defineNewPicture{
 pair A, B, C, D, E, F, G;
@@ -7863,7 +7666,6 @@ hence with any one of these lines as radius, describe \drawCircle[middle][1/2]{D
 
 \qed
 
-
 \startproblem{Prop. V. prob.}\label{prop:IV.V}
 \defineNewPicture[1]{
 def proptmp (expr a, b, c, s) =
@@ -7941,7 +7743,6 @@ $\therefore \drawUnitLine{AF} = \drawUnitLine{BF} = \drawUnitLine{CF}$; and ther
 
 \qed
 
-
 \startproblem{Prop. VI. prob.}\label{prop:IV.VI}
 \defineNewPicture{
 pair A, B, C, D, E;
@@ -7995,7 +7796,6 @@ $\therefore \drawUnitLine{AB} = \drawUnitLine{DA}$ \bycref{prop:I.IV};
 and since the adjacent sides and angles of the parallelogram \squareABCD\ are equal, they are all equal \bycref{prop:I.XXXIV}; and $\therefore$ \squareABCD, inscribed in the given circle, is a square.
 
 \qed
-
 
 \startproblem{Prop. VII. prob.}\label{prop:IV.VII}
 \defineNewPicture[1/4]{
@@ -8054,7 +7854,6 @@ $\therefore$ \squareFGHK\ is a square.
 
 \qed
 
-
 \startproblem{Prop. VIII. prob.}\label{prop:IV.VIII}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, K;
@@ -8112,7 +7911,6 @@ $\therefore \drawUnitLine{AE} = \drawUnitLine{GK} = \drawUnitLine{GH} = \drawUni
 
 \qed
 
-
 \startproblem{Prop. IX. prob.}\label{prop:IV.IX}
 \defineNewPicture{
 pair A, B, C, D, E;
@@ -8164,7 +7962,6 @@ $\drawUnitLine{AE} = \drawUnitLine{BE} = \drawUnitLine{EC} = \drawUnitLine{ED}$.
 If from the confluence of these lines with any one of them as radius, a circle be described, it will circumscribe the given square.
 
 \qed
-
 
 \startproblem{Prop. X. prob.}\label{prop:IV.X}
 \defineNewPicture[1/2]{
@@ -8234,7 +8031,6 @@ and consequently each angle at the base is double of the vertical angle.
 
 \qed
 
-
 \startproblem{Prop. XI. prob.}\label{prop:IV.XI}
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, O;
@@ -8283,7 +8079,6 @@ draw \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} and \drawUnitLine{D
 Because each of the angles \drawAngle{ECA}, \drawAngle{DCE}, \drawAngle{CAD}, \drawAngle{BDC} and \drawAngle{ADB} are equal, the arcs upon which they stand are equal \bycref{prop:III.XXVI}; and $\therefore$ \drawUnitLine{CD}, \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} and \drawUnitLine{DE} which subtend these arcs are equal \bycref{prop:III.XXIX} and $\therefore$ the pentagon is equilateral, it is also equiangular, as each of its angles stand upon equal arcs \bycref{prop:III.XXVII}.
 
 \qed
-
 
 \startproblem{Prop. XII. prob.}\label{prop:IV.XII}
 \defineNewPicture[1/2]{
@@ -8385,7 +8180,6 @@ in the same manner it can be demonstrated that the other angles of the described
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XIII. prob.}\label{prop:IV.XIII}
 \defineNewPicture{
@@ -8509,7 +8303,6 @@ Describe \drawCircle[middle][1/5]{F} with any one of the perpendiculars as radiu
 
 \qed
 
-
 \startproblem{Prop. XIV. prob.}\label{prop:IV.XIV}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F;
@@ -8584,7 +8377,6 @@ Therefore if a circle be described from the point where these five lines meet, w
 
 \qed
 
-
 \startproblem{Prop. XV. prob.}\label{prop:IV.XV}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H;
@@ -8651,7 +8443,6 @@ $\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \mbox{ one-thi
 
 \qed
 
-
 \startproblem{Prop. XVI. prob.}\label{prop:IV.XVI}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, O;
@@ -8702,7 +8493,6 @@ Hence if straight lines equal to \drawUnitLine{CF} be placed in the circle \bycr
 
 \qed
 
-
 \part{Book V}
 
 \chapter*{Definitions}
@@ -8710,25 +8500,20 @@ Hence if straight lines equal to \drawUnitLine{CF} be placed in the circle \bycr
 \startdefinition[1]{}\label{def:V.I} 
 A less magnitude is said to be an aliquot part or submultiple of a greater magnitude, when the less measures the greater; that is, when the less is contained a certain number of times exactly in the greater.
 
-
 \startdefinition[2]{}\label{def:V.II} 
 A greater magnitude is said to be a multiple of a less, when the greater is measured be the less; that is, when the greater contains the less a certain number of times exactly.
-
 
 \startdefinition[3]{}\label{def:V.III} 
 Ratio is the relation which one quantity bears to another of the same kind, with respect to magnitude.
 
-
 \startdefinition[4]{}\label{def:V.IV} 
 Magnitudes are said to have a ratio to one another, when they are of the same kind; and the one which is not the greater can be multiplied so as to exceed the other.
-
 
 \vskip \baselineskip
 
 \begin{center}
 \emph{The other definitions will be given throughout the book where their aid is first required.}
 \end{center}
-
 
 \chapter*{Axioms}
 
@@ -8751,7 +8536,6 @@ $
 \end{aligned}
 $
 \end{center}
-
 
 \startaxiom{}\label{ax:V.II}
 A multiple of a greater magnitude is greater than the same multiple of a less.
@@ -8780,8 +8564,6 @@ $\begin{aligned}
 \mbox{then } A &> B \mbox{.}\\
 \end{aligned}$
 \end{center}
-
-
 
 \vfill\pagebreak
 
@@ -8838,7 +8620,6 @@ The same demonstration holds in any number of magnitudes, which has here been ap
 
 $\therefore$ If any number of magnitudes, \&c.
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. II. Theor.}\label{prop:V.II}
@@ -8881,7 +8662,6 @@ $\left\{\vcenter{
 
 $\therefore$ If the first magnitude, \&c.
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. III. Theor.}\label{prop:V.III}
@@ -8916,7 +8696,6 @@ The same reasoning is applicable in all cases.
 
 $\therefore$ If the first of four, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -9044,7 +8823,7 @@ $\begin{aligned}
 \end{aligned}$
 
 and is read, \\
-\quotation{as \drawMagnitude{A} is to \drawMagnitude{B}, so is \drawMagnitude{C} to \drawMagnitude{D}.}
+\enquote{as \drawMagnitude{A} is to \drawMagnitude{B}, so is \drawMagnitude{C} to \drawMagnitude{D}.}
 
 And if $\drawMagnitude{A} : \drawMagnitude{B} :: \drawMagnitude{C} : \drawMagnitude{D}$ we shall infer if \\
 $M \drawMagnitude{A} >, = \mbox{ or } < m \drawMagnitude{B}$, then will \\
@@ -9074,7 +8853,6 @@ The same reasoning holds good if any other equimultiple of the first and third b
 
 $\therefore$ If the first four magnitudes, \&c.
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. V. Theor.}\label{prop:V.V}
@@ -9099,7 +8877,6 @@ and $\therefore \drawMagnitude[middle][-3]{I} = M' \drawMagnitude[middle][-2]{II
 
 $\therefore$ If one magnitude, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -9126,7 +8903,6 @@ Hence, $(M' - m') \drawMagnitude{II}$ and $(M' - m') \drawMagnitude{IV}$ are equ
 
 $\therefore$ If two magnitudes be equimultiples, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -9163,9 +8939,9 @@ $\therefore$ If the first of four, \&c.
 \def\varB{\textcolor{byblack}{B}}
 \def\varC{\textcolor{byblue}{C}}
 \def\varD{\textcolor{byyellow}{D}}
-Geometricians make use of the technical term \quotation{Invertendo,} by inversion, when there are four proportionals, and it is inferred, that the second is to the first as the fourth to the third.
+Geometricians make use of the technical term \enquote{Invertendo,} by inversion, when there are four proportionals, and it is inferred, that the second is to the first as the fourth to the third.
 
-Let $\varA : \varB :: \varC : \varD$, then, by \quotation{invertendo} it is inferred $\varB : \varA :: \varD : \varC$
+Let $\varA : \varB :: \varC : \varD$, then, by \enquote{invertendo} it is inferred $\varB : \varA :: \varD : \varC$
 
 \vfill\pagebreak
 
@@ -9199,7 +8975,6 @@ that $\magnitudeII : \magnitudeI :: \magnitudeIV : \magnitudeIII$.
 
 $\therefore$ If four magnitudes, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -9264,7 +9039,6 @@ by proposition B.
 $\therefore$ If the first be the same multiple, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheoremAZ{Prop. D. Theor.}\label{prop:V.D}
@@ -9327,7 +9101,6 @@ that \magnitudeII\ is of \magnitudeI.
 $\therefore$ if the first be to the second, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. VII. Theor.}\label{prop:V.VII}
@@ -9356,7 +9129,6 @@ $\therefore \magnitudeIII : \magnitudeI = \magnitudeIII : \magnitudeII$ \bycref{
 
 $\therefore$ Equal magnitudes, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -9524,7 +9296,6 @@ If $\frac{A}{B}$ be greater than $\frac{C}{D}$, $A$ is said to have to $B$ a gre
 
 The student should understand all up to this proposition perfectly before proceeding further, in order fully to comprehend the following propositions of this book. We therefore strongly recommend the learner to commence again, and read up to this slowly, and carefully reason at each step, as he proceeds, particularly guarding against the mischievous system of depending wholly on the memory. By following these instructions, he will find that the parts which usually present considerable difficulties will present no difficulties whatever, in prosecuting the study of this important book.
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. IX. Theor.}\label{prop:V.IX}
@@ -9564,7 +9335,6 @@ Let $\textcolor{byyellow}{A} : \textcolor{byblue}{B} = \textcolor{byyellow}{A} :
 
 Again, if $\textcolor{byblue}{B} : \textcolor{byyellow}{A} = \textcolor{byred}{C} : \textcolor{byyellow}{A}$, $\textcolor{byblue}{B} = \textcolor{byred}{C}$. For, as $\frac{\textcolor{byblue}{B}}{\textcolor{byyellow}{A}} = \frac{\textcolor{byred}{C}}{\textcolor{byyellow}{A}}$, $\textcolor{byblue}{B} \mbox{ must } = \textcolor{byred}{C}$.
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. X. Theor.}\label{prop:V.X}
@@ -9598,7 +9368,6 @@ and $\therefore \magnitudeII \mbox{ must be } < \magnitudeI$.
 $\therefore$ That magnitude which has, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XI. Theor.}\label{prop:V.XI}
@@ -9626,7 +9395,6 @@ and $\therefore$ \bycref{def:V.V} $\magnitudeI : \magnitudeII = \magnitudeIII : 
 
 $\therefore$ Ratios that are the same \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -9667,7 +9435,6 @@ In the same way it may be shown, if $M$ times one of the antecedents be equal to
 
 $\therefore$ If any number of magnitudes, \&c.
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XIII. Theor.}\label{prop:V.XIII}
@@ -9703,7 +9470,6 @@ $\magnitudeI : \magnitudeII > \magnitudeV : \magnitudeVI$
 $\therefore$ If the first has to the second, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XIV. Theor.}\label{prop:V.XIV}
@@ -9738,7 +9504,6 @@ that is, $\magnitudeII < \magnitudeIV$.
 $\therefore$ If the first has the same ratio, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XV. Theor.}\label{prop:V.XV}
@@ -9765,7 +9530,6 @@ $\magnitudeI : \magnitudeII :: M' \magnitudeI : M' \magnitudeII$.
 $\therefore$ Magnitudes have the same ratio, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startdefinition[8]{Definition XIII}\label{def:V.XIII} 
@@ -9779,7 +9543,7 @@ The technical term permutando, or alternando, by permutation or alternately, is 
 
 \begin{center}
 Let $\drawMagnitude{I} : \drawMagnitude{II} :: \drawMagnitude{III} : \drawMagnitude{IV}$,\\
-by \quotation{permutando} or \quotation{alternando} it is inferred\\
+by \enquote{permutando} or \enquote{alternando} it is inferred\\
 $\magnitudeI : \magnitudeIII :: \magnitudeII : \magnitudeIV$.
 \end{center}
 
@@ -9813,7 +9577,6 @@ therefore, by the fifth definition,\\
  $\therefore$ If four magnitudes of the same kind, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startdefinition[16]{Definition XVI}\label{def:V.XVI} 
@@ -9825,15 +9588,15 @@ Dividendo, by division, when there are four proportionals, and it is inferred, t
 
 \begin{center}
 Let $\varA : \varB :: \varC : \varD$;\\
-by \quotation{dividendo} it is inferred\\
+by \enquote{dividendo} it is inferred\\
 $\varA - \varB : \varB :: \varC - \varD : \varD$. % two times \mbox{ minus }
 \end{center}
 
-According to the above, $\varA$ is supposed to be greater than $\varB$, and $\varC$ greater than $\varD$; if this be not the case, but to have $\varB$ greater than $\varA$, and $\varD$ greater than $\varC$, $\varB$ and $\varD$ can be made to stand as antecedents, and $\varA$ and $\varC$ as consequents, by \quotation{invertion}
+According to the above, $\varA$ is supposed to be greater than $\varB$, and $\varC$ greater than $\varD$; if this be not the case, but to have $\varB$ greater than $\varA$, and $\varD$ greater than $\varC$, $\varB$ and $\varD$ can be made to stand as antecedents, and $\varA$ and $\varC$ as consequents, by \enquote{invertion}
 
 \begin{center}
 $\varB : \varA :: \varD : \varC$;\\
-then, by \quotation{dividendo,} we infer\\
+then, by \enquote{dividendo,} we infer\\
 $\varB - \varA : \varA :: \varD - \varC : \varC$ % two times \mbox{ minus }
 \end{center}
 
@@ -9868,7 +9631,6 @@ and $\therefore \magnitudeI : \magnitudeII :: \magnitudeIII : \magnitudeIV$ \byc
 $\therefore$ If magnitudes taken jointly, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startdefinition[15]{Definition XV}\label{def:V.XV} 
@@ -9881,16 +9643,16 @@ The term componendo, by composition, is used when there are four proportionals; 
 \begin{center}
 Let $\varA : \varB :: \varC : \varD$;
 
-then, by term \quotation{componendo,} it is inferred that\\
+then, by term \enquote{componendo,} it is inferred that\\
 $\varA + \varB : \varB :: \varC + \varD: \varD$
 \end{center}
 
-Bу \quotation{invertion} $\varB$ and $\varD$ may become the first and the third, and $\varA$ and $\varC$ the second and fourth, as
+Bу \enquote{invertion} $\varB$ and $\varD$ may become the first and the third, and $\varA$ and $\varC$ the second and fourth, as
 
 \begin{center}
 $\varB : \varA :: \varD : \varC$,
 
-then, by \quotation{componendo,} we infer that\\
+then, by \enquote{componendo,} we infer that\\
 $\varB + \varA : \varA :: \varD + \varC : \varC$.
 \end{center}
 
@@ -9929,7 +9691,6 @@ $\therefore \magnitudeI + \magnitudeII : \magnitudeII :: \magnitudeIII + \magnit
 $\therefore$ If magnitudes, taken separately, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XIX. Theor.}\label{prop:V.XIX}
@@ -9958,9 +9719,8 @@ therefore $\magnitudeII : \magnitudeIV :: \magnitudeI + \magnitudeII : \magnitud
 $\therefore$ If a whole magnitude be to a whole, \&c.
 \end{center}
 
-
 \startdefinition[17]{Definition XVII}\label{def:V.XVII} 
-The term \quotation{convertendo,} by conversion, is made use of by geometricians, when there are four proportionals, and it is inferred, that the first is to its excess above the second, as the third is to its excess above the fourth. See the following proposition :—
+The term \enquote{convertendo,} by conversion, is made use of by geometricians, when there are four proportionals, and it is inferred, that the first is to its excess above the second, as the third is to its excess above the fourth. See the following proposition :—
 
 \vfill\pagebreak
 
@@ -9989,9 +9749,8 @@ $\therefore \magnitudeI : \magnitudei :: \magnitudeIII : \magnitudeiii$ (compo.)
 $\therefore$ If four magnitudes, \&c.
 \end{center}
 
-
 \startdefinition[18]{Definition XVIII}\label{def:V.XVIII} 
-\quotation{Ex \ae quali} (sc.\ distantiâ), or ex \ae quo, from equality of distance: when there is any number of magnitudes more than two, and as many others, such that they are proportionals when taken two and two of each rank, and it is inferred that the first is to the last of the first rank of magnitudes, as the first is to the last of the others: \quotation{of this there are two following kinds, which arise from the different order in which the magnitudes are taken, two and two.}
+\enquote{Ex \ae quali} (sc.\ distantiâ), or ex \ae quo, from equality of distance: when there is any number of magnitudes more than two, and as many others, such that they are proportionals when taken two and two of each rank, and it is inferred that the first is to the last of the first rank of magnitudes, as the first is to the last of the others: \enquote{of this there are two following kinds, which arise from the different order in which the magnitudes are taken, two and two.}
 
 \vfill\pagebreak
 
@@ -10008,14 +9767,14 @@ $\therefore$ If four magnitudes, \&c.
 \def\varO{\textcolor{byyellow}{O}}
 \def\varP{\textcolor{byblue}{P}}
 \def\varQ{\textcolor{byblue}{Q}}
-\quotation{Ex \ae quali,} from equality. This term is used simply by itself, when the first magnitude is to the second of the first rank, as the first to the second of the other rank; and as the second to the third of the first rank, so is the second to the third of the other; and so in order: and the inference is as mentioned in the preceding definition; whence this is called ordinate proposition. It is demonstrated in \bycref{prop:V.XXII}.
+\enquote{Ex \ae quali,} from equality. This term is used simply by itself, when the first magnitude is to the second of the first rank, as the first to the second of the other rank; and as the second to the third of the first rank, so is the second to the third of the other; and so in order: and the inference is as mentioned in the preceding definition; whence this is called ordinate proposition. It is demonstrated in \bycref{prop:V.XXII}.
 
 \begin{center}
 Thus, if there be two ranks of magnitudes,\\
 $\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,
 and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,
 such that $\varA : \varB :: \varL : \varM$, $\varB : \varC :: \varM : \varB$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varO : \varP$, $\varE : \varF :: \varP : \varQ$;\\
-we infer by the term \quotation{ex~\ae quali} that $\varA : \varF :: \varL : \varQ$
+we infer by the term \enquote{ex~\ae quali} that $\varA : \varF :: \varL : \varQ$
 \end{center}
 
 \startdefinition[20]{Definition XX}\label{def:V.XX} 
@@ -10031,14 +9790,14 @@ we infer by the term \quotation{ex~\ae quali} that $\varA : \varF :: \varL : \va
 \def\varO{\textcolor{byblue}{O}}
 \def\varP{\textcolor{byred}{P}}
 \def\varQ{\textcolor{byred}{Q}}
-\quotation{Ex \ae quali in proportione perturbatâ seu inordinatâ,} from equality in perturbate, or disorderly proportion. This term is used when the first magnitude is to the second of the first rank as the last but one is to the last of the second rank; and as the second is to the third of the first rank, so is the last but two to the last but one of the second rank; and as the third is to the fourth of the first rank, so is the third from the last to the last but two of the second rank; and so on in a cross order: and the inference is in the 18th definition. It is demonstrated in \bycref{prop:V.XXIII}.
+\enquote{Ex \ae quali in proportione perturbatâ seu inordinatâ,} from equality in perturbate, or disorderly proportion. This term is used when the first magnitude is to the second of the first rank as the last but one is to the last of the second rank; and as the second is to the third of the first rank, so is the last but two to the last but one of the second rank; and as the third is to the fourth of the first rank, so is the third from the last to the last but two of the second rank; and so on in a cross order: and the inference is in the 18th definition. It is demonstrated in \bycref{prop:V.XXIII}.
 
 \begin{center}
 Thus, if there be two ranks of magnitudes,\\
 $\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,
 and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,
 such that $\varA : \varB :: \varP : \varQ$, $\varB : \varC :: \varO : \varP$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varM : \varN$, $\varE : \varF :: \varL : \varM$;\\
-the term \quotation{ex \ae quali in proportione perturbatâ seu inordinatâ} infers that $\varA : \varF :: \varL : \varQ$
+the term \enquote{ex \ae quali in proportione perturbatâ seu inordinatâ} infers that $\varA : \varF :: \varL : \varQ$
 \end{center}
 
 \vfill\pagebreak
@@ -10073,7 +9832,6 @@ then will $\magnitudeIV >, =, \mbox{ or } < \magnitudeVI$ \bycref{prop:V.XIV}.
 
 $\therefore$ If there be three magnitudes, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -10128,7 +9886,6 @@ that is, $\magnitudeIV < \magnitudeVI$.
 $\therefore$ If there be three, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XXII. Theor.}\label{prop:V.XXII}
@@ -10149,7 +9906,7 @@ byMagnitudeSymbolDefine.VIIa("halfsquare", byyellow, 0);
 byMagnitudeSymbolDefine.VIIIa("halfrhombusUp", byred, 0);
 }
 \problem{I}{f}{there be any number of magnitudes, and as many others, which, taken two and two in order, have the same ratio; the first shall have to the last of the first magnitudes the same ratio which the first of the others has to the last of the same.\\
-N.B.— This is usually cited by the words \quotation{ex \ae quali,} or \quotation{ex \ae quo.}}
+N.B.— This is usually cited by the words \enquote{ex \ae quali,} or \enquote{ex \ae quo.}}
 
 \begin{center}
 First, let there be magnitudes \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
@@ -10198,7 +9955,6 @@ and so on, whatever the number of magnitudes be.
 $\therefore$ If there be any number, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XXIII. Theor.}\label{prop:V.XXIII}
@@ -10213,7 +9969,7 @@ byMagnitudeSymbolDefine.VII("halfsquare", byblack, 0);
 byMagnitudeSymbolDefine.VIII("halfrhombusUp", byblack, 0);
 }
 \problem{I}{f}{there be any number of magnitudes, and as many others, which, taken two and two in a cross order, have the same ratio; the first shall have to the last of the first magnitudes the same ratio which the first of the others has to the last of the same.\\
-N.B.— This is usually cited by the words \quotation{ex \ae quali in proportione perturbatâ;} or \quotation{ex \ae quo perturbato.}}
+N.B.— This is usually cited by the words \enquote{ex \ae quali in proportione perturbatâ;} or \enquote{ex \ae quo perturbato.}}
 
 \begin{center}
 First, let there be three magnitudes \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
@@ -10266,7 +10022,6 @@ and so on, whatever be the number of such magnitudes.
 $\therefore$ If there be any number, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XXIV. Theor.}\label{prop:V.XXIV}
@@ -10314,7 +10069,6 @@ $\therefore \magnitudeI + \magnitudeV : \magnitudeII :: \magnitudeVI + \magnitud
 $\therefore$ If the first, \&c.
 \end{center}
 
-
 \vfill\pagebreak
 
 \starttheorem{Prop. XXV. Theor.}\label{prop:V.XXV}
@@ -10342,7 +10096,6 @@ $\therefore \magnitudeIa + \magnitudeIII + \magnitudeIV > \magnitudeIIa + \magni
 
 $\therefore$ If four magnitudes, \&c.
 \end{center}
-
 
 \vfill\pagebreak
 
@@ -10584,7 +10337,6 @@ f : h & :: \varY : \varZ\\
 %\protect
 \box0\hskip-\wd0\hskip\textwidth\box0
 
-
 then $\varP : \varT = \varV : \varZ$.
 
 $\begin{aligned}
@@ -10606,9 +10358,7 @@ and $\therefore
 
 and $\therefore \dfrac{\varP}{\varT} = \dfrac{\varV}{\varZ}$,
 
-
 or $\varP : \varT = \varV : \varZ$.
-
 
 $\therefore$ If several ratios, \&c.
 \end{center}
@@ -10683,7 +10433,6 @@ $\therefore \varE : \varH = \varR : \varX$.
 $\therefore$ If a ratio which, \&c.
 \end{center}
 \vfill\pagebreak
-
 
 \starttheoremAZ[11]{Prop. K. Theor.}\label{prop:V.K} % Proposition with letters
 \def\varA{\textcolor{byred}{A}}
@@ -10892,14 +10641,11 @@ draw byPolygon(D,E,F,G)(byred);
 }\drawCurrentPictureInMargin
 Rectilinear figures are said to be similar, when they have their several angles equal, each to each, and the sides about the equal angles proportional.
 
-
 \startdefinition{}\label{def:VI.II}
 Two sides of one figure are said to be reciprocally proportional to two sides of another figure when one of the sides of the first is to the second, as the remaining side of the second is to the remaining side of the first.
 
-
 \startdefinition{}\label{def:VI.III}
 A straight line is said to be cut in extreme and mean ratio, when the whole is to the greater segment, as the greater segment is to the less.
-
 
 \startdefinition{}\label{def:VI.IV}
 \defineNewPicture{
@@ -11023,7 +10769,6 @@ Parallelograms having the same altitude are the doubles of the triangles, on the
 
 \qed
 
-
 \starttheorem{Prop. II. theor.}\label{prop:VI.II}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, Ab, Bb, Cb, Db, Eb, Ac, Bc, Cc, Dc, Ec, Fc, d[];
@@ -11109,7 +10854,6 @@ but $\triangleBDE\ : \triangleADE\ :: \drawUnitLine{DB} : \drawUnitLine{AD}$ \by
 $\therefore \drawUnitLine{DB} : \drawUnitLine{AD} :: \drawUnitLine{EC} : \drawUnitLine{AE}$ \bycref{prop:V.XI}.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{Part II.}
@@ -11132,9 +10876,7 @@ but they are on the same base \drawUnitLine{BC}, and at the same side of it, and
 $\therefore \drawUnitLine{DE} \parallel \drawUnitLine{BC}$ \bycref{prop:I.XXXIX}.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. III. theor.}\label{prop:VI.III}
 \defineNewPicture{
@@ -11180,7 +10922,6 @@ but $\drawUnitLine{AE} = \drawUnitLine{CA}$;\\
 $\therefore \drawUnitLine{CA} : \drawUnitLine{AB} :: \drawUnitLine{DC} : \drawUnitLine{BD}$ \bycref{prop:V.VII}.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{Part II.}
@@ -11200,9 +10941,7 @@ $\therefore \drawAngle{C} = \drawAngle{E}$, and $\drawAngle{BAD} = \drawAngle{DA
 and $\therefore$ \drawUnitLine{AD} bisects \drawAngle{BAD,DAC}.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. IV. theor.}\label{prop:VI.IV}
 \defineNewPicture{
@@ -11278,7 +11017,6 @@ therefore the sides about the equal angles are proportional, and those which are
 
 \qed
 
-
 \starttheorem{Prop. V. theor.}\label{prop:VI.V}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, d;
@@ -11343,7 +11081,6 @@ and therefore the triangles are equiangular, and it is evident that the homologo
 
 \qed
 
-
 \starttheorem{Prop. VI. theor.}\label{prop:VI.VI}
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, d;
@@ -11403,7 +11140,6 @@ and $\therefore$ \triangleABC\ and \triangleDEF\ are equiangular, with their equ
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. VII. theor.}\label{prop:VI.VII}
 \defineNewPicture[1/4]{
@@ -11467,7 +11203,6 @@ But if \drawAngle{A} and \drawAngle{D} be assumed to be each not less than a rig
 
 \qed
 
-
 \starttheorem{Prop. VIII. theor.}\label{prop:VI.VIII}
 \defineNewPicture{
 pair A, B, C, D;
@@ -11502,7 +11237,6 @@ $\therefore$ \triangleABD\ and \triangleADC\ are similar to the whole and to eac
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. IX. prob.}\label{prop:VI.IX}
 \defineNewPicture{
@@ -11552,7 +11286,6 @@ $\therefore$ \drawSizedLine{AF} is the required part.
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. X. prob.}\label{prop:VI.X}
 \defineNewPicture{
@@ -11617,7 +11350,6 @@ and $\therefore$ the given line \drawSizedLine{AF,FG,GB} is divided similarly to
 
 \qed
 
-
 \startproblem{Prop. XI. prob.}\label{prop:VI.XI}
 \defineNewPicture{
 pair A', C', A, B, C, D, E, d;
@@ -11662,7 +11394,6 @@ $\therefore \drawSizedLine{AB} : \drawSizedLine{A'C'} :: \drawSizedLine{A'C'} : 
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XII. prob.}\label{prop:VI.XII}
 \defineNewPicture[1/2]{
@@ -11730,7 +11461,6 @@ $\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{C} : \drawUnitL
 
 \qed
 
-
 \startproblem{Prop. XIII. prob.}\label{prop:VI.XIII}
 \defineNewPicture{
 pair Ab, Bb, Cb, A, B, C, D, O;
@@ -11794,7 +11524,6 @@ and $\therefore$ between \drawUnitLine{A} and \drawUnitLine{B} \bycref{\constref
 
 \qed
 
-
 \starttheorem{Prop. XIV. theor.}\label{prop:VI.XIV}
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, H, d[];
@@ -11850,7 +11579,6 @@ and $\therefore \drawPolygon{CEBG} = \drawPolygon{BFAD}$ \bycref{prop:V.IX}.
 
 \qed
 
-
 \starttheorem{Prop. XV. theor.}\label{prop:VI.XV}
 \defineNewPicture{
 pair A, B, C, D, E;
@@ -11893,7 +11621,6 @@ $\begin{aligned}
 $\therefore \drawUnitLine{AE} : \drawUnitLine{BA} :: \drawUnitLine{AC} : \drawUnitLine{DA}$ \bycref{prop:V.XI}.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{II.}
@@ -11909,9 +11636,7 @@ $\therefore \drawPolygon{DAE} : \drawPolygon{DAB} :: \drawPolygon{ABC} : \drawPo
 $\therefore \drawPolygon{DAE} = \drawPolygon{ABC}$ \bycref{prop:V.IX}.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XVI. theor.}\label{prop:VI.XVI}
 \defineNewPicture{
@@ -11964,7 +11689,6 @@ $\therefore \drawPolygon{ABFG} = \drawPolygon{CDEH}$ \bycref{prop:VI.XIV},\\
 that is, the rectangle contained be the extremes, equal to the rectangle contained be the means.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{Part II.}
@@ -11979,9 +11703,7 @@ and $\drawUnitLine{AG} = \drawUnitLine{F}$ \bycref{\constref}\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{E} : \drawUnitLine{F}$ \bycref{prop:V.VII}.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XVII. theor.}\label{prop:VI.XVII}
 \defineNewPicture{
@@ -12037,7 +11759,6 @@ $\therefore \drawUnitLine{B} \times \drawUnitLine{D} = \drawUnitLine{B} \times \
 therefore, if the three straight lines are proportional, the rectangle contained be the extremes is equal to the square of the mean.
 \end{center}
 
-
 \startsubproposition{Part II.}
 \begin{center}
 Assume $\drawUnitLine{D} = \drawUnitLine{B}$,\\
@@ -12046,9 +11767,7 @@ $\therefore \drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{D} : \drawUnitL
 and $\drawUnitLine{A} : \drawUnitLine{B} :: \drawUnitLine{B} : \drawUnitLine{C}$.
 \end{center}
 
-
 \qed
-
 
 \startproblem{Prop. XVIII. prob.}\label{prop:VI.XVIII}
 \defineNewPicture[1/4]{
@@ -12134,7 +11853,6 @@ $\therefore$ by \bycref{prop:VI.I}\\
 
 \qed
 
-
 \starttheorem{Prop. XIX. theor.}\label{prop:VI.XIX}
 \defineNewPicture[1/4]{
 pair A, B, C, D, E, F, G, d;
@@ -12187,7 +11905,6 @@ that is to say, the triangles are to one another in the duplicate ratio of their
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XX. theor.}\label{prop:VI.XX}
 \defineNewPicture{
@@ -12265,13 +11982,11 @@ $\begin{aligned}
 \end{aligned}$;\\
 and as one of the antecedents is to one of the consequents, so is the sum of all the antecedents to the sum of all the consequents; that is to say, the similar triangles have to one another the same ratio as the polygons \bycref{prop:V.XII}.
 
-
 But \drawPolygon{BCD} is to \drawPolygon{GHK} in the duplicate ratio of \drawUnitLine{BC} to \drawUnitLine{GH};\\
 $\therefore$ \drawPolygon{BEA,BDE,BCD} is to \drawPolygon{GLF,GKL,GHK} in the duplicate ratio of \drawUnitLine{BC} to \drawUnitLine{GH}.
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XXI. theor.}\label{prop:VI.XXI}
 \defineNewPicture{
@@ -12301,7 +12016,6 @@ byPointLabelRemove(Aa, Ba, Ca, Ab, Bb, Cb, Ac, Bc, Cc);
 Since \polygonA\ and \polygonC\ are similar, they are equiangular, and have the sides about the equal angles proportional \bycref{def:VI.I}; and since the figures \polygonB\ and \polygonC\ are also similar, they are equiangular, and have the sides about the equal angles proportional; therefore \polygonA\ and \polygonB\ are also equiangular, and have the sides about the equal angles proportional \bycref{prop:V.XI}, and are therefore similar.
 
 \qed
-
 
 \starttheorem{Prop. XXII. theor.}\label{prop:VI.XXII}
 \defineNewPicture[1/2]{
@@ -12365,7 +12079,6 @@ and $\drawPolygon{EF} : \drawPolygon{GH} :: \drawUnitLine{EF} : \drawUnitLine{P}
 $\therefore \drawPolygon{AB} : \drawPolygon{CD} :: \drawPolygon{EF} : \drawPolygon{GH}$ \bycref{prop:V.XI}.
 \end{center}
 
-
 \vfill\pagebreak
 
 \startsubproposition{Part II.}
@@ -12379,9 +12092,7 @@ $\therefore \drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUni
 and $\therefore \drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ \bycref{prop:V.XI}.
 \end{center}
 
-
 \qed
-
 
 \starttheorem{Prop. XXIII. theor.}\label{prop:VI.XXIII}
 \defineNewPicture[1/2]{
@@ -12430,7 +12141,6 @@ and $\polygonCDHG\ : \polygonEFGC\ :: \drawUnitLine{DC} : \drawUnitLine{CE}$ \by
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XXIV. theor.}\label{prop:VI.XXIV}
 \defineNewPicture{
@@ -12516,7 +12226,6 @@ Since, therefore, each of the parallelograms \parallelogramAEFG\ and \parallelog
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XXV. prob.}\label{prop:VI.XXV}
 \defineNewPicture[1/2]{
@@ -12607,7 +12316,6 @@ consequently, \triangleKGH\ which is similar to \triangleABC\ is also $= \polygo
 
 \qed
 
-
 \starttheorem{Prop. XXVI. theor.}\label{prop:VI.XXVI}
 \defineNewPicture{
 pair A, B, C, D, E, F, G, H, K, d[];
@@ -12686,7 +12394,6 @@ $\therefore$ \lineAHC\ is not the diagonal of \parallelogramABCD\ in the same ma
 
 \qed
 
-
 \starttheorem{Prop. XXVII. theor.}\label{prop:VI.XXVII}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, K;
@@ -12725,7 +12432,6 @@ then $\drawPolygon[bottom]{ADGKEF,CDGK} > \drawPolygon[bottom]{BCKH,CDGK}$.
 For it has been demonstrated already \bycref{prop:II.V}, that the square of half the line is equal to the rectangle contained by any unequal segments together with the square of the part intermediate between the middle point and the point of unequal section. The square described on half the line exceeds therefore the rectangle contained by any unequal segments of the line.
 
 \qed
-
 
 \startproblem{Prop. XXVIII. prob.}\label{prop:VI.XXVIII}
 \defineNewPicture{
@@ -12790,7 +12496,6 @@ and $\therefore$ \drawSizedLine{AE,EC,CB} is so divided that $\drawSizedLine{AE}
 
 \qed
 
-
 \startproblem{Prop. XXIX. prob.}\label{prop:VI.XXIX}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, d;
@@ -12837,7 +12542,6 @@ $\therefore \drawSizedLine{BD}^2 = \mbox{ the given area.}$
 \end{center}
 
 \qed
-
 
 \startproblem{Prop. XXX. prob.}\label{prop:VI.XXX}
 \defineNewPicture{
@@ -12895,7 +12599,6 @@ and \drawProportionalLine{AE,EB} is divided in extreme and mean ratio \bycref{de
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XXXI. theor.}\label{prop:VI.XXXI}
 \defineNewPicture[1/2]{
@@ -12967,7 +12670,6 @@ and $\therefore \figAB\ + \figCA\ = \figBC$.
 
 \qed
 
-
 \starttheorem{Prop. XXXII. theor.}\label{prop:VI.XXXII}
 \defineNewPicture[1/2]{
 pair A, B, C, D, E;
@@ -13036,7 +12738,6 @@ and $\therefore$ \drawUnitLine{BC} and \drawUnitLine{CE} lie in the same straigh
 \end{center}
 
 \qed
-
 
 \starttheorem{Prop. XXXIII. theor.}\label{prop:VI.XXXIII}
 \defineNewPicture[1/2]{
@@ -13162,7 +12863,6 @@ stopAutoLabeling;
 stopGlobalRotation;
 } is of the arc \arcEF.
 
-
 \begin{center}
 Then it is evident \bycref{prop:III.XXVII},\\
 if \drawAngle{BC,CK,KL} (or if $m$ times \drawAngle{BC}) $>, =, < \drawAngle{EF,FM,MN}$ (or $n$ times \drawAngle{EF})\\
@@ -13174,7 +12874,6 @@ $\therefore \drawAngle{BC} : \drawAngle{EF} :: \arcBC\ : \arcEF$ \bycref{def:V.V
 It is evident, that sectors in equal circles, and on equal arcs are equal \bycref{prop:I.IV,prop:III.XXIV,prop:III.XXVII,def:III.IX}. Hence, if the sectors be substituted for the angles in the above demonstration, the second part of the proportion will be established, that is, in equal circles the sectors have the same ratio to one another as the arcs on which they stand.
 
 \qed
-
 
 \starttheoremAZ{Prop. A. theor.}\label{prop:VI.A} % Proposition with letters
 \defineNewPicture{

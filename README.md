@@ -38,3 +38,8 @@ book directory. To generate lettrines run `mpost lettrines.mp` within
 
 See releases for prepared .pdfs. See Actions for fresher pdfs (unless
 they are expired).
+
+Update: the project is moving from ConTeXt to LuaLaTeX. At the moment
+it's not finished, and some features do not work yet (e.g. generated
+initials). Actions produce LaTeX versions now, so expect them to be 
+a little bit more rough.

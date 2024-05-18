@@ -27,6 +27,7 @@
 \usepackage{array}
 \usepackage{fancyhdr}
 \usepackage{extramarks}
+\usepackage{csquotes}
 
 \pagestyle{fancy}
 \fancyhead[LE,RO]{\thepage}
@@ -280,9 +281,6 @@
 	0cm \textwidth
 }
 
-
-\def\quotation#1{``#1''}
-
 \newcounter {construction}
 \newcounter {hypothesis}
 
@@ -385,7 +383,7 @@
 
 \renewcommand\chapter{%\if@openright\cleardoublepage\else\clearpage\fi
 	\newdimen\@minpageheight
-	\@minpageheight = 0.33\pageheight
+	\@minpageheight = 0.5\pageheight
 	\ifnum\pagetotal>\@minpageheight\clearpage\fi
                     %\thispagestyle{plain}%
                     \global\@topnum\z@
@@ -584,6 +582,8 @@
 \newcommand\charspacing[2]{\addfontfeature{LetterSpace=#1} #2 \addfontfeature{LetterSpace=0}}
 
 \emergencystretch 3em 
+
+\newcommand\margincomment[1]{\marginnote{\footnotesize #1}}
 
 %
 % Localizables
