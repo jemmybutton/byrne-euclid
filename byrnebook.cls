@@ -1,5 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{byrne-book}[2024/05/09]
+\ProvidesClass{byrnebook}[2024/05/09]
+\RequirePackage{kvoptions}
+\DeclareStringOption[english]{booklanguage}
+\ProcessKeyvalOptions*
 
 \LoadClass{book}
 
@@ -14,6 +17,7 @@
 		marginparwidth=54mm,
 	}
 \usepackage{byrne}
+\usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{ccicons}
@@ -21,13 +25,14 @@
 \usepackage{graphicx}
 \usepackage{ifthen}
 \usepackage{marginnote}
-\usepackage[hidelinks]{hyperref}
-\usepackage{cleveref}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{fancyhdr}
 \usepackage{extramarks}
 \usepackage{csquotes}
+\usepackage{fontspec}
+\usepackage{cleveref}
+
 
 \pagestyle{fancy}
 \fancyhead[LE,RO]{\thepage}
@@ -119,7 +124,7 @@
 		lettrineFrame := reverse(fullsquare) scaled (#2 - 2pt);
 		fill lettrineBG withcolor black;
 		draw lettrineFrame withcolor white;
-		lettrineOutline := outlinetext("#1") scaled #3/100;
+		lettrineOutline := mpliboutlinetext("#1") scaled #3/100;
 		lettrineOutline := lettrineOutline shifted -1/2[ulcorner(lettrineOutline), lrcorner(lettrineOutline)];
 		lettrinePicture := textext("#1") scaled #3/100;
 		lettrinePicture := lettrinePicture shifted -1/2[ulcorner(lettrinePicture), lrcorner(lettrinePicture)];
