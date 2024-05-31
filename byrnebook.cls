@@ -72,7 +72,6 @@
 %\advance \oddpict by \textwidth
 %\advance \oddpict by -\pictureIndent
 
-
 \newwrite \lettrineslist
 \openout \lettrineslist = lettrines/lettrineslist.txt\relax
 
@@ -311,15 +310,10 @@
 	\fi%
 }
 
-
-
-
 \def\qedNB{\hfill\qedstr\vskip 10pt}
 \def\qed{\qedNB\vfill\pagebreak}
 \def\qefNB{\hfill\qefstr\vskip 10pt}
 \def\qef{\qefNB\vfill\pagebreak}
-
-
 
 \def\symb#1{\noindent{#1}\quad}
 
@@ -581,31 +575,8 @@
 \newcommand*\l@propositionAZ{\@dottedtocline{1}{1.5em}{2.3em}}
 
 %
-% Other
+% zref-clever definitions
 %
-
-\newcommand\byref[1]{(\zcref{#1})}
-\newcommand\charspacing[2]{\addfontfeature{LetterSpace=#1} #2 \addfontfeature{LetterSpace=0}}
-
-\emergencystretch 3em 
-
-\newcommand\margincomment[1]{\marginnote{\footnotesize #1}}
-
-%
-% Localizables
-%
-
-\def\qedstr{Q. E. D.}
-\def\qefstr{Q. E. F.}
-\def\hypstr{hyp.}
-\def\conststr{const.}
-
-\def\inpropstr{pr.}
-\def\inpoststr{post.}
-\def\indefstr{def.}
-\def\inaxstr{ax.}
-
-\def\bookString{Book}
 
 \zcLanguageSetup{english}{	
 	type = axiom , 
@@ -873,7 +844,6 @@
 	    name-pl-ab = пр. ,
 	}
 
-
 \zcRefTypeSetup{hypothesis}{
   Name-sg =  ,
   name-sg =  ,
@@ -888,8 +858,34 @@
   name-pl =  ,
 }
 
-\AtBeginDocument{
-  \@ifpackagewith{babel}{russian}{%
+%
+% Other
+%
+
+\newcommand\byref[1]{(\zcref{#1})}
+\newcommand\charspacing[2]{\addfontfeature{LetterSpace=#1} #2 \addfontfeature{LetterSpace=0}}
+
+\emergencystretch 3em 
+
+\newcommand\margincomment[1]{\marginnote{\footnotesize #1}}
+
+%
+% Localizables
+%
+
+\def\qedstr{Q. E. D.}
+\def\qefstr{Q. E. F.}
+\def\hypstr{hyp.}
+\def\conststr{const.}
+
+\def\inpropstr{pr.}
+\def\inpoststr{post.}
+\def\indefstr{def.}
+\def\inaxstr{ax.}
+
+\def\bookString{Book}
+
+\iflanguage{russian}{
 	\def\qedstr{Ч. Т. Д.}%
 	\def\qefstr{Ч. Т. Д.}%
 	\def\hypstr{гип.}%
@@ -899,7 +895,6 @@
 	\def\indefstr{опр.}%
 	\def\inaxstr{акс.}%
 	\def\bookString{Книга}%
-  }{}
-}
+  }
 
 \makeatother
