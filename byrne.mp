@@ -1750,12 +1750,12 @@ if known pointLinesList.pointName:
                 getAttribute("line", "Color", lineNames[maxDistEndA]),
                 getAttribute("line", "Dashed", lineNames[maxDistEndA]),
                 getAttribute("line", "Thin", lineNames[maxDistEndA]),
-                distantEnds[maxDistEndB], distantEnds[maxDistEndA], 0, 0, 2, 0, scaleFactor);
+                distantEnds[maxDistEndB], distantEnds[maxDistEndA], 0, 0, 0, 0, scaleFactor);
             draw byLineRender(pointName, distantEnds[maxDistEndB],
                 getAttribute("line", "Color", lineNames[maxDistEndB]),
                 getAttribute("line", "Dashed", lineNames[maxDistEndB]),
                 getAttribute("line", "Thin", lineNames[maxDistEndB]),
-                distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 2, 0, scaleFactor);
+                distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 0, 0, scaleFactor);
                 );
         labelImage := image(
             if (textLabels):

@@ -24,7 +24,8 @@
 \usepackage{ebgaramond-maths}
 \usepackage{graphicx}
 \usepackage{ifthen}
-\usepackage{marginnote}
+%\usepackage{marginnote}
+\usepackage[ragged]{sidenotesplus}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{fancyhdr}
@@ -95,7 +96,7 @@
 			\includegraphics[width=\PlateWidth]{lettrines/#1\the\csname ltrn#1\endcsname.mps}%
 		\else%
 			\includegraphics[height=\LettrineSize]{lettrines/#1\the\csname ltrn#1\endcsname.mps}%
-		\fi}
+		\fi}%
 		{\ifx#1\plateName%
 			\includegraphics[width=\PlateWidth]{lettrines/#1\putzero.mps}%
 		\else%
@@ -106,11 +107,11 @@
 	}%
 		{\IfFileExists{lettrines/#1.pdf}
 			{\includegraphics[width=\LettrineSize,height=\LettrineSize]{lettrines/#1.pdf}%
-			}
+			}%
 			{\ifx#1\plateName%
-					\renderPlateOutlines{\plateName}{\the\PlateWidth}{\the\PlateHeight}					
+					\renderPlateOutlines{\plateName}{\the\PlateWidth}{\the\PlateHeight}%
 				\else%
-					\renderLettrineOutlines{#1}{\the\LettrineSize}{\the\LettrineScale}
+					\renderLettrineOutlines{#1}{\the\LettrineSize}{\the\LettrineScale}%
 				\fi}}}}
 
 \def\renderLettrineOutlines#1#2#3{
@@ -175,7 +176,7 @@
     if string.sub(str, 0, 1) ==  " " then
       tex.print(str)
     else
-      tex.print("\\,\\hskip -0.5\\LettrinePadding " .. str)
+      tex.print("\\,\\hskip -\\LettrinePadding\\hskip 2pt" .. str)
     end
   end
 }
@@ -292,6 +293,7 @@
 \newcommand{\generateLabel}[2]{\label{#1#2}}
 
 \newcommand{\createNewConstructionLabel}{\refstepcounter{construction}\generateLabel{construction}{\arabic{construction}}}
+
 \def\constref{construction\arabic{construction}}
 
 \newcommand{\createNewHypothesisLabel}{\refstepcounter{hypothesis}\generateLabel{hypothesis}{\arabic{hypothesis}}}
@@ -303,10 +305,12 @@
 	\def\tmpmiddle{center}%
 	\def\tmpinside{inside}%
 	\ifx\tmpalignment\tmpmiddle%
-	\marginnote{~\hfill\drawCurrentPicture\hfill~}%
+	%\marginpar{~\hfill\drawCurrentPicture\hfill~}%
+	\marginpar{\setbox0\vbox{\drawCurrentPicture}\dp0=-\ht0\ht0=\baselineskip~\hfill\box0\hfill~}
 	\fi%
 	\ifx\tmpalignment\tmpinside%
-	\marginnote{~\drawCurrentPicture~}%
+	%\marginpar{\thepage\ifodd\thepage\else\hfill\fi~\drawCurrentPicture~\ifodd\thepage\hfill\fi}%
+	\marginpar{\setbox0\vbox{\drawCurrentPicture}\dp0=-\ht0\ht0=\baselineskip~\box0~}
 	\fi%
 }
 
@@ -562,8 +566,8 @@
                                    {#2}}
 
 \newcommand\startsubproposition{\@startsection{subproposition}{2}{\z@}%
-                                   {\baselineskip}%
-                                   {\baselineskip}%
+                                   {0.5\baselineskip}%
+                                   {0.25\baselineskip}%
                                    {\large\centering}}
 
 \newcommand*\l@definition{\@dottedtocline{1}{1.5em}{2.3em}}
@@ -867,7 +871,7 @@
 
 \emergencystretch 3em 
 
-\newcommand\margincomment[1]{\marginnote{\footnotesize #1}}
+\newcommand\margincomment[1]{\marginpar{\footnotesize #1}}
 
 %
 % Localizables
@@ -898,3 +902,5 @@
   }
 
 \makeatother
+
+\raggedbottom

@@ -148,10 +148,12 @@ Quam quae sunt oculis subjecta fidelibus.}\\
 \emph{Некоторые свойства прямоугольного треугольника ABC, выраженные общепринятым способом:}
 \end{center}
 
+\drawCurrentPictureInMargin
+
 \vskip 0.5\baselineskip
 
 \begin{enumerate}
-\item \drawCurrentPictureInMargin Угол BAC с~углами BCA и~ABC вместе равны двум прямым углам или дважды углу ABC.
+\item  Угол BAC с~углами BCA и~ABC вместе равны двум прямым углам или дважды углу ABC.
 \item Угол CAB с~углом ACB вместе равны углу ABC.
 \item Угол ABC больше как BAC, так и~BCA.
 \item Угол BCA, как и~угол CAB, меньше угла ABC.
@@ -223,7 +225,9 @@ Quam quae sunt oculis subjecta fidelibus.}\\
 		draw byAngle(B, O, C, byblue, SOLID_SECTOR);
 		draw byAngle(C, O, A, byyellow, SOLID_SECTOR);
 }
-\drawCurrentPictureInMargin Пусть три цвета встречаются и~покрывают участок бумаги. В~месте, где они встречаются, цвет не будет ни синим, ни желтым, ни красным, так как оно не занимает пространства на бумаге, а~если бы занимало, то относилось бы к~синей, красной или желтой части. Но все же оно существует и~имеет положение без величины, так что место встречи трех цветов на плоскости без особенных сложностей дает хорошее представление о~математической точке.
+\drawCurrentPictureInMargin 
+
+Пусть три цвета встречаются и~покрывают участок бумаги. В~месте, где они встречаются, цвет не будет ни синим, ни желтым, ни красным, так как оно не занимает пространства на бумаге, а~если бы занимало, то относилось бы к~синей, красной или желтой части. Но все же оно существует и~имеет положение без величины, так что место встречи трех цветов на плоскости без особенных сложностей дает хорошее представление о~математической точке.
 
 Линия~— это длина без ширины. С~помощью цветов почти так же, как и~выше, понятие линии можно донести следующим образом:
 
@@ -239,6 +243,7 @@ Quam quae sunt oculis subjecta fidelibus.}\\
 		draw byPolygon(C,D,F,E)(byblue);
 }
 \drawCurrentPictureInMargin
+
 Пусть два цвета встречаются и~покрывают участок бумаги. Где они встречаются, цвет не будет ни красным, ни синим. Следовательно, соединение не занимает никакой части плоскости, и~значит, не имеет ширины, а~только длину. Отсюда легко получить представление о~том, что понимается под математической линией. Для иллюстрации было бы достаточно одного цвета, отличного от цвета бумаги или другой поверхности, на которую нанесен рисунок. Итак, в~дальнейшем, когда мы будем говорить о~красной линии, синей линии или линиях и~т. п., в~виду будет иметься место соприкосновения с~плоскостью, на которой они нарисованы.
 
 Поверхность~— это то, у~чего есть длина и~ширина, но нет толщины.
@@ -275,6 +280,7 @@ Quam quae sunt oculis subjecta fidelibus.}\\
 		label.rt(btex Q etex, B''');
 }
 \drawCurrentPictureInMargin
+
 Рассматривая объемное тело (PQ), мы сразу понимаем, что у~него есть три измерения, а~именно: длина, ширина и~толщина. Теперь предположим, что одна часть тела (PS) красная, а~другая (QR) желтая, и~эти цвета раздельны и~не смешиваются. Синяя поверхность (RS), разделяющая эти части, или, иначе говоря, разделяющая тело без потери материала, должна быть без толщины и~иметь только длину и~ширину. Это очевидно из рассуждений, подобных примененным выше для определения, а~точнее для описания точки или линии.
 
 \defineNewPicture[1/3]{
@@ -314,7 +320,7 @@ label.rt(btex D etex, D);
 В равнобедренном треугольнике ABC внутренние углы при основании ABC и~ACB равны, а~если продлить стороны AB и~AC, внешние углы при основании BCE, CBD также будут равны.
 
 \begin{center}
-\drawCurrentPictureInMargin Продлим \drawUnitLine{AB} и~\drawUnitLine{AC},\\
+Продлим \drawUnitLine{AB} и~\drawUnitLine{AC},\drawCurrentPictureInMargin\\
 сделаем $\drawUnitLine{BD} = \drawUnitLine{CE}$, проведем \drawUnitLine{BE} и~\drawUnitLine{CD}.
 
 В
@@ -1011,6 +1017,8 @@ draw byNamedLineSeq(0)(AD,BD);
 \drawCurrentPictureInMargin[inside] \emph{Параллельными} называются такие прямые линии, которые находясь в~одной плоскости и~будучи продолженными в~обе стороны неограниченно не встречаются.
 \end{center}
 
+\vfill\pagebreak
+
 \chapter*{Постулаты}
 
 \margincomment{Этими тремя положениями описываются разрешенные к~использованию инструменты: \emph{линейка} и~\emph{циркуль}. При этом линейка не имеет делений. А~циркулем нельзя переносить отрезки.}
@@ -1028,6 +1036,8 @@ draw byNamedLineSeq(0)(AD,BD);
 \begin{center}
 Будем считать, что из всякого центра и~на любом расстоянии от центра можно построить круг.
 \end{center}
+
+\vfill\pagebreak
 
 \chapter*{Аксиомы}
 
@@ -2060,7 +2070,7 @@ draw byNamedLineSeq(0)(DA,CD,BC,AB);
 draw byLabelsOnPolygon(D, C, B, A)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{Л}{юбые}{две стороны \drawUnitLine{DA} и~\drawUnitLine{BD} всякого треугольника \drawLine[bottom]{DA,BD,AB}, взятые вместе, больше третьей стороны  \drawUnitLine{AB}.}
+\problem[4]{Л}{юбые}{две стороны \drawUnitLine{DA} и~\drawUnitLine{BD} всякого треугольника \drawLine[bottom]{DA,BD,AB}, взятые вместе, больше третьей стороны  \drawUnitLine{AB}.}
 
 \begin{center}
 Продлим \drawUnitLine{DA}\\
@@ -3648,7 +3658,7 @@ draw byNamedLineSeq(0)(AC,AD,BD,BC);
 draw byLabelsOnPolygon(D, B, C, A)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{Е}{сли}{в треугольнике квадрат одной стороны \drawUnitLine{BC} равен сумме квадратов двух других сторон \drawUnitLine{AB} и~\drawUnitLine{AC}, то угол \drawAngle{BAC}, заключенный между этими двумя сторонами, прямой.}
+\problem[4]{Е}{сли}{в треугольнике квадрат одной стороны \drawUnitLine{BC} равен сумме квадратов двух других сторон \drawUnitLine{AB} и~\drawUnitLine{AC}, то угол \drawAngle{BAC}, заключенный между этими двумя сторонами, прямой.}
 
 \begin{center}
 Проведем $\drawUnitLine{AD} \perp \drawUnitLine{AB}$ и~$= \drawUnitLine{AC}$ \byref{prop:I.XI,prop:I.III},\\
@@ -5706,8 +5716,6 @@ $\drawUnitLine{GH,BG} = \drawUnitLine{GH} + \drawUnitLine{DG}$.
 что невозможно.
 \end{center}
 
-\vfill\pagebreak
-
 \defineNewPicture{
 pair P, Q, A, C;
 numeric r[], t[];
@@ -5735,6 +5743,8 @@ draw byArcBE.QII(Q, t5, t6, r1, byblack, 0, 0, 0, 0);
 \startsubproposition{Случай II.}
 \drawCurrentPictureInMargin
 Если точки касания на концах прямой линии, соединяющей центры, такая прямая должна быть рассечена пополам в~двух разных точках, соответствующих центрам, поскольку она является диаметром обоих кругов, что невозможно.
+
+\vfill\pagebreak
 
 \defineNewPicture{
 pair G, H, A, C;
@@ -6010,18 +6020,17 @@ draw byLabelsOnPolygon(E, A, K, noPoint)(ALL_LABELS, 1);
 draw byLabelsOnPolygon(F, G, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(C, D, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(H, angle(G-H)+45, 2);
+angleScale := 5/6;
 }
 \drawCurrentPictureInMargin
-\problem{П}{рямая}{\drawUnitLine{EK}, проведенная под прямым углом к~диаметру круга \drawUnitLine{BD,DA}, проходит вне круга.\\
-И если любая прямая линия \drawUnitLine{AG} проведена из точки по ту же сторону от перпендикуляра к~точке касания, она сечет круг.}
+\problem{П}{рямая}{\drawUnitLine[0.5cm]{EK}, проведенная под прямым углом к~диаметру круга \drawUnitLine[0.5cm]{BD,DA}, проходит вне круга. И если любая прямая линия \drawUnitLine[0.5cm]{AG} проведена из точки по ту же сторону от перпендикуляра к~точке касания, она сечет круг.}
 
 \startsubproposition{Часть I.}
 Если это возможно, пусть \drawUnitLine{AC}, пересекающая окружность в~еще одном месте будет $\perp \drawUnitLine{DA}$, и~проведем \drawUnitLine{DC}.
 
 \begin{center}
 Тогда, поскольку $\drawUnitLine{DA} = \drawUnitLine{DC}$,\\
-$\drawAngle{CAD} = \drawAngle{C}$ \byref{prop:I.V},\\
-и $\therefore$ оба угла острые \byref{prop:I.XVII},\\
+$\drawAngle{CAD} = \drawAngle{C}$ \byref{prop:I.V}, и $\therefore$ оба угла острые \byref{prop:I.XVII},\\
 но $\drawAngle{CAD} = \drawRightAngle$ \byref{\hypref}, что невозможно.
 
 Следовательно, \drawUnitLine{AC}, проведенная $\perp \drawUnitLine{DA}$, не пересекает окружность в~другом месте.
@@ -6033,13 +6042,11 @@ $\drawAngle{CAD} = \drawAngle{C}$ \byref{prop:I.V},\\
 \begin{center}
 $\drawAngle{DAG,GAE} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ острый угол.
 
-Допустим, $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, проведенной из центра круга, должна падать на сторону острого угла \drawAngle{DAG}.
+Допустим, $\drawUnitLine[0.5cm]{DH,HG} \perp \drawUnitLine[0.5cm]{AG}$, проведенной из центра круга, должна падать на сторону острого угла~\drawAngle{DAG}.
 
 $\therefore$ \drawAngle{G}, который должен быть прямым, $> \drawAngle{DAG}$.
 
-$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$.
-
-Но $\drawUnitLine{DH} = \drawUnitLine{DA}$.
+$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$. Но $\drawUnitLine{DH} = \drawUnitLine{DA}$.
 \end{center}
 
 И $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, часть больше целого, что невозможно. Следовательно, точка не находится вовне круга и, следовательно, прямая \drawUnitLine{AG} сечет круг.
@@ -6211,8 +6218,9 @@ draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, C)(E);
 draw byLabelsOnPolygon(F, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай I.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Пусть центр круга будет на \drawUnitLine{EF,EA},\\
 стороне \drawAngle{CAF}.
@@ -6248,8 +6256,9 @@ draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(F, A, B, C)(E);
 draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай II.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Пусть центр будет в~\drawAngle{BAF,CAF}, углу на окружности.
 
@@ -6259,11 +6268,12 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 Значит, $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
 
-Но $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$\\
-и $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$.
+Но $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$ и $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$.
 
 $\therefore \drawAngle{BEF,CEF} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
 \end{center}
+
+\vfill\pagebreak
 
 \defineNewPicture{
 pair E, C, F, G, D;
@@ -6287,15 +6297,16 @@ draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(D, G, C, F)(E);
 draw byLabelsOnPolygon(G, E, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай III.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Пусть центр будет вовне \drawAngle{FDC}.
 
 Проведем диаметр \drawUnitLine{DG}.
 
 Поскольку $\drawAngle{GEF,FEC} = \mbox{ дважды } \drawAngle{GDF,FDC}$
-и $\drawAngle{GEF} = \mbox{ дважды } \drawAngle{GDF}$ (случай I.),\\
+и~$\drawAngle{GEF} = \mbox{ дважды } \drawAngle{GDF}$ (случай I.),\\
 $\therefore \drawAngle{FEC} = \mbox{ дважды } \drawAngle{FDC}$.
 \end{center}
 
@@ -6328,8 +6339,10 @@ draw byLine(D, E, byblack, SOLID_LINE, THIN_WIDTH);
 draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A)(F);
 draw byLabelsOnPolygon(B, F, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
-}\drawCurrentPictureInMargin
+}
 \startsubproposition{Случай I.}
+
+\drawCurrentPictureInMargin
 Пусть сегмент будет больше половины круга, проведем \drawUnitLine{DF} и~\drawUnitLine{BF} к~центру.
 
 \begin{center}
@@ -6367,8 +6380,9 @@ draw byLine(D, E, byblack, SOLID_LINE, THIN_WIDTH);
 draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, E, A, G)(F);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай II.}
+
+\drawCurrentPictureInMargin
 Пусть сегмент будет меньше или равен половине круга, проведем диаметр \drawUnitLine{GA}, также проведем \drawUnitLine{GE}.
 
 \begin{center}
@@ -6990,8 +7004,9 @@ draw byCircleR(E, r, byblack, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C)(E);
 draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай I.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Угол \drawAngle{EAB,CAE} в~полукруге прямой.
 
@@ -7021,8 +7036,9 @@ draw byLine(B, C, byred, SOLID_LINE, REGULAR_WIDTH);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай II.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Угол \drawAngle{BAD} в~сегменте больше полукруга острый.
 
@@ -7054,8 +7070,9 @@ draw byLine(D, A, byblack, SOLID_LINE, THIN_WIDTH);
 draw byCircleR(E, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай III.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Угол \drawAngle{D} в~сегменте меньше полукруга тупой.
 
@@ -7240,8 +7257,10 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{AE,EC}}
 \nointerlineskip\hbox{\drawSizedLine{DE,EB}}}\right\}$
 секут друг друга, прямоугольник, заключенный между частями одной, равен прямоугольнику, заключенному между частями другой.}
-\drawCurrentPictureInMargin
+
 \startsubproposition{Случай I.}
+
+\drawCurrentPictureInMargin
 Если данные прямые проходят через центр, они секут друг друга посередине, следовательно, прямоугольники, заключенные между их частями, являются квадратами, и~значит, равны.
 
 \defineNewPicture{
@@ -7267,8 +7286,9 @@ draw byLabelsOnCircle(B, D, C, A)(E);
 draw byLabelsOnPolygon(D, H, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай II.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Пусть \drawSizedLine{HC,EH,AE} проходит через центр, а~\drawSizedLine{BH,HD} нет, проведем \drawSizedLine{EB} и~\drawSizedLine{DE}.
 
@@ -7303,8 +7323,9 @@ draw byCircleR(F, r, byblue, 0, 0, 0);
 draw byLabelsOnCircle(B, D, K, L, A, C)(F);
 draw byLabelsOnPolygon(B, E, K)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
-\drawCurrentPictureInMargin
 \startsubproposition{Случай III.}
+
+\drawCurrentPictureInMargin
 \begin{center}
 Пусть ни одна из прямых не проходит через центр, проведем через точку их пересечения диаметр \drawSizedLine{KE,EL}\\
 и $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{BE} \times \drawSizedLine{ED}$ (случай II.),\\
