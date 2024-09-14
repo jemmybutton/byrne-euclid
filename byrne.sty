@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{byrne}[2022/01/06 Byrne]
+\ProvidesPackage{byrne}[2023/04/22 Byrne]
 
 \RequirePackage{xparse}
 \RequirePackage{ifmtarg}
@@ -9,6 +9,8 @@
 \mplibglobaltextext{enable}
 \newcount\mpInst
 \mpInst = 0
+\newcount\mpLastInst
+\mpLastInst = 0
 
 \def\mpPre{}
 \def\mpPost{}
@@ -22,6 +24,7 @@
 \directlua{
 function byFormatImageName(s)
 	local resultingName = s:gsub ("[,| |/|0-9]","")
+	resultingName = resultingName:gsub ("-","minus")
 	tex.print("instanceOffspringPicture"..resultingName)
 end
 }
@@ -38,6 +41,11 @@ end
         \global\def\currentInstance{byInstance\the\mpInst}%
 }
 
+\def\UseLastPicture{%
+        \global\mpInst = \mpLastInst%
+        \global\def\currentInstance{byInstance\the\mpInst}%
+}
+
 \DeclareDocumentCommand{\defineNewPicture}{o o m}{%
 	\IfNoValueTF{#1}%
 		{\global\def\sfA{1/3}}%
@@ -46,8 +54,9 @@ end
 		{\global\def\sfB{defaultScaleFactor}}%
 		{\global\def\sfB{#2}}%
 	\ifCreateNewInstanceForPicture%
-		\global\advance \mpInst by 1%
-		\global\def\currentInstance{byInstance\the\mpInst}%
+		\global\advance \mpLastInst by 1%
+		\UseLastPicture
+		%\global\def\currentInstance{byInstance\the\mpLastInst}%
 	\fi%
 	\setbox0\vbox{%
 	\everymplib[\currentInstance]{beginfig(0);}%
