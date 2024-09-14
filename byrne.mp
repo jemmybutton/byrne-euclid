@@ -63,7 +63,7 @@ HAIR_WIDTH := 2;
 % Some common settings
 %
 
-boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode, omitSpaceRotation;
+boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode, omitSpaceRotation, compensateLineLabels, lineLabelsOnTop;
 
 textLabels := false;
 ghostLines := true;
@@ -73,6 +73,9 @@ textLabelShift := lineWidth;
 autoLabelingMode := false;
 mainPictureMode := false;
 omitSpaceRotation := false;
+
+compensateLineLabels := true;
+lineLabelsOnTop := true;
 
 boolean solidAngleMode;
 
@@ -1335,8 +1338,8 @@ vardef byNamedCompoundIndLine (expr cu, pw)(text linesList) =
 enddef;
 
 vardef byNamedCompoundLineRender (expr cu, pw, sty)(text linesList) =
-    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, dpt, dashStreak, lineNotStraight, lineNotContinuous, globalRotation, extensionNames, textLabelImage;
-    numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j, angleCheck[], dpt, dashStreak;
+    save correctedLength, currentPosition, a, b, sc, totalLength, pwL, lineNames, endNames, i, j, angleCheck, dpt, dashStreak, lineNotStraight, lineNotContinuous, globalRotation, extensionNames, textLabelImage, labelAng;
+    numeric correctedLength, currentPosition[], sc, totalLength, pwL, i, j, angleCheck[], dpt, dashStreak, labelAng;
     globalRotation := 0;
     string lineNames[], endNames[], extensionNames[];
     pair a, b;
@@ -1476,19 +1479,28 @@ vardef byNamedCompoundLineRender (expr cu, pw, sty)(text linesList) =
                 (0, 0), (0, 0) shifted (-rayExtension/scaleFactor, 0), 0, 0, dpt, 0, scaleFactor);
         fi;
         if (textLabels and autoLabelingMode):
+			if (lineLabelsOnTop = true):
+				labelAng := 90;
+			else:
+				labelAng := -90;
+			fi;
             if unknown endNames[2]:
-                textLabelImage1 := byTextLabel(pointLabel)(endNames[0], (0, 0), 90, textLabelShift);
-                textLabelImage2 := byTextLabel(pointLabel)(endNames[1], b, 90, textLabelShift);
+                textLabelImage1 := byTextLabel.r(pointLabel)(endNames[0], (0, 0), labelAng, textLabelShift);
+                textLabelImage2 := byTextLabel.l(pointLabel)(endNames[1], b, labelAng, textLabelShift);
                 draw textLabelImage1;
                 draw textLabelImage2;
-                % these are only needed to make the image symmetrical in order to have
-                % the line with and without labels at the same level in text.
-                draw (textLabelImage1 yscaled -1) withcolor white;
-                draw (textLabelImage2 yscaled -1) withcolor white;
+                if (compensateLineLabels = true):
+					% these are only needed to make the image symmetrical in order to have
+					% the line with and without labels at the same level in text.
+					draw (textLabelImage1 yscaled -1) withcolor white;
+					draw (textLabelImage2 yscaled -1) withcolor white;
+                fi;
             else:
-                textLabelImage1 := byTextLabel(lineLabel)(endNames[2], 1/2[(0, 0), b], 90, textLabelShift);
+                textLabelImage1 := byTextLabel(lineLabel)(endNames[2], 1/2[(0, 0), b], labelAng, textLabelShift);
                 draw textLabelImage1;
-                draw (textLabelImage1 yscaled -1) withcolor white;
+                if (compensateLineLabels = true):
+					draw (textLabelImage1 yscaled -1) withcolor white;
+				fi;
             fi;
         fi;
     )
@@ -1750,12 +1762,12 @@ if known pointLinesList.pointName:
                 getAttribute("line", "Color", lineNames[maxDistEndA]),
                 getAttribute("line", "Dashed", lineNames[maxDistEndA]),
                 getAttribute("line", "Thin", lineNames[maxDistEndA]),
-                distantEnds[maxDistEndB], distantEnds[maxDistEndA], 0, 0, 0, 0, scaleFactor);
+                distantEnds[maxDistEndB], distantEnds[maxDistEndA], 0, 0, 2, 0, scaleFactor);
             draw byLineRender(pointName, distantEnds[maxDistEndB],
                 getAttribute("line", "Color", lineNames[maxDistEndB]),
                 getAttribute("line", "Dashed", lineNames[maxDistEndB]),
                 getAttribute("line", "Thin", lineNames[maxDistEndB]),
-                distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 0, 0, scaleFactor);
+                distantEnds[maxDistEndA], distantEnds[maxDistEndB], 0, 0, 2, 0, scaleFactor);
                 );
         labelImage := image(
             if (textLabels):
@@ -3911,7 +3923,7 @@ fi;
 numeric textLabelAvSize;
 textLabelAvSize := abs(ulcorner(textLabelRender("A")) - llcorner(textLabelRender("A")));
 
-vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
+vardef byTextLabel@#(suffix labelType)(expr t, p, a, d) =
     save labelItself, labelString, bb;
     path bb;
     picture labelItself;
@@ -3923,18 +3935,28 @@ vardef byTextLabel(suffix labelType)(expr t, p, a, d) =
     labelString := str labelType & "." & t;
     if (not isInList(labelString, uniqueTextLabels)) or (not omitDuplicateTextLabels):
         appendList(uniqueTextLabels, labelString, 1, false);
-        labelItself := textLabelRender(labelType.scantokens(t));
-        labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
-        if (d > 0):
-            bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
-            labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
+        if (length(labelType.scantokens(t)) > 0):
+			labelItself := textLabelRender(labelType.scantokens(t));
+			if str @# = "r":
+				labelItself := (labelItself shifted -1/2[ulcorner(labelItself), llcorner(labelItself)]) shifted (-1,0);
+			elseif str @# = "l":
+				labelItself := (labelItself shifted -1/2[urcorner(labelItself), lrcorner(labelItself)]) shifted (1,0);
+			else:
+				labelItself := labelItself shifted -1/2[ulcorner(labelItself), lrcorner(labelItself)];
+			fi;
+			if (d > 0):
+				bb := ulcorner(labelItself) -- urcorner(labelItself) -- lrcorner(labelItself) -- llcorner(labelItself)--cycle;
+				labelItself := labelItself shifted -(bb intersectionpoint ((0,0)--(dir(a+180+globalRotation)*1cm)));
+			fi;
+			labelItself := image(
+				draw labelItself 
+					shifted ((p scaled scaleFactor) rotated globalRotation) 
+					shifted (dir(a+globalRotation)*d)
+					withcolor bylabelcolor;
+			);
+		else:
+			labelItself := image();
         fi;
-        labelItself := image(
-            draw labelItself 
-				shifted ((p scaled scaleFactor) rotated globalRotation) 
-				shifted (dir(a+globalRotation)*d)
-				withcolor bylabelcolor;
-        );
     else:
         labelItself := image();
     fi;
