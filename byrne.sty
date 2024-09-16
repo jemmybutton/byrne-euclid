@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{byrne}[2023/04/22 Byrne]
+\ProvidesPackage{byrne}[2024/09/16 Byrne]
 
 \RequirePackage{xparse}
 \RequirePackage{ifmtarg}
@@ -272,6 +272,16 @@ end
 		{\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}}%
 		{\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedLineSeq(0)(#3);stopAutoLabeling;}}%
 }
+
+\DeclareDocumentCommand{\drawLineByPoints}{o o m}{%
+	\IfNoValueTF{#1}%
+		{\global\def\plal{middle}}%
+		{\global\def\plal{#1}}%
+	\IfNoValueTF{#2}%
+		{\drawFromCurrentPicture[\plal][line#3]{startAutoLabeling;draw byNamedLineSeqByPoints(0,true)(#3);stopAutoLabeling;}}%
+		{\drawFromCurrentPicture[\plal][#2]{startAutoLabeling;draw byNamedLineSeqByPoints(0,true)(#3);stopAutoLabeling;}}%
+}
+	
 	
 \def\drawPointM#1{\drawFromCurrentPicture[middle][pointm#1]{startAutoLabeling; draw byNamedPointMark(#1); stopAutoLabeling;}}
 

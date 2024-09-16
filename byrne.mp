@@ -1,7 +1,7 @@
-%    byrne-euclid 0.2.4
+%    byrne-euclid 0.2.5
 %    MetaPost library that implements most of the graphical
 %    features present in Oliver Byrne's version of Euclid's "Elements"
-%    Copyright 2023 Sergey Slyusarev
+%    Copyright 2024 Sergey Slyusarev
 %
 %    This program is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU General Public License as published by
@@ -1209,6 +1209,33 @@ vardef byNamedLineSeq (expr s)(text linesListRaw) =
             endfor;
         fi;
     )
+enddef;
+
+vardef byNamedLineSeqByPoints(expr s, cyc)(text pointsList) =
+	save constLinesList, lastPoint, firstPoint, i;
+	string constLinesList, lastPoint, firstPoint;
+	numeric i;
+	constLinesList := "";
+	lastPoint := "";
+	i := 0;
+	forsuffixes pN=pointsList:
+		i := i + 1;
+		if (lastPoint <> ""):
+			if (str pN <> "noPoint"):
+				if (i > 2):
+					constLinesList := constLinesList &  ", ";
+				fi;
+				constLinesList := constLinesList & lastPoint & str pN;
+			fi;
+		else:
+			firstPoint := str pN;
+		fi;
+		lastPoint := str pN;
+	endfor;
+	if (cyc) and (i <> 2) and (lastPoint <> "noPoint"):
+		constLinesList := constLinesList &  ", " & lastPoint & firstPoint;
+	fi;
+	byNamedLineSeq(s)(scantokens(constLinesList))
 enddef;
 
 vardef byMarkLine(expr pos, col)(suffix lineName) =
