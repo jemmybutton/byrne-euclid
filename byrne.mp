@@ -2192,6 +2192,9 @@ vardef byCircleABCDefine@#(suffix a, b, c)(expr col, dp, th, s) =
 if str @# = "":
     byCircleABCDefine.scantokens(str a & str b & str c)(a, b, c)(col, dp, th, s)
 else:
+	if mainPictureMode:
+        appendList(allCirclesList, str @#, 1, true);
+    fi;
     save o, r;
     pair o;
     numeric r;
@@ -3400,6 +3403,24 @@ vardef generateAngleSynonyms =
             fi;
         endfor;
     fi;
+enddef;
+
+vardef generateCircleSynonyms =
+save pointName, originalName;
+string pointName[], originalName;
+	if string allCirclesList:
+		forsuffixes i=scantokens(allCirclesList):
+			originalName := str i;
+			pointName0 := getAttribute("circle", "AName", originalName);
+			pointName1 := getAttribute("circle", "BName", originalName);
+			pointName2 := getAttribute("circle", "CName", originalName);
+			setAttribute("circle", "Synonym", pointName1 & pointName2 & pointName0, originalName);
+			setAttribute("circle", "Synonym", pointName2 & pointName0 & pointName1, originalName);
+			setAttribute("circle", "Synonym", pointName0 & pointName2 & pointName1, originalName);
+			setAttribute("circle", "Synonym", pointName1 & pointName0 & pointName2, originalName);
+			setAttribute("circle", "Synonym", pointName2 & pointName1 & pointName0, originalName);
+		endfor;
+	fi;
 enddef;
 
 vardef sortPointAnglesList (expr anglesListToSort) =
