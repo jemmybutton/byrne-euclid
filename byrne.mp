@@ -410,6 +410,20 @@ def stopAutoLabeling =
     endgroup
 enddef;
 
+def startAngleOppositeMode =
+    begingroup
+		save newAngleMode;
+        boolean oldAngleMode;
+        oldAngleMode := angleClockwiseMode;
+        save angleClockwiseMode;
+        boolean angleClockwiseMode;
+        angleClockwiseMode := not oldAngleMode;
+enddef;
+
+def stopAngleOppositeMode =
+    endgroup
+enddef;
+
 def startOffspringPictureMode =
     begingroup
         save uniqueTextLabels, omitDuplicateTextLabels;
