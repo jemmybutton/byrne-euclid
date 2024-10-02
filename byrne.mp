@@ -63,7 +63,7 @@ HAIR_WIDTH := 2;
 % Some common settings
 %
 
-boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode, omitSpaceRotation, compensateLineLabels, lineLabelsOnTop;
+boolean textLabels, ghostLines, autoRightAngles, omitDuplicateTextLabels, autoLabelingMode, mainPictureMode, omitSpaceRotation;
 
 textLabels := false;
 ghostLines := true;
@@ -74,12 +74,19 @@ autoLabelingMode := false;
 mainPictureMode := false;
 omitSpaceRotation := false;
 
+boolean compensateLineLabels, lineLabelsOnTop;
+
 compensateLineLabels := true;
 lineLabelsOnTop := true;
 
 boolean solidAngleMode;
 
 solidAngleMode := false;
+
+boolean angleClockwiseMode, angleModeFallback;
+
+angleClockwiseMode := false;
+angleModeFallback := false;
 
 numeric dpLength[];
 dpLength0 := 2lineWidth;
@@ -93,6 +100,16 @@ vardef cos primary x = (cosd(x*radian)) enddef;
 vardef arcsind primary x = angle((1+-+x,x)) enddef;
 
 vardef arccosd primary x = angle((x,1+-+x)) enddef;
+
+primarydef a xor b =
+begingroup
+	if a:
+		b
+	else:
+		not b
+	fi
+endgroup
+enddef;
 
 vardef pathToString (expr p) =
 save outputString, endpoint, i;
@@ -448,6 +465,17 @@ vardef appendList (suffix listName)(expr valueToAdd, whereToAdd, omitDuplicates)
             fi;
         fi;
     fi;
+enddef;
+
+vardef reverseList (expr listToReverse) =
+	save reversedList, rv;
+	string reversedList, rv;
+	reversedList := "";
+	forsuffixes i=scantokens(listToReverse):
+		appendList(reversedList, str i, 0, false);
+	endfor;
+	rv := reversedList;
+	rv
 enddef;
 
 vardef isInList (expr valueToLookFor)(suffix listName) =
@@ -3505,11 +3533,16 @@ vardef bySplitStringIntoAngles (expr angleName) =
     rv
 enddef;
 
-vardef byConstructCompoundAngle (suffix pointA, pointB, pointC) =
-    save angleList, isFirst, isLast, cwA, cwC, cwAName, cwCName, dirA, dirC, rv, threeDMode, notInPlane;
-    string cwAName, cwCName, angleList, rv;
-    boolean isFirst, isLast, threeDMode, notInPlane;
+vardef byConstructCompoundAngle@#(suffix pointA, pointB, pointC) =
+    save angleList, isFirst, isLast, cwA, cwC, cwAName, cwCName, dirA, dirC, rv, threeDMode, notInPlane, clockwiseMode;
+    string cwAName, cwCName, angleList, pointAnglesListProcessed, rv;
+    boolean isFirst, isLast, threeDMode, notInPlane, clockwiseMode;
     pair cwA, cwC, dirA, dirC;
+    if str @# = "":
+		clockwiseMode := angleClockwiseMode;
+    else:
+		clockwiseMode := not angleClockwiseMode;
+    fi;
     angleList := "";
     dirA := pointA - pointB;
     dirC := pointC - pointB;
@@ -3519,12 +3552,16 @@ vardef byConstructCompoundAngle (suffix pointA, pointB, pointC) =
     fi;
     isFirst := false;
     isLast := false;
-    forsuffixes i=scantokens(pointAnglesList.pointB & ", " & pointAnglesList.pointB):
+    pointAnglesListProcessed := pointAnglesList.pointB & ", " & pointAnglesList.pointB;
+    if clockwiseMode:
+		pointAnglesListProcessed := reverseList(pointAnglesListProcessed);
+    fi;
+    forsuffixes i=scantokens(pointAnglesListProcessed):
         if byIsArcClockwise(byConstructAngleArc(
             scantokens(getAttribute("angle", "AName", str i)),
             scantokens(getAttribute("angle", "BName", str i)),
             scantokens(getAttribute("angle", "CName", str i)),
-            getAttribute("angle", "ArcType", str i))):
+            getAttribute("angle", "ArcType", str i))) xor (not clockwiseMode):
             cwAName := getAttribute("angle", "CName", str i);
             cwCName := getAttribute("angle", "AName", str i);
         else:
@@ -3558,10 +3595,14 @@ vardef byConstructCompoundAngle (suffix pointA, pointB, pointC) =
             fi;
         fi;
     endfor;
-    if (not isFirst) or (not isLast):
-        errmessage("Can't construct angle: " & str pointA & str pointB & str pointC);
-    fi;
     rv := angleList;
+    if (not isFirst) or (not isLast):
+		if (str @# = "") and angleModeFallback:
+			rv := byConstructCompoundAngle.rev(pointA, pointB, pointC);
+		else:
+			errmessage("Can't construct angle: " & str pointA & str pointB & str pointC);
+        fi;
+    fi;
     rv
 enddef;
 
