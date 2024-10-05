@@ -1,0 +1,1880 @@
+\documentclass[booklanguage=english]{byrnebook}
+%\usepackage{lua-visual-debug}
+
+\begin{document}
+
+\setcounter{part}{10}
+\part{Book XI}
+
+\starttheorem{Prop. I. Theor.}\label{prop:XI.I}
+\defineNewPicture{
+	numeric w, r;
+	w := 3cm;
+	r := 1/3w;
+	byPair(A, B, C, D);
+	A := (-r, 0);
+	B := (0, 0);
+	D := (r, 0);
+	C := B shifted (dir(30)*4/3r);
+	byPointXYZDefine.P(-1/2w, 0, -1/2w);
+	byPointXYZDefine.Q(1/2w, 0, -1/2w);
+	byPointXYZDefine.R(1/2w, 0, 1/2w);
+	byPointXYZDefine.S(-1/2w, 0, 1/2w);
+	byPointLabelRemove(P,Q,R,S);
+	byCircleDefineR.B(B, r, byblue, 0, 0, 0);
+	circleSpaceRotation.B := (0, 0, 0);
+	byArcDefine.BAC(B, C, A)(r, byblue, 0, 0, -1, 0);
+	byArcDefine.BDC(B, D, C)(r, byred, 0, 0, -1, 0);
+	byArcDefine.BAD(B, A, D)(r, byblue, 1, 0, -1, 0);
+	byLineDefine(A, B, byblue, 0, 0);
+	byLineDefine(B, C, byblue, 1, 0);
+	bySetProjection(15, 30, 0);
+	draw byNamedArcExact(BAD);
+	draw byPolygon(P, Q, R, S)(byyellow);
+	draw byNamedArcExact(BAC,BDC);
+	draw byLine(B, D, byred, 0, 0);
+	draw byNamedLineSeq(0)(AB,BC);
+	draw byLabelsOnPolygon(D, B, A)(2, 0);
+	draw byLabelLineEnd(C, B, 0);
+	draw byLabelLineEnd(A, B, 0);
+	draw byLabelLineEnd(D, B, 0);
+}
+\drawCurrentPictureInMargin
+\problem{A}{ part}{of a straight line cannot be in the plane of reference and a part in a plane more elevated.}
+
+For, if possible, let a part \drawUnitLine{AB} of the straight line \drawUnitLine{AB,BC} be in the plane of reference \drawPolygon{PQRS}, and a part \drawUnitLine{BC} be in a plane more elevated.
+
+There will then be in \drawPolygon{PQRS} some straight line continuous with \drawUnitLine{AB} in a straight line. Let it be \drawUnitLine{BD}. 
+
+Therefore \drawUnitLine{AB} is a common segment of the two straight lines \drawUnitLine{AB,BC} and \drawUnitLine{AB,BD}, which is impossible, inasmuch as, if we describe a circle \drawArc{BAC,BDC,BAD} with centre \drawPointL{B} and radius \drawUnitLine{AB}, then the diameters will cut off unequal circumferences \drawArc{BAC} and \drawArc{BAC,BDC} of the circle.
+
+Therefore, a part of a straight line cannot be in the plane of reference and a part in a plane more elevated. 
+
+\qed
+
+
+\starttheorem{Prop. II. Theor.}\label{prop:XI.II}
+\defineNewPicture{
+	pair A, B, C, D, E, F, G, H, K;
+	A := (0, 3cm);
+	B := (3cm, 0);
+	C := (0, 0);
+	D := (3cm, 3cm);
+	E = whatever[A, B] = whatever[C, D];
+	F := 2/5[E, C];
+	G := 2/5[E, B];
+	H := 1/3[C, B];
+	K := 2/3[C, B];
+	byLineDefine(A, E, byblue, 0, 0);
+	byLineDefine(E, G, byblue, 1, 0);
+	byLineDefine(G, B, byblue, 1, 0);
+	byLineDefine(D, E, byred, 0, 0);
+	byLineDefine(E, F, byred, 1, 0);
+	byLineDefine(F, C, byred, 1, 0);
+	byLineDefine(C, H, byblack, 0, 0);
+	byLineDefine(H, K, byblack, 0, 0);
+	byLineDefine(K, B, byblack, 0, 0);
+	byLineDefine(F, H, byyellow, 0, 0);
+	byLineDefine(G, K, byyellow, 0, 0);
+	byLineDefine(F, G, byblack, 1, 0);
+	draw byNamedLine(FG,FH,GK);
+	draw byNamedLineSeq(0)(AE,EG, GB,KB,HK,CH,FC,EF,DE);
+	draw byLabelsOnPolygon(E,G,B,K,H,C,F)(0, 0);
+	draw byLabelLineEnd(A, E, 0);
+	draw byLabelLineEnd(D, E, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines cut one another, they are in one plane, and every triangle is in one plane.}
+
+For let the two straight lines \drawUnitLine{AB} and \drawUnitLine{CD} cut one another at the point \drawPointL{E}.
+
+I say that \drawUnitLine{AB} and \drawUnitLine{CD} are in one plane, and every triangle is in one plane.
+
+Take the points \drawPointL{F} and \drawPointL{G} at random on \drawUnitLine{EC} and  \drawUnitLine{EB}, let \drawUnitLine{CB} and \drawUnitLine{FG} be joined, and let \drawUnitLine{FH} and \drawUnitLine{GK} be drawn across.
+
+I say first that the triangle \drawLine{EB,BC,CE} lies in one plane.
+
+For, if part of the triangle \drawLine{EB,BC,CE}, either \drawLine{FH,HC,CF} or \drawLine{GB,BK,KG}, is in the plane of reference, and the rest in another, then a part also of one of the straight lines \drawUnitLine{EC} or \drawUnitLine{EB} is in the plane of reference, and a part in another.
+
+But, if the part \drawLine{FG,GB,BC,CF} of the triangle \drawLine{EB,BC,CE} is in the plane of reference, and the rest in another, then a part also of both the straight lines \drawUnitLine{EC} and \drawUnitLine{EB} is in the plane of reference and a part in another, which was proved absurd. \byref{prop:XI.I}
+
+Therefore the triangle \drawLine{EB,BC,CE} lies in one plane. 
+
+But, in whatever plane the triangle \drawLine{EB,BC,CE} is, each of the straight lines \drawUnitLine{EC} and \drawUnitLine{EB} also is, and in whatever plane each of the straight lines \drawUnitLine{EC} and \drawUnitLine{EB} is, \drawUnitLine{AB} and \drawUnitLine{CD} also are. \byref{prop:XI.I}
+
+Therefore the straight lines \drawUnitLine{AB} and \drawUnitLine{CD} are in one plane; and every triangle is in one plane.
+
+\qed
+
+
+\starttheorem{Prop. III. Theor.}\label{prop:XI.III}
+\defineNewPicture{
+	numeric w, h;
+	w := 4cm;
+	h := 3cm;
+	byPointXYZDefine.A(1/2w, 0, 0);
+	byPointXYZDefine.A'(1/2w, h, 0);
+	byPointXYZDefine.A''(-1/2w, 0, 0);
+	byPointXYZDefine.A'''(-1/2w, h, 0);
+	byPointXYZDefine.C(0, 0, -1/2w);
+	byPointXYZDefine.C'(0, h, -1/2w);
+	byPointXYZDefine.C''(0, 0, 1/2w);
+	byPointXYZDefine.C'''(0, h, 1/2w);
+	byPointXYZDefine.B(0, h, 0);
+	byPointXYZDefine.D(0, 0, 0);
+	byPointXYZDefine.F(0, 1/2h, -1/8w);
+	byPointXYZDefine.E(1/8w, 1/2h, 0);
+	bySetProjection(-25, 60, 90);
+	draw byPolygon(B, C''', C'', D)(byred);
+	draw byPolygon(D, B, A''', A'')(byyellow);
+	draw byPolygon(D, A, A', B)(byyellow);
+	draw byPolygon(C, D, B, C')(byred);
+	draw byLine(D, B, byblack, 0, 0);
+	draw byArbitraryCurve.BFD(B, F, D)(byblack, 1, 0);
+	draw byArbitraryCurve.BED(B, E, D)(byblue, 1, 0);
+	byPointLabelRemove(A',A'',A''',C',C'',C''');
+	draw byLabelsOnPolygon(C, C', B, A', A, D)(0, 0);
+	draw byLabelLineEnd(E, F, 0);
+	draw byLabelLineEnd(F, E, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two planes cut one another, their common section is a straight line.}
+
+For let the two planes \drawPolygon{DBA'''A'',DAA'B} and \drawPolygon{BC'''C''D,CDBC'} cut one another, and let the line \drawUnitLine{DB} be their common section.
+
+I say that the line \drawUnitLine{DB} is a straight line.
+
+For, if not, join the straight line 
+\drawFromCurrentPicture[middle][lineBED]{
+startAutoLabeling;
+draw byNamedArbitraryCurve(BED);
+stopAutoLabeling;
+}
+from \drawPointL{B} to \drawPointL{D} in the plane \drawPolygon{DBA'''A'',DAA'B}, and the straight line 
+\drawFromCurrentPicture[middle][lineBFD]{
+startAutoLabeling;
+draw byNamedArbitraryCurve(BFD);
+stopAutoLabeling;
+} 
+in the plane \drawPolygon{BC'''C''D,CDBC'}.
+
+Then the two straight lines \lineBED\ and \lineBFD\ have the same ends and clearly enclose an area, which is absurd.
+
+$\therefore$ \lineBED\ and \lineBFD\ are not straight lines.
+
+Similarly we can prove that neither will there be any other straight line joined from \drawPointL{B} to \drawPointL{D} except \drawUnitLine{DB}, the common section of the planes \drawPolygon{DBA'''A'',DAA'B} and \drawPolygon{BC'''C''D,CDBC'}.
+
+\qed
+
+
+\starttheorem{Prop. IV. Theor.}\label{prop:XI.IV}
+\defineNewPicture{
+	numeric w, h, d;
+	w := 3cm;
+	h := 3cm;
+	d := 4cm;
+	byPair(A, B, C, D, E, G, H);
+	A := (-1/2w, 1/2h);
+	B := (1/2w, -1/2h);
+	C := (1/2w, 1/2h);
+	D := (-1/2w, -1/2h);
+	E = whatever[A, B] = whatever[C, D];
+	G := 1/2[A, D];
+	H = whatever[E, G] = whatever[B, C];
+	byPointXYZDefine.F(0, 0, d);
+	bySetProjection(-60, 0, -35);
+	byLineDefine(A, E, byred, 0, 0);
+	byLineDefine(E, B, byred, 1, 0);
+	byLineDefine(C, E, byblue, 0, 0);
+	byLineDefine(E, D, byblue, 1, 0);
+	byLineDefine(E, F, byblack, 0, 1);
+	byLineDefine(G, E, byyellow, 0, 0);
+	byLineDefine(E, H, byyellow, 1, 0);
+	byLineDefine(A, F, byred, 0, 2);
+	byLineDefine(B, F, byred, 1, 2);
+	byLineDefine(C, F, byblue, 0, 2);
+	byLineDefine(D, F, byblue, 1, 2);
+	byLineDefine(G, F, byyellow, 0, 2);
+	byLineDefine(H, F, byyellow, 1, 2);
+	byLineDefine(A, G, byblack, 1, 1);
+	byLineDefine(G, D, byblack, 1, 2);
+	byLineDefine(C, H, byblack, 1, 2);
+	byLineDefine(H, B, byblack, 1, 1);
+	draw byAngle(D, A, E, byred, 0);
+	draw byAngle(F, A, D, byyellow, 0);
+	draw byAngle(A, E, G, byblue, 0);
+	draw byNamedLine(AG,CH,EF);
+	draw byNamedLineSeq(0)(AF, CF, CE, AE);
+	draw byAngle(G, E, F, byblack, 1);
+	draw byAngle(H, E, F, byblack, 0);
+	draw byAngle(B, E, H, byblue, 0);
+	draw byAngle(E, B, C, byred, 1);
+	draw byAngle(F, B, C, byyellow, 1);
+	draw byNamedLine(GD,HB);
+	draw byNamedLineSeq(0)(GF,GE,EH,HF);
+	draw byNamedLineSeq(0)(DF,ED,EB,BF);
+	draw byLabelsOnPolygon(F, A, E)(2, 0); 
+	draw byLabelsOnPolygon(D, G, F, C, H, B, E)(0, 0); 
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{a straight line be set up at right angles to two straight lines which cut one another, at their common point of section, it will also be at right angles to the plane passing through them.}
+
+For let a straight line \drawUnitLine{EF} be set up at right angles to the two straight lines \drawUnitLine{AB} and \drawUnitLine{CD} at \drawPointL{E}, the point at which the lines cut one another.
+
+I say that \drawUnitLine{EF} is also at right angles to the plane passing through \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+Cut off \drawUnitLine{AE}, \drawUnitLine{EB}, \drawUnitLine{CE}, and \drawUnitLine{ED} equal to one another. Draw any straight line \drawUnitLine{GH} across through \drawPointL{E} at random. Join \drawUnitLine{AD} and \drawUnitLine{CB}, and join \drawUnitLine{FA}, \drawUnitLine{FG}, \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FH}, and \drawUnitLine{FB} from a point \drawPointL{F} taken at random on \drawUnitLine{EF}. \byref{prop:XI.II,prop:I.III]}
+
+Now, since the two straight lines \drawUnitLine{AE} and \drawUnitLine{ED} equal the two straight lines \drawUnitLine{CE} and \drawUnitLine{EB} and contain equal angles, therefore the base \drawUnitLine{AD} equals the base \drawUnitLine{CB}, and the triangle \drawLine{AE,ED,DA} equals the triangle \drawLine{EC,CB,BE}, so that $\drawAngle{GAE} = \drawAngle{HBE}$. \byref{prop:I.XV,prop:I.IV}
+
+But $\drawAngle{AEG} = \drawAngle{BEH}$, $\therefore$ \drawLine{AE,EG,GA} and \drawLine{BE,EH,HB} are two triangles which have two angles equal to two angles respectively, and one side equal to one side, namely that adjacent to the equal angles, that is to say, $\drawUnitLine{AE} = \drawUnitLine{EB}$. Therefore they also have the remaining sides equals to the remaining sides, that is, $\drawUnitLine{GE} = \drawUnitLine{EH}$, and $\drawUnitLine{AG} = \drawUnitLine{BH}$. \byref{prop:I.XV,prop:I.XXVI}
+
+And, since $\drawUnitLine{AE} = \drawUnitLine{EB}$, while \drawUnitLine{FE} is common and at right angles, therefore the base \drawUnitLine{FA} equals the base \drawUnitLine{FB}. 
+
+For the same reason, $\drawUnitLine{FC} = \drawUnitLine{FD}$. \byref{prop:I.IV}
+
+And, since $\drawUnitLine{AD} = \drawUnitLine{CB}$, and $\drawUnitLine{FA} = \drawUnitLine{FB}$, the two sides \drawUnitLine{FA} and \drawUnitLine{AD} equal the two sides \drawUnitLine{FB} and \drawUnitLine{BC} respectively, and the base \drawUnitLine{FD} was proved equal to the the base \drawUnitLine{FC}, therefore the angle \drawAngle{FAD} also equals the angle \drawAngle{FBC}. \byref{prop:I.VIII}
+
+And since, again, \drawUnitLine{AG} was proved equal to \drawUnitLine{BH}, and further, $\drawUnitLine{FA} = \drawUnitLine{FB}$, the two sides \drawUnitLine{FA} and \drawUnitLine{AG} equal the two sides \drawUnitLine{FB} and \drawUnitLine{BH}, and the angle \drawAngle{FAG} was proved equal to the angle \drawAngle{HBF}, therefore the base $\drawUnitLine{FG} = \drawUnitLine{FH}$. \byref{prop:I.IV}
+
+Again, since \drawUnitLine{GE} was proved equal to \drawUnitLine{EH}, and \drawUnitLine{EF} is common, the two sides \drawUnitLine{GE} and \drawUnitLine{EF} equal the two sides \drawUnitLine{HE} and \drawUnitLine{EF}, and the base \drawUnitLine{FG} equals the base \drawUnitLine{FH}, $\therefore \drawAngle{GEF} = \drawAngle{HEF}$. \byref{prop:I.VIII}
+
+Therefore each of the angles \drawAngle{GEF} and \drawAngle{HEF} is right.
+
+$\therefore$ \drawUnitLine{FE} is at right angles to \drawUnitLine{GH} drawn at random through \drawPointL{E}.
+
+Similarly we can prove that \drawUnitLine{FE} also makes right angles with all the straight lines which meet it and are in the plane of reference. 
+
+But a straight line is at right angles to a plane when it makes right angles with all the straight lines which meet it and are in that same plane, therefore \drawUnitLine{FE} is at right angles to the plane of reference. \byref{def:XI.III}
+
+But the plane of reference is the plane through the straight lines \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+Therefore \drawUnitLine{FE} is at right angles to the plane through \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+\qed
+
+
+
+\starttheorem{Prop. V. Theor.}\label{prop:XI.V}
+\defineNewPicture[1/4]{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 3cm;
+	byPair(B, D, E, F, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	B := (1/4w, -1/2h);
+	D := B shifted (1/2w, 0);
+	E := (3/4w, -3/4h);
+	F := (3/4w, -1/4h);
+	byPointXYZDefine.A(xpart(B), ypart(B), d);
+	byPointXYZDefine.C(xpart(F), ypart(F), 1/2d);
+	byPointXYZDefine.A'(xpart(F), ypart(F), d);
+	byPointXYZDefine.A''(xpart(F), ypart(F), -1/2d);
+	byPointXYZDefine.A'''(xpart(B), ypart(B), -1/2d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, A', A'', A''');
+	bySetProjection(-60, 0, -60);
+	draw byPolygon(B, F, A'', A''')(byblue);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(byyellow);
+	draw byPolygon(A, A', F, B)(byblue);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(B, C, byred, 0, 0);
+	byLineDefine(B, D, byblue, 0, 0);
+	byLineDefine(B, E, byblue, 1, 0);
+	byLineDefine(B, F, byred, 1, 0);
+	draw byNamedLine(BC, BD, BF);
+	draw byNamedLineSeq(0)(AB, BE);
+	draw byAngle(A, B, C, byred, 0);
+	draw byAngle(C, B, F, byred, 1);
+	%draw byAngle(A, B, D, byblack, -1);
+	%draw byAngle(A, B, E, byblack, -1);
+	draw byLabelsOnPolygon(B, A, C, F, D, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{a straight line be set up at right angles to three straight lines which meet one another, at their common point of section, the three straight are in one plane.}
+
+For let a straight line \drawUnitLine{AB} be set up at right angles to the three straight lines \drawUnitLine{BC}, \drawUnitLine{BD} and \drawUnitLine{BE} at their point of meeting at \drawPointL{B}.
+
+I say that \drawUnitLine{BC}, \drawUnitLine{BD}, and \drawUnitLine{BE} are in one plane. 
+
+For suppose that they are not, but, if possible, let \drawUnitLine{BD} and \drawUnitLine{BE} be in the plane of reference \drawPolygon[middle][planeOfReference]{PnwPnePsePsw} and \drawUnitLine{BC} in one more elevated. Produce the plane \drawPolygon[middle][otherPlane]{AA'FB,BFA''A'''} through \drawUnitLine{AB} and \drawUnitLine{BC}. \byref{prop:XI.III}
+
+\otherPlane\ intersects \planeOfReference\ in a straight line. Let the intersection be \drawUnitLine{BF}. Therefore the three straight lines \drawUnitLine{AB}, \drawUnitLine{BC}, and \drawUnitLine{BF} are in one plane \otherPlane, namely that drawn through \drawUnitLine{AB} and \drawUnitLine{BC}. 
+
+Now, since \drawUnitLine{AB} is at right angles to each of the straight lines \drawUnitLine{BD} and \drawUnitLine{BE}, therefore \drawUnitLine{AB} is also at right angles to the plane \planeOfReference\ through \drawUnitLine{BD} and \drawUnitLine{BE}. \byref{prop:XI.IV}
+
+But the plane \planeOfReference\ through \drawUnitLine{BD} and \drawUnitLine{BE} is the plane of reference, therefore \drawUnitLine{AB} is at right angles to the plane of reference. 
+
+Thus \drawUnitLine{AB} also makes right angles with all the straight lines which meet it and lie in the plane of reference. \byref{def:XI.III}
+
+But \drawUnitLine{BF}, which is the plane of reference, meets it, therefore the angle \drawAngle{FBA} is right. And, by hypothesis, the angle \drawAngle{ABC} is also right, therefore the angle $\drawAngle{FBA} = \drawAngle{ABC}$, and they lie in one plane, which is impossible.
+
+Therefore the straight line \drawUnitLine{BC} is not in a more elevated plane. Therefore the three straight lines \drawUnitLine{BC}, \drawUnitLine{BD}, and \drawUnitLine{BE} are in one plane.
+
+\qed
+
+
+
+\starttheorem{Prop. VI. Theor.}\label{prop:XI.VI}
+\defineNewPicture{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(B, D, E, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	B := (1/4w, -1/6h);
+	D := B shifted (1/2w, 0);
+	E := D shifted (0, -d);
+	byPointXYZDefine.A(xpart(B), ypart(B), d);
+	byPointXYZDefine.C(xpart(D), ypart(D), d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw);
+	bySetProjection(-75, 0, 60);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
+	draw byAngle(A, B, D, byblue, 0);
+	draw byAngle(B, D, E, byyellow, 0);
+	draw byAngle(C, D, B, byblack, 0);
+	draw byAngle(C, D, E, byblack, 1);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(C, D, byblack, 1, 0);
+	byLineDefine(B, D, byblue, 0, 0);
+	byLineDefine(D, E, byblue, 1, 0);
+	byLineDefine(B, E, byred, 0, 0);
+	byLineDefine(A, D, byred, 1, 0);
+	byLineDefine(A, E, byyellow, 0, 0);
+	draw byNamedLineSeq(0)(CD, BD);
+	draw byAngle(E, D, A, byred, 0);
+	draw byNamedLineSeq(0)(AD, DE);
+	draw byNamedLineSeq(0)(AB, BE, AE);
+	draw byAngle(A, B, E, byred, 1);
+	draw byLabelsOnPolygon(C, E, B, A)(0, 0);
+	draw byLabelsOnPolygon(E, D, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines be at right angles to the same plane, the straight lines are parallel.}
+
+For let the two straight lines \drawUnitLine{AB} and \drawUnitLine{CD} be at right angles to the plane of reference \drawPolygon[middle][planeOfReference]{PnwPnePsePsw}.
+
+I say that $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
+
+Let them meet the plane of reference \planeOfReference\ at the points \drawPointL{B} and \drawPointL{D}. 
+
+Join the straight line \drawUnitLine{BD}. Draw \drawUnitLine{DE} in \planeOfReference $\perp \drawUnitLine{BD}$, and make $\drawUnitLine{DE} = \drawUnitLine{AB}$. \byref{prop:I.XI,prop:I.III}
+
+Now, since \drawUnitLine{AB} is at right angles to \planeOfReference, it also makes right angles with all the straight lines which meet it and lie in the plane of reference.  \byref{def:XI.III}
+
+But each of the straight lines \drawUnitLine{BD} and \drawUnitLine{BE} lies in \planeOfReference\ and meets \drawUnitLine{AB}, therefore each of the angles \drawAngle{ABD} and \drawAngle{ABE} is right. For the same reason each of the angles \drawAngle{CDB} and  \drawAngle{CDE} is also right. 
+
+And since in \drawLine{AD,DB,BA} and \drawLine{DE,EB,BD} $\drawUnitLine{AB} = \drawUnitLine{DE}$, and \drawUnitLine{BD} is common, therefore the two sides \drawUnitLine{AB} and \drawUnitLine{BD} equal the two sides \drawUnitLine{ED} and \drawUnitLine{DB}. And they include right angles \drawAngle{ABD} and \drawAngle{BDE}, therefore the base $\drawUnitLine{AD} = \drawUnitLine{BE}$. \byref{prop:I.IV}
+
+And, since in \drawLine{AE,EB,BA} and \drawLine{DA,AE,ED} $\drawUnitLine{AB} = \drawUnitLine{DE}$ while $\drawUnitLine{AD} = \drawUnitLine{BE}$, the two sides \drawUnitLine{AB} and \drawUnitLine{BE} equal the two sides \drawUnitLine{ED} and \drawUnitLine{DA}, and \drawUnitLine{AE} is their common base, therefore the angle \drawAngle{ABE} equals the angle \drawAngle{EDA}. \byref{prop:I.VIII}
+
+But the angle \drawAngle{ABE} is right, therefore the angle \drawAngle{EDA} is also right. Therefore \drawUnitLine{ED} is at right angles to \drawUnitLine{DA}. 
+
+But it is also at right angles to each of the straight lines \drawUnitLine{BD} and \drawUnitLine{DC}, therefore \drawUnitLine{ED} is set up at right angles to the three straight lines \drawUnitLine{BD}, \drawUnitLine{DA}, and \drawUnitLine{DC} at their intersection. Therefore the three straight lines \drawUnitLine{BD}, \drawUnitLine{DA}, and \drawUnitLine{DC} lie in one plane. \byref{prop:XI.V}
+
+But in whatever plane \drawUnitLine{DB} and \drawUnitLine{DA} lie, \drawUnitLine{AB} also lies, for every triangle lies in one plane. \byref{prop:XI.II}
+
+Therefore the straight lines \drawUnitLine{AB}, \drawUnitLine{BD}, and \drawUnitLine{DC} are in one plane. And each of the angles \drawAngle{ABD} and \drawAngle{BDC} is right, therefore \drawUnitLine{AB} is parallel to \drawUnitLine{CD}. \byref{prop:I.XXVIII}
+
+\qed
+
+
+
+\starttheorem{Prop. VII. Theor.}\label{prop:XI.VII}
+\defineNewPicture[1/4]{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(A, B, C, D, E, F, H, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	A := (1/4w, -1/4h);
+	B := A shifted (1/2w, 0);
+	C := A shifted (0, -1/2h);
+	D := B shifted (0, -1/2h);
+	E := 1/3[A, B];
+	F := 3/4[C, D];
+	H := 1/2[E, F];
+	byPointXYZDefine.G(xpart(H), ypart(H), 1/4d);
+	byPointXYZDefine.E'(xpart(E), ypart(E), d);
+	byPointXYZDefine.F'(xpart(F), ypart(F), d);
+	byPointXYZDefine.E''(xpart(E), ypart(E), -d);
+	byPointXYZDefine.F''(xpart(F), ypart(F), -d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, E', F', E'', F'');
+	bySetProjection(-45, 0, 75);
+	draw byPolygon(E, F, F'', E'')(byyellow);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
+	byLineDefine(A, E, byblue, 0, 0);
+	byLineDefine(E, B, byblue, 0, 0);
+	byLineDefine(C, F, byblue, 1, 0);
+	byLineDefine(F, D, byblue, 1, 0);
+	byLineDefine(E, F, byred, 1, 0);
+	draw byNamedLine(EB, FD);
+	draw byPolygon(E, F, F', E')(byyellow);
+	draw byArbitraryCurve.EGF(E, G, F)(byred, 0, 0);
+	draw byNamedLineSeq(0)(AE, EF, CF);
+	draw byLabelsOnPolygon(E, G, F)(2, 0);
+	draw byLabelsOnPolygon(A, E, B, D, F, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines are parallel and points be taken at random on each of them, the straight line joining the points is in the same plane with the parallel straight lines.}
+
+Let \drawUnitLine{AB} and \drawUnitLine{CD} be two parallel straight lines, and let points \drawPointL{E} and \drawPointL{F} be taken at random on them respectively.
+
+I say that the straight line joining the points \drawPointL{E} and \drawPointL{F} lies in the same plane \drawPolygon[middle][planeOfReference]{PnwPnePsePsw} with the parallel straight lines.
+
+For suppose it is not, but, if possible, let it be in a more elevated plane. Draw a plane \drawPolygon[middle][planeEGF]{EFF'E',EFF''E''} through \drawFromCurrentPicture[middle][lineEGF]{
+startAutoLabeling;
+draw byNamedArbitraryCurve(EGF);
+stopAutoLabeling;
+}. Its intersection with the plane of reference is a straight line. Let it be \drawUnitLine{EF}. \byref{prop:XI.III}
+
+$\therefore$ the two straight lines \lineEGF\ and \drawUnitLine{EF} enclose an area, which is impossible. $\therefore$ the straight line joined from \drawPointL{E} to \drawPointL{F} is not in a plane more elevated. $\therefore$ the straight line joined from \drawPointL{E} to \drawPointL{F} lies in the plane through the parallel straight lines \drawUnitLine{AB} and \drawUnitLine{CD}.
+
+$\therefore$, if two straight lines are parallel and points are taken at random on each of them, then the straight line joining the points is in the same plane with the parallel straight lines. 
+
+\qed
+
+
+
+\starttheorem{Prop. VIII. Theor.}\label{prop:XI.VIII}
+\defineNewPicture{
+	numeric w, h, d;
+	w := 4cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(B, D, E, Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	B := (1/4w, -1/6h);
+	D := B shifted (1/2w, 0);
+	E := D shifted (0, -d);
+	byPointXYZDefine.A(xpart(B), ypart(B), d);
+	byPointXYZDefine.C(xpart(D), ypart(D), d);
+	byPointXYZDefine.A'(xpart(B), ypart(B), 6/5d);
+	byPointXYZDefine.C'(xpart(D), ypart(D), 6/5d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, A', C');
+	bySetProjection(-75, 0, 60);
+	draw byPolygon(Pnw, Pne, Pse, Psw)(white);
+	draw byPolygon(B, D, C', A')(byyellow);
+	draw byAngle(A, B, D, byblue, 0);
+	draw byAngle(B, D, E, byyellow, 0);
+	draw byAngle(C, D, B, byblack, 0);
+	draw byAngle(C, D, E, byblack, 1);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(C, D, byblack, 1, 0);
+	byLineDefine(B, D, byblue, 0, 0);
+	byLineDefine(D, E, byblue, 1, 0);
+	byLineDefine(B, E, byred, 0, 0);
+	byLineDefine(A, D, byred, 1, 0);
+	byLineDefine(A, E, byyellow, 1, 0);
+	draw byNamedLineSeq(0)(CD, BD);
+	draw byAngle(E, D, A, byred, 0);
+	draw byNamedLineSeq(0)(AD, DE);
+	draw byNamedLineSeq(0)(AB, BE, AE);
+	draw byAngle(A, B, E, byred, 1);
+	draw byLabelsOnPolygon(C, E, B, A)(0, 0);
+	draw byLabelsOnPolygon(E, D, B)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines be parallel, and one of them be at right angles to any plane, then the remaining one will also be at right angles to the same plane.}
+
+Let \drawUnitLine{AB} and \drawUnitLine{CD} be two parallel straight lines, and let one of them, \drawUnitLine{AB}, be at right angles to the plane of reference \drawPolygon[middle][planeOfReference]{PnwPnePsePsw}.
+
+I say that the remaining one, \drawUnitLine{CD}, is also at right angles to the same plane.
+
+Let \drawUnitLine{AB} and \drawUnitLine{CD} meet the plane of reference at the points \drawPointL{B} and \drawPointL{D}. Join \drawUnitLine{BD}. Then \drawUnitLine{AB}, \drawUnitLine{CD}, and \drawUnitLine{BD} lie in one plane. \byref{prop:XI.VII}
+
+Draw \drawUnitLine{DE} in \planeOfReference\ $\perp \drawUnitLine{BD}$, make $\drawUnitLine{DE} = \drawUnitLine{AB}$, and join \drawUnitLine{BE}, \drawUnitLine{AE}, and \drawUnitLine{AD}. \byref{prop:I.XI,I.III}
+
+Now, since $\drawUnitLine{AB} \perp \planeOfReference$, therefore \drawUnitLine{AB} is also at right angles to all the straight lines which meet it and lie in \planeOfReference. Therefore each of the angles \drawAngle{ABD} and \drawAngle{ABE} is right. \byref{def:XI.III}
+
+And, since the straight line \drawUnitLine{BD} falls on the parallels \drawUnitLine{AB} and \drawUnitLine{CD}, $\therefore \drawAngle{ABD} + \drawAngle{CDB} \drawTwoRightAngles$.
+
+But the angle \drawAngle{ABD} is right, therefore the angle \drawAngle{CDB} is also right. $\therefore \drawUnitLine{CD} \perp \drawUnitLine{BD}$. \byref{prop:I.XXIX}
+
+And since in \drawLine{AD,DB,BA} and \drawLine{DE,EB,BD} $\drawUnitLine{AB} = \drawUnitLine{DE}$, and \drawUnitLine{BD} is common, the two sides \drawUnitLine{AB} and \drawUnitLine{BD} equal the two sides \drawUnitLine{ED} and \drawUnitLine{DB}, and  $\drawAngle{ABD} = \drawAngle{EDB}$, for each is right, therefore the base $\drawUnitLine{AD} = \drawUnitLine{BE}$. \byref{prop:I.IV}
+
+And since in \drawLine{DE,EB,BD} and \drawLine{ED,DA,AE}$\drawUnitLine{AB} = \drawUnitLine{DE}$, and $\drawUnitLine{BE} = \drawUnitLine{AD}$, the two sides \drawUnitLine{AB} and \drawUnitLine{BE} equal the two sides \drawUnitLine{ED} and \drawUnitLine{DA} respectively, and \drawUnitLine{AE} is their common base, $\therefore \drawAngle{ABE} = \drawAngle{EDA}$. \byref{prop:I.VIII}
+
+But the angle \drawAngle{ABE} is right, therefore the angle \drawAngle{EDA} is also right. $\therefore \drawUnitLine{ED} \perp \drawUnitLine{AD}$. But it is also $\perp \drawUnitLine{DB}$. $\therefore$ \drawUnitLine{ED} is also at right angles to the plane through \drawUnitLine{BD} and \drawUnitLine{DA}. \byref{prop:XI.IV}
+
+$\therefore$ \drawUnitLine{ED} also makes right angles with all the straight lines which meet it and lie in the plane through \drawUnitLine{BD} and \drawUnitLine{DA}. But \drawUnitLine{DC} lies in the plane \drawPolygon{BDC'A'} through \drawUnitLine{BD} and \drawUnitLine{DA} inasmuch as \drawUnitLine{AB} and \drawUnitLine{BD} lie in the plane \drawPolygon{BDC'A'} through \drawUnitLine{BD} and \drawUnitLine{DA}, and \drawUnitLine{DC} also lies in the plane \drawPolygon{BDC'A'} in which \drawUnitLine{AB} and \drawUnitLine{BD} lie.
+
+$\therefore \drawUnitLine{ED} \perp \drawUnitLine{DC}$, so that $\drawUnitLine{CD} \perp \drawUnitLine{DE}$. But $\drawUnitLine{CD} \perp \drawUnitLine{BD}$. $\therefore$ \drawUnitLine{CD} is set up at right angles to the two straight lines \drawUnitLine{DE} and \drawUnitLine{DB} so that \drawUnitLine{CD} is also at right angles to the plane through \drawUnitLine{DE} and \drawUnitLine{DB}. \byref{prop:XI.IV}
+
+But the plane through \drawUnitLine{DE} and \drawUnitLine{DB} is the plane of reference \planeOfReference, $\therefore \drawUnitLine{CD} \perp \planeOfReference$.
+
+Therefore, if two straight lines are parallel, and one of them is at right angles to any plane, then the remaining one is also at right angles to the same 
+
+\qed
+
+
+
+\starttheorem{Prop. IX. Theor.}\label{prop:XI.IX}
+\defineNewPicture{
+	numeric w, h, d;
+	w := 4cm;
+	h := 4cm;
+	d := 9/5cm;
+	byPair(Pnw, Pne, Pse, Psw);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	byPointXYZDefine.A(1/4w, -1/4h, 0);
+	byPointXYZDefine.B(3/4w, -1/4h, 0);
+	byPointXYZDefine.C(1/4w, -3/4h, 0);
+	byPointXYZDefine.D(3/4w, -3/4h, 0);
+	byPointXYZDefine.E(1/4w, -1/2h, d);
+	byPointXYZDefine.F(3/4w, -1/2h, d);
+	byPointXYZEmpty(G, H, K, Eab', Fab', Ecd', Fcd', A', B', C', D', H', K');
+	pointXYZ.G := 1/2[pointXYZ.E, pointXYZ.F];
+	pointXYZ.H := 1/2[pointXYZ.A, pointXYZ.B];
+	pointXYZ.K := 1/2[pointXYZ.C, pointXYZ.D];
+	pointXYZ.Eab' := 4/3[pointXYZ.A, pointXYZ.E];
+	pointXYZ.Fab' := 4/3[pointXYZ.B, pointXYZ.F];
+	pointXYZ.A' := 5/4[pointXYZ.E, pointXYZ.A];
+	pointXYZ.B' := 5/4[pointXYZ.F, pointXYZ.B];
+	pointXYZ.Ecd' := 4/3[pointXYZ.C, pointXYZ.E];
+	pointXYZ.Fcd' := 4/3[pointXYZ.D, pointXYZ.F];
+	pointXYZ.C' := 5/4[pointXYZ.E, pointXYZ.C];
+	pointXYZ.D' := 5/4[pointXYZ.F, pointXYZ.D];
+	pointXYZ.H' := (redpart(pointXYZ.H), greenpart(pointXYZ.H), bluepart(pointXYZ.G));
+	pointXYZ.K' := (redpart(pointXYZ.K), greenpart(pointXYZ.K), bluepart(pointXYZ.G));
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Eab', Fab', Ecd', Fcd', A', B', C', D', H', K');
+	bySetProjection(-75, 0, 70);
+	draw byPolygon.planeHK''(H, H', G)(byblue);
+	draw byPolygon.planeGK''(E, Ecd', Fcd', F)(byred);
+	draw byPolygon.planeGH'(A', A, B, B')(byyellow);
+	draw byPolygon.planeGK'(C', C, D, D')(byred);
+	draw byPolygon.refPlane(Pnw, Pne, Pse, Psw)(white);
+	draw byPolygon.planeGH(Eab', Fab', B, A)(byyellow);
+	byLineDefine(A, H, byred, 0, 0);
+	byLineDefine(H, B, byred, 0, 0);
+	byLineDefine(C, K, byyellow, 0, 0);
+	byLineDefine(K, D, byyellow, 0, 0);
+	byLineDefine(E, G, byblue, 0, 0);
+	byLineDefine(G, F, byblue, 0, 0);
+	byLineDefine(H, G, byblack, 0, 0);
+	byLineDefine(G, K, byblack, 1, 0);
+	draw byNamedLine(AH, HB);
+	draw byPolygon.planeHK'(H, G, K)(byblue);
+	draw byNamedLine(HG);
+	draw byPolygon.planeGK(E, F, D, C)(byred);
+	draw byNamedLine(CK, KD, EG, GF);
+	draw byPolygon.planeHK(K, K', G)(byblue);
+	draw byNamedLine(GK);
+	draw byLabelsOnPolygon(Fab', F, D, D')(2, 0);
+	draw byLabelsOnPolygon(C', C, E)(2, 0);
+	draw byLabelsOnPolygon(A', A, E, Ecd')(2, 0);
+	draw byLabelsOnPolygon(F, B, B')(2, 0);
+	draw byLabelsOnPolygon(H', G, F)(2, 0);
+	draw byLabelsOnPolygon(K, H, A)(2, 0);
+	draw byLabelsOnPolygon(D, K, C)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{S}{traight}{lines which are parallel to the same straight line and are not in the same plane with it are also parallel to one another.}
+
+For let each of the straight lines \drawUnitLine{AB}, \drawUnitLine{CD} be parallel to \drawUnitLine{EF}, not being in the same plane \drawPolygon{refPlane} with it. I say that $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
+
+For let a point \drawPointL{G} be taken at random on \drawUnitLine{EF}, and from it let there be drawn \drawUnitLine{GH}, in the plane \drawPolygon{planeGH,planeGH'} through \drawUnitLine{EF}, \drawUnitLine{AB}, at right angles to \drawUnitLine{EF}, and \drawUnitLine{GK} in the plane \drawPolygon{planeGK,planeGK',planeGK''} through \drawUnitLine{FE}, \drawUnitLine{CD} again at right angles to \drawUnitLine{EF}.
+
+Now, since \drawUnitLine{EF} is at right angles to each of the straight lines \drawUnitLine{GH}, \drawUnitLine{GK}, $\therefore \drawUnitLine{EF} \perp$ to the plane \drawPolygon[middle][planeHK]{planeHK,planeHK',planeHK''} through \drawUnitLine{GH}, \drawUnitLine{GK}. \byref{prop:XI.IV}
+
+And $\drawUnitLine{EF} \parallel \drawUnitLine{AB}$, $\therefore \drawUnitLine{AB} \perp \planeHK$. \byref{prop:XI.VIII}
+
+For the same reason  $\drawUnitLine{CD} \perp \planeHK$. $\therefore$ each of the straight lines \drawUnitLine{AB}, \drawUnitLine{CD} $\perp \planeHK$.
+
+But, if two straight lines be at right angles to the same plane, the straight lines are parallel \byref{prop:XI.VI}.
+
+Therefore $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$.
+
+\qed
+
+
+
+\starttheorem{Prop. X. Theor.}\label{prop:XI.X}
+\defineNewPicture{
+	numeric w, d;
+	color s;
+	w := 7/2cm;
+	d := 2cm;
+	s := (0, 0, d);
+	byPointXYZDefine.Pnw(0, 0, 0);
+	byPointXYZDefine.Pne(w, 0, 0);
+	byPointXYZDefine.Pse(w, -w, 0);
+	byPointXYZDefine.Psw(0, -w, 0);
+	byPointXYZDefine.A(1/5w, -4/5w, 0);
+	byPointXYZDefine.B(1/5w, -1/5w, 0);
+	byPointXYZDefine.C(4/5w, -1/5w, 0);
+	byPointXYZEmpty(D, E, F, Pnw', Pne', Pse', Psw');
+	pointXYZ.D := pointXYZ.A + s;
+	pointXYZ.E := pointXYZ.B + s;
+	pointXYZ.F := pointXYZ.C + s;
+	pointXYZ.Pnw' := pointXYZ.Pnw + s;
+	pointXYZ.Pne' := pointXYZ.Pne + s;
+	pointXYZ.Pse' := pointXYZ.Pse + s;
+	pointXYZ.Psw' := pointXYZ.Psw + s;
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
+	bySetProjection(-65, 0, 22);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(B, C, byblue, 0, 0);
+	byLineDefine(C, A, byyellow, 0, 0);
+	byLineDefine(D, E, byred, 1, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(F, D, byyellow, 1, 0);
+	byLineDefine(A, D, byblack, 1, 0);
+	byLineDefine(C, F, byblack, 0, 2);
+	byLineDefine(B, E, byblack, 0, 0);
+	draw byPolygon.planeOne(Pnw, Pne, Pse, Psw)(white);
+	draw byAngle(A, B, C, byred, 0);
+	draw byNamedLineSeq(0)(AB, BC, CA);
+	draw byNamedLine(AD, CF, BE);
+	draw byPolygon.planeTwo(Pnw', Pne', Pse', Psw')(white);
+	draw byAngle(D, E, F, byred, 1);
+	draw byNamedLineSeq(0)(DE, EF, FD);
+	draw byLabelsOnPolygon(A, B, E, F, C)(0, 0);
+	draw byLabelsOnPolygon(E, D, F)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines meeting one another be parallel to two straight lines meeting one another not in the same plane, they will contain equal angles.}
+
+For let the two straight lines \drawUnitLine{AB}, \drawUnitLine{BC} meeting one another be parallel to the two straight lines \drawUnitLine{DE}, \drawUnitLine{EF} meeting one another, not in the same plane. I say that the angle \drawAngle{B} is equal to the angle \drawAngle{E}.
+
+For let \drawUnitLine{BA}, \drawUnitLine{BC}, \drawUnitLine{ED}, \drawUnitLine{EF} be cut off equal to one another, and let \drawUnitLine{AD}, \drawUnitLine{CF}, \drawUnitLine{BE}, \drawUnitLine{AC}, \drawUnitLine{DF} be joined.
+
+Now, since \drawUnitLine{BA} is equal and parallel to \drawUnitLine{ED}, therefore \drawUnitLine{AD} is also equal and parallel to \drawUnitLine{BE}. \byref{prop:I.XXXIII}
+
+For the same reason \drawUnitLine{CF} is also equal and parallel to \drawUnitLine{BE}.
+
+Therefore each of the straight lines \drawUnitLine{AD}, \drawUnitLine{CF} is equal and parallel to \drawUnitLine{BE}.
+
+But straight lines which are parallel to the same straight line and are not in the same plane with it are parallel to one another. \byref{prop:XI.IX}
+
+Therefore \drawUnitLine{AD} is parallel and equal to \drawUnitLine{CF}.
+
+And \drawUnitLine{AC}, \drawUnitLine{DF} join them. Therefore \drawUnitLine{AC} is also equal and parallel to \drawUnitLine{DF}. \byref{prop:I.XXXIII}
+
+Now, since in \drawLine{AB,BC,CA} and \drawLine{DE,EF,FD} $\drawUnitLine{AB} = \drawUnitLine{DE}$, $\drawUnitLine{BC}=\drawUnitLine{EF}$ and $\drawUnitLine{AC}=\drawUnitLine{DF}$, $\therefore \drawAngle{B} = \drawAngle{E}$. \byref{prop:I.VIII}
+
+\qed
+
+
+
+\startproblem{Prop. XI. Prob.}\label{prop:XI.XI}
+\defineNewPicture{
+	numeric w, h, d;
+	byPair(B, C, D, E, F, G, H, Pnw, Pne, Pse, Psw);
+	w := 3cm;
+	h := 3cm;
+	d := 7/4cm;
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	byPointXYZDefine.A(1/3w, -1/2h, d);
+	B := (5/6w, -4/5h);
+	C := (5/6w, -1/5h);
+	F := (redpart(pointXYZ.A), greenpart(pointXYZ.A));
+	D = whatever[B, C] = whatever[F, F + ((B-C) rotated 90)];
+	E := 4/3[D, F];
+	G := F shifted (B-D);
+	H := F shifted (C-D);
+	byPointXYZDefine.E'(xpart(E), ypart(E), 6/5d);
+	byPointXYZDefine.D'(xpart(D), ypart(D), 6/5d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, E', D');
+	byLineDefine(A, F, byblack, 0, 0);
+	byLineDefine(A, D, byred, 0, 0);
+	byLineDefine(B, D, byyellow, 0, 0);
+	byLineDefine(D, C, byyellow, 0, 0);
+	byLineDefine(D, F, byblue, 0, 0);
+	byLineDefine(F, E, byblue, 1, 0);
+	byLineDefine(G, F, byblack, 1, 0);
+	byLineDefine(F, H, byblack, 1, 0);
+	bySetProjection(-60, 0, -50);
+	draw byPolygon.refPlane(Pnw, Pne, Pse, Psw)(white);
+	draw byNamedLine(FH, DC);
+	draw byPolygon.planeEAD(E, E', D', D)(byyellow);
+	draw byNamedLine(DF, FE);
+	draw byNamedLineSeq(0)(GF, AF, AD, BD);
+	draw byLabelsOnPolygon(A, H, C, D, B, G, E)(0, 0);
+	draw byLabelsOnPolygon(D, F, G)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{F}{rom}{a given elevated point to draw a straight line perpendicular to a given plane.}
+
+Let \drawPointL{A} be the given elevated point, and the plane of reference the given plane \drawPolygon{refPlane}. Thus it is required to draw from \drawPointL{A} a straight line perpendicular to \drawPolygon{refPlane}.
+
+Let any straight line \drawUnitLine{BC} be drawn, at random, in the plane of reference,
+and let \drawUnitLine{AD} be drawn from the point \drawPointL{A} perpendicular to \drawUnitLine{BC}. \byref{prop:I.XII}
+
+If then $\drawUnitLine{AD} \perp \drawPolygon{refPlane}$, that which was enjoined will have been done.
+
+But, if not, let \drawUnitLine{DE} be drawn from the point \drawPointL{D} at right angles to \drawUnitLine{BC} and in \drawPolygon{refPlane} \byref{prop:I.XI}, let \drawUnitLine{AF} be drawn from \drawPointL{A} perpendicular to \drawUnitLine{DE} \byref{prop:I.XII}, and let \drawUnitLine{GH} be drawn through the point \drawPointL{F} parallel to \drawUnitLine{BC}. \byref{prop:I.XXXI}
+
+Now, since \drawUnitLine{BC} is at right angles to each of the straight lines \drawUnitLine{DA}, \drawUnitLine{DE}, therefore \drawUnitLine{BC} is also at right angles to the plane \drawPolygon{planeEAD} through \drawUnitLine{ED}, \drawUnitLine{DA}. \byref{prop:XI.IV}
+
+And \drawUnitLine{GH} is parallel to it; but, if two straight lines be parallel, and one of them be at right angles to any plane, the remaining one will also be at right angles to the same plane. \byref{prop:XI.VIII}
+
+$\therefore \drawUnitLine{GH} \perp \drawPolygon{planeEAD}$
+
+Therefore \drawUnitLine{GH} is also at right angles to all the straight lines which meet it and are in \drawPolygon{planeEAD}. \byref{def:XI.III}
+
+But \drawUnitLine{AF} meets it and is in the plane through \drawUnitLine{ED}, $\therefore \drawUnitLine{GH} \perp \drawUnitLine{AF}$, so that $\drawUnitLine{AF} \perp \drawUnitLine{GH}$.
+
+But $\drawUnitLine{AF} \perp \drawUnitLine{DE}$, $\therefore \drawUnitLine{AF} \perp \drawUnitLine{GH} \mbox{ and } \drawUnitLine{DE}$.
+
+But, if a straight line be set up at right angles to two straight lines which cut one another, at the point of section, it will also be at right angles to the plane through them. \byref{prop:XI.IV}
+
+$\therefore \drawUnitLine{AF} \perp \drawPolygon{refPlane}$.
+
+Therefore from the given elevated point \drawPointL{A} the straight line \drawUnitLine{AF} has been drawn perpendicular to the plane of reference \drawPolygon{refPlane}.
+
+\qef
+
+
+
+\startproblem{Prop. XII. Prob.}\label{prop:XI.XII}
+\defineNewPicture{
+	numeric w, h, d;
+	byPair(A, C, Pnw, Pne, Pse, Psw);
+	w := 5/2cm;
+	h := 5/2cm;
+	d := 2cm;
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	A := (1/3w, -2/3h);
+	C := (2/3w, -1/3h);
+	byPointXYZDefine.B(xpart(C), ypart(C), d);
+	byPointXYZDefine.D(xpart(A), ypart(A), 3/4d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw);
+	byLineDefine(A, D, byblue, 0, 0);
+	byLineDefine(C, B, byred, 0, 0);
+	bySetProjection(-60, 0, -30);
+	draw byPolygon.refPlane(Pnw, Pne, Pse, Psw)(white);
+	draw byNamedLine(AD, CB);
+	draw byLabelsOnPolygon(A, D, B, C)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{T}{o}{set up a straight line at right angles to a given plane from a given point in it.}
+
+Let the plane of reference be the given plane \drawPolygon{refPlane}, and \drawPointL{A} the point in it. Thus it is required to set up from \drawPointL{A} a straight line at right angles to the \drawPolygon{refPlane}.
+
+Let any elevated point \drawPointL{B} be conceived, from \drawPointL{B} let \drawUnitLine{BC} be drawn perpendicular to \drawPolygon{refPlane} \byref{prop:XI.XI}, and through the point \drawPointL{A} let \drawUnitLine{AD} be drawn parallel to \drawUnitLine{BC}. \byref{prop:I.XXXI}
+
+Then, since $\drawUnitLine{AD} \parallel \drawUnitLine{CB}$, while one of them, $\drawUnitLine{BC} \perp \drawPolygon{refPlane}$, $\therefore \drawUnitLine{AD} \perp \drawPolygon{refPlane}$. \byref{prop:XI.VIII}
+
+Therefore \drawUnitLine{AD} has been set up at right angles to the given plane \drawPolygon{refPlane} from the point \drawPointL{A} in it.
+
+\qef
+
+
+
+\starttheorem{Prop. XIII. Theor.}\label{prop:XI.XIII}
+\defineNewPicture{
+	numeric w, h, d;
+	byPair(A, D, E, C', Pnw, Pne, Pse, Psw);
+	w := 5/2cm;
+	h := 5/2cm;
+	d := 2cm;
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	A := (1/2w, -1/2h);
+	D := 1/3[Pnw, Psw];
+	E = whatever[A, D] = whatever[Pne, Pse];
+	C' := 1/2[A, E];
+	byPointXYZDefine.B(xpart(A), ypart(A), 5/6d);
+	byPointXYZDefine.C(xpart(C'), ypart(C'), 5/6d);
+	byPointXYZDefine.D'(xpart(D), ypart(D), d);
+	byPointXYZDefine.E'(xpart(E), ypart(E), d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, C', D', E');
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(A, C, byred, 1, 0);
+	byLineDefine(D, A, byblue, 0, 0);
+	byLineDefine(A, E, byblue, 0, 0);
+	bySetProjection(-75, 0, -30);
+	draw byPolygon.refPlane(Pnw, Pne, Pse, Psw)(white);
+	draw byPolygon.planeABC(D, D', E', E)(byyellow);
+	draw byAngle(B, A, C, byblue, 0);
+	draw byAngle(C, A, E, byred, 0);
+	draw byNamedLine(AB, AC, DA, AE);
+	draw byLabelsOnPolygon(A, B, C, E)(0, 0);
+	draw byLabelsOnPolygon(Psw, D, D')(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{F}{rom}{the same point two straight lines cannot be set up at right angles to the same plane on the same side.}
+
+For, if possible, from the same point \drawPointL{A} let the two straight lines \drawUnitLine{AB}, \drawUnitLine{AC} be set up at right angles to the plane of reference \drawPolygon{refPlane} and on the same side, and let a plane \drawPolygon{planeABC} be drawn through \drawUnitLine{BA}, \drawUnitLine{AC}. It will then make, as section through \drawPointL{A} in \drawPolygon{refPlane}, a straight line. \byref{prop:XI.III}
+
+Let it make \drawUnitLine{DA,AE}; therefore the straight lines \drawUnitLine{AB},
+\drawUnitLine{AC}, \drawUnitLine{DA,AE} are in one plane \drawPolygon{planeABC}.
+
+And, since $\drawUnitLine{CA} \perp \drawPolygon{refPlane}$, it will also make right angles with all the straight lines which meet it and are in the plane of reference. \byref{def:XI.III}
+
+But \drawUnitLine{DA,AE} meets it and is in \drawPolygon{refPlane}; therefore the angle \drawAngle{CAE} is right.
+
+For the same reason the angle \drawAngle{EAB} is also right; $\therefore \drawAngle{CAE} = \drawAngle{EAB}$. And they are in one plane: which is impossible.
+
+\qed
+
+
+
+\starttheorem{Prop. XIV. Theor.}\label{prop:XI.XIV}
+\defineNewPicture{
+	numeric w, w', h, d;
+	color s[];
+	w := 3/2cm;
+	w' := 3cm;
+	h := 2cm;
+	d := 2cm;
+	s1 := (0, 0, d);
+	s2 := ((w'-w)/2, 0, -1/8h);
+	s3 := (redpart(s2), 0, -bluepart(s2));
+	byPointXYZDefine.E'(0, 0, 0);
+	byPointXYZDefine.E(0, -h, 0);
+	byPointXYZDefine.F(w, 0, 0);
+	byPointXYZDefine.F'(w, -h, 0);
+	byPointXYZDefine.B(1/3w, -1/2h, 0);
+	byPointXYZDefine.G(w', 0, 1/2d);
+	byPointXYZDefine.H(w', -h, 1/2d);
+	byPointXYZEmpty(D, D', C, C', C'h, Cg, F'h, Fg ,A, K);
+	pointXYZ.D' := pointXYZ.E' + s1;
+	pointXYZ.D := pointXYZ.E + s1;
+	pointXYZ.C := pointXYZ.F + s1;
+	pointXYZ.C' := pointXYZ.F' + s1;
+	pointXYZ.A := pointXYZ.B + s1;
+	pointXYZ.K := 1/2[pointXYZ.G, pointXYZ.H];
+	pointXYZ.Cg := pointXYZ.C + s2;
+	pointXYZ.C'h := pointXYZ.C' + s2;
+	pointXYZ.Fg := pointXYZ.F + s3;
+	pointXYZ.F'h := pointXYZ.F' + s3;
+	byPointLabelRemove(C', D',  E',F');
+	bySetProjection(-75, 0, -12);
+	byLineDefine(A, B, byblack, 0, 0);
+	byLineDefine(G, H, byyellow, 0, 0);
+	byLineDefine(A, K, byred, 0, 0);
+	byLineDefine(B, K, byblue, 0, 0);
+	draw byPolygon.planeB(E, E', F, F')(byblue);
+	draw byArbitraryCurve.CG(C, Cg, G)(byred, 1, 2);
+	draw byArbitraryCurve.FG(F, Fg, G)(byblue, 1, 2);
+	draw byAngle(A, B, K, byred, 0);
+	draw byAngle(K, A, B, byblue, 0);
+	draw byNamedLineSeq(0)(BK, AB, AK, noLine);
+	draw byNamedLine(GH);
+	draw byPolygon.planeA(D, D', C, C')(byred);
+	draw byArbitraryCurve.CH(C', C'h, H)(byred, 1, 2);
+	draw byArbitraryCurve.FH(F', F'h, H)(byblue, 1, 2);
+	draw byLabelsOnPolygon(E, D, D', C, F')(0, 0);
+	draw byLabelsOnPolygon(Fg, F, F')(2, 0);
+	draw byLabelsOnPolygon(B, A, G, K, H)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{P}{lanes}{to which the same straight line is at right angles will be parallel.}
+
+For let any straight line \drawUnitLine{AB} be at right angles to each of the planes \drawPolygon{planeA}, \drawPolygon{planeB}. I say that the planes are parallel.
+
+For, if not, they will meet when produced.
+
+Let them meet; they will then make, as common section, a straight line. \byref{prop:XI.III}
+
+Let them make \drawUnitLine{GH}. Let a point \drawPointL{K} be taken at random on \drawUnitLine{GH}, and let \drawUnitLine{AK}, \drawUnitLine{BK} be joined.
+
+Now, since $\drawUnitLine{AB} \perp \drawPolygon{planeB}$, $\therefore \drawUnitLine{AB} \perp \drawUnitLine{BK}$, which is a straight line in \drawPolygon{planeB} produced. \byref{def:XI.III} 
+
+$\therefore \drawAngle{B}$ is right.
+
+For the same reason  \drawAngle{A} is also right.
+
+Thus, in the triangle \drawLine{AK,KB,BA} $\drawAngle{A} + \drawAngle{B} = \drawTwoRightAngles$, which is impossible. \byref{prop:I.XVII}
+
+Therefore the planes \drawPolygon{planeA}, \drawPolygon{planeB} will not meet when produced. $\therefore \drawPolygon{planeA} \parallel \drawPolygon{planeB}$ \byref{def:XI.VIII}
+
+\qed
+
+
+
+\starttheorem{Prop. XV. Theor.}\label{prop:XI.XV}
+\defineNewPicture{
+	numeric w, d;
+	color s[];
+	w := 7/2cm;
+	d := 2cm;
+	s0 := (0, 0, -d);
+	s1 := (1/4w, 1/3w, -d);
+	byPointXYZDefine.Pnw(0, 0, 0);
+	byPointXYZDefine.Pne(w, 0, 0);
+	byPointXYZDefine.Pse(w, -w, 0);
+	byPointXYZDefine.Psw(0, -w, 0);
+	byPointXYZDefine.A(1/6w, -4/5w, 0);
+	byPointXYZDefine.B(1/4w, -1/2w, 0);
+	byPointXYZDefine.C(3/5w, -4/5w, 0);
+	byPointXYZEmpty(D, E, F, G, H, K, Pnw', Pne', Pse', Psw');
+	pointXYZ.D := pointXYZ.A + s1;
+	pointXYZ.E := pointXYZ.B + s1;
+	pointXYZ.F := pointXYZ.C + s1;
+	pointXYZ.H := pointXYZ.A + s0;
+	pointXYZ.G:= pointXYZ.B + s0;
+	pointXYZ.K := pointXYZ.C + s0;
+	pointXYZ.Pnw' := pointXYZ.Pnw + s0;
+	pointXYZ.Pne' := pointXYZ.Pne + s0;
+	pointXYZ.Pse' := pointXYZ.Pse + s0;
+	pointXYZ.Psw' := pointXYZ.Psw + s0;
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw');
+	bySetProjection(-65, 0, -30);
+	byLineDefine(A, B, byyellow, 0, 0);
+	byLineDefine(B, C, byyellow, 1, 0);
+	byLineDefine(D, E, byred, 1, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(H,G, byred, 0, 0);
+	byLineDefine(G, K, byblue, 0, 0);
+	byLineDefine(B, G, black, 0, 0);
+	draw byPolygon.planeTwo(Pnw', Pne', Pse', Psw')(byyellow);
+	draw byAngle(B, G, H, byred, 0);
+	draw byAngle(B, G, K, byblue, 0);
+	draw byAngle(G, B, A, byyellow, 0);
+	draw byNamedLineSeq(0)(HG,GK);
+	draw byNamedLineSeq(0)(DE, EF);
+	draw byNamedLine(BG);
+	draw byPolygon.planeOne(Pnw, Pne, Pse, Psw)(white);
+	draw byNamedLineSeq(0)(AB, BC);
+	draw byLabelsOnPolygon(H,A, B, C, K, G)(0, 0);
+	draw byLabelsOnPolygon(F, E, D, noPoint)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines meeting one another be parallel to two straight lines meeting one another, not being in the same plane, the planes through them are parallel.}
+
+For let the two straight lines \drawUnitLine{AB}, \drawUnitLine{BC} meeting one another be parallel to the two straight lines \drawUnitLine{DE}, \drawUnitLine{EF} meeting one another, not being in the same plane. I say that the planes \drawPolygon{planeOne}, \drawPolygon{planeTwo} produced through \drawUnitLine{AB}, \drawUnitLine{BC} and \drawUnitLine{DE}, \drawUnitLine{EF} will not meet one another.
+
+For let \drawUnitLine{BG} be drawn from the point \drawPointL{B} perpendicular to the \drawPolygon{planeTwo}. \byref{prop:XI.XI} And let it meet \drawPolygon{planeTwo} at the point \drawPointL{G}. Through \drawPointL{G} let be drawn $\drawUnitLine{GH} \parallel \drawUnitLine{ED}$, and $\drawUnitLine{GK} \parallel \drawUnitLine{EF}$. \byref{prop:I.XXXI}
+
+Now, since $\drawUnitLine{BG} \perp \drawPolygon{planeTwo}$, therefore it will also make right angles with all the straight lines which meet it and are in \drawPolygon{planeTwo}. \byref{def:XI.III} $\therefore \drawAngle{BGH} = \drawAngle{BGK} = \drawRightAngle$.
+
+And, since $\drawUnitLine{BA} \parallel \drawUnitLine{GH}$ \byref{prop:XI.IX}, $\therefore \drawAngle{GBA} + \drawAngle{BGH} = \drawTwoRightAngles$. \byref{prop:I.XXIX}
+
+But $\drawAngle{BGH} = \drawRightAngle$, $\therefore \drawAngle{GBA} = \drawRightAngle$, $\therefore \drawUnitLine{GB} \perp \drawUnitLine{BA}$.
+
+For the same reason $\drawUnitLine{GB} \perp \drawUnitLine{BC}$.
+
+Since then the straight line \drawUnitLine{GB} is set up at right angles to the two straight lines \drawUnitLine{BA}, \drawUnitLine{BC} which cut one another, $\therefore \drawUnitLine{GB} \perp \drawPolygon{planeOne}$. \byref{prop:XI.IV}
+
+But planes to which the same straight line is at right angles are parallel \byref{prop:XI.XIV}, $\therefore \drawPolygon{planeOne} \parallel \drawPolygon{planeTwo}$
+
+\qed
+
+
+
+\starttheorem{Prop. XVI. Theor.}\label{prop:XI.XVI}
+\defineNewPicture{
+	numeric w, d;
+	color s;
+	w := 3/2cm;
+	d := 3/2cm;
+	s := (0, 0, -d);
+	byPointXYZDefine.A'(0, 0, 0);
+	byPointXYZDefine.B(w, 0, 0);
+	byPointXYZDefine.B'(w, -w, 0);
+	byPointXYZDefine.A(0, -w, 0);
+	byPointXYZEmpty(C, C', D, D', E, F, G, H, K);
+	pointXYZ.C := pointXYZ.A + s;
+	pointXYZ.C' := pointXYZ.A' + s;
+	pointXYZ.D := pointXYZ.B + s;
+	pointXYZ.D' := pointXYZ.B' + s;
+	pointXYZ.E := 2/3[pointXYZ.A, pointXYZ.A'];
+	pointXYZ.F := 2/3[pointXYZ.B', pointXYZ.B];
+	pointXYZ.G := 1/3[pointXYZ.C, pointXYZ.C'];
+	pointXYZ.H := 1/3[pointXYZ.D', pointXYZ.D];
+	pointXYZ.K := 2[1/2[pointXYZ.E, pointXYZ.G], 1/2[pointXYZ.F, pointXYZ.H]];
+	byPointLabelRemove(A', B', C', D');
+	bySetProjection(-65, 0, -30);
+	byLineDefine(E, F, byred, 0, 0);
+	byLineDefine(F, K, byred, 1, 0);
+	byLineDefine(G, H, byblue, 0, 0);
+	byLineDefine(H, K, byblue, 1, 0);
+	draw byPolygon.planeCD(C, C', D, D')(byred);
+	draw byPolygon.planeGEFH(G, E, F, H)(byyellow);
+	draw byPolygon.planeAB(A, A', B, B')(byblue);
+	draw byNamedLineSeq(0)(EF, FK, HK, GH);
+	draw byLabelsOnPolygon(C, G, A, E, A', B, F, K, H, D')(0, 0);
+	draw byLabelsOnPolygon(C', D, D')(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two parallel planes be cut by any plane, their common sections are parallel.}
+
+For let the two parallel planes \drawPolygon{planeAB}, \drawPolygon{planeCD} be cut by the plane \drawPolygon{planeGEFH}, and let \drawUnitLine{EF}, \drawUnitLine{GH} be their common sections. I say that $\drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
+
+For, if not, \drawUnitLine{EF}, \drawUnitLine{GH} will, when produced, meet either in
+the direction of \drawPointL{F}, \drawPointL{H} or of \drawPointL{E}, \drawPointL{G}.
+
+Let them be produced, as in the direction of \drawPointL{F}, \drawPointL{H}, and let them, first, meet at \drawPointL{K}.
+
+Now, since \drawUnitLine{EF,FK} is in \drawPolygon{planeAB}, therefore all the points on \drawUnitLine{EF,FK} are also in \drawPolygon{planeAB}. \byref{prop:XI.I}
+
+But \drawPointL{K} is one of the points on the straight line \drawUnitLine{EF,FK}, therefore \drawPointL{K} is in \drawPolygon{planeAB}.
+
+For the same reason \drawPointL{K} is also in \drawPolygon{planeCD}, therefore the planes \drawPolygon{planeAB}, \drawPolygon{planeCD} will meet when produced.
+
+But they do not meet, $\because$ they are parallel. (\hypstr)
+
+Therefore the straight lines \drawUnitLine{EF}, \drawUnitLine{GH} will not meet when produced in the direction of \drawPointL{F}, \drawPointL{H}.
+
+Similarly we can prove that neither will the straight lines \drawUnitLine{EF}, \drawUnitLine{GH} meet when produced in the direction of \drawPointL{E}, \drawPointL{G}.
+
+But straight lines which do not meet in either direction are parallel. \byref{def:I.XXIII}
+
+$\therefore \drawUnitLine{EF} \parallel \drawUnitLine{GH}$.
+
+\qed
+
+
+
+\starttheorem{Prop. XVII. Theor.}\label{prop:XI.XVII}
+\defineNewPicture{
+	numeric w, d;
+	color s;
+	w := 2cm;
+	d := 3/2cm;
+	s := (0, 0, -d);
+	byPointXYZDefine.A(3/4w, -1/4w, 0);
+	byPointXYZDefine.B(4/5w, -1/2w, -2d);
+	byPointXYZDefine.C(1/4w, -3/4w, 0);
+	byPointXYZDefine.D(1/5w, -1/2w, -2d);
+	byPointXYZDefine.G(0, -w, 0);
+	byPointXYZDefine.G'(0, 0, 0);
+	byPointXYZDefine.H(w, 0, 0);
+	byPointXYZDefine.H'(w, -w, 0);
+	byPointXYZEmpty(E, F, O, K, K', L, L', M, M', N, N');
+	pointXYZ.K := pointXYZ.G + s;
+	pointXYZ.K' := pointXYZ.G' + s;
+	pointXYZ.L := pointXYZ.H + s;
+	pointXYZ.L' := pointXYZ.H' + s;
+	pointXYZ.M := pointXYZ.G + 2s;
+	pointXYZ.M' := pointXYZ.G' + 2s;
+	pointXYZ.N := pointXYZ.H + 2s;
+	pointXYZ.N' := pointXYZ.H' + 2s;
+	pointXYZ.F := lineAndPlaneIntersection(pointXYZ.C, pointXYZ.D, 
+		pointXYZ.L', pointXYZ.K, pointXYZ.K');
+	pointXYZ.E := lineAndPlaneIntersection(pointXYZ.A, pointXYZ.B, 
+		pointXYZ.L', pointXYZ.K, pointXYZ.K');
+	pointXYZ.O := lineAndPlaneIntersection(pointXYZ.A, pointXYZ.D, 
+		pointXYZ.L', pointXYZ.K, pointXYZ.K');
+	byPointLabelRemove(G',H',K',L',M',N');
+	byLineDefine(A, E, byred, 0, 0);
+	byLineDefine(E, B, byred, 1, 0);
+	byLineDefine(C, F, byyellow, 0, 0);
+	byLineDefine(F, D, byyellow, 1, 0);
+	byLineDefine(A, O, byblue, 0, 0);
+	byLineDefine(O, D, byblue, 1, 0);
+	byLineDefine(C, A, byblack, 0, 0);
+	byLineDefine(D, B, byblack, 1, 0);
+	byLineDefine(F, O, byblack, 0, 2);
+	byLineDefine(O, E, byblack, 1, 2);
+	bySetProjection(-60, 0, -30);
+	draw byPolygon.planeMN(M, M', N, N')(byredN);
+	draw byPolygon.planeDOEB(D, O, E, B)(byyellow);
+	draw byNamedLine(OD);
+	draw byNamedLineSeq(0)(FD,DB,EB);
+	draw byPolygon.planeKL(K, K', L, L')(byyellowN);
+	draw byPolygon.planeFCAO(F, C, A, O)(byred);
+	draw byNamedLine(AO);
+	draw byNamedLineSeq(0)(CF,FO,OE,AE,CA);
+	draw byPolygon.planeGH(G, G', H, H')(byblueN);
+	draw byLabelsOnPolygon(M, K, G, G', H, L, N, N')(0, 0);
+	draw byLabelsOnPolygon(D, F, C, A, E, B)(0, 0);
+	draw byLabelsOnPolygon(E, O, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines be cut by parallel planes, they will be cut in the same ratios.}
+
+For let the two straight lines \drawUnitLine{AB}, \drawUnitLine{CD} be cut by the parallel planes \drawPolygon{planeGH}, \drawPolygon{planeKL}, \drawPolygon{planeMN} at the points \drawPointL{A}, \drawPointL{E}, \drawPointL{B} and \drawPointL{C}, \drawPointL{F}, \drawPointL{D}.
+
+I say that, $\drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{CF}:\drawUnitLine{FD}$.
+
+For let \drawUnitLine{AC}, \drawUnitLine{BD}, \drawUnitLine{AD} be joined, let \drawUnitLine{AD} meet the \drawPolygon{planeKL} at the point \drawPointL{O}, and let \drawUnitLine{EO}, \drawUnitLine{OF} be joined.
+
+Now, since the two parallel planes \drawPolygon{planeKL}, \drawPolygon{planeMN} are cut by the plane \drawPolygon{planeDOEB}, their common sections \drawUnitLine{EO}, \drawUnitLine{BD} are parallel. \byref{prop:XI.XVI}
+
+For the same reason, since the two \drawPolygon{planeGH}, \drawPolygon{planeKL} are cut by the plane \drawPolygon{planeFCAO}, their common sections \drawUnitLine{AC}, \drawUnitLine{OF} are parallel. \byref{prop:XI.XVI}
+
+And, since $\drawUnitLine{EO} \parallel \drawUnitLine{BD}$, one of the sides of the triangle \drawLine{AB,BD,DA}, therefore, proportionally, $\drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{AO}:\drawUnitLine{OD}$. \byref{prop:VI.II}
+
+Again, since $\drawUnitLine{OF} \parallel \drawUnitLine{AC}$, one of the sides of the triangle \drawLine{AD,DC,CA}, proportionally, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine{CF}\drawUnitLine{FD}$. \byref{prop:VI.II}
+
+But it was also proved that, $\drawUnitLine{AO}:\drawUnitLine{OD}::\drawUnitLine{AE}:\drawUnitLine{EB}$, $\therefore \drawUnitLine{AE}:\drawUnitLine{EB}::\drawUnitLine{CF}:\drawUnitLine{FD}$.
+
+\qed
+
+
+
+\starttheorem{Prop. XVIII. Theor.}\label{prop:XI.XVIII}
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 2cm;
+	d := 3/2cm;
+	byPair(Pnw, Pne, Pse, Psw, C, F, B, E);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	C := 1/2[Pnw, Psw];
+	E := 1/2[Pne, Pse];
+	B := 2/3[C, E];
+	F := 1/3[C, B];
+	byPointXYZDefine.A(xpart(B), ypart(B), d);
+	byPointXYZDefine.D(xpart(C), ypart(C), d);
+	byPointXYZDefine.G(xpart(F), ypart(F), d);
+	byPointXYZDefine.E'(xpart(E), ypart(E), d);
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, E');
+	bySetProjection(-60, 0, -30);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(C, F, byblack, 0, 0);
+	byLineDefine(F, B, byblue, 1, 0);
+	byLineDefine(B, E, byred, 1, 0);
+	byLineDefine(F, G, byblue, 0, 0);
+	draw byPolygon.refPlane(Pnw, Pne, Pse, Psw)(white);
+	draw byPolygon.planeDE(C, D, E', E)(byyellow);
+	draw byAngle(A, B, E, byred, 0);
+	draw byAngle(G, F, B, byblue, 0);
+	draw byNamedLine(AB,FG,CF,FB,BE);
+	draw byLabelsOnPolygon(D, G, A, E', E, B, F, noPoint)(0, 0);
+	draw byLabelsOnPolygon(Psw, C, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two straight lines be cut by parallel planes, they will be cut in the same ratios.}
+
+For let any straight line \drawUnitLine{AB} be at right angles to the
+plane of reference \drawPolygon{refPlane}.
+
+I say that all the planes through \drawUnitLine{AB} are also at right angles to \drawPolygon{refPlane}.
+
+For let \drawPolygon{planeDE} be drawn through \drawUnitLine{AB}, let \drawUnitLine{CE} be the common section of \drawPolygon{planeDE} and \drawPolygon{refPlane}. 
+
+Let a point \drawPointL{F} be taken at random on \drawUnitLine{CE}, and from \drawPointL{F} let $\drawUnitLine{FG} \perp \drawUnitLine{CE}$ be drawn in \drawPolygon{planeDE}. \byref{prop:I.XI}
+
+Now, since $\drawUnitLine{AB} \perp \drawPolygon{refPlane}$, \drawUnitLine{AB}  is also at right angles to all the straight lines which meet it and are in the plane of reference. \byref{def:XI.III} So that it is also at right angles to \drawUnitLine{CE};
+$\therefore \drawAngle{ABE} = \drawRightAngle$.
+
+But $\drawAngle{GFB} = \drawRightAngle$, $\therefore \drawUnitLine{AB} \parallel \drawUnitLine{FG}$. \byref{prop:I.XXVIII}
+
+But $\drawUnitLine{AB} \perp \drawPolygon{refPlane}$, $\therefore \drawUnitLine{FG} \perp \drawPolygon{refPlane}$. \byref{prop:XI.VIII}
+
+Now a plane is at right angles to a plane, when the straight lines drawn, in one of the planes, at right angles to the common section of the planes are at right angles to the remaining plane. \byref{def:XI.IV}
+
+And \drawUnitLine{FG}, drawn in one of the planes \drawPolygon{planeDE} at right angles to \drawUnitLine{CE}, the common section of the planes, was proved to be
+at right angles to \drawPolygon{refPlane}. $\therefore \drawPolygon{planeDE} \perp  \drawPolygon{refPlane}$.
+
+Similarly also it can be proved that all the planes through \drawUnitLine{AB} are at right angles to the plane of reference.
+
+\qed
+
+
+
+\starttheorem{Prop. XIX. Theor.}\label{prop:XI.XIX}
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 3cm;
+	d := 2cm;
+	byPair(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw', A, C, D, G, H);
+	Pnw := (0, 0);
+	Pne := (w, 0);
+	Pse := (w, -h);
+	Psw := (0, -h);
+	Pnw' := 3/2[Psw, Pnw];
+	Pne' := 3/2[Pse, Pne];
+	Pse' := 3/2[Pne, Pse];
+	Psw' := 3/2[Pnw, Psw];
+	D := (1/2w, -1/2h);
+	A := 1/5[Psw, Pse];
+	C := 4/5[Psw, Pse];
+	G = whatever[Pnw, Pne] = whatever[A, D];
+	H = whatever[Pnw, Pne] = whatever[C, D];
+	byPointXYZDefine.A'(xpart(A), ypart(A), d);
+	byPointXYZDefine.C'(xpart(C), ypart(C), d);
+	byPointXYZDefine.B(xpart(D), ypart(D), d);
+	byPointXYZDefine.G'(xpart(G), ypart(G), d);
+	byPointXYZDefine.H'(xpart(H), ypart(H), d);
+	byPointXYZEmpty(E, F);
+	byRotatePoints(0, 0, 0, false)(A, C); % pointXYZ.A and pointXYZ.C do not exist at this stage. They are created on rotation.
+	pointXYZ.E := 2/3[pointXYZ.A, pointXYZ.B];
+	pointXYZ.F := 2/3[pointXYZ.C, pointXYZ.B];
+	byPointLabelRemove(Pnw, Pne, Pse, Psw, Pnw', Pne', Pse', Psw', G, H, A', C', G', H');
+	bySetProjection(-75, 0, -15);
+	byLineDefine(B, D, byblack, 0, 0);
+	byLineDefine(D, E, byred, 0, 0);
+	byLineDefine(D, F, byyellow, 0, 0);
+	byLineDefine(A, D, byblue, 0, 0);
+	byLineDefine(D, C, byblue, 1, 0);
+	draw byPolygon.refPlane(Pnw', Pne', Pse', Psw')(white);
+	draw byPolygon.planeAB'(G, G', B, D)(byyellow);
+	draw byPolygon.planeBC'(H, H', B, D)(byred);
+	draw byPolygon.planeAB''(A, A', B, D)(byyellow);
+	draw byPolygon.planeBC''(C, D, B, C')(byred);
+	draw byNamedLine(BD,DE, DF);
+	draw byNamedLineSeq(0)(AD, DC);
+	draw byLabelsOnPolygon(A, E, B, F, C, D)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{two planes which cut one another be at right angles to any plane, their common section will also be at right angles to the same plane.}
+
+For let the two planes \drawPolygon[middle][planeAB]{planeAB',planeAB''}, \drawPolygon[middle][planeBC]{planeBC',planeBC''} be at right angles to the
+plane of reference \drawPolygon{refPlane}, and let \drawUnitLine{BD} be their common section.
+
+I say that $\drawUnitLine{BD} \perp \drawPolygon{refPlane}$.
+
+For suppose it is not, and from the point \drawPointL{D} let \drawUnitLine{DE} be drawn in \planeAB\ at right angles to the straight line \drawUnitLine{AD}, and \drawUnitLine{DF} in \planeBC\ at right angles to \drawUnitLine{CD}.
+
+Now, since $\planeAB \perp \drawPolygon{refPlane}$, and \drawUnitLine{DE} has been drawn in the \planeAB\ at right angles to \drawUnitLine{AD}, their common section,  $\therefore \drawUnitLine{DE} \perp \drawPolygon{refPlane}$. \byref{def:XI.IV}
+
+Similarly we can prove that $\drawUnitLine{DF} \perp \drawPolygon{refPlane}$.
+
+Therefore from the same point \drawPointL{D} two straight lines have been set up at right angles to the plane of reference on the same side: which is impossible. \byref{prop:XI.XIII}
+
+Therefore no straight line except the common section \drawUnitLine{DB} of \planeAB, \planeBC\ can be set up from the point \drawPointL{D} at right angles to \drawPolygon{refPlane}.
+
+\qed
+
+
+
+\starttheorem{Prop. XX. Theor.}\label{prop:XI.XX}
+\defineNewPicture{
+	numeric w, h, d;
+	color s;
+	w := 3cm;
+	h := 2cm;
+	d := 2cm;
+	byPair(A, B, C, E, B', C');
+	B := (0, 0);
+	A := (2/3w, 1/2h);
+	C := (w, 0);
+	E := 3/4[B, C];
+	B' := (0, h);
+	C' := (w, h);
+	byPointXYZDefine.D(3/4w, 1/4h, d);
+	byPointLabelRemove(B', C');
+	bySetProjection(-60, 0, -15);
+	byLineDefine(A, B, byblue, 0, 0);
+	byLineDefine(A, E, byblue, 1, 0);
+	byLineDefine(A, D, byred, 0, 0);
+	byLineDefine(A, C, byyellow, 0, 0);
+	byLineDefine(B, E, byblack, 0, 0);
+	byLineDefine(E, C, byblack, 1, 0);
+	byLineDefine(D, B, byyellow, 1, 0);
+	byLineDefine(D, C, byred, 1, 0);
+	draw byPolygon.planeBAC(B, B', C', C)(white);
+	draw byAngle(B, A, E, byred, 0);
+	draw byAngle(E, A, C, byred, 1);
+	draw byAngle(C, A, D, byblue, 0);
+	draw byAngle(D, A, B, byyellow, 0);
+	draw byNamedLineSeq(0)(AE, AD);
+	draw byNamedLineSeq(0)(AB, AC);
+	draw byNamedLineSeq(0)(AD, DC, EC, BE, DB);
+	draw byLabelsOnPolygon(B, A, D, C, E)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{a solid angle be contained by three plane angles, any two, taken together in any manner, are greater than the remaining one.}
+
+For let the solid angle at \drawFromCurrentPicture[middle][angleA]{
+startAutoLabeling;
+draw byNamedSolidAngle(A);
+stopAutoLabeling;
+}
+be contained by the three plane angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB}.
+
+I say that any two of the angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB}, taken together in any manner, are greater than the remaining one.
+
+If now $\drawAngle{BAC} = \drawAngle{CAD} = \drawAngle{DAB}$, it is manifest that any two are greater than the remaining one.
+
+But, if not, let \drawAngle{BAC} be greater, and on the straight line \drawUnitLine{AB}, and at the point \drawPointL{A} on it, let the angle \drawAngle{BAE} be constructed, in the plane \drawPolygon{planeBAC}, equal to the angle \drawAngle{DAB}.
+
+Let \drawUnitLine{AE} be made equal to \drawUnitLine{AD}, and let \drawUnitLine{BE,EC}, drawn across through the point \drawPointL{E}, cut the straight lines \drawUnitLine{AB}, \drawUnitLine{AC} at the points \drawPointL{B}, \drawPointL{C}; let \drawUnitLine{DB}, \drawUnitLine{DC} be joined.
+
+Now, since in \drawLine{BD,DA,AB} and \drawLine{AE,EB,BA} $\drawUnitLine{DA} = \drawUnitLine{AE}$, and \drawUnitLine{AB} is common, two sides are equal to two sides; and $\drawAngle{DAB} = \drawAngle{BAE}$, $\therefore \drawUnitLine{DB} = \drawUnitLine{BE}$. \byref{prop:I.IV}
+
+And, since in \drawLine{BD,DC,CB} the two sides \drawUnitLine{BD}, \drawUnitLine{DC} are greater than \drawUnitLine{BC} \byref{prop:I.XX}, and of these \drawUnitLine{DB} was proved equal to \drawUnitLine{BE}, therefore the remainder \drawUnitLine{DC} is greater than the remainder \drawUnitLine{EC}.
+
+Now, since in \drawLine{DC,CA,AD} and \drawLine{AC,CE,EA} $\drawUnitLine{DA} = \drawUnitLine{AE}$, and \drawUnitLine{AC} is common, and the base \drawUnitLine{DC} is greater than the base \drawUnitLine{EC}, $\therefore \drawAngle{DAC} > \drawAngle{EAC}$. \byref{prop:I.XXV}
+
+But $\drawAngle{DAB} = \drawAngle{BAE}$, $\therefore$ \drawAngle{DAB}, \drawAngle{DAC} are greater than \drawAngle{BAC}.
+
+Similarly we can prove that the remaining angles also, taken together two and two, are greater than the remaining one.
+
+\qed
+
+
+
+\starttheorem{Prop. XXI. Theor.}\label{prop:XI.XXI}
+\defineNewPicture{
+	startTempAngleScale(2);
+	numeric w, h, d;
+	color s;
+	w := 4cm;
+	h := 3cm;
+	d := 3cm;
+	byPair(A, B, D);
+	B := (0, 0);
+	A := (1/2w, h);
+	D := (w, 0);
+	byPointXYZDefine.C(1/2w, 1/2h, d);
+	bySetProjection(-75, 0, -10);
+	byLineDefine(A, B, byyellow, 0, 0);
+	byLineDefine(A, C, byred, 0, 0);
+	byLineDefine(A, D, byblue, 0, 0);
+	byLineDefine(B, C, byblue, 1, 0);
+	byLineDefine(C, D, byyellow, 1, 0);
+	byLineDefine(D, B, byred, 1, 0);
+	byAngleDefine(B, A, C, byred, 0);
+	byAngleDefine(C, A, D, byblue, 0);
+	byAngleDefine(D, A, B, byyellow, 0);
+	byAngleDefineExtended(C, B, A, byred, 2)(byblue);
+	byAngleDefineExtended(A, B, D, byyellow, 1)(byblue);
+	byAngleDefineExtended(B, C, A, byred, 1)(byyellow);
+	byAngleDefineExtended(A, C, D, byblue, 2)(byyellow);
+	byAngleDefineExtended(C, D, A, byblue, 1)(byred);
+	byAngleDefineExtended(A, D, B, byyellow, 2)(byred);
+	draw byNamedAngle(BAC, CAD, DAB, CBA, ABD, BCA, ACD, CDA, ADB);
+	draw byNamedLine(AC);
+	draw byNamedLineSeq(0)(AB, AD);
+	draw byAngle(D, B, C, byblack, 1);
+	draw byAngle(B, C, D, byblack, 2);
+	draw byAngle(C, D, B, byblack, -1);
+	draw byNamedLineSeq(0)(BC, CD, DB);
+	draw byLabelsOnPolygon(B, C, D)(0, 0);
+	draw byLabelsOnPolygon(D, A, B)(2, 0);
+	stopTempAngleScale;
+}
+\drawCurrentPictureInMargin
+\problem{A}{ny}{solid angle is contained by plane angles less than four right angles.}
+
+Let the angle at \drawFromCurrentPicture[middle][angleA]{
+startAutoLabeling;
+draw byNamedSolidAngle(A);
+stopAutoLabeling;
+} be a solid angle contained by the plane angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB}.
+
+I say that the angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB} are less than four right angles.
+
+For let points \drawPointL{B}, \drawPointL{C}, \drawPointL{D} be taken at random on the straight lines \drawUnitLine{AB}, \drawUnitLine{AC}, \drawUnitLine{AD} respectively, and let \drawUnitLine{BC}, \drawUnitLine{CD}, \drawUnitLine{DB} be joined.
+
+Now, since the solid angle at \drawFromCurrentPicture[middle][angleB]{
+startAutoLabeling;
+draw byNamedSolidAngle(CBA,ABD,CBD);
+stopAutoLabeling;
+} is contained by the three plane angles \drawAngle{CBA}, \drawAngle{ABD}, \drawAngle{CBD}, any two are greater than the remaining one. \byref{prop:XI.XX}
+
+For the same reason $\drawAngle{BCA} + \drawAngle{ACD} > \drawAngle{BCD}$, and $\drawAngle{CDA} + \drawAngle{ADB} > \drawAngle{CDB}$.
+
+Therefore the six angles $\drawAngle{CBA} + \drawAngle{ABD} + \drawAngle{BCA}, \drawAngle{ACD} + \drawAngle{CDA} +  \drawAngle{ADB} > \drawAngle{CBD} + \drawAngle{BCD} + \drawAngle{CDB}$.
+
+But $\drawAngle{CBD} + \drawAngle{BDC} + \drawAngle{BCD} = \drawTwoRightAngles$. \byref{prop:I.XXXII}
+
+$\therefore \drawAngle{CBA} + \drawAngle{ABD} + \drawAngle{BCA}, \drawAngle{ACD} + \drawAngle{CDA} +  \drawAngle{ADB} > \drawTwoRightAngles$.
+
+And, since the three angles of each of the triangles \drawLine{AB,BC,CA},  \drawLine{AC,CD,DA},  \drawLine{AD,DB,BA} are equal to two right angles,
+$\therefore \drawAngle{CBA} + \drawAngle{ACB} + \drawAngle{BAC} + \drawAngle{ACD} + \drawAngle{CDA} + \drawAngle{CAD} + \drawAngle{ADB} + \drawAngle{DBA} + \drawAngle{BAD} = 3\drawTwoRightAngles$.
+
+And $\drawAngle{ABC} + \drawAngle{BCA} + \drawAngle{ACD} + \drawAngle{CDA} + \drawAngle{ADB} + \drawAngle{DBA} > \drawTwoRightAngles$.
+
+Therefore the remaining three angles \drawAngle{BAC}, \drawAngle{CAD}, \drawAngle{DAB} containing the solid angle \angleA\ are less than four right angles.
+
+\qed
+
+
+
+\starttheorem{Prop. XXII. Theor.}\label{prop:XI.XXII}
+\defineNewPicture{
+	numeric d, a[];
+	pair s;
+	d := 3/2cm;
+	a1 := 60;
+	a2 := 40;
+	a3 := 50;
+	s := (0, -4/3d);
+	byPair(A, B, C, D, E, F, G, H, K);
+	B := (0, 0);
+	A := B shifted (dir(-90-1/2a1)*d);
+	C := B shifted (dir(-90+1/2a1)*d);
+	E := B shifted s;
+	D := E shifted (dir(-90-1/2a2)*d);
+	F := E shifted (dir(-90+1/2a2)*d);
+	H := E shifted s;
+	G := H shifted (dir(-90-1/2a3)*d);
+	K := H shifted (dir(-90+1/2a3)*d);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(B, C, byred, 1, 0);
+	byLineDefine(A, C, byred, 0, 2);
+	byLineDefine(D, E, byblue, 0, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(D, F, byblue, 0, 2);
+	byLineDefine(G, H, byyellow, 0, 0);
+	byLineDefine(H, K, byyellow, 1, 0);
+	byLineDefine(G, K, byyellow, 0, 2);
+	draw byAngle(A, B, C, byred, 0);
+	draw byAngle(D, E, F, byblue, 0);
+	draw byAngle(G, H, K, byyellow, 0);
+	draw byNamedLineSeq(0)(AB, BC, AC);
+	draw byNamedLineSeq(0)(DE, EF, DF);
+	draw byNamedLineSeq(0)(GH, HK, GK);
+	draw byLabelsOnPolygon(A, B, C)(0, 0);
+	draw byLabelsOnPolygon(D, E, F)(0, 0);
+	draw byLabelsOnPolygon(G, H, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{A}{ny}{there be three plane angles of which two, taken together in any manner, are greater than the remaining one, and they are contained by equal straight lines, it is possible to construct a triangle out of the straight lines joining the extremities of the equal straight lines.}
+
+Let there be three plane angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK}, of which two, taken together in any manner, are greater than the remaining one, namely $\drawAngle{ABC} + \drawAngle{DEF} > \drawAngle{GHK}$, $\drawAngle{DEF} + \drawAngle{GHK} > \drawAngle{ABC}$, $\drawAngle{GHK} + \drawAngle{ABC} > \drawAngle{DEF}$. Let $\drawUnitLine{AB} = \drawUnitLine{BC} = \drawUnitLine{DE} = \drawUnitLine{EF} = \drawUnitLine{GH} = \drawUnitLine{HK}$, and let \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK} be joined.
+
+I say that it is possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK}, that is, that any two of the straight lines \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK} are greater than the remaining one.
+
+Now, if $\drawAngle{ABC} = \drawAngle{DEF} = \drawAngle{GHK}$, it is manifest that, $\drawUnitLine{AC} = \drawUnitLine{DF} = \drawUnitLine{GK}$, it is possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK}.
+
+\defineNewPictureBasedOnOld{
+	byPair(L);
+	L := ((K shifted(-H)) rotated a1) shifted H;
+	byPutPointsInSpace(G, H, K, L);
+	byLineDefine(G, L, byblack, 0, 0);
+	byLineDefine(H, L, byblack, 1, 0);
+	byLineDefine(K, L, byblack, 0, 2);
+	draw byNamedLine(GL);
+	draw byAngle(K, H, L, byred, 1);
+	draw byAngle(G, H, K, byyellow, 0);
+	draw byNamedLineSeq(0)(HL,KL);
+	draw byNamedLineSeq(0)(GH, HK, GK);
+	draw byLabelsOnPolygon(G, H, L, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+But, if not, let them be unequal, and on the straight line \drawUnitLine{HK}, and at the point \drawPointL{H} on it, let the angle \drawAngle{KHL} be constructed equal to the angle \drawAngle{ABC}.
+
+Let \drawUnitLine{HL} be made equal to one of the straight lines \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK}, and let \drawUnitLine{KL}, \drawUnitLine{GL} be joined.
+
+Now, since the two sides \drawUnitLine{AB}, \drawUnitLine{BC} are equal to the two sides \drawUnitLine{KH}, \drawUnitLine{HL}, and $\drawAngle{ABC} = \drawAngle{KHL}$, $\therefore \drawUnitLine{AC} = \drawUnitLine{KL}$. \byref{prop:I.IV}
+
+And, since $\drawAngle{ABC} + \drawAngle{GHK} > \drawAngle{DEF}$, while $\drawAngle{ABC} = \drawAngle{KHL}$, $\therefore \drawAngle{GHL} > \drawAngle{DEF}$.
+
+And, since the two sides \drawUnitLine{GH}, \drawUnitLine{HL} are equal to the two sides \drawUnitLine{DE}, \drawUnitLine{EF}, and $\drawAngle{GHL} > \drawAngle{DEF}$, $\therefore \drawUnitLine{GL} > \drawUnitLine{DF}$. \byref{prop:I.XXIV}
+
+But \drawUnitLine{GK}, \drawUnitLine{KL} are greater than \drawUnitLine{GL}.
+Therefore \drawUnitLine{GK}, \drawUnitLine{KL} are much greater than \drawUnitLine{DF}. 
+
+But $\drawUnitLine{KL} = \drawUnitLine{AC}$;
+therefore \drawUnitLine{AC}, \drawUnitLine{GK} are greater than the remaining straight line \drawUnitLine{DE}.
+
+Similarly we can prove that \drawUnitLine{AC}, \drawUnitLine{DE} are greater than \drawUnitLine{GK}, and further \drawUnitLine{DE}, \drawUnitLine{GK} are greater than \drawUnitLine{AC}.
+
+Therefore it is possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DE}, \drawUnitLine{GK}.
+
+\qed
+
+
+
+\startproblem{Prop. XXIII. Prob.}\label{prop:XI.XXIII}
+\defineNewPicture{
+	numeric d, a[];
+	pair s;
+	d := 3/2cm;
+	a1 := 46;
+	a2 := 50;
+	a3 := 48;
+	s := (0, -4/3d);
+	byPair(A, B, C, D, E, F, G, H, K);
+	B := (0, 0);
+	A := B shifted (dir(-90-1/2a1)*d);
+	C := B shifted (dir(-90+1/2a1)*d);
+	E := B shifted s;
+	D := E shifted (dir(-90-1/2a2)*d);
+	F := E shifted (dir(-90+1/2a2)*d);
+	H := E shifted s;
+	G := H shifted (dir(-90-1/2a3)*d);
+	K := H shifted (dir(-90+1/2a3)*d);
+	byLineDefine(A, B, byred, 0, 0);
+	byLineDefine(B, C, byred, 1, 0);
+	byLineDefine(A, C, byred, 0, 2);
+	byLineDefine(D, E, byblue, 0, 0);
+	byLineDefine(E, F, byblue, 1, 0);
+	byLineDefine(D, F, byblue, 0, 2);
+	byLineDefine(G, H, byyellow, 0, 0);
+	byLineDefine(H, K, byyellow, 1, 0);
+	byLineDefine(G, K, byyellow, 0, 2);
+	draw byAngle(A, B, C, byred, 0);
+	draw byAngle(D, E, F, byblue, 0);
+	draw byAngle(G, H, K, byyellow, 0);
+	draw byNamedLineSeq(0)(AB, BC, AC);
+	draw byNamedLineSeq(0)(DE, EF, DF);
+	draw byNamedLineSeq(0)(GH, HK, GK);
+	draw byLabelsOnPolygon(A, B, C)(0, 0);
+	draw byLabelsOnPolygon(D, E, F)(0, 0);
+	draw byLabelsOnPolygon(G, H, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{T}{o}{construct a solid angle out of three plane angles two of which, taken togetfier in any manner, are greater than the remaining one: thus the three angles must be less than four right angles.}
+
+Let the angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK} be the three given plane angles, and let two of these, taken together in any manner, be greater than the remaining one, while, further, the three are less than four right angles; thus it is required to construct a solid angle out of angles equal to the angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK}.
+
+Let \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK} be cut off equal to one another, and let \drawUnitLine{AC}, \drawUnitLine{DF}, \drawUnitLine{GK} be joined. It is therefore possible to construct a triangle out of straight lines equal to \drawUnitLine{AC}, \drawUnitLine{DE}, \drawUnitLine{GK}. \byref{prop:XI.XXII}
+
+\defineNewPictureBasedOnOld{
+	numeric s, h;
+	s := 3;
+	byPair(L, M, N, O, P, Q);
+	L := (0, 0);
+	M := L shifted (-s*abs(A-C), 0);
+	N := ((fullcircle scaled (s*2abs(G-K))) shifted L) intersectionpoint ((fullcircle scaled (s*2abs(D-F))) shifted M);
+	O := byFindCircleCenterABC(L, M, N);
+	P := 2/3[O, L];
+	Q := 2/3[O, M];
+	h := sqrt(((abs(A-B)/cm)**2) - ((abs(L-O)/(s*cm))**2))*s*cm;
+	byPointXYZDefine.R(xpart(O), ypart(O), h);
+	bySetProjection(-45, 0, -30);
+	byLineDefine(L, M, byblack, 0, 0);
+	byLineDefine(M, N, byblack, 1, 0);
+	byLineDefine(N, L, byblack, 0, 2);
+	byLineDefine(L, P, byyellow, 1, 0);
+	byLineDefine(P, O, byyellow, 0, 0);
+	byLineDefine(M, Q, byred, 1, 0);
+	byLineDefine(Q, O, byred, 0, 0);
+	byLineDefine(N, O, byblue, 0, 0);
+	byLineDefine(Q, P, byblue, 0, 2);
+	byLineDefine(O, R, byblue, 1, 0);
+	byLineDefine(R, L, byyellow, 1, 2);
+	byLineDefine(R, M, byred, 1, 2);
+	byLineDefine(R, N, byblue, 1, 2);
+	draw byAngle(L, O, M, byred, 1);
+	draw byAngle(M, O, N, byblue, 1);
+	draw byAngle(N, O, L, byyellow, 1);
+	draw byNamedLine(LP, PO, MQ, QO, NO, QP);
+	draw byNamedLineSeq(0)(LM, MN, NL);
+	draw byAngle(L, O, R, byblack, 1);
+	draw byCircleABC.LMN(L, M, N, byblack, 0, 0, 0);
+	draw byAngle(M, R, N, byblue, 2);
+	draw byNamedLine(OR, RM, RN);
+	draw byAngle(N, R, L, byyellow, 2);
+	draw byAngle(L, R, M, byred, 2);
+	draw byNamedLine(RL);
+	draw byLabelsOnPolygon(L, M, R, N)(0, 0);
+	draw byLabelsOnPolygon(M, O, R)(2, 0);
+	draw byLabelsOnPolygon(L, P, Q, M)(2, 0);
+}
+\drawCurrentPictureInMargin
+Let \drawLine{LM,MN,NL} be so constructed that $\drawUnitLine{AC}=\drawUnitLine{LM}$, $\drawUnitLine{DF} = \drawUnitLine{MN}$, and further $\drawUnitLine{GK} = \drawUnitLine{NL}$, let the circle \drawCircle{LMN} be described about the triangle \drawLine{LM,MN,NL} , let its centre be taken, and let it be \drawPointL{O}; let \drawUnitLine{LO}, \drawUnitLine{MO}, \drawUnitLine{NO} be joined. I say that $\drawUnitLine{AB} > \drawUnitLine{LO}$.
+
+For, if not, \drawUnitLine{AB} is either equal to \drawUnitLine{LO}, or less.
+
+First, let $\drawUnitLine{AB} = \drawUnitLine{LO}$. Then, since $\drawUnitLine{AB} = \drawUnitLine{BC}$, and $\drawUnitLine{OL} = \drawUnitLine{OM}$, the two sides \drawUnitLine{AB}, \drawUnitLine{BC} are equal to the two sides \drawUnitLine{LO}, \drawUnitLine{OM} respectively. And, by hypothesis, $\drawUnitLine{AC} =\drawUnitLine{LM}$. $\therefore \drawAngle{ABC} = \drawAngle{LOM}$. \byref{prop:I.VIII}
+
+For the same reason $\drawAngle{DEF} = \drawAngle{MON}$, and further $\drawAngle{GHK} = \drawAngle{NOL}$. $\therefore$ the three angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK} are equal to the three angles \drawAngle{LOM}, \drawAngle{MON}, \drawAngle{NOL}.
+
+But $\drawAngle{LOM} + \drawAngle{MON} + \drawAngle{NOL} = 4\drawRightAngle$. $\therefore \drawAngle{ABC} + \drawAngle{DEF} + \drawAngle{GHK} = 4\drawRightAngle$.
+
+But they are also, by hypothesis, $< 4\drawRightAngle$: which is absurd.
+
+$\therefore \drawUnitLine{AB} \neq \drawUnitLine{LO}$.
+
+I say next that neither is \drawUnitLine{AB} less than \drawUnitLine{LO}. For, if possible, let it be so, and let \drawUnitLine{OP} be made equal to \drawUnitLine{AB}, and \drawUnitLine{OQ} equal to \drawUnitLine{BC}, and let \drawUnitLine{PQ} be joined.
+
+Then, since $\drawUnitLine{AB} = \drawUnitLine{BC}$, $\drawUnitLine{OP} = \drawUnitLine{OQ}$, so that the remainder \drawUnitLine{LP} is equal to \drawUnitLine{QM}.
+
+$\therefore \drawUnitLine{LM} \parallel \drawUnitLine{PQ}$ \byref{prop:VI.II}, and \drawLine{LM,MO,OL} is equiangular with \drawLine{PQ,QO,OP} \byref{prop:I.XXIX}. $\therefore \drawUnitLine{OL}:\drawUnitLine{LM}::\drawUnitLine{OP}::\drawUnitLine{PQ}$ \byref{prop:VI.IV}. And alternately, $\drawUnitLine{LO}:\drawUnitLine{OP}::\drawUnitLine{LM}::\drawUnitLine{PQ}$ \byref{prop:V.XVI}.
+
+But $\drawUnitLine{LO} > \drawUnitLine{OP}$, $\therefore \drawUnitLine{LM} > \drawUnitLine{PQ}$.
+
+But $\drawUnitLine{LM} = \drawUnitLine{AC}$(\conststr), $\therefore \drawUnitLine{AC} > \drawUnitLine{PQ}$.
+
+Since, then, the two sides \drawUnitLine{AB}, \drawUnitLine{BC} are equal to the two sides \drawUnitLine{PO}, \drawUnitLine{OQ}, and the base \drawUnitLine{AC} is greater than the base \drawUnitLine{PQ}, $\therefore \drawAngle{ABC} > \drawAngle{QOP}$. \byref{prop:I.XXV}
+
+Similarly we can prove that $\drawAngle{DEF} > \drawAngle{MON}$, and $\drawAngle{GHK} > \drawAngle{NOL}$.
+
+$\therefore \drawAngle{ABC} + \drawAngle{DEF} + \drawAngle{GHK} > \drawAngle{LOM} + \drawAngle{MON} + \drawAngle{NOL}$.
+
+But, by hypothesis, $\drawAngle{ABC} + \drawAngle{DEF} + \drawAngle{GHK} < 4\drawRightAngle$, $\therefore \drawAngle{LOM} + \drawAngle{MON} + \drawAngle{NOL}$ are much less than $4\drawRightAngle$.
+
+But they are also $= 4\drawRightAngle$: which is absurd.
+
+Therefore $\drawUnitLine{AB} \nless \drawUnitLine{LO}$. And it was proved that $\drawUnitLine{AB} \neq \drawUnitLine{LO}$, $\therefore \drawUnitLine{AB} > \drawUnitLine{LO}$.
+
+Let then \drawUnitLine{OR} be set up from \drawPointL{O} at right angles to the plane of \drawCircle{LMN} \byref{prop:XI.XII}. And let $\drawUnitLine{OR}^2 =\drawUnitLine{AB}^2 - \drawUnitLine{LO}^2$ (Lemma). Let \drawUnitLine{RL}, \drawUnitLine{RM}, \drawUnitLine{RN} be joined.
+
+Then, since \drawUnitLine{RO} is at right angles to the plane of \drawCircle{LMN}, $\therefore \drawUnitLine{RO} \perp \drawUnitLine{LO}, \drawUnitLine{MO}, \drawUnitLine{NO}$.
+
+And, since $\drawUnitLine{LO} = \drawUnitLine{OM}$, while \drawUnitLine{OR} is common and at right angles, $\therefore \drawUnitLine{RL} = \drawUnitLine{RM}$. \byref{prop:I.IV}
+
+For the same reason $\drawUnitLine{RN} = \drawUnitLine{RL} = \drawUnitLine{RM}$.
+
+Next, since by hypothesis $\drawUnitLine{OR}^2 = \drawUnitLine{AB}^2 - \drawUnitLine{LO}^2$, $\therefore \drawUnitLine{AB}^2 = \drawUnitLine{LO}^2, \drawUnitLine{OR}^2$.
+
+But $\drawUnitLine{LR}^2 = \drawUnitLine{LO}^2, \drawUnitLine{OR}^2$, for $\drawAngle{LOR} = \drawRightAngle$ \byref{prop:I.XLVII}. $\therefore \drawUnitLine{AB}^2 = \drawUnitLine{RL}^2$, $\therefore \drawUnitLine{AB} = \drawUnitLine{RL}$.
+
+But each of the straight lines \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK} is equal to \drawUnitLine{AB}, while each of the straight lines \drawUnitLine{RM}, \drawUnitLine{RN} is equal to \drawUnitLine{RL}. $\therefore$ each of the straight lines \drawUnitLine{AB}, \drawUnitLine{BC}, \drawUnitLine{DE}, \drawUnitLine{EF}, \drawUnitLine{GH}, \drawUnitLine{HK} is equal to each of the straight lines \drawUnitLine{RL}, \drawUnitLine{RM}, \drawUnitLine{RN}.
+
+And, since the two sides \drawUnitLine{LR}, \drawUnitLine{RM} are equal to the two sides \drawUnitLine{AB}, \drawUnitLine{BC}, and the base \drawUnitLine{LM} is by hypothesis equal to the base \drawUnitLine{AC}, $\therefore \drawAngle{LRM} = \drawAngle{ABC}$. \byref{prop:I.VIII}
+
+For the same reason $\drawAngle{MRN} = \drawAngle{DEF}$ and $\drawAngle{LRN} = \drawAngle{GHK}$.
+
+$\therefore$, out of the three plane angles \drawAngle{LRM}, \drawAngle{MRN}, \drawAngle{LRN}, which are equal to the three given angles \drawAngle{ABC}, \drawAngle{DEF}, \drawAngle{GHK}, the solid angle
+\drawFromCurrentPicture[middle][angleA]{
+startAutoLabeling;
+draw byNamedSolidAngle(R);
+stopAutoLabeling;
+}
+at \drawPointL{R} has been constructed, which is contained by the angles \drawAngle{LRM}, \drawAngle{MRN}, \drawAngle{LRN}.
+
+\qefNB
+
+\startsubproposition{Lemma}
+
+But how it is possible to take the square on \drawUnitLine{OR} equal to that area by which the square on \drawUnitLine{AB} is greater than the square on \drawUnitLine{LO}, we can show as follows.
+
+Let the straight lines  \drawUnitLine{AB},  \drawUnitLine{LO} be set out, and let  \drawUnitLine{AB} be the greater.
+
+\defineNewPictureBasedOnOld{
+	pair A', B', C', O';
+	numeric l, s';
+	s' := 3/4;
+	l := s'*s*abs(A-B);
+	O' := (0, 0);
+	A' := (-1/2l, 0);
+	B' := (1/2l, 0);
+	C' := (fullcircle scaled l) intersectionpoint ((fullcircle scaled (s'*absXYZ(pointXYZ.L-pointXYZ.O))) shifted B');
+	byLineDefine(A', B', byred, 0, 0);
+	byLineDefine(B', C', byblack, 1, 0);
+	byLineDefine(C', A', byblack, 0, 2);
+	byArcDefine.O(O', B', A')(1/2l, byblue, 0, 0, 0, 0);
+	draw byAngle(A', C', B', byblack, 2);
+	draw byNamedLineSeq(1)(A'B',B'C',C'A');
+	draw byNamedArc(O);
+	draw byLabelsOnPolygon(A', C', B')(0, 0);
+}
+\drawCurrentPictureInMargin
+Let the semicircle \drawArc{O} be described on \drawUnitLine{A'B'}, and into \drawArc{O} let \drawUnitLine{A'C'} be fitted equal to \drawUnitLine{LO}, not being greater than the diameter \drawUnitLine{A'B'} \byref{prop:IV.I}. Let \drawUnitLine{C'B'} be joined.
+
+Since then the angle \drawAngle{A'C'B'} is an angle in the semicircle \drawArc{O}, $\therefore \drawAngle{A'C'B'} = \drawRightAngle$. \byref{prop:III.XXXI}
+
+$\therefore \drawUnitLine{A'B'}^2 = \drawUnitLine{A'C'}^2 + \drawUnitLine{C'B'}^2$. \byref{prop:I.XLVII}
+
+Hence $\drawUnitLine{A'B'}^2 - \drawUnitLine{C'B'}^2 = \drawUnitLine{A'C'}^2$.
+
+But $\drawUnitLine{A'C'} =\drawUnitLine{LO}$.
+
+$\therefore \drawUnitLine{A'B'}^2 - \drawUnitLine{C'B'}^2 = \drawUnitLine{LO}^2$.
+
+If then we cut off \drawUnitLine{OR} equal to \drawUnitLine{BC}, the square on \drawUnitLine{AB} will be greater than the square on \drawUnitLine{LO} by the square on \drawUnitLine{OR}.
+
+
+
+\qef
+
+
+
+\starttheorem{Prop. XXIV. Theor.}\label{prop:XI.XXIV}
+\defineNewPicture{
+	color d[];
+	d1 := (5/2cm, 0cm, 0cm);
+	d2 := (1/5cm, 2cm, 0cm);
+	d3 := (1/4cm, 1/6cm, 2cm);
+	byPointXYZDefine.A(0, 0, 0);
+	byPointXYZEmpty(B, C, D, E, F, G, H);
+	pointXYZ.B := pointXYZ.A + d2;
+	pointXYZ.C := pointXYZ.A + d2 + d3;
+	pointXYZ.D := pointXYZ.A + d3;
+	pointXYZ.E := pointXYZ.A + d1 + d3;
+	pointXYZ.F := pointXYZ.A + d1 + d2 + d3;
+	pointXYZ.G := pointXYZ.A + d1;
+	pointXYZ.H := pointXYZ.A + d1+ d2;
+	bySetProjection(15, 12, 0);
+	byLineDefine(A, B, byred, 1, 0);
+	byLineDefine(D, C, byred, 0, 0);
+	byLineDefine(A, D, byblue, 1, 0);
+	byLineDefine(B, C, byblue, 0, 0);
+	byLineDefine(A, H, byblack, 1, 0);
+	byLineDefine(D, F, byblack, 0, 0);
+	byLineDefine(B, H, byyellow, 1, 0);
+	byLineDefine(C, F, byyellow, 0, 0);
+	byLineDefine(A, G, byblack, 0, 2);
+	byLineDefine(D, E, byblack, 0, 2);
+	byLineDefine(H, G, byblack, 0, 2);
+	byLineDefine(F, E, byblack, 0, 2);
+	byLineDefine(H, F, byblack, 0, 2);
+	byLineDefine(G, E, byblack, 0, 2);
+	byPolygonDefine(A, B, C, D)(white);
+	byPolygonDefine(B, H, F, C)(white);
+	byPolygonDefine(D, C, F, E)(white);
+	draw byAngle(A, B, H, byred, 0);
+	draw byNamedLine(AH, HG);
+	draw byNamedLineSeq(0)(BH, HF);
+	draw byNamedLineSeq(0)(AG, GE);
+	draw byNamedLine(DC, DF);
+	draw byAngle(D, C, F, byred, 1);
+	draw byNamedLineSeq(0)(AB, BC, CF, FE, DE, AD);
+	draw byLabelsOnPolygon(A, B, H, F, E, D)(0, 0);
+	draw byLabelsOnPolygon(E, G, A)(2, 0);
+	draw byLabelsOnPolygon(F, C, D)(2, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{a solid be contained by parallel planes, the opposite planes in it are equal and parallelogrammic.}
+
+For let the solid \drawPolygon[middle][theSolid]{ABCD,BHFC,DCFE} be contained by the parallel planes
+\drawLine[middle][planeAC]{AB,BC,CD,DA}, \drawLine[middle][planeGF]{GH,HF,FE,EG}, \drawLine[middle][planeAH]{AB,BH,HG,GA}, \drawLine[middle][planeDF]{DC,CF,FE,ED}, \drawLine[middle][planeBF]{BH,HF,FC,CB}, \drawLine[middle][planeAE]{AG,GE,ED,DA}. I say that the opposite planes in it are equal and parallelogrammic.
+
+For, since the two parallel planes \planeAH, \planeDF\ are cut by the plane \planeAC,
+their common sections are parallel. \byref{prop:XI.XVI}
+
+$\therefore \drawUnitLine{AB} \parallel \drawUnitLine{DC}$.
+
+Again, since the two parallel planes \planeBF, \planeAE\ are cut by the plane \planeAC, their common sections are parallel. \byref{prop:XI.XVI}
+
+$\therefore \drawUnitLine{BC} \parallel \drawUnitLine{AD}$.
+
+But $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, $\therefore$ \planeAC\ is a parallelogram.
+
+Similarly we can prove that each of the planes \planeDF, \planeGF, \planeAH, \planeBF, \planeAE is a parallelogram.
+
+Let \drawUnitLine{AH}, \drawUnitLine{DF} be joined.
+
+Then, since $\drawUnitLine{AB} \parallel \drawUnitLine{DC}$, and $\drawUnitLine{BH} \parallel \drawUnitLine{CF}$, the two straight lines \drawUnitLine{AB}, \drawUnitLine{BH} which meet one another are parallel to the two straight lines \drawUnitLine{DC}, \drawUnitLine{CF} which meet one
+another, not in the same plane; therefore they will contain equal angles. \byref{prop:XI.X}
+
+$\therefore \drawAngle{ABH} =  \drawAngle{DCF}$.
+
+And, since the two sides \drawUnitLine{AB}, \drawUnitLine{BH} are equal to the two sides \drawUnitLine{DC}, \drawUnitLine{CF} \byref{prop:I.XXXIV}, and $\drawAngle{ABH} =  \drawAngle{DCF}$, $\therefore \drawUnitLine{AH} = \drawUnitLine{DF}$, and the triangle \drawLine{AB,BH,HA} is equal to the triangle \drawLine{DC,CF,FD}. \byref{prop:I.IV}
+
+And the parallelogram \planeAH\ is double of the triangle \drawLine{AB,BH,HA}, and the parallelogram \planeDF\ double of the triangle \drawLine{DC,CF,FD}. \byref{prop:I.XXXIV}
+
+$\therefore \planeAH\ =  \planeDF$.
+
+Similarly we can prove that $\planeAC\ = \planeGF$, and $\planeAE\ = \planeBF$.
+
+\qed
+
+
+
+\starttheorem{Prop. XXV. Theor.}\label{prop:XI.XXV} % this one's unfinished due to lack of enthusiasm
+\defineNewPicture{
+	color d[];
+	numeric f;
+	d1 := (-1/8cm, 3/2cm, 0cm);
+	d2 := (0cm, 0cm, -3/2cm);
+	d3 := (3/2cm, 0cm, 0cm);
+	f := 3/5;
+	byPointXYZDefine.A(0, 0, 0);
+	byPointXYZEmpty(B, C, D, E, F, G, H, H', R, V, U, K, L, M, N, P, L', W, S, K', O, I, N', Q, X, Y, T);
+	byPointLabelRemove(H', L', K', N');
+	pointXYZ.B := pointXYZ.A + d1;
+	pointXYZ.C := pointXYZ.A + d2 + d3;
+	pointXYZ.D := pointXYZ.A + d1 + d2 + d3;
+	pointXYZ.R := pointXYZ.B + d2;
+	pointXYZ.V := pointXYZ.A + d2;
+	pointXYZ.H := pointXYZ.A + d3;
+	pointXYZ.H' := pointXYZ.H + d1;
+	pointXYZ.E := f[pointXYZ.A, pointXYZ.H];
+	pointXYZ.F := f[pointXYZ.V, pointXYZ.C];
+	pointXYZ.G := f[pointXYZ.B, pointXYZ.H'];
+	pointXYZ.U := f[pointXYZ.R, pointXYZ.D];
+	pointXYZ.K := 2[pointXYZ.E, pointXYZ.A];
+	pointXYZ.L := 3[pointXYZ.E, pointXYZ.A];
+	pointXYZ.M := 2[pointXYZ.E, pointXYZ.H];
+	pointXYZ.N := 3[pointXYZ.E, pointXYZ.H];
+	pointXYZ.P := 2[pointXYZ.F, pointXYZ.V];
+	pointXYZ.L' := 3[pointXYZ.F, pointXYZ.V];
+	pointXYZ.W := 2[pointXYZ.F, pointXYZ.C];
+	pointXYZ.S := 3[pointXYZ.F, pointXYZ.C];
+	pointXYZ.K' := 2[pointXYZ.G, pointXYZ.B];
+	pointXYZ.O := 3[pointXYZ.G, pointXYZ.B];
+	pointXYZ.I := 2[pointXYZ.G, pointXYZ.H'];
+	pointXYZ.N' := 3[pointXYZ.G, pointXYZ.H'];
+	pointXYZ.Q := 2[pointXYZ.U, pointXYZ.R];
+	pointXYZ.X := 3[pointXYZ.U, pointXYZ.R];
+	pointXYZ.Y := 2[pointXYZ.U, pointXYZ.D];
+	pointXYZ.T := 3[pointXYZ.U, pointXYZ.D];
+	bySetProjection(15, -15, 0);
+	byLineDefine(E, A, byblue, 0, 0);
+	byLineDefine(A, K, byblue, 1, 0);
+	byLineDefine(K, L, byblue, 0, 2);
+	byLineDefine(E, H, byyellow, 0, 0);
+	byLineDefine(H, M, byyellow, 1, 0);
+	byLineDefine(M, N, byyellow, 0, 2);
+	draw byPolygon(X, Q, P, L')(white);
+	draw byPolygon(Q, R, V, P)(white);
+	draw byPolygon(R, U, F, V)(white);
+	draw byPolygon(U, D, C, F)(white);
+	draw byPolygon(D, Y, W, C)(white);
+	draw byPolygon(Y, T, S, W)(white);
+	draw byPolygon(L', P, K, L)(white);
+	draw byPolygon(P, V, A, K)(white);
+	draw byPolygon(V, F, E, A)(white);
+	draw byPolygon(F, C, H, E)(white);
+	draw byPolygon(C, W, M, H)(white);
+	draw byPolygon(W, S, N, M)(white);
+	draw byPolygon(L, O, X, L')(black);
+	draw byPolygon(K, K', Q, P)(black);
+	draw byPolygon(A, B, R, V)(byblue);
+	draw byPolygon(E, G, U, F)(byred);
+	draw byPolygon(H, H', D, C)(byyellow);
+	draw byPolygon(M, I, Y, W)(black);
+	draw byPolygon(N, N', T, S)(black);
+	draw byPolygon(X, Q, K', O)(white);
+	draw byPolygon(Q, R, B, K')(white);
+	draw byPolygon(R, U, G, B)(white);
+	draw byPolygon(G, U, D, H')(white);
+	draw byPolygon(D, Y, I, H')(white);
+	draw byPolygon(Y, T, N', I)(white);
+	draw byPolygon(L, O, K', K)(white);
+	draw byPolygon(K, K', B, A)(white);
+	draw byPolygon(A, B, G, E)(white);
+	draw byPolygon(E, G, H', H)(white);
+	draw byPolygon(H, H', I, M)(white);
+	draw byPolygon(M, I, N', N)(white);
+	draw byNamedLineSeq(0)(KL, AK, EA, EH, HM, MN);
+	draw byLabelsOnPolygon(L, O, X, Q, R, U, D, Y, T, S, N, M, H, E, A, K)(0, 0);
+}
+\drawCurrentPictureInMargin
+\problem{I}{f}{a parallelepipedal solid be cut by a plane which is parallel to the opposite planes, then, as the base is to the base, so will the solid be to the solid.}
+
+For let the parallelepipedal solid \drawPolygon[middle][solidABCD]{RUGB,GUDH',ABGE,EGH'H,HH'DC} be cut by the plane \drawPolygon[middle][planeFG]{EGUF} which is parallel to the opposite planes \drawPolygon[middle][pgAR]{ABRV}, \drawPolygon[middle][pgDH]{HH'DC}; I say that $\drawPolygon[middle][pgAF]{VFEA} : \drawPolygon[middle][pgEC]{FCHE} :: \drawPolygon[middle][solidAU]{RUGB,ABGE,EGUF} : \drawPolygon[middle][solidED]{GUDH',EGH'H,HH'DC}$.
+
+For let \drawUnitLine{AH} be produced in each direction, let any number of straight lines whatever, \drawUnitLine{AK}, \drawUnitLine{KL}, be made equal to \drawUnitLine{AE}, and any number whatever, \drawUnitLine{HM}, \drawUnitLine{MN}, equal to \drawUnitLine{EH}; and let the parallelograms \drawPolygon[middle][pgLP]{L'PKL}, \drawPolygon[middle][pgKV]{PVAK}, \drawPolygon[middle][pgHW]{CWMH}, \drawPolygon[middle][pgMS]{WSNM} and the solids \drawPolygon[middle][solidLQ]{LOK'K,XQK'O,KK'QP}, \drawPolygon[middle][solidKR]{KK'BA,QRBK',ABRV}, \drawPolygon[middle][solidDM]{HH'IM,DYIH',MIYW}, \drawPolygon[middle][solidMT]{MIN'N,YTN'I,NN'TS} be completed.
+
+Then, since $\drawUnitLine{LK} = \drawUnitLine{KA} = \drawUnitLine{AE}$,
+$\pgLP = \pgKV = \pgAF$, $\drawPolygon[middle][pgKO]{LOK'K} = \drawPolygon[middle][pgKB]{KK'BA} = \drawPolygon[middle][pgAG]{ABGE}$, and further $\drawPolygon[middle][pgLX]{LOXL'} = \drawPolygon[middle][pgKQ]{KK'QP} = \pgAR$, for they are opposite. \byref{prop:XI.XXIV}
+
+For the same reason $\pgEC = \pgHW = \pgMS$, $\drawPolygon[middle][pgHG]{EGH'H} = \drawPolygon[middle][pgHI]{HH'IM} = \drawPolygon[middle][pgIN]{MIN'N}$, and further $\pgDH = \drawPolygon[middle][pgMY]{MIYW} = \drawPolygon[middle][pgNT]{NN'TS}$. 
+
+$\therefore$ in \solidLQ, \solidKR, \solidAU three planes are equal to three planes.
+
+But the three planes are equal to the three opposite; $\therefore \solidLQ = \solidKR = \solidAU$.
+
+For the same reason $\solidED = \solidDM = \solidMT$.
+
+$\therefore \drawPolygon[middle][pgLF]{L'PKL,PVAK,VFEA} : \pgAF :: \drawPolygon[middle][solidLU]{LOK'K,KK'BA,ABGE,XQK'O,QRBK',RUGB,EGUF} : \solidAU$.
+
+For the same reason, $\drawPolygon[middle][pgNF]{FCHE,CWMH,WSNM} : \pgEC :: \drawPolygon[middle][solidNU]{EGH'H,HH'IM,MIN'N,GUDH',DYIH',YTN'I,NN'TS} : \solidED$.
+
+And\\
+if $\pgLF = \pgNF$, $\solidLU = \solidNU$;\\
+if $\pgLF > \pgNF$, $\solidLU > \solidNU$;\\
+if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
+
+Therefore, there being four magnitudes, the two bases \pgAF, \pgEC, and the two solids \solidAU, \solidED, equimultiples have been taken of the base \pgAF and the solid \solidAU, namely the base \pgLF and the solid \solidLU, and equimultiples of the base \pgEC and the solid \solidED, namely the base \pgNF and the solid \solidNU, and it has been proved that, if $\pgLF > \pgNF$, $\solidLU > \solidNU$, if $\pgLF = \pgNF$, $\solidLU = \solidNU$, and if $\pgLF < \pgNF$, $\solidLU < \solidNU$.
+
+$\therefore \pgAF : \pgEC :: \solidAU :: \solidED$. \byref{def:V.V}
+
+\qed
+
+\end{document}
