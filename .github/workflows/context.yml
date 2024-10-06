@@ -25,6 +25,9 @@ jobs:
       - name: Build lettrines
         run: mpost lettrines.mp
         working-directory: lettrines
+        
+      - name: Get fresh byrne-latex
+        run: git clone https://github.com/jemmybutton/byrne-latex.git && cp byrne-latex/byrne.* .
 
       - name: Build English pdf
         run: lualatex -interaction=nonstopmode byrne-en-latex.tex && lualatex -interaction=nonstopmode byrne-en-latex.tex
