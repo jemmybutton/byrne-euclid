@@ -1003,6 +1003,21 @@
 % Other
 %
 
+\DeclareDocumentCommand{\bylabel}{o m}{%
+\IfNoValueTF{#1}{\label{#2}}
+{%
+\zcRefTypeSetup{#1}{%
+  name-sg = {#1},
+  Name-sg = {#1},
+  name-pl = {#1},
+  Name-pl = {#1},
+  namesep = {},
+  refbounds = {,\iffalse,\fi,},%
+}%
+{\zcsetup{reftype=#1}\label{#2}}
+}%
+}
+
 \newcommand\byref[1]{(\zcref{#1})}
 \newcommand\charspacing[2]{\addfontfeature{LetterSpace=#1} #2 \addfontfeature{LetterSpace=0}}
 
