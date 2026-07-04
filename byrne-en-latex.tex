@@ -11091,8 +11091,8 @@ byAngleDefine(B, A, C, byblue, SOLID_SECTOR);
 byAngleDefine(A, C, B, byred, SOLID_SECTOR);
 draw byNamedAngleResized(BAC, ABC, ACB);
 byLineDefine(A, B, byred, DASHED_LINE, REGULAR_WIDTH);
-byLineDefine(C, A, byblack, DASHED_LINE, REGULAR_WIDTH);
-byLineDefine(B, C, byblue, DASHED_LINE, REGULAR_WIDTH);
+byLineDefine(C, A, byblue, DASHED_LINE, REGULAR_WIDTH);
+byLineDefine(B, C, byblack, DASHED_LINE, REGULAR_WIDTH);
 draw byNamedLineSeq(0)(AB,BC,CA);
 d := (0, -3u);
 D := A shifted d;
@@ -11131,8 +11131,8 @@ $\therefore \drawUnitLine{FG} : \drawUnitLine{FD} :: \drawUnitLine{EF} : \drawUn
 and consequently $\drawUnitLine{FG} = \drawUnitLine{EF}$ \byref{prop:V.IX};\\
 $\therefore \triangleDEF\ =
 \drawLine[bottom][triangleDGF]{FD,FG,GD}$ in every respect \byref{prop:I.IV}.\\
-But $\drawAngle{GFD} = \drawAngle{A}$ \byref{\constref},\\
-and $\therefore \drawAngle{EFD} = \drawAngle{A}$;\\
+But $\drawAngle{FDG} = \drawAngle{A}$ \byref{\constref},\\
+and $\therefore \drawAngle{FDE} = \drawAngle{A}$;\\
 and since also $\drawAngle{EFD} = \drawAngle{C}$,\\
 $\drawAngle{E} = \drawAngle{B}$ \byref{prop:I.XXXII};\\
 and $\therefore$ \triangleABC\ and \triangleDEF\ are equiangular, with their equal angles opposite to homologous sides.

@@ -11345,8 +11345,8 @@ byAngleDefine(B, A, C, byblue, SOLID_SECTOR);
 byAngleDefine(A, C, B, byred, SOLID_SECTOR);
 draw byNamedAngleResized(BAC, ABC, ACB);
 byLineDefine(A, B, byred, DASHED_LINE, REGULAR_WIDTH);
-byLineDefine(C, A, byblack, DASHED_LINE, REGULAR_WIDTH);
-byLineDefine(B, C, byblue, DASHED_LINE, REGULAR_WIDTH);
+byLineDefine(C, A, byblue, DASHED_LINE, REGULAR_WIDTH);
+byLineDefine(B, C, byblack, DASHED_LINE, REGULAR_WIDTH);
 draw byNamedLineSeq(0)(AB,BC,CA);
 d := (0, -3u);
 D := A shifted d;
@@ -11383,7 +11383,7 @@ $\therefore \drawUnitLine{FG} : \drawUnitLine{FD} :: \drawUnitLine{EF} : \drawUn
 и следовательно $\drawUnitLine{FG} = \drawUnitLine{EF}$ \byref{prop:V.IX},\\
 $\therefore \triangleDEF\ =
 \drawLine[bottom][triangleDGF]{FD,FG,GD}$ во всех отношениях \byref{prop:I.IV},\\
-но $\drawAngle{GFD} = \drawAngle{A}$ \byref{\constref} и~$\therefore \drawAngle{EFD} = \drawAngle{A}$,\\
+но $\drawAngle{FDG} = \drawAngle{A}$ \byref{\constref} и~$\therefore \drawAngle{FDE} = \drawAngle{A}$,\\
 и поскольку также $\drawAngle{EFD} = \drawAngle{C}$,\\
 $\drawAngle{E} = \drawAngle{B}$ \byref{prop:I.XXXII}.\\
 И $\therefore$ \triangleABC\ и~\triangleDEF\ равноугольны с~равными углами против соответственных сторон.
