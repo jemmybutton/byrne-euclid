@@ -1,4 +1,4 @@
-\documentclass[letters,booklanguage=english]{byrnebook}
+\documentclass[booklanguage=english]{byrnebook}
 %\usepackage{lua-visual-debug}
 
 \begin{document}
@@ -1422,14 +1422,14 @@ $\left\{
 , then draw \drawUnitLine{CD} and,
 
 \begin{center}
-$\drawAngle{C,DCB} = \drawAngle{CDA}$ \byref{prop:I.V}
+$\drawAngle{ACD} = \drawAngle{CDA}$ \byref{prop:I.V}
 
 $\therefore \drawAngle{DCB} < \drawAngle{CDA}$ and
 
 $\left.
 	\begin{aligned}
-		\therefore\drawAngle{DCB} &< \drawAngle{CDA,D}\\
-		\mbox{but \byref{prop:I.V}} \drawAngle{DCB} &= \drawAngle{CDA,D}\\
+		\therefore\drawAngle{DCB} &< \drawAngle{CDB}\\
+		\mbox{but \byref{prop:I.V}} \drawAngle{DCB} &= \drawAngle{CDB}\\
 	\end{aligned}
 	\right\}\mbox{which is absurd,}$
 \end{center}
@@ -1511,7 +1511,7 @@ draw byNamedLineSeq(0)(BE,AB,CA,CF);
 draw byLabelsOnPolygon(D, B, A, C)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{bisect a given rectilinear angle (\drawAngle{BAD,CAD}).}
+\problem{T}{o}{bisect a given rectilinear angle (\drawAngle{BAC}).}
 
 \begin{center}
 Take $\drawUnitLine{AB} = \drawUnitLine{CA}$ \byref{prop:I.III}
@@ -1687,16 +1687,16 @@ draw byLabelLineEnd(A, D, 0);
 
 \begin{center}
 If \drawUnitLine{ED} be $\perp$ to \drawUnitLine{BC} then,\\
-\drawAngle{ADB,EDA} and $\drawAngle{CDE} = \drawTwoRightAngles$ \byref{def:I.X}, % improvement: def. 7 in the original is likely to be a mistake
+\drawAngle{EDB} and $\drawAngle{CDE} = \drawTwoRightAngles$ \byref{def:I.X}, % improvement: def. 7 in the original is likely to be a mistake
 
 but if \drawUnitLine{ED} be not $\perp$ to \drawUnitLine{BC},\\
 draw $\drawUnitLine{AD} \perp \drawUnitLine{BC}$ \byref{prop:I.XI};\\
-$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ \byref{\constref},\\
-$\drawAngle{ADB} = \drawAngle{CDE,EDA} = \drawAngle{EDA} + \drawAngle{CDE}$
+$\drawAngle{ADB} +\drawAngle{CDA} = \drawTwoRightAngles$ \byref{\constref},\\
+$\drawAngle{ADB} = \drawAngle{CDA} = \drawAngle{EDA} + \drawAngle{CDE}$
 
-$\therefore \drawAngle{ADB} + \drawAngle{CDE,EDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \byref{ax:I.II}
+$\therefore \drawAngle{ADB} + \drawAngle{CDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \byref{ax:I.II}
 
-$= \drawAngle{ADB,EDA} + \drawAngle{CDE} = \drawTwoRightAngles$.
+$= \drawAngle{EDB} + \drawAngle{CDE} = \drawTwoRightAngles$.
 \end{center}
 
 \qed
@@ -1727,11 +1727,11 @@ draw byLabelLineEnd(A, D, 0);
 \begin{center}
 For, if possible let \drawUnitLine{ED}, and not \drawUnitLine{DC},\\
 be the continuation of \drawUnitLine{BD},\\
-then $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$
+then $\drawAngle{BDA} + \drawAngle{EDA} = \drawTwoRightAngles$
 
 but by the hypothesis $\drawAngle{BDA} + \drawAngle{CDA} = \drawTwoRightAngles$
 
-$\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$ \byref{ax:I.III}; which is absurd \byref{ax:I.IX}.
+$\therefore\drawAngle{EDA} = \drawAngle{CDA}$ \byref{ax:I.III}; which is absurd \byref{ax:I.IX}.
 
 $\therefore \drawUnitLine{ED}$ is not the continuation of \drawUnitLine{BD}, and the like may be demonstrated of any other straight line except \drawUnitLine{DC}, $\therefore \drawUnitLine{DC}$ is the continuation of \drawUnitLine{BD}.
 \end{center}
@@ -1971,7 +1971,7 @@ draw \drawUnitLine{BC}.
 Then $\because \drawUnitLine{CD} = \drawUnitLine{BD}$ \byref{\constref},\\ %because
 $\drawAngle{CBD} = \drawAngle{C}$ \byref{prop:I.V}
 
-$\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \byref{ax:I.IX}
+$\therefore \drawAngle{CBA} > \drawAngle{C}$ \byref{ax:I.IX}
 
 $\therefore \drawUnitLine{DA} + \drawUnitLine{CD} > \drawUnitLine{AB}$ \byref{prop:I.XIX}
 
@@ -2225,9 +2225,9 @@ and $\drawUnitLine{CA} = \drawUnitLine{GE}$ \byref{prop:I.III},\\
 draw \drawUnitLine{CD} and \drawUnitLine{BC}.
 
 $\because \drawUnitLine{CA} = \drawUnitLine{AD}$ \byref{ax:I.I,\hypref,\constref}\\ %because
-$\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \byref{prop:I.V}\\
+$\therefore \drawAngle{CDA} = \drawAngle{DCA}$ \byref{prop:I.V}\\
 but $\drawAngle{CDB} < \drawAngle{DCA}$,\\
-and $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$,
+and $\therefore \drawAngle{CDB} < \drawAngle{BCD}$,
 
 $\therefore \drawUnitLine{DB} > \drawUnitLine{BC}$ \byref{prop:I.XIX}
 
@@ -2315,7 +2315,7 @@ draw byNamedLineSeq(0)(GD,FG,EF,DE);
 draw byLabelsOnPolygon(C, B, A)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(D, G, F, E)(ALL_LABELS, 0);
 }
-\problem{I}{f}{two triangles have two angles of the one respectively equal to two angles of the other ($\drawAngle{A} = \drawAngle{D}$ and $\drawAngle{B} = \drawAngle{GED,FEG}$), and a side of the one equal to a side of the other similarly placed with respect to the equal angles, the remaining sides and angles are respectively equal to one another.}
+\problem{I}{f}{two triangles have two angles of the one respectively equal to two angles of the other ($\drawAngle{A} = \drawAngle{D}$ and $\drawAngle{B} = \drawAngle{FED}$), and a side of the one equal to a side of the other similarly placed with respect to the equal angles, the remaining sides and angles are respectively equal to one another.}
 \drawCurrentPictureInMargin
 \startsubproposition{Case I.}
 \begin{center}
@@ -2613,7 +2613,7 @@ draw byNamedLineSeq(0)(CA,noLine,AD,AB,BC);
 draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{I}{f}{any side (\drawUnitLine{AB}) of a triangle be produced, the external angle (\drawAngle{DAE,EAC}) is equal to the sum of the two internal and opposite angles (\drawAngle{B} and \drawAngle{C}), and the three internal angles of any triangle taken together are equal to two right angles.}
+\problem[3]{I}{f}{any side (\drawUnitLine{AB}) of a triangle be produced, the external angle (\drawAngle{CAD}) is equal to the sum of the two internal and opposite angles (\drawAngle{B} and \drawAngle{C}), and the three internal angles of any triangle taken together are equal to two right angles.}
 
 \begin{center}
 Through the point \drawPointL[middle][AD,AE]{A} draw\\
@@ -2626,10 +2626,10 @@ Then $\left\{
 	\end{aligned}
 	\right\}$ \byref{prop:I.XXIX},
 
-$\therefore \drawAngle{B} + \drawAngle{C} = \drawAngle{DAE,EAC}$ \byref{ax:I.II},
+$\therefore \drawAngle{B} + \drawAngle{C} = \drawAngle{CAD}$ \byref{ax:I.II},
 
 and therefore\\
-$\drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{DAE,EAC,CAB} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
+$\drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{BAD} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
 \end{center}
 
 \qed
@@ -2717,7 +2717,7 @@ $\therefore \left\{
 		\drawAngle{B} &= \drawAngle{C}\\
 	\end{aligned}
 	\right\}$ \byref{prop:I.XXVI}\\
-and $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \byref{ax:I.II}.
+and $\drawAngle{CAB} = \drawAngle{BDC}$ \byref{ax:I.II}.
 \end{center}
 
 Therefore the opposite sides and angles of the parallelogram are equal: and as the triangles \drawLine{AD,CD,AC} and \drawLine{AB,BD,AD} are equal in every respect \byref{prop:I.IV}, the diagonal divides the parallelogram into two equal parts.
@@ -3511,7 +3511,7 @@ Draw $\drawUnitLine{AK} \parallel \drawUnitLine{CI}$ \byref{prop:I.XXXI}\\
 also draw \drawUnitLine{BF} and \drawUnitLine{AI}.\\
 $\drawAngle{BCI} = \drawAngle{FCA}$.
 
-To each add \drawAngle{ACB} $\therefore \drawAngle{BCI,ACB} = \drawAngle{FCA,ACB}$,\\
+To each add \drawAngle{ACB} $\therefore \drawAngle{ACI} = \drawAngle{FCB}$,\\
 $\drawUnitLine{BC} = \drawUnitLine{CI}$ and $\drawUnitLine{CA} = \drawUnitLine{CF}$;
 
 $\therefore
@@ -4310,7 +4310,7 @@ draw \drawProportionalLine{AG} also.
 
 $\drawAngle{A} = \drawAngle{CEA}$ \byref{prop:I.V} $=$ half a right angle \byref{prop:I.XXXII}\\
 $\drawAngle{CBE} = \drawAngle{BEC}$ \byref{prop:I.V} $=$ half a right angle \byref{prop:I.XXXII}\\
-$\therefore \drawAngle{CEA,BEC} = $ a right angle.
+$\therefore \drawAngle{AEB} = $ a right angle.
 
 $\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} =$\\
 half a right angle \byref{prop:I.V,prop:I.XXXII,prop:I.XXIX,prop:I.XXXIV},\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
@@ -4929,11 +4929,11 @@ But if neither of the lines \drawUnitLine{AC} or \drawUnitLine{BD} pass through 
 
 \begin{center}
 If \drawUnitLine{AC} be bisected, \drawUnitLine{EF} $\perp$ to it \byref{prop:III.III}\\
-$\therefore \drawAngle{FED,DEC} = \drawRightAngle$\\
+$\therefore \drawAngle{CEF} = \drawRightAngle$\\
 and if \drawUnitLine{BD} be bisected, $\drawUnitLine{EF} \perp \drawUnitLine{BD}$ \byref{prop:III.III}\\
 $\therefore \drawAngle{FED} = \drawRightAngle$;
 
-and $\therefore \drawAngle{FED} = \drawAngle{FED,DEC}$;\\
+and $\therefore \drawAngle{FED} = \drawAngle{CEF}$;\\
 a part equal to the whole, which is absurd:
 
 $\therefore$ \drawUnitLine{AC} and \drawUnitLine{BD} do not bisect one another.
@@ -5099,7 +5099,7 @@ Of the others, that (\drawUnitLine{FB}) which is nearer to the line passing thro
 Fig. 2. The two lines (\drawUnitLine{FK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
 
 \startsubproposition{Figure I.}
-To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \byref{def:I.XV} $\drawUnitLine{FA} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \byref{prop:I.XX} in like manner \drawUnitLine{FA} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \byref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \byref{ax:I.III}, and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{FA}.
+To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \byref{def:I.XV} $\drawUnitLine{FA} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \byref{prop:I.XX} in like manner \drawUnitLine{FA} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \byref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \byref{ax:I.III}, and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{FEB} > \drawAngle{CEF}$, and $\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{FA}.
 
 \startsubproposition{Figure II.}
 \begin{center}
@@ -5712,7 +5712,7 @@ draw $\left\{
 
 In
 \drawFromCurrentPicture{
-draw byNamedAngle(NEG,GEF,FEM);
+draw byNamedAngle(MEN);
 startAutoLabeling;
 draw byNamedLineSeq(0)(MN,EM,EN);
 stopAutoLabeling;
@@ -5725,7 +5725,7 @@ draw byNamedLineSeq(0)(FG,EF,EG);
 stopAutoLabeling;
 },\\
 $\drawUnitLine{EN} \mbox{ and } \drawUnitLine{EM} = \drawUnitLine{EG} \mbox{ and } \drawUnitLine{EF}$;\\
-but $\drawAngle{NEG,GEF,FEM} > \drawAngle{GEF}$,
+but $\drawAngle{MEN} > \drawAngle{GEF}$,
 
 $\therefore \drawUnitLine{MN} > \drawUnitLine{EF}$ \byref{prop:I.XXIV}
 \end{center}
@@ -5834,7 +5834,7 @@ therefore \drawUnitLine{AC} drawn $\perp \drawUnitLine{DA}$ does not meet the ci
 Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be drawn from a point \drawFromCurrentPicture{draw byNamedPointLines(G,"GF");} between \drawUnitLine{EK} and the circle, which, if it be possible, does not cut the circle.
 
 \begin{center}
-$\because \drawAngle{DAG,GAE} = \drawRightAngle$,\\ %Because
+$\because \drawAngle{EAD} = \drawRightAngle$,\\ %Because
 $\therefore \drawAngle{DAG}$ is an acute angle;\\
 suppose $\drawUnitLine{DG} \perp \drawUnitLine{AG}$, drawn from the centre of the circle, it must fall at the side of \drawAngle{DAG} the acute angle.
 
@@ -5981,9 +5981,9 @@ For, if it be possible, let the centre be without \drawUnitLine{AC}, and draw \d
 \begin{center}
 $\because \drawUnitLine{CF} \perp \drawUnitLine{CE}$ \byref{prop:III.XVIII}\\ % Because
 $\therefore \drawAngle{FCE} = \drawRightAngle$, a right angle;\\
-but $\drawAngle{ACF,FCE} = \drawRightAngle$ \byref{\hypref},
+but $\drawAngle{ECA} = \drawRightAngle$ \byref{\hypref},
 
-and $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$, a part equal to the whole, which is absurd.
+and $\therefore \drawAngle{FCE} = \drawAngle{ECA}$, a part equal to the whole, which is absurd.
 \end{center}
 
 Therefore the assumed point is not the centre; and in the same manner it can be demonstrated, that no other point without \drawUnitLine{AC} is the centre.
@@ -6053,16 +6053,16 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
 \begin{center}
-Let the centre be within \drawAngle{BAF,CAF}, the angle at the circumference;
+Let the centre be within \drawAngle{BAC}, the angle at the circumference;
 
 draw \drawUnitLine{AF} from the angular point through the centre of the circle;\\
 then $\drawAngle{B} = \drawAngle{BAF}$, and $\drawAngle{C} = \drawAngle{CAF}$, because of the equality of the sides \byref{prop:I.V}.
 
-Hence $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ twice } \drawAngle{BAF,CAF}$.
+Hence $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ twice } \drawAngle{BAC}$.
 
 But $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$,\\
 and $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$,\\
-$\therefore \drawAngle{BEF,CEF} = \mbox{ twice } \drawAngle{BAF,CAF}$.
+$\therefore \drawAngle{BEC} = \mbox{ twice } \drawAngle{BAC}$.
 \end{center}
 
 \vfill\pagebreak
@@ -6094,7 +6094,7 @@ draw byLabelsOnPolygon(G, E, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 Let the centre be without \drawAngle{FDC}\\
 and draw \drawUnitLine{DG}, the diameter.
 
-$\because \drawAngle{GEF,FEC} = \mbox{ twice } \drawAngle{GDF,FDC}$;\\ %Because
+$\because \drawAngle{GEC} = \mbox{ twice } \drawAngle{GDC}$;\\ %Because
 and $\drawAngle{GEF} = \mbox{ twice } \drawAngle{GDF}$ (case I.);
 
 $\therefore \drawAngle{FEC} = \mbox{ twice } \drawAngle{FDC}$.
@@ -6176,7 +6176,7 @@ Let the segment be a semicircle, or less than a semicircle, draw \drawUnitLine{G
 \begin{center}
 $\drawAngle{BAG} = \drawAngle{BEG}$ and $\drawAngle{GAD} = \drawAngle{GED}$ (case I.)
 
-$\therefore \drawAngle{BAG,GAD} = \drawAngle{BEG,GED}$.
+$\therefore \drawAngle{BAD} = \drawAngle{BED}$.
 \end{center}
 
 \qed
@@ -6210,7 +6210,7 @@ draw byCircleR(E, r, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
-\problem{T}{he}{opposite angles \drawAngle{DAC,CAB} and \drawAngle{BCA,ACD}, \drawAngle{CDB,BDA} and \drawAngle{ABD,DBC} of any quadrilateral figure inscribed in a circle, are together equal to two right angles.}
+\problem{T}{he}{opposite angles \drawAngle{DAB} and \drawAngle{BCD}, \drawAngle{CDA} and \drawAngle{ABC} of any quadrilateral figure inscribed in a circle, are together equal to two right angles.}
 
 \begin{center}
 Draw \drawUnitLine{AC} and \drawUnitLine{BD} the diagonals;\\
@@ -6218,11 +6218,11 @@ and because angles in the same segment are equal\\
 $\drawAngle{CDB} = \drawAngle{CAB}$,\\
 and $\drawAngle{DAC} = \drawAngle{DBC}$;
 
-add \drawAngle{BCA,ACD} to both.\\
-$\drawAngle{DAC,CAB} + \drawAngle{BCA,ACD} = \drawAngle{BCA,ACD} + \drawAngle{CDB} + \drawAngle{DBC} = \mbox{ two right angles }$ \byref{prop:I.XXXII}.
+add \drawAngle{BCD} to both.\\
+$\drawAngle{DAB} + \drawAngle{BCD} = \drawAngle{BCD} + \drawAngle{CDB} + \drawAngle{DBC} = \mbox{ two right angles }$ \byref{prop:I.XXXII}.
 
 In like manner it may be shown that,\\
-$\drawAngle{CDB,BDA} + \drawAngle{ABD,DBC} = \drawTwoRightAngles$.
+$\drawAngle{CDA} + \drawAngle{ABC} = \drawTwoRightAngles$.
 \end{center}
 
 \qed
@@ -6561,7 +6561,7 @@ draw byLabelsOnPolygon(E, H, F)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \begin{center}
 For if it be possible, let one of them\\
 \drawAngle{D} be greater than the other \drawAngle{BAK}\\
-and make $\drawAngle{BAK,KAC} = \drawAngle{D}$
+and make $\drawAngle{BAC} = \drawAngle{D}$
 
 $\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \byref{prop:III.XXVI}
 
@@ -6958,7 +6958,7 @@ describe \drawCircle[middle][1/5]{G} with \drawUnitLine{AG} or \drawUnitLine{GB}
 
 \drawUnitLine{KD} is tangent to \circleG\ \byref{prop:III.XVI}
 
-$\therefore$ \drawUnitLine{AB} divides the circle into two segments capable of containing angles equal to \drawAngle{EAK,BAE} and \drawAngle{DAB} which were made respectively equal to \drawAngle{givenObtuse} and \drawAngle{givenAcute} \byref{prop:III.XXXII}.
+$\therefore$ \drawUnitLine{AB} divides the circle into two segments capable of containing angles equal to \drawAngle{BAK} and \drawAngle{DAB} which were made respectively equal to \drawAngle{givenObtuse} and \drawAngle{givenAcute} \byref{prop:III.XXXII}.
 \end{center}
 
 \qed
@@ -7573,7 +7573,7 @@ but \drawAngle{C} and \drawAngle{A} are right angles \byref{\constref}
 
 $\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, two right angles
 
-but $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \byref{prop:I.XIII}\\
+but $\drawAngle{EFH} = \drawTwoRightAngles$ \byref{prop:I.XIII}\\
 and $\drawAngle{CKA} = \drawAngle{DFH}$ \byref{\constref} and $\therefore \drawAngle{L} = \drawAngle{DFE}$.
 
 In the same manner it can be demonstrated that\\
@@ -7630,7 +7630,7 @@ stopAutoLabeling;
 stopTempScale;
 } to inscribe a circle.}
 
-Bisect \drawAngle{EBD,DBF} and \drawAngle{GCD,DCF} \byref{prop:I.IX} by \drawUnitLine{BD} and \drawUnitLine{CD}; from the point where these lines meet draw \drawUnitLine{FD}, \drawUnitLine{ED} and \drawUnitLine{GD} respectively perpendicular to \drawUnitLine{BC}, \drawUnitLine{AB} and \drawUnitLine{CA}.
+Bisect \drawAngle{FBE} and \drawAngle{GCF} \byref{prop:I.IX} by \drawUnitLine{BD} and \drawUnitLine{CD}; from the point where these lines meet draw \drawUnitLine{FD}, \drawUnitLine{ED} and \drawUnitLine{GD} respectively perpendicular to \drawUnitLine{BC}, \drawUnitLine{AB} and \drawUnitLine{CA}.
 
 \begin{center}
 In
@@ -8073,7 +8073,7 @@ draw byLabelsOnCircle(A, B, C, D, E)(O);
 Construct an isosceles triangle, in which each of the angles at the base shall be double of the angle at the vertex, and inscribe in the given circle a triangle \drawPolygon[bottom]{ACD} equiangular to it \byref{prop:IV.II};
 
 \begin{center}
-Bisect \drawAngle{ECA,DCE} and \drawAngle{ADB,BDC} \byref{prop:I.IX},\\
+Bisect \drawAngle{DCA} and \drawAngle{ADC} \byref{prop:I.IX},\\
 draw \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} and \drawUnitLine{DE}.
 \end{center}
 
@@ -8342,9 +8342,9 @@ draw byLabelsOnPolygon(A, F, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 \problem{T}{o}{describe a circle about a given equilateral and equiangular pentagon.}
 
 \begin{center}
-Bisect \drawAngle{BCF,FCD} and \drawAngle{CDF,FDE} by \drawUnitLine{FC} and \drawUnitLine{FD}, and from the point of section, draw \drawUnitLine{FE}, \drawUnitLine{FA} and \drawUnitLine{FB}.
+Bisect \drawAngle{DCB} and \drawAngle{EDC} by \drawUnitLine{FC} and \drawUnitLine{FD}, and from the point of section, draw \drawUnitLine{FE}, \drawUnitLine{FA} and \drawUnitLine{FB}.
 
-$\drawAngle{BCF,FCD} = \drawAngle{CDF,FDE}$,\\
+$\drawAngle{DCB} = \drawAngle{EDC}$,\\
 $\drawAngle{FCD} = \drawAngle{CDF}$,
 
 $\therefore \drawUnitLine{FD} = \drawUnitLine{FC}$ \byref{prop:I.VI};
@@ -8438,7 +8438,7 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(GD,GE,DE);
 stopAutoLabeling;
 }
-are equilateral triangles, hence $\drawAngle{DGC} = \drawAngle{EGD} = \mbox{ one-third of } \drawTwoRightAngles$ \byref{prop:I.XXXII} but $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \byref{prop:I.XIII};
+are equilateral triangles, hence $\drawAngle{DGC} = \drawAngle{EGD} = \mbox{ one-third of } \drawTwoRightAngles$ \byref{prop:I.XXXII} but $\drawAngle{CGF} = \drawTwoRightAngles$ \byref{prop:I.XIII};
 
 $\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \mbox{ one-third of } \drawTwoRightAngles$ \byref{prop:I.XXXII}, and the angles vertically opposite to these are all equal to one another \byref{prop:I.XV}, and stand on equal arches \byref{prop:III.XXVI}, which are subtended by equal chords \byref{prop:III.XXIX}; and since each of the angles of the hexagon is double of the angle of an equilateral triangle, it is also equiangular.
 
@@ -10937,7 +10937,7 @@ but since $\drawUnitLine{AD} \parallel \drawUnitLine{CE}$; $\drawAngle{DAC} = \d
 and $\drawAngle{BAD} = \drawAngle{E}$ \byref{prop:I.XXIX};
 
 $\therefore \drawAngle{C} = \drawAngle{E}$, and $\drawAngle{BAD} = \drawAngle{DAC}$,\\
-and $\therefore$ \drawUnitLine{AD} bisects \drawAngle{BAD,DAC}.
+and $\therefore$ \drawUnitLine{AD} bisects \drawAngle{BAC}.
 \end{center}
 
 \qed
@@ -11178,7 +11178,7 @@ draw byLabelsOnPolygon(D, F, E)(ALL_LABELS, 0);
 \problem{I}{f}{two triangles (\drawLine[bottom][triangleABC]{CA,BC,AB} and \drawLine[bottom][triangleDEF]{FD,EF,DE}) have one angle in each equal (\drawAngle{F} equal to \drawAngle{C}), the sides about two other angles ($\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$), and each of the remaining angles (\drawAngle{A} and \drawAngle{D}) either less or not less than a right angle, the triangles are equiangular, and those angles are equal about which the sides are proportional.}
 
 \begin{center}
-First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{ABG,GBC} and \drawAngle{E} contained by the proportional sides, are not equal, let \drawAngle{ABG,GBC} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
+First let it be assumed that the angles \drawAngle{A} and \drawAngle{D} are each less than a right angle: then if it be supposed that \drawAngle{CBA} and \drawAngle{E} contained by the proportional sides, are not equal, let \drawAngle{CBA} be greater, and make $\drawAngle{GBC} = \drawAngle{E}$.
 
 $\because \drawAngle{C} = \drawAngle{F}$ \byref{\hypref} and $\drawAngle{GBC} = \drawAngle{E}$ \byref{\constref}\\ %Because
 $\therefore \drawAngle{CGB} = \drawAngle{D}$ \byref{prop:I.XXXII};
@@ -11192,7 +11192,7 @@ and $\therefore \drawAngle{A} = \drawAngle{BGA}$ \byref{prop:I.V}.
 
 But \drawAngle{A} is less than a right angle \byref{\hypref}\\
 $\therefore$ \drawAngle{BGA} is less than a right angle;\\
-and $\therefore$ \drawAngle{CGB} must be greater than a right angle \byref{prop:I.XIII}, but it has been proven $= \drawAngle{D}$ and therefore less than a right angle, which is absurd. $\therefore$ \drawAngle{ABG,GBC} and \drawAngle{E} are not unequal;
+and $\therefore$ \drawAngle{CGB} must be greater than a right angle \byref{prop:I.XIII}, but it has been proven $= \drawAngle{D}$ and therefore less than a right angle, which is absurd. $\therefore$ \drawAngle{CBA} and \drawAngle{E} are not unequal;
 
 $\therefore$ they are equal, and since $\drawAngle{C} = \drawAngle{F}$ \byref{\hypref}\\
 $\therefore \drawAngle{A} = \drawAngle{D}$ \byref{prop:I.XXXII}, and therefore the triangles are equiangular.
@@ -11225,7 +11225,7 @@ draw byLabelsOnPolygon(B, A, C, D)(ALL_LABELS, 0);
 \problem{I}{n}{a right angled tiangle (\drawPolygon[bottom][triangleABC]{ABD,ADC}), if a perpendicular (\drawUnitLine{AD}) be drawn from the right angle to the opposite side, the triangles (\drawPolygon[bottom][triangleABD]{ABD}, \drawPolygon[bottom][triangleADC]{ADC}) on each side of it are similar to the whole triangle and to each other.}
 
 \begin{center}
-$\because \drawAngle{DAB,CAD} = \drawAngle{D}$ \byref{ax:I.XI},\\
+$\because \drawAngle{BAC} = \drawAngle{D}$ \byref{ax:I.XI},\\
 and \drawAngle{B} common to \triangleABC\ and \triangleABD;\\ % Because
 $\drawAngle{C} = \drawAngle{DAB}$ \byref{prop:I.XXXII};
 
@@ -11960,7 +11960,7 @@ Draw \drawUnitLine{BE} and \drawUnitLine{BD}, and \drawUnitLine{GL} and \drawUni
 $\therefore$ \drawPolygon{BCD} and \drawPolygon{GHK} are similar,\\
 and $\drawAngle{BDC} = \drawAngle{GKH}$ \byref{prop:VI.VI};
 
-but $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$ because they are angles of similar polygons; therefore the remainders \drawAngle{BDE} and \drawAngle{GKL} are equal;\\
+but $\drawAngle{EDC} = \drawAngle{LKH}$ because they are angles of similar polygons; therefore the remainders \drawAngle{BDE} and \drawAngle{GKL} are equal;\\
 hence $\drawUnitLine{BD} : \drawUnitLine{CD} :: \drawUnitLine{GK} : \drawUnitLine{HK}$,\\
 on account of the similar triangles,\\
 and $\drawUnitLine{CD} : \drawUnitLine{DE} :: \drawUnitLine{HK} : \drawUnitLine{KL}$,\\
@@ -12848,13 +12848,13 @@ stopAutoLabeling;
 stopGlobalRotation;
 }, \&c.\ each $= \arcEF$, draw the radii to the extremities of the equal arcs.
 
-The since the arcs \arcBC, \arcCK, \arcKL, \&c.\ are all equal, the angles \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, \&c.\ are also equal \byref{prop:III.XXVII}; $\therefore$ \drawAngle{BC,CK,KL} is the same multiple of \drawAngle{BC} which the arc \drawFromCurrentPicture[middle][arcBL]{
+The since the arcs \arcBC, \arcCK, \arcKL, \&c.\ are all equal, the angles \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL}, \&c.\ are also equal \byref{prop:III.XXVII}; $\therefore$ \drawAngle{BGL} is the same multiple of \drawAngle{BC} which the arc \drawFromCurrentPicture[middle][arcBL]{
 startGlobalRotation(180-angle(B-L));
 startAutoLabeling;
 draw byNamedArcSeq(0)(BC,CK,KL);
 stopAutoLabeling;
 stopGlobalRotation;
-} is of \arcBC; and in the same manner \drawAngle{EF,FM,MN} is the same multiple of \drawAngle{EF}, which the arc \drawFromCurrentPicture[middle][arcEN]{
+} is of \arcBC; and in the same manner \drawAngle{EHN} is the same multiple of \drawAngle{EF}, which the arc \drawFromCurrentPicture[middle][arcEN]{
 startGlobalRotation(180-angle(E-N));
 startAutoLabeling;
 draw byNamedArcSeq(0)(EF,FM,MN);
@@ -12864,7 +12864,7 @@ stopGlobalRotation;
 
 \begin{center}
 Then it is evident \byref{prop:III.XXVII},\\
-if \drawAngle{BC,CK,KL} (or if $m$ times \drawAngle{BC}) $>, =, < \drawAngle{EF,FM,MN}$ (or $n$ times \drawAngle{EF})\\
+if \drawAngle{BGL} (or if $m$ times \drawAngle{BC}) $>, =, < \drawAngle{EHN}$ (or $n$ times \drawAngle{EF})\\
 then \arcBL (or $m$ times \arcBC) $>, =, < \arcEN$ (or $n$ times \arcEF);
 \end{center}
 
@@ -12904,7 +12904,7 @@ draw byLabelsOnPolygon(C, D, B, A, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(E, C, noPoint)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[2]{I}{f}{the right line (\drawSizedLine{DC}) bisecting an external angle \drawAngle{DCB,FCD} of the triangle \drawFromCurrentPicture[bottom]{
+\problem[2]{I}{f}{the right line (\drawSizedLine{DC}) bisecting an external angle \drawAngle{BCF} of the triangle \drawFromCurrentPicture[bottom]{
 startTempScale(1/2);
 startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
@@ -13016,7 +13016,7 @@ draw $\drawUnitLine{AD} \perp \drawUnitLine{BC}$;\\
 then shall $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ the diameter of the described circle.
 
 Describe \drawCircle[middle][1/4]{O} \byref{prop:IV.V}, draw its diameter \drawUnitLine{AE}, and draw \drawUnitLine{CE};\\
-then $\because \drawAngle{D} = \drawAngle{BCA,ECB}$  \byref{\constref,prop:III.XXXI};\\ %because
+then $\because \drawAngle{D} = \drawAngle{ACE}$  \byref{\constref,prop:III.XXXI};\\ %because
 and $\drawAngle{B} = \drawAngle{E}$ \byref{prop:III.XXI};\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} is equiangular to \drawLine[middle]{CA,CE,AE} \byref{prop:VI.IV};
 
@@ -13070,7 +13070,7 @@ and draw \drawUnitLine{BD} and \drawUnitLine{AC};\\
 then $\drawUnitLine{BD} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 
 Make $\drawAngle{EAB} = \drawAngle{DAC}$ \byref{prop:I.XXIII},\\
-$\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$; and $\drawAngle{BCA} = \drawAngle{D}$ \byref{prop:III.XXI};
+$\therefore \drawAngle{BAC} = \drawAngle{EAD}$; and $\drawAngle{BCA} = \drawAngle{D}$ \byref{prop:III.XXI};
 
 $\therefore \drawUnitLine{DA} : \drawUnitLine{ED} :: \drawUnitLine{AC} : \drawUnitLine{BC}$ \byref{prop:VI.IV};\\
 and $\therefore \drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$ \byref{prop:VI.XVI};\\

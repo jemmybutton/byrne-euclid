@@ -1543,14 +1543,14 @@ draw byLabelsOnPolygon(H, F, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 		\drawUnitLine{BC}&=\drawUnitLine{BD}\\
 	\end{aligned}\right\}$,\\
 затем проведем \drawUnitLine{CD}, тогда\\
-$\drawAngle{C,DCB} = \drawAngle{CDA}$ \byref{prop:I.V}.
+$\drawAngle{ACD} = \drawAngle{CDA}$ \byref{prop:I.V}.
 
 $\therefore\drawAngle{DCB} < \drawAngle{CDA}$.
 
 $\left.
 \begin{aligned}
-\mbox{И } \therefore\drawAngle{DCB} &< \drawAngle{CDA,D}\mbox{,}\\
-\mbox{но \byref{prop:I.V}} \drawAngle{DCB} &= \drawAngle{CDA,D}\\
+\mbox{И } \therefore\drawAngle{DCB} &< \drawAngle{CDB}\mbox{,}\\
+\mbox{но \byref{prop:I.V}} \drawAngle{DCB} &= \drawAngle{CDB}\\
 \end{aligned}
 \right\}\mbox{, что невозможно.}$
 \end{center}
@@ -1624,7 +1624,7 @@ draw byNamedLineSeq(0)(BE,AB,CA,CF);
 draw byLabelsOnPolygon(D, B, A, C)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Р}{ассечь}{данный прямолинейный угол \drawAngle{BAD,CAD} пополам.}
+\problem{Р}{ассечь}{данный прямолинейный угол \drawAngle{BAC} пополам.}
 
 \begin{center}
 Возьмем $\drawUnitLine{AB} = \drawUnitLine{CA}$ \byref{prop:I.III}.
@@ -1800,16 +1800,16 @@ draw byLabelLineEnd(A, D, 0);
 
 \begin{center}
 Если $\drawUnitLine{ED} \perp \drawUnitLine{BC}$, тогда\\
-$\drawAngle{ADB,EDA} + \drawAngle{CDE} = \drawTwoRightAngles$ \byref{def:I.X}.
+$\drawAngle{EDB} + \drawAngle{CDE} = \drawTwoRightAngles$ \byref{def:I.X}.
 
 Но если \drawUnitLine{ED} будет не $\perp$ к~\drawUnitLine{BC},\\
 проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$ \byref{prop:I.XI}.
 
-$\drawAngle{ADB} +\drawAngle{CDE,EDA} = \drawTwoRightAngles$ \byref{\constref},\\
-$\drawAngle{ADB} = \drawAngle{CDE,EDA} = \drawAngle{EDA} + \drawAngle{CDE}$.
+$\drawAngle{ADB} +\drawAngle{CDA} = \drawTwoRightAngles$ \byref{\constref},\\
+$\drawAngle{ADB} = \drawAngle{CDA} = \drawAngle{EDA} + \drawAngle{CDE}$.
 
-$\therefore \drawAngle{ADB} + \drawAngle{CDE,EDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \byref{ax:I.II}\\
-$= \drawAngle{ADB,EDA} + \drawAngle{CDE} = \drawTwoRightAngles$.
+$\therefore \drawAngle{ADB} + \drawAngle{CDA} = \drawAngle{ADB} + \drawAngle{EDA} + \drawAngle{CDE}$ \byref{ax:I.II}\\
+$= \drawAngle{EDB} + \drawAngle{CDE} = \drawTwoRightAngles$.
 \end{center}
 
 \qed
@@ -1839,11 +1839,11 @@ draw byLabelLineEnd(A, D, 0);
 
 \begin{center}
 Действительно, пусть \drawUnitLine{ED}, а~не~\drawUnitLine{DC} будет продолжением \drawUnitLine{BD},\\
-тогда $\drawAngle{BDA} + \drawAngle{CDA,EDC} = \drawTwoRightAngles$.
+тогда $\drawAngle{BDA} + \drawAngle{EDA} = \drawTwoRightAngles$.
 
 Но, согласно гипотезе, $\drawAngle{BDA} + \drawAngle{CDA} = \drawTwoRightAngles$
 
-$\therefore\drawAngle{CDA,EDC} = \drawAngle{CDA}$ \byref{ax:I.III},\\
+$\therefore\drawAngle{EDA} = \drawAngle{CDA}$ \byref{ax:I.III},\\
 что невозможно \byref{ax:I.IX}.
 
 $\therefore \drawUnitLine{ED}$ не является продолжением \drawUnitLine{BD}, и~то же можно показать для любой другой прямой линии, за исключением \drawUnitLine{DC}.
@@ -2086,7 +2086,7 @@ draw byLabelsOnPolygon(D, C, B, A)(ALL_LABELS, 0);
 Тогда, поскольку $\drawUnitLine{CD} = \drawUnitLine{BD}$ \byref{\constref},\\
 $\drawAngle{CBD} = \drawAngle{C}$ \byref{prop:I.V}.
 
-$\therefore \drawAngle{CBD,DBA} > \drawAngle{C}$ \byref{ax:I.IX}.
+$\therefore \drawAngle{ABD} > \drawAngle{C}$ \byref{ax:I.IX}.
 
 $\therefore \drawUnitLine{DA} + \drawUnitLine{CD} > \drawUnitLine{AB}$ \byref{prop:I.XIX}.
 
@@ -2315,9 +2315,9 @@ draw byLabelsOnPolygon(G, E, F)(ALL_LABELS, 0);
 проведем \drawUnitLine{CD} и~\drawUnitLine{BC}.
 
 Поскольку $\drawUnitLine{CA} = \drawUnitLine{AD}$ \byref{ax:I.I,\hypref,\constref}\\
-$\therefore \drawAngle{BDA,CDB} = \drawAngle{DCA}$ \byref{prop:I.V},
+$\therefore \drawAngle{CDA} = \drawAngle{DCA}$ \byref{prop:I.V},
 но $\drawAngle{CDB} < \drawAngle{DCA}$,\\
-и $\therefore \drawAngle{CDB} < \drawAngle{DCA,ACB}$.
+и $\therefore \drawAngle{CDB} < \drawAngle{BCD}$.
 
 $\therefore \drawUnitLine{DB} > \drawUnitLine{BC}$ \byref{prop:I.XIX}.
 
@@ -2713,7 +2713,7 @@ draw byNamedLineSeq(0)(CA,noLine,AD,AB,BC);
 draw byLabelsOnPolygon(C, B, A, D, noPoint, E, A)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[2]{П}{о}{продлении любой стороны треугольника \drawUnitLine{AB} внешний угол \drawAngle{DAE,EAC} равен сумме двух внутренних и~противолежащих \drawAngle{B} и~\drawAngle{C}, а~три внутренних угла треугольника вместе равны двум прямым углам.}
+\problem[2]{П}{о}{продлении любой стороны треугольника \drawUnitLine{AB} внешний угол \drawAngle{CAD} равен сумме двух внутренних и~противолежащих \drawAngle{B} и~\drawAngle{C}, а~три внутренних угла треугольника вместе равны двум прямым углам.}
 
 \begin{center}
 Через точку \drawPointL[middle][AD,AE]{A} проведем \\
@@ -2726,9 +2726,9 @@ $\drawUnitLine{AE} \parallel \drawUnitLine{BC}$ \byref{prop:I.XXXI}.
 \end{aligned}
 \right\}$ \byref{prop:I.XXIX}.
 
-$\therefore \drawAngle{B} + \drawAngle{C} = \drawAngle{DAE,EAC}$ \byref{ax:I.II}.
+$\therefore \drawAngle{B} + \drawAngle{C} = \drawAngle{CAD}$ \byref{ax:I.II}.
 
-$\therefore \drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{DAE,EAC,CAB} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
+$\therefore \drawAngle{B} + \drawAngle{CAB} + \drawAngle{C} = \drawAngle{BAD} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
 \end{center}
 
 \qed
@@ -2816,7 +2816,7 @@ $\therefore \left\{
 \drawAngle{B} &= \drawAngle{C}\\
 \end{aligned}
 \right\}$ \byref{prop:I.XXVI}\\
-и $\drawAngle{BAD,DAC} = \drawAngle{CDA,ADB}$ \byref{ax:I.II}.
+и $\drawAngle{CAB} = \drawAngle{BDC}$ \byref{ax:I.II}.
 \end{center}
 
 Следовательно, противоположные стороны и~углы параллелограмма равны. И, поскольку треугольники \drawLine{AD,CD,AC} и~\drawLine{AB,BD,AD} равны во всех отношениях \byref{prop:I.IV}, диагональ делит параллелограмм на две равные части.
@@ -3603,7 +3603,7 @@ draw byLabelsOnPolygon(A, J, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 $\drawAngle{BCI} = \drawAngle{FCA}$.
 
 К каждому добавим \drawAngle{ACB},\\
-$\therefore \drawAngle{BCI,ACB} = \drawAngle{FCA,ACB}$.
+$\therefore \drawAngle{ACI} = \drawAngle{FCB}$.
 
 Вместе с~тем $\drawUnitLine{BC} = \drawUnitLine{CI}$ и~$\drawUnitLine{CA} = \drawUnitLine{CF}$.
 
@@ -4413,7 +4413,7 @@ $\drawProportionalLine{AD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawPropor
 $\drawAngle{A} = \drawAngle{CEA}$ \byref{prop:I.V} $= \frac{1}{2}\drawRightAngle$ \byref{prop:I.XXXII},\\
 $\drawAngle{CBE} = \drawAngle{BEC}$ \byref{prop:I.V} $= \frac{1}{2}\drawRightAngle$ \byref{prop:I.XXXII}.
 
-$\therefore \drawAngle{CEA,BEC} = \drawRightAngle$.
+$\therefore \drawAngle{AEB} = \drawRightAngle$.
 
 $\drawAngle{BEC} = \drawAngle{G}$, $\drawAngle{FEB} = \drawAngle{CBE}$\byref{prop:I.XXIX}.
 
@@ -5075,13 +5075,13 @@ draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \begin{center}
 Если \drawUnitLine{AC} делится пополам, \drawUnitLine{EF} $\perp$ ей \byref{prop:III.III}.
 
-$\therefore \drawAngle{FED,DEC} = \drawRightAngle$.
+$\therefore \drawAngle{CEF} = \drawRightAngle$.
 
 И если \drawUnitLine{BD} делится пополам, $\drawUnitLine{EF} \perp \drawUnitLine{BD}$ \byref{prop:III.III}.
 
 $\therefore \drawAngle{FED} = \drawRightAngle$.
 
-И $\therefore \drawAngle{FED} = \drawAngle{FED,DEC}$,\\
+И $\therefore \drawAngle{FED} = \drawAngle{CEF}$,\\
 часть равна целому, что невозможно.
 
 $\therefore$ \drawUnitLine{AC} и~\drawUnitLine{BD} не~делят друг друга пополам.
@@ -5252,7 +5252,7 @@ draw byLabelsOnPolygon(D, F, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 Теперь согласно \byref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих. $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \byref{ax:I.III}, и~так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к~окружности.
 
-Теперь в~\drawLine[middle][triangleEFB]{FB,EF,EB} и~\drawLine[middle][triangleEFC]{FC,EF,EC} \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$ и~$\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} и~так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к~окружности и~проходящей дальше \drawUnitLine{FA}.
+Теперь в~\drawLine[middle][triangleEFB]{FB,EF,EB} и~\drawLine[middle][triangleEFC]{FC,EF,EC} \drawUnitLine{EF} общая, $\drawAngle{FEB} > \drawAngle{CEF}$ и~$\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} и~так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к~окружности и~проходящей дальше \drawUnitLine{FA}.
 
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, M;
@@ -6045,7 +6045,7 @@ $\drawAngle{CAD} = \drawAngle{C}$ \byref{prop:I.V}, и $\therefore$ оба уг�
 Пусть $\drawUnitLine{EK} \perp \drawUnitLine{DA}$ и~пусть \drawUnitLine{AG} проведена из точки \drawFromCurrentPicture{draw byNamedPointLines(G,"GF");} между \drawUnitLine{EK} и~кругом, и, если возможно, не сечет круг.
 
 \begin{center}
-$\drawAngle{DAG,GAE} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ острый угол.
+$\drawAngle{EAD} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ острый угол.
 
 Допустим, $\drawUnitLine[0.5cm]{DH,HG} \perp \drawUnitLine[0.5cm]{AG}$, проведенной из центра круга, должна падать на сторону острого угла~\drawAngle{DAG}.
 
@@ -6190,9 +6190,9 @@ draw byLabelLineEnd(E, C, 0);
 Поскольку $\drawUnitLine{CF} \perp \drawUnitLine{CE}$ \byref{prop:III.XVIII},\\
 $\therefore \drawAngle{FCE} = \drawRightAngle$, прямому углу.
 
-Но $\drawAngle{ACF,FCE} = \drawRightAngle$ \byref{\hypref}.
+Но $\drawAngle{ECA} = \drawRightAngle$ \byref{\hypref}.
 
-И $\therefore \drawAngle{FCE} = \drawAngle{ACF,FCE}$,\\
+И $\therefore \drawAngle{FCE} = \drawAngle{ECA}$,\\
 часть равна целому, что невозможно.
 \end{center}
 
@@ -6310,7 +6310,7 @@ draw byLabelsOnPolygon(G, E, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 Проведем диаметр \drawUnitLine{DG}.
 
-Поскольку $\drawAngle{GEF,FEC} = \mbox{ дважды } \drawAngle{GDF,FDC}$
+Поскольку $\drawAngle{GEC} = \mbox{ дважды } \drawAngle{GDC}$
 и~$\drawAngle{GEF} = \mbox{ дважды } \drawAngle{GDF}$ (случай I.),\\
 $\therefore \drawAngle{FEC} = \mbox{ дважды } \drawAngle{FDC}$.
 \end{center}
@@ -6393,7 +6393,7 @@ draw byLabelsOnCircle(B, D, E, A, G)(F);
 \begin{center}
 $\drawAngle{BAG} = \drawAngle{BEG}$ и~$\drawAngle{GAD} = \drawAngle{GED}$ (случай I.).
 
-$\therefore \drawAngle{BAG,GAD} = \drawAngle{BEG,GED}$.
+$\therefore \drawAngle{BAD} = \drawAngle{BED}$.
 \end{center}
 
 \qed
@@ -6427,7 +6427,7 @@ draw byCircleR(E, r, byred, 0, 0, 1/2);
 draw byLabelsOnCircle(A, B, C, D)(E);
 }
 \drawCurrentPictureInMargin
-\problem[2]{П}{ротивоположные}{углы \drawAngle{DAC,CAB} и~\drawAngle{BCA,ACD} или \drawAngle{CDB,BDA} и~\drawAngle{ABD,DBC} четырехугольника, вписанного в~круг, вместе равны двум прямым углам.}
+\problem[2]{П}{ротивоположные}{углы \drawAngle{DAB} и~\drawAngle{BCD} или \drawAngle{CDA} и~\drawAngle{ABC} четырехугольника, вписанного в~круг, вместе равны двум прямым углам.}
 
 \begin{center}
 Проведем диагонали \drawUnitLine{AC} и~\drawUnitLine{BD}.
@@ -6436,11 +6436,11 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 $\drawAngle{CDB} = \drawAngle{CAB}$\\
 и $\drawAngle{DAC} = \drawAngle{DBC}$.
 
-Добавим к~каждому \drawAngle{BCA,ACD},\\
-$\drawAngle{DAC,CAB} + \drawAngle{BCA,ACD} = \drawAngle{BCA,ACD} + \drawAngle{CDB} + \drawAngle{DBC} = \drawTwoRightAngles$ \byref{prop:I.XXXII}.
+Добавим к~каждому \drawAngle{BCD},\\
+$\drawAngle{DAB} + \drawAngle{BCD} = \drawAngle{BCD} + \drawAngle{CDB} + \drawAngle{DBC} = \drawTwoRightAngles$ \byref{prop:I.XXXII}.
 
 Так же можно показать, что\\
-$\drawAngle{CDB,BDA} + \drawAngle{ABD,DBC} = \drawTwoRightAngles$.
+$\drawAngle{CDA} + \drawAngle{ABC} = \drawTwoRightAngles$.
 \end{center}
 
 \qed
@@ -6781,7 +6781,7 @@ draw byLabelsOnPolygon(E, H, F)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 Поскольку, если такое возможно, пусть один из них\\
 \drawAngle{D} будет больше другого \drawAngle{BAK}.
 
-Cделаем $\drawAngle{BAK,KAC} = \drawAngle{D}$.
+Cделаем $\drawAngle{BAC} = \drawAngle{D}$.
 
 $\therefore \drawArc{GbI,GbII} = \drawArc{Hb}$ \byref{prop:III.XXVI}.
 
@@ -7188,7 +7188,7 @@ draw byLabelsOnPolygon(K, D, noPoint)(ALL_LABELS, 0);
 
 \drawUnitLine{KD} касается \circleG\ \byref{prop:III.XVI}.
 
-$\therefore$ \drawUnitLine{AB} делит круг на два сегмента, вмещающие углы, равные \drawAngle{EAK,BAE} и~\drawAngle{DAB}, соответственно равные \drawAngle{givenObtuse} и~\drawAngle{givenAcute} \byref{prop:III.XXXII}.
+$\therefore$ \drawUnitLine{AB} делит круг на два сегмента, вмещающие углы, равные \drawAngle{BAK} и~\drawAngle{DAB}, соответственно равные \drawAngle{givenObtuse} и~\drawAngle{givenAcute} \byref{prop:III.XXXII}.
 \end{center}
 
 \qed
@@ -7787,7 +7787,7 @@ stopTempAngleScale;
 
 $\therefore \drawAngle{L} + \drawAngle{CKA} = \drawTwoRightAngles$, двум прямым углам.
 
-Но $\drawAngle{DFH,DFE} = \drawTwoRightAngles$ \byref{prop:I.XIII}\\
+Но $\drawAngle{EFH} = \drawTwoRightAngles$ \byref{prop:I.XIII}\\
 и $\drawAngle{CKA} = \drawAngle{DFH}$ \byref{\constref} и~$\therefore \drawAngle{L} = \drawAngle{DFE}$.
 
 Таким же образом можно показать, что\\
@@ -7844,7 +7844,7 @@ stopAutoLabeling;
 stopTempScale;
 } вписать круг.}
 
-Рассечем пополам \drawAngle{EBD,DBF} и~\drawAngle{GCD,DCF} \byref{prop:I.IX} с~помощью \drawUnitLine{BD} и~\drawUnitLine{CD}.
+Рассечем пополам \drawAngle{FBE} и~\drawAngle{GCF} \byref{prop:I.IX} с~помощью \drawUnitLine{BD} и~\drawUnitLine{CD}.
 
 Из точки, где они встречаются, проведем \drawUnitLine{FD}, \drawUnitLine{ED} и~\drawUnitLine{GD} соотвтетственно перпендикулярные \drawUnitLine{BC}, \drawUnitLine{AB} и~\drawUnitLine{CA}.
 
@@ -8289,7 +8289,7 @@ draw byLabelsOnCircle(A, B, C, D, E)(O);
 Впишем равноугольный ему\\
 треугольник \drawPolygon{ACD} в~данный круг \drawCircle[middle][1/6]{O} \byref{prop:IV.II}.
 
-Рассечем \drawAngle{ECA,DCE} и~\drawAngle{ADB,BDC} пополам \byref{prop:I.IX}.
+Рассечем \drawAngle{DCA} и~\drawAngle{ADC} пополам \byref{prop:I.IX}.
 
 Проведем \drawUnitLine{BC}, \drawUnitLine{AB}, \drawUnitLine{EA} и~\drawUnitLine{DE}.
 
@@ -8559,9 +8559,9 @@ draw byLabelsOnPolygon(A, F, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 \problem{О}{коло}{данного равностороннего и~равноугольного пятиугольника описать круг.}
 
 \begin{center}
-Рассечем пополам \drawAngle{BCF,FCD} и~\drawAngle{CDF,FDE} с~помощью \drawUnitLine{FC} и~\drawUnitLine{FD} и~из точки их пересечения проведем \drawUnitLine{FE}, \drawUnitLine{FA} и~\drawUnitLine{FB}.
+Рассечем пополам \drawAngle{DCB} и~\drawAngle{EDC} с~помощью \drawUnitLine{FC} и~\drawUnitLine{FD} и~из точки их пересечения проведем \drawUnitLine{FE}, \drawUnitLine{FA} и~\drawUnitLine{FB}.
 
-$\drawAngle{BCF,FCD} = \drawAngle{CDF,FDE}$, $\drawAngle{FCD} = \drawAngle{CDF}$,\\
+$\drawAngle{DCB} = \drawAngle{EDC}$, $\drawAngle{FCD} = \drawAngle{CDF}$,\\
 $\therefore \drawUnitLine{FD} = \drawUnitLine{FC}$ \byref{prop:I.VI}.
 
 И поскольку в
@@ -8656,7 +8656,7 @@ draw byNamedLineSeq(0)(GD,GE,DE);
 stopAutoLabeling;
 }
 равносторонние,\\
-так как $\drawAngle{DGC} = \drawAngle{EGD} = \dfrac{1}{3} \drawTwoRightAngles$ \byref{prop:I.XXXII}, но $\drawAngle{DGC,EGD,FGE} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
+так как $\drawAngle{DGC} = \drawAngle{EGD} = \dfrac{1}{3} \drawTwoRightAngles$ \byref{prop:I.XXXII}, но $\drawAngle{CGF} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
 
 $\therefore \drawAngle{DGC} = \drawAngle{EGD} = \drawAngle{FGE} = \dfrac{1}{3} \drawTwoRightAngles$ \byref{prop:I.XXXII}, и~вертикальные углы равны между собой \byref{prop:I.XV}\\
 и~стоят на равных дугах \byref{prop:III.XXVI},\\
@@ -11194,7 +11194,7 @@ $\therefore \drawUnitLine{AB} : \drawUnitLine{AE} :: \drawUnitLine{AB} : \drawUn
 Но поскольку $\drawUnitLine{AD} \parallel \drawUnitLine{CE}$, $\drawAngle{DAC} = \drawAngle{C}$,\\
 и $\drawAngle{BAD} = \drawAngle{E}$ \byref{prop:I.XXIX},\\
 $\therefore \drawAngle{C} = \drawAngle{E}$, и~$\drawAngle{BAD} = \drawAngle{DAC}$,\\
-и $\therefore$ \drawUnitLine{AD} делит \drawAngle{BAD,DAC} пополам.
+и $\therefore$ \drawUnitLine{AD} делит \drawAngle{BAC} пополам.
 \end{center}
 
 \qed
@@ -11430,7 +11430,7 @@ draw byLabelsOnPolygon(D, F, E)(ALL_LABELS, 0);
 \problem[2]{Е}{сли}{у двух треугольников \drawLine[middle][triangleABC]{CA,BC,AB} и~\drawLine[middle][triangleDEF]{FD,EF,DE} один угол одного \drawAngle{F} равен одному другого \drawAngle{C}, а~стороны при других пропорциональны $\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$, причем оставшиеся углы \drawAngle{A} и~\drawAngle{D} либо меньше, либо не меньше прямого угла, то треугольники равноугольны, а~углы между пропорциональными сторонами равны.}
 
 \begin{center}
-Для начала допустим, что углы \drawAngle{A} и~\drawAngle{D} оба меньше прямого угла, тогда, если предположить, что \drawAngle{ABG,GBC} и~\drawAngle{E} между пропорциональными сторонами не равны, пусть \drawAngle{ABG,GBC} будет больше, и~сделаем $\drawAngle{GBC} = \drawAngle{E}$.
+Для начала допустим, что углы \drawAngle{A} и~\drawAngle{D} оба меньше прямого угла, тогда, если предположить, что \drawAngle{CBA} и~\drawAngle{E} между пропорциональными сторонами не равны, пусть \drawAngle{CBA} будет больше, и~сделаем $\drawAngle{GBC} = \drawAngle{E}$.
 
 Поскольку $\drawAngle{C} = \drawAngle{F}$ \byref{\hypref}\\
 и~$\drawAngle{GBC} = \drawAngle{E}$ \byref{\constref},\\
@@ -11446,7 +11446,7 @@ $\therefore \drawUnitLine{BG} = \drawUnitLine{AB}$ \byref{prop:V.IX},\\
 
 Но \drawAngle{A} меньше прямого угла \byref{\hypref},\\
 $\therefore$ \drawAngle{BGA} меньше прямого угла,\\
-и $\therefore$ \drawAngle{CGB} должен быть больше прямого угла \byref{prop:I.XIII}, но он, как было показано, $= \drawAngle{D}$, и~значит меньше прямого угла, что невозможно. $\therefore$ \drawAngle{ABG,GBC} и~\drawAngle{E} не неравны.
+и $\therefore$ \drawAngle{CGB} должен быть больше прямого угла \byref{prop:I.XIII}, но он, как было показано, $= \drawAngle{D}$, и~значит меньше прямого угла, что невозможно. $\therefore$ \drawAngle{CBA} и~\drawAngle{E} не неравны.
 
 $\therefore$ они равны, и~поскольку $\drawAngle{C} = \drawAngle{F}$ \byref{\hypref},\\
 $\therefore \drawAngle{A} = \drawAngle{D}$ \byref{prop:I.XXXII}, и~следовательно треугольники равноугольны.
@@ -11479,7 +11479,7 @@ draw byLabelsOnPolygon(B, A, C, D)(ALL_LABELS, 0);
 \problem[3]{Е}{сли}{из прямого угла в~прямоугольном треугольнике \drawPolygon[bottom][triangleABC]{ABD,ADC} проведен к~противоположной стороне перпендикуляр \drawUnitLine{AD}, треугольники \drawPolygon[bottom][triangleABD]{ABD} и~\drawPolygon[bottom][triangleADC]{ADC} по сторонам перпендикуляра подобны целому треугольнику и~друг другу.}
 
 \begin{center}
-Поскольку $\drawAngle{DAB,CAD} = \drawAngle{D}$ \byref{ax:I.XI}\\
+Поскольку $\drawAngle{BAC} = \drawAngle{D}$ \byref{ax:I.XI}\\
 и~\drawAngle{B} общий \triangleABC\ и~\triangleABD,\\
 $\drawAngle{C} = \drawAngle{DAB}$ \byref{prop:I.XXXII}.
 
@@ -12233,7 +12233,7 @@ draw byLabelsOnPolygon(F, L, K, H, G)(ALL_LABELS, 0);
 
 \begin{center}
 $\therefore$ \drawPolygon{BCD} и~\drawPolygon{GHK} подобны и~$\drawAngle{BDC} = \drawAngle{GKH}$ \byref{prop:VI.VI},\\
-но $\drawAngle{BDE,BDC} = \drawAngle{GKL,GKH}$, поскольку они являются углами подобных многоугольников. Следовательно, остатки \drawAngle{BDE} и~\drawAngle{GKL} равны.
+но $\drawAngle{EDC} = \drawAngle{LKH}$, поскольку они являются углами подобных многоугольников. Следовательно, остатки \drawAngle{BDE} и~\drawAngle{GKL} равны.
 
 А значит $\drawUnitLine{BD} : \drawUnitLine{CD} :: \drawUnitLine{GK} : \drawUnitLine{HK}$,\\
 учитывая подобие треугольников,\\
@@ -13144,13 +13144,13 @@ stopAutoLabeling;
 stopGlobalRotation;
 } и~т. д., каждая $= \arcEF$, проведем радиусы к~концам равных дуг.
 
-Поскольку дуги \arcBC, \arcCK, \arcKL\ и~т. д. равны, углы \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL} и~т. д. также равны \byref{prop:III.XXVII}. $\therefore$ \drawAngle{BC,CK,KL} столько же раз кратен \drawAngle{BC}, сколько \drawFromCurrentPicture[middle][arcBL]{
+Поскольку дуги \arcBC, \arcCK, \arcKL\ и~т. д. равны, углы \drawAngle{BC}, \drawAngle{CK}, \drawAngle{KL} и~т. д. также равны \byref{prop:III.XXVII}. $\therefore$ \drawAngle{BGL} столько же раз кратен \drawAngle{BC}, сколько \drawFromCurrentPicture[middle][arcBL]{
 startGlobalRotation(180-angle(B-L));
 startAutoLabeling;
 draw byNamedArcSeq(0)(BC,CK,KL);
 stopAutoLabeling;
 stopGlobalRotation;
-} кратна \arcBC. Точно так же \drawAngle{EF,FM,MN} столько же раз кратен \drawAngle{EF}, сколько дуга \drawFromCurrentPicture[middle][arcEN]{
+} кратна \arcBC. Точно так же \drawAngle{EHN} столько же раз кратен \drawAngle{EF}, сколько дуга \drawFromCurrentPicture[middle][arcEN]{
 startGlobalRotation(180-angle(E-N));
 startAutoLabeling;
 draw byNamedArcSeq(0)(EF,FM,MN);
@@ -13160,7 +13160,7 @@ stopGlobalRotation;
 
 \begin{center}
 Тогда очевидно \byref{prop:III.XXVII},\\
-что если \drawAngle{BC,CK,KL} (или если $m$ раз \drawAngle{BC}) $>, =, < \drawAngle{EF,FM,MN}$ (или $n$ раз \drawAngle{EF}),\\
+что если \drawAngle{BGL} (или если $m$ раз \drawAngle{BC}) $>, =, < \drawAngle{EHN}$ (или $n$ раз \drawAngle{EF}),\\
 то \arcBL (или $m$ раз \arcBC) $>, =, < \arcEN$ (или $n$ раз \arcEF).
 \end{center}
 
@@ -13200,7 +13200,7 @@ draw byLabelsOnPolygon(C, D, B, A, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(E, C, noPoint)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[2]{Е}{сли}{прямая линия \drawSizedLine{DC}, рассекая пополам внешний угол \drawAngle{DCB,FCD} треугольника \drawFromCurrentPicture[bottom]{
+\problem[2]{Е}{сли}{прямая линия \drawSizedLine{DC}, рассекая пополам внешний угол \drawAngle{BCF} треугольника \drawFromCurrentPicture[bottom]{
 startTempScale(1/2);
 startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
