@@ -342,10 +342,10 @@ draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(BD,CD,AC,AB);
 stopAutoLabeling;
 }\\
-получим $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$,\\
+получим $\drawUnitLine{AD} = \drawUnitLine{AE}$,\\
 \drawAngle{BAC} общий и~$\drawUnitLine{AB} = \drawUnitLine{AC}$.
 
-$\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$\\
+$\therefore \drawAngle{DCA} = \drawAngle{ABE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$\\
 и $\drawAngle{CEB} = \drawAngle{BDC}$ \byref{prop:I.IV}.
 
 Теперь в~\drawFromCurrentPicture{
@@ -362,10 +362,10 @@ stopAutoLabeling;
 $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$\\
 и $\drawUnitLine{BE} = \drawUnitLine{CD}$.
 
-$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
+$\therefore \drawAngle{ECB} = \drawAngle{CBD}$
 и $\drawAngle{DCB} = \drawAngle{CBE}$ \byref{prop:I.IV}.
 
-Но $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, 
+Но $\drawAngle{DCA} = \drawAngle{ABE}$, 
 
 $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
 \end{center}
@@ -1255,7 +1255,7 @@ draw byLabelLineEnd(E, D, 1);
 Продлим \drawUnitLine{DA} \byref{post:I.II},\\
 тогда искомая прямая~— это \drawUnitLine{AF}.
 
-Поскольку $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \byref{def:I.XV}\\
+Поскольку $\drawUnitLine{ED} = \drawUnitLine{DF}$ \byref{def:I.XV}\\
 и $\drawUnitLine{BD} = \drawUnitLine{DA}$ \byref{\constref},\\
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \byref{ax:I.III},\\
 но \byref{def:I.XV} $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$.
@@ -1290,7 +1290,7 @@ draw byLabelPoint(B, angle(B-A) + 45, 2);
 draw byLabelsOnPolygon(E, F)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{О}{т}{большей \drawUnitLine{AB,BC}  из двух данных прямых отнять прямую, равную меньшей \drawUnitLine{EF}.}
+\problem{О}{т}{большей \drawUnitLine{AC}  из двух данных прямых отнять прямую, равную меньшей \drawUnitLine{EF}.}
 
 \begin{center}
 Проведем $\drawUnitLine{AD} = \drawUnitLine{EF}$ \byref{prop:I.II}.
@@ -1418,11 +1418,11 @@ draw byNamedLineSeq(0)(BD,CD,AC,AB);
 stopTempAngleScale;
 stopAutoLabeling;
 }\\
-получим $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ \byref{\constref},\\
+получим $\drawUnitLine{AD} = \drawUnitLine{AE}$ \byref{\constref},\\
 \drawAngle{BAC} общий обоим,\\
 и $\drawUnitLine{AB} = \drawUnitLine{AC}$ \byref{\hypref}.
 
-$\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ и~$\drawAngle{CEB} = \drawAngle{BDC}$ \byref{prop:I.IV}.
+$\therefore \drawAngle{DCA} = \drawAngle{ABE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ и~$\drawAngle{CEB} = \drawAngle{BDC}$ \byref{prop:I.IV}.
 
 Так же у~\drawFromCurrentPicture{
 startAutoLabeling;
@@ -1444,8 +1444,8 @@ stopTempScale;
 stopAutoLabeling;
 }\\
 получим $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ и~$\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
-$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ и~$\drawAngle{DCB} = \drawAngle{CBE}$ \byref{prop:I.IV},\\
-но $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \byref{ax:I.III}.
+$\therefore \drawAngle{ECB} = \drawAngle{CBD}$ и~$\drawAngle{DCB} = \drawAngle{CBE}$ \byref{prop:I.IV},\\
+но $\drawAngle{DCA} = \drawAngle{ABE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \byref{ax:I.III}.
 \end{center}
 
 \qed
@@ -1470,9 +1470,9 @@ draw byNamedLineSeq(0)(CA,CD,BD,AB);
 draw byLabelsOnPolygon(A, C, D, B)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[4]{Е}{сли}{у любого треугольника \drawLine[bottom][triangleABD]{CA,CD,BD,AB} два угла \drawAngle{A} и~\drawAngle{B} равны между собой, то и~стороны \drawUnitLine{CA,CD} и~\drawUnitLine{BD}, стягивающие равные углы, будут равны.}
+\problem[4]{Е}{сли}{у любого треугольника \drawLine[bottom][triangleABD]{CA,CD,BD,AB} два угла \drawAngle{A} и~\drawAngle{B} равны между собой, то и~стороны \drawUnitLine{AD} и~\drawUnitLine{BD}, стягивающие равные углы, будут равны.}
 
-Предположим, что стороны не равны и~одна из них \drawUnitLine{CA,CD} больше, чем другая \drawUnitLine{BD}, тогда отрежем от нее $\drawUnitLine{CA} = \drawUnitLine{BD}$ \byref{prop:I.III} и~проведем \drawUnitLine{BC}.
+Предположим, что стороны не равны и~одна из них \drawUnitLine{AD} больше, чем другая \drawUnitLine{BD}, тогда отрежем от нее $\drawUnitLine{CA} = \drawUnitLine{BD}$ \byref{prop:I.III} и~проведем \drawUnitLine{BC}.
 
 \begin{center}
 Тогда в~\drawLine[bottom]{BC,AB,CA} и~\triangleABD\\
@@ -1483,7 +1483,7 @@ $\drawAngle{A} = \drawAngle{B}$ \byref{\hypref}\\
 $\therefore$ эти треугольники равны \byref{prop:I.IV},\\
 часть равна целому, что невозможно.
 
-$\therefore$ ни одна из сторон \drawUnitLine{CA,CD} или \drawUnitLine{BD} не больше другой,\\
+$\therefore$ ни одна из сторон \drawUnitLine{AD} или \drawUnitLine{BD} не больше другой,\\
 $\therefore$ они равны.
 \end{center}
 
@@ -1660,7 +1660,7 @@ draw byNamedLineSeq(0)(AB,CA,CD,DB);
 draw byLabelsOnPolygon(B, A, C, D)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Р}{ассечь}{данную ограниченную прямую линию \drawUnitLine{DB,CD} пополам.}
+\problem{Р}{ассечь}{данную ограниченную прямую линию \drawUnitLine{BC} пополам.}
 
 \begin{center}
 Построим \drawLine[bottom]{AB,CA,CD,DB} \byref{prop:I.I},\\
@@ -1701,7 +1701,7 @@ draw byLabelsOnPolygon(F, C, D, B, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(B, A, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{И}{з}{данной точки \drawPointL[middle][AD]{D} на данной прямой \drawUnitLine{DB,CD} построить перпендикуляр.}
+\problem{И}{з}{данной точки \drawPointL[middle][AD]{D} на данной прямой \drawUnitLine{BC} построить перпендикуляр.}
 
 \begin{center}
 Возьмем любую точку \drawPointL[middle][CA]{C} на данной прямой,\\
@@ -1715,7 +1715,7 @@ $\drawUnitLine{CD} = \drawUnitLine{DB}$ \byref{\constref}\\
 и \drawUnitLine{AD} общая обоим,\\
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$ \byref{prop:I.VIII}.
 
-$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \byref{def:I.X}.
+$\therefore \drawUnitLine{AD} \perp \drawUnitLine{BC}$ \byref{def:I.X}.
 \end{center}
 
 \qed
@@ -1756,7 +1756,7 @@ draw byLabelLineEnd(D, A, 0);
 draw byLabelLineEnd(C, A, 0);
 }
 \drawCurrentPictureInMargin
-\problem{П}{ровести}{перпендикуляр к~данной неограниченной прямой \drawUnitLine{DB,CD} из данной не находящейся на ней точки \drawPointL{A}.}
+\problem{П}{ровести}{перпендикуляр к~данной неограниченной прямой \drawUnitLine{BC} из данной не находящейся на ней точки \drawPointL{A}.}
 
 \begin{center}
 Взяв данную точку \drawPointL{A} в~качестве центра по одну сторону прямой и~любое расстояние, позволяющее достигнуть другой стороны, построим \drawArc{O}.
@@ -1764,14 +1764,14 @@ draw byLabelLineEnd(C, A, 0);
 Возьмем $\drawUnitLine{DB} = \drawUnitLine{CD}$ \byref{prop:I.X},\\
 проведем \drawUnitLine{AB}, \drawUnitLine{CA} и~\drawUnitLine{AD}.
 
-Тогда $\drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$.
+Тогда $\drawUnitLine{AD} \perp \drawUnitLine{BC}$.
 
 Поскольку в \drawLine[bottom]{DB,BA,AD} и \drawLine[bottom]{CD,DA,AC}
 $\drawUnitLine{DB} = \drawUnitLine{CD}$ \byref{\constref},\\
 \drawUnitLine{AD} общая обоим\\
 и $\drawUnitLine{AB} = \drawUnitLine{CA}$ \byref{def:I.XV},\\
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$\byref{prop:I.VIII},\\
-и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \byref{def:I.X}.
+и $\therefore \drawUnitLine{AD} \perp \drawUnitLine{BC}$ \byref{def:I.X}.
 \end{center}
 
 \qed
@@ -2003,7 +2003,7 @@ draw byNamedLineSeq(0)(DC,BC,BA,AD);
 draw byLabelsOnPolygon(D, C, B, A)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{В}{о}{всяком треугольнике \drawLine{DC,BC,BA,AD} если одна сторона \drawUnitLine{AD,DC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т.~е. $\drawAngle{DBC,ABD} > \drawAngle{A}$.}
+\problem[3]{В}{о}{всяком треугольнике \drawLine{DC,BC,BA,AD} если одна сторона \drawUnitLine{AC} больше другой \drawUnitLine[0.5cm]{BC}, то противолежащий большей стороне угол будет больше противолежащего меньшей стороне угла, т.~е. $\drawAngle{CBA} > \drawAngle{A}$.}
 
 \begin{center}
 Сделаем $\drawUnitLine{DC} = \drawUnitLine{BC}$ \byref{prop:I.III},\\ проведем \drawUnitLine{DB}.
@@ -2013,7 +2013,7 @@ draw byLabelsOnPolygon(D, C, B, A)(ALL_LABELS, 0);
 Но $\drawAngle{D} > \drawAngle{A}$ \byref{prop:I.XVI}.
 
 $\therefore \drawAngle{DBC} > \drawAngle{A}$,\\
-и тем более $\drawAngle{DBC,ABD} > \drawAngle{A}$.
+и тем более $\drawAngle{CBA} > \drawAngle{A}$.
 \end{center}
 
 \qed
@@ -2125,13 +2125,13 @@ draw byLabelsOnPolygon(A, D, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \begin{center}
 Продлим \drawSizedLine{AD},\\
-$\drawSizedLine{CA} + \drawSizedLine{EC} > \drawSizedLine{AD,DE}$ \byref{prop:I.XX},\\
+$\drawSizedLine{CA} + \drawSizedLine{EC} > \drawSizedLine{AE}$ \byref{prop:I.XX},\\
 добавим к~каждой \drawSizedLine{BE},\\
-$\drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD,DE} + \drawSizedLine{BE}$ \byref{ax:I.IV}.
+$\drawSizedLine{CA} + \drawSizedLine{CB} > \drawSizedLine{AE} + \drawSizedLine{BE}$ \byref{ax:I.IV}.
 
 Таким же образом можно показать, что\\
-$\drawSizedLine{AD,DE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
-$\therefore \drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+$\drawSizedLine{AE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+$\therefore \drawSizedLine{CA} + \drawSizedLine{CB} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
 что и~требовалось доказать.
 
 Далее $\drawAngle{E} > \drawAngle{C}$ \byref{prop:I.XVI}\\
@@ -2258,7 +2258,7 @@ draw byLabelsOnPolygon(D, B, A, C, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(noPoint, J, G, F, H, G)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{П}{ри}{данной точке \drawPointL{F} на данной прямой \drawUnitLine{FG,GJ} построить угол, равный данному прямолинейному углу \drawAngle{A}.}
+\problem{П}{ри}{данной точке \drawPointL{F} на данной прямой \drawUnitLine{FJ} построить угол, равный данному прямолинейному углу \drawAngle{A}.}
 
 Проведем \drawUnitLine{BC} между любыми двумя точками на сторонах данного угла.
 
@@ -2406,23 +2406,23 @@ draw byNamedLineSeq(0)(GD,FG,EF,DE);
 draw byLabelsOnPolygon(C, B, A)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(D, G, F, E)(ALL_LABELS, 0);
 }
-\problem[3]{Е}{сли}{два угла одного треугольника соответственно равны двум углам другого треугольника ($\drawAngle{A} = \drawAngle{D}$ и~$\drawAngle{B} = \drawAngle{GED,FEG}$) и~одна сторона равна одного равна так же расположенной стороне другого, то и~остальные стороны и~углы соответственно равны друг другу.}
+\problem[3]{Е}{сли}{два угла одного треугольника соответственно равны двум углам другого треугольника ($\drawAngle{A} = \drawAngle{D}$ и~$\drawAngle{B} = \drawAngle{FED}$) и~одна сторона равна одного равна так же расположенной стороне другого, то и~остальные стороны и~углы соответственно равны друг другу.}
 
 \drawCurrentPictureInMargin
 \startsubproposition{Случай I.}
 \begin{center}
-Пусть  \drawUnitLine{AB} и~\drawUnitLine{DE}, лежащие между равными углами, равны, тогда $\drawUnitLine{CA} = \drawUnitLine{GD,FG}$.
+Пусть  \drawUnitLine{AB} и~\drawUnitLine{DE}, лежащие между равными углами, равны, тогда $\drawUnitLine{CA} = \drawUnitLine{DF}$.
 
-Поскольку, если \drawUnitLine{GD,FG} больше,\\
+Поскольку, если \drawUnitLine{DF} больше,\\
 сделаем $\drawUnitLine{CA} = \drawUnitLine{GD}$, проведем \drawUnitLine{EG}.
 
 В \drawLine[bottom]{CA,BC,AB} и
 \drawLine[bottom]{GD,EG,DE} получим \\
 $\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
-$\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
-но $\drawAngle{B} = \drawAngle{GED,FEG}$ \byref{\hypref}.
+$\therefore \drawAngle{B} = \drawAngle{GED}$ \byref{prop:I.IV}\\
+но $\drawAngle{B} = \drawAngle{FED}$ \byref{\hypref}.
 
-И следовательно $\drawAngle{GED} = \drawAngle{GED,FEG}$, что не~имеет смысла, а~значит ни \drawUnitLine{CA}, ни \drawUnitLine{GD,FG} не~больше другой, и~$\therefore$ они равны.
+И следовательно $\drawAngle{GED} = \drawAngle{FED}$, что не~имеет смысла, а~значит ни \drawUnitLine{CA}, ни \drawUnitLine{DF} не~больше другой, и~$\therefore$ они равны.
 
 $\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$, и~$\drawAngle{C} = \drawAngle{F}$ \byref{prop:I.IV}.
 \end{center}
@@ -2463,7 +2463,7 @@ draw byLabelsOnPolygon(D, F, E, G)(ALL_LABELS, 0);
 \startsubproposition{Случай II.}
 \begin{center}
 Теперь пусть $\drawUnitLine{CA} = \drawUnitLine{FD}$, лежат против равных углов \drawAngle{B} и~\drawAngle{E}.\\
-Если такое возможно, пусть $\drawUnitLine{DG,GE} > \drawUnitLine{AB}$, тогда возьмем $\drawUnitLine{DG} = \drawUnitLine{AB}$, проведем \drawUnitLine{FG}.
+Если такое возможно, пусть $\drawUnitLine{DE} > \drawUnitLine{AB}$, тогда возьмем $\drawUnitLine{DG} = \drawUnitLine{AB}$, проведем \drawUnitLine{FG}.
 
 Тогда в~\drawLine[bottom]{CA,BC,AB} и~\drawLine[bottom]{FD,FG,DG} получим $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ и~$\drawAngle{A} = \drawAngle{D}$.
 
@@ -2472,7 +2472,7 @@ $\therefore \drawAngle{B} = \drawAngle{G}$ \byref{prop:I.IV},\\
 
 $\therefore \drawAngle{G} = \drawAngle{E}$, что не~имеет смысла \byref{prop:I.XVI}. % question: при чем тут I.XVI ?
 
-Следовательно, ни \drawUnitLine{AB}, ни \drawUnitLine{DG,GE} не~больше другой, а~значит, они равны. Следовательно (согласно \byref{prop:I.IV}), треугольники равны во всех отношениях.
+Следовательно, ни \drawUnitLine{AB}, ни \drawUnitLine{DE} не~больше другой, а~значит, они равны. Следовательно (согласно \byref{prop:I.IV}), треугольники равны во всех отношениях.
 \end{center}
 
 \qed
@@ -2595,17 +2595,17 @@ draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 \problem{П}{рямая}{\drawUnitLine{GH}, падающая на две параллельные прямые \drawUnitLine{AB} и~\drawUnitLine{CD}, образует накрест лежащие углы, равные между собой, внешний и~противолежащий с~той же стороны внутренний углы, равные между собой, а~также внутренние односторонние углы, равные двум прямым углам.}
 
 \begin{center}
-Если накрест лежащие углы \drawAngle{IEA,HEI} и~\drawAngle{GFD} не равны,\\ проведем \drawUnitLine{IE} так, чтобы $\drawAngle{HEI} = \drawAngle{GFD}$ \byref{prop:I.XXIII}.
+Если накрест лежащие углы \drawAngle{AEH} и~\drawAngle{GFD} не равны,\\ проведем \drawUnitLine{IE} так, чтобы $\drawAngle{HEI} = \drawAngle{GFD}$ \byref{prop:I.XXIII}.
 
-$\therefore \drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \byref{prop:I.XXVII}\\
+$\therefore \drawUnitLine{IJ} \parallel \drawUnitLine{CD}$ \byref{prop:I.XXVII}\\
 и $\therefore$ две пересекающихся прямых параллельны одной и~той же прямой, что невозможно \byref{ax:I.XII}.
 
-А значит, \drawAngle{IEA,HEI} и~\drawAngle{GFD} не являются неравными,\\
-то есть они равны $\drawAngle{IEA,HEI} = \drawAngle{GEB}$ \byref{prop:I.XV}.
+А значит, \drawAngle{AEH} и~\drawAngle{GFD} не являются неравными,\\
+то есть они равны $\drawAngle{AEH} = \drawAngle{GEB}$ \byref{prop:I.XV}.
 
 $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, внешний угол равен внутреннему, противолежащему с~той же стороны:\\
 если к~обоим добавить \drawAngle{BEH},\\
-то $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{BEH,GEB} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
+то $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{HEG} = \drawTwoRightAngles$ \byref{prop:I.XIII}.
 \end{center}
 
 Другими словами, два внутренних угла по одну сторону пересекающей прямой равны двум прямым углам.
@@ -2678,14 +2678,14 @@ draw byNamedLineSeq(0)(CF, FD);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{П}{ровести}{через данную точку \drawPointL[middle][EB]{E} прямую, параллельную данной прямой \drawUnitLine{CF,FD}.}
+\problem{П}{ровести}{через данную точку \drawPointL[middle][EB]{E} прямую, параллельную данной прямой \drawUnitLine{CD}.}
 
 \begin{center}
-Проведем \drawUnitLine{EF} из точки \drawPointL[middle][EB]{E}  к~любой точке \drawPointL[middle][CF]{F} на \drawUnitLine{CF,FD}.
+Проведем \drawUnitLine{EF} из точки \drawPointL[middle][EB]{E}  к~любой точке \drawPointL[middle][CF]{F} на \drawUnitLine{CF}.
 
 Сделаем $\drawAngle{E} = \drawAngle{F}$ \byref{prop:I.XXIII}.
 
-Тогда $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF,FD}$ \byref{prop:I.XXVII}.
+Тогда $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \byref{prop:I.XXVII}.
 \end{center}
 
 \qed
@@ -3162,13 +3162,13 @@ draw byNamedLineFull(B, B, 1, 1,  0, 0)(EF);
 }, находящиеся на равных основаниях и~с одной и~той же стороны, находятся между одними и теми же параллельными прямыми.}
 
 \begin{center}
-Если \drawSizedLine{AB}, соединяющая вершины треугольников, не $\parallel \drawSizedLine{CD,DE,EF}$,\\
-проведем \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \byref{prop:I.XXXI},\\
+Если \drawSizedLine{AB}, соединяющая вершины треугольников, не $\parallel \drawSizedLine{CF}$,\\
+проведем \drawSizedLine{AG} $\parallel \drawSizedLine{CF}$ \byref{prop:I.XXXI},\\
 касающуюся \drawSizedLine{EH}.
 
 Проведем \drawSizedLine{FG}.
 
-Поскольку $\drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ \byref{\constref},\\
+Поскольку $\drawSizedLine{AG} \parallel \drawSizedLine{CF}$ \byref{\constref},\\
 $\polygonACD =
 \drawFromCurrentPicture[bottom][polygonGEF]{
 startAutoLabeling;
@@ -3181,9 +3181,9 @@ draw byNamedLineFull(G, G, 1, 1,  0, 0)(EF);
 
 $\therefore \polygonBEF = \polygonGEF$, часть равна целому, что невозможно.
 
-$\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CD,DE,EF}$: и~таким же образом можно показать, что никакая другая линия, кроме \drawSizedLine{AB}, не $\parallel \drawSizedLine{CD,DE,EF}$.
+$\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CF}$: и~таким же образом можно показать, что никакая другая линия, кроме \drawSizedLine{AB}, не $\parallel \drawSizedLine{CF}$.
 
-$\therefore \drawSizedLine{AB} \parallel \drawSizedLine{CD,DE,EF}$.
+$\therefore \drawSizedLine{AB} \parallel \drawSizedLine{CF}$.
 \end{center}
 
 \qed
@@ -3387,7 +3387,7 @@ stopAutoLabeling;
 
 Продлим \drawUnitLine{AH} до $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$\\
 проведем \drawUnitLine{BE}, продлим ее до продолжения \drawUnitLine{AF};\\
-проведем $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ до продолжения  \drawUnitLine{BG} и~продлим \drawUnitLine{HE}.
+проведем $\drawUnitLine{CD} \parallel \drawUnitLine{FG}$ до продолжения  \drawUnitLine{BG} и~продлим \drawUnitLine{HE}.
 
 $\polygonAHEF = \drawPolygon[middle][polygonEGDI]{EGDI}$ \byref{prop:I.XLIII},\\
 но $\polygonAHEF = \polygonJKL$ \byref{\constref}.
@@ -3787,7 +3787,7 @@ draw byLabelLine(0)(A);
 }
 \drawCurrentPictureInMargin
 \problem{П}{рямоугольник,}{заключенный между двумя прямыми линиями, одна из которых рассечена на сколько угодно отрезков, равен сумме прямоугольников, заключенных между нерассеченной прямой и~каждым из этих отрезков.\\
-$\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{
+$\drawProportionalLine{GH} \cdot \drawProportionalLine{A} = \left\{
 \begin{aligned}
 	&\drawProportionalLine{A} \cdot \drawProportionalLine{GK}\\
 	+&\drawProportionalLine{A} \cdot \drawProportionalLine{KL}\\
@@ -3796,12 +3796,12 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{
 \right.$}
 
 \begin{center}
-Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ и~} = \drawProportionalLine{A}$ \byref{prop:I.XI,prop:I.III}.
+Проведем $\drawProportionalLine{GB} \perp \drawProportionalLine{GH} \mbox{ и~} = \drawProportionalLine{A}$ \byref{prop:I.XI,prop:I.III}.
 
 Достроим параллелограммы, то есть\\
 проведем $\left\{
 \begin{aligned}
-	\drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \\
+	\drawProportionalLine{BC} &\parallel \drawProportionalLine{GH} \\
 	\vcenter{
 	\nointerlineskip\hbox{\drawProportionalLine{KD}}
 	\nointerlineskip\hbox{\drawProportionalLine{LE}}
@@ -3813,12 +3813,12 @@ $\drawPolygon{GKDB,KLED,LHCE} =
 \drawPolygon{GKDB} +
 \drawPolygon{KLED} +
 \drawPolygon{LHCE}$,\\
-$\drawPolygon{GKDB,KLED,LHCE} = \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB}$,\\
+$\drawPolygon{GKDB,KLED,LHCE} = \drawProportionalLine{GH} \cdot \drawProportionalLine{GB}$,\\
 $\polygonGKDB = \drawProportionalLine{GK} \cdot \drawProportionalLine{GB}$,
 $\polygonKLED = \drawProportionalLine{KL} \cdot \drawProportionalLine{GB}$,\\
 $\polygonLHCE = \drawProportionalLine{LH} \cdot \drawProportionalLine{GB}$.
 
-$\therefore \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \drawProportionalLine{GK} \cdot \drawProportionalLine{A} + \drawProportionalLine{KL} \cdot \drawProportionalLine{A} + \drawProportionalLine{LH} \cdot \drawProportionalLine{A}$.
+$\therefore \drawProportionalLine{GH} \cdot \drawProportionalLine{A} = \drawProportionalLine{GK} \cdot \drawProportionalLine{A} + \drawProportionalLine{KL} \cdot \drawProportionalLine{A} + \drawProportionalLine{LH} \cdot \drawProportionalLine{A}$.
 \end{center}
 
 \qed
@@ -3845,11 +3845,11 @@ draw byNamedLineSeq(0)(AD,AC,CB,BE);
 draw byLabelsOnPolygon(A, C, B, E, F, D)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая линия \drawProportionalLine{AC,CB} как-либо рассечена, квадрат всей линии равен сумме прямоугольников, заключенных между целой линией и~каждой из ее частей.\\
-$\drawProportionalLine{AC,CB}^2 = \left\{
+\problem{Е}{сли}{прямая линия \drawProportionalLine{AB} как-либо рассечена, квадрат всей линии равен сумме прямоугольников, заключенных между целой линией и~каждой из ее частей.\\
+$\drawProportionalLine{AB}^2 = \left\{
 \begin{aligned}
-	& \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC} \\
-	+ & \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB} \\
+	& \drawProportionalLine{AB} \cdot \drawProportionalLine{AC} \\
+	+ & \drawProportionalLine{AB} \cdot \drawProportionalLine{CB} \\
 \end{aligned}
 \right.$
 }
@@ -3859,15 +3859,15 @@ $\drawProportionalLine{AC,CB}^2 = \left\{
 
 Проведем \drawProportionalLine{CF}, параллельную \drawProportionalLine{AD} \byref{prop:I.XXXI}.
 
-$\polygonABED = \drawProportionalLine{AC,CB}^2$.
+$\polygonABED = \drawProportionalLine{AB}^2$.
 
-$\drawPolygon{ACFD} = \drawProportionalLine{CF} \cdot \drawProportionalLine{AC} = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC}$.
+$\drawPolygon{ACFD} = \drawProportionalLine{CF} \cdot \drawProportionalLine{AC} = \drawProportionalLine{AB} \cdot \drawProportionalLine{AC}$.
 
-$\drawPolygon{CBEF} = \drawProportionalLine{CF} \cdot \drawProportionalLine{CB} = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}$.
+$\drawPolygon{CBEF} = \drawProportionalLine{CF} \cdot \drawProportionalLine{CB} = \drawProportionalLine{AB} \cdot \drawProportionalLine{CB}$.
 
 $\polygonABED = \drawPolygon{ACFD} + \drawPolygon{CBEF}$.
 
-$\therefore \drawProportionalLine{AC,CB}^2 = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC} + \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}$.
+$\therefore \drawProportionalLine{AB}^2 = \drawProportionalLine{AB} \cdot \drawProportionalLine{AC} + \drawProportionalLine{AB} \cdot \drawProportionalLine{CB}$.
 \end{center}
 
 \qed
@@ -3895,9 +3895,9 @@ draw byNamedLineSeq(0)(CD,noLine,DF,DE,EB,BC);
 draw byLabelsOnPolygon(B, C, A, F, D, E)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая линия \drawProportionalLine{DE,DF} как-либо рассечена, то прямоугольник, заключенный между всей прямой и~ее частью, равен квадрату этой части вместе с~прямоугольником, заключенным между частями.\\
-$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, или \\
-$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$}
+\problem{Е}{сли}{прямая линия \drawProportionalLine{EF} как-либо рассечена, то прямоугольник, заключенный между всей прямой и~ее частью, равен квадрату этой части вместе с~прямоугольником, заключенным между частями.\\
+$\drawProportionalLine{EF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, или \\
+$\drawProportionalLine{EF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$}
 
 \begin{center}
 Опишем \drawPolygon{CBED} \byref{prop:I.XLVI}.
@@ -3905,12 +3905,12 @@ $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportiona
 Опишем \drawPolygon{ACDF} \byref{prop:I.XXXI}.
 
 Тогда $\drawPolygon[middle][polygonABEF]{ACDF,CBED} = \polygonCBED + \polygonACDF$, но\\
-$\polygonABEF = \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE}$\\
+$\polygonABEF = \drawProportionalLine{EF} \cdot \drawProportionalLine{DE}$\\
 и $\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACDF = \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
 
-$\therefore \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
+$\therefore \drawProportionalLine{EF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
 
-Таким же образом можно показать, что $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
+Таким же образом можно показать, что $\drawProportionalLine{EF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
 \end{center}
 
 \qed
@@ -3957,17 +3957,17 @@ draw byLabelsOnPolygon(A, C, B, K, E, F, D, H)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(H, G, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DF,FE}, квадрат всей прямой равен квадратам частей с~дважды взятым прямоугольником, заключенным между частями.\\
-$\drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{дважды} \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
+\problem{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DE}, квадрат всей прямой равен квадратам частей с~дважды взятым прямоугольником, заключенным между частями.\\
+$\drawProportionalLine{DE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{дважды} \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
 }
 
 \begin{center}
 Опишем \drawLine[middle][squareABED]{AD,BA,KB,EK,FE,DF} \byref{prop:I.XLVI},
-проведем \drawProportionalLine{BG,GD} \byref{post:I.I}\\
+проведем \drawProportionalLine{BD} \byref{post:I.I}\\
 и $\left\{
 \begin{aligned}
-	\drawProportionalLine{FG,CG} &\parallel \drawProportionalLine{EK,KB}\\
-	\drawProportionalLine{HG,GK} &\parallel \drawProportionalLine{DF,FE}\\
+	\drawProportionalLine{FC} &\parallel \drawProportionalLine{EB}\\
+	\drawProportionalLine{HK} &\parallel \drawProportionalLine{DE}\\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}.
 
@@ -3998,7 +3998,7 @@ draw byNamedLineFull(G, G, 0, 1,  0, -1)(KB);
 draw byLabelsOnPolygon(A, B, E, D)(ALL_LABELS, 0);
 } = \squareFGHD + \drawPolygon{ACGH} + \drawPolygon{GKEF} + \squareKBCG$.
 
-$\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ дважды } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$.
+$\therefore \drawProportionalLine{DE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ дважды } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$.
 \end{center}
 
 \qed
@@ -4040,30 +4040,30 @@ draw byLabelsOnPolygon(A, C, D, B, M, F, G, E, L, K)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(M, H, G)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая \drawProportionalLine{BD,DC,CA} рассечена на равные \drawProportionalLine{BD,DC} \drawProportionalLine{CA} и~неравные \drawProportionalLine{BD} \drawProportionalLine{DC,CA} отрезки, прямоугольник, заключенный между неравными частями, вместе с~квадратом отрезка между сечениями равен квадрату половины всей прямой. \\
-$\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
+\problem{Е}{сли}{прямая \drawProportionalLine{BA} рассечена на равные \drawProportionalLine{BC} \drawProportionalLine{CA} и~неравные \drawProportionalLine{BD} \drawProportionalLine{DA} отрезки, прямоугольник, заключенный между неравными частями, вместе с~квадратом отрезка между сечениями равен квадрату половины всей прямой. \\
+$\drawProportionalLine{BD} \cdot \drawProportionalLine{DA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BC}^2$.
 }
 
 \begin{center}
 Опишем \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \byref{prop:I.XLVI}, проведем \drawProportionalLine{EB}\\
 и $\left\{
 \begin{aligned}
-	\drawProportionalLine{DH,HG} & \parallel \drawProportionalLine{CL,LE} \\
-	\drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \\
-	\drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE} \\
+	\drawProportionalLine{DG} & \parallel \drawProportionalLine{CE} \\
+	\drawProportionalLine{MK} & \parallel \drawProportionalLine{BA} \\
+	\drawProportionalLine{AK} & \parallel \drawProportionalLine{CE} \\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}.
 
 $\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \byref{prop:I.XXXVI},$\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \byref{prop:I.XLIII}.
 
-$\therefore \mbox{\byref{ax:I.II} } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$.
+$\therefore \mbox{\byref{ax:I.II} } \drawPolygon[middle]{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DA}$.
 
 Но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \byref{prop:II.IV}\\
-и $\squareCBFE = \drawProportionalLine{BD,DC}^2$ \byref{\constref}.
+и $\squareCBFE = \drawProportionalLine{BC}^2$ \byref{\constref}.
 
 $\therefore \mbox{\byref{ax:I.II} } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$.
 
-$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
+$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BC}^2$.
 \end{center}
 
 \qed
@@ -4106,8 +4106,8 @@ draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(L, H, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DC,CA} и~продлена до любой точки \drawProportionalLine{BD,DC,CA}, прямоугольник, заключенный между всей прямой и~продленной частью, вместе с~квадратом половины исходной линии равен квадрату линии, составленной из половины исходной линии и~продленной части.\\
-$\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
+\problem{Е}{сли}{прямая рассечена пополам \drawProportionalLine{DA} и~продлена до любой точки \drawProportionalLine{BA}, прямоугольник, заключенный между всей прямой и~продленной частью, вместе с~квадратом половины исходной линии равен квадрату линии, составленной из половины исходной линии и~продленной части.\\
+$\drawProportionalLine{BA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BC}^2$
 }
 
 \begin{center}
@@ -4115,20 +4115,20 @@ $\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProporti
 
 и $\left\{
 \begin{aligned}
-	\drawProportionalLine{HG,DH} & \parallel \drawProportionalLine{LE,CL} \\
-	\drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \\
-	\drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE} \\
+	\drawProportionalLine{GD} & \parallel \drawProportionalLine{EC} \\
+	\drawProportionalLine{MK} & \parallel \drawProportionalLine{BA} \\
+	\drawProportionalLine{AK} & \parallel \drawProportionalLine{CE} \\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}.
 
 $\drawPolygon{MHGF} = \drawPolygon{DCLH} = \drawPolygon{CLKA}$ \byref{prop:I.XXXVI,prop:I.XLIII}.
 
-$\therefore \drawPolygon{BDHM,DCLH,MHGF} = \drawPolygon{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$.
+$\therefore \drawPolygon{BDHM,DCLH,MHGF} = \drawPolygon{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BA}$.
 
 Но $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \byref{prop:II.IV},\\
 $\therefore \squareCBFE = \drawProportionalLine{CB}^2 = \drawPolygon{BDHM,DCLH,CLKA,HLEG}$ \byref{\constref,ax:I.II}.
 
-$\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$.
+$\therefore \drawProportionalLine{BA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BC}^2$.
 \end{center}
 
 \qed
@@ -4164,16 +4164,16 @@ draw byLabelsOnPolygon(D, H, A, C, B, F, E, N)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(H, G, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DN,NE}, то вместе квадрат всей прямой и~одной из ее частей равны дважды взятому прямоугольнику, заключенному между всей прямой и~этой ее частью, вместе с~квадратом другой части.\\
-$\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$
+\problem{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{DE}, то вместе квадрат всей прямой и~одной из ее частей равны дважды взятому прямоугольнику, заключенному между всей прямой и~этой ее частью, вместе с~квадратом другой части.\\
+$\drawProportionalLine{DE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$
 }
 
 \begin{center}
 Опишем \drawPolygon[middle][squareABED]{DNGH,NEFG,HGCA,GFBC}. \byref{prop:I.XLVI}, проведем \drawProportionalLine{BD} \byref{post:I.I}\\
 и $\left\{
 \begin{aligned}
-	\drawProportionalLine{GN,GC} &\parallel \drawProportionalLine{EB} \\
-	\drawProportionalLine{GH,GF} &\parallel \drawProportionalLine{DN,NE} \\
+	\drawProportionalLine{NC} &\parallel \drawProportionalLine{EB} \\
+	\drawProportionalLine{HF} &\parallel \drawProportionalLine{DE} \\
 \end{aligned}
 \right\}$.
 
@@ -4181,11 +4181,11 @@ $\drawPolygon{HGCA} = \drawPolygon{NEFG}$ \byref{prop:I.XLIII}.
 
 Добавим $\drawPolygon{GFBC} = \drawProportionalLine{NE}^2$ к~обоим \byref{prop:II.IV}.
 
-$\drawPolygon{HGCA,GFBC} = \drawPolygon{NEFG,GFBC} = \drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE}$,\\
+$\drawPolygon{HGCA,GFBC} = \drawPolygon{NEFG,GFBC} = \drawProportionalLine{DE} \cdot \drawProportionalLine{NE}$,\\
 $\drawPolygon{DNGH} = \drawProportionalLine{DN}^2$ \byref{prop:II.IV},\\
-$\drawPolygon{HGCA,GFBC} + \drawPolygon{NEFG,GFBC} + \drawPolygon{DNGH} = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2 = \squareABED + \drawPolygon{GFBC}$.
+$\drawPolygon{HGCA,GFBC} + \drawPolygon{NEFG,GFBC} + \drawPolygon{DNGH} = 2\drawProportionalLine{DE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2 = \squareABED + \drawPolygon{GFBC}$.
 
-$\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$.
+$\drawProportionalLine{DE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$.
 \end{center}
 
 \qed
@@ -4238,12 +4238,12 @@ byLineDefine(O, P, byblack, SOLID_LINE, THIN_WIDTH);
 draw byLabelsOnPolygon(A, C, B, D, N, P, F, L, H, E, O, M)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{EH,HL}, квадрат всей прямой вместе с~любой ее частью равен четырежды прямоугольнику, заключенному между всей прямой и~этой ее частью, вместе с~квадратом другой части. \\
-$\drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
+\problem{Е}{сли}{прямая как-либо рассечена \drawProportionalLine{EL}, квадрат всей прямой вместе с~любой ее частью равен четырежды прямоугольнику, заключенному между всей прямой и~этой ее частью, вместе с~квадратом другой части. \\
+$\drawProportionalLine{EF}^2 = 4 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
 }
 
 \begin{center}
-Продлим \drawProportionalLine{EH,HL} и~сделаем $\drawProportionalLine{LF} = \drawProportionalLine{HL}$.
+Продлим \drawProportionalLine{EL} и~сделаем $\drawProportionalLine{LF} = \drawProportionalLine{HL}$.
 
 Построим \drawFromCurrentPicture{
 draw byNamedLine(BL,CH,MN,OP);
@@ -4271,15 +4271,15 @@ $\left.
 		\nointerlineskip\hbox{\drawProportionalLine{MG,GN}}
 		}
 	\end{aligned}
-	\right\} & \parallel \drawProportionalLine{EH,HL,LF}\\
+	\right\} & \parallel \drawProportionalLine{EF}\\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}.
 
-$\drawProportionalLine{EH,HL,LF}^2 = \drawProportionalLine{LF}^2 + \drawProportionalLine{EH,HL}^2 + 2 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{LF}$ \byref{prop:II.IV}.
+$\drawProportionalLine{EF}^2 = \drawProportionalLine{LF}^2 + \drawProportionalLine{EL}^2 + 2 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{LF}$ \byref{prop:II.IV}.
 
-Но $\drawProportionalLine{HL}^2 + \drawProportionalLine{EH,HL}^2 = 2 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$ \byref{prop:II.VII}.
+Но $\drawProportionalLine{HL}^2 + \drawProportionalLine{EL}^2 = 2 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$ \byref{prop:II.VII}.
 
-$\therefore \drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$.
+$\therefore \drawProportionalLine{EF}^2 = 4 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$.
 \end{center}
 
 \qed
@@ -4322,19 +4322,19 @@ draw byLabelsOnPolygon(E, F, B, D, C, A)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(C, G, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая рассечена на равные \drawProportionalLine{AC} \drawProportionalLine{CD,DB} и~неравные \drawProportionalLine{AC,CD} \drawProportionalLine{DB} части, квадраты неравных частей вместе вдвое больше квадрата на половине вместе с~квадратом отрезка между сечениями.\\
-$\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
+\problem{Е}{сли}{прямая рассечена на равные \drawProportionalLine{AC} \drawProportionalLine{CB} и~неравные \drawProportionalLine{AD} \drawProportionalLine{DB} части, квадраты неравных частей вместе вдвое больше квадрата на половине вместе с~квадратом отрезка между сечениями.\\
+$\drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 }
 
 \begin{center}
-Сделаем $\drawProportionalLine{CG,GE} \perp \mbox{ и~} = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CD,DB}$.
+Сделаем $\drawProportionalLine{CE} \perp \mbox{ и~} = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CB}$.
 
-Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EH,HF,FB},\\
-$\drawProportionalLine{FD} \parallel \drawProportionalLine{CG,GE}$, $ \drawProportionalLine{GF} \parallel \drawProportionalLine{CD,DB}$ и~проведем \drawProportionalLine{AF}.
+Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EB},\\
+$\drawProportionalLine{FD} \parallel \drawProportionalLine{CE}$, $ \drawProportionalLine{GF} \parallel \drawProportionalLine{CB}$ и~проведем \drawProportionalLine{AF}.
 
 $\drawAngle{A} = \drawAngle{AEC}$ \byref{prop:I.V} $= \frac{1}{2}\drawRightAngle$ \byref{prop:I.XXXII},\\
 $\drawAngle{B} = \drawAngle{DFB}$ \byref{prop:I.V} $= \frac{1}{2}\drawRightAngle$ \byref{prop:I.XXXII},\\
-$\therefore \drawAngle{AEC,CEB} = \drawRightAngle$.
+$\therefore \drawAngle{AEB} = \drawRightAngle$.
 
 $\drawAngle{B} = \drawAngle{CEB} = \drawAngle{EFG} = \drawAngle{DFB}$ \byref{prop:I.V,prop:I.XXIX}.
 
@@ -4342,17 +4342,17 @@ $\drawAngle{B} = \drawAngle{CEB} = \drawAngle{EFG} = \drawAngle{DFB}$ \byref{pro
 
 $\drawProportionalLine{AF}^2 = \left\{
 \begin{aligned}
-	&\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{FD}^2 \mbox{, или } + \drawProportionalLine{DB}^2 \\
+	&\drawProportionalLine{AD}^2 + \drawProportionalLine{FD}^2 \mbox{, или } + \drawProportionalLine{DB}^2 \\
 	&= \left\{
 		\begin{aligned}
-			&= \drawProportionalLine{AE}^2 + \drawProportionalLine{EH,HF}^2 \\
+			&= \drawProportionalLine{AE}^2 + \drawProportionalLine{EF}^2 \\
 			&= 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2 \\
 		\end{aligned}
 	\right. \mbox{ \byref{prop:I.XLVII}.} \\
 \end{aligned}
 \right.$
 
-$\therefore \drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$.
+$\therefore \drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$.
 \end{center}
 
 \qed
@@ -4394,18 +4394,18 @@ draw byLabelsOnPolygon(A, E, F, D, G)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(G, B, C, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{прямая линия \drawProportionalLine{AC,CB} рассечена пополам и~продлена до любой точки \drawProportionalLine{AC,CB,BD}, квадрат всей линии вместе с~квадратом продленной части равны дважды квадрату половины исходной линии вместе с~квадратом половины вместе с~продленной частью.\\
-$\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
+\problem{Е}{сли}{прямая линия \drawProportionalLine{AB} рассечена пополам и~продлена до любой точки \drawProportionalLine{AD}, квадрат всей линии вместе с~квадратом продленной части равны дважды квадрату половины исходной линии вместе с~квадратом половины вместе с~продленной частью.\\
+$\drawProportionalLine{AD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 } \unskip \vskip 0.25\baselineskip
 
 \begin{center}
 Сделаем $\drawProportionalLine{CE} \perp \mbox{ и~} = \drawProportionalLine{AC} \mbox{ или } \drawProportionalLine{CB}$.
 
-Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EB,BG}\\
+Проведем \drawProportionalLine{AE} и~\drawProportionalLine{EG}\\
 и $\left\{
 \begin{aligned}
-	\drawProportionalLine{FD,DG} & \parallel \drawProportionalLine{CE} \\
-	\drawProportionalLine{EF} & \parallel \drawProportionalLine{CB,BD} \\
+	\drawProportionalLine{FG} & \parallel \drawProportionalLine{CE} \\
+	\drawProportionalLine{EF} & \parallel \drawProportionalLine{CD} \\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}\\
 также проведем \drawProportionalLine{AG}.
@@ -4421,22 +4421,22 @@ $\drawAngle{DBG} = \drawAngle{CBE}$\byref{prop:I.XV}.
 
 $\therefore \drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} = \frac{1}{2}\drawRightAngle$.
 
-И $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, \byref{prop:I.VI,prop:I.XXXIV}.
+И $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CD} = \drawProportionalLine{EF} = \drawProportionalLine{FG}$, \byref{prop:I.VI,prop:I.XXXIV}.
 
 Тогда, согласно \byref{prop:I.XLVII},\\
 $\drawUnitLine{AG}^2 = \left\{
 \begin{aligned}
-	& \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{DG}^2 \mbox{ или } \drawProportionalLine{BD}^2 \\
+	& \drawProportionalLine{AD}^2 + \drawProportionalLine{DG}^2 \mbox{ или } \drawProportionalLine{BD}^2 \\
 	& \left\{
 		\begin{aligned}
 			& + \drawProportionalLine{AE}^2 = 2 \cdot \drawProportionalLine{AC}^2 \\
-			& + \drawProportionalLine{EB,BG}^2 = 2\cdot \drawProportionalLine{EF}^2 \\
+			& + \drawProportionalLine{EG}^2 = 2\cdot \drawProportionalLine{EF}^2 \\
 		\end{aligned}
 	\right. \\
 \end{aligned}
 \right.$
 
-$\therefore \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$.
+$\therefore \drawProportionalLine{AD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CD}^2$.
 \end{center}
 
 \qed
@@ -4470,8 +4470,8 @@ draw byNamedLineSeq(0)(CE,EA,AF);
 draw byLabelsOnPolygon(F, A, E, C, K, D, B, H, G)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Д}{анную}{прямую \drawProportionalLine{AH,HB} рассечь так, чтобы прямоугольник, заключенный между всей прямой и~одной из ее частей, был равен квадрату другой части.\\
-$\drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
+\problem{Д}{анную}{прямую \drawProportionalLine{AB} рассечь так, чтобы прямоугольник, заключенный между всей прямой и~одной из ее частей, был равен квадрату другой части.\\
+$\drawProportionalLine{AB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
 }
 
 \begin{center}
@@ -4479,15 +4479,15 @@ $\drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportiona
 
 Cделаем $\drawProportionalLine{EA} = \drawProportionalLine{CE}$ \byref{prop:I.X},\\
 проведем \drawProportionalLine{BE},\\
-возьмем $\drawProportionalLine{EA,AF} = \drawProportionalLine{BE}$ \byref{prop:I.III},\\
+возьмем $\drawProportionalLine{EF} = \drawProportionalLine{BE}$ \byref{prop:I.III},\\
 на \drawProportionalLine{AF} опишем \drawPolygon{AHGF} \byref{prop:I.XLVI}.
 
 Продлим \drawProportionalLine{KG} \byref{post:I.II}.
 
-Тогда \byref{prop:II.VI} $\drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EA,AF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AH,HB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AH,HB}^2$,\\
+Тогда \byref{prop:II.VI} $\drawProportionalLine{CF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AB}^2$,\\
 или $\drawPolygon{AHKC,AHGF} = \drawPolygon{AHKC,HBDK} \therefore \drawPolygon{AHGF} = \drawPolygon{HBDK}$
 
-$\therefore \drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$.
+$\therefore \drawProportionalLine{AB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$.
 
 \end{center}
 
@@ -4518,13 +4518,13 @@ $\drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLi
 
 \begin{center}
 Согласно \byref{prop:II.IV}\\
-$\drawProportionalLine{CA,AD}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$.
+$\drawProportionalLine{CD}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$.
 
 Добавим $\drawProportionalLine{DB}^2$ к~обоим.
 
-$\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{DB}^2$.
+$\drawProportionalLine{CD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{DB}^2$.
 
-Но $\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \byref{prop:I.XLVII},\\
+Но $\drawProportionalLine{CD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \byref{prop:I.XLVII},\\
 и $\drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BA}^2$ \byref{prop:I.XLVII}.
 
 $\therefore \drawProportionalLine{BC}^2 = 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \drawProportionalLine{BA}^2$.
@@ -4571,31 +4571,31 @@ draw byLabelsOnPolygon(F, E, H, G)(ALL_LABELS, 0);
 Первый случай.\\
 $\drawSizedLine[1.5cm]{CA}^2 < \drawSizedLine[1.5cm]{BD,DC}^2 + \drawSizedLine[1.5cm]{AB}^2$ на $2 \cdot \drawSizedLine[1.5cm]{BD,DC} \cdot \drawSizedLine[1.5cm]{BD}$.\\
 Второй случай.\\
-$\drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cdot \drawSizedLine{FG} \cdot \drawSizedLine{FG,GH}$.
+$\drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cdot \drawSizedLine{FG} \cdot \drawSizedLine{FH}$.
 }
 
 \begin{center}
 Предположим, перпендикуляр падает внутри треугольника,\\
 тогда  \byref{prop:II.VII}\\
-$\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2$.
+$\drawSizedLine{BC}^2 + \drawSizedLine{BD}^2 = 2 \cdot \drawSizedLine{BC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2$.
 
 К каждой добавим $\drawSizedLine{AD}^2$,\\
-тогда $\drawSizedLine{BD,DC}^2 + \drawSizedLine{BD}^2 + \drawSizedLine{AD}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2 + \drawSizedLine{AD}^2$.
+тогда $\drawSizedLine{BC}^2 + \drawSizedLine{BD}^2 + \drawSizedLine{AD}^2 = 2 \cdot \drawSizedLine{BC} \cdot \drawSizedLine{BD} + \drawSizedLine{DC}^2 + \drawSizedLine{AD}^2$.
 
 $\therefore$ \byref{prop:I.XLVII}
-$\drawSizedLine{BD,DC}^2 + \drawSizedLine{AB}^2 = 2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD} + \drawSizedLine{CA}^2$,\\
-и $\therefore \drawSizedLine{CA}^2 < \drawSizedLine{BD,DC}^2 + \drawSizedLine{AB}^2$ на $2 \cdot \drawSizedLine{BD,DC} \cdot \drawSizedLine{BD}$.
+$\drawSizedLine{BC}^2 + \drawSizedLine{AB}^2 = 2 \cdot \drawSizedLine{BC} \cdot \drawSizedLine{BD} + \drawSizedLine{CA}^2$,\\
+и $\therefore \drawSizedLine{CA}^2 < \drawSizedLine{BC}^2 + \drawSizedLine{AB}^2$ на $2 \cdot \drawSizedLine{BC} \cdot \drawSizedLine{BD}$.
 
 Теперь предположим, что перпендикуляр падает вовне треугольника, тогда \byref{prop:II.VII}\\
-$\drawSizedLine{FG,GH}^2 + \drawSizedLine{FG}^2 = 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2$.
+$\drawSizedLine{FH}^2 + \drawSizedLine{FG}^2 = 2 \cdot \drawSizedLine{FH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2$.
 
 К каждой добавим $\drawSizedLine{HE}^2$, тогда\\
-$\drawSizedLine{FG,GH}^2 + \drawSizedLine{FG}^2 + \drawSizedLine{HE}^2= 2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2 + \drawSizedLine{HE}^2$.
+$\drawSizedLine{FH}^2 + \drawSizedLine{FG}^2 + \drawSizedLine{HE}^2= 2 \cdot \drawSizedLine{FH} \cdot \drawSizedLine{FG} + \drawSizedLine{GH}^2 + \drawSizedLine{HE}^2$.
 
 $\therefore$ \byref{prop:I.XLVII}
-$\drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{EG}^2$,\\
+$\drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{EG}^2$,\\
 
-$\therefore \drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cdot \drawSizedLine{FG,GH} \cdot \drawSizedLine{FG}$.
+$\therefore \drawSizedLine{EG}^2 < \drawSizedLine{EF}^2 + \drawSizedLine{FG}^2$ на $2 \cdot \drawSizedLine{FH} \cdot \drawSizedLine{FG}$.
 \end{center}
 
 \qed
@@ -4658,9 +4658,9 @@ draw byLabelsOnPolygon(H, G, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \begin{center}
 Сделаем $\drawPolygon{BCDE} = \drawPolygon{abcdef}$ \byref{prop:I.XLV}.
 
-Продлим \drawSizedLine{EG,GB} до $\drawSizedLine{FE} = \drawSizedLine{ED}$.
+Продлим \drawSizedLine{EB} до $\drawSizedLine{FE} = \drawSizedLine{ED}$.
 
-Возьмем $\drawSizedLine{FE,EG} = \drawSizedLine{GB}$ \byref{prop:I.X}.
+Возьмем $\drawSizedLine{FG} = \drawSizedLine{GB}$ \byref{prop:I.X}.
 
 Опишем
 \drawFromCurrentPicture{
@@ -4674,12 +4674,12 @@ stopTempScale;
 \byref{post:I.III}\\
 и продлим до нее \drawSizedLine{ED}: проведем \drawSizedLine{HG}.
 
-$\drawSizedLine{BG}^2 \mbox{ или } \drawSizedLine{HG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$ \byref{prop:II.V},\\
+$\drawSizedLine{BG}^2 \mbox{ или } \drawSizedLine{HG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EB} + \drawSizedLine{EG}^2$ \byref{prop:II.V},\\
 но $\drawSizedLine{HG}^2 = \drawSizedLine{HE} ^2 + \drawSizedLine{EG}^2$ \byref{prop:I.XLVII}.
 
-$\therefore \drawSizedLine{HE}^2 + \drawSizedLine{EG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$.
+$\therefore \drawSizedLine{HE}^2 + \drawSizedLine{EG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EB} + \drawSizedLine{EG}^2$.
 
-$\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB}$.
+$\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EB}$.
 
 И $\therefore \drawSizedLine{HE}^2 = \drawPolygon{BCDE} = \drawPolygon{abcdef}$.
 \end{center}
@@ -4918,8 +4918,8 @@ draw byLabelsOnCircle(A, B, C, E)(F);
 \problem{Н}{айти}{центр данного круга \drawCircle[middle][1/4]{F}.}
 
 \begin{center}
-Проведем внутри круга любую прямую \drawUnitLine{AD,DB},\\
-сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$, проведем $\drawUnitLine{EC} \perp \drawUnitLine{AD,DB}$.
+Проведем внутри круга любую прямую \drawUnitLine{AB},\\
+сделаем $\drawUnitLine{AD} = \drawUnitLine{DB}$, проведем $\drawUnitLine{EC} \perp \drawUnitLine{AB}$.
 
 Рассечем пополам \drawUnitLine{EC}, точка рассечения и~есть центр.
 
@@ -4927,9 +4927,9 @@ draw byLabelsOnCircle(A, B, C, E)(F);
 
 Поскольку в~\drawLine{AG,DG,AD} и~\drawLine{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ \byref{\hypref,def:I.XV},\\
 $\drawUnitLine{AD} = \drawUnitLine{DB}$ \byref{\constref} и~\drawUnitLine{DG} общая обоим,\\
-$\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \byref{prop:I.VIII} и, следовательно, являются прямыми углами.
+$\drawAngle{GDA} = \drawAngle{GDB}$ \byref{prop:I.VIII} и, следовательно, являются прямыми углами.
 
-Но $\drawAngle{FDG,GDB} = \drawRightAngle$ \byref{\constref}, $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \byref{ax:I.XI},\\
+Но $\drawAngle{BDF} = \drawRightAngle$ \byref{\constref}, $\drawAngle{GDB} = \drawAngle{BDF}$ \byref{ax:I.XI},\\
 что невозможно.
 \end{center}
 
@@ -4975,11 +4975,11 @@ draw byLabelsOnPolygon(A, E, F)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 но $\drawAngle{E} > \drawAngle{A} \mbox{ или } > \drawAngle{B}$ \byref{prop:I.XVI}.
 
 $\therefore \drawSizedLine{AD} > \drawSizedLine{DE}$ \byref{prop:I.XIX},\\
-но $\drawSizedLine{AD} = \drawSizedLine{DE,EF}$.
+но $\drawSizedLine{AD} = \drawSizedLine{DF}$.
 
-$\therefore \drawSizedLine{DE,EF} > \drawSizedLine{DE}$.
+$\therefore \drawSizedLine{DF} > \drawSizedLine{DE}$.
 
-$\therefore \drawSizedLine{DE} < \drawSizedLine{DE,EF}$.
+$\therefore \drawSizedLine{DE} < \drawSizedLine{DF}$.
 
 $\therefore$ любая точка на \drawSizedLine{AB} находится внутри круга.
 \end{center}
@@ -5017,7 +5017,7 @@ draw byLabelsOnPolygon(D, F, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 2);
 draw byLabelsOnPolygon(A, E, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{Е}{сли}{некоторая прямая \drawUnitLine{EF}, проходящая через центр круга \drawCircle[middle][1/6]{E}, рассекает пополам хорду \drawUnitLine{AF,FB}, не проходящую через центр, то эта прямая ей перпендикулярна; а~если перпендикулярна, то рассекает хорду пополам.}
+\problem[3]{Е}{сли}{некоторая прямая \drawUnitLine{EF}, проходящая через центр круга \drawCircle[middle][1/6]{E}, рассекает пополам хорду \drawUnitLine{AB}, не проходящую через центр, то эта прямая ей перпендикулярна; а~если перпендикулярна, то рассекает хорду пополам.}
 
 \begin{center}
 Проведем \drawUnitLine{AE} и~\drawUnitLine{EB} к~центру круга.
@@ -5027,9 +5027,9 @@ $\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} общая\\
 и $\drawUnitLine{AF} = \drawUnitLine{FB}$.
 
 $\therefore \drawAngle{AFE} = \drawAngle{EFB}$ \byref{prop:I.VIII}\\
-и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \byref{def:I.X}.
+и $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AB}$ \byref{def:I.X}.
 
-Теперь пусть $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$.
+Теперь пусть $\drawUnitLine{EF} \perp \drawUnitLine{AB}$.
 
 Тогда в~ \triangleAEF\ и~\triangleFEB\\
 $\drawAngle{A} = \drawAngle{B}$ \byref{prop:I.V},\\
@@ -5038,7 +5038,7 @@ $\drawAngle{AFE} = \drawAngle{EFB}$ \byref{\hypref}\\
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{FB}$ \byref{prop:I.XXVI}.
 
-И $\therefore \drawUnitLine{EF}$ рассекает \drawUnitLine{AF,FB} пополам.
+И $\therefore \drawUnitLine{EF}$ рассекает \drawUnitLine{AB} пополам.
 \end{center}
 
 \qed
@@ -5121,13 +5121,13 @@ draw byLabelsOnPolygon(C, F, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 \drawCurrentPictureInMargin
 \problem{Е}{сли}{два круга секут друг друга \drawArc{Ma,Na,Nb,Mb}, их центры не совпадают.}
 
-Допустим, это возможно, и~два пересекающихся круга имеют общий центр. Из предполагаемого центра проведем \drawUnitLine{CE} к~точке пересечения и~\drawUnitLine{EF,FG}, пересекающую окружности.
+Допустим, это возможно, и~два пересекающихся круга имеют общий центр. Из предполагаемого центра проведем \drawUnitLine{CE} к~точке пересечения и~\drawUnitLine{EG}, пересекающую окружности.
 
 \begin{center}
 Тогда $\drawUnitLine{CE} = \drawUnitLine{EF}$ \byref{def:I.XV}\\
-и $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \byref{def:I.XV}.
+и $\drawUnitLine{CE} = \drawUnitLine{EG}$ \byref{def:I.XV}.
 
-$\therefore \drawUnitLine{EF} = \drawUnitLine{EF,FG}$\\
+$\therefore \drawUnitLine{EF} = \drawUnitLine{EG}$\\
 часть равна целому, что невозможно.
 
 $\therefore$ круги, пересекающиеся в~любой точке, не могут иметь общего центра.
@@ -5165,13 +5165,13 @@ byPointLabelRemove(M, N);
 \drawCurrentPictureInMargin
 \problem{Е}{сли}{два круга \drawCircle{N,M} касаются друг друга, то у~них не один и~тот же центр.}
 
-Действительно, пусть это возможно, и~у кругов будет один центр. Из предполагаемого центра проведем \drawUnitLine{FE,EB} и~\drawUnitLine{CF} к~точке касания.
+Действительно, пусть это возможно, и~у кругов будет один центр. Из предполагаемого центра проведем \drawUnitLine{FB} и~\drawUnitLine{CF} к~точке касания.
 
 \begin{center}
 Тогда $\drawUnitLine{CF} = \drawUnitLine{FE}$ \byref{def:I.XV}\\
-и $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \byref{def:I.XV}.
+и $\drawUnitLine{CF} = \drawUnitLine{FB}$ \byref{def:I.XV}.
 
-$\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$.
+$\therefore \drawUnitLine{FE} = \drawUnitLine{FB}$.
 \end{center}
 \noindent Часть равна целому, что невозможно. Следовательно, выбранная точка не является центром обоих кругов и~так же можно показать, что центром не является и~никакая другая точка.
 
@@ -5248,11 +5248,11 @@ draw byLabelsOnPolygon(D, F, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
 \startsubproposition{Часть I}
-Из центра круга проведем \drawUnitLine{EB} и~\drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \byref{def:I.XV}, $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \byref{prop:I.XX}. Таким же образом можно показать, что \drawUnitLine{EF,AE} больше \drawUnitLine{FC} или любой другой линии, проведенной из той же точки к~окружности.
+Из центра круга проведем \drawUnitLine{EB} и~\drawUnitLine{EC}, тогда $\drawUnitLine{AE} = \drawUnitLine{EB}$ \byref{def:I.XV}, $\drawUnitLine{FA} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \byref{prop:I.XX}. Таким же образом можно показать, что \drawUnitLine{FA} больше \drawUnitLine{FC} или любой другой линии, проведенной из той же точки к~окружности.
 
 Теперь согласно \byref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, вычтем \drawUnitLine{EF} из обеих. $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \byref{ax:I.III}, и~так же можно показать, что \drawUnitLine{FD} меньше любой другой линии, проведенной из той же точки к~окружности.
 
-Теперь в~\drawLine[middle][triangleEFB]{FB,EF,EB} и~\drawLine[middle][triangleEFC]{FC,EF,EC} \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$ и~$\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} и~так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к~окружности и~проходящей дальше \drawUnitLine{EF,AE}.
+Теперь в~\drawLine[middle][triangleEFB]{FB,EF,EB} и~\drawLine[middle][triangleEFC]{FC,EF,EC} \drawUnitLine{EF} общая, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$ и~$\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} и~так же можно показать, что \drawUnitLine{FB} больше любой другой линии, проведенной из той же точки к~окружности и~проходящей дальше \drawUnitLine{FA}.
 
 \defineNewPicture[1/2]{
 pair A, B, C, D, E, F, G, H, M;
@@ -5300,7 +5300,7 @@ $\therefore \drawUnitLine{EB} = \drawUnitLine{EH} = \drawUnitLine{EM}$,\\
 часть равна целому, что невозможно.
 \end{center}
 
-\noindent $\therefore \drawUnitLine{FB} = \drawUnitLine{FM,MG}$; и~никакая другая линия, проведенная из той же точки к~окружности, не равна \drawUnitLine{FB}, поскольку, будь она ближе к~проходящей через центр, она была бы больше, а~дальше — меньше.
+\noindent $\therefore \drawUnitLine{FB} = \drawUnitLine{FG}$; и~никакая другая линия, проведенная из той же точки к~окружности, не равна \drawUnitLine{FB}, поскольку, будь она ближе к~проходящей через центр, она была бы больше, а~дальше — меньше.
 
 \qed
 
@@ -5332,20 +5332,20 @@ draw byLabelsOnCircle(F, E, A)(M);
 draw byLabelsOnPolygon(F, D, M, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-Если из точки вне круга провести прямые линии \drawProportionalLine{DM,MA}, \drawProportionalLine{DE} и~\drawProportionalLine{DF} к~окружности, из тех, что падают на вогнутую часть окружности, наибольшей будет та \drawUnitLine{DM,MA}, что проходит через центр, а~та, что ближе к~ней \drawUnitLine{DE}, будет длиннее той, что дальше \drawUnitLine{DF}.
+Если из точки вне круга провести прямые линии \drawProportionalLine{DA}, \drawProportionalLine{DE} и~\drawProportionalLine{DF} к~окружности, из тех, что падают на вогнутую часть окружности, наибольшей будет та \drawUnitLine{DA}, что проходит через центр, а~та, что ближе к~ней \drawUnitLine{DE}, будет длиннее той, что дальше \drawUnitLine{DF}.
 
 \begin{center}
 Проведем \drawUnitLine{MF} и~\drawUnitLine{ME} к~центру.
 
-Тогда \drawUnitLine{DM,MA}, проходящая через центр, будет наибольшей,\\
-поскольку, раз $\drawUnitLine{MA} = \drawUnitLine{ME}$, если к~обеим добавить \drawUnitLine{DM}, $\drawUnitLine{DM,MA} = \drawUnitLine{DM} + \drawUnitLine{ME}$,
+Тогда \drawUnitLine{DA}, проходящая через центр, будет наибольшей,\\
+поскольку, раз $\drawUnitLine{MA} = \drawUnitLine{ME}$, если к~обеим добавить \drawUnitLine{DM}, $\drawUnitLine{DA} = \drawUnitLine{DM} + \drawUnitLine{ME}$,
 но $> \drawUnitLine{DE}$ \byref{prop:I.XX},\\
-$\therefore$ \drawUnitLine{DM,MA} больше любой другой линии, проведенной из той же точки к~вогнутой части окружности.
+$\therefore$ \drawUnitLine{DA} больше любой другой линии, проведенной из той же точки к~вогнутой части окружности.
 
 Теперь в~\drawLine{DM,MF,DF} и~\drawLine{DM,ME,DE} $\drawUnitLine{MF} = \drawUnitLine{ME}$ и~\drawUnitLine{DM} общая,\\
-но $\drawAngle{DMF,FME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \byref{prop:I.XXIV}.
+но $\drawAngle{DME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \byref{prop:I.XXIV}.
 
-Так же можно показать, что $\drawUnitLine{DE} >$ любой другой линии, более далекой от \drawUnitLine{DM,MA}.
+Так же можно показать, что $\drawUnitLine{DE} >$ любой другой линии, более далекой от \drawUnitLine{DA}.
 \end{center}
 
 \vfill\pagebreak
@@ -5378,7 +5378,7 @@ draw byLabelsOnPolygon(G, M, H)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 Из линий, падающих на выпуклую часть окружности, наименьшей \drawUnitLine{DG} является та, которая при продолжении проходит через центр, а~линия, ближняя к~наименьшей, будет меньше дальней.
 
 \begin{center}
-Действительно, поскольку $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DG,GM}$ \byref{prop:I.XX}\\
+Действительно, поскольку $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DM}$ \byref{prop:I.XX}\\
 и $\drawUnitLine{KM} = \drawUnitLine{GM}$,\\
 $\therefore \drawUnitLine{DK} > \drawUnitLine{DG}$ \byref{ax:I.V}.
 
@@ -5422,23 +5422,23 @@ draw byLabelsOnPolygon(M, N, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 2);
 Кроме того, линии, образующие равные углы с~проходящей через центр, равны между собой, падают ли они на вогнутую или выпуклую часть окружности, и~нельзя провести третьей линии из той же точки той же длины к~окружности.
 
 \begin{center}
-Действительно, пусть $\drawUnitLine{DO,ON} > \drawUnitLine{DH}$.
+Действительно, пусть $\drawUnitLine{DN} > \drawUnitLine{DH}$.
 
 Взяв $\drawAngle{HDM} = \drawAngle{MDN}$,\\
-сделаем $\drawUnitLine{DO} = \drawUnitLine{DH}$ и~проведем \drawUnitLine{BM,BO}.
+сделаем $\drawUnitLine{DO} = \drawUnitLine{DH}$ и~проведем \drawUnitLine{MO}.
 
 Тогда в~\drawLine{DM,DO,BO,BM} и~\drawLine{HM,DH,DM} получим $\drawUnitLine{DO} = \drawUnitLine{DH}$\\
 и общую \drawUnitLine{DM}, а~также $\drawAngle{MDN} = \drawAngle{HDM}$.
 
-$\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \byref{prop:I.IV}.
+$\therefore \drawUnitLine{MO} = \drawUnitLine{HM}$ \byref{prop:I.IV}.
 
 Но $\drawUnitLine{HM} = \drawUnitLine{BM}$.
 
-$\therefore \drawUnitLine{BM} = \drawUnitLine{BM,BO}$, что невозможно.
+$\therefore \drawUnitLine{BM} = \drawUnitLine{MO}$, что невозможно.
 
-$\therefore \drawUnitLine{DH} \neq \drawUnitLine{DO}$ или какой либо части \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \ngtr \drawUnitLine{DH}$.
+$\therefore \drawUnitLine{DH} \neq \drawUnitLine{DO}$ или какой либо части \drawUnitLine{DN}, $\therefore \drawUnitLine{DN} \ngtr \drawUnitLine{DH}$.
 
-Так же и~$\drawUnitLine{DH} \ngtr \drawUnitLine{DO,ON}$, они $\therefore  =$ друг другу.
+Так же и~$\drawUnitLine{DH} \ngtr \drawUnitLine{DN}$, они $\therefore  =$ друг другу.
 \end{center}
 Так же и~любая другая линия, проведенная из той же точки к~окружности, должна будет лежать по одну сторону с~одной из этих линий и~быть ближе или дальше, чем они, от линии, проходящей через центр, и~не может, следовательно, быть равной им.
 
@@ -5476,7 +5476,7 @@ draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } должна быть центром, проведем между этими двумя точками \drawUnitLine{DF} и~продлим в~обе стороны до окружности.
 
-Теперь, поскольку более чем две равных прямых линии проведено к~окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{DH,DF,FL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром, прямые линии проведены к~окружности, наибольшая из них \drawUnitLine{DF,FL}, та, что проходит через центр, а~\drawUnitLine{DC}, которая ближе к~\drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$, расположенной дальше \byref{prop:III.VIII}, но $\drawUnitLine{DC} = \drawUnitLine{DB}$ \byref{\hypref}, что невозможно.
+Теперь, поскольку более чем две равных прямых линии проведено к~окружности из точки, не являющейся центром, две из них должны лежать по одну сторону диаметра \drawUnitLine{HL}, и, поскольку из точки \drawPointL[middle][DA,DF]{D}, не являющейся центром, прямые линии проведены к~окружности, наибольшая из них \drawUnitLine{DL}, та, что проходит через центр, а~\drawUnitLine{DC}, которая ближе к~\drawUnitLine{DL}, $> \drawUnitLine{DB}$, расположенной дальше \byref{prop:III.VIII}, но $\drawUnitLine{DC} = \drawUnitLine{DB}$ \byref{\hypref}, что невозможно.
 
 То же можно показать для любой другой точки, кроме \drawPointL[middle][DA,DF]{D}, которая, таким образом, должна быть центром круга.
 
@@ -5603,15 +5603,15 @@ stopAutoLabeling;
 draw byNamedLineFull(A, A, 1, 1,  0, 0)(GF);
 }
 $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \byref{prop:I.XX},\\
-а $\drawSizedLine{AF} = \drawSizedLine{HD,DG,GF}$, как радиусы\circleM.
+а $\drawSizedLine{AF} = \drawSizedLine{HF}$, как радиусы\circleM.
 
-Но $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HD,DG,GF}$.
+Но $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HF}$.
 
 Вычтем \drawSizedLine{GF}, общую обеим,\\
-получим $\drawSizedLine{AG} > \drawSizedLine{HD,DG}$.
+получим $\drawSizedLine{AG} > \drawSizedLine{HG}$.
 
 Но $\drawSizedLine{AG} = \drawSizedLine{DG}$, как радиусы \circleN,\\
-и $\therefore \drawSizedLine{DG} > \drawSizedLine{HD,DG}$, часть больше целого, что невозможно.
+и $\therefore \drawSizedLine{DG} > \drawSizedLine{HG}$, часть больше целого, что невозможно.
 
 \end{center}
 
@@ -5652,15 +5652,15 @@ draw byLabelsOnPolygon(G, D, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(A, angle(F-A)-45, 2);
 }
 \drawCurrentPictureInMargin
-\problem[4]{Е}{сли}{два круга \drawCircle{M} и~\drawCircle{N} касаются друг друг извне, прямая \drawUnitLine{FC,CD,DG}, соединяющая их центры, проходит через точку касания.}
+\problem[4]{Е}{сли}{два круга \drawCircle{M} и~\drawCircle{N} касаются друг друг извне, прямая \drawUnitLine{FG}, соединяющая их центры, проходит через точку касания.}
 
-Действительно, если такое возможно, соединим центры с~помощью \drawUnitLine{FC,CD,DG}, не проходящей через точку касания, из точки касания проведем \drawUnitLine{AF} и~\drawUnitLine{AG} к~центрам.
+Действительно, если такое возможно, соединим центры с~помощью \drawUnitLine{FG}, не проходящей через точку касания, из точки касания проведем \drawUnitLine{AF} и~\drawUnitLine{AG} к~центрам.
 
 \begin{center}
-Поскольку $\drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \byref{prop:I.XX},\\
+Поскольку $\drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FG}$ \byref{prop:I.XX},\\
 $\drawUnitLine{FC} = \drawUnitLine{AF}$ \byref{def:I.XV}\\
 и $\drawUnitLine{DG} = \drawUnitLine{AG}$ \byref{def:I.XV},\\
-$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$, часть больше целого, что невозможно.
+$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FG}$, часть больше целого, что невозможно.
 \end{center}
 
 Центры, следовательно, расположены так, что линия, соединяющая их, не может проходить через какую-либо точку, кроме точки касания.
@@ -5712,9 +5712,9 @@ draw byLabelsOnPolygon(B, G, H, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 Но $\drawUnitLine{BG} = \drawUnitLine{DG}$ \byref{def:I.XV}.
 
 $\therefore$ если добавить к~каждой \drawUnitLine{GH},\\
-$\drawUnitLine{GH,BG} = \drawUnitLine{GH} + \drawUnitLine{DG}$.
+$\drawUnitLine{HB} = \drawUnitLine{GH} + \drawUnitLine{DG}$.
 
-Но $\drawUnitLine{GH,BG} = \drawUnitLine{DH}$ \byref{def:I.XV}\\
+Но $\drawUnitLine{HB} = \drawUnitLine{DH}$ \byref{def:I.XV}\\
 и $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} = \drawUnitLine{DH}$.
 
 Но $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} > \drawUnitLine{DH}$ \byref{prop:I.XX},\\
@@ -5778,15 +5778,15 @@ draw byLabelsOnPolygon(H, G, C)(ALL_LABELS, 0);
 draw byLabelPoint(A, angle(G-A)+45, 3);
 }
 \startsubproposition{Случай III.}\drawCurrentPictureInMargin
-Теперь, если такое возможно, пусть круги \drawCircle{H} и~\drawCircle{G} касаются друг друга снаружи в~двух точках. Проведем \drawUnitLine{HA,AG}, соединяющую центры и~проходящую через одну из точек касания, проведем также \drawUnitLine{CH} и~\drawUnitLine{CG}.
+Теперь, если такое возможно, пусть круги \drawCircle{H} и~\drawCircle{G} касаются друг друга снаружи в~двух точках. Проведем \drawUnitLine{HG}, соединяющую центры и~проходящую через одну из точек касания, проведем также \drawUnitLine{CH} и~\drawUnitLine{CG}.
 
 \begin{center}
 $\drawUnitLine{CH} = \drawUnitLine{HA}$ \byref{def:I.XV}\\
 и $\drawUnitLine{AG} = \drawUnitLine{CG}$ \byref{def:I.XV}.
 
-$\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HA,AG}$.
+$\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HG}$.
 
-Но $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HA,AG}$ \byref{prop:I.XX}, что невозможно.
+Но $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HG}$ \byref{prop:I.XX}, что невозможно.
 \end{center}
 
 Следовательно, ни в~каком случае круги не касаются друг друга в~двух точках.
@@ -5827,18 +5827,18 @@ draw byLabelLineEnd(F, E, 0);
 }
 \drawCurrentPictureInMargin
 \problem{Р}{авные}{прямые
-$\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AF,FB}}\nointerlineskip\hbox{\drawProportionalLine{CG,GD}}}\right)$
+$\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AB}}\nointerlineskip\hbox{\drawProportionalLine{CD}}}\right)$
 в круге равноотстоят от центра, и~равноотстоящие от центра прямые равны.}
 
 \begin{center}
 Из центра \drawCircle[middle][1/4]{E}\\
-проведем $\drawProportionalLine{EF} \perp \drawProportionalLine{AF,FB}$ и~$\drawProportionalLine{EG} \perp \drawProportionalLine{CG,GD}$,\\
+проведем $\drawProportionalLine{EF} \perp \drawProportionalLine{AB}$ и~$\drawProportionalLine{EG} \perp \drawProportionalLine{CD}$,\\
 проведем \drawProportionalLine{EA} и~\drawProportionalLine{EC}.
 
-Тогда $\drawProportionalLine{CG} = \frac{1}{2} \drawProportionalLine{CG,GD}$ \byref{prop:III.III}\\
-и $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \byref{prop:III.III}.
+Тогда $\drawProportionalLine{CG} = \frac{1}{2} \drawProportionalLine{CD}$ \byref{prop:III.III}\\
+и $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AB}$ \byref{prop:III.III}.
 
-Поскольку $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ \byref{\hypref},\\
+Поскольку $\drawProportionalLine{CD} = \drawProportionalLine{AB}$ \byref{\hypref},\\
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$ \byref{ax:I.VII}\\
 и $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \byref{def:I.XV},\\
 $\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$.
@@ -5854,7 +5854,7 @@ $\therefore \drawProportionalLine{EF}^2 = \drawProportionalLine{EG}^2$.
 $\therefore \drawProportionalLine{EF} = \drawProportionalLine{EG}$.
 \end{center}
 
-Также, если прямые \drawProportionalLine{AF,FB} и~\drawProportionalLine{CG,GD} равноудалены от центра, то есть перпендикуляры \drawProportionalLine{EF} и~\drawProportionalLine{EG} равны, $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$.
+Также, если прямые \drawProportionalLine{AB} и~\drawProportionalLine{CD} равноудалены от центра, то есть перпендикуляры \drawProportionalLine{EF} и~\drawProportionalLine{EG} равны, $\drawProportionalLine{AB} = \drawProportionalLine{CD}$.
 
 \begin{center}
 Поскольку, как и~в предыдущем случае,\\
@@ -5862,7 +5862,7 @@ $\drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2 = \drawProportionalLi
 но $\drawProportionalLine{EG}^2 = \drawProportionalLine{EF}^2$.
 
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
-и~удвоенные $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$ тоже равны.
+и~удвоенные $\drawProportionalLine{AB} = \drawProportionalLine{CD}$ тоже равны.
 \end{center}
 
 \qed
@@ -5900,16 +5900,16 @@ draw byLabelsOnPolygon(A, E, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
 \begin{center}
-Диаметр \drawUnitLine{DE,EA} $>$ любой прямой \drawUnitLine{MN}.
+Диаметр \drawUnitLine{DA} $>$ любой прямой \drawUnitLine{MN}.
 
 Действительно, проведем \drawUnitLine{EN} и~\drawUnitLine{EM}.
 
 Тогда $\drawUnitLine{EM} = \drawUnitLine{EA}$\\
 и $\drawUnitLine{EN} = \drawUnitLine{DE}$,\\
-$\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DE,EA}$,\\
+$\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DA}$,\\
 но $\drawUnitLine{EN} + \drawUnitLine{EM} > \drawUnitLine{MN}$ \byref{prop:I.XX}.
 
-$\therefore \drawUnitLine{DE,EA} > \drawUnitLine{MN}$.
+$\therefore \drawUnitLine{DA} > \drawUnitLine{MN}$.
 \end{center}
 
 Теперь покажем, что та прямая, что ближе, больше той, что дальше.
@@ -5921,7 +5921,7 @@ $\therefore \drawUnitLine{DE,EA} > \drawUnitLine{MN}$.
 
 В
 \drawFromCurrentPicture{
-draw byNamedAngle(NEG,GEF,FEM);
+draw byNamedAngle(MEN);
 startAutoLabeling;
 draw byNamedLineSeq(0)(MN,EM,EN);
 stopAutoLabeling;
@@ -5934,7 +5934,7 @@ draw byNamedLineSeq(0)(FG,EF,EG);
 stopAutoLabeling;
 }\\
 $\drawUnitLine{EN} \mbox{ и~} \drawUnitLine{EM} = \drawUnitLine{EG} \mbox{ и~} \drawUnitLine{EF}$,\\
-но $\drawAngle{NEG,GEF,FEM} > \drawAngle{GEF}$.
+но $\drawAngle{MEN} > \drawAngle{GEF}$.
 
 $\therefore \drawUnitLine{MN} > \drawUnitLine{EF}$ \byref{prop:I.XXIV}.
 \end{center}
@@ -5977,10 +5977,10 @@ draw byLabelPoint(L, angle(E-H)-45, 2);
 Теперь возьмем \drawUnitLine{BC} и~\drawUnitLine{GF}, расположенные по разные стороны от центра или пересекающиеся.
 
 Проведем из центра\\
-\drawUnitLine{EL,LK} и~$\drawUnitLine{EH} \perp \drawUnitLine{GF} \mbox{ и~} \drawUnitLine{BC}$.
+\drawUnitLine{EK} и~$\drawUnitLine{EH} \perp \drawUnitLine{GF} \mbox{ и~} \drawUnitLine{BC}$.
 
 Сделаем $\drawUnitLine{EH} = \drawUnitLine{EL}$\\
-и проведем $\drawUnitLine{NM} \perp \drawUnitLine{EL,LK}$.
+и проведем $\drawUnitLine{NM} \perp \drawUnitLine{EK}$.
 
 Поскольку \drawUnitLine{BC} и~\drawUnitLine{NM} равноудалены от~центра, $\drawUnitLine{BC} = \drawUnitLine{NM}$ \byref{prop:III.XIV},\\
 но $\drawUnitLine{NM} > \drawUnitLine{GF}$ (случай I).
@@ -6051,10 +6051,10 @@ $\drawAngle{DAG,GAE} = \drawRightAngle$, $\therefore \drawAngle{DAG}$ остры
 
 $\therefore$ \drawAngle{G}, который должен быть прямым, $> \drawAngle{DAG}$.
 
-$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$. Но $\drawUnitLine{DH} = \drawUnitLine{DA}$.
+$\therefore \drawUnitLine{DA} > \drawUnitLine{DG}$. Но $\drawUnitLine{DH} = \drawUnitLine{DA}$.
 \end{center}
 
-И $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, часть больше целого, что невозможно. Следовательно, точка не находится вовне круга и, следовательно, прямая \drawUnitLine{AG} сечет круг.
+И $\therefore \drawUnitLine{DH} > \drawUnitLine{DG}$, часть больше целого, что невозможно. Следовательно, точка не находится вовне круга и, следовательно, прямая \drawUnitLine{AG} сечет круг.
 
 \qed
 
@@ -6100,15 +6100,15 @@ draw byLabelPoint(B, angle(F-E)-45, 2);
 Если данная точка \drawPointL[middle][FB]{B} расположена на окружности, ясно, что прямая $\drawUnitLine{AB} \perp \drawUnitLine{BE}$ радиусу и~будет искомой касательной \byref{prop:III.XVI}.
 
 \begin{center}
-Но если точка \drawPointL[middle][FB]{A} расположена вовне, проведем из нее \drawUnitLine{AD,DE} к~центру, секущую \circleEI,\\
+Но если точка \drawPointL[middle][FB]{A} расположена вовне, проведем из нее \drawUnitLine{AE} к~центру, секущую \circleEI,\\
 и проведем $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
 опишем \drawCircle[middle][1/6]{EII} концентрический с~\circleEI\\
-с~радиусом $= \drawUnitLine{DE,AD}$,\\
-проведем \drawUnitLine{BE,FB} к~центру из точки, где \drawUnitLine{FD} падает на окружность \circleEII,\\
-проведем $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ из точки, где та сечет \circleEI.
+с~радиусом $= \drawUnitLine{EA}$,\\
+проведем \drawUnitLine{EF} к~центру из точки, где \drawUnitLine{FD} падает на окружность \circleEII,\\
+проведем $\drawUnitLine{AB} \perp \drawUnitLine{EF}$ из точки, где та сечет \circleEI.
 
 Тогда \drawUnitLine{AB} и~будет искомой касательной.\\
-Поскольку в~\drawLine[bottom]{FD,FB,BE,DE} и~\drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} общий\\
+Поскольку в~\drawLine[bottom]{FD,FB,BE,DE} и~\drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AE} = \drawUnitLine{FE}$, \drawAngle{E} общий\\
 и $\drawUnitLine{DE} = \drawUnitLine{BE}$,\\
 $\therefore \mbox{ \byref{prop:I.IV} } \drawAngle{B} = \drawAngle{D} = \drawRightAngle$,\\
 $\therefore \drawUnitLine{AB}$ касательная к~\circleEI.
@@ -6145,15 +6145,15 @@ draw byLabelPoint(D, angle(D-C)-90, 1);
 \problem{Е}{сли}{прямая \drawUnitLine{CD} касается круга, прямая \drawUnitLine{FC}, проведенная из центра к~точке касания, перпендикулярна ей.}
 
 \begin{center}
-Действительно, если возможно, пусть \drawUnitLine{FB,BG} будет $\perp \drawUnitLine{CD}$,\\
+Действительно, если возможно, пусть \drawUnitLine{FG} будет $\perp \drawUnitLine{CD}$,\\
 тогда, поскольку $\drawAngle{G} = \drawRightAngle$, \drawAngle{C} острый \byref{prop:I.XVII}.
 
-$\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \byref{prop:I.XIX}.
+$\therefore \drawUnitLine{FC} > \drawUnitLine{FG}$ \byref{prop:I.XIX}.
 
 Но $\drawUnitLine{FC} = \drawUnitLine{FB}$,\\
-и $\therefore \drawUnitLine{FB} > \drawUnitLine{FB,BG}$, часть больше целого, что невозможно.
+и $\therefore \drawUnitLine{FB} > \drawUnitLine{FG}$, часть больше целого, что невозможно.
 
-$\therefore \drawUnitLine{FB,BG}$ не $\perp \drawUnitLine{CD}$.
+$\therefore \drawUnitLine{FG}$ не $\perp \drawUnitLine{CD}$.
 \end{center}
 
 И так же можно показать, что никакая другая прямая, кроме \drawUnitLine{FC}, не перпендикулярна \drawUnitLine{CD}.
@@ -6227,7 +6227,7 @@ draw byLabelsOnPolygon(F, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \drawCurrentPictureInMargin
 \begin{center}
-Пусть центр круга будет на \drawUnitLine{EF,EA},\\
+Пусть центр круга будет на \drawUnitLine{FA},\\
 стороне \drawAngle{CAF}.
 
 Поскольку $\drawUnitLine{EC} = \drawUnitLine{EA}$,\\
@@ -6265,17 +6265,17 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \drawCurrentPictureInMargin
 \begin{center}
-Пусть центр будет в~\drawAngle{BAF,CAF}, углу на окружности.
+Пусть центр будет в~\drawAngle{BAC}, углу на окружности.
 
 Проведем \drawUnitLine{AF} из угла через центр круга.
 
 Тогда $\drawAngle{B} = \drawAngle{BAF}$ и~$\drawAngle{C} = \drawAngle{CAF}$, вследствие равенства сторон \byref{prop:I.V}.
 
-Значит, $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
+Значит, $\drawAngle{BAF} + \drawAngle{B} + \drawAngle{CAF} + \drawAngle{C} = \mbox{ дважды } \drawAngle{BAC}$.
 
 Но $\drawAngle{BEF} = \drawAngle{BAF} + \drawAngle{B}$ и $\drawAngle{CEF} = \drawAngle{CAF} + \drawAngle{C}$.
 
-$\therefore \drawAngle{BEF,CEF} = \mbox{ дважды } \drawAngle{BAF,CAF}$.
+$\therefore \drawAngle{BEC} = \mbox{ дважды } \drawAngle{BAC}$.
 \end{center}
 
 \vfill\pagebreak
@@ -6948,11 +6948,11 @@ draw byLabelLineEnd(C, D, 0);
 \problem{Р}{ассечь}{данную дугу \drawArc[middle][1/5]{El,Er} пополам.}
 
 \begin{center}
-Проведем \drawUnitLine{AC,CB}.
+Проведем \drawUnitLine{AB}.
 
 Сделаем $\drawUnitLine{AC} = \drawUnitLine{CB}$ \byref{prop:I.X}.
 
-Проведем $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$ \byref{prop:I.XI}, она и~будет рассекать дугу.
+Проведем $\drawUnitLine{DC} \perp \drawUnitLine{AB}$ \byref{prop:I.XI}, она и~будет рассекать дугу.
 
 Проведем \drawUnitLine{DA} и~\drawUnitLine{DB}.
 
@@ -7013,12 +7013,12 @@ draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \drawCurrentPictureInMargin
 \begin{center}
-Угол \drawAngle{EAB,CAE} в~полукруге прямой.
+Угол \drawAngle{BAC} в~полукруге прямой.
 
-Проведем \drawUnitLine{AE} и~\drawUnitLine{BE,EC}.
+Проведем \drawUnitLine{AE} и~\drawUnitLine{BC}.
 
 $\drawAngle{B}=\drawAngle{EAB}$ и~$\drawAngle{C} = \drawAngle{CAE}$ \byref{prop:I.V},\\
-$\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ половина } \drawTwoRightAngles= \drawRightAngle$ \byref{prop:I.XXXII}.
+$\drawAngle{C} + \drawAngle{B} = \drawAngle{BAC} = \mbox{ половина } \drawTwoRightAngles= \drawRightAngle$ \byref{prop:I.XXXII}.
 \end{center}
 
 \defineNewPicture{
@@ -7049,7 +7049,7 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 
 Проведем диаметр \drawUnitLine{BC} и~\drawUnitLine{AC}.
 
-$\therefore \drawAngle{BAD,DAC} = \mbox{ прямому углу}$.
+$\therefore \drawAngle{BAC} = \mbox{ прямому углу}$.
 
 $\therefore$ \drawAngle{BAD} острый.
 \end{center}
@@ -7259,8 +7259,8 @@ draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \problem{Е}{сли}{в круге две хорды
 $\left\{\vcenter{
-\nointerlineskip\hbox{\drawSizedLine{AE,EC}}
-\nointerlineskip\hbox{\drawSizedLine{DE,EB}}}\right\}$
+\nointerlineskip\hbox{\drawSizedLine{AC}}
+\nointerlineskip\hbox{\drawSizedLine{DB}}}\right\}$
 секут друг друга, прямоугольник, заключенный между частями одной, равен прямоугольнику, заключенному между частями другой.}
 
 \startsubproposition{Случай I.}
@@ -7295,12 +7295,12 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \drawCurrentPictureInMargin
 \begin{center}
-Пусть \drawSizedLine{HC,EH,AE} проходит через центр, а~\drawSizedLine{BH,HD} нет, проведем \drawSizedLine{EB} и~\drawSizedLine{DE}.
+Пусть \drawSizedLine{CA} проходит через центр, а~\drawSizedLine{BD} нет, проведем \drawSizedLine{EB} и~\drawSizedLine{DE}.
 
 Тогда $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EB}^2 - \drawSizedLine{EH}^2$ \byref{prop:II.VI},\\
-или $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{HC,EH}^2 - \drawSizedLine{EH}^2$.
+или $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{CE}^2 - \drawSizedLine{EH}^2$.
 
-$\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EH,AE} \times \drawSizedLine{HC}$ \byref{prop:II.V}.
+$\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{HA} \times \drawSizedLine{HC}$ \byref{prop:II.V}.
 \end{center}
 
 \defineNewPicture{
@@ -7332,7 +7332,7 @@ draw byLabelsOnPolygon(B, E, K)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \drawCurrentPictureInMargin
 \begin{center}
-Пусть ни одна из прямых не проходит через центр, проведем через точку их пересечения диаметр \drawSizedLine{KE,EL}\\
+Пусть ни одна из прямых не проходит через центр, проведем через точку их пересечения диаметр \drawSizedLine{KL}\\
 и $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{BE} \times \drawSizedLine{ED}$ (случай II.),\\
 а также $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{AE} \times \drawSizedLine{EC}$ (случай II.).
 
@@ -7365,18 +7365,18 @@ draw byLabelsOnCircle(A, B)(F);
 draw byLabelsOnPolygon(B, D, F, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(C, angle(C-F) - 45, 2);
 }
-\problem{Е}{сли}{из точки вне круга к~кругу проведены две прямых, одна из которых \drawSizedLine{DB} касается круга, а~другая \drawSizedLine{FA,CF,DC} сечет его; прямоугольник, заключенный между всей секущей \drawSizedLine{FA,CF,DC} и~внешней частью \drawSizedLine{DC}, равен квадрату касательной \drawSizedLine{DB}.}\unskip
+\problem{Е}{сли}{из точки вне круга к~кругу проведены две прямых, одна из которых \drawSizedLine{DB} касается круга, а~другая \drawSizedLine{AD} сечет его; прямоугольник, заключенный между всей секущей \drawSizedLine{AD} и~внешней частью \drawSizedLine{DC}, равен квадрату касательной \drawSizedLine{DB}.}\unskip
 \drawCurrentPictureInMargin
 \startsubproposition{Случай I.}
 \begin{center}
-Пусть \drawSizedLine{FA,CF,DC} проходит через центр.
+Пусть \drawSizedLine{AD} проходит через центр.
 
 Проведем \drawSizedLine{BF} из центра к~точке касания.
 
-$\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{BF}^2$ \byref{prop:I.XLVII},\\
-или $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{CF}^2$.
+$\drawSizedLine{DB}^2 = \drawSizedLine{FD}^2 - \drawSizedLine{BF}^2$ \byref{prop:I.XLVII},\\
+или $\drawSizedLine{DB}^2 = \drawSizedLine{FD}^2 - \drawSizedLine{CF}^2$.
 
-$\therefore \drawSizedLine{DB}^2 = \drawSizedLine{FA,CF,DC} \times \drawSizedLine{DC}$ \byref{prop:II.VI}.
+$\therefore \drawSizedLine{DB}^2 = \drawSizedLine{AD} \times \drawSizedLine{DC}$ \byref{prop:II.VI}.
 \end{center}
 
 \defineNewPicture{
@@ -7407,14 +7407,14 @@ draw byLabelPoint(C, angle(C-E) + 45, 2);
 }\drawCurrentPictureInMargin
 \startsubproposition{Случай II.}
 \begin{center}
-Если \drawSizedLine{CA,DC} не проходит через центр,\\
+Если \drawSizedLine{AD} не проходит через центр,\\
 проведем \drawSizedLine{EA} и~\drawSizedLine{EC}.
 
-Тогда $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \byref{prop:II.VI}.
+Тогда $\drawSizedLine{AD} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \byref{prop:II.VI}.
 
-То есть $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$.
+То есть $\drawSizedLine{AD} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$.
 
-$\therefore \drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \byref{prop:III.XVIII}.
+$\therefore \drawSizedLine{AD} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \byref{prop:III.XVIII}.
 \end{center}
 
 \qed
@@ -7451,15 +7451,15 @@ draw byLabelsOnPolygon(B, D, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(C, angle(C-F) + 45, 2);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{из точки вне круга проведены две прямых линии, одна из которых \drawSizedLine{CA,DC} сечет круг, а~другая \drawSizedLine{DB} лишь падает на него, и~если прямоугольник, заключенный между всей секущей линией \drawSizedLine{CA,DC} и~ее внешней частью \drawSizedLine{DC}, равен квадрату линии, падающей на круг, то \drawSizedLine{DB} является касательной к~кругу.}
+\problem{Е}{сли}{из точки вне круга проведены две прямых линии, одна из которых \drawSizedLine{AD} сечет круг, а~другая \drawSizedLine{DB} лишь падает на него, и~если прямоугольник, заключенный между всей секущей линией \drawSizedLine{AD} и~ее внешней частью \drawSizedLine{DC}, равен квадрату линии, падающей на круг, то \drawSizedLine{DB} является касательной к~кругу.}
 
 \begin{center}
 Проведем из данной точки касательную к~кругу \drawSizedLine{DE}.
 
 И проведем из центра \drawSizedLine{DF}, \drawSizedLine{BF} и~\drawSizedLine{EF}.
 
-$\drawSizedLine{DE}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \byref{prop:III.XXXVI},\\
-но $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \byref{\hypref}.
+$\drawSizedLine{DE}^2 = \drawSizedLine{AD} \times \drawSizedLine{DC}$ \byref{prop:III.XXXVI},\\
+но $\drawSizedLine{DB}^2 = \drawSizedLine{AD} \times \drawSizedLine{DC}$ \byref{\hypref}.
 
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{DE}^2$,\\
 и $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$.
@@ -7637,11 +7637,11 @@ draw byLabelsOnPolygon(G, H, noPoint)(ALL_LABELS, 0);
 \problem{В}{ данный}{круг \drawCircle{O} вписать прямую, равную данной \drawUnitLine{GH}, не большей диаметра круга.}
 
 \begin{center}
-Проведем диаметр \drawUnitLine{EC,BE} круга \circleO;\\
-и если $\drawUnitLine{EC,BE} = \drawUnitLine{GH}$, задача решена.
+Проведем диаметр \drawUnitLine{CB} круга \circleO;\\
+и если $\drawUnitLine{CB} = \drawUnitLine{GH}$, задача решена.
 
-Если же \drawUnitLine{EC,BE} не равна \drawUnitLine{GH},\\
-$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ \byref{\hypref}.
+Если же \drawUnitLine{CB} не равна \drawUnitLine{GH},\\
+$\drawUnitLine{CB} > \drawUnitLine{GH}$ \byref{\hypref}.
 
 Сделаем $\drawUnitLine{EC} = \drawUnitLine{GH}$ \byref{prop:I.III},\\
 взяв \drawUnitLine{EC} за радиус, построим \drawCircle{C}, секущий \circleO, \\
@@ -8109,12 +8109,12 @@ draw byLabelsOnPolygon(F, G, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 Сделаем $\drawUnitLine{ED} = \drawUnitLine{AE}$\\
 и $\drawUnitLine{KC} = \drawUnitLine{DK}$.
 
-Проведем $\drawUnitLine{FG,GK} \parallel \drawUnitLine{AE,ED}$\\
-и $\drawUnitLine{EG,GH} \parallel \drawUnitLine{DK,KC}$ \byref{prop:I.XXXI}.
+Проведем $\drawUnitLine{FK} \parallel \drawUnitLine{AD}$\\
+и $\drawUnitLine{EH} \parallel \drawUnitLine{DC}$ \byref{prop:I.XXXI}.
 
 $\therefore$ \drawPolygon{EDKG} параллелограмм.
 
-И поскольку $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ \byref{\hypref},\\
+И поскольку $\drawUnitLine{AD} = \drawUnitLine{DC}$ \byref{\hypref},\\
 $\drawUnitLine{ED} = \drawUnitLine{DK}$.
 
 $\therefore$ \polygonEDKG\ равносторонний \byref{prop:I.XXXIV}.
@@ -8158,15 +8158,15 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 \problem{О}{коло}{данного квадрата \drawPolygon{ACD,ABC} описать круг.}
 
 \begin{center}
-Проведем пересекающие друг друга диагонали \drawUnitLine{AE,EC} и~\drawUnitLine{BE,ED}.
+Проведем пересекающие друг друга диагонали \drawUnitLine{AC} и~\drawUnitLine{BD}.
 
-Тогда, $\because$ стороны у~\drawPolygon{ACD} и~\drawPolygon{ABC} равны,\\ а~основание \drawUnitLine{AE,EC} общее,\\
+Тогда, $\because$ стороны у~\drawPolygon{ACD} и~\drawPolygon{ABC} равны,\\ а~основание \drawUnitLine{AC} общее,\\
 $\drawAngle{DAE} = \drawAngle{EAB}$ \byref{prop:I.VIII},\\
-то есть \drawAngle{DAE,EAB} рассечен пополам.
+то есть \drawAngle{BAD} рассечен пополам.
 
-Так же можно показать и~что \drawAngle{ABE,EBC} рассечен пополам.
+Так же можно показать и~что \drawAngle{CBA} рассечен пополам.
 
-Но $\drawAngle{DAE,EAB} = \drawAngle{ABE,EBC}$.
+Но $\drawAngle{BAD} = \drawAngle{CBA}$.
 
 Значит, и~их половины $\drawAngle{EAB} = \drawAngle{ABE}$.
 
@@ -8220,19 +8220,20 @@ stopTempAngleScale;
 \problem{П}{остроить}{равнобедренный треугольник, в~котором угол при основании вдвое больше угла в~вершине.}
 
 \begin{center}
-Возьмем любую прямую \drawProportionalLine{AC,CB} и разделим ее так, что $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \byref{prop:II.XI}.
+Возьмем любую прямую \drawProportionalLine{AB} и разделим ее так, что $\drawProportionalLine{AB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \byref{prop:II.XI}.
 
-С \drawProportionalLine{AC,CB} в~качестве радиуса опишем \drawCircle[middle][1/6]{A} и~впишем в~него от конца радиуса $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \byref{prop:IV.I}.
+С \drawProportionalLine{AB} в~качестве радиуса опишем \drawCircle[middle][1/6]{A} и~впишем в~него от конца радиуса $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \byref{prop:IV.I}.
 
 Проведем \drawProportionalLine{AD}. Тогда \drawLine{AD,BD,CB,AC} и~есть искомый треугольник. Действительно, проведем \drawProportionalLine{CD} и~опишем \drawCircle[middle][1/4]{F} около \drawLine{AD,CD,AC} \byref{prop:IV.V}.
 
-Поскольку $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
+Поскольку $\drawProportionalLine{AB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
 $\therefore$ \drawProportionalLine{BD} касается \circleF\ \byref{prop:III.XXXVII}, $\therefore \drawAngle{BDC} = \drawAngle{A}$ \byref{prop:III.XXXII}. Добавим \drawAngle{CDA} к~каждому, $\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$.
 
-Но $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ или } \drawAngle{BDC,CDA} = \drawAngle{B}$ \byref{prop:I.V}.
+Но $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ или } \drawAngle{ADB} = \drawAngle{B}$ \byref{prop:I.V}.
 
-Поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \byref{prop:I.V},\\
-$\therefore \drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \byref{prop:I.XXXII}. $\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \byref{prop:I.VI}. $\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ \byref{\constref}. $\therefore \drawAngle{A} = \drawAngle{CDA}$ \byref{prop:I.V}. $\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ дважды } \drawAngle{A}$. И, следовательно, каждый из углов при основании вдвое больше угла в~вершине.
+Поскольку $\drawProportionalLine{AD} = \drawProportionalLine{AB}$ \byref{prop:I.V},\\
+$\therefore \drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \byref{prop:I.XXXII}. $\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \byref{prop:I.VI}. $\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ \byref{\constref}. $\therefore \drawAngle{A} = \drawAngle{CDA}$ \byref{prop:I.V}. $\therefore \drawAngle{B} = \drawAngle{ADB} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ дважды } \drawAngle{A}$.\\ 
+И, следовательно, каждый из углов при основании вдвое больше угла в~вершине.
 \end{center}
 
 \qed
@@ -8369,31 +8370,31 @@ $\drawProportionalLine{FC} = \drawProportionalLine{FB}$ и~\drawProportionalLine
 
 $\therefore \drawAngle{FKB} = \drawAngle{CKF}$ и~$\therefore \drawAngle{BFK} = \drawAngle{KFC}$ \byref{prop:I.VIII}.
 
-$\therefore \drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$, и~$\drawAngle{BFK,KFC} = \mbox{ дважды } \drawAngle{KFC}$.
+$\therefore \drawAngle{CKB} = \mbox{ дважды } \drawAngle{CKF}$, и~$\drawAngle{BFC} = \mbox{ дважды } \drawAngle{KFC}$.
 
 Таким же образом можно показать, что\\
-$\drawAngle{FLC,DLF} = \mbox{ дважды } \drawAngle{FLC}$, и~$\drawAngle{CFL,LFD} = \mbox{ дважды } \drawAngle{CFL}$.
+$\drawAngle{DLC} = \mbox{ дважды } \drawAngle{FLC}$, и~$\drawAngle{CFD} = \mbox{ дважды } \drawAngle{CFL}$.
 
-Но $\drawAngle{BFK,KFC} = \drawAngle{CFL,LFD}$ \byref{prop:III.XXVII},\\
+Но $\drawAngle{BFC} = \drawAngle{CFD}$ \byref{prop:III.XXVII},\\
 $\therefore$ и~их половины $\drawAngle{KFC} = \drawAngle{CFL}$, а~также $\drawAngle{FCK} = \drawAngle{LCF}$\\
 и \drawProportionalLine{FC} общая.
 
 $\therefore \drawAngle{CKF} = \drawAngle{FLC}$ и~$\drawProportionalLine{KC} = \drawProportionalLine{CL}$,\\
-$\therefore \drawProportionalLine{KC,CL} = \mbox{ дважды } \drawProportionalLine{KC}$.
+$\therefore \drawProportionalLine{KL} = \mbox{ дважды } \drawProportionalLine{KC}$.
 
-Таким же образом можно показать, что $\drawProportionalLine{BK,HB} = \mbox{ дважды } \drawProportionalLine{BK}$,\\
+Таким же образом можно показать, что $\drawProportionalLine{KH} = \mbox{ дважды } \drawProportionalLine{BK}$,\\
 но $\drawProportionalLine{BK} = \drawProportionalLine{KC}$.
 
-$\therefore \drawProportionalLine{BK,HB} = \drawProportionalLine{KC,CL}$.
+$\therefore \drawProportionalLine{KH} = \drawProportionalLine{KL}$.
 \end{center}
 
 Так же можно показать, что остальные стороны равны и, следовательно, пятиугольник равносторонний, так же он и~равноугольный, поскольку
 
 \begin{center}
-$\drawAngle{FLC,DLF} = \mbox{ дважды } \drawAngle{FLC}$\\
-и $\drawAngle{FKB,CKF} = \mbox{ дважды } \drawAngle{CKF}$,\\
+$\drawAngle{DLC} = \mbox{ дважды } \drawAngle{FLC}$\\
+и $\drawAngle{CKB} = \mbox{ дважды } \drawAngle{CKF}$,\\
 и следовательно $ \drawAngle{CKF} = \drawAngle{FLC}$,\\
-$\therefore \drawAngle{FLC,DLF} = \drawAngle{FKB,CKF}$.
+$\therefore \drawAngle{DLC} = \drawAngle{CKB}$.
 \end{center}
 
 Так же можно показать, что и~другие углы описанного пятиугольника равны.
@@ -8480,13 +8481,13 @@ draw byNamedLineSeq(0)(FC,FD,KD,CK);
 stopAutoLabeling;
 stopTempScale;
 }\\
-$\drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$ и~\drawUnitLine{FC} общая обоим,\\
+$\drawUnitLine{DC} = \drawUnitLine{CB}$, $\drawAngle{HCF} = \drawAngle{FCK}$ и~\drawUnitLine{FC} общая обоим,\\
 $\therefore \drawUnitLine{FB} = \drawUnitLine{FD}$ и~$\drawAngle{FBH} = \drawAngle{KDF}$ \byref{prop:I.IV}.
 
 И поскольку $\drawAngle{B} = \drawAngle{D} = \mbox{ дважды } \drawAngle{KDF}$,\\
 $\therefore = \mbox{ дважды } \drawAngle{FBH}$, а~значит \drawAngle{B} рассечен \drawUnitLine{FB} пополам.
 
-Так же можно показать, что \drawAngle{DEF,FEM} рассекается пополам \drawUnitLine{FE}, и~оставшийся угол многоугольника рассекается таким же образом.
+Так же можно показать, что \drawAngle{MED} рассекается пополам \drawUnitLine{FE}, и~оставшийся угол многоугольника рассекается таким же образом.
 
 Проведем \drawUnitLine{FK}, \drawUnitLine{FH}, и~т. д., перпендикулярные к~сторонам пятиугольника.
 
@@ -10989,7 +10990,7 @@ draw byLabelsOnPolygon(A, Q, D, C, B, M)(ALL_LABELS, 0);
 
 Пусть у~треугольников \drawPolygon[bottom]{ABC} и~\drawPolygon[bottom]{ACD} общая вершина, а~их основания \drawUnitLine{BC} и~\drawUnitLine{CD} лежат на одной прямой.
 
-Продлим \drawUnitLine{BC,CD} в~обе стороны, возьмем на продолжении со стороны \drawUnitLine{CD} линии, равные ей, а~со стороны \drawUnitLine{BC} линии, равные ей, и~проведем линии от вершины к~их концам.
+Продлим \drawUnitLine{BD} в~обе стороны, возьмем на продолжении со стороны \drawUnitLine{CD} линии, равные ей, а~со стороны \drawUnitLine{BC} линии, равные ей, и~проведем линии от вершины к~их концам.
 
 Треугольники
 \drawFromCurrentPicture[bottom][trianglesAMC]{
@@ -11157,7 +11158,7 @@ draw byLabelsOnPolygon(B, A, E, C, D)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
 \problem{П}{рямая}{\drawUnitLine{AD}, рассекающая угол треугольника пополам, делит противоположную сторону на части \drawUnitLine{BD} и~\drawUnitLine{DC}, пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}.\\
-И если прямая \drawUnitLine{AD}, проведенная из любого угла треугольника, делит противоположную сторону \drawUnitLine{BD,DC} на части \drawUnitLine{BD} и~\drawUnitLine{DC}, пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}, то она делит угол пополам.}
+И если прямая \drawUnitLine{AD}, проведенная из любого угла треугольника, делит противоположную сторону \drawUnitLine{BC} на части \drawUnitLine{BD} и~\drawUnitLine{DC}, пропорциональные смежным им сторонам \drawUnitLine{AB} и~\drawUnitLine{CA}, то она делит угол пополам.}
 
 \startsubproposition{Часть I.}
 \begin{center}
@@ -11233,9 +11234,9 @@ draw byLabelsOnPolygon(B, A, F, D, E, C)(ALL_LABELS, 0);
 \begin{center}
 Проведем \drawUnitLine{AF} и~\drawUnitLine{DF}.
 
-Тогда, поскольку $\drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{DF,DE}$ \byref{prop:I.XXVIII}.
+Тогда, поскольку $\drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{FE}$ \byref{prop:I.XXVIII}.
 
-И по той же причине $\drawUnitLine{CD} \parallel \drawUnitLine{AB,AF}$.
+И по той же причине $\drawUnitLine{CD} \parallel \drawUnitLine{BF}$.
 
 $\therefore$
 \drawFromCurrentPicture{
@@ -11515,25 +11516,25 @@ endfor;
 draw byLabelsOnPolygon(B, F, A, D, C, E)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{О}{т}{данной прямой \drawSizedLine{AF,FB} отнять требуемую часть.}
+\problem{О}{т}{данной прямой \drawSizedLine{AB} отнять требуемую часть.}
 
 \begin{center}
-Из любого конца данной прямой проведем \drawSizedLine{AD,DC} под любым углом к~\drawSizedLine{AF,FB}.
+Из любого конца данной прямой проведем \drawSizedLine{AC} под любым углом к~\drawSizedLine{AB}.
 
-Продлим \drawSizedLine{AD,DC}, пока вся продленная линия \drawSizedLine{AD,DC,CE} не будет содержать \drawSizedLine{AD} столько раз, какую часть требуется отнять от \drawSizedLine{AF,FB}.
+Продлим \drawSizedLine{AC}, пока вся продленная линия \drawSizedLine{AD,DC,CE} не будет содержать \drawSizedLine{AD} столько раз, какую часть требуется отнять от \drawSizedLine{AB}.
 
 Проведем \drawSizedLine{BE}\\
 и проведем $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$.
 
-\drawSizedLine{AF} и~есть требуемая часть \drawSizedLine{AF,FB}.
+\drawSizedLine{AF} и~есть требуемая часть \drawSizedLine{AB}.
 
 Поскольку $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$,\\
-$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DC,CE}$ \byref{prop:VI.II}.
+$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DE}$ \byref{prop:VI.II}.
 
 И, присоединив \byref{prop:V.XVIII},\\
-$\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$.
+$\drawSizedLine{AB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$.
 
-То есть \drawSizedLine{AD,DC,CE} содержит \drawSizedLine{AD} столько раз, сколько \drawSizedLine{AF,FB} содержит требуемую часть \byref{\constref}.
+То есть \drawSizedLine{AD,DC,CE} содержит \drawSizedLine{AD} столько раз, сколько \drawSizedLine{AB} содержит требуемую часть \byref{\constref}.
 
 $\therefore$ \drawSizedLine{AF} и~есть требуемая часть.
 \end{center}
@@ -11578,10 +11579,10 @@ draw byLabelsOnPolygon(E, C, noPoint)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(A', D', E', C', noPoint)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Д}{анную}{прямую \drawSizedLine{AF,FG,GB} рассечь подобно данной рассеченной \drawSizedLine{A'D',D'E',E'C'}.}
+\problem{Д}{анную}{прямую \drawSizedLine{AB} рассечь подобно данной рассеченной \drawSizedLine{A'C'}.}
 
 \begin{center}
-Из любого конца \drawSizedLine{AF,FG,GB} проведем \drawSizedLine{AD,DE,EC} под любым углом.
+Из любого конца \drawSizedLine{AB} проведем \drawSizedLine{AC} под любым углом.
 
 Возьмем \drawSizedLine{AD}, \drawSizedLine{DE} и~\drawSizedLine{EC}, равные \drawSizedLine{A'D'}, \drawSizedLine{D'E'} и~\drawSizedLine{E'C'} соответственно \byref{prop:I.II}.
 
@@ -11598,7 +11599,7 @@ $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{EC} : \drawSizedLine{
 и $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DE} : \drawSizedLine{AD}$ \byref{prop:VI.II},\\
 $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ \byref{\constref}.
 
-И $\therefore$ данная линия \drawSizedLine{AF,FG,GB} разделена подобно \drawSizedLine{A'D',D'E',E'C'}.
+И $\therefore$ данная линия \drawSizedLine{AB} разделена подобно \drawSizedLine{A'C'}.
 \end{center}
 
 \qed
@@ -11634,7 +11635,7 @@ draw byLabelsOnPolygon(C', A', noPoint)(ALL_LABELS, 0);
 \problem{Н}{айти}{третью пропорциональную для двух данных прямых \drawSizedLine{A'C'} и~\drawSizedLine{AB}.}
 
 \begin{center}
-От любого конца данной линии \drawSizedLine{AB} проведем \drawSizedLine{AC,CE} под углом.
+От любого конца данной линии \drawSizedLine{AB} проведем \drawSizedLine{AE} под углом.
 
 Сделаем $\drawSizedLine{AC} = \drawSizedLine{A'C'}$\\
 и~проведем \drawSizedLine{BC}.
@@ -11693,7 +11694,7 @@ $\left\{\vcenter{
 найти четвертую пропорциональную.}
 
 \begin{center}
-Проведем \drawSizedLine{DG,GE} и~\drawSizedLine{DH,HF} под углом.
+Проведем \drawSizedLine{DE} и~\drawSizedLine{DF} под углом.
 
 Возьмем $\drawUnitLine{DG} = \drawUnitLine{A}$,\\
 возьмем $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
@@ -11817,7 +11818,7 @@ draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(ALL_LABELS, 0);
 \problem[3]{В}{ равных}{и равноугольных параллелограммах \drawPolygon{BFAD} и~\drawPolygon{CEBG}  стороны при равных углах взаимно пропорциональны ($\drawUnitLine{BG} : \drawUnitLine{BF} :: \drawUnitLine{BD} : \drawUnitLine{BE}$). И~равноугольные параллелограммы, у~которых стороны взаимно пропорциональны, равны.}
 
 \begin{center}
-Пусть \drawUnitLine{BG}, \drawUnitLine{BF}, \drawUnitLine{BD} и~\drawUnitLine{BE} будут так расположены, что \drawUnitLine{BG,BF} и~\drawUnitLine{BD,BE} составят прямые линии. Что они могут занять такое положение — очевидно \byref{prop:I.XIII,prop:I.XIV,prop:I.XV}.
+Пусть \drawUnitLine{BG}, \drawUnitLine{BF}, \drawUnitLine{BD} и~\drawUnitLine{BE} будут так расположены, что \drawUnitLine{GF} и~\drawUnitLine{DE} составят прямые линии. Что они могут занять такое положение — очевидно \byref{prop:I.XIII,prop:I.XIV,prop:I.XV}.
 
 Достроим \drawPolygon{EHFB}. Поскольку $\drawPolygon{CEBG} = \drawPolygon{BFAD}$,\\
 $\therefore \drawPolygon{CEBG} : \drawPolygon{EHFB} :: \drawPolygon{BFAD} : \drawPolygon{EHFB}$ \byref{prop:V.VII},\\
@@ -12153,28 +12154,28 @@ draw byLabelsOnPolygon(C, G, B, A)(ALL_LABELS, 0);
 \drawCurrentPictureInMargin
 \problem{П}{одобные}{треугольники \drawPolygon[bottom][triangleDEF]{DEF} и~\drawPolygon[bottom][triangleABC]{ABG,AGC} находятся друг к~другу в~двойном отношении соответственных сторон.}
 
-Пусть \drawAngle{E} и~\drawAngle{B} будут равными углами и~\drawUnitLine{BG,GC} и~\drawUnitLine{EF} соответственными сторонами подобных треугольников \triangleDEF\ и~\triangleABC. На стороне \drawUnitLine{BG,GC} большего из них возьмем третью пропорциональную \drawUnitLine{BG} такую, что
+Пусть \drawAngle{E} и~\drawAngle{B} будут равными углами и~\drawUnitLine{BC} и~\drawUnitLine{EF} соответственными сторонами подобных треугольников \triangleDEF\ и~\triangleABC. На стороне \drawUnitLine{BC} большего из них возьмем третью пропорциональную \drawUnitLine{BG} такую, что
 
 \begin{center}
-$\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$.
+$\drawUnitLine{BC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$.
 
 Проведем \drawUnitLine{AG}.\\
-$\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \byref{prop:VI.IV}.
+$\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \byref{prop:VI.IV}.
 
-$\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \byref{prop:V.XVI}.
+$\therefore \drawUnitLine{BC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \byref{prop:V.XVI}.
 
-Но $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ \byref{\constref},\\
+Но $\drawUnitLine{BC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ \byref{\constref},\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$.
 
 Следовательно, $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$, поскольку у~них стороны при равных углах \drawAngle{E} и~\drawAngle{B} взаимно пропорциональны \byref{prop:VI.XV}.
 
 $\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \byref{prop:V.VII}.
 
-Но $\triangleABC : \triangleABG :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$ \byref{prop:VI.I}.
+Но $\triangleABC : \triangleABG :: \drawUnitLine{BC} : \drawUnitLine{BG}$ \byref{prop:VI.I}.
 
-$\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$.
+$\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BC} : \drawUnitLine{BG}$.
 
-То есть эти треугольники относятся друг к~другу в~двойном отношении соответственных сторон \drawUnitLine{EF} и~\drawUnitLine{BG,GC} \byref{def:V.XI}.
+То есть эти треугольники относятся друг к~другу в~двойном отношении соответственных сторон \drawUnitLine{EF} и~\drawUnitLine{BC} \byref{def:V.XI}.
 \end{center}
 
 \qed
@@ -12476,7 +12477,7 @@ draw byLabelsOnPolygon(G, F, E, A)(ALL_LABELS, 0);
 
 \begin{center}
 Поскольку у~\parallelogramABCD\ и~\parallelogramAEFG\ есть общий угол, они равноугольны.\\
-Но поскольку $\drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$,\\
+Но поскольку $\drawUnitLine{GF} \parallel \drawUnitLine{DC}$,\\
 \drawFromCurrentPicture[bottom]{
 startGlobalRotation(180-angle(A-C));
 startAutoLabeling;
@@ -12493,7 +12494,7 @@ stopAutoLabeling;
 stopGlobalRotation;
 }
 подобны \byref{prop:VI.IV},\\
-$\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{GA,DG} : \drawUnitLine{DK,KC}$,
+$\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{AD} : \drawUnitLine{DC}$,
 а оставшиеся противоположные стороны равны им.
 
 $\therefore$ у~\parallelogramAEFG\ и~\parallelogramABCD\ стороны при равных углах пропорциональны, и~значит они подобны.
@@ -12665,8 +12666,8 @@ stopGlobalRotation;
 
 Поскольку \drawLine[middle][parallelogramAKHG]{AG,GH,KH,AK} и~\parallelogramABCD\ на одной диагонали \lineAHC\ и~\drawAngle{A} уних общий, они подобны \byref{prop:VI.XXIV}.
 
-$\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
-но $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ \byref{\hypref}.
+$\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AD} : \drawSizedLine{AB}$;\\
+но $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AD} : \drawSizedLine{AB}$ \byref{\hypref}.
 
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \drawSizedLine{AK,KE}$,\\
 и $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \byref{prop:V.IX}, что невозможно.
@@ -12704,9 +12705,9 @@ draw byLabelsOnPolygon(H, G, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \problem{И}{з}{всех прямоугольников, заключенных между частями данной прямой линии, наибольшим является квадрат, описанный на половине линии.}
 
 \begin{center}
-Пусть \drawSizedLine{AD,DC,CB} будет данной прямой линией,\\
-\drawSizedLine{AD} и~\drawSizedLine{DC,CB} неравными частями,\\
-а \drawSizedLine{AD,DC} и~\drawSizedLine{CB} равными частями.
+Пусть \drawSizedLine{AB} будет данной прямой линией,\\
+\drawSizedLine{AD} и~\drawSizedLine{DB} неравными частями,\\
+а \drawSizedLine{AC} и~\drawSizedLine{CB} равными частями.
 
 Тогда $\drawPolygon[middle]{ADGKEF,CDGK} > \drawPolygon[middle]{BCKH,CDGK}$.
 \end{center}
@@ -12748,30 +12749,30 @@ draw byLabelsOnPolygon(A, B, noPoint)(ALL_LABELS, 0);
 draw byLabelPoint(E, angle(E-D) + 45, 2);
 }
 \drawCurrentPictureInMargin
-\problem[5]{Р}{азделить}{данную прямую \drawSizedLine{AE,EC,CB} так, чтобы прямоугольник, заключенный между частями, был равен данной площади, не превосходящей квадрат половины данной прямой.}
+\problem[5]{Р}{азделить}{данную прямую \drawSizedLine{AB} так, чтобы прямоугольник, заключенный между частями, был равен данной площади, не превосходящей квадрат половины данной прямой.}
 
 \begin{center}
 Пусть данная площадь будет $=\drawSizedLine{G}^2$.\\
-Рассечем пополам \drawSizedLine{AE,EC,CB} или сделаем $\drawSizedLine{AE,EC} = \drawSizedLine{CB}$,\\
-и если $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$, то задача решена.
+Рассечем пополам \drawSizedLine{AB} или сделаем $\drawSizedLine{AC} = \drawSizedLine{CB}$,\\
+и если $\drawSizedLine{AC}^2 = \drawSizedLine{G}^2$, то задача решена.
 
-Но если $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
-тогда $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ \byref{\hypref}.
+Но если $\drawSizedLine{AC}^2 \neq \drawSizedLine{G}^2$,\\
+тогда $\drawSizedLine{AC} > \drawSizedLine{G}$ \byref{\hypref}.
 
-Проведем $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{G}$,\\
-сделаем $\drawSizedLine{DC,CF} = \drawSizedLine{AE,EC} \mbox{ или } \drawSizedLine{CB}$,\\
-с \drawSizedLine{DC,CF} в~качестве радиуса опишем круг, секущий данную прямую, проведем \drawSizedLine{DE}.
+Проведем $\drawSizedLine{DC} \perp \drawSizedLine{AC} = \drawSizedLine{G}$,\\
+сделаем $\drawSizedLine{DF} = \drawSizedLine{AC} \mbox{ или } \drawSizedLine{CB}$,\\
+с \drawSizedLine{DF} в~качестве радиуса опишем круг, секущий данную прямую, проведем \drawSizedLine{DE}.
 
-Тогда $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{AE,EC}^2$ \byref{prop:II.V} $= \drawSizedLine{DE}^2$.
+Тогда $\drawSizedLine{AE} \times \drawSizedLine{EB} + \drawSizedLine{EC}^2 = \drawSizedLine{AC}^2$ \byref{prop:II.V} $= \drawSizedLine{DE}^2$.
 
 Но $\drawSizedLine{DE}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$ \byref{prop:I.XLVII};
 
-$\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$,\\
+$\therefore \drawSizedLine{AE} \times \drawSizedLine{EB} + \drawSizedLine{EC}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$,\\
 из обеих вычтем $\drawSizedLine{EC}^2$,\\
-и $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
+и $\drawSizedLine{AE} \times \drawSizedLine{EB} = \drawSizedLine{DC}^2$.
 
 Но $\drawSizedLine{DC} = \drawSizedLine{G}$ \byref{\constref},\\
-и $\therefore$ \drawSizedLine{AE,EC,CB} рассечена так, что $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{G}^2$.
+и $\therefore$ \drawSizedLine{AB} рассечена так, что $\drawSizedLine{AE} \times \drawSizedLine{EB} = \drawSizedLine{G}^2$.
 \end{center}
 
 \qed
@@ -12802,21 +12803,21 @@ draw byLabelsOnPolygon(F, B, C, A, noPoint)(ALL_LABELS, 0);
 draw byLabelLine(0)(G);
 }
 \drawCurrentPictureInMargin
-\problem{П}{родлить}{данную прямую \drawSizedLine{AC,CB} так, чтобы прямоугольник, заключенный между прямыми между концами данной линии и~точкой, до которой она продлена, был равен данной площади, то есть квадрату на \drawSizedLine{G}.}
+\problem{П}{родлить}{данную прямую \drawSizedLine{AB} так, чтобы прямоугольник, заключенный между прямыми между концами данной линии и~точкой, до которой она продлена, был равен данной площади, то есть квадрату на \drawSizedLine{G}.}
 
 \begin{center}
 Сделаем $\drawSizedLine{AC} = \drawSizedLine{CB}$\\
 и проведем $\drawSizedLine{BD} \perp \drawSizedLine{CB} = \drawSizedLine{G}$,\\
 проведем \drawSizedLine{CD},\\
-и с~\drawSizedLine{CD} в~качестве радиуса опишем круг, пересекающий продленную \drawSizedLine{AC,CB}.
+и с~\drawSizedLine{CD} в~качестве радиуса опишем круг, пересекающий продленную \drawSizedLine{AB}.
 
-Тогда $\drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{CB,BF}^2$ \byref{prop:II.VI} $= \drawSizedLine{CD}^2$.
+Тогда $\drawSizedLine{AF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{CF}^2$ \byref{prop:II.VI} $= \drawSizedLine{CD}^2$.
 
 Но $\drawSizedLine{CD}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$ \byref{prop:I.XLVII}.
 
-$\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
+$\therefore \drawSizedLine{AF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
 из обеих вычтем $\drawSizedLine{CB}^2$,\\
-и $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$,\\
+и $\therefore \drawSizedLine{AF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$,\\
 но $\drawSizedLine{BD} = \drawSizedLine{G}$.
 
 $\therefore \drawSizedLine{BD}^2 = \mbox{ данной площади.}$
@@ -12856,32 +12857,32 @@ byLineStylize(G, E, 0, 1, -1)(DEt);
 draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Р}{ассечь}{данную прямую \drawProportionalLine{AE,EB} в~крайнем и~среднем отношении.}
+\problem{Р}{ассечь}{данную прямую \drawProportionalLine{AB} в~крайнем и~среднем отношении.}
 
 \begin{center}
-На \drawProportionalLine{AE,EB} опишем квадрат \drawPolygon[middle][squareABHC]{ACFE,EFHB} \byref{prop:I.XLVI}.
+На \drawProportionalLine{AB} опишем квадрат \drawPolygon[middle][squareABHC]{ACFE,EFHB} \byref{prop:I.XLVI}.
 
-И продлим \drawProportionalLine{CA} так, что $\drawProportionalLine{CA,AG} \times \drawProportionalLine{AG} = \drawProportionalLine{AE,EB}^2$ \byref{prop:VI.XXIX}.
+И продлим \drawProportionalLine{CA} так, что $\drawProportionalLine{CG} \times \drawProportionalLine{AG} = \drawProportionalLine{AB}^2$ \byref{prop:VI.XXIX}.
 
 Возьмем $\drawProportionalLine{AE} = \drawProportionalLine{AG}$\\
-и проведем $\drawProportionalLine{DE} \parallel \drawProportionalLine{CA,AG}$,\\
-встречающуюся с~$\drawProportionalLine{GD} \parallel \drawProportionalLine{AE,EB}$ \byref{prop:I.XXXI}.
+и проведем $\drawProportionalLine{DE} \parallel \drawProportionalLine{CG}$,\\
+встречающуюся с~$\drawProportionalLine{GD} \parallel \drawProportionalLine{AB}$ \byref{prop:I.XXXI}.
 
 Тогда $\drawFromCurrentPicture[middle][rectangleCFDG]{
 draw byNamedPolygon(ACFE);
 draw byNamedLine(AGt,GDt,DEt);
 draw byLabelsOnPolygon(G, C, F, D)(ALL_LABELS, 0);
 }
-= \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, и~$\therefore\ = \squareABHC$.
+= \drawProportionalLine{CG} \times \drawProportionalLine{AG}$, и~$\therefore\ = \squareABHC$.
 
 И если из обеих частей вычесть общую \drawPolygon{ACFE},\\
 \drawLine{DE,GD,AG,AE}, являющаяся квадратом \drawProportionalLine{AE},\\
-будет $= \drawPolygon{EFHB}$, которая $= \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$.
+будет $= \drawPolygon{EFHB}$, которая $= \drawProportionalLine{AB} \times \drawProportionalLine{EB}$.
 
-То есть $\drawProportionalLine{AE}^2 = \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$.
+То есть $\drawProportionalLine{AE}^2 = \drawProportionalLine{AB} \times \drawProportionalLine{EB}$.
 
-$\therefore \drawProportionalLine{AE,EB} : \drawProportionalLine{AE} :: \drawProportionalLine{AE} : \drawProportionalLine{EB}$,\\
-и \drawProportionalLine{AE,EB} разделена в~крайнем и~среднем отношении \byref{def:VI.III}.
+$\therefore \drawProportionalLine{AB} : \drawProportionalLine{AE} :: \drawProportionalLine{AE} : \drawProportionalLine{EB}$,\\
+и \drawProportionalLine{AB} разделена в~крайнем и~среднем отношении \byref{def:VI.III}.
 \end{center}
 
 \qed
@@ -12919,12 +12920,12 @@ draw byLabelsOnPolygon(B, F, E, A, L, K, C, H, G)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(A, D, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{Е}{сли}{подобные и~подобным образом описанные прямолинейные фигуры построены на сторонах прямоугольного треугольника \drawLine[bottom]{CA,DC,BD,AB}, фигура на стороне \drawProportionalLine{BD,DC} против прямого угла равна сумме фигур на двух других сторонах.}
+\problem{Е}{сли}{подобные и~подобным образом описанные прямолинейные фигуры построены на сторонах прямоугольного треугольника \drawLine[bottom]{CA,DC,BD,AB}, фигура на стороне \drawProportionalLine{BC} против прямого угла равна сумме фигур на двух других сторонах.}
 
 \begin{center}
-Из прямого угла проведем перпендикуляр \drawProportionalLine{AD} к~\drawProportionalLine{BD,DC}.
+Из прямого угла проведем перпендикуляр \drawProportionalLine{AD} к~\drawProportionalLine{BC}.
 
-Тогда $\drawProportionalLine{BD,DC} : \drawProportionalLine{CA} :: \drawProportionalLine{CA} : \drawProportionalLine{DC}$ \byref{prop:VI.VIII}.
+Тогда $\drawProportionalLine{BC} : \drawProportionalLine{CA} :: \drawProportionalLine{CA} : \drawProportionalLine{DC}$ \byref{prop:VI.VIII}.
 
 $\therefore
 \drawFromCurrentPicture[bottom][figBC]{
@@ -12940,7 +12941,7 @@ startAutoLabeling;
 draw byNamedPolygon(CA);
 stopAutoLabeling;
 stopGlobalRotation;
-} :: \drawProportionalLine{BD,DC} : \drawProportionalLine{DC}$ \byref{prop:VI.XX}.
+} :: \drawProportionalLine{BC} : \drawProportionalLine{DC}$ \byref{prop:VI.XX}.
 
 Но $\figBC\ :
 \drawFromCurrentPicture[bottom][figAB]{
@@ -12949,11 +12950,11 @@ startAutoLabeling;
 draw byNamedPolygon(AB);
 stopAutoLabeling;
 stopGlobalRotation;
-} :: \drawProportionalLine{BD,DC} : \drawProportionalLine{BD}$ \byref{prop:VI.XX}.
+} :: \drawProportionalLine{BC} : \drawProportionalLine{BD}$ \byref{prop:VI.XX}.
 
-Значит, $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BD,DC} :: \figAB\ + \figCA\ : \figBC$.
+Значит, $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BC} :: \figAB\ + \figCA\ : \figBC$.
 
-Но $\drawProportionalLine{DC} + \drawProportionalLine{BD} = \drawProportionalLine{BD,DC}$.
+Но $\drawProportionalLine{DC} + \drawProportionalLine{BD} = \drawProportionalLine{BC}$.
 
 И $\therefore \figAB\ + \figCA\ = \figBC$.
 \end{center}
@@ -13205,7 +13206,7 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
 stopAutoLabeling;
 stopTempScale;
-}, встречается с~продолжением стороны треугольника \drawSizedLine{AB}, то вся сторона с~продолжением \drawSizedLine{AB,BD} и~ее внешняя часть \drawSizedLine{BD} будут пропорциональны сторонам \drawSizedLine{AE,EC} и~\drawSizedLine{BC}, между которыми заключен угол, смежный с~рассекаемым внешним.}
+}, встречается с~продолжением стороны треугольника \drawSizedLine{AB}, то вся сторона с~продолжением \drawSizedLine{AD} и~ее внешняя часть \drawSizedLine{BD} будут пропорциональны сторонам \drawSizedLine{AC} и~\drawSizedLine{BC}, между которыми заключен угол, смежный с~рассекаемым внешним.}
 
 \begin{center}
 Действительно, если провести $\drawSizedLine{BE} \parallel \drawSizedLine{DC}$,\\
@@ -13216,11 +13217,11 @@ $\begin{aligned}
 \end{aligned}$
 
 И $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$ \byref{prop:I.VI}\\
-и $\drawSizedLine{AE,EC} : \drawSizedLine{BC} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \byref{prop:V.VII}.
+и $\drawSizedLine{AC} : \drawSizedLine{BC} :: \drawSizedLine{AC} : \drawSizedLine{EC}$ \byref{prop:V.VII}.
 
-Но также $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \byref{prop:VI.II}.
+Но также $\drawSizedLine{AD} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{EC}$ \byref{prop:VI.II}.
 
-И, следовательно, $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{BC}$ \byref{prop:V.XI}.
+И, следовательно, $\drawSizedLine{AD} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{BC}$ \byref{prop:V.XI}.
 \end{center}
 
 \qed
@@ -13269,9 +13270,9 @@ draw byLabelsOnPolygon(B, D, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 и $\drawAngle{B} = \drawAngle{E}$ \byref{prop:III.XXI},\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} и~\drawLine[middle]{CA,CE,DE,AD} равноугольны \byref{prop:I.XXXII}.
 
-$\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \byref{prop:VI.IV}.
+$\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AE} : \drawSizedLine{CA}$ \byref{prop:VI.IV}.
 
-$\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{AD} \times \drawSizedLine{AD,DE}$ \byref{prop:VI.XVI}\\
+$\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{AD} \times \drawSizedLine{AE}$ \byref{prop:VI.XVI}\\
 $= \drawSizedLine{DE} \times \drawSizedLine{AD} + \drawSizedLine{AD}^2$ \byref{prop:II.III}.
 
 Но $\drawSizedLine{DE} \times \drawSizedLine{AD} = \drawSizedLine{BD} \times \drawSizedLine{DC}$ \byref{prop:III.XXXV}.
@@ -13316,11 +13317,11 @@ draw byLabelsOnPolygon(C, D, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \begin{center}
 Из угла \drawAngle{A} треугольника \drawLine[bottom]{CA,DC,BD,AB}\\
-проведем $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
+проведем $\drawUnitLine{AD} \perp \drawUnitLine{BC}$;\\
 тогда $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times \mbox{ диаметр описанного круга}$.
 
 Опишем \drawCircle[middle][1/4]{O} \byref{prop:IV.V}, проведем диаметр \drawUnitLine{AE} и~проведем \drawUnitLine{CE},\\
-тогда, поскольку $\drawAngle{D} = \drawAngle{BCA,ECB}$ \byref{\constref,prop:III.XXXI}\\
+тогда, поскольку $\drawAngle{D} = \drawAngle{ACE}$ \byref{\constref,prop:III.XXXI}\\
 и $\drawAngle{B} = \drawAngle{E}$ \byref{prop:III.XXI},\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} равноуголен с~\drawLine[middle]{CA,CE,AE} \byref{prop:VI.IV}.
 
@@ -13373,10 +13374,10 @@ draw byLabelsOnPolygon(D, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \begin{center}
 Пусть \offsetPicture{15pt}{15pt}{\drawLine{DA,CD,BC,AB}} будет любым четырехугольником, вписанным в~\drawCircle[middle][1/6]{O}.
 
-Проведем \drawUnitLine{BE,ED} и~\drawUnitLine{AC}, тогда $\drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
+Проведем \drawUnitLine{BD} и~\drawUnitLine{AC}, тогда $\drawUnitLine{BD} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 
 Сделаем $\drawAngle{EAB} = \drawAngle{DAC}$ \byref{prop:I.XXIII},\\
-$\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$ и~$\drawAngle{BCA} = \drawAngle{D}$ \byref{prop:III.XXI}.
+$\therefore \drawAngle{BAC} = \drawAngle{EAD}$ и~$\drawAngle{BCA} = \drawAngle{D}$ \byref{prop:III.XXI}.
 
 $\therefore \drawUnitLine[0.8cm]{DA} : \drawUnitLine[0.8cm]{ED} :: \drawUnitLine[0.8cm]{AC} : \drawUnitLine[0.8cm]{BC}$ \byref{prop:VI.IV},\\
 и $\therefore \drawUnitLine[0.75cm]{ED} \times \drawUnitLine[0.75cm]{AC} = \drawUnitLine[0.75cm]{DA} \times \drawUnitLine[0.75cm]{BC}$ \byref{prop:VI.XVI}.
@@ -13388,7 +13389,7 @@ $\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUn
 
 Но, как написано выше, $\drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 
-$\therefore \drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$ \byref{prop:II.I}.
+$\therefore \drawUnitLine{BD} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$ \byref{prop:II.I}.
 \end{center}
 
 \qed

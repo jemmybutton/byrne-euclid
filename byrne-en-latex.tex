@@ -1,4 +1,4 @@
-\documentclass[booklanguage=english]{byrnebook}
+\documentclass[letters,booklanguage=english]{byrnebook}
 %\usepackage{lua-visual-debug}
 
 \begin{document}
@@ -332,16 +332,16 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(BD,CD,AC,AB);
 stopAutoLabeling;
 }\\
-we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$,\\
+we have $\drawUnitLine{AD} = \drawUnitLine{AE}$,\\
 \drawAngle{BAC} common and $\drawUnitLine{AB} = \drawUnitLine{AC}$:\\
-$\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$\\
+$\therefore \drawAngle{DCA} = \drawAngle{ABE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$\\
 and $\drawAngle{CEB} = \drawAngle{BDC}$ \byref{prop:I.IV}.\\
 Again in \drawLine{BC,BE,CE} and \drawLine{BC,BD,CD},\\
 $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$\\
 and $\drawUnitLine{BE} = \drawUnitLine{CD}$;\\
-$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$
+$\therefore \drawAngle{ECB} = \drawAngle{CBD}$
 and $\drawAngle{DCB} = \drawAngle{CBE}$ \byref{prop:I.IV}\\
-But $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
+But $\drawAngle{DCA} = \drawAngle{ABE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$.
 \end{center}
 
 \qedNB
@@ -1173,7 +1173,7 @@ draw byLabelLineEnd(E, D, 1);
 produce \drawUnitLine{DA} \byref{post:I.II},\\
 then \drawUnitLine{AF} is the line required.
 
-For $\drawUnitLine{BE,BD} = \drawUnitLine{DA,AF}$ \byref{def:I.XV},\\
+For $\drawUnitLine{ED} = \drawUnitLine{DF}$ \byref{def:I.XV},\\
 and $\drawUnitLine{BD} = \drawUnitLine{DA}$ \byref{\constref},\\
 $\therefore \drawUnitLine{BE} = \drawUnitLine{AF}$ \byref{post:I.III},\\
 but \byref{def:I.XV} $\drawUnitLine{BC} = \drawUnitLine{BE} = \drawUnitLine{AF}$;
@@ -1208,7 +1208,7 @@ draw byLabelPoint(B, angle(B-A) + 45, 2);
 draw byLabelsOnPolygon(E, F)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{F}{rom}{the greater (\drawUnitLine{AB,BC}) of two given straight lines, to cut off a part equal to the less (\drawUnitLine{EF}).}
+\problem{F}{rom}{the greater (\drawUnitLine{AC}) of two given straight lines, to cut off a part equal to the less (\drawUnitLine{EF}).}
 
 \begin{center}
 Draw $\drawUnitLine{AD} = \drawUnitLine{EF}$ \byref{prop:I.II};\\
@@ -1315,15 +1315,15 @@ draw byNamedAngle(BAC);
 draw byNamedLineSeq(0)(BD,CD,AC,AB);
 stopAutoLabeling;
 }\\
-we have $\drawUnitLine{AB,BD} = \drawUnitLine{AC,CE}$ \byref{\constref},\\
+we have $\drawUnitLine{AD} = \drawUnitLine{AE}$ \byref{\constref},\\
 \drawAngle{BAC} common to both,\\
 and $\drawUnitLine{AB} = \drawUnitLine{AC}$ \byref{\hypref}\\
-$\therefore \drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ and $\drawAngle{CEB} = \drawAngle{BDC}$ \byref{prop:I.IV}.
+$\therefore \drawAngle{DCA} = \drawAngle{ABE}$, $\drawUnitLine{BE} = \drawUnitLine{CD}$ and $\drawAngle{CEB} = \drawAngle{BDC}$ \byref{prop:I.IV}.
 
 Again in \drawLine{BE,CE,BC} and \drawLine{BD,CD,BC}\\
 we have $\drawUnitLine{BD} = \drawUnitLine{CE}$, $\drawAngle{CEB} = \drawAngle{BDC}$ and $\drawUnitLine{BE} = \drawUnitLine{CD}$,\\
-$\therefore \drawAngle{DCE,DCB} = \drawAngle{EBD,CBE}$ and $\drawAngle{DCB} = \drawAngle{CBE}$ \byref{prop:I.IV}\\
-but $\drawAngle{BCA,DCB} = \drawAngle{ABC,CBE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \byref{ax:I.III}.
+$\therefore \drawAngle{ECB} = \drawAngle{CBD}$ and $\drawAngle{DCB} = \drawAngle{CBE}$ \byref{prop:I.IV}\\
+but $\drawAngle{DCA} = \drawAngle{ABE}$, $\therefore \drawAngle{BCA} = \drawAngle{ABC}$ \byref{ax:I.III}.
 \end{center}
 
 \qed
@@ -1348,9 +1348,9 @@ draw byNamedLineSeq(0)(CA,CD,BD,AB);
 draw byLabelsOnPolygon(A, C, D, B)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{n}{any triangle (\drawLine[bottom][triangleABD]{CA,CD,BD,AB}) if two angles (\drawAngle{A} and \drawAngle{B}) are equal, the sides (\drawUnitLine{CA,CD} and \drawUnitLine{BD}) opposite to them are also equal.}
+\problem{I}{n}{any triangle (\drawLine[bottom][triangleABD]{CA,CD,BD,AB}) if two angles (\drawAngle{A} and \drawAngle{B}) are equal, the sides (\drawUnitLine{AD} and \drawUnitLine{BD}) opposite to them are also equal.}
 
-For if the sides be not equal, let one of them \drawUnitLine{CA,CD} be greater than the other \drawUnitLine{BD}, and from it to cut off $\drawUnitLine{CA} = \drawUnitLine{BD}$ \byref{prop:I.III}, draw \drawUnitLine{BC}.
+For if the sides be not equal, let one of them \drawUnitLine{AD} be greater than the other \drawUnitLine{BD}, and from it to cut off $\drawUnitLine{CA} = \drawUnitLine{BD}$ \byref{prop:I.III}, draw \drawUnitLine{BC}.
 
 \begin{center}
 Then in \drawLine[bottom]{BC,AB,CA} and \triangleABD,\\
@@ -1359,7 +1359,7 @@ $\drawAngle{A} = \drawAngle{B}$ \byref{\hypref}\\
 and \drawUnitLine{AB} common,\\
 $\therefore$ the triangles are equal \byref{prop:I.IV}\\
 a part equal to the whole, which is absurd;\\
-$\therefore$ neither of the sides \drawUnitLine{CA,CD} or \drawUnitLine{BD} is greater than the other,\\
+$\therefore$ neither of the sides \drawUnitLine{AD} or \drawUnitLine{BD} is greater than the other,\\
 hence they are equal.
 \end{center}
 
@@ -1547,7 +1547,7 @@ draw byNamedLineSeq(0)(AB,CA,CD,DB);
 draw byLabelsOnPolygon(B, A, C, D)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{bisect a given finite straight line (\drawUnitLine{DB,CD}).}
+\problem{T}{o}{bisect a given finite straight line (\drawUnitLine{BC}).}
 
 \begin{center}
 Construct \drawLine[bottom]{AB,CA,CD,DB} \byref{prop:I.I},\\
@@ -1602,7 +1602,7 @@ and \drawUnitLine{AD} common to the two triangles. % what triangles? obviously D
 
 Therefore $\drawAngle{ADB} = \drawAngle{CDA}$ \byref{prop:I.VIII}
 
-$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \byref{def:I.X}.
+$\therefore \drawUnitLine{AD} \perp \drawUnitLine{BC}$ \byref{def:I.X}.
 \end{center}
 
 \qed
@@ -1650,7 +1650,7 @@ With the given point \drawPointL{A} as centre, at one side of the line, and any 
 
 Make $\drawUnitLine{DB} = \drawUnitLine{CD}$ \byref{prop:I.X},\\
 draw \drawUnitLine{AB}, \drawUnitLine{CA} and \drawUnitLine{AD},\\
-then $\drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$.
+then $\drawUnitLine{AD} \perp \drawUnitLine{BC}$.
 
 For \byref{prop:I.VIII} since $\drawUnitLine{DB} = \drawUnitLine{CD}$ \byref{\constref},\\
 \drawUnitLine{AD} common to both,\\ % to both what? obviously DBA and DAC
@@ -1658,7 +1658,7 @@ and $\drawUnitLine{AB} = \drawUnitLine{CA}$ \byref{def:I.XV},
 
 $\therefore \drawAngle{ADB} = \drawAngle{CDA}$, and
 
-$\therefore \drawUnitLine{AD} \perp \drawUnitLine{DB,CD}$ \byref{def:I.X}.
+$\therefore \drawUnitLine{AD} \perp \drawUnitLine{BC}$ \byref{def:I.X}.
 \end{center}
 
 \qed
@@ -1890,7 +1890,7 @@ draw byNamedLineSeq(0)(DC,BC,BA,AD);
 draw byLabelsOnPolygon(D, C, B, A)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{I}{n}{any triangle \drawLine{DC,BC,BA,AD} if one side \drawUnitLine{AD,DC} be greater than another \drawUnitLine{BC}, the angle opposite to the greater side is greater than the angle opposite to the less. I.\ e.\ $\drawAngle{DBC,ABD} > \drawAngle{A}$.}
+\problem[3]{I}{n}{any triangle \drawLine{DC,BC,BA,AD} if one side \drawUnitLine{AC} be greater than another \drawUnitLine{BC}, the angle opposite to the greater side is greater than the angle opposite to the less. I.\ e.\ $\drawAngle{CBA} > \drawAngle{A}$.}
 
 \begin{center}
 Make $\drawUnitLine{DC} = \drawUnitLine{BC}$ \byref{prop:I.III}, draw \drawUnitLine{DB}.
@@ -1900,7 +1900,7 @@ Then will $\drawAngle{D} = \drawAngle{DBC}$ \byref{prop:I.V};
 but $\drawAngle{D} > \drawAngle{A}$ \byref{prop:I.XVI}
 
 $\therefore \drawAngle{DBC} > \drawAngle{A}$ and much more\\
-is $\drawAngle{DBC,ABD} > \drawAngle{A}$.
+is $\drawAngle{CBA} > \drawAngle{A}$.
 \end{center}
 
 \qed
@@ -2010,13 +2010,13 @@ draw byLabelsOnPolygon(A, D, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \begin{center}
 Produce \drawSizedLine{AD},\\
-$\drawSizedLine{CA} + \drawSizedLine{EC} > \drawSizedLine{AD,DE}$ \byref{prop:I.XX},\\
+$\drawSizedLine{CA} + \drawSizedLine{EC} > \drawSizedLine{AE}$ \byref{prop:I.XX},\\
 add \drawSizedLine{BE} to each,\\
-$\drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD,DE} + \drawSizedLine{BE}$ \byref{ax:I.IV}
+$\drawSizedLine{CA} + \drawSizedLine{CB} > \drawSizedLine{AE} + \drawSizedLine{BE}$ \byref{ax:I.IV}
 
 in the same manner it may be shown that\\
-$\drawSizedLine{AD,DE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
-$\therefore \drawSizedLine{CA} + \drawSizedLine{EC,BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+$\drawSizedLine{AE} + \drawSizedLine{BE} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
+$\therefore \drawSizedLine{CA} + \drawSizedLine{CB} > \drawSizedLine{AD} + \drawSizedLine{BD}$,\\
 which was to be proved.
 
 Again $\drawAngle{E} > \drawAngle{C}$ \byref{prop:I.XVI},\\
@@ -2141,7 +2141,7 @@ draw byLabelsOnPolygon(D, B, A, C, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(noPoint,J, G, F, H, G)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{A}{t}{a given point (\drawPointL{F}) in a given straight line (\drawUnitLine{FG,GJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
+\problem{A}{t}{a given point (\drawPointL{F}) in a given straight line (\drawUnitLine{FJ}), to make an angle equal to a given rectilinear angle (\drawAngle{A}).}
 
 Draw \drawUnitLine{BC} between any two points in the legs of the given angle.
 
@@ -2320,19 +2320,19 @@ draw byLabelsOnPolygon(D, G, F, E)(ALL_LABELS, 0);
 \startsubproposition{Case I.}
 \begin{center}
 Let \drawUnitLine{AB} and \drawUnitLine{DE} which lie between the equal angles be equal,\\
-then $\drawUnitLine{CA} = \drawUnitLine{GD,FG}$.
+then $\drawUnitLine{CA} = \drawUnitLine{DF}$.
 
-For if it be possible, let one of them \drawUnitLine{GD,FG} be greater than the other;\\
+For if it be possible, let one of them \drawUnitLine{DF} be greater than the other;\\
 make $\drawUnitLine{CA} = \drawUnitLine{GD}$, draw \drawUnitLine{EG}.
 
 In \drawLine[bottom]{CA,BC,AB} and
 \drawLine[bottom]{GD,EG,DE} we have\\
 $\drawUnitLine{CA} = \drawUnitLine{GD}$, $\drawAngle{A} = \drawAngle{D}$, $\drawUnitLine{AB} = \drawUnitLine{DE}$;\\
-$\therefore \drawAngle{B} = \drawAngle{GED}$ (pr. 4.)\\
-but $\drawAngle{B} = \drawAngle{GED,FEG}$ \byref{\hypref}
+$\therefore \drawAngle{B} = \drawAngle{GED}$ \byref{prop:I.IV}\\
+but $\drawAngle{B} = \drawAngle{FED}$ \byref{\hypref}
 
-and therefore $\drawAngle{GED} = \drawAngle{GED,FEG}$, which is absurd;\\
-hence neither of the sides \drawUnitLine{CA} and \drawUnitLine{GD,FG} is greater than the other;\\
+and therefore $\drawAngle{GED} = \drawAngle{FED}$, which is absurd;\\
+hence neither of the sides \drawUnitLine{CA} and \drawUnitLine{DF} is greater than the other;\\
 and $\therefore$ they are equal;
 
 $\therefore \drawUnitLine{BC} = \drawUnitLine{EF}$, and $\drawAngle{C} = \drawAngle{F}$, \byref{prop:I.IV}.
@@ -2374,7 +2374,7 @@ draw byLabelsOnPolygon(D, F, E, G)(ALL_LABELS, 0);
 \startsubproposition{Case II.}
 \begin{center}
 Again, let $\drawUnitLine{CA} = \drawUnitLine{FD}$, which lie opposite the equal angles \drawAngle{B} and \drawAngle{E}.\\
-If it be possible, let $\drawUnitLine{DG,GE} > \drawUnitLine{AB}$, then take $\drawUnitLine{DG} = \drawUnitLine{AB}$, draw \drawUnitLine{FG}.
+If it be possible, let $\drawUnitLine{DE} > \drawUnitLine{AB}$, then take $\drawUnitLine{DG} = \drawUnitLine{AB}$, draw \drawUnitLine{FG}.
 
 Then in \drawLine[bottom]{CA,BC,AB} and \drawLine[bottom]{FD,FG,DG} we have $\drawUnitLine{CA} = \drawUnitLine{FD}$, $\drawUnitLine{AB} = \drawUnitLine{DG}$ and $\drawAngle{A} = \drawAngle{D}$,
 
@@ -2383,7 +2383,7 @@ but $\drawAngle{B} = \drawAngle{E}$ \byref{\hypref}
 
 $\therefore \drawAngle{G} = \drawAngle{E}$ which is absurd \byref{prop:I.XVI}.
 
-Consequently, neither of the sides \drawUnitLine{AB} or \drawUnitLine{DG,GE} is greater than the other, hence they must be equal. It follows (by \byref{prop:I.IV}) that the triangles are equal in all respects.
+Consequently, neither of the sides \drawUnitLine{AB} or \drawUnitLine{DE} is greater than the other, hence they must be equal. It follows (by \byref{prop:I.IV}) that the triangles are equal in all respects.
 \end{center}
 
 \qed
@@ -2504,11 +2504,11 @@ draw byLabelPoint(J, lineAngle.EJ + 90, 1);
 \drawCurrentPictureInMargin
 \problem{A}{ straight}{line (\drawUnitLine{GH}) falling on two parallel straight lines (\drawUnitLine{AB} and \drawUnitLine{CD}), makes the alternate angles equal to one another; and also the external equal to the internal and opposite angle on the same side; and the two internal angles on the same side together equal to two right angles.}
 
-For if the alternate angles \drawAngle{IEA,HEI} and \drawAngle{GFD} be not equal, draw \drawUnitLine{IE}, making $\drawAngle{HEI} = \drawAngle{GFD}$ \byref{prop:I.XXIII}.
+For if the alternate angles \drawAngle{AEH} and \drawAngle{GFD} be not equal, draw \drawUnitLine{IE}, making $\drawAngle{HEI} = \drawAngle{GFD}$ \byref{prop:I.XXIII}.
 
-Therefore $\drawUnitLine{IE,EJ} \parallel \drawUnitLine{CD}$ \byref{prop:I.XXVII} and therefore two straight lines which intersect are parallel to the same straight line, which is impossible \byref{ax:I.XII}.
+Therefore $\drawUnitLine{IJ} \parallel \drawUnitLine{CD}$ \byref{prop:I.XXVII} and therefore two straight lines which intersect are parallel to the same straight line, which is impossible \byref{ax:I.XII}.
 
-Hence \drawAngle{IEA,HEI} and \drawAngle{GFD} are not unequal, that is, they are equal: $\drawAngle{IEA,HEI} = \drawAngle{GEB}$ \byref{prop:I.XV}; $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, the external angle equal to the internal and opposite on the same side: if \drawAngle{BEH} be added to both, then $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{BEH,GEB} = \drawTwoRightAngles$ \byref{prop:I.XIII}. That is to say, the two internal angles at the same side of the cutting line are equal to two right angles.
+Hence \drawAngle{AEH} and \drawAngle{GFD} are not unequal, that is, they are equal: $\drawAngle{AEH} = \drawAngle{GEB}$ \byref{prop:I.XV}; $\therefore \drawAngle{GEB} = \drawAngle{GFD}$, the external angle equal to the internal and opposite on the same side: if \drawAngle{BEH} be added to both, then $\drawAngle{GFD} + \drawAngle{BEH} = \drawAngle{HEG} = \drawTwoRightAngles$ \byref{prop:I.XIII}. That is to say, the two internal angles at the same side of the cutting line are equal to two right angles.
 
 \qed
 
@@ -2578,14 +2578,14 @@ draw byNamedLineSeq(0)(CF, FD);
 draw byLabelsOnPolygon(A, E, B, noPoint, D, F, C, noPoint)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{F}{rom}{a given point \drawPointL[middle][EB]{E} to draw a straight line parallel to a given straight line (\drawUnitLine{CF,FD}).}
+\problem{F}{rom}{a given point \drawPointL[middle][EB]{E} to draw a straight line parallel to a given straight line (\drawUnitLine{CD}).}
 
 \begin{center}
-Draw \drawUnitLine{EF} from the point \drawPointL[middle][EB]{E} to any point  \drawPointL[middle][CF]{F} in \drawUnitLine{CF,FD},
+Draw \drawUnitLine{EF} from the point \drawPointL[middle][EB]{E} to any point  \drawPointL[middle][CF]{F} in \drawUnitLine{CD},
 
 make $\drawAngle{E} = \drawAngle{F}$ \byref{prop:I.XXIII},
 
-then $\drawUnitLine{AE,EB} \parallel \drawUnitLine{CF,FD}$ \byref{prop:I.XXVII}.
+then $\drawUnitLine{AB} \parallel \drawUnitLine{CD}$ \byref{prop:I.XXVII}.
 \end{center}
 
 \qed
@@ -3064,12 +3064,12 @@ draw byNamedLineFull(B, B, 1, 1,  0, 0)(EF);
 }) on equal bases, and on the same side, are between the same parallels.}
 
 \begin{center}
-If \drawSizedLine{AB} which joins the vertices of triangles be not $\parallel \drawSizedLine{CD,DE,EF}$,\\
-draw \drawSizedLine{AG} $\parallel \drawSizedLine{CD,DE,EF}$ \byref{prop:I.XXXI},\\
+If \drawSizedLine{AB} which joins the vertices of triangles be not $\parallel \drawSizedLine{CF}$,\\
+draw \drawSizedLine{AG} $\parallel \drawSizedLine{CF}$ \byref{prop:I.XXXI},\\
 meeting \drawSizedLine{EH}.\\
 Draw \drawSizedLine{FG}.
 
-$\because \drawSizedLine{AG} \parallel \drawSizedLine{CD,DE,EF}$ \byref{\constref}\\ %Because
+$\because \drawSizedLine{AG} \parallel \drawSizedLine{CF}$ \byref{\constref}\\ %Because
 $\polygonACD =
 \drawFromCurrentPicture[bottom][polygonGEF]{
 startAutoLabeling;
@@ -3080,7 +3080,7 @@ draw byNamedLineFull(G, G, 1, 1,  0, 0)(EF);
 
 $\therefore \polygonBEF = \polygonGEF$, a part equal to the whole, which is absurd.
 
-$\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CD,DE,EF}$: and in the same manner it can be demonstrated, that no other line except \drawSizedLine{AB} is $\parallel \drawSizedLine{CD,DE,EF}$: $\therefore \drawSizedLine{AB} \parallel \drawSizedLine{CD,DE,EF}$.
+$\therefore \drawSizedLine{AG} \nparallel \drawSizedLine{CF}$: and in the same manner it can be demonstrated, that no other line except \drawSizedLine{AB} is $\parallel \drawSizedLine{CF}$: $\therefore \drawSizedLine{AB} \parallel \drawSizedLine{CF}$.
 \end{center}
 
 \qed
@@ -3291,7 +3291,7 @@ and having one of its sides \drawUnitLine{FE} conterminous with and in continuat
 
 Produce \drawUnitLine{AH} till it meets $\drawUnitLine{BG} \parallel \drawUnitLine{HE}$\\
 draw \drawUnitLine{BE} produce it till it meets \drawUnitLine{AF} continued;\\
-draw $\drawUnitLine{CD} \parallel \drawUnitLine{FE,EG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
+draw $\drawUnitLine{CD} \parallel \drawUnitLine{FG}$ meeting \drawUnitLine{BG} produced and produce \drawUnitLine{HE}.
 
 $\polygonAHEF = \drawPolygon[middle][polygonEGDI]{EGDI}$ \byref{prop:I.XLIII}\\
 but $\polygonAHEF = \polygonJKL$ \byref{\constref}
@@ -3689,7 +3689,7 @@ draw byLabelLine(0)(A);
 }
 \drawCurrentPictureInMargin
 \problem[3]{T}{he}{rectangle contained by two straight lines, one of which is divided into any number of parts,
-$\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{
+$\drawProportionalLine{GH} \cdot \drawProportionalLine{A} = \left\{
 	\begin{aligned}
 		&\drawProportionalLine{A} \cdot \drawProportionalLine{GK}\\
 		+&\drawProportionalLine{A} \cdot \drawProportionalLine{KL}\\
@@ -3699,11 +3699,11 @@ $\drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \left\{
 is equal to the sum of the rectangles contained by the undivided line, and the several parts of the divided line.}
 
 \begin{center}
-Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GK,KL,LH} \mbox{ and} = \drawProportionalLine{GB}$ \byref{prop:I.XI,prop:I.III}; complete the parallelograms, that is to say, % improvement: in the original \byref{prop:I.II} was referenced instead of \byref{prop:I.XI}
+Draw $\drawProportionalLine{GB} \perp \drawProportionalLine{GH} \mbox{ and} = \drawProportionalLine{GB}$ \byref{prop:I.XI,prop:I.III}; complete the parallelograms, that is to say, % improvement: in the original \byref{prop:I.II} was referenced instead of \byref{prop:I.XI}
 
 draw $\left\{
 	\begin{aligned}
-		\drawProportionalLine{BD,DE,EC} &\parallel \drawProportionalLine{GK,KL,LH} \\
+		\drawProportionalLine{BC} &\parallel \drawProportionalLine{GH} \\
 		\vcenter{
 		\nointerlineskip\hbox{\drawProportionalLine{KD}}
 		\nointerlineskip\hbox{\drawProportionalLine{LE}}
@@ -3716,14 +3716,14 @@ $\drawPolygon[bottom]{GKDB,KLED,LHCE} =
 \drawPolygon[bottom]{KLED} +
 \drawPolygon[bottom]{LHCE}$
 
-$\drawPolygon[bottom]{GKDB,KLED,LHCE} = \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{GB}$
+$\drawPolygon[bottom]{GKDB,KLED,LHCE} = \drawProportionalLine{GH} \cdot \drawProportionalLine{GB}$
 
 $\polygonGKDB = \drawProportionalLine{GK} \cdot \drawProportionalLine{GB}$,
 $\polygonKLED = \drawProportionalLine{KL} \cdot \drawProportionalLine{GB}$,
 
 $\polygonLHCE = \drawProportionalLine{LH} \cdot \drawProportionalLine{GB}$
 
-$\therefore \drawProportionalLine{GK,KL,LH} \cdot \drawProportionalLine{A} = \drawProportionalLine{GK} \cdot \drawProportionalLine{A} + \drawProportionalLine{KL} \cdot \drawProportionalLine{A} + \drawProportionalLine{LH} \cdot \drawProportionalLine{A}$.
+$\therefore \drawProportionalLine{GH} \cdot \drawProportionalLine{A} = \drawProportionalLine{GK} \cdot \drawProportionalLine{A} + \drawProportionalLine{KL} \cdot \drawProportionalLine{A} + \drawProportionalLine{LH} \cdot \drawProportionalLine{A}$.
 \end{center}
 
 \qed
@@ -3750,11 +3750,11 @@ draw byNamedLineSeq(0)(AD,AC,CB,BE);
 draw byLabelsOnPolygon(A, C, B, E, F, D)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{AC,CB}, the square of the whole line is equal to the sum of the rectangles contained by the whole line and each of its parts.\\
-$\drawProportionalLine{AC,CB}^2 = \left\{
+\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{AB}, the square of the whole line is equal to the sum of the rectangles contained by the whole line and each of its parts.\\
+$\drawProportionalLine{AB}^2 = \left\{
 	\begin{aligned}
-		& \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC}\\
-		+ & \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}\\
+		& \drawProportionalLine{AB} \cdot \drawProportionalLine{AC}\\
+		+ & \drawProportionalLine{AB} \cdot \drawProportionalLine{CB}\\
 	\end{aligned}
 \right.$
 }
@@ -3764,15 +3764,15 @@ Describe \drawPolygon[bottom][polygonABED]{ACFD,CBEF} \byref{prop:I.XLVI}
 
 Draw \drawProportionalLine{CF} parallel to \drawProportionalLine{AD} \byref{prop:I.XXXI}
 
-$\polygonABED = \drawProportionalLine{AC,CB}^2$
+$\polygonABED = \drawProportionalLine{AB}^2$
 
-$\drawPolygon[bottom]{ACFD} = \drawProportionalLine{CF} \cdot \drawProportionalLine{AC} = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC}$
+$\drawPolygon[bottom]{ACFD} = \drawProportionalLine{CF} \cdot \drawProportionalLine{AC} = \drawProportionalLine{AB} \cdot \drawProportionalLine{AC}$
 
-$\drawPolygon[bottom]{CBEF} = \drawProportionalLine{CF} \cdot \drawProportionalLine{CB} = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}$
+$\drawPolygon[bottom]{CBEF} = \drawProportionalLine{CF} \cdot \drawProportionalLine{CB} = \drawProportionalLine{AB} \cdot \drawProportionalLine{CB}$
 
 $\polygonABED = \drawPolygon[bottom]{ACFD} + \drawPolygon[bottom]{CBEF}$
 
-$\therefore \drawProportionalLine{AC,CB}^2 = \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{AC} + \drawProportionalLine{AC,CB} \cdot \drawProportionalLine{CB}$.
+$\therefore \drawProportionalLine{AB}^2 = \drawProportionalLine{AB} \cdot \drawProportionalLine{AC} + \drawProportionalLine{AB} \cdot \drawProportionalLine{CB}$.
 \end{center}
 
 \qed
@@ -3800,9 +3800,9 @@ draw byNamedLineSeq(0)(CD,noLine,DF,DE,EB,BC);
 draw byLabelsOnPolygon(B, C, A, F, D, E)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DE,DF}, the rectangle contained by the whole line and either of its parts, is equal to the square of that part, together with the rectangle under the parts.\\
-$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, or \\
-$\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.}
+\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{EF}, the rectangle contained by the whole line and either of its parts, is equal to the square of that part, together with the rectangle under the parts.\\
+$\drawProportionalLine{EF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$, or \\
+$\drawProportionalLine{EF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.}
 
 \begin{center}
 Describe \drawPolygon[bottom]{CBED} \byref{prop:I.XLVI}
@@ -3810,12 +3810,12 @@ Describe \drawPolygon[bottom]{CBED} \byref{prop:I.XLVI}
 Describe \drawPolygon[bottom]{ACDF} \byref{prop:I.XXXI}
 
 Then $\drawPolygon[bottom][polygonABEF]{ACDF,CBED} = \polygonCBED + \polygonACDF$, but\\
-$\polygonABEF = \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE}$ and\\
+$\polygonABEF = \drawProportionalLine{EF} \cdot \drawProportionalLine{DE}$ and\\
 $\polygonCBED = \drawProportionalLine{DE}^2$, $\polygonACDF = \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$,
 
-$\therefore \drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
+$\therefore \drawProportionalLine{EF} \cdot \drawProportionalLine{DE} = \drawProportionalLine{DE}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
 
-In a similar manner it may be readily shown that $\drawProportionalLine{DE,DF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
+In a similar manner it may be readily shown that $\drawProportionalLine{EF} \cdot \drawProportionalLine{DF} = \drawProportionalLine{DF}^2 + \drawProportionalLine{DE} \cdot \drawProportionalLine{DF}$.
 \end{center}
 
 \qed
@@ -3862,18 +3862,18 @@ draw byLabelsOnPolygon(A, C, B, K, E, F, D, H)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(H, G, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DF,FE}, the square of the whole line is equal to the squares of the parts, together with twice the rectangle contained by the parts.\\
-$\drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{twice} \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
+\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DE}, the square of the whole line is equal to the squares of the parts, together with twice the rectangle contained by the parts.\\
+$\drawProportionalLine{DE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{twice} \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$
 }
 
 \begin{center}
 Describe \drawLine[bottom][squareABED]{AD,BA,KB,EK,FE,DF} \byref{prop:I.XLVI}
 
-draw \drawProportionalLine{BG,GD} \byref{post:I.I}\\
+draw \drawProportionalLine{BD} \byref{post:I.I}\\
 and $\left\{
 	\begin{aligned}
-		\drawProportionalLine{FG,CG} &\parallel \drawProportionalLine{EK,KB}\\
-		\drawProportionalLine{HG,GK} &\parallel \drawProportionalLine{DF,FE}\\
+		\drawProportionalLine{FC} &\parallel \drawProportionalLine{EB}\\
+		\drawProportionalLine{HK} &\parallel \drawProportionalLine{DE}\\
 	\end{aligned}
 \right\}$ \byref{prop:I.XXXI}\\
 $\drawAngle{GBK} = \drawAngle{FDG}$ \byref{prop:I.V},\\
@@ -3906,7 +3906,7 @@ draw byNamedLineFull(G, G, 0, 1,  0, -1)(KB);
 draw byLabelsOnPolygon(A, B, E, D)(ALL_LABELS, 0);
 } = \squareFGHD + \drawPolygon{ACGH} + \drawPolygon{GKEF} + \squareKBCG$,
 
-$\therefore \drawProportionalLine{DF,FE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ twice } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$.
+$\therefore \drawProportionalLine{DE}^2 = \drawProportionalLine{DF}^2 + \drawProportionalLine{FE}^2 + \mbox{ twice } \drawProportionalLine{DF} \cdot \drawProportionalLine{FE}$.
 \end{center}
 
 \qed
@@ -3948,8 +3948,8 @@ draw byLabelsOnPolygon(A, C, D, B, M, F, G, E, L, K)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(M, H, G)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided \drawProportionalLine{BD,DC} \drawProportionalLine{CA} into two equal parts and also \drawProportionalLine{BD} \drawProportionalLine{DC,CA} into two unequal parts, the rectangle contained by the unequal parts, together with the square of the line between the points of section, is equal to the square of half that line \\
-$\drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
+\problem{I}{f}{a straight line be divided \drawProportionalLine{BC} \drawProportionalLine{CA} into two equal parts and also \drawProportionalLine{BD} \drawProportionalLine{DA} into two unequal parts, the rectangle contained by the unequal parts, together with the square of the line between the points of section, is equal to the square of half that line \\
+$\drawProportionalLine{BD} \cdot \drawProportionalLine{DA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BC}^2$.
 }
 
 \begin{center}
@@ -3957,23 +3957,23 @@ Describe \drawPolygon[middle][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \byref{prop:I.XLV
 draw \drawProportionalLine{EB}\\
 and $\left\{
 	\begin{aligned}
-		\drawProportionalLine{DH,HG} & \parallel \drawProportionalLine{CL,LE} \\
-		\drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \\
-		\drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}\\
+		\drawProportionalLine{DG} & \parallel \drawProportionalLine{CE} \\
+		\drawProportionalLine{MK} & \parallel \drawProportionalLine{BA} \\
+		\drawProportionalLine{AK} & \parallel \drawProportionalLine{CE}\\
 	\end{aligned}
 \right\}$ \byref{prop:I.XXXI}
 
 $\drawPolygon{CLKA} = \drawPolygon{DCLH,BDHM}$ \byref{prop:I.XXXVI}\\
 $\drawPolygon{MHGF} = \drawPolygon{DCLH}$ \byref{prop:I.XLIII}
 
-$\therefore \mbox{\byref{ax:I.II} } \drawPolygon{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA}$
+$\therefore \mbox{\byref{ax:I.II} } \drawPolygon{DCLH,BDHM,MHGF} = \drawPolygon{DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{DA}$
 but $\drawPolygon{HLEG} = \drawProportionalLine{DC}^2$ \byref{prop:II.IV}
 
-and $\squareCBFE = \drawProportionalLine{BD,DC}^2$ \byref{\constref}
+and $\squareCBFE = \drawProportionalLine{BC}^2$ \byref{\constref}
 
 $\therefore \mbox{\byref{ax:I.II} } \squareCBFE = \drawPolygon{DCLH,CLKA,HLEG}$
 
-$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DC,CA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BD,DC}^2$.
+$\therefore \drawProportionalLine{BD} \cdot \drawProportionalLine{DA} + \drawProportionalLine{DC}^2 = \drawProportionalLine{CA}^2 = \drawProportionalLine{BC}^2$.
 \end{center}
 
 \qed
@@ -4016,28 +4016,28 @@ draw byLabelsOnPolygon(F, G, E, L, K, A, C, D, B, M)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(L, H, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be bisected \drawProportionalLine{DC,CA} and produced to any point \drawProportionalLine{BD,DC,CA}, the rectangle contained by the whole line so increased, and the part produced, together with the square of half the line, is equal to the square of the line made up of the half, and the produced part.\\
-$\drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$
+\problem{I}{f}{a straight line be bisected \drawProportionalLine{DA} and produced to any point \drawProportionalLine{BA}, the rectangle contained by the whole line so increased, and the part produced, together with the square of half the line, is equal to the square of the line made up of the half, and the produced part.\\
+$\drawProportionalLine{BA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BC}^2$
 }
 
 \begin{center}
 Describe \drawPolygon[bottom][squareCBFE]{BDHM,DCLH,MHGF,HLEG} \byref{prop:I.XLVI}, draw \drawProportionalLine{EB}\\
 and $\left\{
 	\begin{aligned}
-		\drawProportionalLine{HG,DH} & \parallel \drawProportionalLine{CL,LE} \\
-		\drawProportionalLine{LM,KL} & \parallel \drawProportionalLine{BD,DC,CA} \\
-		\drawProportionalLine{AK} & \parallel \drawProportionalLine{CL,LE}\\
+		\drawProportionalLine{GD} & \parallel \drawProportionalLine{CE} \\
+		\drawProportionalLine{MK} & \parallel \drawProportionalLine{BA} \\
+		\drawProportionalLine{AK} & \parallel \drawProportionalLine{CE}\\
 	\end{aligned}
 \right\}$ \byref{prop:I.XXXI}
 
 $\drawPolygon[bottom]{MHGF} = \drawPolygon[bottom]{DCLH} = \drawPolygon[bottom]{CLKA}$ \byref{prop:I.XXXVI,prop:I.XLIII}
 
-$\therefore \drawPolygon[bottom]{BDHM,DCLH,MHGF} = \drawPolygon[bottom]{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BD,DC,CA}$;\\
+$\therefore \drawPolygon[bottom]{BDHM,DCLH,MHGF} = \drawPolygon[bottom]{BDHM,DCLH,CLKA} = \drawProportionalLine{BD} \cdot \drawProportionalLine{BA}$;\\
 but $\drawPolygon[bottom]{HLEG} = \drawProportionalLine{DC}^2$ \byref{prop:II.IV}
 
 $\therefore \squareCBFE = \drawProportionalLine{CB}^2 = \drawPolygon[bottom]{BDHM,DCLH,CLKA,HLEG}$ \byref{\constref,ax:I.II}
 
-$\therefore \drawProportionalLine{BD,DC,CA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BD,DC}^2$.
+$\therefore \drawProportionalLine{BA} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 = \drawProportionalLine{BC}^2$.
 \end{center}
 
 \qed
@@ -4073,26 +4073,26 @@ draw byLabelsOnPolygon(D, H, A, C, B, F, E, N)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(H, G, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DN,NE}, the squares of the whole line and one of the parts are equal to twice the rectangle contained by the whole line and that part, together with the square of the other parts.\\
-$\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$
+\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{DE}, the squares of the whole line and one of the parts are equal to twice the rectangle contained by the whole line and that part, together with the square of the other parts.\\
+$\drawProportionalLine{DE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$
 }
 
 \begin{center}
 Describe \drawPolygon[bottom][squareABED]{DNGH,NEFG,HGCA,GFBC} \byref{prop:I.XLVI}, draw \drawProportionalLine{BD} \byref{post:I.I},\\
 and $\left\{
 	\begin{aligned}
-		\drawProportionalLine{GN,GC} &\parallel \drawProportionalLine{EB} \\
-		\drawProportionalLine{GH,GF} &\parallel \drawProportionalLine{DN,NE}\\
+		\drawProportionalLine{NC} &\parallel \drawProportionalLine{EB} \\
+		\drawProportionalLine{HF} &\parallel \drawProportionalLine{DE}\\
 	\end{aligned}
 \right\}$\\
 $\drawPolygon[bottom]{HGCA} = \drawPolygon[bottom]{NEFG}$ \byref{prop:I.XLIII},\\
 add $\drawPolygon[bottom]{GFBC} = \drawProportionalLine{NE}^2$ to both \byref{prop:II.IV}
 
-$\drawPolygon[bottom]{HGCA,GFBC} = \drawPolygon[bottom]{NEFG,GFBC} = \drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE}$\\
+$\drawPolygon[bottom]{HGCA,GFBC} = \drawPolygon[bottom]{NEFG,GFBC} = \drawProportionalLine{DE} \cdot \drawProportionalLine{NE}$\\
 $\drawPolygon[bottom]{DNGH} = \drawProportionalLine{DN}^2$ \byref{prop:II.IV}\\
-$\drawPolygon[bottom]{HGCA,GFBC} + \drawPolygon[bottom]{NEFG,GFBC} + \drawPolygon[bottom]{DNGH} = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2 = \squareABED + \drawPolygon[bottom]{GFBC}$;
+$\drawPolygon[bottom]{HGCA,GFBC} + \drawPolygon[bottom]{NEFG,GFBC} + \drawPolygon[bottom]{DNGH} = 2\drawProportionalLine{DE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2 = \squareABED + \drawPolygon[bottom]{GFBC}$;
 
-$\drawProportionalLine{DN,NE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DN,NE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$.
+$\drawProportionalLine{DE}^2 + \drawProportionalLine{NE}^2 = 2\drawProportionalLine{DE} \cdot \drawProportionalLine{NE} + \drawProportionalLine{DN}^2$.
 \end{center}
 
 \qed
@@ -4145,12 +4145,12 @@ byLineDefine(O, P, byblack, SOLID_LINE, THIN_WIDTH);
 draw byLabelsOnPolygon(A, C, B, D, N, P, F, L, H, E, O, M)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{EH,HL}, the square of the sum of the whole line and any one of its parts is equal to four times the rectangle contained by the whole line, and that part together with the square of the other part. \\
-$\drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
+\problem{I}{f}{a straight line be divided into any two parts \drawProportionalLine{EL}, the square of the sum of the whole line and any one of its parts is equal to four times the rectangle contained by the whole line, and that part together with the square of the other part. \\
+$\drawProportionalLine{EF}^2 = 4 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$
 }
 
 \begin{center}
-Produce \drawProportionalLine{EH,HL} and make $\drawProportionalLine{LF} = \drawProportionalLine{HL}$
+Produce \drawProportionalLine{EL} and make $\drawProportionalLine{LF} = \drawProportionalLine{HL}$
 
 Construct \drawFromCurrentPicture[bottom]{
 draw byNamedLine(BL,CH,MN,OP);
@@ -4174,14 +4174,14 @@ $\left.
 		\nointerlineskip\hbox{\drawProportionalLine{MG,GN}}
 		}
 	\end{aligned}
-\right\} & \parallel \drawProportionalLine{EH,HL,LF}\\
+\right\} & \parallel \drawProportionalLine{EF}\\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}
 
-$\drawProportionalLine{EH,HL,LF}^2 = \drawProportionalLine{LF}^2 + \drawProportionalLine{EH,HL}^2 + 2 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{LF}$ \byref{prop:II.IV}\\
-but $\drawProportionalLine{HL}^2 + \drawProportionalLine{EH,HL}^2 = 2 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$ \byref{prop:II.VII}
+$\drawProportionalLine{EF}^2 = \drawProportionalLine{LF}^2 + \drawProportionalLine{EL}^2 + 2 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{LF}$ \byref{prop:II.IV}\\
+but $\drawProportionalLine{HL}^2 + \drawProportionalLine{EL}^2 = 2 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$ \byref{prop:II.VII}
 
-$\therefore \drawProportionalLine{EH,HL,LF}^2 = 4 \cdot \drawProportionalLine{EH,HL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$.
+$\therefore \drawProportionalLine{EF}^2 = 4 \cdot \drawProportionalLine{EL} \cdot \drawProportionalLine{HL} + \drawProportionalLine{EH}^2$.
 \end{center}
 
 \qed
@@ -4224,34 +4224,34 @@ draw byLabelsOnPolygon(E, F, B, D, C, A)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(C, G, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC} \drawProportionalLine{CD,DB} and also into two unequal parts \drawProportionalLine{AC,CD} \drawProportionalLine{DB}, the squares of the unequal parts are together double the squares of half the line, and of the part between the points of section.\\
-$\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
+\problem{I}{f}{a straight line be divided into two equal parts \drawProportionalLine{AC} \drawProportionalLine{CB} and also into two unequal parts \drawProportionalLine{AD} \drawProportionalLine{DB}, the squares of the unequal parts are together double the squares of half the line, and of the part between the points of section.\\
+$\drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 }
 
 \begin{center}
-Make $\drawProportionalLine{CG,GE} \perp \mbox{ and } = \drawProportionalLine{AC} \mbox{ or } \drawProportionalLine{CD,DB}$,\\
-Draw \drawProportionalLine{AE} and \drawProportionalLine{EH,HF,FB},\\
-$\drawProportionalLine{FD} \parallel \drawProportionalLine{CG,GE}$, $ \drawProportionalLine{GF} \parallel \drawProportionalLine{CD,DB}$ and draw \drawProportionalLine{AF}.
+Make $\drawProportionalLine{CE} \perp \mbox{ and } = \drawProportionalLine{AC} \mbox{ or } \drawProportionalLine{CB}$,\\
+Draw \drawProportionalLine{AE} and \drawProportionalLine{EB},\\
+$\drawProportionalLine{FD} \parallel \drawProportionalLine{CE}$, $ \drawProportionalLine{GF} \parallel \drawProportionalLine{CB}$ and draw \drawProportionalLine{AF}.
 
 $\drawAngle{A} = \drawAngle{AEC}$ \byref{prop:I.V} $=$ half a right angle \byref{prop:I.XXXII}\\
 $\drawAngle{B} = \drawAngle{DFB}$ \byref{prop:I.V} $=$ half a right angle \byref{prop:I.XXXII}\\
-$\therefore \drawAngle{AEC,CEB} =$ a right angle.
+$\therefore \drawAngle{AEB} =$ a right angle.
 
 $\drawAngle{B} = \drawAngle{CEB} = \drawAngle{EFG} = \drawAngle{DFB}$ \byref{prop:I.V, prop:I.XXIX}.\\
 hence $\drawProportionalLine{FD} = \drawProportionalLine{DB}$, $\drawProportionalLine{GE} = \drawProportionalLine{GF} = \drawProportionalLine{CD}$ \byref{prop:I.VI,prop:I.XXXIV}
 
 $\drawProportionalLine{AF}^2 = \left\{
 \begin{aligned}
-&\drawProportionalLine{AC,CD}^2 + \drawProportionalLine{FD}^2 \mbox{, or } + \drawProportionalLine{DB}^2 \\
+&\drawProportionalLine{AD}^2 + \drawProportionalLine{FD}^2 \mbox{, or } + \drawProportionalLine{DB}^2 \\
 &= \left\{
 	\begin{aligned}
-		&= \drawProportionalLine{AE}^2 + \drawProportionalLine{EH,HF}^2 \\
+		&= \drawProportionalLine{AE}^2 + \drawProportionalLine{EF}^2 \\
 		&= 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2\\
 	\end{aligned}
 	\right. \mbox{ \byref{prop:I.XLVII}}
 \end{aligned}\right.$
 
-$\therefore \drawProportionalLine{AC,CD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$.
+$\therefore \drawProportionalLine{AD}^2 + \drawProportionalLine{DB}^2 = 2 \cdot \drawProportionalLine{AC}^2 + 2 \cdot \drawProportionalLine{CD}^2$.
 \end{center}
 
 \qed
@@ -4293,17 +4293,17 @@ draw byLabelsOnPolygon(A, E, F, D, G)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(G, B, C, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{a straight line \drawProportionalLine{AC,CB} be bisected and produced to any point \drawProportionalLine{AC,CB,BD}, the squares of the whole produced line, and of the produced part, are together double of the squares of the half line, and of the line made up of the half and produced part.\\
-$\drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$
+\problem{I}{f}{a straight line \drawProportionalLine{AB} be bisected and produced to any point \drawProportionalLine{AD}, the squares of the whole produced line, and of the produced part, are together double of the squares of the half line, and of the line made up of the half and produced part.\\
+$\drawProportionalLine{AD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CD}^2$
 }
 
 \begin{center}
 Make $\drawProportionalLine{CE} \perp \mbox{ and } = \mbox{ to } \drawProportionalLine{AC} \mbox{ or } \drawProportionalLine{CB}$,\\
-draw \drawProportionalLine{AE} and \drawProportionalLine{EB,BG},\\
+draw \drawProportionalLine{AE} and \drawProportionalLine{EG},\\
 and $\left\{
 \begin{aligned}
-\drawProportionalLine{FD,DG} & \parallel \drawProportionalLine{CE} \\
-\drawProportionalLine{EF} & \parallel \drawProportionalLine{CB,BD}\\
+\drawProportionalLine{FG} & \parallel \drawProportionalLine{CE} \\
+\drawProportionalLine{EF} & \parallel \drawProportionalLine{CD}\\
 \end{aligned}
 \right\}$ \byref{prop:I.XXXI}\\
 draw \drawProportionalLine{AG} also.
@@ -4314,22 +4314,22 @@ $\therefore \drawAngle{CEA,BEC} = $ a right angle.
 
 $\drawAngle{DBG} = \drawAngle{CBE} = \drawAngle{BEC} = \drawAngle{FEB} = \drawAngle{G} =$\\
 half a right angle \byref{prop:I.V,prop:I.XXXII,prop:I.XXIX,prop:I.XXXIV},\\ % improvement: in the original DBG is rotated similarly to A; most likely we only need prop:I.XXIX and prop:I.XV here
-and $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CB,BD} = \drawProportionalLine{EF} = \drawProportionalLine{FD,DG}$, \byref{prop:I.VI,prop:I.XXXIV}.
+and $\drawProportionalLine{BD} = \drawProportionalLine{DG}$, $\drawProportionalLine{CD} = \drawProportionalLine{EF} = \drawProportionalLine{FG}$, \byref{prop:I.VI,prop:I.XXXIV}.
 
 Hence by \byref{prop:I.XLVII}
 
 $\drawProportionalLine{AG}^2 = \left\{
 \begin{aligned}
-& \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{DG}^2 \mbox{ or } \drawProportionalLine{BD}^2 \\
+& \drawProportionalLine{AD}^2 + \drawProportionalLine{DG}^2 \mbox{ or } \drawProportionalLine{BD}^2 \\
 & \left\{
 	\begin{aligned}
 		& + \drawProportionalLine{AE}^2 = 2 \cdot \drawProportionalLine{AC}^2 \\
-		& + \drawProportionalLine{EB,BG}^2 = 2\cdot \drawProportionalLine{EF}^2 \\
+		& + \drawProportionalLine{EG}^2 = 2\cdot \drawProportionalLine{EF}^2 \\
 	\end{aligned}
 	\right. \\
 \end{aligned}
 \right.$\\
-$\therefore \drawProportionalLine{AC,CB,BD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CB,BD}^2$.
+$\therefore \drawProportionalLine{AD}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{CB}^2 + 2 \cdot \drawProportionalLine{CD}^2$.
 \end{center}
 
 \qed
@@ -4363,23 +4363,23 @@ draw byNamedLineSeq(0)(CE,EA,AF);
 draw byLabelsOnPolygon(F, A, E, C, K, D, B, H, G)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{divide a given straight line \drawProportionalLine{AH,HB} in such a manner, that the rectangle contained by the whole line and one of its parts may be equal to the square of the other.\\
-$\drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
+\problem{T}{o}{divide a given straight line \drawProportionalLine{AB} in such a manner, that the rectangle contained by the whole line and one of its parts may be equal to the square of the other.\\
+$\drawProportionalLine{AB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$
 }
 
 \begin{center}
 Describe \drawPolygon[bottom]{AHKC,HBDK} \byref{prop:I.XLVI},\\
 make $\drawProportionalLine{EA} = \drawProportionalLine{CE}$ \byref{prop:I.X},\\
 draw \drawProportionalLine{BE},\\
-take $\drawProportionalLine{EA,AF} = \drawProportionalLine{BE}$ \byref{prop:I.III},\\
+take $\drawProportionalLine{EF} = \drawProportionalLine{BE}$ \byref{prop:I.III},\\
 on \drawProportionalLine{AF} describe \drawPolygon[bottom]{AHGF} \byref{prop:I.XLVI}.
 
 Produce \drawProportionalLine{KG} \byref{post:I.II}.
 
-Then, \byref{prop:II.VI} $\drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EA,AF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AH,HB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CE,EA,AF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AH,HB}^2$, or,\\
+Then, \byref{prop:II.VI} $\drawProportionalLine{CF} \cdot \drawProportionalLine{AF} + \drawProportionalLine{EA}^2 = \drawProportionalLine{EF}^2 = \drawProportionalLine{BE}^2 = \drawProportionalLine{AB}^2 + \drawProportionalLine{EA}^2 \therefore \drawProportionalLine{CF} \cdot \drawProportionalLine{AF} = \drawProportionalLine{AB}^2$, or,\\
 $\drawPolygon[bottom]{AHKC,AHGF} = \drawPolygon[bottom]{AHKC,HBDK} \therefore \drawPolygon[bottom]{AHGF} = \drawPolygon[bottom]{HBDK}$
 
-$\therefore \drawProportionalLine{AH,HB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$.
+$\therefore \drawProportionalLine{AB} \cdot \drawProportionalLine{HB} = \drawProportionalLine{AH}^2$.
 
 \end{center}
 
@@ -4410,10 +4410,10 @@ $\drawProportionalLine{BC}^2 > \drawProportionalLine{CA}^2 + \drawProportionalLi
 
 \begin{center}
 By \byref{prop:II.IV}\\
-$\drawProportionalLine{CA,AD}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$:
+$\drawProportionalLine{CD}^2 = \drawProportionalLine{CA}^2 + \drawProportionalLine{AD}^2 + 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD}$:
 
 add $\drawProportionalLine{DB}^2$ to both\\
-$\drawProportionalLine{CA,AD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \byref{prop:I.XLVII}\\
+$\drawProportionalLine{CD}^2 + \drawProportionalLine{DB}^2 = \drawProportionalLine{BC}^2$ \byref{prop:I.XLVII}\\
 $= 2 \cdot \drawProportionalLine{CA} \cdot \drawProportionalLine{AD} + \drawProportionalLine{CA}^2 + \left\{
 	\begin{aligned}
 		&\drawProportionalLine{AD}^2 \\
@@ -4462,27 +4462,27 @@ draw byLabelsOnPolygon(F, E, H, G)(ALL_LABELS, 0);
 \drawCurrentPictureInMargin
 \problem{I}{n}{any triangle, the square of the side subtending an acute angle, is less than the sum of the squares of the sides containing that angle, by twice the rectangle contained by either of these sides, and the part of it intercepted between the foot of the perpendicular let fall on it from the opposite angle, and the angular point of the acute angle.\\
 First.\\
-$\drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$.\\
+$\drawProportionalLine{CA}^2 < \drawProportionalLine{BC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BC} \cdot \drawProportionalLine{BD}$.\\
 Second.\\
-$\drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ by $2 \cdot \drawProportionalLine{FG} \cdot \drawProportionalLine{FG,GH}$.
+$\drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ by $2 \cdot \drawProportionalLine{FG} \cdot \drawProportionalLine{FH}$.
 }
 
 \begin{center}
 First, suppose the perpendicular to fall within the triangle, then \byref{prop:II.VII}\\
-$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2$,\\
+$\drawProportionalLine{BC}^2 + \drawProportionalLine{BD}^2 = 2 \cdot \drawProportionalLine{BC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2$,\\
 add to each $\drawProportionalLine{AD}^2$ then,\\
-$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{BD}^2 + \drawProportionalLine{AD}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 + \drawProportionalLine{AD}^2$\\
+$\drawProportionalLine{BC}^2 + \drawProportionalLine{BD}^2 + \drawProportionalLine{AD}^2 = 2 \cdot \drawProportionalLine{BC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{DC}^2 + \drawProportionalLine{AD}^2$\\
 $\therefore$ \byref{prop:I.XLVII}\\
-$\drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2 = 2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{CA}^2$,\\
-and $\therefore \drawProportionalLine{CA}^2 < \drawProportionalLine{BD,DC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BD,DC} \cdot \drawProportionalLine{BD}$
+$\drawProportionalLine{BC}^2 + \drawProportionalLine{AB}^2 = 2 \cdot \drawProportionalLine{BC} \cdot \drawProportionalLine{BD} + \drawProportionalLine{CA}^2$,\\
+and $\therefore \drawProportionalLine{CA}^2 < \drawProportionalLine{BC}^2 + \drawProportionalLine{AB}^2$ by $2 \cdot \drawProportionalLine{BC} \cdot \drawProportionalLine{BD}$
 
 Next suppose the perpendicular to fall without the triangle, then \byref{prop:II.VII}\\
-$\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2$,\\
+$\drawProportionalLine{FH}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2$,\\
 add to each $\drawProportionalLine{HE}^2$ then\\
-$\drawProportionalLine{FG,GH}^2 + \drawProportionalLine{FG}^2 + \drawProportionalLine{HE}^2= 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2 + \drawProportionalLine{HE}^2$\\
+$\drawProportionalLine{FH}^2 + \drawProportionalLine{FG}^2 + \drawProportionalLine{HE}^2= 2 \cdot \drawProportionalLine{FH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{GH}^2 + \drawProportionalLine{HE}^2$\\
 $\therefore$ \byref{prop:I.XLVII}\\
-$\drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{EG}^2$,\\
-$\therefore \drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ by $2 \cdot \drawProportionalLine{FG,GH} \cdot \drawProportionalLine{FG}$.
+$\drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2 = 2 \cdot \drawProportionalLine{FH} \cdot \drawProportionalLine{FG} + \drawProportionalLine{EG}^2$,\\
+$\therefore \drawProportionalLine{EG}^2 < \drawProportionalLine{EF}^2 + \drawProportionalLine{FG}^2$ by $2 \cdot \drawProportionalLine{FH} \cdot \drawProportionalLine{FG}$.
 \end{center}
 
 \qed
@@ -4544,8 +4544,8 @@ To draw \drawSizedLine{HE} such that, $\drawSizedLine{HE}^2 = \drawPolygon{abcde
 
 \begin{center}
 Make $\drawPolygon{BCDE} = \drawPolygon{abcdef}$ \byref{prop:I.XLV},
-produce \drawSizedLine{EG,GB} until $\drawSizedLine{FE} = \drawSizedLine{ED}$;\\
-take $\drawSizedLine{FE,EG} = \drawSizedLine{GB}$ \byref{prop:I.X}.
+produce \drawSizedLine{EB} until $\drawSizedLine{FE} = \drawSizedLine{ED}$;\\
+take $\drawSizedLine{FG} = \drawSizedLine{GB}$ \byref{prop:I.X}.
 
 Describe
 \drawFromCurrentPicture[bottom]{
@@ -4559,12 +4559,12 @@ stopTempScale;
 \byref{post:I.III},\\
 and produce \drawSizedLine{ED} to meet it: draw \drawSizedLine{HG}.
 
-$\drawSizedLine{BG}^2 \mbox{ or } \drawSizedLine{HG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$ \byref{prop:II.V},\\
+$\drawSizedLine{BG}^2 \mbox{ or } \drawSizedLine{HG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EB} + \drawSizedLine{EG}^2$ \byref{prop:II.V},\\
 but $\drawSizedLine{HG}^2 = \drawSizedLine{HE} ^2 + \drawSizedLine{EG}^2$ \byref{prop:I.XLVII};
 
-$\therefore \drawSizedLine{HE}^2 + \drawSizedLine{EG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB} + \drawSizedLine{EG}^2$
+$\therefore \drawSizedLine{HE}^2 + \drawSizedLine{EG}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EB} + \drawSizedLine{EG}^2$
 
-$\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EG,GB}$, and
+$\therefore \drawSizedLine{HE}^2 = \drawSizedLine{FE} \cdot \drawSizedLine{EB}$, and
 
 $\therefore \drawSizedLine{HE}^2 = \drawPolygon{BCDE} = \drawPolygon{abcdef}$.
 \end{center}
@@ -4788,11 +4788,11 @@ draw byLabelLineEnd(C, E, 0);
 \drawCurrentPictureInMargin
 \problem{T}{o}{find the centre of a given circle \drawCircle[middle][1/4]{F}.}
 
-Draw within the circle any straight line \drawUnitLine{AD,DB}, make $\drawUnitLine{AD} = \drawUnitLine{DB}$, draw $\drawUnitLine{EC} \perp \drawUnitLine{AD,DB}$; bisect \drawUnitLine{EC}, and the point of bisection is the centre.
+Draw within the circle any straight line \drawUnitLine{AB}, make $\drawUnitLine{AD} = \drawUnitLine{DB}$, draw $\drawUnitLine{EC} \perp \drawUnitLine{AB}$; bisect \drawUnitLine{EC}, and the point of bisection is the centre.
 
 For, if it be possible, let any other point as the point of concourse of \drawUnitLine{AG}, \drawUnitLine{DG} and \drawUnitLine{BG} be the centre.
 
-Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ \byref{\hypref,def:I.XV}, $\drawUnitLine{AD} = \drawUnitLine{DB}$ \byref{\constref} and \drawUnitLine{DG} common, $\drawAngle{ADF,FDG} = \drawAngle{GDB}$ \byref{prop:I.VIII}, and are therefore right angles; but $\drawAngle{FDG,GDB} = \drawRightAngle$ \byref{\constref} $\drawAngle{GDB} = \drawAngle{FDG,GDB}$ \byref{ax:I.XI} which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
+Because in \drawLine[bottom][triangleADG]{AG,DG,AD} and \drawLine[middle][triangleDGB]{DB,DG,BG} $\drawUnitLine{AG} = \drawUnitLine{BG}$ \byref{\hypref,def:I.XV}, $\drawUnitLine{AD} = \drawUnitLine{DB}$ \byref{\constref} and \drawUnitLine{DG} common, $\drawAngle{GDA} = \drawAngle{GDB}$ \byref{prop:I.VIII}, and are therefore right angles; but $\drawAngle{BDF} = \drawRightAngle$ \byref{\constref} $\drawAngle{GDB} = \drawAngle{BDF}$ \byref{ax:I.XI} which is absurd; therefore the assumed point is not the centre of the circle; and in the same manner it can be proved that no other point which is not on \drawUnitLine{EC} is the centre, therefore the centre is in \drawUnitLine{EC}, and therefore the point where \drawUnitLine{EC} is bisected is the centre.
 
 \qed
 
@@ -4832,11 +4832,11 @@ Then $\drawAngle{A} = \drawAngle{B}$ \byref{prop:I.V}\\
 but $\drawAngle{E} > \drawAngle{A} \mbox{ or } > \drawAngle{B}$ \byref{prop:I.XVI}
 
 $\therefore \drawSizedLine{AD} > \drawSizedLine{DE}$ \byref{prop:I.XIX}\\
-but $\drawSizedLine{AD} = \drawSizedLine{DE,EF}$,
+but $\drawSizedLine{AD} = \drawSizedLine{DF}$,
 
-$\therefore \drawSizedLine{DE,EF} > \drawSizedLine{DE}$;
+$\therefore \drawSizedLine{DF} > \drawSizedLine{DE}$;
 
-$\therefore \drawSizedLine{DE} < \drawSizedLine{DE,EF}$;
+$\therefore \drawSizedLine{DE} < \drawSizedLine{DF}$;
 
 $\therefore$ every point in \drawSizedLine{AB} lies within the circle.
 \end{center}
@@ -4874,7 +4874,7 @@ draw byLabelsOnPolygon(D, F, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 2);
 draw byLabelsOnPolygon(A, E, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{I}{f}{a straight line (\drawUnitLine{EF}) drawn through the centre of a circle \drawCircle[middle][1/6]{E} bisects a chord (\drawUnitLine{AF,FB}) which does not pass through the centre, it is perpendicular to it; or, if perpendicular to it, it bisects it.}
+\problem[3]{I}{f}{a straight line (\drawUnitLine{EF}) drawn through the centre of a circle \drawCircle[middle][1/6]{E} bisects a chord (\drawUnitLine{AB}) which does not pass through the centre, it is perpendicular to it; or, if perpendicular to it, it bisects it.}
 
 \begin{center}
 Draw \drawUnitLine{AE} and \drawUnitLine{EB} to the centre of the circle.
@@ -4883,9 +4883,9 @@ In \drawLine[bottom][triangleAEF]{AE,EF,AF} and
 \drawLine[bottom][triangleFEB]{EF,EB,FB}\\
 $\drawUnitLine{AE} = \drawUnitLine{EB}$, \drawUnitLine{EF} common,\\
 and $\drawUnitLine{AF} = \drawUnitLine{FB} \therefore \drawAngle{AFE} = \drawAngle{EFB}$ \byref{prop:I.VIII}\\
-and $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$ \byref{def:I.X} % improvement: definition 7 in the original is irrelevant
+and $\therefore \drawUnitLine{EF} \perp \drawUnitLine{AB}$ \byref{def:I.X} % improvement: definition 7 in the original is irrelevant
 
-Again let $\drawUnitLine{EF} \perp \drawUnitLine{AF,FB}$\\
+Again let $\drawUnitLine{EF} \perp \drawUnitLine{AB}$\\
 Then in \triangleAEF\ and \triangleFEB\\
 $\drawAngle{A} = \drawAngle{B}$ \byref{prop:I.V}\\
 $\drawAngle{AFE} = \drawAngle{EFB}$ \byref{\hypref}\\
@@ -4893,7 +4893,7 @@ and $\drawUnitLine{AE} = \drawUnitLine{EB}$
 
 $\therefore \drawUnitLine{AF} = \drawUnitLine{FB}$ \byref{prop:I.XXVI}
 
-and $\therefore \drawUnitLine{EF}$ bisects \drawUnitLine{AF,FB}.
+and $\therefore \drawUnitLine{EF}$ bisects \drawUnitLine{AB}.
 \end{center}
 
 \qed
@@ -4973,13 +4973,13 @@ draw byLabelsOnPolygon(C, F, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 \drawCurrentPictureInMargin
 \problem{I}{f}{two circles intersect \drawArc{Ma,Na,Nb,Mb}, they have not the same centre.}
 
-Suppose it possible that two intersecting circles have a common centre; from such supposed centre draw \drawUnitLine{CE} to the intersecting point, and \drawUnitLine{EF,FG} meeting the circumferences of the circles.
+Suppose it possible that two intersecting circles have a common centre; from such supposed centre draw \drawUnitLine{CE} to the intersecting point, and \drawUnitLine{EG} meeting the circumferences of the circles.
 
 \begin{center}
 Then $\drawUnitLine{CE} = \drawUnitLine{EF}$ \byref{def:I.XV}\\
-and $\drawUnitLine{CE} = \drawUnitLine{EF,FG}$ \byref{def:I.XV}
+and $\drawUnitLine{CE} = \drawUnitLine{EG}$ \byref{def:I.XV}
 
-$\therefore \drawUnitLine{EF} = \drawUnitLine{EF,FG}$\\
+$\therefore \drawUnitLine{EF} = \drawUnitLine{EG}$\\
 a part equal to the whole, which is absurd:
 
 $\therefore$ circles supposed to intersect in any point cannot have the same centre.
@@ -5017,13 +5017,13 @@ byPointLabelRemove(M, N);
 \drawCurrentPictureInMargin
 \problem{I}{f}{two circles \drawCircle{N,M} touch one another internally, they have not the same centre.}
 
-For, if it be possible, let both circles have the same centre; from such a supposed centre draw \drawUnitLine{FE,EB}, and \drawUnitLine{CF} to the point of contact.
+For, if it be possible, let both circles have the same centre; from such a supposed centre draw \drawUnitLine{FB}, and \drawUnitLine{CF} to the point of contact.
 
 \begin{center}
 Then $\drawUnitLine{CF} = \drawUnitLine{FE}$ \byref{def:I.XV}\\
-and $\drawUnitLine{CF} = \drawUnitLine{FE,EB}$ \byref{def:I.XV}
+and $\drawUnitLine{CF} = \drawUnitLine{FB}$ \byref{def:I.XV}
 
-$\therefore \drawUnitLine{FE} = \drawUnitLine{FE,EB}$;
+$\therefore \drawUnitLine{FE} = \drawUnitLine{FB}$;
 \end{center}
 \noindent a part equal to the whole, which is absurd; therefore the assumed point is not the centre of both circles, and in the same manner it can be demonstrated that no other point is.
 
@@ -5091,30 +5091,30 @@ draw byLabelPoint(F, 0, 0);
 stopTempScale;
 } which is not the centre, lines
 $\left\{\vcenter{
-\nointerlineskip\hbox{\drawUnitLine{EF,AE}}
+\nointerlineskip\hbox{\drawUnitLine{FA}}
 \nointerlineskip\hbox{\drawUnitLine{FB}}
 \nointerlineskip\hbox{\drawUnitLine{FC}}}\right.$
-are drawn to the circumference; the greatest of those lines is that (\drawUnitLine{EF,AE}) which passes through the centre, and the least is the remaining part (\drawUnitLine{FD}) of the diameter.\\
+are drawn to the circumference; the greatest of those lines is that (\drawUnitLine{FA}) which passes through the centre, and the least is the remaining part (\drawUnitLine{FD}) of the diameter.\\
 Of the others, that (\drawUnitLine{FB}) which is nearer to the line passing through the centre, is greater than that (\drawUnitLine{FC}) which is more remote.\\
-Fig. 2. The two lines (\drawUnitLine{FM,MK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
+Fig. 2. The two lines (\drawUnitLine{FK} and \drawUnitLine{FG}) which make equal angles with that passing through the centre, on opposite sides of it, are equal to each other; and there cannot be drawn a third line equal to them, from the same point to the circumference.}
 
 \startsubproposition{Figure I.}
-To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \byref{def:I.XV} $\drawUnitLine{EF,AE} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \byref{prop:I.XX} in like manner \drawUnitLine{EF,AE} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \byref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \byref{ax:I.III}, and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{EF,AE}.
+To the centre of the circle draw \drawUnitLine{EB} and \drawUnitLine{EC}; then $\drawUnitLine{AE} = \drawUnitLine{EB}$ \byref{def:I.XV} $\drawUnitLine{FA} = \drawUnitLine{EF} + \drawUnitLine{EB} > \drawUnitLine{FB}$ \byref{prop:I.XX} in like manner \drawUnitLine{FA} may be shown to be greater than \drawUnitLine{FC}, or any other line drawn from the same point to the circumference. Again, by \byref{prop:I.XX} $\drawUnitLine{EF} + \drawUnitLine{FC} > \drawUnitLine{EC} = \drawUnitLine{FD} + \drawUnitLine{EF}$, take \drawUnitLine{EF} from both; $\therefore \drawUnitLine{FC} > \drawUnitLine{FD}$ \byref{ax:I.III}, and in like manner it may be shown that \drawUnitLine{FD} is less than any other line drawn from the same point to the circumference. Again, in \drawLine[middle][triangleEFB]{FB,EF,EB} and \drawLine[middle][triangleEFC]{FC,EF,EC}, \drawUnitLine{EF} common, $\drawAngle{BEC,CEF} > \drawAngle{CEF}$, and $\drawUnitLine{EB} = \drawUnitLine{EC} \therefore \drawUnitLine{FB} > \drawUnitLine{FC}$ \byref{prop:I.XXIV} and \drawUnitLine{FB} may in like manner to be proved greater than any other line drawn from the same point to the circumference more remote from \drawUnitLine{FA}.
 
 \startsubproposition{Figure II.}
 \begin{center}
-If $\drawAngle{KFE} = \drawAngle{GFE}$ then $\drawUnitLine{FM,MK} = \drawUnitLine{FG}$,\\
-if not take $\drawUnitLine{FM} = \drawUnitLine{FG}$ draw \drawUnitLine{EM,MH}\\
+If $\drawAngle{KFE} = \drawAngle{GFE}$ then $\drawUnitLine{FK} = \drawUnitLine{FG}$,\\
+if not take $\drawUnitLine{FM} = \drawUnitLine{FG}$ draw \drawUnitLine{EH}\\
 then in \drawLine[middle][triangleEFM]{EM,EF,FM} and \drawLine[middle][triangleEFG]{FG,EF,EG}, \drawUnitLine{EF} common,\\
 $\drawAngle{KFE} = \drawAngle{GFE}$ and $\drawUnitLine{FG} = \drawUnitLine{FM}$
 
 $\therefore \drawUnitLine{EG} = \drawUnitLine{EM}$ \byref{prop:I.IV}
 
-$\therefore \drawUnitLine{EG} = \drawUnitLine{EM,MH} = \drawUnitLine{EM}$\\
+$\therefore \drawUnitLine{EG} = \drawUnitLine{EH} = \drawUnitLine{EM}$\\
 a part equal to the whole, which is absurd:
 \end{center}
 
-\noindent $\therefore \drawUnitLine{FG} = \drawUnitLine{FM,MK}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
+\noindent $\therefore \drawUnitLine{FG} = \drawUnitLine{FK}$; and no other line is equal to \drawUnitLine{FG} drawn from the same point to the circumference; for if it were nearer to the one passing through the centre it would be greater, and if it were more remote it would be less.
 
 \qed
 
@@ -5148,19 +5148,19 @@ draw byLabelsOnPolygon(F, D, M, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \drawCurrentPictureInMargin
 If from a point without a circle, straight lines
 $\left\{\vcenter{
-\nointerlineskip\hbox{\drawProportionalLine{DM,MA}}
+\nointerlineskip\hbox{\drawProportionalLine{DA}}
 \nointerlineskip\hbox{\drawProportionalLine{DE}}
 \nointerlineskip\hbox{\drawProportionalLine{DF}}}\right\}$
-are drawn to the circumference; of those falling upon the concave circumference the greatest is that (\drawUnitLine{DM,MA}) which passes through the centre, and the line (\drawUnitLine{DE}) which is nearer the greatest is greater than that (\drawUnitLine{DF}) which is more remote.
+are drawn to the circumference; of those falling upon the concave circumference the greatest is that (\drawUnitLine{DA}) which passes through the centre, and the line (\drawUnitLine{DE}) which is nearer the greatest is greater than that (\drawUnitLine{DF}) which is more remote.
 
 \begin{center}
 Draw \drawUnitLine{MF} and \drawUnitLine{ME} to the centre.\\
 Then, \drawUnitLine[0.75cm]{DM,MA} which passes through the centre, is greatest;\\
-for since $\drawUnitLine[0.75cm]{MA} = \drawUnitLine[0.75cm]{ME}$, if \drawUnitLine[0.75cm]{DM} be added to both $\drawUnitLine{DM,MA} = \drawUnitLine[0.75cm]{DM} + \drawUnitLine[0.75cm]{ME}$; but $> \drawUnitLine[0.75cm]{DE}$ \byref{prop:I.XX}\\
-$\therefore$ \drawUnitLine{DM,MA} is greater than any other line drawn from the same point to the concave circumference.\\
+for since $\drawUnitLine[0.75cm]{MA} = \drawUnitLine[0.75cm]{ME}$, if \drawUnitLine[0.75cm]{DM} be added to both $\drawUnitLine{DA} = \drawUnitLine[0.75cm]{DM} + \drawUnitLine[0.75cm]{ME}$; but $> \drawUnitLine[0.75cm]{DE}$ \byref{prop:I.XX}\\
+$\therefore$ \drawUnitLine{DA} is greater than any other line drawn from the same point to the concave circumference.\\
 Again in \drawLine[middle][triangleDFM]{DM,MF,DF} and \drawLine[middle][triangleDEM]{DM,ME,DE}, $\drawUnitLine[0.5cm]{MF} = \drawUnitLine[0.5cm]{ME}$, and \drawUnitLine[0.5cm]{DM} common,\\
-but $\drawAngle{DMF,FME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \byref{prop:I.XXIV};\\
-and in like manner \drawUnitLine{DE} may be shown $>$ than any other line more remote from \drawUnitLine{DM,MA}.
+but $\drawAngle{DME} > \drawAngle{DMF}$, $\therefore \drawUnitLine{DE} > \drawUnitLine{DF}$ \byref{prop:I.XXIV};\\
+and in like manner \drawUnitLine{DE} may be shown $>$ than any other line more remote from \drawUnitLine{DA}.
 \end{center}
 
 \defineNewPicture{
@@ -5191,7 +5191,7 @@ draw byLabelsOnPolygon(G, M, H)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 Of those lines falling on the convex circumference the least is that (\drawUnitLine{DG}) which being produced would pass through the centre, and the line which is nearer to least is less than that which is more remote.
 
 \begin{center}
-For, since $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DG,GM}$ \byref{prop:I.XX}\\
+For, since $\drawUnitLine{KM} + \drawUnitLine{DK} > \drawUnitLine{DM}$ \byref{prop:I.XX}\\
 and $\drawUnitLine{KM} = \drawUnitLine{GM}$, $\therefore \drawUnitLine{DK} > \drawUnitLine{DG}$ \byref{ax:I.V}
 
 And again, since $\drawUnitLine[0.75cm]{HM} + \drawUnitLine[0.75cm]{DH} > \drawUnitLine[0.75cm]{KM} + \drawUnitLine[0.75cm]{DK}$ \byref{prop:I.XXI}, and $\drawUnitLine[0.75cm]{HM} = \drawUnitLine[0.75cm]{KM}$,
@@ -5234,19 +5234,19 @@ draw byLabelsOnPolygon(M, N, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 2);
 Also the lines making equal angles with that which passes through the centre are equal, whether falling on the concave or convex circumference; and no third line can be drawn equal to them from the same point to the circumference.
 
 \begin{center}
-For if $\drawUnitLine{DO,ON} > \drawUnitLine{DH}$, but making $\drawAngle{HDM} = \drawAngle{MDN}$;\\
-make $\drawUnitLine{DO} = \drawUnitLine{DH}$, and draw \drawUnitLine{BM,BO}.
+For if $\drawUnitLine{DN} > \drawUnitLine{DH}$, but making $\drawAngle{HDM} = \drawAngle{MDN}$;\\
+make $\drawUnitLine{DO} = \drawUnitLine{DH}$, and draw \drawUnitLine{MO}.
 
 Then in \drawLine[middle][triangleDMO]{DM,DO,BO,BM} and \drawLine[middle][triangleDMH]{HM,DH,DM} we have $\drawUnitLine{DO} = \drawUnitLine{DH}$\\
 and \drawUnitLine{DM} common, and also $\drawAngle{MDN} = \drawAngle{HDM}$,
 
-$\therefore \drawUnitLine{BM,BO} = \drawUnitLine{HM}$ \byref{prop:I.IV};\\
+$\therefore \drawUnitLine{MO} = \drawUnitLine{HM}$ \byref{prop:I.IV};\\
 but $\drawUnitLine{HM} = \drawUnitLine{BM}$;\\
-$\therefore \drawUnitLine{BM} = \drawUnitLine{BM,BO}$, which is absurd.
+$\therefore \drawUnitLine{BM} = \drawUnitLine{MO}$, which is absurd.
 
-$\therefore \drawUnitLine{DH} \mbox{ is } \neq \drawUnitLine{DO}$, nor to any part of \drawUnitLine{DO,ON}, $\therefore \drawUnitLine{DO,ON} \mbox{ is } \ngtr \drawUnitLine{DH}$. % \mbox{ is not } =,  \mbox{ is not } >
+$\therefore \drawUnitLine{DH} \mbox{ is } \neq \drawUnitLine{DO}$, nor to any part of \drawUnitLine{DN}, $\therefore \drawUnitLine{DN} \mbox{ is } \ngtr \drawUnitLine{DH}$. % \mbox{ is not } =,  \mbox{ is not } >
 
-Neither is $\drawUnitLine{DH} > \drawUnitLine{DO,ON}$, they are $\therefore =$ to each other.
+Neither is $\drawUnitLine{DH} > \drawUnitLine{DN}$, they are $\therefore =$ to each other.
 \end{center}
 And any other line drawn from the same point to the circumference must lie at the same side with one of these lines, and be more or less remote than it from the line passing through the centre, and cannot therefore be equal to it.
 
@@ -5284,7 +5284,7 @@ draw byNamedPointLines(F)("");
 stopGlobalRotation;
 } must be; join these two points by \drawUnitLine{DF} and produce it both ways to the circumference.
 
-Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{DH,DF,FL}; and since from a point \drawPointL[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DF,FL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DF,FL}, $> \drawUnitLine{DB}$ which is more remote \byref{prop:III.VIII}; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ \byref{\hypref} which is absurd.
+Then since more than two equal straight lines are drawn from a point which is not the centre, to the circumference, two of them at least must lie at the same side of the diameter \drawUnitLine{HL}; and since from a point \drawPointL[middle][DA,DF]{D}, which is not the centre, straight lines are drawn to the circumference; the greatest is \drawUnitLine{DL}, which passes through the centre: and \drawUnitLine{DC} which is nearer to \drawUnitLine{DL}, $> \drawUnitLine{DB}$ which is more remote \byref{prop:III.VIII}; but $\drawUnitLine{DC} = \drawUnitLine{DB}$ \byref{\hypref} which is absurd.
 
 The same may be demonstrated of any other point, different from \drawPointL[middle][DA,DF]{D}, which must be the centre of the circle.
 
@@ -5399,13 +5399,13 @@ stopAutoLabeling;
 draw byNamedLineFull(A, A, 1, 1,  0, 0)(GF);
 };
 $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{AF}$ \byref{prop:I.XX},\\
-and $\drawSizedLine{AF} = \drawSizedLine{HD,DG,GF}$ as they are radii of \circleM,\\
-but $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HD,DG,GF}$;\\
+and $\drawSizedLine{AF} = \drawSizedLine{HF}$ as they are radii of \circleM,\\
+but $\drawSizedLine{GF} + \drawSizedLine{AG} > \drawSizedLine{HF}$;\\
 take away \drawSizedLine{GF} which is common,\\
-and $\drawSizedLine{AG} > \drawSizedLine{HD,DG}$;\\
+and $\drawSizedLine{AG} > \drawSizedLine{HG}$;\\
 but $\drawSizedLine{AG} = \drawSizedLine{DG}$,\\
 because they are radii of \circleN,\\
-and $\therefore \drawSizedLine{DG} > \drawSizedLine{HD,DG}$ a part greater than the whole, which is absurd.
+and $\therefore \drawSizedLine{DG} > \drawSizedLine{HG}$ a part greater than the whole, which is absurd.
 \end{center}
 
 The centres are not therefore so placed, that a line joining them can pass through any point but a point of contact.
@@ -5445,16 +5445,16 @@ draw byLabelsOnPolygon(G, D, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(A, angle(F-A)-45, 2);
 }
 \drawCurrentPictureInMargin
-\problem[4]{I}{f}{two circle \drawCircle{M} and \drawCircle{N} touch one another externally, the straight line \drawUnitLine{FC,CD,DG} joining their centres, passes through the point of contact.}
+\problem[4]{I}{f}{two circle \drawCircle{M} and \drawCircle{N} touch one another externally, the straight line \drawUnitLine{FG} joining their centres, passes through the point of contact.}
 
-If it be possible, let \drawUnitLine{FC,CD,DG} joining the centres, and not pass through a point of contact; then from a point of contact draw \drawUnitLine{AF} and \drawUnitLine{AG} to the centres.
+If it be possible, let \drawUnitLine{FG} joining the centres, and not pass through a point of contact; then from a point of contact draw \drawUnitLine{AF} and \drawUnitLine{AG} to the centres.
 
 \begin{center}
-$\because \drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FC,CD,DG}$ \byref{prop:I.XX}\\ %because
+$\because \drawUnitLine{AF} + \drawUnitLine{AG} > \drawUnitLine{FG}$ \byref{prop:I.XX}\\ %because
 and $\drawUnitLine{FC} = \drawUnitLine{AF}$ \byref{def:I.XV},\\
 and $\drawUnitLine{DG} = \drawUnitLine{AG}$ \byref{def:I.XV},
 
-$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FC,CD,DG}$,\\
+$\therefore \drawUnitLine{FC} + \drawUnitLine{DG} > \drawUnitLine{FG}$,\\
 a part greater than the whole, which is absurd.
 \end{center}
 
@@ -5505,9 +5505,9 @@ draw \drawUnitLine{DH} and \drawUnitLine{DG}.
 
 But $\drawUnitLine{BG} = \drawUnitLine{DG}$ \byref{def:I.XV},\\
 $\therefore$ if \drawUnitLine{GH} be added to both,\\
-$\drawUnitLine{GH,BG} = \drawUnitLine{GH} + \drawUnitLine{DG}$;
+$\drawUnitLine{HB} = \drawUnitLine{GH} + \drawUnitLine{DG}$;
 
-but $\drawUnitLine{GH,BG} = \drawUnitLine{DH}$ \byref{def:I.XV},\\
+but $\drawUnitLine{HB} = \drawUnitLine{DH}$ \byref{def:I.XV},\\
 and $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} = \drawUnitLine{DH}$;
 
 but $\therefore \drawUnitLine{GH} + \drawUnitLine{DG} > \drawUnitLine{DH}$ \byref{prop:I.XX},\\
@@ -5569,15 +5569,15 @@ draw byLabelsOnPolygon(H, G, C)(ALL_LABELS, 0);
 draw byLabelPoint(A, angle(G-A)+45, 3);
 }
 \startsubproposition{Figure III.}\drawCurrentPictureInMargin
-Next, if it be possible, let \drawCircle{H} and \drawCircle{G} touch externally in two points; draw \drawUnitLine{HA,AG} joining the centres of the circles, and passing through one of the points of contact, and draw \drawUnitLine{CH} and \drawUnitLine{CG}.
+Next, if it be possible, let \drawCircle{H} and \drawCircle{G} touch externally in two points; draw \drawUnitLine{HG} joining the centres of the circles, and passing through one of the points of contact, and draw \drawUnitLine{CH} and \drawUnitLine{CG}.
 
 \begin{center}
 $\drawUnitLine{CH} = \drawUnitLine{HA}$ \byref{def:I.XV};\\
 and $\drawUnitLine{AG} = \drawUnitLine{CG}$ \byref{def:I.XV};
 
-$\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HA,AG}$;
+$\therefore \drawUnitLine{CG} + \drawUnitLine{CH} = \drawUnitLine{HG}$;
 
-but $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HA,AG}$ \byref{prop:I.XX}, which is absurd.
+but $\drawUnitLine{CG} + \drawUnitLine{CH} > \drawUnitLine{HG}$ \byref{prop:I.XX}, which is absurd.
 \end{center}
 
 There is therefore no case in which two circles can touch one another in two points.
@@ -5618,15 +5618,15 @@ draw byLabelLineEnd(F, E, 0);
 }
 \drawCurrentPictureInMargin
 \problem{E}{qual}{straight lines
-$\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AF,FB}}\nointerlineskip\hbox{\drawProportionalLine{CG,GD}}}\right)$
+$\left(\vcenter{\nointerlineskip\hbox{\drawProportionalLine{AB}}\nointerlineskip\hbox{\drawProportionalLine{CD}}}\right)$
 inscribed in a circle are equally distant from the centre; and also, straight lines equally distant from the centre are equal.}
 
 \begin{center}
-From the centre of \drawCircle[middle][1/5]{E} draw \drawProportionalLine{EF} $\perp$ to \drawProportionalLine{AF,FB} and $\drawProportionalLine{EG} \perp \drawProportionalLine{CG,GD}$, join \drawProportionalLine{EA} and \drawProportionalLine{EC}.
+From the centre of \drawCircle[middle][1/5]{E} draw \drawProportionalLine{EF} $\perp$ to \drawProportionalLine{AB} and $\drawProportionalLine{EG} \perp \drawProportionalLine{CD}$, join \drawProportionalLine{EA} and \drawProportionalLine{EC}.
 
-Then $\drawProportionalLine{CG} = \mbox{ half } \drawProportionalLine{CG,GD}$ \byref{prop:III.III}\\
-and $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AF,FB}$ \byref{prop:III.III},\\
-since $\drawProportionalLine{CG,GD} = \drawProportionalLine{AF,FB}$ \byref{\hypref}\\
+Then $\drawProportionalLine{CG} = \mbox{ half } \drawProportionalLine{CD}$ \byref{prop:III.III}\\
+and $\drawProportionalLine{AF} = \frac{1}{2} \drawProportionalLine{AB}$ \byref{prop:III.III},\\
+since $\drawProportionalLine{CD} = \drawProportionalLine{AB}$ \byref{\hypref}\\
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$,\\
 and $\drawProportionalLine{EA} = \drawProportionalLine{EC}$ \byref{def:I.XV}\\
 $\therefore \drawProportionalLine{EA}^2 = \drawProportionalLine{EC}^2$;\\
@@ -5638,7 +5638,7 @@ $\therefore \drawProportionalLine{EF}^2 = \drawProportionalLine{EG}^2$\\
 $\therefore \drawProportionalLine{EF} = \drawProportionalLine{EG}$
 \end{center}
 
-Also, if the lines \drawProportionalLine{AF,FB} and \drawProportionalLine{CG,GD} be equally distant from the centre; that is to say, if the perpendiculars \drawProportionalLine{EF} and \drawProportionalLine{EG} be given equal, then $\drawProportionalLine{AF,FB} = \drawProportionalLine{CG,GD}$.
+Also, if the lines \drawProportionalLine{AB} and \drawProportionalLine{CD} be equally distant from the centre; that is to say, if the perpendiculars \drawProportionalLine{EF} and \drawProportionalLine{EG} be given equal, then $\drawProportionalLine{AB} = \drawProportionalLine{CD}$.
 
 \begin{center}
 For, as in the preceding case,\\
@@ -5646,7 +5646,7 @@ $\drawProportionalLine{EG}^2 + \drawProportionalLine{CG}^2 = \drawProportionalLi
 but $\drawProportionalLine{EG}^2 = \drawProportionalLine{EF}^2$
 
 $\therefore \drawProportionalLine{CG} = \drawProportionalLine{AF}$, % improvement: in the original, there were squares of these here
-and the doubles of these \drawProportionalLine{AF,FB} and \drawProportionalLine{CG,GD} are also equal.
+and the doubles of these \drawProportionalLine{AB} and \drawProportionalLine{CD} are also equal.
 \end{center}
 
 \qed
@@ -5684,16 +5684,16 @@ draw byLabelsOnPolygon(A, E, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
 \begin{center}
-The diameter \drawUnitLine{DE,EA} is $>$ any line \drawUnitLine{MN}.
+The diameter \drawUnitLine{DA} is $>$ any line \drawUnitLine{MN}.
 
 For draw \drawUnitLine{EN} and \drawUnitLine{EM}.
 
 Then $\drawUnitLine{EM} = \drawUnitLine{EA}$\\
 and $\drawUnitLine{EN} = \drawUnitLine{DE}$,\\
-$\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DE,EA}$\\
+$\therefore \drawUnitLine{EN} + \drawUnitLine{EM} = \drawUnitLine{DA}$\\
 but $\drawUnitLine{EN} + \drawUnitLine{EM} > \drawUnitLine{MN}$ \byref{prop:I.XX}
 
-$\therefore \drawUnitLine{DE,EA} > \drawUnitLine{MN}$.
+$\therefore \drawUnitLine{DA} > \drawUnitLine{MN}$.
 \end{center}
 
 Again, the line which is nearer the centre is greater than the one more remote.
@@ -5764,11 +5764,11 @@ draw byLabelPoint(E, angle(E-H)-45, 2);
 draw byLabelPoint(L, angle(E-H)-45, 2);
 }
 \drawCurrentPictureInMargin
-Let the given lines be \drawUnitLine{BC} and \drawUnitLine{FG} which either are at different sides of the centre, or intersect; from the centre draw \drawUnitLine{EL,LK} and $\drawUnitLine{EH} \perp \drawUnitLine{FG} \mbox{ and } \drawUnitLine{BC}$,
+Let the given lines be \drawUnitLine{BC} and \drawUnitLine{FG} which either are at different sides of the centre, or intersect; from the centre draw \drawUnitLine{EK} and $\drawUnitLine{EH} \perp \drawUnitLine{FG} \mbox{ and } \drawUnitLine{BC}$,
 
 \begin{center}
 make $\drawUnitLine{EH} = \drawUnitLine{EL}$,\\
-and draw $\drawUnitLine{MN} \perp \drawUnitLine{EL,LK}$.
+and draw $\drawUnitLine{MN} \perp \drawUnitLine{EK}$.
 
 Since \drawUnitLine{BC} and \drawUnitLine{MN} are equally distant from the centre, $\drawUnitLine{BC} = \drawUnitLine{MN}$ \byref{prop:III.XIV};\\
 but $\drawUnitLine{MN} > \drawUnitLine{FG}$ \byref{prop:III.XV},
@@ -5815,7 +5815,7 @@ draw byLabelsOnPolygon(C, D, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(H, angle(G-H)+45, 2);
 }
 \drawCurrentPictureInMargin
-\problem{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BD,DA} % improvement: in the original it was simply DA
+\problem{T}{he}{straight line \drawUnitLine{EK} drawn from the extremity of the diameter \drawUnitLine{BA} % improvement: in the original it was simply DA
 of a circle perpendicular to it falls without the circle\\
 And if any straight line \drawUnitLine{AG} by drawn from a point within that perpendicular to the point of contact, it cuts the circle.}
 
@@ -5836,16 +5836,16 @@ Let \drawUnitLine{EK} be $\perp \drawUnitLine{DA}$ and let \drawUnitLine{AG} be 
 \begin{center}
 $\because \drawAngle{DAG,GAE} = \drawRightAngle$,\\ %Because
 $\therefore \drawAngle{DAG}$ is an acute angle;\\
-suppose $\drawUnitLine{DH,HG} \perp \drawUnitLine{AG}$, drawn from the centre of the circle, it must fall at the side of \drawAngle{DAG} the acute angle.
+suppose $\drawUnitLine{DG} \perp \drawUnitLine{AG}$, drawn from the centre of the circle, it must fall at the side of \drawAngle{DAG} the acute angle.
 
 $\therefore$ \drawAngle{G} which is supposed to be a right angle, is $> \drawAngle{DAG}$,
 
-$\therefore \drawUnitLine{DA} > \drawUnitLine{DH,HG}$;
+$\therefore \drawUnitLine{DA} > \drawUnitLine{DG}$;
 
 but $\drawUnitLine{DH} = \drawUnitLine{DA}$,
 \end{center}
 
-\noindent and $\therefore \drawUnitLine{DH} > \drawUnitLine{DH,HG}$, a part greater than the whole, which is absurd. Therefore the point does not fall outside the circle, and therefore the straight line \drawUnitLine{AG} cuts the circle.
+\noindent and $\therefore \drawUnitLine{DH} > \drawUnitLine{DG}$, a part greater than the whole, which is absurd. Therefore the point does not fall outside the circle, and therefore the straight line \drawUnitLine{AG} cuts the circle.
 
 \qed
 
@@ -5893,14 +5893,14 @@ If a given point be in the circumference, as at \drawPointL[middle][FB]{B}, it i
 But if the given point \drawPointL[middle][FB]{A} be outside of the circumference,
 
 \begin{center}
-draw \drawUnitLine{DE,AD} from it to the centre, cutting \circleEI;\\
+draw \drawUnitLine{EA} from it to the centre, cutting \circleEI;\\
 and draw $\drawUnitLine{FD} \perp \drawUnitLine{DE}$,\\
-describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{DE,AD}$,\\ % improvement: These two lines were not originally there, but without them this proof makes no sense
-draw \drawUnitLine{BE,FB} to the centre from the point where \drawUnitLine{FD} falls on \circleEII\ circumference,\\
-draw $\drawUnitLine{AB} \perp \drawUnitLine{BE,FB}$ from the point where it cuts \circleEI,\\
+describe \drawCircle[middle][1/6]{EII} concentric with \circleEI\ radius $= \drawUnitLine{EA}$,\\ % improvement: These two lines were not originally there, but without them this proof makes no sense
+draw \drawUnitLine{EF} to the centre from the point where \drawUnitLine{FD} falls on \circleEII\ circumference,\\
+draw $\drawUnitLine{AB} \perp \drawUnitLine{EF}$ from the point where it cuts \circleEI,\\
 %
 Then \drawUnitLine{AB} will be the tangent required.\\
-For in \drawLine[bottom]{FD,FB,BE,DE} and \drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AD,DE} = \drawUnitLine{FB,BE}$, \drawAngle{E} common,\\
+For in \drawLine[bottom]{FD,FB,BE,DE} and \drawLine[bottom]{BE,DE,AD,AB} $\drawUnitLine{AE} = \drawUnitLine{FE}$, \drawAngle{E} common,\\
 and $\drawUnitLine{DE} = \drawUnitLine{BE}$,\\
 $\therefore \mbox{ \byref{prop:I.IV} } \drawAngle{B} = \drawAngle{D} = \drawRightAngle$,\\
 $\therefore \drawUnitLine{AB}$ is a tangent to \circleEI.
@@ -5937,15 +5937,15 @@ draw byLabelPoint(D, angle(D-C)-90, 1);
 \problem[4]{I}{f}{a straight line \drawUnitLine{CD} be a tangent to a circle, the straight line \drawUnitLine{FC} drawn from the centre to the point of contact, is perpendicular to it.}
 
 \begin{center}
-For, if it be possible, let \drawUnitLine{FB,BG} be $\perp \drawUnitLine{CD}$,\\
+For, if it be possible, let \drawUnitLine{FG} be $\perp \drawUnitLine{CD}$,\\
 then $\because \drawAngle{G} = \drawRightAngle$, \drawAngle{C} is acute \byref{prop:I.XVII} %because
 
-$\therefore \drawUnitLine{FC} > \drawUnitLine{FB,BG}$ \byref{prop:I.XIX};
+$\therefore \drawUnitLine{FC} > \drawUnitLine{FG}$ \byref{prop:I.XIX};
 
 but $\drawUnitLine{FC} = \drawUnitLine{FB}$,\\
-and $\therefore \drawUnitLine{FB} > \drawUnitLine{FB,BG}$, a part greater than the whole, which is absurd.
+and $\therefore \drawUnitLine{FB} > \drawUnitLine{FG}$, a part greater than the whole, which is absurd.
 
-$\therefore \drawUnitLine{FB,BG}$ is not $\perp \drawUnitLine{CD}$;
+$\therefore \drawUnitLine{FG}$ is not $\perp \drawUnitLine{CD}$;
 \end{center}
 
 \noindent and in the same manner it can be demonstrated, that no other line except \drawUnitLine{FC} is perpendicular to \drawUnitLine{CD}.
@@ -6016,7 +6016,7 @@ draw byLabelsOnPolygon(F, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
 \begin{center}
-Let the centre of the circle be on \drawUnitLine{EF,EA}\\
+Let the centre of the circle be on \drawUnitLine{FA}\\
 a side of \drawAngle{CAF}.
 
 $\because \drawUnitLine{EC} = \drawUnitLine{EA}$,\\ %Because
@@ -6729,9 +6729,9 @@ draw byLabelLineEnd(C, D, 0);
 \problem{T}{o}{bisect a given arc \drawArc[middle][1/5]{El,Er}.}
 
 \begin{center}
-Draw \drawUnitLine{AC,CB};\\
+Draw \drawUnitLine{AB};\\
 make $\drawUnitLine{AC} = \drawUnitLine{CB}$,\\
-draw $\drawUnitLine{DC} \perp \drawUnitLine{AC,CB}$, and it bisects the arc.
+draw $\drawUnitLine{DC} \perp \drawUnitLine{AB}$, and it bisects the arc.
 
 Draw \drawUnitLine{DA} and \drawUnitLine{DB}.
 
@@ -6790,11 +6790,11 @@ draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \startsubproposition{Figure I.}
 \drawCurrentPictureInMargin
 \begin{center}
-The angle \drawAngle{EAB,CAE} in a semicircle is a right angle.
+The angle \drawAngle{BAC} in a semicircle is a right angle.
 
-Draw \drawUnitLine{AE} and \drawUnitLine{BE,EC}\\
+Draw \drawUnitLine{AE} and \drawUnitLine{BC}\\
 $\drawAngle{B}=\drawAngle{EAB}$ and $\drawAngle{C} = \drawAngle{CAE}$ \byref{prop:I.V}\\
-$\drawAngle{C} + \drawAngle{B} = \drawAngle{EAB,CAE} = \mbox{ the half of } \drawTwoRightAngles= \drawRightAngle$ \byref{prop:I.XXXII}
+$\drawAngle{C} + \drawAngle{B} = \drawAngle{BAC} = \mbox{ the half of } \drawTwoRightAngles= \drawRightAngle$ \byref{prop:I.XXXII}
 \end{center}
 
 \defineNewPicture{
@@ -6823,7 +6823,7 @@ draw byLabelsOnCircle(A, B, C, D)(E);
 The angle \drawAngle{BAD} in a segment greater than a semicircle is acute
 
 Draw \drawUnitLine{BC} the diameter, and \drawUnitLine{AC}\\
-$\therefore \drawAngle{BAD,DAC} = \mbox{ a right angle}$, $\therefore$ \drawAngle{BAD} is acute.
+$\therefore \drawAngle{BAC} = \mbox{ a right angle}$, $\therefore$ \drawAngle{BAD} is acute.
 \end{center}
 
 \defineNewPicture{
@@ -7029,8 +7029,8 @@ draw byLabelsOnPolygon(C, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \problem{I}{f}{two chords
 $\left\{\vcenter{
-\nointerlineskip\hbox{\drawSizedLine{AE,EC}}
-\nointerlineskip\hbox{\drawSizedLine{DE,EB}}}\right\}$
+\nointerlineskip\hbox{\drawSizedLine{AC}}
+\nointerlineskip\hbox{\drawSizedLine{DB}}}\right\}$
 in a circle intersect each other, the rectangle contained by the segments of the one is equal to the rectangle contained by the segments of the other.}
 \startsubproposition{Figure I.}
 \drawCurrentPictureInMargin
@@ -7062,11 +7062,11 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \startsubproposition{Figure II.}
 \drawCurrentPictureInMargin
 \begin{center}
-Let \drawSizedLine{HC,EH,AE} pass through the centre, and \drawSizedLine{BH,HD} not; draw \drawSizedLine{EB} and \drawSizedLine{DE}.
+Let \drawSizedLine{CA} pass through the centre, and \drawSizedLine{BD} not; draw \drawSizedLine{EB} and \drawSizedLine{DE}.
 
-Then $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EB}^2 - \drawSizedLine{EH}^2$ \byref{prop:II.VI}, or $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{HC,EH}^2 - \drawSizedLine{EH}^2$.
+Then $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EB}^2 - \drawSizedLine{EH}^2$ \byref{prop:II.VI}, or $\drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{CE}^2 - \drawSizedLine{EH}^2$.
 
-$\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{EH,AE} \times \drawSizedLine{HC}$ \byref{prop:II.V}.
+$\therefore \drawSizedLine{BH} \times \drawSizedLine{HD} = \drawSizedLine{HA} \times \drawSizedLine{HC}$ \byref{prop:II.V}.
 \end{center}
 
 \defineNewPicture{
@@ -7096,7 +7096,7 @@ draw byLabelsOnPolygon(B, E, K)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \startsubproposition{Figure III.}
 \drawCurrentPictureInMargin
-Let neither of the given lines pass through the centre, draw through their intersection a diameter \drawSizedLine{KE,EL},
+Let neither of the given lines pass through the centre, draw through their intersection a diameter \drawSizedLine{KL},
 
 \begin{center}
 and $\drawSizedLine{KE} \times \drawSizedLine{EL} = \drawSizedLine{BE} \times \drawSizedLine{ED}$ (part 2.),\\
@@ -7131,19 +7131,19 @@ draw byLabelsOnCircle(A, B)(F);
 draw byLabelsOnPolygon(B, D, F, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(C, angle(C-F) - 45, 2);
 }
-\problem{I}{f}{from a point without a circle two straight lines be drawn to it, one of which \drawSizedLine{DB} is a tangent to the circle, and the other \drawSizedLine{FA,CF,DC} cuts it; the rectangle under the whole cutting line \drawSizedLine{FA,CF,DC} and the external segment \drawSizedLine{DC} is equal to the square of the tangent \drawSizedLine{DB}.}\unskip
+\problem{I}{f}{from a point without a circle two straight lines be drawn to it, one of which \drawSizedLine{DB} is a tangent to the circle, and the other \drawSizedLine{AD} cuts it; the rectangle under the whole cutting line \drawSizedLine{AD} and the external segment \drawSizedLine{DC} is equal to the square of the tangent \drawSizedLine{DB}.}\unskip
 \drawCurrentPictureInMargin
 \startsubproposition{Figure I.}
 \begin{center}
-Let \drawSizedLine{FA,CF,DC} pass through the centre;
+Let \drawSizedLine{AD} pass through the centre;
 
 draw \drawSizedLine{BF} from the centre to the point of contact;
 
-$\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{BF}^2$ \byref{prop:I.XLVII}, %\mbox{ minus }
+$\drawSizedLine{DB}^2 = \drawSizedLine{FD}^2 - \drawSizedLine{BF}^2$ \byref{prop:I.XLVII}, %\mbox{ minus }
 
-or $\drawSizedLine{DB}^2 = \drawSizedLine{CF,DC}^2 - \drawSizedLine{CF}^2$, %\mbox{ minus }
+or $\drawSizedLine{DB}^2 = \drawSizedLine{FD}^2 - \drawSizedLine{CF}^2$, %\mbox{ minus }
 
-$\therefore \drawSizedLine{DB}^2 = \drawSizedLine{FA,CF,DC} \times \drawSizedLine{DC}$ \byref{prop:II.VI}.
+$\therefore \drawSizedLine{DB}^2 = \drawSizedLine{AD} \times \drawSizedLine{DC}$ \byref{prop:II.VI}.
 \end{center}
 
 \defineNewPicture{
@@ -7174,15 +7174,15 @@ draw byLabelPoint(C, angle(C-E) + 45, 2);
 }\drawCurrentPictureInMargin
 \startsubproposition{Figure II.}
 \begin{center}
-If \drawSizedLine{CA,DC} do not pass through the centre,
+If \drawSizedLine{AD} do not pass through the centre,
 
 draw \drawSizedLine{EA} and \drawSizedLine{EC}.
 
-Then $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \byref{prop:II.VI}, %\mbox{ minus }
+Then $\drawSizedLine{AD} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EC}^2$ \byref{prop:II.VI}, %\mbox{ minus }
 
-that is, $\drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$, %\mbox{ minus }
+that is, $\drawSizedLine{AD} \times \drawSizedLine{CA} = \drawSizedLine{DE}^2 - \drawSizedLine{EB}^2$, %\mbox{ minus }
 
-$\therefore \drawSizedLine{CA,DC} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \byref{prop:III.XVIII}.
+$\therefore \drawSizedLine{AD} \times \drawSizedLine{CA} = \drawSizedLine{DB}^2$ \byref{prop:III.XVIII}.
 \end{center}
 
 \qed
@@ -7219,13 +7219,13 @@ draw byLabelsOnPolygon(B, D, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelPoint(C, angle(C-F) + 45, 2);
 }
 \drawCurrentPictureInMargin
-\problem{I}{f}{from a point outside of a circle two straight lines be drawn, the one \drawSizedLine{CA,DC} cutting the circle, the other \drawSizedLine{DB} meeting it, and if the rectangle contained by the whole cutting line \drawSizedLine{CA,DC} and its external segment \drawSizedLine{DC} be equal to the square of the line meeting the circle, the latter \drawSizedLine{DB} is a tangent to the circle.}
+\problem{I}{f}{from a point outside of a circle two straight lines be drawn, the one \drawSizedLine{AD} cutting the circle, the other \drawSizedLine{DB} meeting it, and if the rectangle contained by the whole cutting line \drawSizedLine{AD} and its external segment \drawSizedLine{DC} be equal to the square of the line meeting the circle, the latter \drawSizedLine{DB} is a tangent to the circle.}
 
 \begin{center}
 Draw from the given point \drawSizedLine{DE}, a tangent to the circle,\\
 and draw from the centre \drawSizedLine{DF}, \drawSizedLine{BF}, and \drawSizedLine{EF},\\
-$\drawSizedLine{DE}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \byref{prop:III.XXXVI}\\
-but $\drawSizedLine{DB}^2 = \drawSizedLine{CA,DC} \times \drawSizedLine{DC}$ \byref{\hypref},\\
+$\drawSizedLine{DE}^2 = \drawSizedLine{AD} \times \drawSizedLine{DC}$ \byref{prop:III.XXXVI}\\
+but $\drawSizedLine{DB}^2 = \drawSizedLine{AD} \times \drawSizedLine{DC}$ \byref{\hypref},\\
 $\therefore \drawSizedLine{DB}^2 = \drawSizedLine{DE}^2$,\\
 and $\therefore \drawSizedLine{DB} = \drawSizedLine{DE}$.
 
@@ -7409,11 +7409,11 @@ draw byLabelsOnPolygon(G, H, noPoint)(ALL_LABELS, 0);
 \problem{I}{n}{a given circle \drawCircle{O} to place a straight line, equal to a given straight line (\drawUnitLine{GH}), not greater than the diameter of the circle.}
 
 \begin{center}
-Draw \drawUnitLine{EC,BE}, the diameter of \circleO;\\
-and if $\drawUnitLine{EC,BE} = \drawUnitLine{GH}$, then the problem is solved.
+Draw \drawUnitLine{CB}, the diameter of \circleO;\\
+and if $\drawUnitLine{CB} = \drawUnitLine{GH}$, then the problem is solved.
 
-But if \drawUnitLine{EC,BE} be not equal to \drawUnitLine{GH},\\
-$\drawUnitLine{EC,BE} > \drawUnitLine{GH}$ \byref{\hypref};
+But if \drawUnitLine{CB} be not equal to \drawUnitLine{GH},\\
+$\drawUnitLine{CB} > \drawUnitLine{GH}$ \byref{\hypref};
 
 make $\drawUnitLine{EC} = \drawUnitLine{GH}$ \byref{prop:I.III}\\
 with \drawUnitLine{EC} as radius,\\
@@ -7886,13 +7886,13 @@ draw byLabelsOnPolygon(F, G, E)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \begin{center}
 Make $\drawUnitLine{ED} = \drawUnitLine{AE}$,\\
 and $\drawUnitLine{KC} = \drawUnitLine{DK}$,\\
-draw $\drawUnitLine{FG,GK} \parallel \drawUnitLine{AE,ED}$,\\
-and $\drawUnitLine{EG,GH} \parallel \drawUnitLine{DK,KC}$\\
+draw $\drawUnitLine{FK} \parallel \drawUnitLine{AD}$,\\
+and $\drawUnitLine{EH} \parallel \drawUnitLine{DC}$\\
 \byref{prop:I.XXXI}
 
 $\therefore$ \drawPolygon[bottom]{EDKG} is a parallelogram;
 
-and since $\drawUnitLine{AE,ED} = \drawUnitLine{DK,KC}$ \byref{\hypref}\\
+and since $\drawUnitLine{AD} = \drawUnitLine{DC}$ \byref{\hypref}\\
 $\drawUnitLine{ED} = \drawUnitLine{DK}$
 
 $\therefore$ \polygonEDKG\ is equilateral \byref{prop:I.XXXIV}
@@ -7935,16 +7935,16 @@ draw byLabelsOnPolygon(B, E, A)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 1);
 \drawCurrentPictureInMargin
 \problem{T}{o}{describe a circle about a given square \drawPolygon{ACD,ABC}.}
 
-Draw the diagonals \drawUnitLine{AE,EC} and \drawUnitLine{BE,ED} intersecting each other;
+Draw the diagonals \drawUnitLine{AC} and \drawUnitLine{BD} intersecting each other;
 
-then, because \drawPolygon{ACD} and \drawPolygon{ABC} have their sides equal, and the base \drawUnitLine{AE,EC} common to both,
+then, because \drawPolygon{ACD} and \drawPolygon{ABC} have their sides equal, and the base \drawUnitLine{AC} common to both,
 
 \begin{center}
 $\drawAngle{DAE} = \drawAngle{EAB}$ \byref{prop:I.VIII},\\
-or \drawAngle{DAE,EAB} is bisected: \\
-in like manner it can be shown that \drawAngle{ABE,EBC} is bisected;
+or \drawAngle{BAD} is bisected: \\
+in like manner it can be shown that \drawAngle{CBA} is bisected;
 
-but $\drawAngle{DAE,EAB} = \drawAngle{ABE,EBC}$,
+but $\drawAngle{BAD} = \drawAngle{CBA}$,
 
 hence $\drawAngle{EAB} = \drawAngle{ABE}$ their halves,
 
@@ -7996,29 +7996,29 @@ draw byLabelsOnPolygon(A, C, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \problem{T}{o}{construct an isosceles triangle, in which each of the angles at the base shall be double of the vertical angle.}
 
 \begin{center}
-Take any straight line \drawProportionalLine{AC,CB} \\
-and divide it so that $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \byref{prop:II.XI}
+Take any straight line \drawProportionalLine{AB} \\
+and divide it so that $\drawProportionalLine{AB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2$ \byref{prop:II.XI}
 
-With \drawProportionalLine{AC,CB} as radius, describe \drawCircle[middle][1/5]{A} and place in it from the extremity of the radius, $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \byref{prop:IV.I};\\
+With \drawProportionalLine{AB} as radius, describe \drawCircle[middle][1/5]{A} and place in it from the extremity of the radius, $\drawProportionalLine{BD} = \drawProportionalLine{AC}$ \byref{prop:IV.I};\\
 draw \drawProportionalLine{AD}.
 
 Then \drawLine{AD,BD,CB,AC} is the required triangle.
 
 For, draw \drawProportionalLine{CD} and describe \drawCircle[middle][1/3]{F} about \drawLine{AD,CD,AC} \byref{prop:IV.V}
 
-Since $\drawProportionalLine{AC,CB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
+Since $\drawProportionalLine{AB} \times \drawProportionalLine{CB} = \drawProportionalLine{AC}^2 = \drawProportionalLine{BD}^2$,\\
 $\therefore$ \drawProportionalLine{BD} is tangent to \circleF\ \byref{prop:III.XXXVII}\\
 $\therefore \drawAngle{BDC} = \drawAngle{A}$ \byref{prop:III.XXXII},\\
 add \drawAngle{CDA} to each, $\therefore \drawAngle{BDC} + \drawAngle{CDA} = \drawAngle{A} + \drawAngle{CDA}$;
 
-but $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ or } \drawAngle{BDC,CDA} = \drawAngle{B}$ \byref{prop:I.V}:\\
-since $\drawProportionalLine{AD} = \drawProportionalLine{AC,CB}$ \byref{prop:I.V}\\
+but $\drawAngle{BDC} + \drawAngle{CDA} \mbox{ or } \drawAngle{ADB} = \drawAngle{B}$ \byref{prop:I.V}:\\
+since $\drawProportionalLine{AD} = \drawProportionalLine{AB}$ \byref{prop:I.V}\\
 consequently $\drawAngle{B} = \drawAngle{A} + \drawAngle{CDA} = \drawAngle{C}$ \byref{prop:I.XXXII}\\
 $\therefore \drawProportionalLine{CD} = \drawProportionalLine{BD}$ \byref{prop:I.VI}\\
 $\therefore \drawProportionalLine{BD} = \drawProportionalLine{AC} = \drawProportionalLine{CD}$ \byref{\constref}\\
 $\therefore \drawAngle{A} = \drawAngle{CDA}$ \byref{prop:I.V}
 
-$\therefore \drawAngle{B} = \drawAngle{BDC,CDA} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ twice } \drawAngle{A}$;
+$\therefore \drawAngle{B} = \drawAngle{ADB} = \drawAngle{C} = \drawAngle{A} + \drawAngle{CDA} = \mbox{ twice } \drawAngle{A}$;
 
 and consequently each angle at the base is double of the vertical angle.
 \end{center}
@@ -8148,34 +8148,34 @@ $\drawProportionalLine{FC} = \drawProportionalLine{FB}$, and \drawProportionalLi
 
 $\therefore \drawAngle{FKB} = \drawAngle{CKF}$ and $\therefore \drawAngle{BFK} = \drawAngle{KFC}$ \byref{prop:I.VIII}
 
-$\therefore \drawAngle{FKB,CKF} = \mbox{ twice } \drawAngle{CKF}$, and $\drawAngle{BFK,KFC} = \mbox{ twice } \drawAngle{KFC}$.
+$\therefore \drawAngle{CKB} = \mbox{ twice } \drawAngle{CKF}$, and $\drawAngle{BFC} = \mbox{ twice } \drawAngle{KFC}$.
 
 In the same manner it can be demonstrated that\\
-$\drawAngle{FLC,DLF} = \mbox{ twice } \drawAngle{FLC}$, and $\drawAngle{CFL,LFD} = \mbox{ twice } \drawAngle{CFL}$;
+$\drawAngle{DLC} = \mbox{ twice } \drawAngle{FLC}$, and $\drawAngle{CFD} = \mbox{ twice } \drawAngle{CFL}$;
 
-but $\drawAngle{BFK,KFC} = \drawAngle{CFL,LFD}$ \byref{prop:III.XXVII},
+but $\drawAngle{BFC} = \drawAngle{CFD}$ \byref{prop:III.XXVII},
 
 $\therefore$ their halves $\drawAngle{KFC} = \drawAngle{CFL}$, also $\drawAngle{FCK} = \drawAngle{LCF}$,\\
 and \drawProportionalLine{FC} common;
 
 $\therefore \drawAngle{CKF} = \drawAngle{FLC}$ and $\drawProportionalLine{KC} = \drawProportionalLine{CL}$,
 
-$\therefore \drawProportionalLine{KC,CL} = \mbox{ twice } \drawProportionalLine{KC}$.
+$\therefore \drawProportionalLine{KL} = \mbox{ twice } \drawProportionalLine{KC}$.
 
-In the same manner it can be demonstrated that $\drawProportionalLine{BK,HB} = \mbox{ twice } \drawProportionalLine{BK}$,\\
+In the same manner it can be demonstrated that $\drawProportionalLine{KH} = \mbox{ twice } \drawProportionalLine{BK}$,\\
 but $\drawProportionalLine{BK} = \drawProportionalLine{KC}$
 
-$\therefore \drawProportionalLine{BK,HB} = \drawProportionalLine{KC,CL}$;
+$\therefore \drawProportionalLine{KH} = \drawProportionalLine{KL}$;
 \end{center}
 
 In the same manner it can be demonstrated that the other sides are equal, and therefore the pentagon is equilateral, it is also equiangular, for
 
 \begin{center}
-$\drawAngle{FLC,DLF} = \mbox{ twice } \drawAngle{FLC}$ and $\drawAngle{FKB,CKF} = \mbox{ twice } \drawAngle{CKF}$,
+$\drawAngle{DLC} = \mbox{ twice } \drawAngle{FLC}$ and $\drawAngle{CKB} = \mbox{ twice } \drawAngle{CKF}$,
 
 and therefore $ \drawAngle{CKF} = \drawAngle{FLC}$,
 
-$\therefore \drawAngle{FLC,DLF} = \drawAngle{FKB,CKF}$;
+$\therefore \drawAngle{DLC} = \drawAngle{CKB}$;
 
 in the same manner it can be demonstrated that the other angles of the described pentagon are equal.
 \end{center}
@@ -8244,7 +8244,7 @@ Make $\drawAngle{HCF} = \drawAngle{FCK}$, and $\drawAngle{FDE} = \drawAngle{KDF}
 
 Draw \drawUnitLine{FD}, \drawUnitLine{FC}, \drawUnitLine{FB}, \drawUnitLine{FE}, \&c.
 
-$\because \drawUnitLine{KD,CK} = \drawUnitLine{HC,BH}$, $\drawAngle{HCF} = \drawAngle{FCK}$, and \drawUnitLine{FC} common to the two triangles %Because
+$\because \drawUnitLine{DC} = \drawUnitLine{CB}$, $\drawAngle{HCF} = \drawAngle{FCK}$, and \drawUnitLine{FC} common to the two triangles %Because
 
 \drawFromCurrentPicture{
 startTempScale(1/2);
@@ -8270,7 +8270,7 @@ And $\because \drawAngle{B} = \drawAngle{D} = \mbox{ twice } \drawAngle{KDF}$ %b
 
 $\therefore = \mbox{ twice } \drawAngle{FBH}$, hence \drawAngle{B} is bisected by \drawUnitLine{FB}.
 
-In like manner it may be demonstrated that \drawAngle{DEF,FEM} is bisected by \drawUnitLine{FE}, and that the remaining angle of the polygon is bisected in a similar manner.
+In like manner it may be demonstrated that \drawAngle{MED} is bisected by \drawUnitLine{FE}, and that the remaining angle of the polygon is bisected in a similar manner.
 
 Draw \drawUnitLine{FK}, \drawUnitLine{FH}, \&c.\ perpendicular to the sides of the pentagon.
 
@@ -9747,7 +9747,7 @@ $\therefore$ If four magnitudes, \&c.
 \end{center}
 
 \startdefinition[18]{Definition XVIII}\bylabel{def:V.XVIII} 
-\enquote{Ex \ae quali} (sc.\ distantiâ), or ex \ae quo, from equality of distance: when there is any number of magnitudes more than two, and as many others, such that they are proportionals when taken two and two of each rank, and it is inferred that the first is to the last of the first rank of magnitudes, as the first is to the last of the others: \enquote{of this there are two following kinds, which arise from the different order in which the magnitudes are taken, two and two.}
+\enquote{Ex æquali} (sc.\ distantiâ), or ex æquo, from equality of distance: when there is any number of magnitudes more than two, and as many others, such that they are proportionals when taken two and two of each rank, and it is inferred that the first is to the last of the first rank of magnitudes, as the first is to the last of the others: \enquote{of this there are two following kinds, which arise from the different order in which the magnitudes are taken, two and two.}
 
 \vfill\pagebreak
 
@@ -9764,14 +9764,14 @@ $\therefore$ If four magnitudes, \&c.
 \def\varO{\textcolor{byyellow}{O}}
 \def\varP{\textcolor{byblue}{P}}
 \def\varQ{\textcolor{byblue}{Q}}
-\enquote{Ex \ae quali,} from equality. This term is used simply by itself, when the first magnitude is to the second of the first rank, as the first to the second of the other rank; and as the second to the third of the first rank, so is the second to the third of the other; and so in order: and the inference is as mentioned in the preceding definition; whence this is called ordinate proposition. It is demonstrated in \byref{prop:V.XXII}.
+\enquote{Ex æquali,} from equality. This term is used simply by itself, when the first magnitude is to the second of the first rank, as the first to the second of the other rank; and as the second to the third of the first rank, so is the second to the third of the other; and so in order: and the inference is as mentioned in the preceding definition; whence this is called ordinate proposition. It is demonstrated in \byref{prop:V.XXII}.
 
 \begin{center}
 Thus, if there be two ranks of magnitudes,\\
 $\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,
 and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,
 such that $\varA : \varB :: \varL : \varM$, $\varB : \varC :: \varM : \varN$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varO : \varP$, $\varE : \varF :: \varP : \varQ$;\\
-we infer by the term \enquote{ex~\ae quali} that $\varA : \varF :: \varL : \varQ$
+we infer by the term \enquote{ex~æquali} that $\varA : \varF :: \varL : \varQ$
 \end{center}
 
 \startdefinition[20]{Definition XX}\bylabel{def:V.XX} 
@@ -9787,14 +9787,14 @@ we infer by the term \enquote{ex~\ae quali} that $\varA : \varF :: \varL : \varQ
 \def\varO{\textcolor{byblue}{O}}
 \def\varP{\textcolor{byred}{P}}
 \def\varQ{\textcolor{byred}{Q}}
-\enquote{Ex \ae quali in proportione perturbatâ seu inordinatâ,} from equality in perturbate, or disorderly proportion. This term is used when the first magnitude is to the second of the first rank as the last but one is to the last of the second rank; and as the second is to the third of the first rank, so is the last but two to the last but one of the second rank; and as the third is to the fourth of the first rank, so is the third from the last to the last but two of the second rank; and so on in a cross order: and the inference is in the 18th definition. It is demonstrated in \byref{prop:V.XXIII}.
+\enquote{Ex æquali in proportione perturbatâ seu inordinatâ,} from equality in perturbate, or disorderly proportion. This term is used when the first magnitude is to the second of the first rank as the last but one is to the last of the second rank; and as the second is to the third of the first rank, so is the last but two to the last but one of the second rank; and as the third is to the fourth of the first rank, so is the third from the last to the last but two of the second rank; and so on in a cross order: and the inference is in the 18th definition. It is demonstrated in \byref{prop:V.XXIII}.
 
 \begin{center}
 Thus, if there be two ranks of magnitudes,\\
 $\varA, \varB, \varC, \varD, \varE, \varF$, the first rank,
 and $\varL, \varM, \varN, \varO, \varP, \varQ$, the second,
 such that $\varA : \varB :: \varP : \varQ$, $\varB : \varC :: \varO : \varP$, $\varC : \varD :: \varN : \varO$, $\varD : \varE :: \varM : \varN$, $\varE : \varF :: \varL : \varM$;\\
-the term \enquote{ex \ae quali in proportione perturbatâ seu inordinatâ} infers that $\varA : \varF :: \varL : \varQ$
+the term \enquote{ex æquali in proportione perturbatâ seu inordinatâ} infers that $\varA : \varF :: \varL : \varQ$
 \end{center}
 
 \vfill\pagebreak
@@ -9903,7 +9903,7 @@ byMagnitudeSymbolDefine.VIIa("halfsquare", byyellow, 0);
 byMagnitudeSymbolDefine.VIIIa("halfrhombusUp", byred, 0);
 }
 \problem{I}{f}{there be any number of magnitudes, and as many others, which, taken two and two in order, have the same ratio; the first shall have to the last of the first magnitudes the same ratio which the first of the others has to the last of the same.\\
-N.B.— This is usually cited by the words \enquote{ex \ae quali,} or \enquote{ex \ae quo.}}
+N.B.— This is usually cited by the words \enquote{ex æquali,} or \enquote{ex æquo.}}
 
 \begin{center}
 First, let there be magnitudes \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
@@ -9966,7 +9966,7 @@ byMagnitudeSymbolDefine.VII("halfsquare", byblack, 0);
 byMagnitudeSymbolDefine.VIII("halfrhombusUp", byblack, 0);
 }
 \problem{I}{f}{there be any number of magnitudes, and as many others, which, taken two and two in a cross order, have the same ratio; the first shall have to the last of the first magnitudes the same ratio which the first of the others has to the last of the same.\\
-N.B.— This is usually cited by the words \enquote{ex \ae quali in proportione perturbatâ;} or \enquote{ex \ae quo perturbato.}}
+N.B.— This is usually cited by the words \enquote{ex æquali in proportione perturbatâ;} or \enquote{ex æquo perturbato.}}
 
 \begin{center}
 First, let there be three magnitudes \drawMagnitude{I}, \drawMagnitude{II}, \drawMagnitude{III},\\
@@ -10738,7 +10738,7 @@ draw byLabelsOnPolygon(A, Q, D, C, B, M)(ALL_LABELS, 0);
 
 Let the triangles \drawPolygon[bottom]{ABC} and \drawPolygon[bottom]{ACD} have a common vertex, and their bases \drawUnitLine{BC} and \drawUnitLine{CD} in the same straight line.
 
-Produce \drawUnitLine{BC,CD} both ways, take successively on \drawUnitLine{CD} produced lines equal to it; and on \drawUnitLine{BC} produced lines successively equal to it; and draw lines from the common vertex to their extremities.
+Produce \drawUnitLine{BD} both ways, take successively on \drawUnitLine{CD} produced lines equal to it; and on \drawUnitLine{BC} produced lines successively equal to it; and draw lines from the common vertex to their extremities.
 
 The triangles
 \drawFromCurrentPicture[bottom][trianglesAMC]{
@@ -10905,7 +10905,7 @@ draw byLabelsOnPolygon(B, A, E, C, D)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
 \problem{A}{ right}{line (\drawUnitLine{AD}) bisecting the angle of a triangle, divides the opposite side into segments (\drawUnitLine{BD}, \drawUnitLine{DC}) proportional to the conterminous sides (\drawUnitLine{AB}, \drawUnitLine{CA}).\\
-And if a straight line (\drawUnitLine{AD}) drawn from any angle of a triangle divide the opposite side (\drawUnitLine{BD,DC}) into segments (\drawUnitLine{BD}, \drawUnitLine{DC}) proportional to the conterminous sides (\drawUnitLine{AB}, \drawUnitLine{CA}), it bisects the angle.}
+And if a straight line (\drawUnitLine{AD}) drawn from any angle of a triangle divide the opposite side (\drawUnitLine{BC}) into segments (\drawUnitLine{BD}, \drawUnitLine{DC}) proportional to the conterminous sides (\drawUnitLine{AB}, \drawUnitLine{CA}), it bisects the angle.}
 
 \startsubproposition{Part I.}
 \begin{center}
@@ -10982,9 +10982,9 @@ Let the equiangular triangles be so placed that two sides \drawUnitLine[0.5cm]{B
 \begin{center}
 Draw \drawUnitLine{AF} and \drawUnitLine{DF}.
 
-Then, $\because \drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{DF,DE}$ \byref{prop:I.XXVIII}; %because
+Then, $\because \drawAngle{BCA} = \drawAngle{E}$, $\drawUnitLine{CA} \parallel \drawUnitLine{FE}$ \byref{prop:I.XXVIII}; %because
 
-and for a like reason $\drawUnitLine{CD} \parallel \drawUnitLine{AB,AF}$,
+and for a like reason $\drawUnitLine{CD} \parallel \drawUnitLine{BF}$,
 
 $\therefore$
 \drawFromCurrentPicture[bottom][polygonACDF]{
@@ -11009,7 +11009,7 @@ and by alternation, that\\
 $\drawUnitLine{AB} : \drawUnitLine{BC} :: \drawUnitLine{CD} : \drawUnitLine{EC}$;\\
 but it has been already proved that\\
 $\drawUnitLine{BC} : \drawUnitLine{CA} :: \drawUnitLine{EC} : \drawUnitLine{DE}$\\
-and therefore, ex \ae quali,\\
+and therefore, ex æquali,\\
 $\drawUnitLine{AB} : \drawUnitLine{CA} :: \drawUnitLine{CD} : \drawUnitLine{DE}$ \byref{prop:V.XXII},\\
 therefore the sides about the equal angles are proportional, and those which are opposite to the equal angles are homologous.
 \end{center}
@@ -11263,23 +11263,23 @@ endfor;
 draw byLabelsOnPolygon(B, F, A, D, C, E)(ALL_LABELS, 0); % improvement: drawing in the original seemed to be wrong, fixed here
 }
 \drawCurrentPictureInMargin
-\problem{F}{rom}{a given straight line (\drawSizedLine{AF,FB}) to cut off any required part.}
+\problem{F}{rom}{a given straight line (\drawSizedLine{AB}) to cut off any required part.}
 
 \begin{center}
-From either extremity of the given line draw \drawSizedLine{AD,DC} making any angle with \drawSizedLine{AF,FB};\\
-and produce \drawSizedLine{AD,DC} till the whole produced line \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part.
+From either extremity of the given line draw \drawSizedLine{AC} making any angle with \drawSizedLine{AB};\\
+and produce \drawSizedLine{AC} till the whole produced line \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AB} contains the required part.
 
 Draw \drawSizedLine{BE},\\
 and draw $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$.\\
 
-\drawSizedLine{AF} is the required part of \drawSizedLine{AF,FB}.
+\drawSizedLine{AF} is the required part of \drawSizedLine{AB}.
 
 For since $\drawSizedLine{DF} \parallel \drawSizedLine{BE}$\\
-$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DC,CE}$ \byref{prop:VI.II},\\
+$\drawSizedLine{AF} : \drawSizedLine{FB} :: \drawSizedLine{AD} : \drawSizedLine{DE}$ \byref{prop:VI.II},\\
 and by composition \byref{prop:V.XVIII};\\
-$\drawSizedLine{AF,FB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$;
+$\drawSizedLine{AB} : \drawSizedLine{AF} :: \drawSizedLine{AD,DC,CE} : \drawSizedLine{AD}$;
 
-but \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AF,FB} contains the required part \byref{\constref};
+but \drawSizedLine{AD,DC,CE} contains \drawSizedLine{AD} as often as \drawSizedLine{AB} contains the required part \byref{\constref};
 
 $\therefore$ \drawSizedLine{AF} is the required part.
 \end{center}
@@ -11324,10 +11324,10 @@ draw byLabelsOnPolygon(E, C, noPoint)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 draw byLabelsOnPolygon(A', D', E', C', noPoint)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{divide a given straight line (\drawSizedLine{AF,FG,GB}) similarly to a given divided line (\drawSizedLine{A'D',D'E',E'C'}).}
+\problem{T}{o}{divide a given straight line (\drawSizedLine{AB}) similarly to a given divided line (\drawSizedLine{A'C'}).}
 
 \begin{center}
-From either extremity of the given line \drawSizedLine{AF,FG,GB} draw \drawSizedLine{AD,DE,EC} making any angle;
+From either extremity of the given line \drawSizedLine{AB} draw \drawSizedLine{AC} making any angle;
 
 take \drawSizedLine{AD}, \drawSizedLine{DE} and \drawSizedLine{EC} equal to \drawSizedLine{A'D'}, \drawSizedLine{D'E'} and \drawSizedLine{E'C'} respectively \byref{prop:I.II};
 
@@ -11344,7 +11344,7 @@ or $\drawSizedLine{GB} : \drawSizedLine{FG} :: \drawSizedLine{E'C'} : \drawSized
 and $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{DE} : \drawSizedLine{AD}$ \byref{prop:VI.II},\\
 $\drawSizedLine{FG} : \drawSizedLine{AF} :: \drawSizedLine{D'E'} : \drawSizedLine{A'D'}$ \byref{\constref},
 
-and $\therefore$ the given line \drawSizedLine{AF,FG,GB} is divided similarly to \drawSizedLine{A'D',D'E',E'C'}.
+and $\therefore$ the given line \drawSizedLine{AB} is divided similarly to \drawSizedLine{A'C'}.
 \end{center}
 
 \qed
@@ -11380,7 +11380,7 @@ draw byLabelsOnPolygon(C', A', noPoint)(ALL_LABELS, 0);
 \problem{T}{o}{find a third proportional to two given straight lines (\drawSizedLine{A'C'} and \drawSizedLine{AB}).}
 
 \begin{center}
-At either extremity of the given line \drawSizedLine{AB} draw \drawSizedLine{AC,CE} making an angle;\\
+At either extremity of the given line \drawSizedLine{AB} draw \drawSizedLine{AE} making an angle;\\
 take $\drawSizedLine{AC} = \drawSizedLine{A'C'}$, and draw \drawSizedLine{BC};\\
 make $\drawSizedLine{BD} = \drawSizedLine{A'C'}$,\\
 and draw $\drawSizedLine{DE} \parallel \drawSizedLine{BC}$; \byref{prop:I.XXXI}\\
@@ -11433,7 +11433,7 @@ $\left\{\vcenter{
 \nointerlineskip\hbox{\drawSizedLine{C}}}\right\}$.}
 
 \begin{center}
-Draw \drawSizedLine{DG,GE} and \drawSizedLine{DH,HF} making any angle;\\
+Draw \drawSizedLine{DE} and \drawSizedLine{DF} making any angle;\\
 take $\drawUnitLine{DG} = \drawUnitLine{A}$,\\
 and $\drawUnitLine{GE} = \drawUnitLine{B}$,\\
 also $\drawUnitLine{DH} = \drawUnitLine{C}$,\\
@@ -11554,7 +11554,7 @@ draw byLabelsOnPolygon(B, G, C, E, H, F, A, D)(ALL_LABELS, 0);
 And parallelograms which have one angle in each equal, and the sides about them reciprocally proportional, are equal.}
 
 \begin{center}
-Let \drawUnitLine{BG} and \drawUnitLine{BF}; and \drawUnitLine{BD} and \drawUnitLine{BE}, be so placed that \drawUnitLine{BG,BF} and \drawUnitLine{BD,BE} may be continued right lines. It is evident that they may assume this position. \byref{prop:I.XIII,prop:I.XIV,prop:I.XV}
+Let \drawUnitLine{BG} and \drawUnitLine{BF}; and \drawUnitLine{BD} and \drawUnitLine{BE}, be so placed that \drawUnitLine{GF} and \drawUnitLine{DE} may be continued right lines. It is evident that they may assume this position. \byref{prop:I.XIII,prop:I.XIV,prop:I.XV}
 
 Complete \drawPolygon{EHFB}.
 
@@ -11841,7 +11841,7 @@ and $\drawUnitLine{AG}:\drawUnitLine{BG} :: \drawUnitLine{CF} : \drawUnitLine{DF
 
 Again, because \drawPolygon{DFE} and \drawPolygon{BGH} are equiangular,\\
 $\drawUnitLine{BG}:\drawUnitLine{GH} :: \drawUnitLine{DF} : \drawUnitLine{FE}$\\
-$\therefore$ ex \ae quali,\\
+$\therefore$ ex æquali,\\
 $\drawUnitLine{AG}:\drawUnitLine{GH} :: \drawUnitLine{CF} : \drawUnitLine{FE}$ \byref{prop:V.XXII} % improvement: Byrne had VI.XXII wrongly referenced here
 
 In like manner it may be shown that the remaining sides of the two figures are proportional.
@@ -11886,21 +11886,21 @@ draw byLabelsOnPolygon(C, G, B, A)(ALL_LABELS, 0);
 \drawCurrentPictureInMargin
 \problem{S}{imilar}{triangles (\drawPolygon[bottom][triangleDEF]{DEF} and \drawPolygon[bottom][triangleABC]{ABG,AGC}) are to one another in the duplicate ratio of their homologous sides.}
 
-Let \drawAngle{E} and \drawAngle{B} be equal angles, and \drawUnitLine{BG,GC} and \drawUnitLine{EF} homologous sides of the similar triangles \triangleDEF\ and \triangleABC\ and on \drawUnitLine{BG,GC} the greater of these lines take \drawUnitLine{BG} a third proportional, so that
+Let \drawAngle{E} and \drawAngle{B} be equal angles, and \drawUnitLine{BC} and \drawUnitLine{EF} homologous sides of the similar triangles \triangleDEF\ and \triangleABC\ and on \drawUnitLine{BC} the greater of these lines take \drawUnitLine{BG} a third proportional, so that
 \begin{center}
-$\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$;\\
+$\drawUnitLine{BC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$;\\
 draw \drawUnitLine{AG}.\\
-$\drawUnitLine{BG,GC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \byref{prop:VI.IV};\\
-$\therefore \drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \byref{prop:V.XVI},\\
-but $\drawUnitLine{BG,GC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ \byref{\constref},\\
+$\drawUnitLine{BC} : \drawUnitLine{AB} :: \drawUnitLine{EF} : \drawUnitLine{DE}$ \byref{prop:VI.IV};\\
+$\therefore \drawUnitLine{BC} : \drawUnitLine{EF} :: \drawUnitLine{AB} : \drawUnitLine{DE}$ \byref{prop:V.XVI},\\
+but $\drawUnitLine{BC} : \drawUnitLine{EF} :: \drawUnitLine{EF} : \drawUnitLine{BG}$ \byref{\constref},\\
 $\therefore \drawUnitLine{EF} : \drawUnitLine{BG} :: \drawUnitLine{AB} : \drawUnitLine{DE}$\\
 consequently $\triangleDEF = \drawPolygon[bottom][triangleABG]{ABG}$ for they have the sides about the equal angles \drawAngle{E} and \drawAngle{B} reciprocally proportional \byref{prop:VI.XV};
 
 $\therefore \triangleABC : \triangleDEF :: \triangleABC : \triangleABG$ \byref{prop:V.VII};\\
-but $\triangleABC : \triangleABG :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$ \byref{prop:VI.I},
+but $\triangleABC : \triangleABG :: \drawUnitLine{BC} : \drawUnitLine{BG}$ \byref{prop:VI.I},
 
-$\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BG,GC} : \drawUnitLine{BG}$,\\
-that is to say, the triangles are to one another in the duplicate ratio of their homologous sides \drawUnitLine{EF} and \drawUnitLine{BG,GC} \byref{def:V.XI}.
+$\therefore \triangleABC : \triangleDEF :: \drawUnitLine{BC} : \drawUnitLine{BG}$,\\
+that is to say, the triangles are to one another in the duplicate ratio of their homologous sides \drawUnitLine{EF} and \drawUnitLine{BC} \byref{def:V.XI}.
 \end{center}
 
 \qed
@@ -11966,7 +11966,7 @@ on account of the similar triangles,\\
 and $\drawUnitLine{CD} : \drawUnitLine{DE} :: \drawUnitLine{HK} : \drawUnitLine{KL}$,\\
 on account of the similar polygons,\\
 $\therefore \drawUnitLine{BD} : \drawUnitLine{DE} :: \drawUnitLine{GK} : \drawUnitLine{KL}$,\\
-ex \ae quali \byref{prop:V.XXII}, and as these proportional sides contain equal angles, the triangles \drawPolygon{BDE} and \drawPolygon{GKL} are similar \byref{prop:VI.VI}.
+ex æquali \byref{prop:V.XXII}, and as these proportional sides contain equal angles, the triangles \drawPolygon{BDE} and \drawPolygon{GKL} are similar \byref{prop:VI.VI}.
 
 In like manner it may be shown that the triangles \drawPolygon{BEA} and \drawPolygon{GLF} are similar.
 
@@ -12069,7 +12069,7 @@ Take \drawUnitLine{O} a third proportional to \drawUnitLine{AB} and \drawUnitLin
 since $\drawUnitLine{AB} : \drawUnitLine{CD} :: \drawUnitLine{EF} : \drawUnitLine{GH}$ \byref{\hypref}\\
 $\drawUnitLine{CD} : \drawUnitLine{O} :: \drawUnitLine{GH} : \drawUnitLine{P}$ \byref{\constref}
 
-$\therefore$ ex \ae quali,\\
+$\therefore$ ex æquali,\\
 $\drawUnitLine{AB} : \drawUnitLine{O} :: \drawUnitLine{EF} : \drawUnitLine{P}$;
 
 but $\drawPolygon{AB} : \drawPolygon{CD} :: \drawUnitLine{AB} : \drawUnitLine{O}$ \byref{prop:VI.XX},\\
@@ -12198,7 +12198,7 @@ which are about the diagonal are similar to the whole, and to each other.}
 
 \begin{center}
 As \parallelogramABCD\ and \parallelogramAEFG\ have a common angle they are equiangular;\\
-but $\because \drawUnitLine{GF} \parallel \drawUnitLine{DK,KC}$\\ %because
+but $\because \drawUnitLine{GF} \parallel \drawUnitLine{DC}$\\ %because
 \drawFromCurrentPicture[bottom]{
 startGlobalRotation(180-angle(A-C));
 startAutoLabeling;
@@ -12215,7 +12215,7 @@ stopAutoLabeling;
 stopGlobalRotation;
 }
 are similar \byref{prop:VI.IV},\\
-$\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{GA,DG} : \drawUnitLine{DK,KC}$;
+$\therefore \drawUnitLine{GA} : \drawUnitLine{GF} :: \drawUnitLine{AD} : \drawUnitLine{DC}$;
 
 and the remaining opposite sides are equal to those,\\
 $\therefore$ \parallelogramAEFG\ and \parallelogramABCD\ have the sides about the equal angles proportional, and are therefore similar.
@@ -12383,8 +12383,8 @@ be the diagonal of \parallelogramABCD\ and draw $\drawUnitLine{KH} \parallel \dr
 
 Since \drawLine[bottom][parallelogramAKHG]{AG,GH,KH,AK} and \parallelogramABCD\ are about the same diagonal \lineAHC, and have \drawAngle{A} common, they are similar \byref{prop:VI.XXIV};
 
-$\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$;\\
-but $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AG,GD} : \drawSizedLine{AK,KE,EB}$ \byref{\hypref},\\
+$\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AD} : \drawSizedLine{AB}$;\\
+but $\drawSizedLine{AG} : \drawSizedLine{AK,KE} :: \drawSizedLine{AD} : \drawSizedLine{AB}$ \byref{\hypref},\\
 $\therefore \drawSizedLine{AG} : \drawSizedLine{AK} :: \drawSizedLine{AG} : \drawSizedLine{AK,KE}$,\\
 and $\therefore \drawSizedLine{AK} = \drawSizedLine{AK,KE}$ \byref{prop:V.IX}, which is absurd.
 
@@ -12421,9 +12421,9 @@ draw byLabelsOnPolygon(H, G, D)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 \problem{O}{f}{all the rectangles contained by the segments of a given straight line, the greatest is the square which is described on half the line.}
 
 \begin{center}
-Let \drawSizedLine{AD,DC,CB} be the given line,\\
-\drawSizedLine{AD} and \drawSizedLine{DC,CB} unequal segments,\\
-and \drawSizedLine{AD,DC} and \drawSizedLine{CB} equal segments;
+Let \drawSizedLine{AB} be the given line,\\
+\drawSizedLine{AD} and \drawSizedLine{DB} unequal segments,\\
+and \drawSizedLine{AC} and \drawSizedLine{CB} equal segments;
 
 then $\drawPolygon[bottom]{ADGKEF,CDGK} > \drawPolygon[bottom]{BCKH,CDGK}$.
 \end{center}
@@ -12465,32 +12465,32 @@ draw byLabelsOnPolygon(A, B, noPoint)(ALL_LABELS, 0);
 draw byLabelPoint(E, angle(E-D) + 45, 2);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{divide a given straight line (\drawSizedLine{AE,EC,CB}) so that the rectangle contained by its segments may be equal to a given area, not exceeding the square of half the line.}
+\problem{T}{o}{divide a given straight line (\drawSizedLine{AB}) so that the rectangle contained by its segments may be equal to a given area, not exceeding the square of half the line.}
 
 \begin{center}
 Let the given area be $=\drawSizedLine{G}^2$.
 
-Bisect \drawSizedLine{AE,EC,CB}, or make $\drawSizedLine{AE,EC} = \drawSizedLine{CB}$;\\
-and if $\drawSizedLine{AE,EC}^2 = \drawSizedLine{G}^2$,\\
+Bisect \drawSizedLine{AB}, or make $\drawSizedLine{AC} = \drawSizedLine{CB}$;\\
+and if $\drawSizedLine{AC}^2 = \drawSizedLine{G}^2$,\\
 the problem is solved.
 
-But if $\drawSizedLine{AE,EC}^2 \neq \drawSizedLine{G}^2$,\\
-then must $\drawSizedLine{AE,EC} > \drawSizedLine{G}$ \byref{\hypref}.
+But if $\drawSizedLine{AC}^2 \neq \drawSizedLine{G}^2$,\\
+then must $\drawSizedLine{AC} > \drawSizedLine{G}$ \byref{\hypref}.
 
-Draw $\drawSizedLine{DC} \perp \drawSizedLine{AE,EC} = \drawSizedLine{G}$;\\
-make $\drawSizedLine{DC,CF} = \drawSizedLine{AE,EC} \mbox{ or } \drawSizedLine{CB}$;\\
-with \drawSizedLine{DC,CF} as radius describe a circle cutting the given line; draw \drawSizedLine{DE}.
+Draw $\drawSizedLine{DC} \perp \drawSizedLine{AC} = \drawSizedLine{G}$;\\
+make $\drawSizedLine{DF} = \drawSizedLine{AC} \mbox{ or } \drawSizedLine{CB}$;\\
+with \drawSizedLine{DF} as radius describe a circle cutting the given line; draw \drawSizedLine{DE}.
 
-Then $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{AE,EC}^2$ \byref{prop:II.V} $= \drawSizedLine{DE}^2$.
+Then $\drawSizedLine{AE} \times \drawSizedLine{EB} + \drawSizedLine{EC}^2 = \drawSizedLine{AC}^2$ \byref{prop:II.V} $= \drawSizedLine{DE}^2$.
 
 But $\drawSizedLine{DE}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$ \byref{prop:I.XLVII};
 
-$\therefore \drawSizedLine{AE} \times \drawSizedLine{EC,CB} + \drawSizedLine{EC}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$,\\
+$\therefore \drawSizedLine{AE} \times \drawSizedLine{EB} + \drawSizedLine{EC}^2 = \drawSizedLine{DC}^2 + \drawSizedLine{EC}^2$,\\
 from both, take $\drawSizedLine{EC}^2$,\\
-and $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{DC}^2$.
+and $\drawSizedLine{AE} \times \drawSizedLine{EB} = \drawSizedLine{DC}^2$.
 
 But $\drawSizedLine{DC} = \drawSizedLine{G}$ \byref{\constref},\\
-and $\therefore$ \drawSizedLine{AE,EC,CB} is so divided that $\drawSizedLine{AE} \times \drawSizedLine{EC,CB} = \drawSizedLine{G}^2$.
+and $\therefore$ \drawSizedLine{AB} is so divided that $\drawSizedLine{AE} \times \drawSizedLine{EB} = \drawSizedLine{G}^2$.
 \end{center}
 
 \qed
@@ -12521,21 +12521,21 @@ draw byLabelsOnPolygon(F, B, C, A, noPoint)(ALL_LABELS, 0);
 draw byLabelLine(0)(G);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{produce a given straight line (\drawSizedLine{AC,CB}), so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i.\ e.\ equal to the square on \drawSizedLine{G}.}
+\problem{T}{o}{produce a given straight line (\drawSizedLine{AB}), so that the rectangle contained by the segments between the extremities of the given line and the point to which it is produced, may be equal to a given area, i.\ e.\ equal to the square on \drawSizedLine{G}.}
 
 \begin{center}
 Make $\drawSizedLine{AC} = \drawSizedLine{CB}$,\\
 and draw $\drawSizedLine{BD} \perp \drawSizedLine{CB} = \drawSizedLine{G}$;\\
 draw \drawSizedLine{CD};\\
-and with the radius \drawSizedLine{CD}, describe a circle meeting \drawSizedLine{AC,CB} produced.
+and with the radius \drawSizedLine{CD}, describe a circle meeting \drawSizedLine{AB} produced.
 
-Then $\drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{CB,BF}^2$ \byref{prop:II.VI} $= \drawSizedLine{CD}^2$.
+Then $\drawSizedLine{AF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{CF}^2$ \byref{prop:II.VI} $= \drawSizedLine{CD}^2$.
 
 But $\drawSizedLine{CD}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$ \byref{prop:I.XLVII}
 
-$\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
+$\therefore \drawSizedLine{AF} \times \drawSizedLine{BF} + \drawSizedLine{CB}^2 = \drawSizedLine{BD}^2 + \drawSizedLine{CB}^2$,\\
 from both take $\drawSizedLine{CB}^2$,\\
-and $\therefore \drawSizedLine{AC,CB,BF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$\\
+and $\therefore \drawSizedLine{AF} \times \drawSizedLine{BF}= \drawSizedLine{BD}^2$\\
 but $\drawSizedLine{BD} = \drawSizedLine{G}$,\\
 $\therefore \drawSizedLine{BD}^2 = \mbox{ the given area.}$
 \end{center}
@@ -12574,27 +12574,27 @@ byLineStylize(G, E, 0, 1, -1)(DEt);
 draw byLabelsOnPolygon(A, C, F, H, B, E, D, G)(ALL_LABELS, 0);
 }
 \drawCurrentPictureInMargin
-\problem{T}{o}{cut a given finite straight line (\drawProportionalLine{AE,EB}) in extreme and mean ratio.}
+\problem{T}{o}{cut a given finite straight line (\drawProportionalLine{AB}) in extreme and mean ratio.}
 
 \begin{center}
-On \drawProportionalLine{AE,EB} describe the square \drawPolygon[middle][squareABHC]{ACFE,EFHB} \byref{prop:I.XLVI};\\
-and produce \drawProportionalLine{CA}, so that $\drawProportionalLine{CA,AG} \times \drawProportionalLine{AG} = \drawProportionalLine{AE,EB}^2$ \byref{prop:VI.XXIX};\\
+On \drawProportionalLine{AB} describe the square \drawPolygon[middle][squareABHC]{ACFE,EFHB} \byref{prop:I.XLVI};\\
+and produce \drawProportionalLine{CA}, so that $\drawProportionalLine{CG} \times \drawProportionalLine{AG} = \drawProportionalLine{AB}^2$ \byref{prop:VI.XXIX};\\
 take $\drawProportionalLine{AE} = \drawProportionalLine{AG}$,\\
-and draw $\drawProportionalLine{DE} \parallel \drawProportionalLine{CA,AG}$,\\
-meeting $\drawProportionalLine{GD} \parallel \drawProportionalLine{AE,EB}$ \byref{prop:I.XXXI}.
+and draw $\drawProportionalLine{DE} \parallel \drawProportionalLine{CG}$,\\
+meeting $\drawProportionalLine{GD} \parallel \drawProportionalLine{AB}$ \byref{prop:I.XXXI}.
 
 Then $\drawFromCurrentPicture[middle][rectangleCFDG]{
 draw byNamedPolygon(ACFE);
 draw byNamedLine(AGt,GDt,DEt);
 draw byLabelsOnPolygon(G, C, F, D)(ALL_LABELS, 0);
 }
-= \drawProportionalLine{CA,AG} \times \drawProportionalLine{AG}$, and is $\therefore\ = \squareABHC$;\\
+= \drawProportionalLine{CG} \times \drawProportionalLine{AG}$, and is $\therefore\ = \squareABHC$;\\
 and if from both these equals be taken the common part \drawPolygon{ACFE},\\
 \drawLine{DE,GD,AG,AE}, which is the square of \drawProportionalLine{AE},\\
-will be $= \drawPolygon{EFHB}$, which is $= \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
-that is $\drawProportionalLine{AE}^2 = \drawProportionalLine{AE,EB} \times \drawProportionalLine{EB}$;\\
-$\therefore \drawProportionalLine{AE,EB} : \drawProportionalLine{AE} :: \drawProportionalLine{AE} : \drawProportionalLine{EB}$,\\
-and \drawProportionalLine{AE,EB} is divided in extreme and mean ratio \byref{def:VI.III}.
+will be $= \drawPolygon{EFHB}$, which is $= \drawProportionalLine{AB} \times \drawProportionalLine{EB}$;\\
+that is $\drawProportionalLine{AE}^2 = \drawProportionalLine{AB} \times \drawProportionalLine{EB}$;\\
+$\therefore \drawProportionalLine{AB} : \drawProportionalLine{AE} :: \drawProportionalLine{AE} : \drawProportionalLine{EB}$,\\
+and \drawProportionalLine{AB} is divided in extreme and mean ratio \byref{def:VI.III}.
 \end{center}
 
 \qed
@@ -12632,11 +12632,11 @@ draw byLabelsOnPolygon(B, F, E, A, L, K, C, H, G)(ALL_LABELS, 0);
 draw byLabelsOnPolygon(A, D, C)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 }
 \drawCurrentPictureInMargin
-\problem[3]{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle (\drawLine[bottom]{CA,DC,BD,AB}), the figure described on the side (\drawProportionalLine{BD,DC}) subtending the right angle is equal to the sum of the figures on the other sides.}
+\problem[3]{I}{f}{any similar rectilinear figures be similarly described on the sides of a right angled triangle (\drawLine[bottom]{CA,DC,BD,AB}), the figure described on the side (\drawProportionalLine{BC}) subtending the right angle is equal to the sum of the figures on the other sides.}
 
 \begin{center}
-From the right angle draw \drawProportionalLine{AD} perpendicular to \drawProportionalLine{BD,DC};\\
-then $\drawProportionalLine{BD,DC} : \drawProportionalLine{CA} :: \drawProportionalLine{CA} : \drawProportionalLine{DC}$ \byref{prop:VI.VIII}.
+From the right angle draw \drawProportionalLine{AD} perpendicular to \drawProportionalLine{BC};\\
+then $\drawProportionalLine{BC} : \drawProportionalLine{CA} :: \drawProportionalLine{CA} : \drawProportionalLine{DC}$ \byref{prop:VI.VIII}.
 
 $\therefore
 \drawFromCurrentPicture[bottom][figBC]{
@@ -12652,7 +12652,7 @@ startAutoLabeling;
 draw byNamedPolygon(CA);
 stopAutoLabeling;
 stopGlobalRotation;
-} :: \drawProportionalLine{BD,DC} : \drawProportionalLine{DC}$ \byref{prop:VI.XX}.\\
+} :: \drawProportionalLine{BC} : \drawProportionalLine{DC}$ \byref{prop:VI.XX}.\\
 but $\figBC\ :
 \drawFromCurrentPicture[bottom][figAB]{
 startGlobalRotation(-angle(A-B));
@@ -12660,10 +12660,10 @@ startAutoLabeling;
 draw byNamedPolygon(AB);
 stopAutoLabeling;
 stopGlobalRotation;
-} :: \drawProportionalLine{BD,DC} : \drawProportionalLine{BD}$ \byref{prop:VI.XX}.
+} :: \drawProportionalLine{BC} : \drawProportionalLine{BD}$ \byref{prop:VI.XX}.
 
-Hence $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BD,DC} :: \figAB\ + \figCA\ : \figBC$;\\
-but $\drawProportionalLine{DC} + \drawProportionalLine{BD} = \drawProportionalLine{BD,DC}$;\\
+Hence $\drawProportionalLine{DC} + \drawProportionalLine{BD} : \drawProportionalLine{BC} :: \figAB\ + \figCA\ : \figBC$;\\
+but $\drawProportionalLine{DC} + \drawProportionalLine{BD} = \drawProportionalLine{BC}$;\\
 and $\therefore \figAB\ + \figCA\ = \figBC$.
 \end{center}
 
@@ -12910,7 +12910,7 @@ startAutoLabeling;
 draw byNamedLineSeq(0)(AE,EC,BC,AB);
 stopAutoLabeling;
 stopTempScale;
-} meet the opposite side (\drawSizedLine{AB}) produced, that whole produced side (\drawSizedLine{AB,BD}), and its external segment (\drawSizedLine{BD}) will be proportional to the sides (\drawSizedLine{AE,EC} and \drawSizedLine{BC}), which contain the angle adjacent to the external bisected angle.}
+} meet the opposite side (\drawSizedLine{AB}) produced, that whole produced side (\drawSizedLine{AD}), and its external segment (\drawSizedLine{BD}) will be proportional to the sides (\drawSizedLine{AC} and \drawSizedLine{BC}), which contain the angle adjacent to the external bisected angle.}
 
 \begin{center}
 For if \drawSizedLine{BE} be drawn $\parallel \drawSizedLine{DC}$,\\
@@ -12920,9 +12920,9 @@ $\begin{aligned}
 	& = \drawAngle{E} \mbox{, \byref{prop:I.XXIX};}\\
 \end{aligned}$\\
 and $\therefore \drawSizedLine{EC} = \drawSizedLine{BC}$, \byref{prop:I.VI},\\
-and $\drawSizedLine{AE,EC} : \drawSizedLine{BC} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \byref{prop:V.VII};\\
-But also, $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{EC}$ \byref{prop:VI.II};\\
-and therefore $\drawSizedLine{AB,BD} : \drawSizedLine{BD} :: \drawSizedLine{AE,EC} : \drawSizedLine{BC}$ \byref{prop:V.XI}.
+and $\drawSizedLine{AC} : \drawSizedLine{BC} :: \drawSizedLine{AC} : \drawSizedLine{EC}$ \byref{prop:V.VII};\\
+But also, $\drawSizedLine{AD} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{EC}$ \byref{prop:VI.II};\\
+and therefore $\drawSizedLine{AD} : \drawSizedLine{BD} :: \drawSizedLine{AC} : \drawSizedLine{BC}$ \byref{prop:V.XI}.
 \end{center}
 
 \qed
@@ -12969,8 +12969,8 @@ produce \drawSizedLine{AD} to meet the circle, and draw \drawSizedLine{CE}.
 Since $\drawAngle{CAE} = \drawAngle{EAB}$ \byref{\hypref},\\
 and $\drawAngle{B} = \drawAngle{E}$ \byref{prop:III.XXI},\\
 $\therefore$ \drawLine[bottom]{AD,BD,AB} and \drawLine[middle]{CA,CE,DE,AD} are equiangular \byref{prop:I.XXXII};\\
-$\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AD,DE} : \drawSizedLine{CA}$ \byref{prop:VI.IV};\\
-$\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{AD} \times \drawSizedLine{AD,DE}$ \byref{prop:VI.XVI}\\
+$\therefore \drawSizedLine{AB} : \drawSizedLine{AD} :: \drawSizedLine{AE} : \drawSizedLine{CA}$ \byref{prop:VI.IV};\\
+$\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{AD} \times \drawSizedLine{AE}$ \byref{prop:VI.XVI}\\
 $= \drawSizedLine{DE} \times \drawSizedLine{AD} + \drawSizedLine{AD}^2$ \byref{prop:II.III};\\
 but $\drawSizedLine{DE} \times \drawSizedLine{AD} = \drawSizedLine{BD} \times \drawSizedLine{DC}$ \byref{prop:III.XXXV};\\
 $\therefore \drawSizedLine{AB} \times \drawSizedLine{CA} = \drawSizedLine{BD} \times \drawSizedLine{DC} + \drawSizedLine{AD}^2$
@@ -13012,7 +13012,7 @@ draw byLabelsOnPolygon(C, D, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \begin{center}
 From \drawAngle{A} of \drawLine[bottom]{CA,DC,BD,AB}\\
-draw $\drawUnitLine{AD} \perp \drawUnitLine{BD,DC}$;\\
+draw $\drawUnitLine{AD} \perp \drawUnitLine{BC}$;\\
 then shall $\drawUnitLine{AB} \times \drawUnitLine{CA} = \drawUnitLine{AD} \times $ the diameter of the described circle.
 
 Describe \drawCircle[middle][1/4]{O} \byref{prop:IV.V}, draw its diameter \drawUnitLine{AE}, and draw \drawUnitLine{CE};\\
@@ -13066,8 +13066,8 @@ draw byLabelsOnPolygon(D, E, B)(OMIT_FIRST_LABEL+OMIT_LAST_LABEL, 0);
 
 \begin{center}
 Let \drawLine{DA,CD,BC,AB} be any quadrilateral figure inscribed in \drawCircle[middle][1/5]{O};\\
-and draw \drawUnitLine{BE,ED} and \drawUnitLine{AC};\\
-then $\drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
+and draw \drawUnitLine{BD} and \drawUnitLine{AC};\\
+then $\drawUnitLine{BD} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$.
 
 Make $\drawAngle{EAB} = \drawAngle{DAC}$ \byref{prop:I.XXIII},\\
 $\therefore \drawAngle{EAB,CAE} = \drawAngle{CAE,DAC}$; and $\drawAngle{BCA} = \drawAngle{D}$ \byref{prop:III.XXI};
@@ -13079,7 +13079,7 @@ and $\drawAngle{B} = \drawAngle{ACD}$ \byref{prop:III.XXI};\\
 $\therefore \drawUnitLine{AB} : \drawUnitLine{BE} :: \drawUnitLine{AC} : \drawUnitLine{CD}$ \byref{prop:VI.IV};\\
 and $\therefore \drawUnitLine{BE} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD}$ \byref{prop:VI.XVI};\\
 but, from above, $\drawUnitLine{ED} \times \drawUnitLine{AC} = \drawUnitLine{DA} \times \drawUnitLine{BC}$;\\
-$\therefore \drawUnitLine{BE,ED} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$ \byref{prop:II.I}.
+$\therefore \drawUnitLine{BD} \times \drawUnitLine{AC} = \drawUnitLine{AB} \times \drawUnitLine{CD} + \drawUnitLine{DA} \times \drawUnitLine{BC}$ \byref{prop:II.I}.
 \end{center}
 
 \qed
